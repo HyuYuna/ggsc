@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test1">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test1VO" type="ggsc.test1.service.Test1VO"/>
+	
+	<!-- 목록 (select 용) -->
+	<select id="test1Dao.getTest1SelectList" parameterClass="test1VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				NUM ,
+				TITLE ,
+				CONTENT ,
+				WRITER ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM 
+			FROM
+				FATE
+
+			WHERE 1=1
+			
+			) A
+			
+		
+	</select>
+	
+	
+	<!-- 목록 -->
+	<select id="test1Dao.getTest1List" parameterClass="test1VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				NUM ,
+				TITLE ,
+				CONTENT ,
+				WRITER ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM 
+			FROM
+				FATE
+
+			WHERE 1=1
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test1Dao.getTest1ListTotCnt" parameterClass="test1VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			Fate 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test1Dao.insertTest1" parameterClass="test1VO">
+		INSERT INTO Fate
+			(
+				NUM ,
+				TITLE ,
+				WRITER ,
+				REG_ID ,
+				CONTENT ,
+				DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(fa.NUM),0)+1 FROM Fate AS fa) ,
+				#title# ,
+				#writer# ,
+				#regId# ,
+				#content# ,
+				now()
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test1Dao.getTest1Detail" parameterClass="Integer" resultClass="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CONTENT ,
+			REG_ID 
+		FROM
+			Fate 
+		WHERE
+			NUM = #num#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test1Dao.updateTest1" parameterClass="test1VO">
+		UPDATE Fate
+			SET
+				TITLE = #title# ,
+				CONTENT = #content# ,
+				DB_UPD_TM = now()
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test1Dao.deleteTest1" parameterClass="test1VO">
+		DELETE 
+		
+		FROM 
+			Fate
+		WHERE
+			NUM = #num#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

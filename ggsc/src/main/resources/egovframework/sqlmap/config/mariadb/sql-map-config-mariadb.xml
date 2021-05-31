@@ -34,4 +34,6 @@
 <sqlMap resource="egovframework/sqlmap/monitoring/Monitoring_SQL.xml"></sqlMap>
 <sqlMap resource="egovframework/sqlmap/cmmmng/CommonMng_SQL.xml"></sqlMap>
 
+<sqlMap resource="egovframework/sqlmap/test1/Test1_SQL.xml"></sqlMap>
+
 </sqlMapConfig>
