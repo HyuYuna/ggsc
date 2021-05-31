@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test5">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test5VO" type="ggsc.test5.service.Test5VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test5Dao.getTest5List" parameterClass="test5VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				dust.* ,
+				ROW_NUMBER() OVER(ORDER BY DUST.NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY DUST.NUM DESC) AS RNUM2 ,
+				DATE_FORMAT(dust.DB_INS_TM, '%Y-%m-%d') AS dbTm 
+			FROM
+				DUST AS dust
+
+			WHERE 1=1
+			
+			<isNotEmpty property="schFate" prepend="AND"> 
+				dust.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				dust.narcissus = #schNarcissus#
+			</isNotEmpty>
+			
+			) A
+			
+			<![CDATA[
+	 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+	 			ORDER BY NUM DESC
+ 			]]>
+		
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test5Dao.getTest5ListTotCnt" parameterClass="test5VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			DUST 
+		WHERE
+		    1=1
+		<isNotEmpty property="schFate" prepend="AND"> 
+				dust.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				dust.narcissus = #schNarcissus#
+			</isNotEmpty>
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test5Dao.insertOasis" parameterClass="test5VO">
+		INSERT INTO OASIS
+			(
+			
+				YSM_NO ,
+				YSM_ID ,
+				YSM_NM ,
+				YEAR , 
+				MONTH ,
+				DAY ,
+				NARCISSUS
+				
+			) VALUES (
+				
+				#ysmNo# ,
+				#ysmId# ,
+				#ysmNm# ,
+				#oasisYear# ,
+				#oasisMonth# ,
+				#oasisDay# ,
+				#narcissus#
+				
+			)
+	</insert>
+	
+	<insert id="test5Dao.insertRadiohead" parameterClass="test5VO">
+		INSERT INTO RADIOHEAD
+			(
+			
+				YSM_NO ,
+				YSM_ID ,
+				YSM_NM ,
+				YEAR , 
+				MONTH ,
+				DAY ,
+				NARCISSUS ,
+				RADIO1_YN ,
+				RADIO2_YN ,
+				IDENTIFY1 ,
+				IDENTIFY2
+				
+				
+			) VALUES (
+				
+				#ysmNo# ,
+				#ysmId# ,
+				#ysmNm# ,
+				#radioYear# ,
+				#radioMonth# ,
+				#radioDay# ,
+				#narcissus# ,
+				#radio1Yn# ,
+				#radio2Yn# ,
+				#identify1# ,
+				#identify2#
+				
+			)
+	</insert>
+	
+	
+	<insert id="test5Dao.insertBoowhal" parameterClass="test5VO">
+		INSERT INTO BOOWHAL
+			(
+			
+				YSM_NO ,
+				YSM_ID ,
+				YSM_NM ,
+				NARCISSUS ,
+				STRT_TIME ,
+				STRT_MIN ,
+				END_TIME_HOUR ,
+				END_TIME_MIN ,
+				GENDER ,
+				TOT_TIME ,
+				ANSR1 ,
+				ANSR1_CNTN ,
+				ANSR2 ,
+				ANSR2_CNTN ,
+				ANSR3 ,
+				ANSR3_CNTN ,
+				G1_GB ,
+				G2_GB , 
+				G3_GB ,
+				G4_GB ,
+				SONG1_LIKE ,
+				SONG2_LIKE ,
+				SONG3_LIKE ,
+				SONG4_LIKE ,
+				SONG5_LIKE ,
+				SONG6_LIKE ,
+				SONG7_LIKE ,
+				SONG8_LIKE ,
+				SONG9_LIKE ,
+				SONG10_LIKE ,
+				SONG11_LIKE ,
+				SONG12_LIKE ,
+				LIKE_TOT ,
+				BORING_TOT ,
+				MORE_LIKE ,
+				SONG_TOT
+				
+				
+			) VALUES (
+				
+				#ysmNo# ,
+				#ysmId# ,
+				#ysmNm# ,
+				#narcissus# ,
+				#strtTime# ,
+				#strtMin# ,
+				#endTimeHour# ,
+				#endTimeMin# ,
+				#gender# ,
+				#totTime# ,
+				#ansr1# ,
+				#ansr1Cntn# ,
+				#ansr2# ,
+				#ansr2Cntn# ,
+				#ansr3# ,
+				#ansr3Cntn# ,
+				#g1Gb# ,
+				#g2Gb# ,
+				#g3Gb# ,
+				#g4Gb# ,
+				#song1Like# ,
+				#song2Like# ,
+				#song3Like# ,
+				#song4Like# ,
+				#song5Like# ,
+				#song6Like# ,
+				#song7Like# ,
+				#song8Like# ,
+				#song9Like# ,
+				#song10Like# ,
+				#song11Like# ,
+				#song12Like# ,
+				#likeTot# ,
+				#boringTot# ,
+				#moreLike# ,
+				#songTot#
+				
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test5Dao.getTest5Detail" parameterClass="test5VO" resultClass="egovMap">
+		SELECT
+			*
+		FROM
+			DUST 
+		WHERE
+			YSM_NO = #ysmNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test5Dao.updateTest5" parameterClass="test5VO">
+		UPDATE DUST
+			SET
+				DB_UPD_TM = NOW()
+				
+			<isEqual property ="oasisYn" compareValue="Y">
+				, OASIS_YN = 'Y'
+			</isEqual>
+			<isEqual property ="radioYn" compareValue="Y">
+				, RADIO_YN = 'Y'
+			</isEqual>
+			<isEqual property ="boowhalYn" compareValue="Y">
+				, BOOWHAL_YN = 'Y'
+			</isEqual>
+			<isNotEmpty property="ysmGb">
+				, YSM_GB = #ysmGb#
+			</isNotEmpty>
+			
+			WHERE
+				YSM_NO = #ysmNo#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test5Dao.deleteTest5" parameterClass="test5VO">
+		DELETE 
+		
+		FROM 
+			DUST
+		WHERE
+			YSM_NO = #ysmNo#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

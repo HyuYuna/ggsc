@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test4">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test4VO" type="ggsc.test4.service.Test4VO"/>
+	<typeAlias alias="test5VO" type="ggsc.test5.service.Test5VO"/>
+	
+	
+	
+	<!-- 목록 -->
+	<select id="test4Dao.getTest4List" parameterClass="test4VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT TITLE FROM FATE WHERE num = ysm.fate) AS fate ,
+				YSM_NM , 
+				GENDER , 
+				MOBILE , 
+				(SELECT TITLE FROM NARCISSUS WHERE num = ysm.narcissus) AS narcissus ,
+				YSM_NO ,
+				YSM_ID ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM 
+			FROM
+				YSM AS ysm
+
+			WHERE ysm.YSM_YN != 'Y'
+			
+			<isNotEmpty property="schFate" prepend="AND"> 
+				ysm.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				ysm.narcissus = #schNarcissus#
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsm" prepend="AND"> 
+				ysm.ysm_Id LIKE CONCAT('%', #schYsm#, '%') 
+			</isNotEmpty>
+			
+			<isNotEmpty property="schStartDate" prepend="AND">
+		       	<![CDATA[ ysm.DB_INS_TM >= #schStartDate# ]]>
+		    </isNotEmpty>
+		    
+		    <isNotEmpty property="schEndDate" prepend="AND">
+		        <![CDATA[ ysm.DB_INS_TM <= #schEndDate#   ]]>
+		    </isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test4Dao.getTest4ListTotCnt" parameterClass="test4VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			YSM 
+		WHERE
+		    1=1
+		<isNotEmpty property="schFate" prepend="AND"> 
+				ysm.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				ysm.narcissus = #schNarcissus#
+			</isNotEmpty>
+			<isNotEmpty property="schYsm" prepend="AND"> 
+				ysm.ysm_Id LIKE CONCAT('%', #schYsm#, '%') 
+			</isNotEmpty>
+			
+			<isNotEmpty property="schStartDate" prepend="AND">
+		       	<![CDATA[ ysm.DB_INS_TM >= #schStartDate# ]]>
+		    </isNotEmpty>
+		    
+		    <isNotEmpty property="schEndDate" prepend="AND">
+		        <![CDATA[ ysm.DB_INS_TM <= #schEndDate#   ]]>
+		    </isNotEmpty>
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test4Dao.insertTest4" parameterClass="test4VO">
+		INSERT INTO YSM
+			(
+				YSM_NO ,
+				YSM_ID ,
+				YSM_NM ,
+				REG_ID ,
+				DB_INS_TM ,
+				FATE ,
+				NARCISSUS ,
+				YSM_YN ,
+				GENDER ,
+				BIRTH_DT ,
+				MOBILE ,
+				DB_UPD_TM 
+				
+			) VALUES (
+			CAST(CONCAT(#fate#, #narcissus#, (SELECT ynum from (SELECT IFNULL(MAX(NUM),0)+1 as ynum FROM YSM)a)) AS UNSIGNED) 
+			, #ysmId# 
+			, #ysmNm# 
+			, #regId# 
+			, NOW() 
+			, #fate# 
+			, #narcissus# 
+			, 'N'
+			, #gender# 
+			, #birthDt#
+			, #mobile# 
+			, NOW() 
+			)
+	</insert>
+	
+	<!-- 회원등록 -->
+	<insert id="test4Dao.insertYsmUser" parameterClass="test4VO">
+		INSERT INTO
+		YSM_USER
+		(
+		YSM_ID
+		, YSM_NM
+		, PW
+		, REG_ID 
+		, GENDER
+		, BIRTH_DT
+		, FATE 
+		, NARCISSUS
+		, MOBILE
+		, DB_UPD_TM
+		, DB_INS_TM
+		)
+		VALUES
+		(
+		#ysmId#
+		, #ysmNm#
+		, #pw#
+		, #regId# 
+		, #gender#
+		, #birthDt#
+		, #fate# 
+		, #narcissus# 
+		, #mobile#
+		, NOW()
+		, NOW()
+		)
+	</insert>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="test4Dao.idCheck" parameterClass="String" resultClass="int">
+		SELECT
+			COUNT(YSM_ID)
+		FROM
+			YSM_USER
+		WHERE
+			YSM_ID = #ysmId#
+	</select>
+	
+	
+	
+	<!-- 상세 -->
+	<select id="test4Dao.getTest4Detail" parameterClass="String" resultClass="egovMap">
+		SELECT
+			YSM_NO ,
+			YSM_ID ,
+			YSM_NM ,
+			REG_ID ,
+			DB_INS_TM ,
+			FATE ,
+			NARCISSUS ,
+			PW ,
+			FATE ,
+			NARCISSUS ,
+			GENDER ,
+			BIRTH_DT ,
+			MOBILE 
+		FROM
+			YSM 
+		WHERE
+			YSM_NO = #ysmNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test4Dao.updateTest4" parameterClass="test4VO">
+		UPDATE YSM
+			SET
+				GENDER = #gender# ,
+				YSM_NM = #ysmNm# ,
+				FATE = #fate# ,
+				BIRTH_DT = #birthDt# ,
+				NARCISSUS = #narcissus# ,
+				MOBILE = #mobile# 
+			WHERE
+				YSM_NO = #ysmNo#
+	</update>
+	
+	<!-- 유저 수정 -->
+	<update id="test4Dao.updateYsmUser" parameterClass="test4VO">
+		UPDATE YSM_USER
+			SET
+				GENDER = #gender# ,
+				YSM_NM = #ysmNm# ,
+				FATE = #fate# ,
+				BIRTH_DT = #birthDt# ,
+				NARCISSUS = #narcissus# ,
+				MOBILE = #mobile# 
+			WHERE
+				YSM_ID = 
+				(SELECT YSM_ID FROM YSM WHERE YSM_NO = #ysmNo#)
+				
+	</update>
+	
+	
+	<!-- 삭제 -->
+	<delete id="test4Dao.deleteTest4" parameterClass="test4VO">
+		DELETE
+		
+		FROM
+			YSM
+		WHERE
+			YSM_NO = #ysmNo#
+				
+	</delete>
+	
+	
+	<!-- 유저 삭제 -->
+	<delete id="test4Dao.deleteYsmUser" parameterClass="test4VO">
+		DELETE
+		
+		FROM
+			YSM_USER
+		WHERE
+			YSM_ID = 
+			(SELECT YSM_ID FROM YSM WHERE YSM_NO = #ysmNo#)
+				
+	</delete>
+	
+	
+	<!-- 신청 확인 -->
+	<update id="test4Dao.updateConfirm" parameterClass="test4VO">
+		UPDATE YSM
+			SET
+				YSM_YN = #ysmYn# ,
+				UPDATE_DT = NOW()
+			WHERE
+				YSM_NO = #ysmNo#
+	</update>
+	
+	
+	<update id="test4Dao.updateYsmYn" parameterClass="test4VO">
+		UPDATE YSM_USER
+			SET
+				YSM_YN = #ysmYn# 
+			WHERE
+				YSM_ID = #ysmId#
+	</update>
+	
+
+	<insert id="test4Dao.insertDust" parameterClass="test5VO">
+	INSERT INTO DUST
+		(
+			YSM_NO ,
+			YSM_ID ,
+			YSM_NM ,
+			FATE   ,
+			NARCISSUS ,
+			DB_INS_TM ,
+			REG_ID
+			
+		) VALUES (
+		   #ysmNo# ,
+		   #ysmId# ,
+		   #ysmNm# ,
+		   #fate#   ,
+		   #narcissus# ,
+		   NOW() ,
+		   #regId#
+		)
+	</insert>
+	
+	
+	
+	<select id="test4Dao.findYsmUser" parameterClass="test4VO" resultClass="EgovMap">
+		SELECT
+		A.*
+		FROM(
+			SELECT
+				row_number() over(ORDER BY ysm.NUM) AS RNUM , 
+				row_number() over(ORDER BY ysm.NUM DESC) AS RNUM2 , 
+				ysmUser.* ,
+				ysm.NUM ,
+				ysm.YSM_NO ,
+				(SELECT TITLE FROM NARCISSUS WHERE NUM = ysm.NARCISSUS) AS narcissusYsm
+			FROM
+				YSM as ysm , YSM_USER as ysmUser
+			<isNotEmpty property ="ysmGb">
+				, DUST as dust
+			</isNotEmpty>
+			WHERE 
+				ysm.YSM_ID = ysmUser.YSM_ID	
+			<isNotEmpty property="ysmGb">
+				AND ysm.YSM_ID = dust.YSM_ID
+				AND dust.YSM_GB = 'Y'
+			</isNotEmpty>
+			AND ysm.YSM_YN = 'Y'
+			<isNotEmpty property="schYsmNm" prepend="AND">
+				ysmUser.YSM_NM LIKE CONCAT('%' , #schYsmNm#, '%')
+			</isNotEmpty>
+			<isNotEmpty property="schYsmId" prepend="AND">
+				ysmUser.YSM_ID LIKE CONCAT('%' , #schYsmId#, '%')
+			</isNotEmpty>
+			
+		) A
+			 <![CDATA[
+			 	 WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+			 	 ORDER BY NUM DESC
+			 ]]>
+			 
+		</select>
+	
+	
+	
+	<select id="test4Dao.getFindYsmUserTotCnt" parameterClass="test4VO" resultClass="Integer">
+		SELECT
+			count(ysm.YSM_NO)
+		FROM
+			YSM AS ysm , YSM_USER as ysmUser
+		<isNotEmpty property ="ysmGb">
+			, DUST as dust
+		</isNotEmpty>
+		WHERE 
+			ysm.YSM_ID = ysmUser.YSM_ID	
+		<isNotEmpty property="ysmGb">
+			AND ysm.YSM_ID = dust.YSM_ID
+			AND dust.YSM_GB = 'Y'
+		</isNotEmpty>
+			AND ysm.YSM_YN = 'Y'
+		<isNotEmpty property="schYsmNm" prepend="AND">
+			ysmUser.YSM_NM LIKE CONCAT('%' , #schYsmNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schYsmId" prepend="AND">
+			ysmUser.YSM_ID LIKE CONCAT('%' , #schYsmId#, '%')
+		</isNotEmpty>
+	</select>
+	
+	
+	
+	
+	
+	
+</sqlMap>

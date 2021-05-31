@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test2">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test2VO" type="ggsc.test2.service.Test2VO"/>
+	
+	<!-- 목록(select) -->
+	<select id="test2Dao.getTest2SelectList" parameterClass="test2VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT TITLE FROM FATE WHERE num = nar.fate) AS fate ,
+				NUM ,
+				TITLE ,
+				CONTENT ,
+				WRITER ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM 
+			FROM
+				NARCISSUS AS nar
+
+			WHERE 1=1
+			
+			) A
+			
+	
+	</select>
+	
+	
+	<!-- 목록 -->
+	<select id="test2Dao.getTest2List" parameterClass="test2VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT TITLE FROM FATE WHERE num = nar.fate) AS fate ,
+				NUM ,
+				TITLE ,
+				CONTENT ,
+				WRITER ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM 
+			FROM
+				NARCISSUS AS nar
+
+			WHERE 1=1
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test2Dao.getTest2ListTotCnt" parameterClass="test2VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			NARCISSUS 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test2Dao.insertTest2" parameterClass="test2VO">
+		INSERT INTO NARCISSUS
+			(
+				NUM ,
+				TITLE ,
+				WRITER ,
+				REG_ID ,
+				CONTENT ,
+				DB_INS_TM ,
+				FATE ,
+				NARCISSUS_DT , 
+				NARCISSUS_STT_HOUR , 
+				NARCISSUS_STT_MIN ,
+				NARCISSUS_END_HOUR ,
+				NARCISSUS_END_MIN ,
+				HOMEPAGE
+				
+			) VALUES (
+				(SELECT IFNULL(MAX(nar.NUM),0)+1 FROM NARCISSUS AS nar) ,
+				#title# ,
+				#writer# ,
+				#regId# ,
+				#content# ,
+				now() ,
+				#fate# ,
+				#narcissusDt# , 
+				#narcissusSttHour# , 
+				#narcissusSttMin# ,
+				#narcissusEndHour# ,
+				#narcissusEndMin# ,
+				homepage
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test2Dao.getTest2Detail" parameterClass="Integer" resultClass="egovMap">
+		SELECT
+			*
+		FROM
+			NARCISSUS 
+		WHERE
+			NUM = #num#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test2Dao.updateTest2" parameterClass="test2VO">
+		UPDATE NARCISSUS
+			SET
+				TITLE = #title# ,
+				CONTENT = #content# ,
+				DB_UPD_TM = now() ,
+				FATE = #fate# ,
+				NARCISSUS_DT = #narcissusDt# , 
+				NARCISSUS_STT_HOUR = #narcissusSttHour# , 
+				NARCISSUS_STT_MIN = #narcissusSttMin# ,
+				NARCISSUS_END_HOUR = #narcissusEndHour# ,
+				NARCISSUS_END_MIN = #narcissusEndMin# ,
+				HOMEPAGE = #homepage#
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test2Dao.deleteTest2" parameterClass="test2VO">
+		DELETE 
+		
+		FROM 
+			NARCISSUS
+		WHERE
+			NUM = #num#
+	</delete>
+	
+	<select id="test2Dao.narcissusCheck" parameterClass="String" resultClass="Integer">
+		SELECT 
+			COUNT(TITLE)
+		FROM 
+			NARCISSUS
+		WHERE 
+			TITLE = #title#
+	</select>
+	
+	
+	
+	
+</sqlMap>

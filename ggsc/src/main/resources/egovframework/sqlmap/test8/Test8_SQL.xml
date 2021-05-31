@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test8">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test8VO" type="ggsc.test8.service.Test8VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test8Dao.getTest8StateList" parameterClass="test8VO" resultClass="egovMap">
+		SELECT
+		(
+			select count(*) from YUKI WHERE 1=1
+			<isNotEmpty property="schDateGb" prepend="AND">
+				YSM_DT = #schDateGb#
+			</isNotEmpty>
+		) as YUKI_TOTAL ,
+		
+		(
+			select count(*) from YUKI WHERE G1_GB = '2'
+			<isNotEmpty property="schDateGb" prepend="And">
+				YSM_DT = #schDateGb#
+			</isNotEmpty>
+		) as DIVERSE ,
+		
+		(
+			select count(*) from YUKI WHERE G2_GB = '2'
+			<isNotEmpty property="schDateGb" prepend="And">
+				YSM_DT = #schDateGb#
+			</isNotEmpty>
+		) as ENORMOUS ,
+		
+		(	
+			select count(*) from YUKI where TITLE = '양승민'
+			<isNotEmpty property="schDateGb" prepend="And">
+				YSM_DT = #schDateGb#
+			</isNotEmpty>
+		) as TITLE ,
+		
+		(	
+			select count(*) from YUKI where CONTENT = '유키'
+			<isNotEmpty property="schDateGb" prepend="And">
+				YSM_DT = #schDateGb#
+			</isNotEmpty>
+		) as CONTENT 
+		
+	</select>
+	
+	
+	<select id="test8Dao.getYumiStateList" parameterClass="Test8VO" resultClass="egovMap">
+		call gs_sp_yumiStateList(
+		<isNotEmpty property="schDateGb">
+			#schDateGb#
+		</isNotEmpty>
+		<isEmpty property="schDateGb">
+			''
+		</isEmpty>
+		,
+		<isNotEmpty property="schG1Gb">
+			#schG1Gb#
+		</isNotEmpty>
+		<isEmpty property="schG1Gb">
+			0
+		</isEmpty>
+		)
+	</select>
+	
+	
+	<select id="test8Dao.getAppleStateList" parameterClass="Test8VO" resultClass="eGovMap">
+		call gs_sp_appleStateList(
+		<isNotEmpty property="schBirthGb">
+			#schBirthGb#
+		</isNotEmpty>
+		<isEmpty property="schBirthGb">
+			''
+		</isEmpty>
+		)
+	</select>
+	
+	
+	
+	<select id="test8Dao.getYsmStateList" parameterClass="Test8VO" resultClass="eGovMap">
+		call gs_sp_ysmStateList(
+		<isNotEmpty property="schBirthGb">
+			#schBirthGb#
+		</isNotEmpty>
+		<isEmpty property="schBirthGb">
+			''
+		</isEmpty>
+		)
+	</select>
+	
+	
+	<select id ="test8Dao.getRandomStateList" parameterClass="Test8VO" resultClass="egovMap">
+		<![CDATA[
+		SELECT
+		(
+			SELECT COUNT(*) FROM APPLE
+		) as 'APPLE',
+		(
+			SELECT (SELECT COUNT(*) FROM APPLE) + (SELECT COUNT(*) FROM HUHYUNA)
+		) as 'APPLE_HUHYUNA' ,
+		(
+			SELECT (SELECT COUNT(*) FROM APPLE WHERE G1_GB = '1') + (SELECT COUNT(*) FROM YUMI WHERE G1_GB = '2')
+		) as 'DIVERSE' ,
+		(
+			SELECT 
+				(SELECT COUNT(*) FROM YUMI WHERE FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) >= 80 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) < 90)
+				 +
+				(SELECT COUNT(*) FROM HUHYUNA WHERE FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(YSM_DT, '%Y%m%d'))/365) >= 80 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(YSM_DT, '%Y%m%d'))/365) < 90) 
+		) as 'AGE' ,
+		(
+			SELECT
+				(SELECT COUNT(*) FROM YUMI WHERE G1_GB = '1')
+				+
+				(SELECT COUNT(*) FROM YUMI WHERE G1_GB = '2')
+		) as 'YUMI' ,
+		(
+			SELECT
+				(SELECT COUNT(*) FROM APPLE WHERE G3_GB = '1' AND G3_GB = '2')
+				+
+				(SELECT COUNT(*) FROM APPLE WHERE G4_GB = '3' AND G4_GB = '4')
+		) as 'APPLES' ,
+		(
+			SELECT COUNT(*) FROM APPLE WHERE YSM2_END_MIN >= 21 AND YSM2_END_MIN <= 94
+		) as 'MIN' ,
+		(
+			SELECT
+				(SELECT COUNT(*) FROM YUKI WHERE YSM_STT_HOUR >= 3 AND YSM_STT_HOUR <= 10)
+				+
+				(SELECT COUNT(*) FROM YUKI WHERE YSM_STT_MIN >= 2 AND YSM_STT_MIN <= 10)
+		) as 'APPLESS' ,
+		( 
+			SELECT COUNT(*) FROM 
+				(SELECT * FROM
+					(SELECT YSM.YSM_ID FROM YSM as YSM 
+					 INNER JOIN YSM_USER AS YSMU ON YSM.YSM_ID = YSMU.YSM_ID
+					 INNER JOIN YUNA AS YUNA ON YSMU.YSM_ID = YUNA.YSM_ID )  A GROUP BY YSM_ID 
+				) AS X
+		) AS 'YSM_ID' ,
+		(
+			SELECT COUNT(*) FROM
+				(SELECT * FROM
+					(SELECT APPLE.G1_GB FROM APPLE AS APPLE
+					 INNER JOIN YUMI AS YUMI ON APPLE.G1_GB = YUMI.G1_GB
+					 INNER JOIN YUKI AS YUKI ON YUMI.G1_GB = YUKI.G1_GB WHERE APPLE.G1_GB= 1 ) A
+				) AS X
+		) AS 'RANDOM' ,
+		(
+			SELECT COUNT(*) FROM
+				(SELECT * FROM
+					(SELECT YSM.YSM_NM FROM YSM AS YSM
+					 INNER JOIN YSM_USER AS YSMU ON YSM.YSM_NM = YSMU.YSM_NM
+					 INNER JOIN YUNA AS YUNA ON YSMU.YSM_NM = YUNA.YSM_NM WHERE YSM.YSM_NM = '양승' ) A GROUP BY YSM_NM
+				) AS X
+		) AS 'YSM_NM'
+		]]>
+	</select>
+	
+	
+	
+	
+</sqlMap>

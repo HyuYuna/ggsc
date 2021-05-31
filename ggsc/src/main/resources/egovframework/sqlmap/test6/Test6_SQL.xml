@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test6">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test6VO" type="ggsc.test6.service.Test6VO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test6Dao.getTest6List" parameterClass="test6VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				sindra.*  , 
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = sindra.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = sindra.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = sindra.G3_GB) AS scaling 
+			FROM
+				SINDRA AS sindra
+			WHERE 1=1
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ sindra.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ sindra.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					sindra.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					sindra.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					sindra.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+					
+			
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test6Dao.getTest6ListTotCnt" parameterClass="test6VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			SINDRA 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test6Dao.insertTest6" parameterClass="test6VO">
+		INSERT INTO SINDRA
+			(
+				NUM
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, G6_GB 
+				, YSM_DT
+				, STT_HOUR
+				, STT_MIN
+				, END_HOUR
+				, END_MIN
+				, DB_INS_TM 
+				, CONTENT
+				, TITLE
+				, GENDER
+				, ADDR
+				, WEEK_CD
+				, NARCISSUS
+				, YSM_NO
+				, YSM_NM
+				, YSM_ID
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM SINDRA AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #g6Gb#
+				, #ysmDt#
+				, #SttHour#
+				, #SttMin#
+				, #EndHour#
+				, #EndMin#
+				, NOW()
+				, #content#
+				, #title#
+				, #gender#
+				, #addr#
+				, #weekCd#
+				, #narcissus#
+				, #ysmNo#
+				, #ysmNm#
+				, #ysmId#
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test6Dao.getTest6Detail" parameterClass="test6VO" resultClass="egovMap">
+		SELECT  *
+		FROM    SINDRA 
+		WHERE
+			NUM = #num#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test6Dao.updateTest6" parameterClass="test6VO">
+		UPDATE SINDRA
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# ,
+				CONTENT = #content# 
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test6Dao.deleteTest6" parameterClass="test6VO">
+		DELETE 
+		
+		FROM 
+			SINDRA
+		WHERE
+			NUM = #num#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

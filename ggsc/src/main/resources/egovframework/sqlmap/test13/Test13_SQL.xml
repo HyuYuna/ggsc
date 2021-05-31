@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test13">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test13VO" type="ggsc.test13.service.Test13VO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test13Dao.getTest13List" parameterClass="test13VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				apple.*  , 
+				ROW_NUMBER() OVER(ORDER BY APPLE_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY APPLE_NO DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = apple.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = apple.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = apple.G3_GB) AS scaling ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G13' AND ODR = apple.G13_GB) AS ensure 
+			FROM
+				APPLE AS apple
+			WHERE 1=1
+			
+			<isNotEmpty property ="schG1Gb" prepend="AND">
+				apple.G1_GB = #schG1Gb#
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ apple.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ apple.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					apple.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					apple.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					apple.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+					
+			
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	<select id="test13Dao.getAppleList" parameterClass="test13VO" resultClass="egovMap">
+		SELECT *
+		FROM	(
+			SELECT
+				apple.* ,
+				ROW_NUMBER() OVER(ORDER BY APPLE_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY APPLE_NO DESC) AS RNUM2
+			FROM
+				APPLE as apple
+			WHERE 
+			 	1=1
+			 
+			 <isNotEmpty property="schEpilogue" prepend="AND">
+			 	EPILOGUE LIKE CONCAT('%' , #schEpilogue# , '%')
+			 </isNotEmpty>
+			 	
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]> 
+ 		
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test13Dao.getTest13ListTotCnt" parameterClass="test13VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			APPLE 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<select id="test13Dao.getAppleListTotCnt" parameterClass="test13VO" resultClass="Integer">
+		SELECT 
+			COUNT(*)
+		FROM
+			APPLE
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test13Dao.insertTest13" parameterClass="test13VO">
+		INSERT INTO APPLE
+			(
+				APPLE_NO
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, G6_GB 
+				, G7_GB 
+				, G8_GB 
+				, G9_GB 
+				, G10_GB 
+				, G11_GB 
+				, G12_GB 
+				, G13_GB 
+				, G14_GB 
+				, G15_GB 
+				, G16_GB 
+				, G17_GB 
+				, YSM_DT
+				, YSM2_DT
+				, BIRTH_DT
+				, YSM_STT_HOUR
+				, YSM2_STT_HOUR
+				, YSM_STT_MIN
+				, YSM2_STT_MIN
+				, YSM_END_HOUR
+				, YSM2_END_HOUR
+				, YSM_END_MIN
+				, YSM2_END_MIN
+				, DB_INS_TM 
+				, CONTENT
+				, WEEK_CD
+				, WEEK2_CD
+				, ADDR
+				, EXAMPLE
+				, PROBLEM
+				, EPILOGUE
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.APPLE_NO),0)+1 FROM APPLE AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #g6Gb#
+				, #g7Gb#
+				, #g8Gb#
+				, #g9Gb#
+				, #g10Gb#
+				, #g11Gb#
+				, #g12Gb#
+				, #g13Gb#
+				, #g14Gb#
+				, #g15Gb#
+				, #g16Gb#
+				, #g17Gb#
+				, #ysmDt#
+				, #ysm2Dt#
+				, #birthDt#
+				, #ysmSttHour#
+				, #ysm2SttHour#
+				, #ysmSttMin#
+				, #ysm2SttMin#
+				, #ysmEndHour#
+				, #ysm2EndHour#
+				, #ysmEndMin#
+				, #ysm2EndMin#
+				, NOW()
+				, #content#
+				, #weekCd#
+				, #week2Cd#
+				, #addr#
+				, #example#
+				, #problem#
+				, #epilogue#
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test13Dao.getTest13Detail" parameterClass="test13VO" resultClass="egovMap">
+		SELECT  *
+		FROM    APPLE 
+		WHERE
+			APPLE_NO = #appleNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test13Dao.updateTest13" parameterClass="test13VO">
+		UPDATE APPLE
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# ,
+				G7_GB = #g7Gb# ,
+				G8_GB = #g8Gb# ,
+				G12_GB = #g12Gb# ,
+				G13_GB = #g13Gb# ,
+				G14_GB = #g14Gb# ,
+				G15_GB = #g15Gb# ,
+				CONTENT = #content# 
+			WHERE
+				APPLE_NO = #appleNo#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test13Dao.deleteTest13" parameterClass="test13VO">
+		DELETE 
+		
+		FROM 
+			APPLE
+		WHERE
+			APPLE_NO = #appleNo#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

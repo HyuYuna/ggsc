@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test7">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test6VO" type="ggsc.test6.service.Test6VO"/>
+	<typeAlias alias="test7VO" type="ggsc.test7.service.Test7VO"/>
+	<typeAlias alias="yunaInfoVO" type="ggsc.test7.service.yunaInfoVO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test7Dao.getTest7List" parameterClass="test6VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				noin.*  , 
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = noin.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = noin.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = noin.G3_GB) AS scaling 
+			FROM
+				NOIN AS noin
+			WHERE 1=1
+			
+			AND G1_GB = '1'
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ noin.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ noin.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					noin.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					noin.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					noin.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	
+		<!-- 목록 -->
+	<select id="test7Dao.getTest7G2List" parameterClass="test6VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				noin.*  , 
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = noin.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = noin.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = noin.G3_GB) AS scaling 
+			FROM
+				NOIN AS noin
+			WHERE 1=1
+			
+			AND G1_GB = '2'
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ noin.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ noin.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					noin.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					noin.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					noin.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	
+		<!-- 목록 -->
+	<select id="test7Dao.getTest7G3List" parameterClass="test6VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				noin.*  , 
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = noin.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = noin.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = noin.G3_GB) AS scaling 
+			FROM
+				NOIN AS noin
+			WHERE 1=1
+			
+			AND G1_GB = '3'
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ noin.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ noin.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					noin.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					noin.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					noin.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	
+	<select id="test7Dao.getAddRequestList" parameterClass="test6VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				addReq.*  , 
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = addReq.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = addReq.G2_GB) AS instruction 
+			FROM
+				ADD_REQUEST AS addReq
+				
+			WHERE 1=1
+			
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ addReq.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ addReq.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schAddReqGb" prepend="AND">
+				ADD_REQ_GB = #schAddReqGb#
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	
+	
+	<!-- 개수 -->
+	<select id="test7Dao.getTest7ListTotCnt" parameterClass="test6VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			NOIN 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test7Dao.insertTest7" parameterClass="test6VO">
+		INSERT INTO NOIN
+			(
+				NUM
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, G6_GB 
+				, G7_GB 
+				, RF_GB
+				, YSM_DT
+				, YSM2_DT
+				, YSM3_DT
+				, ADVANTAGE
+				, WEAKNESS
+				, STT_HOUR
+				, STT_MIN
+				, END_HOUR
+				, END_MIN
+				, DB_INS_TM 
+				, CONTENT
+				, TITLE
+				, GENDER
+				, ADDR
+				, WEEK_CD
+				, NARCISSUS
+				, YSM_NO
+				, YSM_NM
+				, YSM_ID
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM NOIN AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #g6Gb#
+				, #g7Gb#
+				, #rfGb#
+				, #ysmDt#
+				, #ysm2Dt#
+				, #ysm3Dt#
+				, #advantage#
+				, #weakness#
+				, #SttHour#
+				, #SttMin#
+				, #EndHour#
+				, #EndMin#
+				, NOW()
+				, #content#
+				, #title#
+				, #gender#
+				, #addr#
+				, #weekCd#
+				, #narcissus#
+				, #ysmNo#
+				, #ysmNm#
+				, #ysmId#
+			)
+	</insert>
+	
+	
+	
+	<insert id="test7Dao.insertNoinClose" parameterClass="test6VO">
+		INSERT INTO NOIN_CLOSE
+			(
+				NUM
+				, G2_GB 
+				, DB_INS_TM 
+				, CONTENT
+				, TITLE
+				, ADDR
+				, NARCISSUS
+				, YSM_NO
+				, YSM_NM
+				, YSM_ID
+				, PHONE
+				, TEL
+				, STFT
+				, SUG
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM NOIN_CLOSE AS hyu) 
+				, #g2Gb# 
+				, NOW()
+				, #content#
+				, #title#
+				, #addr#
+				, #narcissus#
+				, #ysmNo#
+				, #ysmNm#
+				, #ysmId#
+				, #phone#
+				, #tel#
+				, #stft#
+				, #sug#
+			)
+	</insert>
+	
+	
+	
+	<insert id="test7Dao.insertNoinGroup" parameterClass="test6VO">
+		INSERT INTO NOIN_GROUP
+			(
+				NUM
+				, title
+				, NOIN_CNSR
+				, NOIN_DT
+				, NOIN_CNTN
+				, ANSWER_YN
+				, DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM NOIN_GROUP AS hyu) 
+				, #title#
+				, #noinCnsr#
+				, #noinDt#
+				, #noinCntn#
+				, 'N'
+				, NOW()
+			)
+	</insert>
+	
+	
+		<insert id="test7Dao.insertNoinGroupReply" parameterClass="test6VO">
+		INSERT INTO NOIN_GROUP_REPLY
+			(
+				NUM
+				, TITLE
+				, RPLY_CNSR
+				, RPLY_DT
+				, RPLY_CNTN
+				, DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM NOIN_GROUP_REPLY AS hyu) 
+				, #title#
+				, #rplyCnsr#
+				, #rplyDt#
+				, #rplyCntn#
+				, NOW()
+			)
+	</insert>
+	
+	
+	<insert id="test7Dao.insertAddInReq" parameterClass="test7VO">
+		INSERT INTO ADD_REQUEST
+			(
+				NUM
+				, YUNA_NO
+				, YSM_ID
+				, YSM_NM
+				, ADD_REQ_GB
+				, FATE 
+				, G1_GB
+				, REG_ID
+				, REQ_DEPT 
+				, REQ_DEPT_PER 
+				, REQ_DT 
+				, EPILOGUE 
+				, HELP_DEPT_PER 
+				, GENDER 
+				, BIRTH_DT 
+				, ADDR 
+				, TEL_NO 
+				, RCPT_SGCT 
+				, REQ_RESN_CNTN 
+				, PGRS_RSLT 
+				, ETC
+				, DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM ADD_REQUEST AS hyu)
+				, #yunaNo#
+				, #ysmId#
+				, #ysmNm#
+				, #addReqGb#
+				, #fate#
+				, #g1Gb#
+				, #regId# 
+				, #reqDept# 
+				, #reqDeptPer# 
+				, #reqDt# 
+				, #epilogue# 
+				, #helpDeptPer# 
+				, #gender# 
+				, #birthDt# 
+				, #addr# 
+				, #telNo# 
+				, #rcptSgct# 
+				, #reqResnCntn# 
+				, #pgrsRslt# 
+				, #etc#
+				, now()
+			)
+	</insert>
+	
+	
+	
+	<insert id="test7Dao.insertAddOutReq" parameterClass="test7VO">
+		INSERT INTO ADD_REQUEST
+			(
+				NUM
+				, YUNA_NO
+				, YSM_ID
+				, YSM_NM
+				, ADD_REQ_GB
+				, FATE 
+				, G2_GB
+				, REG_ID
+				, TEL_NO 
+				, EPILOGUE
+				, REQ_DEPT_PER 
+				, REQ_DT 
+				, REQ_DEPT 
+				, LINK_REQ_NAME 
+				, LINK_REQ_NM_TEL 
+				, CNSLE_HELTH 
+				, CNSLE_PSYC_RST 
+				, PSYC_RST_MMSEDS 
+				, PSYC_RST_ETC 
+				, CNSR_OP 
+				, LINK_REQ_DESC 
+				, EPILOGUE_NM 
+				, LINK_REQ_ORG_TEL 
+				, LINK_REQ_RECV_NAME 
+				, LINK_REQ_RECV_YEAR 
+				, LINK_REQ_RECV_MONTH 
+				, LINK_REQ_RECV_DAY 
+				, LINK_REQ_RECV_RST 
+				, ADDR 
+				, YEAR 
+				, MONTH 
+				, DAY 
+				, REQ_NAME 
+				, ORG_NAME 
+				, DOC_SIGN_PATH 
+				, DB_INS_TM 
+				, AGE
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.NUM),0)+1 FROM ADD_REQUEST AS hyu)
+				, #yunaNo#
+				, #ysmId#
+				, #ysmNm#
+				, #addReqGb#
+				, #fate#
+				, #g2Gb#
+				, #regId#
+				, #tel# 
+				, #epilogue# 
+				, #linkReqName# 
+				, #reqDt# 
+				, #reqDept2# 
+				, #linkReqName#
+				, #linkReqNmTel# 
+				, #cnsleHelth# 
+				, #cnslePsycRst# 
+				, #psycRstMmseds# 
+				, #psycRstEtc# 
+				, #cnsrOp# 
+				, #linkReqDesc# 
+				, #epilogueNm# 
+				, #linkReqOrgTel# 
+				, #linkReqRecvName# 
+				, #linkReqRecvYear# 
+				, #linkReqRecvMonth#
+				, #linkReqRecvDay# 
+				, #linkReqRecvRst# 
+				, #addr2# 
+				, #year# 
+				, #month# 
+				, #day# 
+				, #reqName# 
+				, #orgName# 
+				, #docSignPath# 
+				, now() 
+				, #age#
+			)
+	</insert>
+	
+	
+	
+	<!-- 상세 -->
+	<select id="test7Dao.getTest7Detail" parameterClass="test6VO" resultClass="egovMap">
+		SELECT  *
+		FROM    NOIN 
+		WHERE
+			NUM = #num#
+		AND
+			YSM_NO = #ysmNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test7Dao.updateTest7" parameterClass="test6VO">
+		UPDATE NOIN
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# ,
+				CONTENT = #content# 
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
+	<update id ="test7Dao.updateNgAnswerYn" parameterClass="test6VO">
+		UPDATE NOIN_GROUP
+			SET
+				GENDER = #gender#
+			WHERE
+				NUM = #num#	
+		
+	</update>
+	
+	
+	
+	<update id ="test7Dao.updateAddInReq" parameterClass="test7VO">
+		UPDATE ADD_REQUEST
+			SET
+				ADD_REQ_GB = #addReqGb# ,
+				YSM_ID = #ysmId# ,
+				YSM_NM = #ysmNm# ,
+				FATE = #fate# ,
+				G1_GB = #g1Gb# ,
+				REQ_DEPT = #reqDept# ,
+				REQ_DEPT_PER = #reqDeptPer# ,
+				REQ_DT = #reqDt# ,
+				EPILOGUE = #epilogue# ,
+				HELP_DEPT_PER = #helpDeptPer# ,
+				GENDER = #gender# ,
+				BIRTH_DT = #birthDt# ,
+				ADDR = #addr# ,
+				TEL_NO = #telNo# ,
+				RCPT_SGCT = #rcptSgct# ,
+				REQ_RESN_CNTN = #reqResnCntn# ,
+				PGRS_RSLT = #pgrsRslt# ,
+				ETC = #etc#
+			WHERE
+				NUM = #num#	
+		
+	</update>
+	
+	
+	
+	<update id ="test7Dao.updateAddOutReq" parameterClass="test7VO">
+		UPDATE ADD_REQUEST
+			SET
+				ADD_REQ_GB = #addReqGb# ,
+				YSM_ID = #ysmId# ,
+				YSM_NM = #ysmNm# ,
+				FATE = #fate# ,
+				G2_GB = #g2Gb# ,
+				TEL_NO = #tel# ,
+				EPILOGUE = #epilogue# ,
+				ADDR = #addr2# ,
+				REQ_DT = #reqDt# ,
+				REQ_DEPT = #reqDept2# ,
+				REQ_DEPT_PER = #linkReqName# ,
+				LINK_REQ_NAME = #linkReqName# ,
+				LINK_REQ_NM_TEL = #linkReqNmTel# ,
+				CNSLE_HELTH = #cnsleHelth# ,
+				CNSLE_GONG_GB = #cnsleGongGb# ,
+				CNSLE_PSYC_RST = #cnslePsycRst# ,
+				PSYC_RST_MMSEDS = #psycRstMmseds# ,
+				PSYC_RST_ETC = #psycRstEtc# ,
+				CNSR_OP = #cnsrOp# ,
+				LINK_REQ_DESC = #linkReqDesc# ,
+				EPILOGUE_NM = #epilogueNm# ,
+				LINK_REQ_ORG_TEL = #linkReqOrgTel# ,
+				LINK_REQ_RECV_NAME = #linkReqRecvName# ,
+				LINK_REQ_RECV_YEAR = #linkReqRecvYear# ,
+				LINK_REQ_RECV_MONTH = #linkReqRecvMonth# ,
+				LINK_REQ_RECV_DAY = #linkReqRecvDay# ,
+				LINK_REQ_RECV_RST = #linkReqRecvRst# ,
+				YEAR = #year# ,
+				MONTH = #month# ,
+				DAY = #day# ,
+				REQ_NAME = #reqName# ,
+				ORG_NAME = #orgName# ,
+				DOC_SIGN_PATH = #docSignPath# ,
+				AGE = #age#
+			WHERE
+				NUM = #num#	
+		
+	</update>
+	
+	
+	
+	
+	<update id="test7Dao.updateNoinGroup" parameterClass="test6VO">
+		UPDATE NOIN_GROUP
+			SET
+				TITLE = #title# ,
+				NOIN_CNSR = #noinCnsr# ,
+				NOIN_DT = #noinDt# ,
+				NOIN_CNTN = #noinCntn# 
+			WHERE
+				NUM = #num#
+	</update>
+	
+	<update id="test7Dao.updateNoinGroupReply" parameterClass="test6VO">
+		UPDATE NOIN_GROUP_REPLY
+			SET
+				TITLE = #title# ,
+				RPLY_CNSR = #rplyCnsr# ,
+				RPLY_DT = #rplyDt# ,
+				RPLY_CNTN = #rplyCntn#
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
+	<!-- 삭제 -->
+	<delete id="test7Dao.deleteTest7" parameterClass="test6VO">
+		DELETE 
+		
+		FROM 
+			NOIN
+		WHERE
+			NUM = #num#
+	</delete>
+	
+	
+	<delete id="test7Dao.deleteNoinGroup" parameterClass="test6VO">
+		DELETE
+		
+		FROM
+			NOIN_GROUP
+		WHERE
+			NUM = #num#	
+	</delete>
+	
+	
+	<delete id="test7Dao.deleteNoinGroupReplyAs" parameterClass="test6VO">
+		DELETE
+		
+		FROM
+			NOIN_GROUP_REPLY
+		WHERE
+			NUM = #num#	
+	</delete>
+	
+	
+	
+	<delete id="test7Dao.deleteNoinGroupReply" parameterClass="test6VO">
+		DELETE
+		
+		FROM
+			NOIN_GROUP_REPLY
+		WHERE
+			NUM = #num#	
+	</delete>
+	
+	
+	
+	<select id ="test7Dao.getNoinGroupDtl"  parameterClass="Integer" resultClass="EgovMap">
+		SELECT 
+			*
+		FROM
+			NOIN_GROUP
+		WHERE
+			NUM = #num#
+	</select>
+	
+	<select id ="test7Dao.getNoinGroupReplyDtl"  parameterClass="Integer" resultClass="EgovMap">
+		SELECT 
+			*
+		FROM
+			NOIN_GROUP_REPLY
+		WHERE
+			NUM = #num#
+	</select>
+	
+	
+	<select id="test7Dao.getNoinGroupList" parameterClass="test6VO" resultClass="egovMap">
+		SELECT A.*
+		FROM (
+			SELECT
+				ng.*  ,
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				ngr.TITLE AS rtitle ,
+				ngr.RPLY_CNSR ,
+				ngr.RPLY_DT ,
+				ngr.RPLY_CNTN
+			FROM
+				NOIN_GROUP AS ng
+			LEFT JOIN 
+				NOIN_GROUP_REPLY AS ngr
+			ON ng.NUM = ngr.NUM
+			WHERE 1=1
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ ng.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ ng.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					ng.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					ng.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					ng.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	
+	
+	<!-- 개수 -->
+	<select id="test7Dao.getNoinGroupTotCnt" parameterClass="test6VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			NOIN_GROUP 
+		WHERE
+	   		1=1
+	    <isNotEmpty property="schYsmStartDt" prepend="AND">
+			<![CDATA[ 	DB_INS_TM >= #schYsmStartDt#]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="schYsmEndDt" prepend ="AND">
+			<![CDATA[	DB_INS_TM <= #schYsmEndDt#]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="schText">
+		
+			<isEqual prepend="AND" property="schType" compareValue="1">
+					ADDR LIKE CONCAT('%' , #schText# , '%' )
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="2">
+					CONTENT LIKE CONCAT('%' , #schText# , '%')
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="3">
+					TITLE LIKE CONCAT('%' , #schText# , '%')
+			</isEqual>
+		
+		</isNotEmpty>
+	</select>
+	
+	
+	<select id="test7Dao.getAddRequestTotCnt" parameterClass="test6VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			ADD_REQUEST
+		WHERE
+	   		1=1
+	    <isNotEmpty property="schYsmStartDt" prepend="AND">
+			<![CDATA[ DB_INS_TM >= #schYsmStartDt#]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="schYsmEndDt" prepend ="AND">
+			<![CDATA[ DB_INS_TM <= #schYsmEndDt#]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="schText">
+		
+			<isEqual prepend="AND" property="schType" compareValue="1">
+					ADDR LIKE CONCAT('%' , #schText# , '%' )
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="2">
+					CONTENT LIKE CONCAT('%' , #schText# , '%')
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="3">
+					TITLE LIKE CONCAT('%' , #schText# , '%')
+			</isEqual>
+		
+		</isNotEmpty>
+	</select>
+	
+	
+	
+	<select id="test7Dao.findYunaPopup" parameterClass="yunaInfoVO" resultClass="EgovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				row_number() over(ORDER BY yuna.YUNA_NO) as RNUM ,
+				row_number() over(ORDER BY yuna.YUNA_NO DESC) as RNUM2 ,
+				yuna.YUNA_NO ,
+				yuna.YSM_NM ,
+				yuna.YSM_ID ,
+				yuna.FATE ,
+				yuna.BIRTH_DT ,
+				yuna.MOBILE ,
+				(SELECT TITLE FROM FATE WHERE NUM = yuna.FATE) AS fateYuna
+			FROM
+				YUNA AS yuna
+			<isNotEmpty property="schYsmNm" prepend="AND">
+				yuna.YSM_NM LIKE CONCAT('%' , #schYsmNm#, '%')
+			</isNotEmpty>
+			<isNotEmpty property="schYsmId" prepend="AND">
+				yuna.YSM_ID LIKE CONCAT('%' , #schYsmId#, '%')
+			</isNotEmpty>
+			
+			) A
+				<![CDATA[
+			   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+				ORDER BY YUNA_NO DESC
+			]]>
+	</select>
+	
+	<select id ="test7Dao.getFindYunaTotCnt" parameterClass="yunaInfoVO" resultClass="Integer">
+		SELECT
+			COUNT(yuna.YUNA_NO)
+		FROM
+			YUNA as yuna
+		<isNotEmpty property="schYsmNm" prepend="AND">
+			yuna.YSM_NM LIKE CONCAT('%' , #schYsmNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schYsmId" prepend="AND">
+			yuna.YSM_ID LIKE CONCAT('%' , #schYsmId#, '%')
+		</isNotEmpty>
+	</select>
+	
+	
+	<select id ="test7Dao.getAddRequestDetail" parameterClass="test7VO" resultClass="EgovMap">
+		SELECT
+			*
+		FROM
+			ADD_REQUEST
+		WHERE
+			NUM = #num#
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+</sqlMap>

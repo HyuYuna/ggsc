@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test10">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test10VO" type="ggsc.test10.service.Test10VO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test10Dao.getTest10List" parameterClass="test10VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				huhyuna.*  , 
+				ROW_NUMBER() OVER(ORDER BY HUHYUNA_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY HUHYUNA_NO DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = huhyuna.G1_GB) AS season ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = huhyuna.G2_GB) AS mobile ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = huhyuna.G3_GB) AS transaction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G5' AND ODR = huhyuna.G5_GB) AS statement 
+			FROM
+				HUHYUNA AS huhyuna
+			WHERE 1=1
+			<isNotEmpty property="schG1Gb" prepend="AND">
+				huhyuna.G1_GB = #schG1Gb#
+			</isNotEmpty>	
+			<isNotEmpty property="schG5Gb" prepend="AND">
+				huhyuna.G5_GB = #schG5Gb#
+			</isNotEmpty>			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ huhyuna.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ huhyuna.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+					
+			
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test10Dao.getTest10ListTotCnt" parameterClass="test10VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			HUHYUNA 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test10Dao.insertTest10" parameterClass="test10VO">
+		INSERT INTO HUHYUNA
+			(
+				HUHYUNA_NO
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, YSM_DT
+				, YSM_STT_HOUR
+				, YSM_STT_MIN
+				, YSM_END_HOUR
+				, YSM_END_MIN
+				, DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.HUHYUNA_NO),0)+1 FROM HUHYUNA AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #ysmDt#
+				, #ysmSttHour#
+				, #ysmSttMin#
+				, #ysmEndHour#
+				, #ysmEndMin#
+				, NOW()
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test10Dao.getTest10Detail" parameterClass="test10VO" resultClass="egovMap">
+		SELECT  *
+		FROM    HUHYUNA 
+		WHERE
+			HUHYUNA_NO = #huhyunaNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test10Dao.updateTest10" parameterClass="test10VO">
+		UPDATE HUHYUNA
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# 
+			WHERE
+				HUHYUNA_NO = #huhyunaNo#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test10Dao.deleteTest10" parameterClass="test10VO">
+		DELETE 
+		
+		FROM 
+			HUHYUNA
+		WHERE
+			HUHYUNA_NO = #huhyunaNo#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

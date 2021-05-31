@@ -34,6 +34,18 @@
 <sqlMap resource="egovframework/sqlmap/monitoring/Monitoring_SQL.xml"></sqlMap>
 <sqlMap resource="egovframework/sqlmap/cmmmng/CommonMng_SQL.xml"></sqlMap>
 
+<sqlMap resource="egovframework/sqlmap/test0/Test0_SQL.xml"></sqlMap>
 <sqlMap resource="egovframework/sqlmap/test1/Test1_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test2/Test2_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test3/Test3_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test4/Test4_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test5/Test5_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test6/Test6_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test7/Test7_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test8/Test8_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test10/Test10_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test11/Test11_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test12/Test12_SQL.xml"></sqlMap>
+<sqlMap resource="egovframework/sqlmap/test13/Test13_SQL.xml"></sqlMap>
 
 </sqlMapConfig>

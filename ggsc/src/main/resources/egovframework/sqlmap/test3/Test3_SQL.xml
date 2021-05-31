@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test3">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test3VO" type="ggsc.test3.service.Test3VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test3Dao.getTest3List" parameterClass="test3VO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY YUNA_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY YUNA_NO DESC) AS RNUM2 ,
+				(SELECT TITLE FROM FATE WHERE num = yuna.fate) AS fate ,
+				(SELECT TITLE FROM NARCISSUS WHERE num = yuna.narcissus) AS narcissus ,
+				YSM_ID ,
+				YSM_YN , 
+				YSM_NM , 
+				MOBILE , 
+				CASE WHEN NOW() BETWEEN B.WRITE_DT AND B.EXPIR_DT THEN 'Y' ELSE 'N' END AS yunaYn
+			FROM
+				YUNA AS yuna
+			LEFT JOIN YUNA_SECURITY AS B ON yuna.YSM_ID = B.YSM_SE_ID
+			
+			WHERE 1=1
+			
+			<isNotEmpty property="schFate" prepend="AND"> 
+				yuna.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				yuna.narcissus = #schNarcissus#
+			</isNotEmpty>
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM 
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test3Dao.getTest3ListTotCnt" parameterClass="test3VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			YUNA 
+		WHERE
+		    1=1
+		<isNotEmpty property="schFate" prepend="AND"> 
+				yuna.fate = #schFate#
+			</isNotEmpty>
+			<isNotEmpty property="schNarcissus" prepend="AND"> 
+				yuna.narcissus = #schNarcissus#
+			</isNotEmpty>
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test3Dao.insertYunaUser" parameterClass="test3VO">
+		INSERT INTO YUNA
+			(
+				YUNA_NO ,
+				YSM_ID ,
+				YSM_NM ,
+				REG_ID ,
+				CONTENT ,
+				DB_INS_TM ,
+				DB_UPD_TM ,
+				FATE ,
+				NARCISSUS ,
+				SECRET ,
+				STFY ,
+				GENDER ,
+				MOBILE ,
+				G1_GB ,
+				STFYS ,
+				PW ,
+				BIRTH_DT ,
+				YSM_YN
+				
+			) VALUES (
+				(SELECT IFNULL(MAX(CAST(YUNA_NO AS SIGNED)),0)+1 FROM YUNA AS A) ,
+			 	#ysmId# ,
+			 	#ysmNm# ,
+				#regId# ,
+				#content# ,
+				now() ,
+				now() ,
+				#fate# ,
+				#narcissus# ,
+				#secret# ,
+				#stfy# ,
+				#gender# ,
+				#mobile# ,
+				#g1Gb# ,
+				#stfys# ,
+				#pw# ,
+				#birthDt# ,
+				'N'
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test3Dao.getTest3Detail" parameterClass="java.lang.String" resultClass="egovMap">
+		SELECT
+			*
+		FROM
+			YUNA 
+		WHERE
+			YSM_ID = #ysmId#
+	</select>
+	
+	
+	<update id="test3Dao.updateYunaYn" parameterClass="test3VO">
+		UPDATE YUNA
+			SET
+				YSM_YN = #ysmYn# 
+			WHERE
+				YSM_ID = #ysmId#
+	</update>
+	
+	
+	<!-- 수정 -->
+	<update id="test3Dao.updateTest3" parameterClass="test3VO">
+		UPDATE YUNA
+			SET
+				CONTENT = #content# ,
+				DB_UPD_TM = now() ,
+				FATE = #fate# ,
+				NARCISSUS = #narcissus# 
+			WHERE
+				YSM_ID = #ysmId#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test3Dao.deleteTest3" parameterClass="test3VO">
+		DELETE 
+		
+		FROM 
+			YUNA
+		WHERE
+			YSM_ID = #ysmId#
+	</delete>
+	
+	<insert id="test3Dao.insertSecurity" parameterClass="test3VO">
+		INSERT INTO
+			YUNA_SECURITY
+		(
+			  YSM_SE_ID
+			, YSM_SE_NM
+			, WRITE_YN
+			, WRITE_DT
+			, EXPIR_DT
+			, RANK
+			, SEPL_NAME
+			, YEAR
+			, MONTH
+			, DAY
+			, DB_INS_TM
+		) VALUES (
+			  #ysmSeId#
+			, #ysmSeNm#
+			, 'Y'
+			, CONCAT(#year#, #month#, #day#)
+			, CONCAT(#year2#, #month#, #day#)
+			, #rank#
+			, #seplName#
+			, #year#
+			, #month#
+			, #day#
+			, NOW()
+		)
+	</insert>
+	
+	
+	
+	
+</sqlMap>

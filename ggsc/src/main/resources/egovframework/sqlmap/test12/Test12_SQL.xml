@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test12">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test12VO" type="ggsc.test12.service.Test12VO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test12Dao.getTest12List" parameterClass="test12VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				yumi.*  , 
+				ROW_NUMBER() OVER(ORDER BY YUMI_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY YUMI_NO DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = yumi.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = yumi.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = yumi.G3_GB) AS scaling ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G13' AND ODR = yumi.G13_GB) AS ensure 
+			FROM
+				YUMI AS yumi
+			WHERE 1=1
+			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ yumi.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ yumi.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schText">
+			
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					yumi.ADDR LIKE CONCAT('%' , #schText# , '%' )
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					yumi.CONTENT LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					yumi.TITLE LIKE CONCAT('%' , #schText# , '%')
+				</isEqual>
+			
+			</isNotEmpty>
+					
+			
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test12Dao.getTest12ListTotCnt" parameterClass="test12VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			YUMI 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test12Dao.insertTest12" parameterClass="test12VO">
+		INSERT INTO YUMI
+			(
+				YUMI_NO
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, G7_GB 
+				, G8_GB 
+				, G12_GB 
+				, G13_GB 
+				, G14_GB 
+				, G15_GB 
+				, YSM_DT
+				, BIRTH_DT
+				, YSM_STT_HOUR
+				, YSM_STT_MIN
+				, YSM_END_HOUR
+				, YSM_END_MIN
+				, DB_INS_TM 
+				, CONTENT
+				, TITLE
+				, GENDER
+				, FATE
+				, NARCISSUS
+				, ADDR
+				, WEEK_CD
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.YUMI_NO),0)+1 FROM YUMI AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #g7Gb#
+				, #g8Gb#
+				, #g12Gb#
+				, #g13Gb#
+				, #g14Gb#
+				, #g15Gb#
+				, #ysmDt#
+				, #birthDt#
+				, #ysmSttHour#
+				, #ysmSttMin#
+				, #ysmEndHour#
+				, #ysmEndMin#
+				, NOW()
+				, #content#
+				, #title#
+				, #gender#
+				, #fate#
+				, #narcissus#
+				, #addr#
+				, #weekCd#
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test12Dao.getTest12Detail" parameterClass="test12VO" resultClass="egovMap">
+		SELECT  *
+		FROM    YUMI 
+		WHERE
+			YUMI_NO = #yumiNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test12Dao.updateTest12" parameterClass="test12VO">
+		UPDATE YUMI
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# ,
+				G7_GB = #g7Gb# ,
+				G8_GB = #g8Gb# ,
+				G12_GB = #g12Gb# ,
+				G13_GB = #g13Gb# ,
+				G14_GB = #g14Gb# ,
+				G15_GB = #g15Gb# ,
+				CONTENT = #content# 
+			WHERE
+				YUMI_NO = #yumiNo#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test12Dao.deleteTest12" parameterClass="test12VO">
+		DELETE 
+		
+		FROM 
+			YUMI
+		WHERE
+			YUMI_NO = #yumiNo#
+	</delete>
+	
+	
+	
+	
+</sqlMap>

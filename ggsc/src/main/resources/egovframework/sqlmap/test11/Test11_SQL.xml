@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Test11">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="test11VO" type="ggsc.test11.service.Test11VO"/>
+	<typeAlias alias="test101VO" type="ggsc.test101.service.Test101VO"/>
+	
+	
+	<!-- 목록 -->
+	<select id="test11Dao.getTest11List" parameterClass="test11VO" resultClass="egovMap">
+		SELECT *
+		FROM (
+			SELECT
+				yuki.*  , 
+				ROW_NUMBER() OVER(ORDER BY YUKI_NO) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY YUKI_NO DESC) AS RNUM2 ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G1' AND ODR = yuki.G1_GB) AS validation ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G2' AND ODR = yuki.G2_GB) AS instruction ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G3' AND ODR = yuki.G3_GB) AS scaling ,
+				(SELECT YSM_MCLASS_NM FROM YSM_M_CLASS WHERE YSM_HCLASS_CD = 'G13' AND ODR = yuki.G13_GB) AS ensure 
+			FROM
+				YUKI AS yuki
+			WHERE 1=1
+			<isNotEmpty property="schG1Gb" prepend="AND">
+				yuki.G1_GB = #schG1Gb#
+			</isNotEmpty>	
+			<isNotEmpty property="schG13Gb" prepend="AND">
+				yuki.G13_GB = #schG13Gb#
+			</isNotEmpty>			
+			<isNotEmpty property="schYsmStartDt" prepend="AND">
+				<![CDATA[ yuki.DB_INS_TM >= #schYsmStartDt#]]>
+			</isNotEmpty>
+			
+			<isNotEmpty property="schYsmEndDt" prepend ="AND">
+				<![CDATA[ yuki.DB_INS_TM <= #schYsmEndDt#]]>
+			</isNotEmpty>
+			<isNotEmpty property="schContent" prepend="And">
+				yuki.CONTENT LIKE CONCAT('%' , #schContent# , '%')
+			</isNotEmpty>
+					
+			
+			
+			) A
+			
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+			
+	</select>
+	
+	
+	<!-- 개수 -->
+	<select id="test11Dao.getTest11ListTotCnt" parameterClass="test11VO" resultClass="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			YUKI 
+		WHERE
+		    1=1
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="test11Dao.insertTest11" parameterClass="test11VO">
+		INSERT INTO YUKI
+			(
+				YUKI_NO
+				, REG_ID 
+				, G1_GB 
+				, G2_GB 
+				, G3_GB 
+				, G4_GB 
+				, G5_GB 
+				, G6_GB 
+				, G7_GB 
+				, G8_GB 
+				, G9_GB 
+				, G11_GB 
+				, G12_GB 
+				, G13_GB 
+				, G14_GB 
+				, YSM_DT
+				, YSM_STT_HOUR
+				, YSM_STT_MIN
+				, YSM_END_HOUR
+				, YSM_END_MIN
+				, DB_INS_TM 
+				, CONTENT
+				, TITLE
+			) VALUES (
+				(SELECT IFNULL(MAX(hyu.YUKI_NO),0)+1 FROM YUKI AS hyu) 
+				, #regId# 
+				, #g1Gb# 
+				, #g2Gb# 
+				, #g3Gb# 
+				, #g4Gb# 
+				, #g5Gb#
+				, #g6Gb#
+				, #g7Gb#
+				, #g8Gb#
+				, #g9Gb#
+				, #g11Gb#
+				, #g12Gb#
+				, #g13Gb#
+				, #g14Gb#
+				, #ysmDt#
+				, #ysmSttHour#
+				, #ysmSttMin#
+				, #ysmEndHour#
+				, #ysmEndMin#
+				, NOW()
+				, #content#
+				, #title#
+			)
+	</insert>
+	
+	
+	<!-- 상세 -->
+	<select id="test11Dao.getTest11Detail" parameterClass="test11VO" resultClass="egovMap">
+		SELECT  *
+		FROM    YUKI 
+		WHERE
+			YUKI_NO = #yukiNo#
+	</select>
+	
+	
+	<!-- 수정 -->
+	<update id="test11Dao.updateTest11" parameterClass="test11VO">
+		UPDATE YUKI
+			SET
+				G1_GB = #g1Gb# ,
+				G2_GB = #g2Gb# ,
+				G3_GB = #g3Gb# ,
+				G4_GB = #g4Gb# ,
+				G5_GB = #g5Gb# ,
+				G6_GB = #g6Gb# ,
+				G7_GB = #g7Gb# ,
+				G8_GB = #g8Gb# ,
+				G9_GB = #g9Gb# ,
+				G11_GB = #g11Gb# ,
+				G12_GB = #g12Gb# ,
+				G13_GB = #g13Gb# ,
+				G14_GB = #g14Gb# ,
+				CONTENT = #content# 
+			WHERE
+				YUKI_NO = #yukiNo#
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="test11Dao.deleteTest11" parameterClass="test11VO">
+		DELETE 
+		
+		FROM 
+			YUKI
+		WHERE
+			YUKI_NO = #yukiNo#
+	</delete>
+	
+	
+	
+	
+</sqlMap>
