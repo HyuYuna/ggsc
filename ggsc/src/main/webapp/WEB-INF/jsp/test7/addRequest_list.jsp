@@ -58,7 +58,7 @@
 		var url = "";
 		
 		if(no == 1){
-			url = "<c:out value="${pageContext.request.contextPath}" />test7List.do?mnuCd=${mnuCd}";	
+			url = "<c:out value="${pageContext.request.contextPath}" />/test7List.do?mnuCd=${mnuCd}";	
 		}else if(no == 2) {
 			url = "<c:out value="${pageContext.request.contextPath}" />/noinGroupList.do?mnuCd=${mnuCd}";
 		}else if(no == 3){

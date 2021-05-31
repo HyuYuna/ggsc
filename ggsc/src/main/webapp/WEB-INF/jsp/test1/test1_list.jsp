@@ -55,7 +55,6 @@
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd}');" style="background-color:green; color:white;">등록</button>
-				<button type="button" class="btn-basic" onclick="javascript:cookie();" style="background-color:green; color:white;">쿠키세팅</button>
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
