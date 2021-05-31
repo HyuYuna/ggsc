@@ -23,7 +23,7 @@
 			addYsmHclass(ysmHclassNm);
 		} else if (no == 2){
 			var ysmHclassCd = $("#ysmHclassCd").val();
-			var ysmMclassNm = $("ysmMclassNm").val();
+			var ysmMclassNm = $("#ysmMclassNm").val();
 			addYsmMclass(ysmHclassCd,ysmMclassNm);
 		}
 		
