@@ -516,10 +516,19 @@
 	<!-- 상담접수신청 ID중복체크 -->
 	<select id="cnsMngDao.idCheck" parameterClass="String"
 		resultClass="int">
-		SELECT COUNT(USER_ID)
-		FROM GS_USER_M
-		WHERE USER_ID =
-		#userId#
+		SELECT (
+
+		SELECT (SELECT COUNT(USER_ID)
+				FROM GS_USER_M
+				WHERE USER_ID = #userId#)
+				
+		+
+		
+		(SELECT COUNT(USER_ID)
+				FROM GS_cnsr_M
+				WHERE USER_ID = #userId#)
+		) AS C2
+		
 	</select>
 
 	<!-- 상담접수신청 회원등록 -->

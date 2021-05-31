@@ -29,6 +29,12 @@ public interface AdminManageService {
 	public void updateCnsrApprv(CnsrVO cnsrVO);
 	// 상담사 승인,승인취소(사용자 테이블)
 	public void updateUserApprv(UsermVO usermVO);
+	// 상담사 삭제(상담사 테이블)
+	public void deleteCnsrMng(CnsrVO cnsrVO);
+	// 상담사 삭제(사용자 테이블)
+	public void deleteUserM(UsermVO usermVO);
+	// 보안서약서 삭제
+	public void deleteSecurity(SecurityVO securityVO);
 	// 상담사 CnsrCd 조회
 	public String getCnsrMngCnsrCd();
 	// 상담사 엑셀다운
@@ -73,6 +79,10 @@ public interface AdminManageService {
 	public List<EgovMap> getGroupingListExcel(ExcelVO vo);
 	// 관리자 정보
 	public EgovMap getAdminUserInfo(AdminVO vo);
+	// 보안서약서 정보
+	public EgovMap getSecurityInfo(SecurityVO vo);
 	// 보안서약서 등록
 	public void insertSecurity(SecurityVO vo);
+	// 보안서약서 수정
+	public void updateSecurity(SecurityVO vo);
 }

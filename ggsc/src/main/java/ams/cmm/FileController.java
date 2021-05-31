@@ -195,7 +195,7 @@ public class FileController {
 	
 	public static NormalVO insFile( NormalVO vo , MultipartFile mFile ){
 		
-		String saveFolder = "C:/Users/HuenChae/Desktop/";
+		String saveFolder = "C:/Users/huensys/Desktop/";
         String oriFileNm = mFile.getOriginalFilename();
         vo.setOriFileNm( oriFileNm ) ;
         

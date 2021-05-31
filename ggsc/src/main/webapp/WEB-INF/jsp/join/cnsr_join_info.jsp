@@ -95,10 +95,6 @@
 			return;
 		}
 		
-		/* if(idCheck != "Y"){
-			alert("ID 중복확인을 해주세요.");
-			return;
-		} */
 		
 		 var num = pw.search(/[0-9]/g);
 		 var eng = pw.search(/[a-z]/ig);
@@ -238,6 +234,11 @@
 			$("#cnsProv").focus();
 			return;
 		} */
+		
+		if(idCheck != "Y"){
+			alert("ID 중복확인을 해주세요.");
+			return;
+		} 
 		
 		if(confirm("등록 하시겠습니까?")){
 				

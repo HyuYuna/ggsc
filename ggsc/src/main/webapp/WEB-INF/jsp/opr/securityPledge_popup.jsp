@@ -55,8 +55,18 @@
 			$("#month").focus();
 			return;
 		}
+		if(month.length != 2) {
+			alert("해당 [월]앞에 0을 입력해주세요.");
+			$("#month").focus();
+			return;
+		}
 		if(day.length == 0) {
 			alert("해당[일]을 입력해주세요.");
+			$("#day").focus();
+			return;
+		}
+		if(day.length != 2) {
+			alert("해당[일]앞에 0을 입력해주세요.");
 			$("#day").focus();
 			return;
 		}

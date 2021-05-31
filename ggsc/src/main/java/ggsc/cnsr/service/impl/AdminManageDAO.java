@@ -59,6 +59,16 @@ public class AdminManageDAO extends EgovAbstractDAO{
 	public void updateUserApprv(UsermVO param) {
 		update("AdminManageDAO.updateUserApprv", param);
 	}
+	public void deleteCnsrMng(CnsrVO param) {
+		update("AdminManageDAO.deleteCnsrMng", param);
+	}
+	public void deleteUserM(UsermVO param) {
+		update("AdminManageDAO.deleteUserM", param);
+	}
+	public void deleteSecurity(SecurityVO param) {
+		update("AdminManageDAO.deleteSecurity", param);
+	}
+
 	public String getCnsrMngCnsrCd() {
 		return (String)select("AdminManageDAO.getCnsrMngCnsrCd");
 	}
@@ -138,8 +148,16 @@ public class AdminManageDAO extends EgovAbstractDAO{
 	public EgovMap getAdminUserInfo(AdminVO vo) {
 		return (EgovMap)select("AdminManageDAO.getAdminUserInfo", vo);
 	}
+	// 보안서약서 정보
+	public EgovMap getSecurityInfo(SecurityVO vo) {
+		return (EgovMap)select("AdminManageDAO.getSecurityInfo", vo);
+	}
 	// 보안서약서 등록
 	public void insertSecurity(SecurityVO vo) {
 		insert("AdminManageDAO.insertSecurity", vo);
+	}
+	// 보안서약서 수정
+	public void updateSecurity(SecurityVO vo) {
+		insert("AdminManageDAO.updateSecurity", vo);
 	}
 }

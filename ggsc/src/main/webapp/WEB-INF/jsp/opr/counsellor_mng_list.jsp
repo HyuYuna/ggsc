@@ -85,8 +85,10 @@
 					html += '<td onclick="javascript:fn_popup(\''+ d.userId +'\');">' + d.cnsrGbNm + '</td>'; /* cnsrGb */
 					html += '<td onclick="javascript:fn_popup(\''+ d.userId +'\');">' + d.cnsrNm + '</td>';
 					html += '<td onclick="javascript:fn_popup(\''+ d.userId +'\');">' + d.userId + '</td>';
-					if(d.securityYn == 'Y') {
-						html += '<td>작성</td>';
+					if(d.securityYn == "Y") {
+						html += '<td><button type="button" class="btn-basic" style="line-height:17px;" onClick="fn_securityDtl(\''+ d.userId +'\');">수정</button></td>';
+					} else if(d.securityCk != null && d.securityYn == "N") {
+						html += '<td><button type="button" class="btn-basic" style="line-height:17px;" onClick="fn_securityDtl(\''+ d.userId +'\');">수정필요</button></td>';
 					} else if(d.useYn == 'N') {
 						html += '<td></td>';
 					} else {
@@ -149,6 +151,20 @@
 		var oepnwin;
 		var url = "/gnoincoundb/securityPledge_popup.do";
 		var name = "securityPledge_popup";
+		var option = "width=735, height=750, left=100, location=yes";
+		oepnwin = window.open(url, name, option);
+		
+		document.tmpForm2.userId.value = userId;
+		document.tmpForm2.method = 'post';
+		document.tmpForm2.action = url;
+		document.tmpForm2.target = name;
+		document.tmpForm2.submit();
+	}
+	
+	function fn_securityDtl(userId) {
+		var oepnwin;
+		var url = "/gnoincoundb/securityPledge_dtl_popup.do";
+		var name = "securityPledge_dtl_popup";
 		var option = "width=735, height=750, left=100, location=yes";
 		oepnwin = window.open(url, name, option);
 		

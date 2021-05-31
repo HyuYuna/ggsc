@@ -8,6 +8,7 @@ public class SecurityVO {
 	private String cnsGb;
 	private String zoneGb;
 	private String centerGb;
+	private String userId;
 	private String cnsleId;
 	private String localGb;
 	private String writeYn;
@@ -78,6 +79,12 @@ public class SecurityVO {
 	}
 	public void setCnsleId(String cnsleId) {
 		this.cnsleId = cnsleId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getLocalGb() {
 		return localGb;

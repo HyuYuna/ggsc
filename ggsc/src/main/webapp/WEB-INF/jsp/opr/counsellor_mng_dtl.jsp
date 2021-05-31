@@ -170,7 +170,8 @@
 			$("#cnsrDtl_table").css("display", "inline-block");
 			$("#sBtn").css("display", "inline-block");
 			$("#uBtn").css("display", "none");
-		}
+		} 
+		
 	}
 	
 	function list(userId,useYn) {
@@ -349,6 +350,19 @@
 		});
 	}
 	
+	
+	function fn_delete(param) {
+		if(param == 'D') {
+			if(confirm("상담사를 삭제하시겠습니까?")) {
+				document.frm.action = "/gnoincoundb/counsellor_mng_dtl.do?delete=" + param;
+				document.frm.submit();
+				alert("삭제완료 됐습니다.");
+				opener.location.reload();
+			}
+		} 
+	}
+	
+	
 	function fn_apprvYn(param) {
 		if(param == 'Y') {
 			if(confirm("상담사 가입신청을 승인 하시겠습니까?")){
@@ -400,6 +414,7 @@
 	<form id="frm" name="frm" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="userId" value="${userId}" />
+		<input type="hidden" name="cnsleId" value="${userId}" />
 		<table class="table-write wd500 h500 mg-all10">
 			<colgroup>
 				<col width="15%" />
@@ -552,6 +567,7 @@
 		<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_save('S');">저장</button>
 		<c:choose>
 			<c:when test="${authCd eq 1 }">
+				<button type="button" class="btn-basic" id="dBtn" onclick="javascript:fn_delete('D');">삭제</button>
 				<button type="button" class="btn-basic" id="appBtnY" onclick="javascript:fn_apprvYn('Y');">승인</button>
 				<button type="button" class="btn-basic" id="appBtnN" onclick="javascript:fn_apprvYn('N');">승인취소</button>
 			</c:when>

@@ -61,6 +61,15 @@ public class AdminServiceImpl extends EgovAbstractServiceImpl implements AdminMa
 	public void updateUserApprv(UsermVO param) {
 		AdminManageDAO.updateUserApprv(param);
 	}
+	public void deleteCnsrMng(CnsrVO param) {
+		AdminManageDAO.deleteCnsrMng(param);
+	}
+	public void deleteUserM(UsermVO param) {
+		AdminManageDAO.deleteUserM(param);
+	}
+	public void deleteSecurity(SecurityVO param) {
+		AdminManageDAO.deleteSecurity(param);
+	}
 	public String getCnsrMngCnsrCd() {
 		return AdminManageDAO.getCnsrMngCnsrCd();
 	}
@@ -128,11 +137,22 @@ public class AdminServiceImpl extends EgovAbstractServiceImpl implements AdminMa
 	public EgovMap getAdminUserInfo(AdminVO vo) {
 		return AdminManageDAO.getAdminUserInfo(vo);
 	}
+	// 보안서약서 정보
+	public EgovMap getSecurityInfo(SecurityVO vo) {
+		return AdminManageDAO.getSecurityInfo(vo);
+	}
 	// 보안서약서 등록
 	public void insertSecurity(SecurityVO vo) {
 		int year = Integer.parseInt(vo.getYear());
 		vo.setYear2(year+1);
 		AdminManageDAO.insertSecurity(vo);
+	}
+	
+	// 보안서약서 수정
+	public void updateSecurity(SecurityVO vo) {
+		int year = Integer.parseInt(vo.getYear());
+		vo.setYear2(year+1);
+		AdminManageDAO.updateSecurity(vo);
 	}
 }
 

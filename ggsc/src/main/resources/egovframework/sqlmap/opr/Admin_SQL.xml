@@ -98,7 +98,8 @@
 				A.LOCAL_GB ,
 				A.USE_YN ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G19' AND ODR = A.CNSR_GB) AS CNSR_GB_NM ,
-				CASE WHEN NOW() BETWEEN D.WRITE_DT AND D.EXPIR_DT THEN 'Y' ELSE 'N' END AS securityYn
+				CASE WHEN NOW() BETWEEN D.WRITE_DT AND D.EXPIR_DT THEN 'Y' ELSE 'N' END AS securityYn ,
+				D.CNSLE_ID AS securityCk
 			FROM
 				GS_CNSR_M AS A
 				INNER JOIN gs_m_class AS B ON A.CNS_GB = B.ODR AND HCLASS_CD ='G15' 
@@ -302,6 +303,32 @@
 			WHERE
 				USER_ID = #userId#
 	</update>
+	
+	<!-- 상담사 삭제(상담사 테이블) -->
+	<delete id="AdminManageDAO.deleteCnsrMng" parameterClass="CnsrVO">
+		DELETE
+			FROM GS_CNSR_M
+		WHERE 
+			USER_ID = #userId#
+			
+	</delete>
+	
+	<!-- 상담사 삭제(사용자 테이블) -->
+	<delete id="AdminManageDAO.deleteUserM" parameterClass="UsermVO">
+		DELETE
+			FROM GS_USER_M
+		WHERE 
+			USER_ID = #userId#
+	</delete>
+	
+	<!-- 보안서약서 삭제 -->
+	<delete id="AdminManageDAO.deleteSecurity" parameterClass="SecurityVO">
+		DELETE
+			FROM GS_CCRT_PLGR
+		WHERE 
+			CNSLE_ID = #cnsleId#
+	</delete>
+	
 	
 	<!-- 상담사 CnsrCd 조회  -->
 	<select id="AdminManageDAO.getCnsrMngCnsrCd" resultClass="java.lang.String">
@@ -891,6 +918,15 @@
 			USER_ID = #userId#
 	</select>
 	
+	<select id="AdminManageDAO.getSecurityInfo" parameterClass="SecurityVO" resultClass="egovMap">
+		SELECT
+			*
+		FROM
+			gs_ccrt_plgr
+		WHERE
+			CNSLE_ID = #userId#
+	</select>
+	
 	<insert id="AdminManageDAO.insertSecurity" parameterClass="SecurityVO">
 		INSERT INTO
 			GS_CCRT_PLGR
@@ -936,5 +972,23 @@
 			, NOW()
 		)
 	</insert>
+	
+	<update id="AdminManageDAO.updateSecurity" parameterClass="SecurityVO">
+		UPDATE GS_CCRT_PLGR
+			SET
+				WRITE_DT = CONCAT(#year#, #month#, #day#) ,
+			 	EXPIR_DT = CONCAT(#year2#, #month#, #day#) ,
+				RANK	 = #rank# ,
+			    SEPL_NAME = #seplName# ,
+			    YEAR	 = #year# ,
+			    MONTH	 = #month# ,
+			    DAY		 = #day# ,
+			    JUMIN1   = #jumin1# ,
+			    JUMIN2   = #jumin2# ,
+			    SEPL_SIGN = '' ,
+			    DB_INS_TM = NOW()
+			WHERE
+				CNSLE_ID = #cnsleId#
+	</update>
 	
 </sqlMap>

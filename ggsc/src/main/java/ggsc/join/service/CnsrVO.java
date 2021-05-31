@@ -20,6 +20,7 @@ public class CnsrVO extends PageVO{
 	private String contTermEnd; // 계약종료
 	private String dbInsTm; // 등록일시
 	
+	
 	private String userId; // 아이디
 	private String age; // 나이
 	private String userNm; // 이름
