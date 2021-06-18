@@ -126,8 +126,9 @@
 						} else {
 							html += '<td><button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(\''+d.psyOrder+'\',\''+d.dtlIdx+'\');">PDF 다운</button></td>';
 						}	
-							+'</td>'	
-							+'</tr>';
+							//+'</td>'	
+							//'+'</tr>';
+					html += '</tr>';
 					
 				});
 				

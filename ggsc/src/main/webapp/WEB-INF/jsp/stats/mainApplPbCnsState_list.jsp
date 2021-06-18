@@ -64,9 +64,9 @@
 	}
 </script>
 <style>
-	.search-group select{width:200px;}
-	.label {margin-right:15px;}
-	.label2 {display:inline-block;width:120px;color:#333;padding-right:5px;margin-bottom:2px;letter-spacing:-0.5px;text-align:right;}
+	.search-group select{width:150px;}
+	.label {margin-right:40px;}
+	.label2 {display:inline-block;width:275px;color:#333;padding-right:5px;margin-bottom:2px;letter-spacing:-0.5px;text-align:right;}
 	
 </style>
 <section id="content">
@@ -83,7 +83,7 @@
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>상담구분</label></span>
 					<span class="label2">
-						 <select name=schCnsGb style="width:200px;">
+						 <select name=schCnsGb style="width:275px;">
 						 	<option value="">전체</option>
 							<c:forEach items="${cnsGbList }" var="result">
 								<option value="${result.odr }">${result.mclassNm }</option>
@@ -95,7 +95,7 @@
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>센터구분</label></span>
 					<span class="label2">
-						<select name="schCenterGb" style="width:200px;">
+						<select name="schCenterGb" style="width:275px;">
 							<option value="">전체</option>
 							<c:forEach items="${cnsCenterList}" var="list">
 								<c:choose>
@@ -112,19 +112,8 @@
 						</select>
 					</span>
 				</div>
-				<div class="search-group" style="margin-left:70px;">
-					<span class="label"><label>지역구분</label></span>
-					<span class="label2">
-						<select name="schAddrGb" style="width:200px;">
-							<option value="">전체</option>
-							<c:forEach items="${addrGbList }" var="result">
-								<option value="${result.odr }">${result.mclassNm }</option>
-							</c:forEach>
-						</select>
-					</span>
-				</div>
 				<br>
-				<div class="btn" style="padding-bottom:15px;padding-right:80px;">
+				<div class="btn" style="padding-bottom:15px;padding-right:120px;">
 					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);">
 						<i class="fa fa-search"></i>검색
 					</button>
@@ -132,13 +121,13 @@
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>년도</label></span>
 					<span class="label2">
-						<input type="text" name="schYearGb" value="" style="width: 200px;" />
+						<input type="text" name="schYearGb" value="" style="width: 275px;" maxlength="4" onlyNumber /> />
 					</span>
 				</div>
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>월</label></span>
 					<span class="label2">
-						<select name="schMonthGb" style="width:200px;">
+						<select name="schMonthGb" style="width:275px;">
 							<option value="">전체</option>
 							<c:forEach begin="1" end="12" step="1" var="month">
 							<%--<fmt:formatNumber value="${month}" pattern="00" var="month"/>--%>

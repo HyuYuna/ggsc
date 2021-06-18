@@ -229,7 +229,7 @@
 	</section>
 	<!-- //content -->
 
-<script src="/js/util/paging.js"></script>
+<script src="/gnoincoundb/js/util/paging.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		menuList(0);

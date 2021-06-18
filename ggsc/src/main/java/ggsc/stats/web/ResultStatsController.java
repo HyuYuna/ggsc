@@ -805,13 +805,10 @@ public class ResultStatsController {
 
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(groupVo);
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
-		groupVo.setHclassCd("G72");
-		List<EgovMap> addrGbList = adminManageService.getGroupMngDtlMList(groupVo);
 
 		model.addAttribute("mnuCd", mnuCd);
 		model.addAttribute("cnsGbList", cnsGbList);
 		model.addAttribute("cnsCenterList", cnsCenterList);
-		model.addAttribute("addrGbList", addrGbList);
 
 		return "stats/dmyState_list.main";
 	}

@@ -2557,13 +2557,6 @@
 				0
 			</isEmpty>
 		,
-			<isNotEmpty property="schAddrGb">
-				#schAddrGb# 
-			</isNotEmpty>
-			<isEmpty property="schAddrGb">
-				0
-			</isEmpty>
-		,
 			<isNotEmpty property="schYearGb">
 				#schYearGb# 
 			</isNotEmpty>
@@ -2593,13 +2586,6 @@
 				#schCenterGb# 
 			</isNotEmpty>
 			<isEmpty property="schCenterGb">
-				0
-			</isEmpty>
-		,
-			<isNotEmpty property="schAddrGb">
-				#schAddrGb# 
-			</isNotEmpty>
-			<isEmpty property="schAddrGb">
 				0
 			</isEmpty>
 		,
@@ -2637,13 +2623,6 @@
 				0
 			</isEmpty>
 		,
-			<isNotEmpty property="schAddrGb">
-				#schAddrGb# 
-			</isNotEmpty>
-			<isEmpty property="schAddrGb">
-				0
-			</isEmpty>
-		,
 			<isNotEmpty property="schYearGb">
 				#schYearGb# 
 			</isNotEmpty>
@@ -2677,13 +2656,6 @@
 			0
 		</isEmpty>
 		,
-		<isNotEmpty property="schAddrGb">
-			#schAddrGb# 
-		</isNotEmpty>
-		<isEmpty property="schAddrGb">
-			0
-		</isEmpty>
-		,
 		<isNotEmpty property="schDateGb">
 			#schDateGb# 
 		</isNotEmpty>
@@ -2691,54 +2663,215 @@
 			''
 		</isEmpty>
 		)
-		
 	</select> -->
+	
 	<select id="resultStatsDAO.getDmyStateList" parameterClass="ResultReportVO" resultClass="egovMap">
-		<![CDATA[
-			SELECT ( select (select count(*) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '1' AND use_yn = 'Y') + (select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '2' AND use_yn = 'Y')
+			
+			SELECT 
+			   ( 
+			   		select
+			   			(select count(*) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '1' AND use_yn = 'Y'
+			   			<isNotEmpty property="schCnsGb" prepend="AND"> 
+							CNS_GB = #schCnsGb#
+						</isNotEmpty>
+						<isNotEmpty property="schCenterGb" prepend="AND"> 
+							CENTER_GB = #schCenterGb#
+						</isNotEmpty>
+						<isNotEmpty property="schDateGb" prepend="AND"> 
+							WRITE_DT = #schDateGb#
+						</isNotEmpty>)
+						 + 
+						(select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '2' AND use_yn = 'Y'
+						<isNotEmpty property="schCnsGb" prepend="AND"> 
+							CNS_GB = #schCnsGb#
+						</isNotEmpty>
+						<isNotEmpty property="schCenterGb" prepend="AND"> 
+							CENTER_GB = #schCenterGb#
+						</isNotEmpty>
+						<isNotEmpty property="schDateGb" prepend="AND"> 
+							WRITE_DT = #schDateGb#
+						</isNotEmpty>)
 			   ) AS 'C43' ,
 			   (
 			   		select count(*) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '1' AND use_yn = 'Y'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C44' ,
-			   ( select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '1' AND use_yn = 'Y'
+			   ( 
+			  		select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '1' AND use_yn = 'Y'
+			  	 	<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+					CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C45' ,
 			   (
 			   		select count(*) from GS_PER_CNS_DTL WHERE cns_dtl_gb_cd = '1' and CNS_METHD = '2' AND use_yn = 'Y'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C46' ,
 			   (
 			   		select count(*) from GS_PER_CNS_DTL WHERE cns_dtl_gb_cd = '1' and CNS_METHD = '3' AND use_yn = 'Y'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C47' ,
 			   (
-			   		select (select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '4' AND use_yn = 'Y') +
-			   		(select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '5' AND use_yn = 'Y')
+			   		SELECT 
+			   			(
+			   			select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '4' AND use_yn = 'Y'
+			   			<isNotEmpty property="schCnsGb" prepend="AND"> 
+							CNS_GB = #schCnsGb#
+						</isNotEmpty>
+						<isNotEmpty property="schCenterGb" prepend="AND"> 
+							CENTER_GB = #schCenterGb#
+						</isNotEmpty>
+						<isNotEmpty property="schDateGb" prepend="AND"> 
+							WRITE_DT = #schDateGb#
+						</isNotEmpty>)
+						 + 
+			   			(select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '5' AND use_yn = 'Y'
+			   			<isNotEmpty property="schCnsGb" prepend="AND"> 
+							CNS_GB = #schCnsGb#
+						</isNotEmpty>
+						<isNotEmpty property="schCenterGb" prepend="AND"> 
+							CENTER_GB = #schCenterGb#
+						</isNotEmpty>
+						<isNotEmpty property="schDateGb" prepend="AND"> 
+							WRITE_DT = #schDateGb#
+						</isNotEmpty>)
 			   ) as 'C48' ,
 			   ( 	select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD > '5' AND use_yn = 'Y'
+			 		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C49' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '2' AND use_yn = 'Y'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C50' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE = '1'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C51' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' AND CNS_TYPE = '2'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C52' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE = '3'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C53' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE = '4'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C54' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE = '5'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C55' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE = '6'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C56' ,
 			   (
 			   		select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '2' AND use_yn = 'Y' and CNS_TYPE > '6'
+			   		<isNotEmpty property="schCnsGb" prepend="AND"> 
+						CNS_GB = #schCnsGb#
+					</isNotEmpty>
+					<isNotEmpty property="schCenterGb" prepend="AND"> 
+						CENTER_GB = #schCenterGb#
+					</isNotEmpty>
+					<isNotEmpty property="schDateGb" prepend="AND"> 
+						WRITE_DT = #schDateGb#
+					</isNotEmpty>
 			   ) as 'C57' 
-		]]>
 	</select>
 	
 	<!--  센터별 현황 -->

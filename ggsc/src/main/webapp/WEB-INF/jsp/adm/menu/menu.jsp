@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
@@ -218,7 +217,7 @@
 </section>
 <!-- //content -->
 
-<script src="/js/util/paging.js"></script>
+<script src="/gnoincoundb/js/util/paging.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		//$("#datepicker1").val($.datepicker.formatDate("yymmdd", new Date()));
@@ -261,10 +260,9 @@
 					var html = '';
 					$.each(json.menuList, function(i, d) {
 
-						// 						var num = 0;
-						// 						num = (json.totalPageCnt - d.rnum) + 1;
-						html += '<tr onclick="javascript:viewInfo(' + d.mnuNo
-								+ ')">';
+						var num = 0;
+						num = (json.totalPageCnt - d.rnum) + 1;
+						html += '<tr onclick="javascript:viewInfo(' + d.mnuNo + ')">';
 						html += '<td class="ta-l">' + d.mnuNm + '</td>';
 						html += '<td class="ta-l">' + d.mnuCntn + '</td>';
 						html += '<td class="ta-l">' + d.mnuPath + '</td>';
@@ -344,9 +342,10 @@
 			},
 			success : function(json) {
 				var html = '';
+				$("#totalPageCnt").html(json.totalPageCnt);
 				$.each(json.list, function(i, d) {
-					// 						var num = 0;
-					// 						num = (json.totalPageCnt - d.rnum) + 1;
+					var num = 0;
+					num = (json.totalPageCnt - d.rnum) + 1;
 					html += '<tr onclick="javascript:viewInfo(' + d.mnuNo
 							+ ')">';
 					html += '<td class="ta-l">' + d.mnuNm + '</td>';
