@@ -2678,7 +2678,7 @@
 							CENTER_GB = #schCenterGb#
 						</isNotEmpty>
 						<isNotEmpty property="schDateGb" prepend="AND"> 
-							WRITE_DT = #schDateGb#
+							CNS_DT = #schDateGb#
 						</isNotEmpty>)
 						 + 
 						(select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl WHERE cns_dtl_gb_cd = '2' AND use_yn = 'Y'
@@ -2689,7 +2689,7 @@
 							CENTER_GB = #schCenterGb#
 						</isNotEmpty>
 						<isNotEmpty property="schDateGb" prepend="AND"> 
-							WRITE_DT = #schDateGb#
+							CNS_DT = #schDateGb#
 						</isNotEmpty>)
 			   ) AS 'C43' ,
 			   (
@@ -2701,7 +2701,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C44' ,
 			   ( 
@@ -2713,7 +2713,7 @@
 					CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C45' ,
 			   (
@@ -2725,7 +2725,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C46' ,
 			   (
@@ -2737,7 +2737,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C47' ,
 			   (
@@ -2751,7 +2751,7 @@
 							CENTER_GB = #schCenterGb#
 						</isNotEmpty>
 						<isNotEmpty property="schDateGb" prepend="AND"> 
-							WRITE_DT = #schDateGb#
+							CNS_DT = #schDateGb#
 						</isNotEmpty>)
 						 + 
 			   			(select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD = '5' AND use_yn = 'Y'
@@ -2762,7 +2762,7 @@
 							CENTER_GB = #schCenterGb#
 						</isNotEmpty>
 						<isNotEmpty property="schDateGb" prepend="AND"> 
-							WRITE_DT = #schDateGb#
+							CNS_DT = #schDateGb#
 						</isNotEmpty>)
 			   ) as 'C48' ,
 			   ( 	select count(*) from GS_PER_CNS_DTL where cns_dtl_gb_cd = '1' and CNS_METHD > '5' AND use_yn = 'Y'
@@ -2773,7 +2773,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C49' ,
 			   (
@@ -2785,7 +2785,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C50' ,
 			   (
@@ -2797,7 +2797,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C51' ,
 			   (
@@ -2809,7 +2809,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C52' ,
 			   (
@@ -2821,7 +2821,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C53' ,
 			   (
@@ -2833,7 +2833,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C54' ,
 			   (
@@ -2845,7 +2845,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C55' ,
 			   (
@@ -2857,7 +2857,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C56' ,
 			   (
@@ -2869,7 +2869,7 @@
 						CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schDateGb" prepend="AND"> 
-						WRITE_DT = #schDateGb#
+						CNS_DT = #schDateGb#
 					</isNotEmpty>
 			   ) as 'C57' 
 	</select>

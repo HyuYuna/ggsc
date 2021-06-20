@@ -407,14 +407,11 @@ public class ResultStatsController {
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		groupVo.setHclassCd("G19");
 		List<EgovMap> cnsrGbList = adminManageService.getGroupMngDtlMList(groupVo);
-		groupVo.setHclassCd("G72");
-		List<EgovMap> addrGbList = adminManageService.getGroupMngDtlMList(groupVo);
 
 		model.addAttribute("mnuCd", mnuCd);
 		model.addAttribute("cnsGbList", cnsGbList);
 		model.addAttribute("cnsCenterList", cnsCenterList);
 		model.addAttribute("cnsrGbList", cnsrGbList);
-		model.addAttribute("addrGbList", addrGbList);
 
 		return "stats/acadmbCnsState_list.main";
 	}

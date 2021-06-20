@@ -81,7 +81,7 @@
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>상담구분</label></span>
 					<span class="label2">
-						 <select name=schCnsGb style="width:200px;">
+						 <select name=schCnsGb style="width:275px;">
 						 	<option value="">전체</option>
 							<c:forEach items="${cnsGbList }" var="result">
 								<option value="${result.odr }">${result.mclassNm }</option>

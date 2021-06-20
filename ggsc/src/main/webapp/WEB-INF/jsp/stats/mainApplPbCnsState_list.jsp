@@ -121,7 +121,7 @@
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>년도</label></span>
 					<span class="label2">
-						<input type="text" name="schYearGb" value="" style="width: 275px;" maxlength="4" onlyNumber /> />
+						<input type="text" name="schYearGb" value="" style="width: 275px;" maxlength="4" onlyNumber />
 					</span>
 				</div>
 				<div class="search-group" style="margin-left:70px;">
