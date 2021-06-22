@@ -1187,13 +1187,13 @@
 		WRITE_YN = 'Y'
 		, DB_UPD_TM = NOW()
 		<isEqual property="agrePath" compareValue="Y">
-			, AGRE_PATH = (SELECT IFNULL(MAX(num),1) FROM GS_CNS_AGRE_DOC)
+			, AGRE_PATH = (SELECT NUM FROM GS_CNS_AGRE_DOC WHERE CASE_NO = #caseNo#)
 		</isEqual>
 		<isEqual property="perInfoPath" compareValue="Y">
-			, PER_INFO_PATH = (SELECT IFNULL(MAX(num),1) FROM GS_PER_INFO_AGRE)
+			, PER_INFO_PATH = (SELECT NUM FROM GS_PER_INFO_AGRE WHERE CASE_NO = #caseNo#)
 		</isEqual>
 		<isEqual property="docCntnPath" compareValue="Y">
-			, DOC_CNTN_PATH = (SELECT IFNULL(MAX(num),1) FROM GS_DOC_CNTN_COMM)
+			, DOC_CNTN_PATH = (SELECT NUM FROM GS_DOC_CNTN_COMM WHERE CASE_NO = #caseNo#)
 		</isEqual>
 		<isNotEmpty property="cnsTargetGb">
 			, CNS_TARGET_GB = #cnsTargetGb#

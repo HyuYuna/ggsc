@@ -393,7 +393,7 @@ public class DownloadController {
 						.replaceAll("##Y점수##", replaceText(result.get("toty")))
 						.replaceAll("##N점수##", replaceText(result.get("totn")))
 						.replaceAll("##상담사Y점수##", replaceText(result.get("ctoty")))
-						.replaceAll("##상담사N점수##", replaceText(result.get("ctotn")))
+						.replaceAll("##총점수##", replaceText(result.get("cot")))
 						.replaceAll("##상담자ID##", replaceText(result.get("cnsrId")))
 						.replaceAll("##상담자##", replaceText(result.get("cnsrNm")))
 						.replaceAll("##상담방법##", replaceText(result.get("cnsMethd")))

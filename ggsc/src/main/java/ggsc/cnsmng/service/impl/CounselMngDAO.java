@@ -230,7 +230,7 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	}
 	// 상담동의서 등록
 	public void insertCnsAgreDoc(PreExamVO vo){
-		insert("cnsMngDao.insertCnsAgreDoc", vo);
+		insert("cnsMngDao.insertCnsAgreDoc", vo);		
 	}
 	// 상담동의서 수정
 	public void updateCnsAgreDoc(PreExamVO vo) {

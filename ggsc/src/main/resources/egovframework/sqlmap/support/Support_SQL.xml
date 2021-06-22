@@ -330,7 +330,7 @@
 			,YES_TOT_SCORE TOTY
 			,NO_TOT_SCORE TOTN
 			,CNSR_OPTN_SCORE CTOTY
-			,CNSR_OPTN_SCORE CTOTN
+			,CNSR_OPTN_TOT COT
 		FROM gs_doc_cntn_comm  WHERE NUM = #num#
 	</select>
 	
