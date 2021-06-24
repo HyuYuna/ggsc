@@ -148,12 +148,21 @@
 				$("#month").focus();
 				return;
 			}
+			if($("#month").val().length != 2){
+				alert("해당 [월]앞에 0을 입력해주세요.");
+				$("#month").focus();
+				return;
+			}
 			if($("#day").val()==""){
 				alert("날짜를 입력해주세요.");
 				$("#day").focus();
 				return;
 			}
-			
+			if($("#day").val().length != 2){
+				alert("해당 [일]앞에 0을 입력해주세요.");
+				$("#day").focus();
+				return;
+			}
 			if($("#cnsleNm2").val()==""){
 				alert("내담자명을 입력해주세요.");
 				$("#cnsleNm2").focus();

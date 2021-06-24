@@ -186,8 +186,18 @@
 				$("#strtTime").focus();
 				return;
 			}
+			if($("#strtTime").val().length != 2){
+				alert("시작시간(시)앞에 0을 입력해주세요.");
+				$("#strtTime").focus();
+				return;
+			}
 			if($("#strtMin").val()==""){
 				alert("시작시간(분)을 입력해주세요.");
+				$("#strtMin").focus();
+				return;
+			}
+			if($("#strtMin").val().length != 2){
+				alert("시작시간(분)앞에 0을 입력해주세요.");
 				$("#strtMin").focus();
 				return;
 			}
@@ -200,13 +210,48 @@
 				alert("성별을 선택해주세요.");
 				return;
 			}
+			if($("#year").val()==""){
+				alert("날짜를 입력해주세요.");
+				$("#year").focus();
+				return;
+			}
+			if($("#month").val()==""){
+				alert("날짜를 입력해주세요.");
+				$("#month").focus();
+				return;
+			}
+			if($("#month").val().length != 2){
+				alert("해당 [월]앞에 0을 입력해주세요.");
+				$("#month").focus();
+				return;
+			}
+			if($("#day").val()==""){
+				alert("날짜를 입력해주세요.");
+				$("#day").focus();
+				return;
+			}
+			if($("#day").val().length != 2){
+				alert("해당 [일]앞에 0을 입력해주세요.");
+				$("#day").focus();
+				return;
+			}
 			if($("#endTimeHour").val()==""){
 				alert("종료시간(시)을 입력해주세요.");
 				$("#endTimeHour").focus();
 				return;
 			}
+			if($("#endTimeHour").val().length != 2){
+				alert("종료시간(시)앞에 0을 입력해주세요.");
+				$("#endTimeHour").focus();
+				return;
+			}
 			if($("#endTimeMin").val()==""){
 				alert("종료시간(분)을 입력해주세요.");
+				$("#endTimeMin").focus();
+				return;
+			}
+			if($("#endTimeMin").val().length != 2){
+				alert("종료시간(분)앞에 0을 입력해주세요.");
 				$("#endTimeMin").focus();
 				return;
 			}
