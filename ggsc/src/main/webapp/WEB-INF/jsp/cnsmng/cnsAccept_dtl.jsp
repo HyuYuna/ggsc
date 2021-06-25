@@ -19,10 +19,11 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		var centerGb = "${vo.schCenterGb}";
-		$("select[name=centerGb]").val(centerGb);
-		$("select[name=sigunGb]").val("${loginVo.sigunCd}");
-
+		if("${authCd}" > 1) {
+			var centerGb = "${vo.schCenterGb}";
+			$("select[name=centerGb]").val(centerGb);
+			$("select[name=sigunGb]").val("${loginVo.sigunCd}");
+		}
 		var type = "${type}";
 		if(type == "R") {
 			$("#sBtn").css("display","");
@@ -299,15 +300,15 @@
 					<th>센터구분 <span style="color: red;">*</span></th>
 					<td>
 						<select id="centerGb" name="centerGb">
-							<c:forEach items="${cnsCenterList }" var="result">
+							<c:forEach items="${cnsCenterList }" var="list">
 								<c:choose>
 								<c:when test="${authCd > 1 }">
-									<c:if test="${ result.num eq vo.schCenterGb }" >
-										<option value="${result.num }" >${result.centerGb }</option>
+									<c:if test="${ list.num eq vo.schCenterGb }" >
+										<option value="${list.num }" >${list.centerGb }</option>
 									</c:if>
 								</c:when>
 								<c:when test="${authCd <= 1 }">								
-									<option value="${result.num }" >${result.centerGb }</option>
+									<option value="${list.num }" <c:if test="${list.num == result.centerGb }">selected</c:if> >${list.centerGb }</option>
 								</c:when>
 								</c:choose>
 							</c:forEach>
@@ -328,15 +329,15 @@
 					<th>시군구분 <span style="color: red;">*</span></th>
 					<td>
 						<select id="sigunCd" name="sigunCd">
-							<c:forEach items="${sigunList }" var="result">
+							<c:forEach items="${sigunList }" var="list">
 								<c:choose>
 									<c:when test="${authCd > 1 }">
-										<c:if test="${ result.odr eq loginVo.sigunCd }" >
-											<option value="${result.odr }">${result.mclassNm }</option>
+										<c:if test="${ list.odr eq loginVo.sigunCd }" >
+											<option value="${list.odr }">${list.mclassNm }</option>
 										</c:if>
 									</c:when>
 									<c:when test="${authCd <= 1 }">								
-										<option value="${result.odr }">${result.mclassNm }</option>
+										<option value="${list.odr }" <c:if test="${list.odr == result.sigunCd }">selected</c:if> >${list.mclassNm }</option>
 									</c:when>
 								</c:choose>
 							</c:forEach>
