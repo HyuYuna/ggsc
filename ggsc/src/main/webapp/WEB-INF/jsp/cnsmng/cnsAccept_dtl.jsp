@@ -22,8 +22,6 @@
 		var centerGb = "${vo.schCenterGb}";
 		$("select[name=centerGb]").val(centerGb);
 		$("select[name=sigunGb]").val("${loginVo.sigunCd}");
-		$("select[name=zoneGb]").val("${loginVo.zoneGb}");
-		$("select[name=cnsGb]").val("${loginVo.cnsGb}");
 
 		var type = "${type}";
 		if(type == "R") {
@@ -151,7 +149,7 @@
 		if(type == "R"){
 			url = "/gnoincoundb/cnsAcptReg_ajax.do";
 		}else if(type == "D"){
-			url = "/gnoincoundb/cnsAcptUpd_ajax.do"
+			url = "/gnoincoundb/cnsAcptUpd_ajax.do";
 		}
 		var param = $("#frm").serialize();
 		var token = $("meta[name='_csrf']").attr("th:content");

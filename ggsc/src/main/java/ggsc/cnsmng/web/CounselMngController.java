@@ -147,17 +147,11 @@ public class CounselMngController {
 
 		if (userAuth > 1) { // 센터 검색 권한이 없으면
 			vo.setSchCenterGb(Integer.toString(userCenterGb));
-		} else {
-			vo.setSchCenterGb(Integer.toString(userCenterGb));
 		}
 		// 권한 관리 끝
 		
 		String type = request.getParameter("type") == null ? "" : request.getParameter("type");
 		EgovMap result = null;
-		if (type.equals("D")) {
-			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
-			result = counselMngService.getCnsAcceptDtl(caseNo);
-		}
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
 		param.setHclassCd("G15");
@@ -183,6 +177,11 @@ public class CounselMngController {
 		param.setHclassCd("G089");
 		List<EgovMap> sigunList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("sigunList", sigunList);
+		
+		if (type.equals("D")) {
+			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
+			result = counselMngService.getCnsAcceptDtl(caseNo);
+		}
 		
 		model.addAttribute("result", result);
 		model.addAttribute("type", type);
