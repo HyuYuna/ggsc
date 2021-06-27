@@ -660,7 +660,7 @@
 			GS_CNS_ACPT
 		SET
 			CNS_GB = #cnsGb#,
-			LOCAL_GB = #localGb#,
+			<!-- LOCAL_GB = #localGb#, -->
 			CENTER_GB = #centerGb#,
 			ZONE_GB = #zoneGb#,
 			MAJOR_APPL_CD = #majorApplCd#,
