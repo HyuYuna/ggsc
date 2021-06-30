@@ -130,7 +130,6 @@ function fn_close(){
 				<input type="hidden" id="cnsGbR" name="cnsGb" />
 				<input type="hidden" id="cnsEndCd" name="cnsEndCd" value="${cnsEndCd }" />
 				<input type="hidden" id="cnsEndDt" name="cnsEndDt" value="${cnsEndDt }" />
-				<input type="hidden" id="num" name="num" value="${num }" />
 				<table class="table-write">
 					<colgroup>
 						<col width="5%"></col>
