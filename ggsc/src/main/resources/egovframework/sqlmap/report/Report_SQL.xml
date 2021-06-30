@@ -20,12 +20,9 @@
 			CnsGb = #cnsGb#,
 			CENTER_GB  = #centerGb#,
 			B_DATE = #bDate#,
-			B_SUBJECT = #bSubject#,
 			B_CONTENT = #bContent#,
 			VOLUNT_GB = #voluntGb#,
 			VOLUNT_NM = #voluntNm#,
-			VOLUNT_ADDR = #voluntAddr#,
-			gender = #gender#,
 			<isNotEmpty property="fileName" > 
 				FILE_NM = #fileName#,
 				SYS_FILE_NAME = #sysFileName#,
@@ -58,7 +55,6 @@
 			   ,CENTER_GB
 			   ,B_GUBUN
 			   ,B_DATE
-			   ,B_SUBJECT
 			   ,B_CONTENT
 			   ,FILE_NM
 			   ,SYS_FILE_NAME
@@ -67,10 +63,8 @@
 			   ,DB_INS_NAME
 			   ,USER_NUM
 			   ,DEL_YN
-			   ,GENDER
 			   ,VOLUNT_GB
 			   ,VOLUNT_NM
-			   ,VOLUNT_ADDR
 			   ,DB_INS_TM
 			   ,CNSR_ID
 			)
@@ -80,7 +74,6 @@
 			 #centerGb#,
 			 #bGubun#,
 			 #bDate#,
-			 #bSubject#,
 			 #bContent#,
 			 #fileName#,
 			 #sysFileName#,
@@ -89,10 +82,8 @@
 			 now(),
 			 #userNum#,
 			 'N',
-			 #gender#,
 			 #voluntGb#,
 			 #voluntNm#,
-			 #voluntAddr#,
 			 now(),
 			 #cnsrId#
 		)

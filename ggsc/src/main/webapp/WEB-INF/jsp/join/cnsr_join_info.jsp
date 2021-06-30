@@ -152,8 +152,13 @@
 			$("#birthDt").focus();
 			return;
 		}
+		if(birthDt.length != 8) {
+			alert("생년월일을 예시에 맞게 적어주세요");
+			$("#birthDt").focus();
+			return;
+		}
 		
-		var year = Number(birthDt.substr(0,4)); 
+		 var year = Number(birthDt.substr(0,4)); 
 	     var month = Number(birthDt.substr(4,2));
 	     var day = Number(birthDt.substr(6,2));
 	     var today = new Date(); // 날자 변수 선언

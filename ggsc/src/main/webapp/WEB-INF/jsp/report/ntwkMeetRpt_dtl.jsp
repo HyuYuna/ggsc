@@ -204,7 +204,7 @@
 						</td>
 					</tr> --%>
 					<tr>
-						<th>참여기관</th>
+						<th>네트워크활동</th>
 						<td>
 							<select name="joinOrgCd" style="width:275px;">
 								<option value="">선택하세요</option>
