@@ -1204,10 +1204,6 @@ public class CounselMngController {
 		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("zoneGbList", zoneGbList);
 		
-		param.setHclassCd("G089");
-		List<EgovMap> sigunGbList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("sigunGbList", sigunGbList);
-		
 		param.setHclassCd("G90");
 		List<EgovMap> leaderGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("leaderGbList", leaderGbList);
@@ -1275,10 +1271,6 @@ public class CounselMngController {
 		param.setHclassCd("G71");
 		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("zoneGbList", zoneGbList);
-		
-		param.setHclassCd("G089");
-		List<EgovMap> sigunGbList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("sigunGbList", sigunGbList);
 		
 		param.setHclassCd("G90");
 		List<EgovMap> leaderGbList = adminManageService.getGroupMngDtlMList(param);

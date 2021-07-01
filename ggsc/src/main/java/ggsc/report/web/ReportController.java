@@ -862,11 +862,6 @@ public class ReportController {
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsGbList", cnsGbList);
 
-		// 권역구분 코드
-		param.setHclassCd("G71");
-		List<EgovMap> cnsZoneList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("cnsZoneList", cnsZoneList);
-
 		// 지역구분 코드
 		param.setHclassCd("G72");
 		List<EgovMap> cnsLocalList = adminManageService.getGroupMngDtlMList(param);
@@ -897,9 +892,6 @@ public class ReportController {
 		List<EgovMap> prAtvyPtctList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("prAtvyPtctList", prAtvyPtctList);
 
-		param.setHclassCd("G089");
-		List<EgovMap> sigunGbList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("sigunGbList", sigunGbList);
 		
 		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
 		model.addAttribute("map", map);

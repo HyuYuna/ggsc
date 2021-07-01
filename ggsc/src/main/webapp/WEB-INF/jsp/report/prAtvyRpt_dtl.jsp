@@ -26,18 +26,19 @@
 		
 	function fn_save(save){
 		
-var frm = document.frm;
+		var frm = document.frm;
 
 		/* if(frm.cnsGb.value.length == 0 ){
 			alert('[상담구분]을 선택해주세요.');
 			return false;
-		}else  */if(frm.zoneGb.value.length == 0 ){
+		}else  if(frm.zoneGb.value.length == 0 ){
 			alert('[권역구분]을 선택해주세요.');
 			return false;
-		}/* else if(frm.localGb.value.length == 0 ){
+		} else if(frm.localGb.value.length == 0 ){
 			alert('[지역구분]을 선택해주세요.');
 			return false;
-		} */else if(frm.centerGb.value.length == 0 ){
+		} */
+		if(frm.centerGb.value.length == 0 ){
 			alert('[센터구분]을 선택해주세요.');
 			return false;
 		}else if(frm.promotion.value.length == 0 ){
@@ -180,36 +181,6 @@ var frm = document.frm;
 							<c:if test="${result.inputNm != null}">
 								${result.inputNm }
 							</c:if>
-						</td>
-					</tr>
-					<tr>
-						<th>시군구분</th>
-						<td>
-							<select class="wd200" id="sigunCd" name="sigunCd">
-								<c:forEach items="${sigunGbList }" var="result">
-									<c:choose>
-										<c:when test="${authCd > 1 }">
-											<c:if test="${ result.odr eq map.sigunCd }" >
-												<option value="${result.odr }">${result.mclassNm }</option>
-											</c:if>
-										</c:when>
-										<c:when test="${authCd <= 1 }">								
-											<option value="${result.odr }">${result.mclassNm }</option>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>권역구분</th>
-						<td>
-							<select class="wd200" id="zoneGb" name="zoneGb">
-								<option value=''>선택하세요</option>
-								<c:forEach items="${cnsZoneList }" var="list">
-									<option value="${list.odr }" <c:if test="${list.odr == result.zoneGb}">selected</c:if>>${list.mclassNm }</option>
-								</c:forEach>
-							</select> 
 						</td>
 					</tr>
 					<tr>

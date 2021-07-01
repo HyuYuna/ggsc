@@ -1419,9 +1419,7 @@
 		INSERT INTO GS_PR_ATVY_RPT 
 			(
 			   CNS_GB
-			 , SIGUN_CD
 			 , PR_ATVY_PTCT_GB
-			 , ZONE_GB
 			 , LOCAL_GB
 			 , CENTER_GB
 			 , PROMOTION
@@ -1449,9 +1447,7 @@
 		VALUES
 			(
 			   #cnsGb#
-			 , #sigunCd#
 			 , #prAtvyPtctGb#
-			 , #zoneGb#
 			 , #localGb#
 			 , #centerGb#
 			 , #promotion#
