@@ -2715,7 +2715,6 @@
 		, CNS_GB
 		, CNS_DTL_GB_CD
 		, ZONE_GB
-		, SIGUN_CD
 		, LOCAL_GB
 		, CENTER_GB
 		, CNSLE_ID
@@ -2731,7 +2730,6 @@
 		, ATVY_END_MIN
 		, ATVY_TOT_MIN
 		, ATVY_PLACE
-		, LEADER
 		, LEADER_GB
 		, ANCHOR
 		, INPUT_NM
@@ -2742,10 +2740,8 @@
 		, EVAT
 		, AFTER_PLAN
 		, ETC
-		, MAJOR_APPL_CD
 		, REG_ID
 		, DB_INS_TM
-		
 		, OLDER_REL
 		, GENDER
 		, BIRTH_DT
@@ -2772,7 +2768,6 @@
 		, #cnsGb#
 		, 2
 		, #zoneGb#
-		, #sigunCd#
 		, #localGb#
 		, #centerGb#
 		, #cnsleId#
@@ -2788,7 +2783,6 @@
 		, #atvyEndMin#
 		, #atvyTotMin#
 		, #atvyPlace#
-		, #leader#
 		, #leaderGb#
 		, #anchor#
 		, #inputNm#
@@ -2799,10 +2793,8 @@
 		, #evat#
 		, #afterPlan#
 		, #etc#
-		, #majorApplCd#
 		, #regId#
 		, NOW()
-		
 		, #olderRel#
 		, (SELECT GENDER FROM GS_USER_M WHERE USER_ID = #cnsleId#)
 		, #birthDt#
@@ -2831,7 +2823,6 @@
 		(
 		  GCNS_NUM ,
 		  CASE_NO ,
-		  SIGUN_CD ,
 		  CNS_GB ,
 		  CNS_DTL_GB_CD ,
 		  LOCAL_GB ,
@@ -2846,7 +2837,6 @@
 		  CNS_STAT ,
 		  CNS_CNT ,
 		  CNS_DT ,
-		  MAJOR_APPL_CD ,
 		  CNSLE_REL , 
 		  CNS_TYPE ,
 		  CNSR_ID ,
@@ -2854,7 +2844,6 @@
 		) VALUES (
 			#num# ,
 			(SELECT A.case_no FROM gs_ealy_cns_doc as A WHERE A.cnsle_id = #cnsleId#) ,
-			(SELECT B.sigun_cd FROM gs_ealy_cns_doc as B WHERE B.cnsle_id = #cnsleId#) ,
 			(SELECT C.cns_gb FROM gs_ealy_cns_doc as C WHERE C.cnsle_id = #cnsleId#) ,
 			'2' ,
 			(SELECT D.local_gb FROM gs_ealy_cns_doc as D WHERE D.cnsle_id = #cnsleId#) ,
@@ -2869,7 +2858,6 @@
 			'1' ,
 			#cnsCnt# ,
 			#cnsDt# ,
-			#majorApplCd# ,
 			#cnsleRel# ,
 			#cnsType# ,
 			#cnsrId# ,
@@ -2883,7 +2871,6 @@
 			SET
 				CNS_CNT = #cnsCnt# ,
 				CNS_DT = #cnsDt# ,
-				MAJOR_APPL_CD = #majorApplCd# ,
 				CNSLE_REL = #cnsleRel# ,
 				CNS_TYPE = #cnsType#
 			WHERE
@@ -2954,7 +2941,6 @@
 		SET CNS_GB = #cnsGb#
 		, ZONE_GB = #zoneGb#
 		, CENTER_GB = #centerGb#
-		, SIGUN_CD = #sigunCd#
 		, CNS_CNT = #cnsCnt#
 		, PGRM_CD = #pgrmCd#
 		, PGRM_NM = #pgrmNm#
@@ -2966,7 +2952,6 @@
 		, ATVY_END_MIN = #atvyEndMin#
 		, ATVY_TOT_MIN = #atvyTotMin#
 		, ATVY_PLACE = #atvyPlace#
-		, LEADER = #leader#
 		, LEADER_GB = #leaderGb#
 		, ANCHOR = #anchor#
 		, INPUT_NM = #inputNm#
@@ -2977,8 +2962,6 @@
 		, EVAT = #evat#
 		, AFTER_PLAN = #afterPlan#
 		, ETC = #etc#
-		, MAJOR_APPL_CD = #majorApplCd#
-		
 		, OLDER_REL = #olderRel#
 		, CNS_TYPE = #cnsType#
 		, PSYC_QUST = #psycQust#

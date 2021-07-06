@@ -34,14 +34,10 @@ function fn_save(){
 		alert('[구분]을 선택해주세요.');
 		return false;
 	}else if(frm.voluntGb.value.length == 0) {
-		alert('[상담지원봉사자]를 선택해주세요.');
+		alert('[활동내용]를 선택해주세요.');
 		return false;
 	}else if(frm.bDate.value.length < 8){
 		alert('[일자]를 입력해주세요.');
-		return false;
-	}else if(frm.bSubject.value.length < 2){
-		alert('[성명]을 입력해주세요.');
-		frm.bSubject.focus();
 		return false;
 	}else if(frm.bContent.value.length < 2){
 		alert('[내용]을 입력해주세요.');
@@ -183,7 +179,7 @@ function fn_list(mnuCd) {
 						</td>
 					</tr>
 					<tr>
-						<th>상담지원봉사자</th>
+						<th>활동내용</th>
 						<td>
 							<select name='voluntGb' style='width:275px'>
 								<option value=''>선택하세요</option>
@@ -200,28 +196,9 @@ function fn_list(mnuCd) {
 						</td>
 					</tr>
 					<tr>
-						<th>상담지원봉사자 성별</th>
-						<td>
-							<input type="radio" id="genderM" name="gender" value="M" /><label for="genderM">남</label> <input type="radio" id="genderF" name="gender" value="F" /><label for="genderF">여</label>
-						</td>
-					</tr>
-					<tr>
-						<th>상담지원봉사자 거주동</th>
-						<td>
-							<input type="text" class="wd200" id="voluntAddr" name="voluntAddr" value="${detail.voluntAddr }" />
-						</td>
-					</tr>
-					<tr>
 						<th>일자</th>
 						<td>
 							<span class="form"><input type="text" class="wd200" id="datepicker2" name="bDate" value="${detail.bDate}" readonly /></span>
-						</td>
-					</tr>
-					<tr>
-						<th>성명</th>
-						<td>
-							<input type="text" class="wd200" id="bSubject" name="bSubject" value='${detail.bSubject}' />
-						
 						</td>
 					</tr>
 					<tr>

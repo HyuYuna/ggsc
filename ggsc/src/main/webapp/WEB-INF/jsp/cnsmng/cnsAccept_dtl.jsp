@@ -110,6 +110,12 @@
 			return;
 		}
 		
+		if($("#birthDt").val().length != 8){
+			alert("생년월일을 8자리로 적어주세요.");
+			$("#birthDt").focus();
+			return;
+		}
+		
 		if(mobile == ""){
 			alert("핸드폰번호를 입력해주세요.");
 			$("#mobile").focus();

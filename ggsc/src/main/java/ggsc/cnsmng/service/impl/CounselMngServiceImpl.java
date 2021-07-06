@@ -498,7 +498,6 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		PerCnsVO perVo = new PerCnsVO();
 		perVo.setCnsCnt(vo.getCnsCnt());
 		perVo.setCnsDt(vo.getAtvyDt());
-		perVo.setMajorApplCd(vo.getMajorApplCd()); // 주호소문제
 		perVo.setCnsleRel(vo.getOlderRel());
 		perVo.setNum(vo.getNum());
 		

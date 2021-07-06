@@ -14,7 +14,6 @@
 		var loginVo = "${loginVo}";
 		console.log(loginVo);
 		$("#centerGb").val("${loginVo.centerGb}").attr("selected","selected");
-		$("#sigunGb").val("${loginVo.sigunCd}").attr("selected","selected");
 	});
 	
 	function fn_reg(){
@@ -29,7 +28,6 @@
 		var atvyTotMin = $("#atvyTotMin").val();
 		var atdeCnt = $("#atdeCnt").val();
 		var cnsCnt = $("#cnsCnt").val();
-		var sigunGb = $("#sigunGb").val();
 		
 		/* if(cnsleId.length == 0) {
 			alert("내담자ID을 입력해 주세요");
@@ -46,16 +44,7 @@
 			$("#centerGb").focus();
 			return;
 		}
-		if(sigunGb.length == 0) {
-			alert("시군구분을 입력해 주세요");
-			$("#sigunGb").focus();
-			return;
-		}
 		
-		if($("input:radio[name='majorApplCd']").is(":checked") == false) {
-			alert("주호소문제를 체크해 주세요.");
-			return;
-		}
 		
 		if($("input:radio[name='olderRel']").is(":checked") == false) {
 			alert("내담자와의관계를 체크해 주세요.");
@@ -164,28 +153,8 @@
 							</select>
 						</td> --%>
 						
-						<th>시군구분 <span style="color: red;">*</span></th>
-						<td>
-							<select class="wd300" id="sigunGb" name="sigunGb">
-								<option value="">전체</option>
-								<c:forEach items="${sigunGbList }" var="result">
-									<c:choose>
-										<c:when test="${authCd > 1 }">
-											<c:if test="${ result.odr eq loginVo.sigunCd }" >
-												<option value="${result.odr }" >${result.mclassNm }</option>
-											</c:if>
-										</c:when>
-										<c:when test="${authCd <= 1 }">								
-											<option value="${result.odr }" >${result.mclassNm }</option>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-							</select>
-						</td>
-					</tr>
-					<tr>
 						<th>센터구분 <span style="color: red;">*</span></th>
-						<td colspan="2">
+						<td>
 							<select class="wd300" id="centerGb" name="centerGb">
 								<option value="">전체</option>
 								<%-- <c:forEach items="${cnsCenterList }" var="list">
@@ -204,24 +173,6 @@
 									</c:choose>
 								</c:forEach>
 							</select>
-						</td>
-						<th>주호소문제 <span style="color: red;">*</span></th>
-						<td>
-							<input type="radio" id="majorApplCd1" name="majorApplCd" value="1" /><label for="majorApplCd1">심리정서</label>
-							<input type="radio" id="majorApplCd2" name="majorApplCd" value="2" /><label for="majorApplCd2">대인관계</label>
-							<input type="radio" id="majorApplCd3" name="majorApplCd" value="3" /><label for="majorApplCd3">치매</label>
-							<input type="radio" id="majorApplCd4" name="majorApplCd" value="4" /><label for="majorApplCd4">중독</label>
-							<input type="radio" id="majorApplCd5" name="majorApplCd" value="5" /><label for="majorApplCd5">정신건강장애</label>
-							<input type="radio" id="majorApplCd6" name="majorApplCd" value="6" /><label for="majorApplCd6">건강</label>
-							<input type="radio" id="majorApplCd7" name="majorApplCd" value="7" /><label for="majorApplCd7">경제</label><br>
-							<input type="radio" id="majorApplCd8" name="majorApplCd" value="8" /><label for="majorApplCd8">생활</label>
-							<input type="radio" id="majorApplCd9" name="majorApplCd" value="9" /><label for="majorApplCd9">성</label>
-							<input type="radio" id="majorApplCd10" name="majorApplCd" value="10" /><label for="majorApplCd10">부부</label>
-							<input type="radio" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족</label>
-							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">역할상실</label>
-							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">생애진로</label>
-							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">자살</label>
-							<input type="radio" id="majorApplCd15" name="majorApplCd" value="15" /><label for="majorApplCd15">기타</label>
 						</td>
 					</tr>
 					<tr>
@@ -260,12 +211,8 @@
 						</td>
 					</tr>
 					<tr>
-						<th>리더</th>
-						<td colspan="2">
-							<input type="text" class="wd200" id="leader" name="leader" />
-						</td>
 						<th>리더구분</th>
-						<td>
+						<td colspan="4">
 							<select class="wd200" id="leaderGb" name="leaderGb">
 								<c:forEach items="${leaderGbList }" var="rs">
 									<option value="${rs.odr }">${rs.mclassNm }</option>
@@ -467,7 +414,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>역할상실</td>
+						<td>학대</td>
 						<td>
 							<input type="checkbox" id="partQust1" name="partQust" value="1" /><label for="partQust1">은퇴</label>
 							<input type="checkbox" id="partQust2" name="partQust" value="2" /><label for="partQust2">사회적소외</label>

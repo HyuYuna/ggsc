@@ -1308,7 +1308,7 @@ public class DownloadController {
 			cell.setCellValue("성");
 			cell = row.createCell(67);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("역할상실");
+			cell.setCellValue("학대");
 			cell = row.createCell(68);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("가족");

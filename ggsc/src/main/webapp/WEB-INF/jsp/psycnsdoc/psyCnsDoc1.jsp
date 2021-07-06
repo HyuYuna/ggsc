@@ -351,7 +351,7 @@
                     <textarea class="small" id="suggestions" name="no21" ></textarea>
                     <div class="noto500 mt40 border">
                         주호소문제<br>
-                        <span class="fs16 txt-justify">① 심리정서&nbsp;&nbsp;② 대인관계&nbsp;&nbsp;③ 치매&nbsp;&nbsp;④ 중독&nbsp;&nbsp;⑤ 정신건강·장애&nbsp;&nbsp;⑥ 건강&nbsp;&nbsp;⑦ 경제&nbsp;&nbsp;⑧ 생활&nbsp;&nbsp;⑨ 성&nbsp;&nbsp;⑩ 부부&nbsp;&nbsp;⑪ 가족&nbsp;&nbsp;⑫ 역할상실&nbsp;&nbsp; ⑬ 생애진로&nbsp;&nbsp;⑭ 기타</span>
+                        <span class="fs16 txt-justify">① 심리정서&nbsp;&nbsp;② 대인관계&nbsp;&nbsp;③ 치매&nbsp;&nbsp;④ 중독&nbsp;&nbsp;⑤ 정신건강·장애&nbsp;&nbsp;⑥ 건강&nbsp;&nbsp;⑦ 경제&nbsp;&nbsp;⑧ 생활&nbsp;&nbsp;⑨ 성&nbsp;&nbsp;⑩ 부부&nbsp;&nbsp;⑪ 가족&nbsp;&nbsp;⑫ 학대&nbsp;&nbsp; ⑬ 노년생애준비&nbsp;&nbsp;⑭ 기타</span>
                     </div>
                 </div>
 	            <div class="btn" style="text-align: right; display: block; margin-top: 15px; padding: 5px;">

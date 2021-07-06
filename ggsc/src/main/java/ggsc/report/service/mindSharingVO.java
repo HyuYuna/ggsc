@@ -9,9 +9,9 @@ public class mindSharingVO extends PageVO {
 	private int num;
 	private String cnsGb, centerGb, cnsrId;
 	private int bGubun;
-	private String bDate, bSubject, bContent;
+	private String bDate, bContent;
 	private String fileName, sysFileName, filePath;
-	private String userNum, voluntGb, gender, voluntNm, voluntAddr;
+	private String userNum, voluntGb, voluntNm;
 	private double fileSize;
 	
 	private String fDel, delYn;
@@ -28,24 +28,14 @@ public class mindSharingVO extends PageVO {
 	public void setCnsrId(String cnsrId) {
 		this.cnsrId = cnsrId;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+	
 	public String getVoluntNm() {
 		return voluntNm;
 	}
 	public void setVoluntNm(String voluntNm) {
 		this.voluntNm = voluntNm;
 	}
-	public String getVoluntAddr() {
-		return voluntAddr;
-	}
-	public void setVoluntAddr(String voluntAddr) {
-		this.voluntAddr = voluntAddr;
-	}
+	
 	public String getSchStartDate() {
 		return schStartDate;
 	}
@@ -134,12 +124,7 @@ public class mindSharingVO extends PageVO {
 	public void setbDate(String bDate) {
 		this.bDate = bDate;
 	}
-	public String getbSubject() {
-		return bSubject;
-	}
-	public void setbSubject(String bSubject) {
-		this.bSubject = bSubject;
-	}
+	
 	public String getbContent() {
 		return bContent;
 	}
@@ -183,12 +168,17 @@ public class mindSharingVO extends PageVO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	
 	@Override
 	public String toString() {
-		return "mindSharingVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", bGubun=" + bGubun
-				+ ", bDate=" + bDate + ", bSubject=" + bSubject + ", bContent=" + bContent + ", fileName=" + fileName
-				+ ", sysFileName=" + sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", fileSize="
-				+ fileSize + ", fDel=" + fDel + ", file=" + file + "]";
+		return "mindSharingVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
+				+ ", bGubun=" + bGubun + ", bDate=" + bDate + ", bContent=" + bContent + ", fileName=" + fileName
+				+ ", sysFileName=" + sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", voluntGb="
+				+ voluntGb + ", voluntNm=" + voluntNm + ", fileSize=" + fileSize + ", fDel=" + fDel + ", delYn=" + delYn
+				+ ", file=" + file + ", schCenterGb=" + schCenterGb + ", schCnsGb=" + schCnsGb + ", schDateGb="
+				+ schDateGb + ", schText=" + schText + ", schStartDate=" + schStartDate + ", schEndDate=" + schEndDate
+				+ "]";
 	}
-
+	
+	
 }
