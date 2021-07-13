@@ -76,12 +76,49 @@
 	function fn_reg(){
 		var cnsGb = $("#cnsGb").val();
 		var cnsleNm = $("#cnsleNm").val();
+		var year = $("#year").val();
+		var year2 = $("#year2").val();
+		var month = $("#month").val();
+		var month2 = $("#month2").val();
+		var day = $("#day").val();
+		var day2 = $("#day2").val();
 		
 		if(cnsleNm.length == 0) {
 			alert("내담자를 입력해주세요.");
 			$("#cnsleNm").focus();
 			return false;
 		}
+		if(year.length == 0) {
+			alert("시작날짜를 입력해주세요.");
+			$("#year").focus();
+			return false;
+		}
+		if(year.length != 2) {
+			alert("년도가 올바르지 않습니다.");
+			$("#year").focus();
+			return false;
+		}
+		if(month.length == 0) {
+			alert("시작날짜를 입력해주세요.");
+			$("#month").focus();
+			return false;
+		}
+		if(month.length != 2) {
+			alert("해당 [월]앞에 0을 입력해주세요.");
+			$("#month").focus();
+			return false;
+		}
+		if(day.length == 0) {
+			alert("시작날짜를 입력해주세요.");
+			$("#day").focus();
+			return false;
+		}
+		if(day.length != 2) {
+			alert("해당 [일]앞에 0을 입력해주세요.");
+			$("#day").focus();
+			return false;
+		}
+		
 		
 		if(cnsGb == "노인상담") {
 			$("#cnsGbCd").val("1");
@@ -93,12 +130,6 @@
 				if(psycRstMmseds == "") {
 					$("#psycRstMmseds").val(0);
 				} */
-				var year = $("#year").val();
-				var year2 = $("#year2").val();
-				var month = $("#month").val();
-				var month2 = $("#month2").val();
-				var day = $("#day").val();
-				var day2 = $("#day2").val();
 				
 				$("#cnsStrtDt").val("20"+year+month+day);
 				$("#cnsEndDt").val("20"+year2+month2+day2);

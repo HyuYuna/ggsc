@@ -509,8 +509,8 @@
 							<col width="15%"></col>
 						</colgroup>
 						<tr>
-							<td>작성자</td>
-							<td><input type="text" onlyKorean maxlength="8" value="${userNm }" oninput="this.value = this.value.replace(/[^ㄱ-힣]/, '');"/></td>
+							<td>내담자</td>			   
+							<td><input type="text" id="cnsleNm2" value="${detail.inputNm }" readonly /></td>
 							<td>사례번호</td>
 							<td><input type="text" id="rewdNo" name="rewdNo" value="${dccNum }" readonly /></td>
 							<td>시작시간</td>
