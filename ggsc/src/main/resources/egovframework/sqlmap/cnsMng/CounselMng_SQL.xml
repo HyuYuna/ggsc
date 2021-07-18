@@ -4254,7 +4254,7 @@
 			CNS_END_DT = #cnsEndDt#
 		WHERE
 			CASE_NO = #caseNo#
-		AND NUM = #num#
+		AND CNS_CNT = (SELECT * FROM (SELECT IFNULL(COUNT(A.NUM),1) FROM GS_PER_CNS_DTL AS A WHERE A.CNSLE_ID = #cnsleId#) AS A)
 	</update>
 
 	<!-- pdf 저장 -->
