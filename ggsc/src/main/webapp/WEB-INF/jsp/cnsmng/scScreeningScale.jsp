@@ -564,7 +564,7 @@
 							<td><input type="text" id="ansr2Cntn" name="ansr2Cntn" maxlength="20" value="${detail.ansr2Cntn }" /></td>
 						</tr>
 						<tr>
-							<td style="text-align: left; padding-left: 5px;">3. 신경정신 관련 진단을 받은 바 있다. (예: 매진단을 받은 적이 있다.)</td>
+							<td style="text-align: left; padding-left: 5px;">3. 신경정신 관련 진단을 받은 바 있다. (예: 치매진단을 받은 적이 있다.)</td>
 							<td><input type="radio" id="ansr3Y" name="ansr3" value="Y" /></td>
 							<td><input type="radio" id="ansr3N" name="ansr3" value="N" /></td>
 							<td><input type="text" id="ansr3Cntn" name="ansr3Cntn" maxlength="20" value="${detail.ansr3Cntn }" /></td>
@@ -669,8 +669,8 @@
 							<tr>
 								<td>채점</td>
 								<td style="text-align: left; padding-left: 5px;">※ 진한 색에 1점부여, 그 외 0점을 부여함</td>
-								<td><input type="text" class="wd30" id="yesTotScore" name="yesTotScore" value="${detail.yesTotScore }" readonly onlyNumber maxlength=2>점</td>
-								<td><input type="text" class="wd30" id="noTotScore" name="noTotScore" value="${detail.noTotScore }" readonly onlyNumber maxlength=2>점</td>
+								<td colspan="2"><input type="text" class="wd50" id="yesTotScore" name="yesTotScore" value="${detail.yesTotScore }" readonly onlyNumber maxlength=2>점</td>
+								<td style="display:none;"><input type="text" class="wd30" id="noTotScore" name="noTotScore" value="${detail.noTotScore }" readonly onlyNumber maxlength=2>점</td>
 							</tr>
 							<tr>
 								<td>상담자소견(5점)</td>
