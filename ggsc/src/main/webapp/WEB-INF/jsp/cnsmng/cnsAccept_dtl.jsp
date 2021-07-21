@@ -23,6 +23,7 @@
 			var centerGb = "${vo.schCenterGb}";
 			$("select[name=centerGb]").val(centerGb);
 			$("select[name=sigunGb]").val("${loginVo.sigunCd}");
+			$("select[name=zoneGb]").val("${loginVo.zoneGb}");
 		}
 		var type = "${type}";
 		if(type == "R") {
@@ -297,7 +298,16 @@
 					<td>
 						<select id="zoneGb" name="zoneGb">
 							<c:forEach items="${zoneGbList }" var="list">
-								<option value="${list.odr }" <c:if test="${list.odr == result.zoneGb }">selected</c:if> >${list.mclassNm }</option>
+								<c:choose>
+									<c:when test="${authCd > 1 }">
+										<c:if test="${ list.odr eq loginVo.zoneGb }" >
+											<option value="${list.odr }">${list.mclassNm }</option>
+										</c:if>
+									</c:when>
+									<c:when test="${authCd <= 1 }">								
+										<option value="${list.odr }" <c:if test="${list.odr == result.zoneGb }">selected</c:if> >${list.mclassNm }</option>
+									</c:when>
+								</c:choose>
 							</c:forEach>
 						</select>
 					</td>

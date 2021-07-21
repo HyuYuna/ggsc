@@ -76,6 +76,7 @@
 	function fn_reg() {
 		
 		var cnsleNm = $("#cnsleNm").val();
+		var cnsStat = $("#cnsStat").val();
 		var datepicker8 = $("#datepicker8").val(); 
 		var cnsDtStdHour = $("#cnsDtStdHour").val(); 
 		var cnsDtStdMin = $("#cnsDtStdMin").val(); 
@@ -92,6 +93,11 @@
 		if(cnsleNm.length == 0) {
 			alert("내담자명을 입력해 주세요");
 			$("#cnsleNm").focus();
+			return;
+		}
+		if(cnsStat == 2) {
+			alert("종결서를 이용해주세요");
+			$("#cnsStat").focus();
 			return;
 		}
 		if(datepicker8.length == 0) {
