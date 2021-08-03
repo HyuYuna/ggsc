@@ -258,7 +258,7 @@
 					<tr>
 						<th>대상인원</th>
 						<td>
-							<input type="text" class="wd50" id="prAtvyMan" name="prAtvyMan" value="${result.prAtvyMan }" onlyNumber maxLength=3 />명
+							<input type="text" class="wd50" id="prAtvyMan" name="prAtvyMan" value="${result.prAtvyMan }" onlyNumber maxLength=3 />명 (개)
 						</td>
 					</tr>
 					<tr>

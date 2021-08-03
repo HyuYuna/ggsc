@@ -273,27 +273,6 @@
 		}else if(frm.addr.value.length < 1){
 			alert('[주소]를 입력해주세요.');
 			return false;
-		}else if(frm.edu.value.length == 0){
-			alert('[학력]을 선택해주세요.');
-			return false;
-		}else if(frm.decodeLvl.value.length == 0){
-			alert('[문자해독]을 선택해주세요.');
-			return false;
-		}else if(frm.relg.value.length == 0){
-			alert('[종교]를 선택해주세요.');
-			return false;
-		}else if(frm.livgForm.value.length == 0){
-			alert('[주거형태]를 선택해주세요.');
-			return false;
-		}else if(frm.houseForm.value.length == 0){
-			alert('[주택형태]를 선택해주세요.');
-			return false;
-		}else if( $("[name=merrStat]:checked").length == 0){
-			alert('[결혼상태]를 선택해주세요.');
-			return false;
-		}else if($("[name=liveForm]:checked").length == 0){
-			alert('[동거형태]를 선택해주세요.');
-			return false;
 		}else if(frm.majorApplCd.value.length == 0){
 			alert('[주요문제]를 선택해주세요.');
 			return false;
@@ -463,7 +442,7 @@
 						<td colspan="6"><input type="text" id="addr" name="addr" readonly value="${result.addr }" /></td>
 					</tr>
 					<tr>
-						<th>학력 <span style="color: red;">*</span></th>
+						<th>학력 </th>
 						<td colspan="6">
 							<input type="radio" id="edu1" name="edu" value="1" /><label for="edu1">무학</label><input type="radio" id="edu2" name="edu" value="2" /><label for="edu2">초졸</label>
 							<input type="radio" id="edu3" name="edu" value="3" /><label for="edu3">중졸</label><input type="radio" id="edu4" name="edu" value="4" /><label for="edu4">고졸</label>
@@ -473,7 +452,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>문자해독 <span style="color: red;">*</span></th>
+						<th>문자해독 </th>
 						<td colspan="6">
 							<input type="radio" id="decodeLvl1" name="decodeLvl" value="1" /><label for="decodeLvl1">문맹</label>
 							<input type="radio" id="decodeLvl2" name="decodeLvl" value="2" /><label for="decodeLvl2">읽기만 가능</label>
@@ -482,7 +461,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>종교 <span style="color: red;">*</span></th>
+						<th>종교</th>
 						<td colspan="6">
 							<input type="radio" id="relg1" name="relg" value="1" /><label for="relg1">무교</label><input type="radio" id="relg2" name="relg" value="2" /><label for="relg2">기독교</label>
 							<input type="radio" id="relg3" name="relg" value="3" /><label for="relg3">천주교</label><input type="radio" id="relg4" name="relg" value="4" /><label for="relg4">불교</label>
@@ -490,7 +469,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>주거형태 <span style="color: red;">*</span></th>
+						<th>주거형태 </th>
 						<td colspan="6">
 							<input type="radio" id="livgForm1" name="livgForm" value="1" /><label for="livgForm1">자가</label>
 							<input type="radio" id="livgForm2" name="livgForm" value="2" /><label for="livgForm2">전세</label>
@@ -500,7 +479,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>주택형태 <span style="color: red;">*</span></th>
+						<th>주택형태</th>
 						<td colspan="6">
 							<input type="radio" id="houseForm1" name="houseForm" value="1" /><label for="houseForm1">아파트</label>
 							<input type="radio" id="houseForm2" name="houseForm" value="2" /><label for="houseForm2">단독주택</label>
@@ -511,7 +490,7 @@
 					</tr>
 					<tr>
 						<th rowspan="2">가족<br>관계</th>
-						<th>결혼상태 <span style="color: red;">*</span></th>
+						<th>결혼상태 </th>
 						<td colspan="6">
 							<input type="checkbox" id="merrStat1" name="merrStat" value="1" /><label for="merrStat1">기혼</label>
 							<input type="checkbox" id="merrStat2" name="merrStat" value="2" /><label for="merrStat2">사별</label>
@@ -524,7 +503,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>동거형태 <span style="color: red;">*</span></th>
+						<th>동거형태 </th>
 						<td colspan="6">
 							<input type="checkbox" id="liveForm1" name="liveForm" value="1" /><label for="liveForm1">독거</label>
 							<input type="checkbox" id="liveForm2" name="liveForm" value="2" /><label for="liveForm2">자녀 동거</label>

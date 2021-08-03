@@ -1108,6 +1108,7 @@
 		, DB_INS_TM
 		, SIGUN_CD
 		, REG_ID
+		, CNS_TARGET_GB
 		)
 		VALUES
 		(
@@ -1124,6 +1125,7 @@
 		, NOW()
 		, #sigunCd#
 		, #regId#
+		, 'Y'
 		)
 	</insert>
 	
@@ -1195,9 +1197,6 @@
 		<isEqual property="docCntnPath" compareValue="Y">
 			, DOC_CNTN_PATH = (SELECT NUM FROM GS_DOC_CNTN_COMM WHERE CASE_NO = #caseNo#)
 		</isEqual>
-		<isNotEmpty property="cnsTargetGb">
-			, CNS_TARGET_GB = #cnsTargetGb#
-		</isNotEmpty>
 		WHERE
 		CASE_NO = #caseNo#
 		<!-- AND EXAM_DOC_CD = #examDocCd# -->

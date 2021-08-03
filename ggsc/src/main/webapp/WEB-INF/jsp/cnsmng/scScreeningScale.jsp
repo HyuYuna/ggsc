@@ -381,7 +381,7 @@
 		var userNm = $("#cnsleNm").val();
 		userNm = encodeURI(encodeURIComponent(userNm));
 		var caseNo = "${caseNo}";
-		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=N"+"&schCaseNo="+caseNo;
+		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo;
 		var name = "회원 찾기";
 		var option = "width = 530, height = 750, top = 50, left = 100, location = yes";
 		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));
@@ -444,8 +444,8 @@
 					<input type="hidden" id="caseNo" name="caseNo" value="0" />
 					<input type="hidden" id="examDocCd" name="examDocCd" value="4" />
 					<input type="hidden" id="docGb" name="docGb" value="1" />
+					<input type="hidden" value="${userNm }" oninput="this.value = this.value.replace(/[^ㄱ-힣]/, '');"/></td>
 					<input type="hidden" id="localGb" name="localGb" value="9"/>
-					<input type="hidden" id="cnsTargetGb" name="cnsTargetGb" />
 					<input type="hidden" id="docCntnPath" name="docCntnPath" value="Y" />
 					<table border="1" class="table-write" style="width: 101.2%; position: relative; left: -10px; top: -10px; border-left-style:hidden; border-right-style: hidden; border-top-style: hidden;">
 						<colgroup>
@@ -510,7 +510,7 @@
 						</colgroup>
 						<tr>
 							<td>내담자</td>			   
-							<td><input type="text" id="cnsleNm2" value="${detail.inputNm }" readonly /></td>
+							<td><input type="text" value="${detail.inputNm }" readonly /></td>
 							<td>사례번호</td>
 							<td><input type="text" id="rewdNo" name="rewdNo" value="${dccNum }" readonly /></td>
 							<td>시작시간</td>
@@ -713,14 +713,10 @@
 
 			if(tot >= 10 ) {
 				alert("검사 결과 10점 이상이므로  상담대상자로 선정됐습니다.");
-				$("#cnsTargetGb").val("Y");
 			} else if(q11 == "Y" || q14 == "Y"){
 				alert("11번 또는 14번 항목을 체크하셨으므로  상담대상자로 선정됐습니다.");
-				$("#cnsTargetGb").val("Y");
 				$("#cnsrOptnTot").val(10);
-			} else {
-				$("#cnsTargetGb").val("Y");
-			}
+			} 
 		});
 	</script>
 

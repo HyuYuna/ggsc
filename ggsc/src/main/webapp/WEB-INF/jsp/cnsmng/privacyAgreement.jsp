@@ -217,7 +217,7 @@
 		var userNm = $("#cnsleNm").val();
 		userNm = encodeURI(encodeURIComponent(userNm));		
 		var caseNo = "${caseNo}";
-		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=N"+"&schCaseNo="+caseNo;
+		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo;
 		var name = "회원 찾기";
 		var option = "width = 530, height = 750, top = 50, left = 100, location = yes";
 		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));
