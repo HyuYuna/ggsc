@@ -37,9 +37,19 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		return (List<EgovMap>)list("cnsMngDao.getCnsAcceptList", vo);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getExiCnsAcceptList(CnsAcptVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getExiCnsAcceptList", vo);
+	}
+	
 	// 상담접수관리 목록 갯수
 	public int getCnsAcptListTotCnt(CnsAcptVO vo){
 		return (Integer)select("cnsMngDao.getCnsAcptListTotCnt", vo);
+	}
+	
+	// 상담접수관리 목록 갯수
+	public int getExiCnsAcptListTotCnt(CnsAcptVO vo){
+		return (Integer)select("cnsMngDao.getExiCnsAcptListTotCnt", vo);
 	}
 	
 	// 상담접수신청 ID중복체크
@@ -611,5 +621,45 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	// 치매선별용 한국어판 간이정신상태검사 등록
 	public void insertPsyCnsDoc16(PsyCnsDoc2VO vo) {
 		insert("cnsMngDao.insertPsyCnsDoc16", vo);
+	}
+	
+	public void deleteCnsAccept(String caseNo) {
+		update("cnsMngDao.deleteCnsAccept", caseNo);
+	}
+	
+	public void deletePreExamM(String caseNo) {
+		update("cnsMngDao.deletePreExamM", caseNo);
+	}
+	
+	public void deleteCnsAgre(String caseNo) {
+		update("cnsMngDao.deleteCnsAgre", caseNo);
+	}
+	
+	public void deletePerInfo(String caseNo) {
+		update("cnsMngDao.deletePerInfo", caseNo);
+	}
+	
+	public void deleteDocCntn(String caseNo) {
+		update("cnsMngDao.deleteDocCntn", caseNo);
+	}
+	
+	public void deleteEalyCnsDoc(String caseNo) {
+		update("cnsMngDao.deleteEalyCnsDoc", caseNo);
+	}
+	
+	public void deletePerCnsDtl(String caseNo) {
+		update("cnsMngDao.deletePerCnsDtl", caseNo);
+	}
+	
+	public void deletePsyCnsDocDtl(String caseNo) {
+		update("cnsMngDao.deletePsyCnsDocDtl", caseNo);
+	}
+	
+	public void deleteLinkReq(String caseNo) {
+		update("cnsMngDao.deleteLinkReq", caseNo);
+	}
+	
+	public void deleteCnsEnd(String caseNo) {
+		update("cnsMngDao.deleteCnsEnd", caseNo);
 	}
 }

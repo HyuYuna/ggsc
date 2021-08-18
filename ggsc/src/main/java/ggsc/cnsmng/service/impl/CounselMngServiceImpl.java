@@ -71,9 +71,20 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	}
 	
 	@Override
+	public List<EgovMap> getExiCnsAcceptList(CnsAcptVO vo) {
+		return cnsMngDao.getExiCnsAcceptList(vo);
+	}
+	
+	@Override
 	public int getCnsAcptListTotCnt(CnsAcptVO vo) {
 		return cnsMngDao.getCnsAcptListTotCnt(vo);
 	}
+	
+	@Override
+	public int getExiCnsAcptListTotCnt(CnsAcptVO vo) {
+		return cnsMngDao.getExiCnsAcptListTotCnt(vo);
+	}
+	
 	// 상담접수신청 ID중복 체크
 	@Override
 	public int idCheck(String userId) {
@@ -807,6 +818,56 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override
 	public void insertPsyCnsDoc16(PsyCnsDoc2VO vo) {
 		cnsMngDao.insertPsyCnsDoc16(vo);
+	}
+	
+	@Override
+	public void deleteCnsAccept(String caseNo) {
+		cnsMngDao.deleteCnsAccept(caseNo);
+	}
+	
+	@Override
+	public void deletePreExamM(String caseNo) {
+		cnsMngDao.deletePreExamM(caseNo);
+	}
+	
+	@Override
+	public void deleteCnsAgre(String caseNo) {
+		cnsMngDao.deleteCnsAgre(caseNo);
+	}
+	
+	@Override
+	public void deletePerInfo(String caseNo) {
+		cnsMngDao.deletePerInfo(caseNo);
+	}
+	
+	@Override
+	public void deleteDocCntn(String caseNo) {
+		cnsMngDao.deleteDocCntn(caseNo);
+	}
+	
+	@Override
+	public void deleteEalyCnsDoc(String caseNo) {
+		cnsMngDao.deleteEalyCnsDoc(caseNo);
+	}
+	
+	@Override
+	public void deletePerCnsDtl(String caseNo) {
+		cnsMngDao.deletePerCnsDtl(caseNo);
+	}
+	
+	@Override
+	public void deletePsyCnsDocDtl(String caseNo) {
+		cnsMngDao.deletePsyCnsDocDtl(caseNo);
+	}
+	
+	@Override
+	public void deleteLinkReq(String caseNo) {
+		cnsMngDao.deleteLinkReq(caseNo);
+	}
+	
+	@Override
+	public void deleteCnsEnd(String caseNo) {
+		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
 

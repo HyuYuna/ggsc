@@ -91,6 +91,63 @@
  			ORDER BY NUM DESC
  		]]>
 	</select>
+	
+	<select id="cnsMngDao.getExiCnsAcceptList" resultClass="egovMap">
+		SELECT *
+		FROM(SELECT gca.*
+		, DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM) AS RNUM
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM2
+		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+		, gum.MOBILE AS
+		MOBILE
+		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, (SELECT YEAR(NOW())-YEAR(gum.BIRTH_DT)+1) AS AGE
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		FROM
+		GS_CNS_ACPT gca, GS_USER_M gum
+		WHERE
+		gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN = 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY NUM DESC
+ 		]]>
+	</select>
 
 	<!-- 상담접수관리 목록 갯수 -->
 	<select id="cnsMngDao.getCnsAcptListTotCnt" parameterClass="cnsAcptVO" resultClass="Integer">
@@ -134,6 +191,49 @@
 	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 	</select>
+	
+	<select id="cnsMngDao.getExiCnsAcptListTotCnt" parameterClass="cnsAcptVO" resultClass="Integer">
+		SELECT 
+			COUNT(gca.USER_ID)
+		FROM 
+			GS_CNS_ACPT gca, GS_USER_M gum
+		WHERE
+		1=1
+		AND gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN = 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM = #schAcptNm#
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+
 
 	<!-- 엑셀 다운 (상담접수)-->
 	<select id="cnsMngDao.getCnsAcptListExcel" resultClass="egovMap" parameterClass="ExcelVO">
@@ -4253,7 +4353,7 @@
 			CNS_END_DT = #cnsEndDt#
 		WHERE
 			CASE_NO = #caseNo#
-		AND CNS_CNT = (SELECT * FROM (SELECT IFNULL(COUNT(A.NUM),1) FROM GS_PER_CNS_DTL AS A WHERE A.CNSLE_ID = #cnsleId#) AS A)
+		AND CNS_CNT = (SELECT * FROM (SELECT IFNULL(COUNT(A.NUM),1) FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#) AS A)
 	</update>
 
 	<!-- pdf 저장 -->
@@ -4537,5 +4637,81 @@
 		AND CNS_DTL_NUM = #gIdx#
 		AND EXAM_DOC_CD = #examDocCd#
 	</update>
+	
+	<update id="cnsMngDao.deleteCnsAccept" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_cns_acpt
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deletePreExamM" parameterClass="java.lang.String">
+		DELETE gpem, gpef
+			FROM gs_pre_exam_m AS gpem 
+		INNER JOIN 
+			gs_pre_exam_file AS gpef on gpem.case_no = gpef.case_no
+		WHERE 
+			gpem.CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteCnsAgre" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_cns_agre_doc
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deletePerInfo" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_per_info_agre
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteDocCntn" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_doc_cntn_comm
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteEalyCnsDoc" parameterClass="java.lang.String">
+		DELETE gecd, gecf
+			FROM gs_ealy_cns_doc AS gecd 
+		INNER JOIN 
+			gs_ealy_cns_file AS gecf on gecd.case_no = gecf.case_no
+		WHERE 
+			gecd.CASE_NO = #caseNo#
+	</update>
+	
+	
+	<update id="cnsMngDao.deletePerCnsDtl" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_per_cns_dtl
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deletePsyCnsDocDtl" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_psy_cns_doc_dtl
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteLinkReq" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_link_req_m
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteCnsEnd" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_cns_end
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
 
 </sqlMap>
