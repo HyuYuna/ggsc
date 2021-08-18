@@ -2441,7 +2441,7 @@
 		, #cnsEfftPlace#
 		, #cnsRsvtPlace#
 		
-		, (SELECT IFNULL(COUNT(A.NUM),1)+1 FROM GS_PER_CNS_DTL AS A WHERE A.CNSLE_ID = #cnsleId#)
+		, (SELECT IFNULL(COUNT(A.NUM),1)+1 FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#)
 		, #emgcyUrgt#
 		, #cnsDt#
 		, #cnsDtWeekCd#
