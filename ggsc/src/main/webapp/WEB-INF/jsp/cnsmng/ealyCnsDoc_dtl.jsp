@@ -72,10 +72,12 @@
 		if(idCheck != "") {
 			$("#sBtn").css("display", "none");
 			$("#uBtn").css("display", "");
+			$("#dBtn").css("display", "");
 			$("#pdfBtn").css("display","");
 		} else {
 			$("#sBtn").css("display", "");
 			$("#uBtn").css("display", "none");
+			$("#dBtn").css("display", "none");
 			$("#pdfBtn").css("display","none");
 		}
 		
@@ -311,7 +313,14 @@
 			}
 		}
 			
-		
+	}
+	
+	
+	function fn_delete() {
+		if(confirm("해당 내담자의 초기상담신청서와 상담관리가 삭제됩니다. 삭제하시겠습니까?")) {
+			document.frm.action="/gnoincoundb/ealyCnsDocDel.do?mnuCd=${mnuCd}";
+			document.frm.submit();
+		}
 	}
 	
 	function fn_list(mnuCd){
@@ -340,6 +349,7 @@
 				<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color: green;color:white;">목록</button>
 				<button type="button" id="sBtn" class="btn-basic" onClick="javascript:fn_cnsrCheck('S');" style="background-color: green;color:white;">저장</button>
 				<button type="button" id="uBtn" class="btn-basic" onClick="javascript:fn_reg('U',0);" style="background-color: green;color:white;">수정</button>
+				<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
 			</div>	
 			<form name="downForm" id="downForm" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -351,6 +361,7 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="hidden" id="cnsleId" name="cnsleId" value="${result.cnsleId }" />
 				<input type="hidden" id="caseNo" name="caseNo" value="${result.caseNo }" />
+				<input type="hidden" id="caseNo" name="caseNo1" value="${result.caseNo }">
 				<input type="hidden" id="cnsGb" name="cnsGb" value="${result.cnsGb }" />
 				<input type="hidden" id="sigunCd" name="sigunCd" />
 				

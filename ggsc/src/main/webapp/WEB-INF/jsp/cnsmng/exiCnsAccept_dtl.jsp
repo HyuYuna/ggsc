@@ -162,7 +162,7 @@
 					alert(json.msg);
 				}else{
 					if(type == "D") {
-						if(confirm("해당 내담자의 모든 내용이 삭제됩니다. 삭제하시겠습니까?")){
+						if(confirm("해당 내담자의 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
 							alert("상담접수가 삭제완료 되었습니다.");
 						}
 					} else if(type == "R") {

@@ -994,6 +994,24 @@ public class CounselMngController {
 
 		return "redirect:/gnoincoundb/ealyCnsDocList.do?mnuCd=" + mnuCd;
 	}
+	
+	
+	@RequestMapping(value = "/ealyCnsDocDel.do", method = RequestMethod.POST)
+	public String ealyCnsDocDel(EalyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String caseNo = request.getParameter("caseNo1") == null ? "" : request.getParameter("caseNo1");
+		model.addAttribute("mnuCd", mnuCd);
+
+		counselMngService.deleteEalyCnsDoc(caseNo);
+		counselMngService.deletePerCnsDtl(caseNo);
+		counselMngService.deletePsyCnsDocDtl(caseNo);
+		counselMngService.deleteLinkReq(caseNo);
+		counselMngService.deleteCnsEnd(caseNo);
+		
+
+		return "redirect:/gnoincoundb/ealyCnsDocList.do?mnuCd=" + mnuCd;
+	}
 
 	@RequestMapping(value = "/perCnsList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String perCnsList(EalyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
