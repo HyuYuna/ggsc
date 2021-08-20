@@ -141,7 +141,9 @@
 		
 		
 		if(type == "D"){
-			url = "/gnoincoundb/exiCnsAcptDel_ajax.do";
+			if(confirm("해당 내담자의 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
+				url = "/gnoincoundb/exiCnsAcptDel_ajax.do";
+			}
 		}else if(type == "R"){
 			url = "/gnoincoundb/cnsAcptUpd_ajax.do";
 		}
@@ -162,9 +164,7 @@
 					alert(json.msg);
 				}else{
 					if(type == "D") {
-						if(confirm("해당 내담자의 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
-							alert("상담접수가 삭제완료 되었습니다.");
-						}
+						alert("상담접수가 삭제완료 되었습니다.");
 					} else if(type == "R") {
 						alert("상담접수가 수정 되었습니다.");
 					}
@@ -175,7 +175,11 @@
 				
 			},
 			error : function(e) {
-				alert("서버와 통신 오류입니다.");
+				if(type == "D"){
+					return false;
+				} else {
+					alert("서버와 통신 오류입니다.");
+				}
 			}
 		});
 	}
