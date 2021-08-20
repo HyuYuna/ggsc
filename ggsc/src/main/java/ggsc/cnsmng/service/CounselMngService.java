@@ -289,7 +289,7 @@ public interface CounselMngService {
 	void insertPsyCnsDoc16(PsyCnsDoc2VO vo);
 	
 	
-	void deleteUser(String userId);
+	void deleteUser(String caseNo);
 	
 	void deleteCnsAccept(String caseNo);
 	
