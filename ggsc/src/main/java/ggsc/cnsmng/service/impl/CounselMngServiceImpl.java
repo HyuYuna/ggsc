@@ -821,6 +821,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	}
 	
 	@Override
+	public void deleteUser(String caseNo) {
+		cnsMngDao.deleteUser(caseNo);
+	}
+	
+	@Override
 	public void deleteCnsAccept(String caseNo) {
 		cnsMngDao.deleteCnsAccept(caseNo);
 	}

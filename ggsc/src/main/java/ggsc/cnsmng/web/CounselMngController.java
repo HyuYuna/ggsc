@@ -376,6 +376,8 @@ public class CounselMngController {
 		
 		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
 		
+		
+		counselMngService.deleteUser(caseNo);
 		counselMngService.deleteCnsAccept(caseNo);
 		counselMngService.deletePreExamM(caseNo);
 		counselMngService.deleteCnsAgre(caseNo);

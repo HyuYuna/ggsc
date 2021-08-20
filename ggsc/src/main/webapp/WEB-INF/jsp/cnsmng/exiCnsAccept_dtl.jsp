@@ -141,7 +141,7 @@
 		
 		
 		if(type == "D"){
-			if(confirm("해당 내담자의 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
+			if(confirm("해당 내담자의 아이디와 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
 				url = "/gnoincoundb/exiCnsAcptDel_ajax.do";
 			}
 		}else if(type == "R"){
@@ -365,7 +365,7 @@
 	</form>
 	<div>
 		<button type="button" id="dBtn" class="btn-basic" onclick="javascript:fn_save('D');">삭제</button>
-		<button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button>
+		<!-- <button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button> -->
 		<button type="button" class="btn-basic" onclick="window.close();">닫기</button>
 	</div>
 </body>

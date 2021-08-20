@@ -289,6 +289,8 @@ public interface CounselMngService {
 	void insertPsyCnsDoc16(PsyCnsDoc2VO vo);
 	
 	
+	void deleteUser(String userId);
+	
 	void deleteCnsAccept(String caseNo);
 	
 	void deletePreExamM(String caseNo);

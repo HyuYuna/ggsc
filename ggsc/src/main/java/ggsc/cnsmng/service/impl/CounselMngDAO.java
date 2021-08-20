@@ -623,6 +623,10 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		insert("cnsMngDao.insertPsyCnsDoc16", vo);
 	}
 	
+	public void deleteUser(String caseNo) {
+		update("cnsMngDao.deleteUser", caseNo);
+	}
+	
 	public void deleteCnsAccept(String caseNo) {
 		update("cnsMngDao.deleteCnsAccept", caseNo);
 	}

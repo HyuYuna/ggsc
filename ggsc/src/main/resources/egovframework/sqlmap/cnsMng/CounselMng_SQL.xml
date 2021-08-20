@@ -4638,6 +4638,15 @@
 		AND EXAM_DOC_CD = #examDocCd#
 	</update>
 	
+	<update id="cnsMngDao.deleteUser" parameterClass="java.lang.String">
+		DELETE gum, gca
+			FROM gs_user_m AS gum 
+		INNER JOIN 
+			gs_cns_acpt AS gca on gum.user_id = gca.user_id
+		WHERE 
+			gca.CASE_NO = #caseNo#
+	</update>
+	
 	<update id="cnsMngDao.deleteCnsAccept" parameterClass="java.lang.String">
 		DELETE 
 			FROM gs_cns_acpt
