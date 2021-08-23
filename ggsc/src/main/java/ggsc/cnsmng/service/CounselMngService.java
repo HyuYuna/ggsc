@@ -288,27 +288,8 @@ public interface CounselMngService {
 	// 치매선별용 한국어판 간이정신상태검사 등록
 	void insertPsyCnsDoc16(PsyCnsDoc2VO vo);
 	
+	void deleteExiCnsAcpt(String caseNo);
 	
-	void deleteUser(String caseNo);
-	
-	void deleteCnsAccept(String caseNo);
-	
-	void deletePreExamM(String caseNo);
-	
-	void deleteCnsAgre(String caseNo);
-	
-	void deletePerInfo(String caseNo);
-	
-	void deleteDocCntn(String caseNo);
-	
-	void deleteEalyCnsDoc(String caseNo);
-	
-	void deletePerCnsDtl(String caseNo);
-	
-	void deletePsyCnsDocDtl(String caseNo);
-	
-	void deleteLinkReq(String caseNo);
-	
-	void deleteCnsEnd(String caseNo);
+	void deleteExiEalyCnsDoc(String caseNo);
 	
 }

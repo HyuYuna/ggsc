@@ -376,18 +376,8 @@ public class CounselMngController {
 		
 		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
 		
+		counselMngService.deleteExiCnsAcpt(caseNo);
 		
-		counselMngService.deleteUser(caseNo);
-		counselMngService.deleteCnsAccept(caseNo);
-		counselMngService.deletePreExamM(caseNo);
-		counselMngService.deleteCnsAgre(caseNo);
-		counselMngService.deletePerInfo(caseNo);
-		counselMngService.deleteDocCntn(caseNo);
-		counselMngService.deleteEalyCnsDoc(caseNo);
-		counselMngService.deletePerCnsDtl(caseNo);
-		counselMngService.deletePsyCnsDocDtl(caseNo);
-		counselMngService.deleteLinkReq(caseNo);
-		counselMngService.deleteCnsEnd(caseNo);
 		
 		// 
 		return "jsonView";
@@ -411,6 +401,15 @@ public class CounselMngController {
 		counselMngService.updateUser(vo);
 		counselMngService.updateCnsAccept(vo);
 		// }
+		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/exiCnsAcptUpd_ajax.do", method = RequestMethod.POST)
+	public String exiCnsAcptUpdAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+
+		counselMngService.updateUser(vo);
+		counselMngService.updateCnsAccept(vo);
+		
 		return "jsonView";
 	}
 
@@ -1005,11 +1004,7 @@ public class CounselMngController {
 		String caseNo = request.getParameter("caseNo1") == null ? "" : request.getParameter("caseNo1");
 		model.addAttribute("mnuCd", mnuCd);
 
-		counselMngService.deleteEalyCnsDoc(caseNo);
-		counselMngService.deletePerCnsDtl(caseNo);
-		counselMngService.deletePsyCnsDocDtl(caseNo);
-		counselMngService.deleteLinkReq(caseNo);
-		counselMngService.deleteCnsEnd(caseNo);
+		counselMngService.deleteExiEalyCnsDoc(caseNo);
 		
 
 		return "redirect:/gnoincoundb/ealyCnsDocList.do?mnuCd=" + mnuCd;

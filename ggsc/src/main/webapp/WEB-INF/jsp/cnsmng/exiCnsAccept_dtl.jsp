@@ -145,7 +145,7 @@
 				url = "/gnoincoundb/exiCnsAcptDel_ajax.do";
 			}
 		}else if(type == "R"){
-			url = "/gnoincoundb/cnsAcptUpd_ajax.do";
+			url = "/gnoincoundb/exiCnsAcptUpd_ajax.do";
 		}
 		var param = $("#frm").serialize();
 		var token = $("meta[name='_csrf']").attr("th:content");
@@ -365,7 +365,7 @@
 	</form>
 	<div>
 		<button type="button" id="dBtn" class="btn-basic" onclick="javascript:fn_save('D');">삭제</button>
-		<!-- <button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button> -->
+		<button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button>
 		<button type="button" class="btn-basic" onclick="window.close();">닫기</button>
 	</div>
 </body>

@@ -820,58 +820,27 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.insertPsyCnsDoc16(vo);
 	}
 	
-	@Override
-	public void deleteUser(String caseNo) {
+	@Override 
+	public void deleteExiCnsAcpt(String caseNo) {
 		cnsMngDao.deleteUser(caseNo);
-	}
-	
-	@Override
-	public void deleteCnsAccept(String caseNo) {
 		cnsMngDao.deleteCnsAccept(caseNo);
-	}
-	
-	@Override
-	public void deletePreExamM(String caseNo) {
 		cnsMngDao.deletePreExamM(caseNo);
-	}
-	
-	@Override
-	public void deleteCnsAgre(String caseNo) {
 		cnsMngDao.deleteCnsAgre(caseNo);
-	}
-	
-	@Override
-	public void deletePerInfo(String caseNo) {
 		cnsMngDao.deletePerInfo(caseNo);
-	}
-	
-	@Override
-	public void deleteDocCntn(String caseNo) {
 		cnsMngDao.deleteDocCntn(caseNo);
-	}
-	
-	@Override
-	public void deleteEalyCnsDoc(String caseNo) {
 		cnsMngDao.deleteEalyCnsDoc(caseNo);
-	}
-	
-	@Override
-	public void deletePerCnsDtl(String caseNo) {
 		cnsMngDao.deletePerCnsDtl(caseNo);
-	}
-	
-	@Override
-	public void deletePsyCnsDocDtl(String caseNo) {
 		cnsMngDao.deletePsyCnsDocDtl(caseNo);
-	}
-	
-	@Override
-	public void deleteLinkReq(String caseNo) {
 		cnsMngDao.deleteLinkReq(caseNo);
+		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
 	@Override
-	public void deleteCnsEnd(String caseNo) {
+	public void deleteExiEalyCnsDoc(String caseNo) {
+		cnsMngDao.deleteEalyCnsDoc(caseNo);
+		cnsMngDao.deletePerCnsDtl(caseNo);
+		cnsMngDao.deletePsyCnsDocDtl(caseNo);
+		cnsMngDao.deleteLinkReq(caseNo);
 		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
