@@ -292,4 +292,6 @@ public interface CounselMngService {
 	
 	void deleteExiEalyCnsDoc(String caseNo);
 	
+	void updateExiCnsAcpt(String caseNo);
+	
 }

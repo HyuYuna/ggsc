@@ -369,10 +369,7 @@ public class CounselMngController {
 	}
 	
 	@RequestMapping(value = "/exiCnsAcptDel_ajax.do", method = RequestMethod.POST)
-	public String exiCnsAcptRegAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
-		
-		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
-		vo.setRegId(login.get("userId").toString());
+	public String exiCnsAcptRegAjax(HttpServletRequest request, ModelMap model) {
 		
 		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
 		
@@ -405,10 +402,11 @@ public class CounselMngController {
 	}
 	
 	@RequestMapping(value = "/exiCnsAcptUpd_ajax.do", method = RequestMethod.POST)
-	public String exiCnsAcptUpdAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+	public String exiCnsAcptUpdAjax(HttpServletRequest request, ModelMap model) {
 
-		counselMngService.updateUser(vo);
-		counselMngService.updateCnsAccept(vo);
+		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
+		
+		counselMngService.updateExiCnsAcpt(caseNo);
 		
 		return "jsonView";
 	}
@@ -998,7 +996,7 @@ public class CounselMngController {
 	
 	
 	@RequestMapping(value = "/ealyCnsDocDel.do", method = RequestMethod.POST)
-	public String ealyCnsDocDel(EalyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
+	public String ealyCnsDocDel(HttpServletRequest request, ModelMap model) {
 
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String caseNo = request.getParameter("caseNo1") == null ? "" : request.getParameter("caseNo1");

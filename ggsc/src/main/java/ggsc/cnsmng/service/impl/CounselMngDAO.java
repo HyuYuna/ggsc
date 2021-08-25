@@ -666,4 +666,8 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void deleteCnsEnd(String caseNo) {
 		update("cnsMngDao.deleteCnsEnd", caseNo);
 	}
+	
+	public void updateExiCnsAccept(String caseNo) {
+		update("cnsMngDao.updateExiCnsAccept", caseNo);
+	}
 }

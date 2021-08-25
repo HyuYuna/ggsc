@@ -66,7 +66,7 @@ a { text-decoration:none; color:#333;}
 
 		<div class='wrap main-content'>
 			<div class='banner-box-01'>
-				<li><a href="/gnoincoun/centerIntroList.do"></a><img src="/gnoincoun/images/banner_01.png" alt="이렇게 이용하세요"/></a></li>
+				<li><a href="/gnoincoun/centerIntroList.do"><img src="/gnoincoun/images/banner_01.png" alt="이렇게 이용하세요"/></a></li>
 				<li><a href="/gnoincoun/psyInfo.do"><img src="/gnoincoun/images/banner_02.png" alt="간편한 심리검사"/></a></li>
 				<li><a href="/gnoincoun/comfCnsWrite.do"><img src="/gnoincoun/images/banner_03.png" alt="맘편한 상담"/></a></li>
 				<li><a href="/gnoincoun/mypageView.do"><img src="/gnoincoun/images/banner_04.png" alt="마이페이지"/></a></li>
@@ -74,11 +74,11 @@ a { text-decoration:none; color:#333;}
 
 			<div class='banner-box-02'>
 				<li><a href="/gnoincoun/centerIntroList.do"><img src="/gnoincoun/images/banner_05.png" alt="센터안내"/></a></li>
-				<li><img src="/gnoincoun/images/banner_06.png" alt="시군지원사업"/></li>
-				<li><img src="/gnoincoun/images/banner_07.png" alt="24시노인온상담"/></li>
-				<li><img src="/gnoincoun/images/banner_08.png" alt="성인지교육사업"/></li>
-				<li><img src="/gnoincoun/images/banner_09.png" alt="중장년상담"/></li>
-				<li><img src="/gnoincoun/images/banner_10.png" alt="취약노인지원사업"/></li>
+				<li><a href="/gnoincoun/busiIntroList.do"><img src="/gnoincoun/images/banner_06.png" alt="시군지원사업"/></a></li>
+				<li><a href="/gnoincoun/busiIntroList.do?gubun=noin"><img src="/gnoincoun/images/banner_07.png" alt="24시노인온상담"/></a></li>
+				<li><a href="/gnoincoun/busiIntroList.do?gubun=mid"><img src="/gnoincoun/images/banner_09.png" alt="중장년상담"/></a></li>
+				<li><a href="/gnoincoun/busiIntroList.do?gubun=weak"><img src="/gnoincoun/images/banner_10.png" alt="취약노인지원사업"/></a></li>
+				<li><a href="/gnoincoun/busiIntroList.do?gubun=gender"><img src="/gnoincoun/images/banner_08.png" alt="성인지교육사업"/></a></li>
 			</div>
 		</div>
 

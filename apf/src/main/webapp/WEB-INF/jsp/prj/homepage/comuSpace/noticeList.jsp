@@ -50,16 +50,32 @@
         
   </script>
 <style>
-	#wrap {width: 50%; margin: auto; height: 594px;}
+	#wrap {width: 100%; margin: auto; height: auto;}
+	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-        <h2 class="title">로그인</h2>
-	  	      <form id="frm" name="frm" method="get">
+	<div style="border-top: 1px solid #f09d4c;">
+		<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
+	</div>
+	<div style="width: 910px; margin: auto;">
+			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">소통공간</span>
+			<ul class="main-menu" style="width: 400px; float: right;margin-top: 20px; margin-bottom: 15px;">
+				<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
+				<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
+				<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
+				<li><a href="/gnoincoun/freeBoardList.do">자유게시판</a></li>
+				
+			</ul>
+		</div>
+		<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
+		</div>
+	<div class="content" style="width: 50%; margin: auto;">
+      <form id="frm" name="frm" method="get">
       <input type="hidden" id="searchConditionFrm" name="searchCondition" />
       <input type="hidden" id="searchKeywordFrm" name="searchKeyword" />      
       <input type="hidden" id="pageIndex" name="pageIndex" />
-        <div class="table-wrap table-list">
+      	<div class="table-wrap table-list" style="margin-top: 35px;">
        		<table class="table">
 	            <colgroup>
 	              <col class="hidden-xs" style="width: 80px" />
@@ -95,14 +111,6 @@
        </div>
        
        </form>
-        <!-- paging //-->
-        <div class="btn-wrap line bt bb pt10 pb10 mt20 text-center hidden-xs">
-          <button type="button" class="btn btn-primary btn-lg fr" onclick="javascript:fn_reg()">글쓰기</button>
-        </div>
-         <!-- 모바일용 -->
-        <div class="btn-wrap p15 visible-xs">
-          <button type="button" onclick="javascript:fn_reg()" class="btn btn-primary btn-lg w100p">글쓰기</button>
-        </div>
         <!-- .search-wrap -->
         <form id="searchForm" name="searchForm" method="post">
 	        <div class="search-wrap form-inline text-center">
@@ -123,5 +131,6 @@
 	          </div><!-- /input-group -->
 	        </div><!-- .search-wrap //-->
         </form>
+        </div>
 	</div>
 </section> <!-- End section -->

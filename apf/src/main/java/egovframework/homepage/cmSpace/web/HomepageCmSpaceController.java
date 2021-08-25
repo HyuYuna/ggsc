@@ -101,14 +101,15 @@ public class HomepageCmSpaceController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		String cnsrNm = (String)map.get("userNm");
-		model.addAttribute("cnsrNm",cnsrNm);
+		//String cnsrNm = (String)map.get("userNm");
+		//model.addAttribute("cnsrNm",cnsrNm);
 		
 		// 공지사항 상세
 		EgovMap noticeDtl = null;
 		if(num !=""){
 			// 공지사항 상세
 			noticeDtl = homepageCmSpaceService.getNoticeDtl(vo);
+			model.addAttribute("detail",noticeDtl);
 		}
 		
 		return "/comuSpace/noticeDtl.page";

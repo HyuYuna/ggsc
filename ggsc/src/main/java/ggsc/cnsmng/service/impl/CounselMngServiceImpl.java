@@ -844,6 +844,12 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
+	
+	@Override 
+	public void updateExiCnsAcpt(String caseNo) {
+		cnsMngDao.updateExiCnsAccept(caseNo);
+	}
+	
 
 	
 }

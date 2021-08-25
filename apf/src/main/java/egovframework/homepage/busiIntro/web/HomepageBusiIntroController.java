@@ -67,12 +67,15 @@ public class HomepageBusiIntroController {
 	@RequestMapping(value = "/busiIntroList.do")
 	public String busiIntroList(HttpServletRequest request, ModelMap model) {
 		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String gubun = request.getParameter("gubun");
+		
 		if(map == null) {
 			model.addAttribute("loginYn", "N");
 		} else {
 			model.addAttribute("loginYn", "Y");
 		}
 		
+		model.addAttribute("gubun", gubun);
 		return "/businIntro/busiIntroList.page";
 	}
 	

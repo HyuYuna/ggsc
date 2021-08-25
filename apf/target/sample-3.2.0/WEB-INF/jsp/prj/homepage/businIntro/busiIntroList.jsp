@@ -73,7 +73,7 @@
 			<ul class="main-menu" style="width: 500px; font-size: 14px; float: right; margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
 				<li><a href="javascript: sigunSupp();">시군지원사업</a></li>
 				<li><a href="javascript: noin24();">24노인온라인상담</a></li>
-				<li><a href="javascript: middleCns();">중장년심리상담</a></li>
+				<li><a href="javascript: middleCns();">중장년마음돌봄<br/>전화상담</a></li>
 				<li><a href="javascript: weakSupp();">취약노인지원사업</a></li>
 			</ul>
 		</div>

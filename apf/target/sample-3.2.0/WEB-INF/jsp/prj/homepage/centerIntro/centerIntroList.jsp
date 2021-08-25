@@ -119,7 +119,7 @@
 				<li><a href="javascript: vision();">미션과 비전</a></li>
 				<li><a href="javascript: pathway();">걸어온길</a></li>
 				<li><a href="javascript: together();">함께하는 사람들</a></li>
-				<li><a href="javascript: centerInfo();">센터안내</a></li>
+				<li><a href="javascript: centerInfo();">시군센터</a></li>
 				<li><a href="javascript: directions();">오시는길</a></li>
 			</ul>
 		</div>

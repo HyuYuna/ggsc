@@ -24,7 +24,6 @@
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-        <h2 class="title">로그인</h2>
 	  	<table  class="table table-condensed">
           <col width="100px" />
           <col />

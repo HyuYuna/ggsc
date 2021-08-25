@@ -11,7 +11,7 @@
 			WRITER ,
 			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
 		FROM
-			GS_NOTICE
+			GS_NOTICE_A
 		where
 			1=1 
 			
@@ -37,7 +37,7 @@
 		SELECT
 			count(NUM)
 		FROM
-			GS_NOTICE
+			GS_NOTICE_A
 		where
 			1=1
 		<if test="searchKeyword != null">
@@ -56,7 +56,7 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertNoticeReg" parameterType="cmSpaceVO">
-		INSERT INTO GS_NOTICE
+		INSERT INTO GS_NOTICE_A
 			(
 				TITLE ,
 				WRITER ,
@@ -74,7 +74,7 @@
 	
 	<!-- 공지사항 파일업로드 등록 -->
 	<insert id="insertNoticeFileUpload" parameterType="cmSpaceVO">
-		INSERT INTO GS_NOTICE_FILE
+		INSERT INTO GS_NOTICE_A_FILE
 			(
 				FILE_NUM ,
 				REG_ID ,
@@ -85,7 +85,7 @@
 				FILE_SIZE ,
 				DB_INS_TM 
 			) VALUES (
-				(SELECT MAX(A.NUM) FROM GS_NOTICE AS A WHERE A.WRITER = #{writer}) ,
+				(SELECT MAX(A.NUM) FROM GS_NOTICE_A AS A WHERE A.WRITER = #{writer}) ,
 				#{regId} ,
 				#{writer} ,
 				#{fileNm} ,
@@ -108,8 +108,8 @@
 			F.SYS_FILE_NM ,
 			F.FILE_PATH
 		FROM
-			GS_NOTICE AS A
-		LEFT JOIN GS_NOTICE_FILE AS F
+			GS_NOTICE_A AS A
+		LEFT JOIN GS_NOTICE_A_FILE AS F
 			ON A.NUM = F.FILE_NUM
 		WHERE
 			1=1
@@ -133,7 +133,7 @@
 	
 	<!-- 공지사항 조회수 증가 -->
 	<update id="updateNoticeViewCount" parameterType="Integer">
-		UPDATE GS_NOTICE
+		UPDATE GS_NOTICE_A
 			SET
 				VIEW_COUNT = VIEW_COUNT+1
 			WHERE

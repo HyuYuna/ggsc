@@ -4722,5 +4722,17 @@
 			CASE_NO = #caseNo#
 	</update>
 	
+	
+	
+	<!-- <update id="cnsMngDao.updateExiCnsAccept" parameterClass="java.lang.String">
+		UPDATE
+			GS_CNS_ACPT
+		SET
+			
+		
+		WHERE 
+			CASE_NO = #caseNo#
+	</update> -->
+	
 
 </sqlMap>

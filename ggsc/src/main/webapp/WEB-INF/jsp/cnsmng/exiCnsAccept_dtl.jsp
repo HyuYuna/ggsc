@@ -364,8 +364,10 @@
 		</table>
 	</form>
 	<div>
-		<button type="button" id="dBtn" class="btn-basic" onclick="javascript:fn_save('D');">삭제</button>
-		<button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button>
+		<c:if test="${authCd <= 1 }">
+			<button type="button" id="dBtn" class="btn-basic" onclick="javascript:fn_save('D');">삭제</button>
+		</c:if>
+		<!-- <button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button> -->
 		<button type="button" class="btn-basic" onclick="window.close();">닫기</button>
 	</div>
 </body>

@@ -1589,8 +1589,8 @@
 				gnaf.SYS_FILE_NM ,
 				gnaf.FILE_PATH
 			FROM
-				GS_FREE_BOARD AS gna
-			LEFT JOIN GS_FREE_BOARD_FILE AS gnaf
+				GS_NOTICE_A AS gna
+			LEFT JOIN GS_NOTICE_A_FILE AS gnaf
 				ON gna.NUM = gnaf.FILE_NUM
 			WHERE 
 				1=1
@@ -1630,7 +1630,7 @@
 		SELECT 
 			COUNT(*)
 		FROM 
-			GS_FREE_BOARD AS gna
+			GS_NOTICE_A AS gna
 		WHERE 
 		1=1
 		<isNotEmpty property="schStartDate" prepend="AND">
@@ -1660,7 +1660,7 @@
 	
 	<!-- 공지사항 등록-->
 	<insert id="supportDao.insertNotice" parameterClass="noticeVO">
-		INSERT INTO GS_FREE_BOARD(
+		INSERT INTO GS_NOTICE_A(
 			<!-- NUM , -->
 			WRITER,
 			TITLE,
@@ -1679,7 +1679,7 @@
 	
 	<!-- 공지사항 파일업로드 등록  -->
 	<insert id="supportDao.insertNoticeUpload" parameterClass="noticeVO">
-		INSERT INTO GS_FREE_BOARD_FILE
+		INSERT INTO GS_NOTICE_A_FILE
 			(
 				FILE_NUM ,
 				REG_ID ,
@@ -1689,7 +1689,7 @@
 				FILE_PATH ,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(A.NUM),0) FROM GS_FREE_BOARD AS A) ,
+				(SELECT IFNULL(MAX(A.NUM),0) FROM GS_NOTICE_A AS A) ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -1701,7 +1701,7 @@
 	
 	<!-- 공지사항 수정  -->
 	<update id="supportDao.updateNotice" parameterClass="noticeVO">
-		UPDATE GS_FREE_BOARD
+		UPDATE GS_NOTICE_A
 			SET
 				TITLE = #title# ,
 				CNTN = #cntn# ,
@@ -1712,7 +1712,7 @@
 	
 	<!-- 공지사항 파일업로드 수정  -->
 	<update id="supportDao.updateNoticeUpload" parameterClass="noticeVO">
-		UPDATE GS_FREE_BOARD_FILE
+		UPDATE GS_NOTICE_A_FILE
 			SET
 				FILE_NM = #fileNm# ,
 				SYS_FILE_NM = #sysFileNm# ,
@@ -1734,8 +1734,8 @@
 			B.FILE_PATH ,
 			B.SYS_FILE_NM
 		FROM
-			GS_FREE_BOARD AS A
-		LEFT JOIN GS_FREE_BOARD_FILE AS B
+			GS_NOTICE_A AS A
+		LEFT JOIN GS_NOTICE_A_FILE AS B
 			ON A.NUM = B.FILE_NUM
 		WHERE
 			A.NUM = #num#

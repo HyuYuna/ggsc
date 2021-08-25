@@ -34,6 +34,10 @@
   				$("#userId").focus();
   				return;
   			}
+  			if(idCheck != "Y"){
+				alert("ID 중복확인을 해주세요.");
+				return;
+			}
   			if(pw.length == 0) {
   				alert("비밀번호를 입력해 주세요.");
   				$("#pw").focus();
@@ -119,6 +123,7 @@
   			alert("등록이 완료되었습니다.");
   		}
   	}
+	var idCheck;
   	
 	 function fn_idCheck() {
 	 	// var param = $("#frm").serialize(); 
