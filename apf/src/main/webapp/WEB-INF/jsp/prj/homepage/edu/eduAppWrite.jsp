@@ -157,7 +157,7 @@
                   <td><input type="text" class="form-control" id="phone" name="phone" value="${map.mobile }" readonly /></td>
                 </tr>
                 <tr>
-                  <th scope="row">이메일</th>
+                  <th scope="row">이메일<i class="cr">*</i></th>
                   <td><input type="text" class="form-control" id="email" name="email" maxlength="30" placeholder="" value="${map.email }"></td>
                 </tr>
                  <tr>
