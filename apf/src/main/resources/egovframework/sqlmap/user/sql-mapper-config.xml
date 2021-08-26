@@ -29,6 +29,7 @@
 		<typeAlias alias="mailSendVO" type="egovframework.homepage.com.util.service.MailSendVO"/>
 		<typeAlias alias="commonVO" type="egovframework.homepage.main.service.CommonVO"/>
 		<typeAlias alias="centerVO" type="egovframework.homepage.main.service.CenterVO"/>
+		<typeAlias alias="eduVO" type="egovframework.homepage.edu.service.EduVO"/>
 		
     </typeAliases>
 </configuration>

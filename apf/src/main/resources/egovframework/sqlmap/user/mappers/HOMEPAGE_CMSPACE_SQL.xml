@@ -102,7 +102,7 @@
 			A.NUM ,
 			A.TITLE ,
 			A.WRITER ,
-			A.CNTN ,
+			CAST(A.CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
 			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
 			F.FILE_NM ,
 			F.SYS_FILE_NM ,

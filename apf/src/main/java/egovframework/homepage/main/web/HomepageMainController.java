@@ -264,4 +264,18 @@ public class HomepageMainController {
 
 		return "/layout/headerMenu.page";
 	}
+	
+	@RequestMapping(value = "/siteMap.do")
+	public String siteMap(@ModelAttribute("searchVO") MainDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		/*if(map == null) {
+			model.addAttribute("loginVo", map);
+		} else {
+			model.addAttribute("loginVo", map);
+		}*/
+		model.addAttribute("loginVo",map);
+
+		return "/layout/siteMap.page";
+	}
 }

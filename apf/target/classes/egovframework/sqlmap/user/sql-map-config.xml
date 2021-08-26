@@ -15,4 +15,5 @@
 	<sqlMap resource="egovframework/sqlmap/user/mappers/HOMEPAGE_CNSASK_SQL.xml"/>
 	<sqlMap resource="egovframework/sqlmap/user/mappers/HOMEPAGE_CMSPACE_SQL.xml"/>
 	<sqlMap resource="egovframework/sqlmap/user/mappers/HOMEPAGE_MAILSEND_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/HOMEPAGE_EDUAPP_SQL.xml"/>
 </sqlMapConfig>

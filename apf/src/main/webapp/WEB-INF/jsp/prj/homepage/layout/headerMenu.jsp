@@ -17,14 +17,16 @@
 			</c:otherwise>
 		</c:choose>
 		<li class='all-menu'>
-			<span class='all-menu-icon'></span>
-			전체 메뉴</li>
+			<a href="/gnoincoun/siteMap.do">
+			<span class='all-menu-icon'></span>전체 메뉴
+			</a>
+		</li>
 	</ul>
 
 	<ul class='main-menu'>
 		<li><a href="/gnoincoun/comfCnsWrite.do">맘편한상담<c:out value="${loginVo.userNm }"/></a></li>
 		<li><a href="/gnoincoun/psyInfo.do">간편한심리검사</a></li>
-		<li><a href="#">교육신청</a></li>
+		<li><a href="/gnoincoun/eduAppWrite.do">교육신청</a></li>
 		<li><a href="#">정보나눔</a></li>
 		<li><a href="/gnoincoun/centerIntroList.do">센터안내</a></li>
 		<li><a href="/gnoincoun/busiIntroList.do">센터사업소개</a></li>

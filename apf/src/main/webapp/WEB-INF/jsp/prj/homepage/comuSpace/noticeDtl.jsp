@@ -3,6 +3,7 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
   <script>
+  
 		function fn_fileDown() {
 	  		var sysFileNm = "${detail.sysFileNm}";
 	  		var filePath = "${detail.filePath}";
@@ -70,7 +71,7 @@
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-              	<c:out value="${detail.cntn }" escapeXml="false"/>
+              	<c:out value="${detail.cntn}" escapeXml="false"/>
             </div>
           </div><!-- .article-body /-->
             
