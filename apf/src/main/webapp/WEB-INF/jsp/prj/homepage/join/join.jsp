@@ -143,6 +143,7 @@
 			success : function(json) {
 				alert(json.msg);
 				if(json.idCheck == "Y") {
+					idCheck = json.idCheck;
 					$("#userId").attr("readonly",true);					
 				}
 			},
