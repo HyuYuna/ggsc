@@ -9,6 +9,7 @@
 	<typeAlias alias="libraryVO" type="ggsc.hpgmng.service.LibraryVO"/>
 	<typeAlias alias="newsVO" type="ggsc.hpgmng.service.NewsVO"/>
 	<typeAlias alias="onlineAskVO" type="ggsc.hpgmng.service.OnlineAskVO"/>
+	<typeAlias alias="eduAppVO" type="ggsc.hpgmng.service.EduAppVO"/>
 <!--	<typeAlias alias="faqVO" type="ggsc.support.service.FaqVO"/>-->
 
 	<!-- 센터소식 목록 -->
@@ -808,6 +809,103 @@
 			A.NUM = #num#
 	</select>
 	
+	
+	<!-- 교육신청 목록  -->
+	<select id="hpgmngDao.getEduAppList" parameterClass="eduAppVO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,
+				NUM ,
+				BIRTH ,
+				PHONE ,
+				USER_ID ,
+				USER_NM ,
+				CENTER_NM ,
+				DEPART ,
+				EMAIL ,
+				LOCAL_GB , 
+				SIGUN_CD ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM
+			FROM
+				GS_EDU_APP
+			WHERE
+				1=1
+			<isNotEmpty property="schText"> 
+				<isEqual property="schType" compareValue="1"> 
+					AND USER_NM LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual property="schType" compareValue="2"> 
+					AND CENTER_NM LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual property="schType" compareValue="3"> 
+					AND DEPART LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
+			) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+	</select>
+	
+	<!-- 교육신청 갯수  -->
+	<select id="hpgmngDao.getEduAppListTotCnt" parameterClass="eduAppVO" resultClass="Integer">
+		SELECT 
+			COUNT(*)
+		FROM 
+			GS_EDU_APP
+		WHERE 
+			1=1
+		<isNotEmpty property="schText"> 
+			<isEqual property="schType" compareValue="1"> 
+				AND USER_NM LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual property="schType" compareValue="2"> 
+				AND CENTER_NM LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual property="schType" compareValue="3"> 
+				AND DEPART LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="schStartDate" prepend="AND">
+			DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+		</isNotEmpty>
+		<isNotEmpty property="schEndDate" prepend="AND">
+			DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+		</isNotEmpty>
+	</select>
+	
+	<!-- 교육신청 상세 -->
+	<select id="hpgmngDao.getEduAppDtl" parameterClass="Integer" resultClass="egovMap">		
+		SELECT
+			*
+		FROM
+			GS_EDU_APP
+		WHERE
+			NUM = #num#
+	</select>
+	
+	<update id="hpgmngDao.updateEduApp" parameterClass="eduAppVO">
+		UPDATE GS_EDU_APP
+			SET
+				PHONE = #phone# ,
+				EMAIL = #email# ,
+				CENTER_NM = #centerNm# ,
+				DEPART = #depart#
+			WHERE
+				NUM = #num#
+	</update>
+	
+	
 	<!-- FAQ 목록  -->
 	<select id="hpgmngDao.getFaqList" parameterClass="faqVO" resultClass="egovMap">
 		SELECT
@@ -822,7 +920,7 @@
 				RPLY_CNTN ,
 				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM
 			FROM
-				GS_FAQ_A
+				GS_EDU_APP
 			WHERE
 				1=1
 			<isNotEmpty property="schText"> 

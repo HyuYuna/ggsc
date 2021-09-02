@@ -143,7 +143,7 @@
 							<tr onClick='fn_view(${result.num})'>
 								<td>${result.rnum }</td>
 								<td>${result.centerNm } </td>
-								<td>${result.bSubject }</td>
+								<td>${result.voluntNm }</td>
 								<td style='text-align:left; text-indent:10px; '>${result.bContent }</td>
 								<td>${result.bDate }</td>
 							</tr> 

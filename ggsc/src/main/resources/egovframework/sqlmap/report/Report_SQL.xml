@@ -47,6 +47,15 @@
 	</update>
 	
 	
+	<!-- 마음나눔봉사단 / 성인식개선사업 삭제 -->
+	<update id="reportDao.deleteMindSharing" parameterClass="mindSharingVO">
+		DELETE FROM
+			gs_report_board
+		WHERE 
+			NUM = #num# AND B_GUBUN = #bGubun#
+	</update>
+	
+	
 	<!-- 마음나눔봉사단 / 성인식개선사업 등록 -->
 	<insert id="reportDao.insertMindSharing" parameterClass="mindSharingVO">
 		INSERT INTO gs_report_board 
@@ -898,6 +907,13 @@
 		WHERE LINK_ORG_NO = #linkOrgNo#
 	</update>
 
+	<!-- 연계기관방문보고서 삭제 -->
+	<update id="reportDao.deleteLinkOrgRpt" parameterClass="linkOrgRptVO">
+		DELETE FROM 
+			GS_LINK_ORG_RPT
+		WHERE 
+			LINK_ORG_NO = #linkOrgNo#
+	</update>
 	 
 	<!-- 네트워크구축회의보고서 목록 -->
 	<select id="reportDao.getNtwkMeetRptList" parameterClass="ntwkMeetRptVO" resultClass="egovMap">
@@ -1063,6 +1079,14 @@
 			JOIN_PLACE = #joinPlace#,
 			JOIN_CNTN = #joinCntn#
 		WHERE NTWK_MEET_NO = #ntwkMeetNo#
+	</update>
+	
+	<!-- 네트워크구축회의보고서 삭제 -->
+	<update id="reportDao.deleteNtwkMeetRpt" parameterClass="ntwkMeetRptVO">
+		DELETE FROM 
+			GS_NTWK_MEET_RPT
+		WHERE 
+			NTWK_MEET_NO = #ntwkMeetNo#
 	</update>
 	
 	
@@ -1297,6 +1321,14 @@
 			<!-- INPUT_NM = #inputNm# -->
 		WHERE EDU_ATVY_NO = #eduAtvyNo#
 	</update>
+	
+	<!-- 네트워크구축회의보고서 삭제 -->
+	<update id="reportDao.deleteEduAtvyRpt" parameterClass="eduAtvyRptVO">
+		DELETE FROM 
+			GS_EDU_ATVY_RPT
+		WHERE 
+			EDU_ATVY_NO = #eduAtvyNo#
+	</update>
 
 	 
 	<!-- 홍보활동보고서 목록 -->
@@ -1505,5 +1537,13 @@
 			PR_ATVY_CNTN = #prAtvyCntn#
 			<!-- INPUT_NM = #inputNm# -->
 		WHERE PR_ATVY_NO = #prAtvyNo#
+	</update>
+	
+	<!-- 홍보활동보고서 삭제  -->
+	<update id="reportDao.deletePrAtvyRpt" parameterClass="prAtvyRptVO">
+		DELETE FROM
+			GS_PR_ATVY_RPT
+		WHERE 
+			PR_ATVY_NO = #prAtvyNo#
 	</update>
 </sqlMap>

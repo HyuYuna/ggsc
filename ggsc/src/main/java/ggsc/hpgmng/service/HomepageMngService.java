@@ -81,6 +81,18 @@ public interface HomepageMngService {
 	// 온라인상담 상세
 	EgovMap getOnlineAskDtl(int num);
 	
+	// 교육신청 목록
+	List<EgovMap> getEduAppList(EduAppVO vo);
+	
+	// 교육신청 갯수
+	int getEduAppListTotCnt(EduAppVO vo);
+	
+	// 교육신청 상세
+	EgovMap getEduAppDtl(int num);
+	
+	// 교육신청 수정
+	void updateEduApp(EduAppVO vo);
+	
 //	// FAQ 목록
 //	List<EgovMap> getFaqList(FaqVO vo);
 //	

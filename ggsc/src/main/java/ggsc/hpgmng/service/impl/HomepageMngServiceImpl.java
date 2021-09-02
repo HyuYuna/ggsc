@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ams.cmm.AMSComm;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
+import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
 import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.HomepageMngService;
@@ -209,6 +210,30 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	@Override
 	public EgovMap getOnlineAskDtl(int num) {
 		return hpgmngDao.getOnlineAskDtl(num);
+	}
+	
+	// 교육신청 목록
+	@Override
+	public List<EgovMap> getEduAppList(EduAppVO vo) {
+		return hpgmngDao.getEduAppList(vo);
+	}
+	
+	// 교육신청 갯수
+	@Override
+	public int getEduAppListTotCnt(EduAppVO vo) {
+		return hpgmngDao.getEduAppListTotCnt(vo);
+	}
+	
+	// 교육신청 상세
+	@Override
+	public EgovMap getEduAppDtl(int num) {
+		return hpgmngDao.getEduAppDtl(num);
+	}
+	
+	// 교육신청 수정
+	@Override
+	public void updateEduApp(EduAppVO vo) {
+		hpgmngDao.updateEduApp(vo);
 	}
 	
 //	// FAQ 목록

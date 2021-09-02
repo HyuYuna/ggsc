@@ -37,13 +37,13 @@
 		}
 	  	
 	  	function vision() {
-	  		/* $("#greeting").css("display","none");
+	  		$("#greeting").css("display","none");
 	  		$("#operating").css("display","none");
 	  		$("#vision").css("display","");
 	  		$("#pathway").css("display","none");
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
-	  		$("#directions").css("display","none"); */
+	  		$("#directions").css("display","none"); 
 		}
 	  	
 	  	function pathway() {
@@ -198,11 +198,8 @@
 		<div id="vision">
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
-			<div style="width: 920px; margin: auto;">
-				<img src='/gnoincoun/images/cenIntro4.jpg' alt="온라인상담" style="width: 920px;"/>
-			</div>
-			<div style="width: 100%; text-align: center; margin-top: 20px;">
-				<!-- <button type="button" class="btn btn-success" style="border-radius: 11px;" onclick="location.href='/gnoincoun/comfCnsWrite.do'">온라인상담 예약하기</button> -->
+			<div style="width: 920px; margin: auto; margin-top: 30px;">
+				<img src='/gnoincoun/images/cenIntro16.png' alt="미션과 비전" style="width: 920px;"/>
 			</div>
 		</div>
 		<div id="pathway">

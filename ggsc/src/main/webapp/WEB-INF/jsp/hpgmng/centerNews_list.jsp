@@ -25,16 +25,6 @@
 		document.location.href = "/gnoincoundb/centerNewsDtl.do?mnuCd=" + mnuCd;
 	}
 	
-	
-	
-	
-	function fn_example(mnuCd){
-		document.location.href = "/gnoincoundb/ysmExampleList.do?mnuCd=" + mnuCd;
-	}
-	
-	
-	
-	
 	function fn_detail(num){
 		document.location.href = "/gnoincoundb/centerNewsDtl.do?num=" + num + "&mnuCd=${mnuCd}";
 	}

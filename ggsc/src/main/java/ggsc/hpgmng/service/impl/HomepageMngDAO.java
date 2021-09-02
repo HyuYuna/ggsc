@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
+import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
 import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.LibraryVO;
@@ -187,6 +188,28 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	public EgovMap getOnlineAskDtl(int num){
 		return (EgovMap)select("hpgmngDao.getOnlineAskDtl", num);
 	}
+	
+	// 교육신청 목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getEduAppList(EduAppVO vo) {
+		return (List<EgovMap>)list("hpgmngDao.getEduAppList", vo);
+	}
+	
+	// 교육신청 갯수
+	public int getEduAppListTotCnt(EduAppVO vo) {
+		return (Integer)select("hpgmngDao.getEduAppListTotCnt" , vo);
+	}
+	
+	// 교육신청 상세
+	public EgovMap getEduAppDtl(int num) {
+		return  (EgovMap)select("hpgmngDao.getEduAppDtl", num);
+	}
+	
+	// 교육신청 수정
+	public void updateEduApp(EduAppVO vo) {
+		update("hpgmngDao.updateEduApp", vo);
+	}
+	
 //	// FAQ 목록
 //	@SuppressWarnings("unchecked")
 //	public List<EgovMap> getFaqList(FaqVO vo) {

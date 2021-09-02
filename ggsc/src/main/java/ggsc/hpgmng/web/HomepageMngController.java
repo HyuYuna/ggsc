@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
 import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.HomepageMngService;
@@ -543,60 +544,102 @@ public class HomepageMngController {
 		return "redirect:/gnoincoundb/onlineAskList.do?mnuCd=" + mnuCd;
 	}
 	
-	@RequestMapping(value = "/ysmExampleList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String YsmExampleList(NewsVO vo, HttpServletRequest request, ModelMap model){	
-		if(request.getParameter("page") != null){
-			model.addAttribute("page", request.getParameter("page"));
+	// 교육신청 목록
+	@RequestMapping(value = "/eduAppList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String eduAppList(EduAppVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap loginVO = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			// userCenterGb = Integer.parseInt(loginVO.get("centerGb").toString());
+			if (userAuth >= 4) {
+				model.addAttribute("authCdYn", "N");
+			} else {
+				model.addAttribute("authCdYn", "Y");
+			}
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
 		}
-		
+
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
-		paginationInfo.setRecordCountPerPage(12); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
 		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
 
-		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 12);
-		vo.setLastIndex((vo.getCurrentPageNo()) * 12);
-		
-		List<EgovMap> newsList = hpgmngService.getCenterNewsList(vo);
-		model.addAttribute("newsList", newsList);
-		int totalPageCnt = hpgmngService.getCenterNewsListTotCnt(vo);
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		model.addAttribute("authCd", userAuth);
+		List<EgovMap> eduAppList = hpgmngService.getEduAppList(vo);
+		model.addAttribute("eduAppList", eduAppList);
+		int totalPageCnt = hpgmngService.getEduAppListTotCnt(vo);
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("vo", vo);
-		
-		return "hpgmng/ysmExample_list.main";
+
+		return "hpgmng/eduApp_list.main";
+
 	}
 	
 	
-	@RequestMapping(value = "/ysmExampleDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String YsmExampleDtl(NewsVO vo, HttpServletRequest request, ModelMap model){
-		/*
-		if(request.getParameter("page") != null){
-			model.addAttribute("page", request.getParameter("page"));
-		}
-		*/
+	@RequestMapping(value = "/eduAppDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String eduAppDtl(EduAppVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap newsDtl = null;
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+		// 권한 관리 끝
+		
+		EgovMap eduAppDtl = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			newsDtl = hpgmngService.getCenterNewsDtl(intNum);
-		}
-		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", newsDtl);
+			eduAppDtl = hpgmngService.getEduAppDtl(intNum);
+		} 
 		
-		return "hpgmng/ysmExample_dtl.main";
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("detail", eduAppDtl);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("userId",loginVO.get("userId").toString());
+		model.addAttribute("vo", vo);
+		return "hpgmng/eduApp_dtl.main";
 	}
 	
 	
-	@RequestMapping(value = "/ysmExampleReg.do", method = RequestMethod.POST)
-	public String YsmExampleReg(HttpServletRequest request, ModelMap model, NewsVO vo){
+	@RequestMapping(value = "/eduAppReg.do", method = RequestMethod.POST)
+	public String YsmExampleReg(HttpServletRequest request, ModelMap model, EduAppVO vo){
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
@@ -606,14 +649,19 @@ public class HomepageMngController {
 		vo.setWriter(writer);
 		vo.setRegId(regId);
 		
-		if(save.equals("S")) {
+		/*if(save.equals("S")) {
 			hpgmngService.insertCenterNews(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateCenterNews(vo);
-		}
+		} */
 		
-		return "redirect:/gnoincoundb/ysmExampleList.do?mnuCd=" + mnuCd;
+		if(save.equals("U")) {
+			hpgmngService.updateEduApp(vo);
+		} 
+		
+		return "redirect:/gnoincoundb/eduAppList.do?mnuCd=" + mnuCd;
 	}
+	
 	
 //
 //	@RequestMapping(value = "/faqList.do")

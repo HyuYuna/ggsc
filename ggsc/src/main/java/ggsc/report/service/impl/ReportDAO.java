@@ -44,9 +44,15 @@ public class ReportDAO extends EgovAbstractDAO {
 	public void insertMindSharing(mindSharingVO vo){
 		insert("reportDao.insertMindSharing", vo);
 	}
+	
 	// 마음나눔봉사단 / 성인식개선사업 수정
 	public void updateMindSharing(mindSharingVO vo){
 		update("reportDao.updateMindSharing", vo);
+	}
+	
+	// 마음나눔봉사단 / 성인식개선사업 삭제
+	public void deleteMindSharing(mindSharingVO vo){
+		update("reportDao.deleteMindSharing", vo);
 	}
 	
 	// 상담사례종결서 목록
@@ -135,10 +141,17 @@ public class ReportDAO extends EgovAbstractDAO {
 	public void insertLinkOrgRpt(LinkOrgRptVO vo){
 		insert("reportDao.insertLinkOrgRpt", vo);
 	}
+	
 	// 연계기관방문보고서 수정
 	public void updateLinkOrgRpt(LinkOrgRptVO vo){
 		update("reportDao.updateLinkOrgRpt", vo);
 	}
+	
+	// 연계기관방문보고서 삭제
+	public void deleteLinkOrgRpt(LinkOrgRptVO vo){
+		update("reportDao.deleteLinkOrgRpt", vo);
+	}
+	
 	// 네트워크구축회의보고서 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getNtwkMeetRptList(NtwkMeetRptVO vo){
@@ -171,16 +184,15 @@ public class ReportDAO extends EgovAbstractDAO {
 		update("reportDao.updateNtwkMeetRpt", vo);
 	}
 	
-	
+	// 네트워크구축회의보고서 삭제
+	public void deleteNtwkMeetRpt(NtwkMeetRptVO vo){
+		update("reportDao.deleteNtwkMeetRpt", vo);
+	}
 	
 	// 네트워크구축회의보고서 pdf
 	public void insertNtwkMeetRptUpload(NtwkMeetRptVO vo){
 		update("reportDao.insertNtwkMeetRptUpload", vo);
 	}
-	
-	
-	
-	
 	
 	// 교육활동보고서 목록
 	@SuppressWarnings("unchecked")
@@ -214,6 +226,11 @@ public class ReportDAO extends EgovAbstractDAO {
 		update("reportDao.updateEduAtvyRpt", vo);
 	}
 	
+	// 교육활동보고서 삭제
+	public void deleteEduAtvyRpt(EduAtvyRptVO vo){
+		update("reportDao.deleteEduAtvyRpt", vo);
+	}
+	
 	// 홍보활동보고서 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getPrAtvyRptList(PrAtvyRptVO vo){
@@ -244,5 +261,10 @@ public class ReportDAO extends EgovAbstractDAO {
 	// 홍보활동보고서 수정
 	public void updatePrAtvyRpt(PrAtvyRptVO vo){
 		update("reportDao.updatePrAtvyRpt", vo);
+	}
+	
+	// 홍보활동보고서 수정
+	public void deletePrAtvyRpt(PrAtvyRptVO vo){
+		update("reportDao.deletePrAtvyRpt", vo);
 	}
 }

@@ -27,7 +27,7 @@
 				return false;
 			}
 			
-		}else{
+		}else if(save=="U") {
 			msg = "수정 하시겠습니까?";	
 		}
 		
@@ -47,6 +47,9 @@
 		}else if(frm.joinPlace.value.length < 1){
 			alert('[장소]를 입력해주세요.');
 			return false;
+		}
+		if (save=="D") {
+			msg = "삭제하시겠습니까?"
 		}
 		
 		// validation
@@ -258,10 +261,13 @@
 				<div class="btn" style="float: right; margin: 0;">
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd}');" style="background-color: green;color:white;">목록</button>
 					<c:if test="${ result != null && (authCd <= 3 || ( authCd > 3 && userId == result.cnsrId )) }">
-							<button type="button" class="btn-basic" onClick="javascript:fn_save('U');" style="background-color: green;color:white;">저장</button>	
+							<button type="button" class="btn-basic" onClick="javascript:fn_save('U');" style="background-color: green;color:white;">수정</button>	
 					</c:if>
 					<c:if test="${result == null}">
 						<button type="button" class="btn-basic" onClick="javascript:fn_save('I');" style="background-color: green;color:white;">저장</button>
+					</c:if>
+					<c:if test="${authCd <= 1 && result != null }">
+						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
 					</c:if>
 				</div>
 

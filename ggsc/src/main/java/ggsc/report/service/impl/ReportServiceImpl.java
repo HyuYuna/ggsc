@@ -132,7 +132,13 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		
 		reportDao.updateMindSharing(vo);
 	}	
-		
+	
+	// 마음나눔봉사단 / 성인식개선사업 삭제
+	@Override
+	public void deleteMindSharing(mindSharingVO vo) {
+		reportDao.deleteMindSharing(vo);
+	}	
+	
 		
 	// 상담사례종결서 목록
 	@Override
@@ -277,6 +283,13 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		
 		reportDao.updateLinkOrgRpt(vo);
 	}
+	
+	// 연계기관방문보고서 삭제
+	@Override
+	public void deleteLinkOrgRpt(LinkOrgRptVO vo) {
+		reportDao.deleteLinkOrgRpt(vo);
+	}
+		
 	// 네트워크구축회의보고서 목록
 	@Override
 	public List<EgovMap> getNtwkMeetRptList(NtwkMeetRptVO vo) {
@@ -353,6 +366,12 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		}
 		
 		reportDao.updateNtwkMeetRpt(vo);
+	}
+	
+	// 네트워크구축회의보고서 삭제
+	@Override
+	public void deleteNtwkMeetRpt(NtwkMeetRptVO vo) {
+		reportDao.deleteNtwkMeetRpt(vo);
 	}
 	// 교육활동보고서 목록
 	@Override
@@ -432,6 +451,12 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		reportDao.updateEduAtvyRpt(vo);
 	}
 	
+	// 교육활동보고서 삭제
+	@Override
+	public void deleteEduAtvyRpt(EduAtvyRptVO vo) {
+		reportDao.deleteEduAtvyRpt(vo);
+	}
+	
 	// 홍보활동보고서 목록
 	@Override
 	public List<EgovMap> getPrAtvyRptList(PrAtvyRptVO vo) {
@@ -509,4 +534,11 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		
 		reportDao.updatePrAtvyRpt(vo);
 	}
+	
+	// 홍보활동보고서 삭제
+	@Override
+	public void deletePrAtvyRpt(PrAtvyRptVO vo) {
+		reportDao.deletePrAtvyRpt(vo);
+	}
+
 }

@@ -53,7 +53,6 @@ a { text-decoration:none; color:#333;}
 				<li><a href="/gnoincoun/comfCnsWrite.do">맘편한상담<c:out value="${loginVo.userNm }"/></a></li>
 				<li><a href="/gnoincoun/psyInfo.do">간편한심리검사</a></li>
 				<li><a href="/gnoincoun/eduAppWrite.do">교육신청</a></li>
-				<li><a href="#">정보나눔</a></li>
 				<li><a href="/gnoincoun/centerIntroList.do">센터안내</a></li>
 				<li><a href="/gnoincoun/busiIntroList.do">센터사업소개</a></li>
 				<li><a href="/gnoincoun/centerNewsList.do">소통공간</a></li>
@@ -231,6 +230,21 @@ a { text-decoration:none; color:#333;}
 						<li>새로운경기공정한세상</li>
 						<li>새로운경기공정한세상</li>
 						<li>새로운경기공정한세상</li>
+						<!--<li><a href="http://www.mohw.go.kr/" target="_blank">보건복지부</a></li>
+						<li><a href="https://www.gg.go.kr/" target="_blank">경기도청</a></li>
+						<li><a href="https://gg.pass.or.kr/" target="_blank">경기도사회서비스원</a></li>
+						<li><a href="https://ggwf.gg.go.kr/" target="_blank">경기복지재단</a></li>
+						<li><a href="https://www.ggwf.or.kr/" target="_blank">경기복지플랫폼</a></li>
+						<li><a href="https://www.gg.go.kr/oldman_job/" target="_blank">경기도노인일자리지원센터</a></li>
+						<li><a href="https://ggss.or.kr/" target="_blank">경기도지역사회서비스지원단</a></li>
+						<li><a href="https://gepa.co.kr/" target="_blank">경기도노인보호전문기관</a></li>
+						<li><a href="https://kg1389.or.kr/" target="_blank">경기동부노인보호전문기관</a></li>
+						<li><a href="https://www.gnnoin.kr/" target="_blank">경기북부노인보호전문기관</a></li>
+						<li><a href="https://www.ggw1389.or.kr/main/main.php/" target="_blank">경기서부노인보호전문기관</a></li>
+						<li><a href="http://www.gaswc.or.kr/" target="_blank">경기도노인종합복지관협회</a></li>
+						<li><a href="https://gyeonggi.nid.or.kr/home/main/main.aspx/" target="_blank">경기도광역치매센터</a></li>
+						<li><a href="http://www.kgacold.co.kr/" target="_blank">경기도재가노인복지협회</a></li>
+						<li><a href="https://noininfo.or.kr/" target="_blank">경기도노인복지시설엽합회</a></li> -->
 					</ul>
 					<li>유관 사이트 바로가기</li></ul>
 				</div>

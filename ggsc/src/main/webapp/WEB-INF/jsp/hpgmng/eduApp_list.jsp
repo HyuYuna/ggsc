@@ -5,8 +5,6 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link href="/gnoincoundb/css/style.css" rel="stylesheet">
 <script src="/gnoincoundb/js/util/paging.js"></script>
@@ -18,32 +16,25 @@
 	
 	function list(pageNo){
 		var frm = document.searchForm;
-			frm.method = 'get';
-			frm.currentPageNo.value = pageNo;
-			frm.submit();
+		frm.method = 'get';
+		frm.currentPageNo.value = pageNo;
+		frm.submit();
 	}
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/ysmExampleDtl.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/eduAppDtl.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_detail(num){
-		document.location.href = "/gnoincoundb/ysmExampleDtl.do?num=" + num + "&mnuCd=${mnuCd}";
+		document.location.href = "/gnoincoundb/eduAppDtl.do?num=" + num + "&mnuCd=${mnuCd}";
 	}
 
 	function fn_search(mnuCd) {
 		document.searchForm.method = 'get';
-		document.searchForm.action = "/gnoincoundb/centerNewsList.do?mnuCd=" + mnuCd;
+		document.searchForm.action = "/gnoincoundb/eduAppList.do?mnuCd=" + mnuCd;
        	document.searchForm.submit(); 
 	}
 	
-	function fn_down(fileNm, sysFileNm, filePath){
-		$("#fileNm").val(fileNm);
-		$("#sysFileNm").val(sysFileNm);
-		$("#filePath").val(filePath);
-		document.downForm.action = "/gnoincoundb/fileDown.do";
-       	document.downForm.submit();
-	}
 	
 	$('input[type="text"]').keydown(function() {
 		  if (event.keyCode === 13) {
@@ -57,8 +48,6 @@
  #table-style1 {
  width: "100px" height="200px"
  }
- 
- 
 </style>
 
 <section id="content">
@@ -68,7 +57,7 @@
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
 		<input type="hidden" id="filePath" name="filePath" value="" />
 	</form>
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>센터소식</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>교육신청</h2>
 		<div class="box-style1 x-scroll-auto" >
 				<!-- 검색영역 -->
 		<form name="searchForm" id="searchForm" method="get" onsubmit="return false">
@@ -80,9 +69,9 @@
 					<span style="padding-left: 100px;">등록일</span> <input type="text" name="schStartDate" id="datepicker1" value="${vo.schStartDate}" style="width: 100px;" readonly /> &nbsp;&nbsp;&nbsp; ~ &nbsp;<input type="text" name="schEndDate" id="datepicker2" value="${vo.schEndDate}" style="width: 100px;"  readonly="readonly" />
 					<span class="label">
 						<select id="schType" name="schType" style="margin-left: 20px;">
-							<option value="1" <c:if test="${vo.schType==1}">selected</c:if>>공지제목</option>
-							<option value="2" <c:if test="${vo.schType==2}">selected</c:if>>작성자</option>
-							<option value="3" <c:if test="${vo.schType==3}">selected</c:if>>내용</option>
+							<option value="1" <c:if test="${vo.schType==1}">selected</c:if>>이름</option>
+							<option value="2" <c:if test="${vo.schType==2}">selected</c:if>>기관명</option>
+							<option value="3" <c:if test="${vo.schType==3}">selected</c:if>>부서</option>
 						</select>
 					</span>
 					<span class="form" style="margin-left: 25px;"><input type="text" name="schText" id="schText" value="${vo.schText}" enterSearch data-button='#searchBtn'/></span>
@@ -97,66 +86,47 @@
 		<form name="frm" id="frm" method="post" onsubmit="return false">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<span style="float: left; margin: 0;">
-				검색 총수 : <span id="totalPageCnt"><c:out value="${totalPageCnt }"/></span> 건 
+				검색 총수 : <span id="totalPageCnt"><c:out value="${totalPageCnt }"/></span> 건
 			</span>
-			<div class="btn" style="float: right; margin: 0;">
+			<%-- <div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd}');" style="background-color:#FF8224;color:white;">등록</button>
-			</div>
+			</div>	 --%>
 			&nbsp;&nbsp;
-
-
-
-
-
-			<c:set var="i" value="0" />
-			<c:set var="j" value="3" />
 			<table class="table-style1" style= "margin-bottom: 5px;">
 				<colgroup> 
-						<col width="33%"></col> 
-						<col width="33%"></col>
-						<col width="33%"></col>
+					<col width="2%"></col>
+					<col width="7%"></col> 
+					<col width="10%"></col>
+					<col width="10%"></col>
 				</colgroup>
-			<thead>
+				<thead>
 					<tr>
-						<th scope="col" colspan='3' >내용</th>
+						<th scope="col">번호</th>
+						<th scope="col">작성자</th>
+						<th scope="col">기관명</th> 
+						<th scope="col">부서</th>
 					</tr>
-			</thead> 
-			<tbody id="tby1">
-				<c:choose>
-					<c:when test="${newsList.size() > 0}">
-						<c:forEach items="${newsList}" var="result">
-							<c:if test="{i%j == 0}">
-								<tr>
-							</c:if>
-								<td onclick="javascript:fn_detail('${result.num}')"style="padding: 10px;">
-									<img src="/getImage.do?fileNm=${result.imgPath}" style="width: 450px;"><br/><br/>
-									<span class="imageCaption" style="font-weight: bold;">
-										<c:out value="${result.rnum }"/>. &nbsp;&nbsp;&nbsp; <c:out value="${result.title }"/>
-									</span>
-									<br/>
-									<span class="imageCaption">
-										<c:out value="${result.writer }" />
-									</span>
-									<br/>
-								</td>
-							<c:if test="${i%j == j-1}">
-								</tr>
-							</c:if>
-							<c:set var="i" value="${i+1}" />
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
+				</thead>
+				<tbody id="tby1">
+					<c:if test="${eduAppList.size() == 0 }">
 						<tr>
-							<td>존재하지 않습니다.</td>
+							<td colspan="4">정보가 없습니다.</td>
 						</tr>
-					</c:otherwise>
-				</c:choose>
-			</tbody>
+					</c:if>
+					<c:if test="${eduAppList.size() > 0 }">
+						<c:forEach items="${eduAppList }" var="result">
+							<tr onclick="javascript:fn_detail('${result.num}')">
+								<td>${result.rnum }</td>
+								<td>${result.userNm }</td>
+								<td>${result.centerNm }</td>
+								<td>${result.depart}</td>
+							</tr> 
+						</c:forEach>
+					</c:if>
+				</tbody>
 			</table>
-
-
-
-
+		</form>
+		
 			<!-- // 페이징 -->
 			<div class="paginate" id="page1">
 				<div id="paging">

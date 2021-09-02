@@ -404,8 +404,10 @@ public class ReportController {
 		vo.setCnsrId(map.get("userId").toString());
 		if (save.equals("I")) {
 			reportService.insertLinkOrgRpt(vo);
-		} else {
+		} else if(save.equals("U")) {
 			reportService.updateLinkOrgRpt(vo);
+		} else if(save.equals("D")) {
+			reportService.deleteLinkOrgRpt(vo);
 		}
 
 		return "redirect:/gnoincoundb/linkOrgRptList.do?mnuCd=" + mnuCd;
@@ -557,13 +559,16 @@ public class ReportController {
 		vo.setInputNm(map.get("userNm").toString());
 		if (save.equals("I")) {
 			reportService.insertNtwkMeetRpt(vo);
-		} else {
+		} else if(save.equals("U")) {
 			reportService.updateNtwkMeetRpt(vo);
+		} else if (save.equals("D")) {
+			reportService.deleteNtwkMeetRpt(vo);
 		}
 
 		return "redirect:/gnoincoundb/ntwkMeetRptList.do?mnuCd=" + mnuCd;
 
 	}
+	
 
 	// 네트워크구축회의보고서 파일 삭제
 	@RequestMapping(value = "/ntwkMeetRptFileDel.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -742,8 +747,10 @@ public class ReportController {
 		vo.setCnsrId((String) map.get("userId"));
 		if (save.equals("I")) {
 			reportService.insertEduAtvyRpt(vo);
-		} else {
+		} else if (save.equals("U")){
 			reportService.updateEduAtvyRpt(vo);
+		} else if (save.equals("D")) {
+			reportService.deleteEduAtvyRpt(vo);
 		}
 
 		return "redirect:/gnoincoundb/eduAtvyRptList.do?mnuCd=" + mnuCd;
@@ -919,8 +926,10 @@ public class ReportController {
 		vo.setCnsrId((String) map.get("userId"));
 		if (save.equals("I")) {
 			reportService.insertPrAtvyRpt(vo);
-		} else {
+		} else if (save.equals("U")) {
 			reportService.updatePrAtvyRpt(vo);
+		} else if (save.equals("D")) {
+			reportService.deletePrAtvyRpt(vo);
 		}
 
 		return "redirect:/gnoincoundb/prAtvyRptList.do?mnuCd=" + mnuCd;
@@ -1092,21 +1101,33 @@ public class ReportController {
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String save = request.getParameter("save");
 		model.addAttribute("mnuCd", mnuCd);
 
 		if (!vo.getDelYn().equals("Y"))
 			vo.setDelYn("N");
+		
+		String url = null;
+		
+		if(vo.getbGubun() == 1) {
+			url = "gender";
+		}
 
 		vo.setUserNum(login.get("userNm").toString());
 		vo.setCnsrId(login.get("userId").toString());
-		if (vo.getNum() == 0) {
+		if (save.equals("I")) {
 			reportService.insertMindSharing(vo);
-		} else {
+		} else if (save.equals("U")) {
 			reportService.updateMindSharing(vo);
+		} else if (save.equals("D")) {
+			reportService.deleteMindSharing(vo);
 		}
-
-		return vo.getbGubun() == 1 ? "redirect:/gnoincoundb/genderAwareness.do?mnuCd=" + mnuCd
-				: "redirect:/gnoincoundb/mindSharing.do?mnuCd=" + mnuCd;
+		
+		if (url == "gender") {
+			return "redirect:/gnoincoundb/genderAwareness.do?mnuCd=" + mnuCd;
+		} else {
+			return "redirect:/gnoincoundb/mindSharing.do?mnuCd=" + mnuCd;
+		}
 	}
 	
 	// 마음나눔봉사단 파일 삭제

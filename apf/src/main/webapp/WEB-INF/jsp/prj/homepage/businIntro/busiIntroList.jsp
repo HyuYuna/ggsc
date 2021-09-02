@@ -75,7 +75,7 @@
 	  		$("#genderEdu").css("display","");
 		}
 	  	
-		function sigunSuppBtn(no) {
+		/* function sigunSuppBtn(no) {
 			if(no == "1") {
 				$("#sigunSupp1").css("display","");
 				$("#sigunSupp2").css("display","none");
@@ -84,7 +84,7 @@
 				$("#sigunSupp2").css("display","");
 			}
 		}
-		
+		 */
 		function weakSuppBtn(no) {
 			if(no == "1") {
 				$("#weakSupp1").css("display","");
@@ -119,15 +119,8 @@
 		<div id="sigunSupp">
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
-			<div style="width: 100%; margin: auto; text-align: center; margin-top: 30px; margin-bottom: 30px;">
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: sigunSuppBtn('1')">소개</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: sigunSuppBtn('2')">설립목적</button>
-			</div>
 			<div id="sigunSupp1" style="width: 920px; margin: auto; margin-top: 30px;">
-				<img src='/gnoincoun/images/busi2.jpg' alt="전화상담" style="width: 920px;"/>
-			</div>
-			<div id="sigunSupp2" style="width: 920px; margin: auto; margin-top: 30px;">
-				<img src='/gnoincoun/images/busi3.jpg' alt="전화상담" style="width: 920px;"/>
+				<img src='/gnoincoun/images/busi13.jpg' alt="전화상담" style="width: 920px;"/>
 			</div>
 			<div style="width: 100%; text-align: center; margin-top: 20px;">
 				<!-- <button type="button" class="btn btn-warning" style="border-radius: 11px;" >전화상담 신청하기</button> -->

@@ -82,7 +82,7 @@
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-        <h2 class="title">대인관계변화척도</h2>
+        <h2 class="title">스트레스척도</h2>
       	<form id="frm" name="frm" method="post">
       	   <input type="hidden" id="cnsleId" name="cnsleId" value="${sessionScope.LoginVO.userId}" >
             <table class="table table-condensed">

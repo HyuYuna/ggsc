@@ -24,7 +24,10 @@ $(document).ready(function(){
 	}
 	$("input[name=gender][value=${detail.gender}]").prop("checked", true);
 });
-function fn_save(){
+
+function fn_save(save){
+	
+	var msg = "";
 	var frm = document.frm;
 	
 	if(frm.centerGb.value.length == 0){
@@ -44,8 +47,19 @@ function fn_save(){
 		return false;
 	}
 	
-	frm.action = "/gnoincoundb/mindSharing_proc.do";
-	frm.submit();
+	if(save=="I"){
+		msg = "등록 하시겠습니까?";
+	}else if(save == "U"){
+		msg = "수정 하시겠습니까?";	
+	}else if(save == "D"){
+		msg = "삭제 하시겠습니까?";	
+	}
+	
+	$("#save").val(save);
+	if(confirm(msg)){
+		document.frm.action = "/gnoincoundb/mindSharing_proc.do";
+		document.frm.submit();
+	}
 }
 /* function fn_fileDelete(idx){
 	if(confirm('정말 삭제하시겠습니까?')){
@@ -64,14 +78,14 @@ function fn_down(fileNm, sysFileNm, filePath){
    	document.downForm.submit();
 }
 
-function fn_delete(){
+/* function fn_delete(){
 	if(confirm('정말 삭제하시겠습니까?')){
 		const frm = document.frm;
 		frm.delYn.value = 'Y';
 		frm.action = "/gnoincoundb/mindSharing_proc.do";
 		frm.submit();
 	}
-}
+} */
 
 function fn_fileDelete(idx){
 	if(confirm('정말 삭제하시겠습니까?')){
@@ -128,6 +142,7 @@ function fn_list(mnuCd) {
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type='hidden' name='bGubun' value='${vo.bGubun}' />
 				<input type='hidden' name='num' value='<c:if test="${detail.num eq null}">${vo.num}</c:if><c:if test="${detail.num != null}">${detail.num}</c:if>' />
+				<input type="hidden" id="save" name="save" />
 				<input type='hidden' name='fDel' value='N' />
 				<input type='hidden' name='delYn' value='N' />
 				<input type='hidden' name='mnuCd' value='${mnuCd}' />		
@@ -168,12 +183,12 @@ function fn_list(mnuCd) {
 						</td>
 					</tr>
 					<tr>
-						<th>구분</th>
+						<th>상담구분</th>
 						<td>
 							<select name='cnsGb' style='width:275px'>
 								<option value=''>선택하세요</option>
 								<c:forEach items="${cnsGbList }" var="result">
-									<option value="${result.odr }" <c:if test="${ result.odr eq detail.cnsGb }">selected</c:if>>${result.mclassNm}</option>
+									<option value="${result.odr }" <c:if test="${ result.odr eq detail.cnsgb }">selected</c:if>>${result.mclassNm}</option>
 								</c:forEach>
 							</select>
 						</td>
@@ -224,14 +239,15 @@ function fn_list(mnuCd) {
 				</table>
 				<div class="btn" style="float: right; margin: 0;">
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd}');" style="background-color: green;color:white;">목록</button>
-					
-					
-					<c:if test="${ authCd <= 3 || ( authCd > 3 && userId == detail.cnsrId ) || vo.num eq 0 }">
-							<button type="button" class="btn-basic" onClick="javascript:fn_save();" style="background-color: green;color:white;">저장</button>	
+					<c:if test="${ vo.num ne 0 && ( authCd <= 3 || authCd > 3 && userId == detail.cnsrId) }">
+							<button type="button" class="btn-basic" onClick="javascript:fn_save('U');" style="background-color: green;color:white;">수정</button>	
+					</c:if>
+					<c:if test="${ vo.num eq 0 && ( authCd <= 3 || authCd > 3 && userId == detail.cnsrId) }">
+							<button type="button" class="btn-basic" onClick="javascript:fn_save('I');" style="background-color: green;color:white;">저장</button>	
 					</c:if>
 					
-					<c:if test="${vo.num ne 0 && authCd <= 2 }">
-						<!-- <button type='button' onClick="fn_delete()" class="btn-basic" style='background-color: red'>삭제</button> -->
+					<c:if test="${vo.num ne 0 && authCd <= 1 }">
+						<button type='button' onClick="javascript:fn_save('D');" class="btn-basic" style='background-color: red'>삭제</button>
 					</c:if>
 					
 				</div>	

@@ -8,6 +8,7 @@
 		INSERT INTO GS_EDU_APP
 			(
 				USER_ID ,
+				REG_ID ,
 				USER_NM ,
 				BIRTH ,
 				PHONE ,
@@ -20,6 +21,7 @@
 				CENTER_GB ,
 				DB_INS_TM 
 			) VALUES (
+				#{userId} ,
 				#{userId} ,
 				#{userNm} ,
 				#{birth} ,

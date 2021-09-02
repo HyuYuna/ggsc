@@ -35,6 +35,9 @@ public interface ReportService {
 	// 마음나눔봉사단 / 성인식개선사업 수정
 	void updateMindSharing(mindSharingVO vo);
 	
+	// 마음나눔봉사단 / 성인식개선사업 삭제
+	void deleteMindSharing(mindSharingVO vo);
+	
 	// 마음나눔봉사단 / 성인식개선사업 상세
 	EgovMap getgetMindSharingDtl(mindSharingVO vo);
 	
@@ -77,6 +80,9 @@ public interface ReportService {
 	// 연계기관방문보고서 수정
 	void updateLinkOrgRpt(LinkOrgRptVO vo);
 	
+	// 연계기관방문보고서 삭제
+	void deleteLinkOrgRpt(LinkOrgRptVO vo);
+	
 	// 네트워크구축회의보고서 목록
 	List<EgovMap> getNtwkMeetRptList(NtwkMeetRptVO vo);
 	
@@ -91,6 +97,9 @@ public interface ReportService {
 	
 	// 네트워크구축회의보고서 수정
 	void updateNtwkMeetRpt(NtwkMeetRptVO vo);
+	
+	// 네트워크구축회의보고서 삭제
+	void deleteNtwkMeetRpt(NtwkMeetRptVO vo);
 	
 	// 교육활동보고서 목록
 	List<EgovMap> getEduAtvyRptList(EduAtvyRptVO vo);
@@ -107,6 +116,9 @@ public interface ReportService {
 	// 교육활동보고서 수정
 	void updateEduAtvyRpt(EduAtvyRptVO vo);
 	
+	// 교육활동보고서 삭제
+	void deleteEduAtvyRpt(EduAtvyRptVO vo);
+	
 	// 홍보활동보고서 목록
 	List<EgovMap> getPrAtvyRptList(PrAtvyRptVO vo);
 	
@@ -121,4 +133,7 @@ public interface ReportService {
 	
 	// 홍보활동보고서 수정
 	void updatePrAtvyRpt(PrAtvyRptVO vo);
+	
+	// 홍보활동보고서 삭제
+	void deletePrAtvyRpt(PrAtvyRptVO vo);
 }
