@@ -172,7 +172,7 @@
 			case gpcd.HELP_DEGR when '1' then '1' when '2' then '2' when '3' then '3' when '4' then '4' when '5' then '5' when '6' then '6' when '7' then '7' when '8' then '8' when '9' then '9' when '10' then '10' when '11' then '11' when '12' then '12' ELSE '' END  AS HELP_DEGR ,
 			case gpcd.CNS_CHNG_DEGR when '1' then '1' when '2' then '2' when '3' then '3' when '4' then '4' when '5' then '5' when '6' then '6' when '7' then '7' when '8' then '8' when '9' then '9' when '10' then '10' when '11' then '11' when '12' then '12' ELSE '' END  AS CNS_CHNG_DEGR ,
 			date_format(str_to_date(gpcd.BIRTH_DT,'%Y%m%d'),'%Y년 %m월 %d일') birthDt ,
-			case gpcd.GENDER when 'M' then '남자' when 'W' then '여자' else '알수없음' END AS gender,
+			case gpcd.GENDER when 'M' then '남자' when 'F' then '여자' else '알수없음' END AS gender,
 			gpcd.MOBILE ,
 			gpcd.EMGCY_TEL ,
 			gpcd.ADDR ,
