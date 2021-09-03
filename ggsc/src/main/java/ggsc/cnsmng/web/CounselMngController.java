@@ -1199,10 +1199,6 @@ public class CounselMngController {
 		param.setHclassCd("G14");
 		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
 		vo.setCnsMethdNm((String) cnsMethdList.get(Integer.parseInt(vo.getCnsMethd()) - 1).get("mclassNm"));
-
-		param.setHclassCd("G57");
-		List<EgovMap> mApplList = adminManageService.getGroupMngDtlMList(param);
-		vo.setMajorApplNm((String) mApplList.get(Integer.parseInt(vo.getMajorApplCd()) - 1).get("mclassNm"));
 		
 		counselMngService.insertPerCns(vo);
 
