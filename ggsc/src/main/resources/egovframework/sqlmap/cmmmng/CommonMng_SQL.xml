@@ -103,7 +103,6 @@
 		  , ACPT_DT = #acptDt#
 		  , OUT_DT = #outDt#
 		  , DB_UPD_TM = NOW()
-		  , AUTH_CD = #authCd#
 		WHERE USER_ID = #userId#
 	</update>
 	

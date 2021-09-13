@@ -1,6 +1,8 @@
 package ggsc.cnsmng.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.report.service.CnsEndVO;
@@ -288,10 +290,16 @@ public interface CounselMngService {
 	// 치매선별용 한국어판 간이정신상태검사 등록
 	void insertPsyCnsDoc16(PsyCnsDoc2VO vo);
 	
+	// 기존상담관리부터 일괄 삭제
 	void deleteExiCnsAcpt(String caseNo);
 	
+	void updateExiCnsAcpt(String caseNo);
+
+	// 초기상담부터 일괄 삭제
 	void deleteExiEalyCnsDoc(String caseNo);
 	
-	void updateExiCnsAcpt(String caseNo);
+	// 개인상담부터 일괄 삭제
+	public void deleteExiPerCnsDoc(Map<String, Object> map);
+	
 	
 }

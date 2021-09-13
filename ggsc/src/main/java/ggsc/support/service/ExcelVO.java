@@ -464,7 +464,7 @@ public class ExcelVO extends PageVO{
 				
 			case 29 : 
 				setInit("초기상담신청서",
-						new String[] {"순번", "caseNo", "상담사명", "상담방법", "상담경위", "주요문제", "내담자와의관계", "성별", "내담자명", "생년월일", "연락처", "긴급연락처" , "주소", "학력", "문자해독", "종교", "주거형태", "주택형태", "결혼상태", "동거형태", "상담일", "등록일"},
+						new String[] {"순번", "caseNo", "상담사명", "상담방법", "상담경위", "주호소문제", "내담자와의관계", "성별", "내담자명", "생년월일", "연락처", "긴급연락처" , "주소", "학력", "문자해독", "종교", "주거형태", "주택형태", "결혼상태", "동거형태", "상담일", "등록일"},
 						new String[] {"rnum", "caseNo", "cnsrNm", "cnsMethd", "cnsDtl", "majorApplCd", "olderRel", "gender", "cnsleNm", "birthDt", "mobile", "emgcyTel", "addr", "edu", "decodeLvl", "relg", "livgForm", "houseForm", "merrStat", "liveForm", "cnsDt", "dbInsTm"});
 				break;
 				

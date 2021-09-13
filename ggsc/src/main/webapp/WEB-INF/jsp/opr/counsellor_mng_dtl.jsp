@@ -457,6 +457,7 @@
 					</span>
 				</td>
 			</tr>
+			<c:if test="${authCd eq 1 }" >
 			<tr>
 				<th>상담사구분</th>
 				<td colspan="3">
@@ -468,6 +469,7 @@
 					<input type="radio" id="cnsrGb6" name="cnsrGb" value="6" /><label for="cnsrGb6">기타</label>
 				</td>
 			</tr>
+			</c:if>
 			<tr>
 				<th>ID</th>
 				<td><c:out value="${detail.userId }"/></td>

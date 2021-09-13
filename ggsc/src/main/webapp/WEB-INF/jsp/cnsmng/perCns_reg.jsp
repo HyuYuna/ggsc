@@ -336,38 +336,7 @@ $(document).on('change','#cnsStat',function(){
 						</td>
 						<th>상담회기 <span style="color: red;">*</span></th>
 						<td>
-							<select class="wd200" id="cnsCnt" name="cnsCnt">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-							</select> 
+							<input type="text" class="wd200" id="cnsCnt" name="cnsCnt" value="${result.cnsCnt }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
 						</td>
 					</tr>
 					<tr>
@@ -514,136 +483,11 @@ $(document).on('change','#cnsStat',function(){
 							<input type="radio" id="majorApplCd8" name="majorApplCd" value="8" /><label for="majorApplCd8">생활</label>
 							<input type="radio" id="majorApplCd9" name="majorApplCd" value="9" /><label for="majorApplCd9">성</label>
 							<input type="radio" id="majorApplCd10" name="majorApplCd" value="10" /><label for="majorApplCd10">부부</label>
-							<input type="radio" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족</label><br>
-							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">학대</label>
-							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">노년생애준비</label>
-							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">재난</label>
+							<input type="radio" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족</label>
+							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">역할상실</label>
+							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">생애진로</label>
+							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">자살</label>
 							<input type="radio" id="majorApplCd15" name="majorApplCd" value="15" /><label for="majorApplCd15">기타</label>
-						</td>
-					</tr>
-					<tr>
-						<th rowspan="12">변화추이조사항목</th>
-						<td>주거형태</td>
-						<td colspan="3">
-							<select class="wd200" id="livgForm" name="livgForm">
-								<c:forEach items="${livgFormList }" var="list">
-									<option value="${list.odr }">${list.mclassNm }</option>
-								</c:forEach>
-							</select> 
-						</td>
-					</tr>
-					<tr>
-						<td>주택형태</td>
-						<td colspan="3">
-							<select class="wd200" id="houseForm" name="houseForm">
-								<c:forEach items="${houseFormList }" var="list">
-									<option value="${list.odr }">${list.mclassNm }</option>
-								</c:forEach>
-							</select> 
-						</td>
-					</tr>
-					<tr>
-						<td>거주지변동</td>
-						<td colspan="3">
-							<input type="checkbox" id="houseChng1" name="houseChng" value="1" /><label for="houseChng1">최근 5년 이내</label>
-							<input type="checkbox" id="houseChng2" name="houseChng" value="2" /><label for="houseChng2">55세 이후 거주지역 변경하여 이사</label>
-						</td>
-					</tr>
-					<tr>
-						<td>결혼상태(중복가능)</td>
-						<td colspan="3">
-							<input type="checkbox" id="merrStat1" name="merrStat" value="1" /><label for="merrStat1">기혼</label> 
-							<input type="checkbox" id="merrStat2" name="merrStat" value="2" /><label for="merrStat2">사별</label> 
-							<input type="checkbox" id="merrStat3" name="merrStat" value="3" /><label for="merrStat3">별거</label> 
-							<input type="checkbox" id="merrStat4" name="merrStat" value="4" /><label for="merrStat4">이혼</label>
-							<input type="checkbox" id="merrStat5" name="merrStat" value="5" /><label for="merrStat5">미혼</label>
-							<input type="checkbox" id="merrStat6" name="merrStat" value="6" /><label for="merrStat6">재혼</label> 
-							<input type="checkbox" id="merrStat7" name="merrStat" value="7" /><label for="merrStat7">동거</label> 
-							<br><input type="checkbox" id="merrStat8" name="merrStat" value="8" /><label for="merrStat8">비정기적 동거</label> 
-							<input type="checkbox" id="merrStat9" name="merrStat" value="9" /><label for="merrStat9">이성교제 </label> 
-							<input type="checkbox" id="merrStat10" name="merrStat" value="10" /><label for="merrStat10">기타(배우자 사별인 경우 사별추가 질문지에 체크)</label>
-						</td>
-					</tr>
-					<tr>
-						<td>동거형태(중복가능)</td>
-						<td colspan="3">
-							<input type="checkbox" id="liveForm1" name="liveForm" value="1" /><label for="liveForm1">독거</label> 
-							<input type="checkbox" id="liveForm2" name="liveForm" value="2" /><label for="liveForm2">배우자 동거</label> 
-							<input type="checkbox" id="liveForm3" name="liveForm" value="3" /><label for="liveForm3">배우자만동거</label> 
-							<input type="checkbox" id="liveForm4" name="liveForm" value="4" /><label for="liveForm4">아들동거</label> 
-							<input type="checkbox" id="liveForm5" name="liveForm" value="5" /><label for="liveForm5">아들만동거</label> 
-							<input type="checkbox" id="liveForm6" name="liveForm" value="6" /><label for="liveForm6">딸동거</label> 
-							<input type="checkbox" id="liveForm7" name="liveForm" value="7" /><label for="liveForm7">딸만동거</label> 
-							<br><input type="checkbox" id="liveForm8" name="liveForm" value="8" /><label for="liveForm8">며느리동거</label> 
-							<input type="checkbox" id="liveForm9" name="liveForm" value="9" /><label for="liveForm9">며느리만동거</label> 
-							<input type="checkbox" id="liveForm10" name="liveForm" value="10" /><label for="liveForm10">사위동거</label> 
-							<input type="checkbox" id="liveForm11" name="liveForm" value="11" /><label for="liveForm11">손자동거</label> 
-							<input type="checkbox" id="liveForm12" name="liveForm" value="12" /><label for="liveForm12">손자만동거</label> 
-							<input type="checkbox" id="liveForm13" name="liveForm" value="13" /><label for="liveForm13">기타동거인</label> 
-							<input type="checkbox" id="liveForm14" name="liveForm" value="14" /><label for="liveForm14">기타동거인만</label> 
-						</td>
-					</tr>
-					<tr>
-						<td>주관적 건강상태</td>
-						<td colspan="3">
-							<input type="radio" id="sujtHelcyStat1" name="sujtHelcyStat" value="1" /><label for="sujtHelcyStat1">매우 건강함</label> 
-							<input type="radio" id="sujtHelcyStat2" name="sujtHelcyStat" value="2" /><label for="sujtHelcyStat2">건강한편</label> 
-							<input type="radio" id="sujtHelcyStat3" name="sujtHelcyStat" value="3" /><label for="sujtHelcyStat3">보통</label> 
-							<input type="radio" id="sujtHelcyStat4" name="sujtHelcyStat" value="4" /><label for="sujtHelcyStat4">건강하지 않은 편</label> 
-							<input type="radio" id="sujtHelcyStat5" name="sujtHelcyStat" value="5" /><label for="sujtHelcyStat5">매우 건강하지 않음</label> 
-						</td>
-					</tr>
-					<tr>
-						<td>진단병력</td>
-						<td colspan="3">
-							<input type="checkbox" id="dignMhist1" name="dignMhist" value="1" /><label for="dignMhist1">치매</label> 
-							<input type="checkbox" id="dignMhist2" name="dignMhist" value="2" /><label for="dignMhist2">뇌졸증</label> 
-							<input type="checkbox" id="dignMhist3" name="dignMhist" value="3" /><label for="dignMhist3">말기암등 중질환</label> 
-							<input type="checkbox" id="dignMhist4" name="dignMhist" value="4" /><label for="dignMhist4">우울증</label> 
-							<input type="checkbox" id="dignMhist5" name="dignMhist" value="5" /><label for="dignMhist5">정신과질환</label> 
-							<input type="checkbox" id="dignMhist6" name="dignMhist" value="6" /><label for="dignMhist6">장애등급 2급</label> 
-							<input type="checkbox" id="dignMhist7" name="dignMhist" value="7" /><label for="dignMhist7">기타</label> 
-						</td>
-					</tr>
-					<tr>
-						<td>복용약</td>
-						<td colspan="3">
-							<input type="checkbox" id="mnds1" name="mnds" value="1" /><label for="mnds1">치매약</label> 
-							<input type="checkbox" id="mnds2" name="mnds" value="2" /><label for="mnds2">우울증약</label> 
-							<input type="checkbox" id="mnds3" name="mnds" value="3" /><label for="mnds3">정신질환약</label> 
-							<input type="checkbox" id="mnds4" name="mnds" value="4" /><label for="mnds4">기타복용약</label> 
-						</td>
-					</tr>
-					<tr>
-						<td>경제상태</td>
-						<td colspan="3">
-							<input type="radio" id="econoStat1" name="econoStat" value="1" /><label for="econoStat1">매우 여유</label>
-							<input type="radio" id="econoStat2" name="econoStat" value="2" /><label for="econoStat2">여유 있는 편</label>
-							<input type="radio" id="econoStat3" name="econoStat" value="3" /><label for="econoStat3">보통</label>
-							<input type="radio" id="econoStat4" name="econoStat" value="4" /><label for="econoStat4">부족</label>
-							<input type="radio" id="econoStat5" name="econoStat" value="5" /><label for="econoStat5">매우 부족</label>
-						</td>
-					</tr>
-					<tr>
-						<td>최근가족사별경험</td>
-						<td colspan="3">
-							<input type="radio" id="recntFmlyDethN" name="recntFmlyDeth" value="N" /><label for="recntFmlyDethN">무</label>
-							<input type="radio" id="recntFmlyDethY" name="recntFmlyDeth" value="Y" /><label for="recntFmlyDethY">유</label>
-						</td>
-					</tr>
-					<tr>
-						<td>최근주변인사별경험</td>
-						<td colspan="3">
-							<input type="radio" id="recntMmanDethN" name="recntMmanDeth" value="N" /><label for="recntMmanDethN">무</label> 
-							<input type="radio" id="recntMmanDethY" name="recntMmanDeth" value="Y" /><label for="recntMmanDethY">유</label>
-						</td>
-					</tr>
-					<tr>
-						<td>노인일자리참여여부</td>
-						<td colspan="3">
-							<input type="radio" id="olderWorkPtpt1" name="olderWorkPtptYn" value="1" /><label for="olderWorkPtpt1">참여</label> 
-							<input type="radio" id="olderWorkPtpt2" name="olderWorkPtptYn" value="2" /><label for="olderWorkPtpt2">중단</label> 
-							<input type="radio" id="olderWorkPtpt3" name="olderWorkPtptYn" value="3" /><label for="olderWorkPtpt3">참여실적 없음</label>
 						</td>
 					</tr>
 					<tr>

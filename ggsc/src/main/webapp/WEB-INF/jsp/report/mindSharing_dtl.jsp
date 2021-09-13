@@ -246,8 +246,8 @@ function fn_list(mnuCd) {
 							<button type="button" class="btn-basic" onClick="javascript:fn_save('I');" style="background-color: green;color:white;">저장</button>	
 					</c:if>
 					
-					<c:if test="${vo.num ne 0 && authCd <= 1 }">
-						<button type='button' onClick="javascript:fn_save('D');" class="btn-basic" style='background-color: red'>삭제</button>
+					<c:if test="${ vo.num ne 0 && (authCd <= 1 || ( authCd > 1 && userId == detail.cnsrId )) }">
+						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
 					</c:if>
 					
 				</div>	

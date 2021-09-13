@@ -258,7 +258,8 @@
 			SET 
 				 CNS_GB = #cnsGb# , 
 				 CENTER_GB = #centerGb# ,
-				 <!-- CNSR_GB = #cnsrGb# , -->
+			     CNSR_GB = #cnsrGb# , 
+			     AUTH_CD = #cnsrGb# , 
 				 CNSR_NM = #userNm# ,
 				 POSI = #posi# ,
 				 MAJOR = #major# ,
@@ -280,6 +281,7 @@
 				GENDER = #gender# ,
 				MOBILE = #mobile# ,
 				EMAIL = #email# ,
+				AUTH_CD = #cnsrGb# ,
 				ACPT_DT = now()
 			WHERE
 				USER_ID = #userId#

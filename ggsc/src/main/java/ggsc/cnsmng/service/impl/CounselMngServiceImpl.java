@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -820,6 +822,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.insertPsyCnsDoc16(vo);
 	}
 	
+	// 기존상담관리부터 일괄 삭제
 	@Override 
 	public void deleteExiCnsAcpt(String caseNo) {
 		cnsMngDao.deleteUser(caseNo);
@@ -835,6 +838,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
+	// 초기상담부터 일괄 삭제
 	@Override
 	public void deleteExiEalyCnsDoc(String caseNo) {
 		cnsMngDao.deleteEalyCnsDoc(caseNo);
@@ -844,6 +848,15 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
+	// 개인상담부터 일괄 삭제
+	@Override
+	public void deleteExiPerCnsDoc(Map<String, Object> map) {
+		String caseNo = map.get("caseNo").toString();
+		String num = map.get("num").toString();
+		cnsMngDao.deletePerCnsDtl(caseNo);
+		cnsMngDao.deleteExiPsyCnsDocDtl(map);
+		cnsMngDao.deleteCnsEnd(caseNo);
+	}
 	
 	@Override 
 	public void updateExiCnsAcpt(String caseNo) {

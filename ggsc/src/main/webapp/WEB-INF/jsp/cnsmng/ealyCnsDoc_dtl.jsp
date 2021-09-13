@@ -113,6 +113,10 @@
 		name = "gender";
 		fn_checked(str, name);
 		
+		str = "${result.majorApplCd}";
+		name = "majorApplCd";
+		fn_checked(str, name);
+		
 		str = "${result.edu}";
 		name = "edu";
 		fn_checked(str, name);
@@ -141,9 +145,6 @@
 		name = "liveForm";
 		fn_checked(str, name);
 		
-		str = "${result.majorApplCd}";
-		name = "majorApplCd";
-		fn_checked(str, name);
 	});
 	
 	function fn_checked(str, name){
@@ -276,7 +277,7 @@
 			alert('[주소]를 입력해주세요.');
 			return false;
 		}else if(frm.majorApplCd.value.length == 0){
-			alert('[주요문제]를 선택해주세요.');
+			alert('[주호소문제]를 선택해주세요.');
 			return false;
 		}
 		var cnsTimeHourS = $("#cnsTimeHourS").val();
@@ -530,37 +531,8 @@
 						</td>
 					</tr>
 					<tr>
-						<th>주요문제 <span style="color: red;">*</span></th>
+						<th>주호소문제 <span style="color: red;">*</span></th>
 						<td colspan="7">
-							<!-- <input type="checkbox" id="majorApplCd1" name="majorApplCd" value="1" /><label for="majorApplCd1">심리·정서문제</label>
-							<input type="checkbox" id="majorApplCd2" name="majorApplCd" value="2" /><label for="majorApplCd2">대인관계문제</label>
-							<input type="checkbox" id="majorApplCd3" name="majorApplCd" value="3" /><label for="majorApplCd3">중독문제</label>
-							<input type="checkbox" id="majorApplCd4" name="majorApplCd" value="4" /><label for="majorApplCd4">치매문제</label>
-							<input type="checkbox" id="majorApplCd5" name="majorApplCd" value="5" /><label for="majorApplCd5">정신건강장애문제</label>
-							<input type="checkbox" id="majorApplCd6" name="majorApplCd" value="6" /><label for="majorApplCd6">건강문제</label>
-							<input type="checkbox" id="majorApplCd7" name="majorApplCd" value="7" /><label for="majorApplCd7">경제문제</label>
-							<input type="checkbox" id="majorApplCd8" name="majorApplCd" value="8" /><label for="majorApplCd8">생활문제</label>
-							<input type="checkbox" id="majorApplCd9" name="majorApplCd" value="9" /><label for="majorApplCd9">성문제</label>
-							<input type="checkbox" id="majorApplCd10" name="majorApplCd" value="10" /><label for="majorApplCd10">부부문제</label>
-							<input type="checkbox" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족문제</label>
-							<input type="checkbox" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">학대문제</label>
-							<input type="checkbox" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">노년생애문제</label>
-							<input type="checkbox" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">기타</label> -->
-							<!-- <input type="radio" id="majorApplCd1" name="majorApplCd" value="1" /><label for="majorApplCd1">심리·정서문제</label>
-							<input type="radio" id="majorApplCd2" name="majorApplCd" value="2" /><label for="majorApplCd2">대인관계문제</label>
-							<input type="radio" id="majorApplCd3" name="majorApplCd" value="3" /><label for="majorApplCd3">중독문제</label>
-							<input type="radio" id="majorApplCd4" name="majorApplCd" value="4" /><label for="majorApplCd4">치매문제</label>
-							<input type="radio" id="majorApplCd5" name="majorApplCd" value="5" /><label for="majorApplCd5">정신건강장애문제</label>
-							<input type="radio" id="majorApplCd6" name="majorApplCd" value="6" /><label for="majorApplCd6">건강문제</label>
-							<input type="radio" id="majorApplCd7" name="majorApplCd" value="7" /><label for="majorApplCd7">경제문제</label>
-							<input type="radio" id="majorApplCd8" name="majorApplCd" value="8" /><label for="majorApplCd8">생활문제</label>
-							<input type="radio" id="majorApplCd9" name="majorApplCd" value="9" /><label for="majorApplCd9">성문제</label>
-							<input type="radio" id="majorApplCd10" name="majorApplCd" value="10" /><label for="majorApplCd10">부부문제</label>
-							<input type="radio" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족문제</label>
-							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">학대문제</label>
-							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">노년생애문제</label>
-							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">재난문제</label>
-							<input type="radio" id="majorApplCd15" name="majorApplCd" value="15" /><label for="majorApplCd15">기타</label> -->
 							<input type="radio" id="majorApplCd1" name="majorApplCd" value="1" /><label for="majorApplCd1">심리정서</label>
 							<input type="radio" id="majorApplCd2" name="majorApplCd" value="2" /><label for="majorApplCd2">대인관계</label>
 							<input type="radio" id="majorApplCd3" name="majorApplCd" value="3" /><label for="majorApplCd3">치매</label>
@@ -572,9 +544,9 @@
 							<input type="radio" id="majorApplCd9" name="majorApplCd" value="9" /><label for="majorApplCd9">성</label>
 							<input type="radio" id="majorApplCd10" name="majorApplCd" value="10" /><label for="majorApplCd10">부부</label>
 							<input type="radio" id="majorApplCd11" name="majorApplCd" value="11" /><label for="majorApplCd11">가족</label>
-							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">학대</label>
-							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">노년생애준비</label>
-							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">재난</label>
+							<input type="radio" id="majorApplCd12" name="majorApplCd" value="12" /><label for="majorApplCd12">역할상실</label>
+							<input type="radio" id="majorApplCd13" name="majorApplCd" value="13" /><label for="majorApplCd13">생애진로</label>
+							<input type="radio" id="majorApplCd14" name="majorApplCd" value="14" /><label for="majorApplCd14">자살</label>
 							<input type="radio" id="majorApplCd15" name="majorApplCd" value="15" /><label for="majorApplCd15">기타</label>
 						</td>
 					</tr>

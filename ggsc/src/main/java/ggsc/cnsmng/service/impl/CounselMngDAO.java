@@ -1,6 +1,8 @@
 package ggsc.cnsmng.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -657,6 +659,10 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	
 	public void deletePsyCnsDocDtl(String caseNo) {
 		update("cnsMngDao.deletePsyCnsDocDtl", caseNo);
+	}
+	
+	public void deleteExiPsyCnsDocDtl(Map<String, Object> map) {
+		update("cnsMngDao.deleteExiPsyCnsDocDtl", map);
 	}
 	
 	public void deleteLinkReq(String caseNo) {

@@ -303,10 +303,9 @@
 					<c:if test="${result == null}">
 						<button type="button" class="btn-basic" onClick="javascript:fn_save('I');" style="background-color: green;color:white;">저장</button>
 					</c:if>
-					<c:if test="${authCd <= 1 && result != null }">
+					<c:if test="${ result != null && (authCd <= 1 || ( authCd > 1 && userId == result.cnsrId )) }">
 						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
 					</c:if>
-					
 					
 				</div>	
 			</form>

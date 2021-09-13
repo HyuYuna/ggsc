@@ -15,6 +15,7 @@ public class UsermVO extends PageVO {
 	private String acptDt;
 	private String useYn;
 	private String cnsrNm;
+	private String cnsrGb;
 	
 	private String apprvYn; // 승인여부
 	private String sigunCd;
@@ -97,5 +98,12 @@ public class UsermVO extends PageVO {
 	public void setCnsrNm(String cnsrNm) {
 		this.cnsrNm = cnsrNm;
 	}
+	public String getCnsrGb() {
+		return cnsrGb;
+	}
+	public void setCnsrGb(String cnsrGb) {
+		this.cnsrGb = cnsrGb;
+	}
+	
 	
 }

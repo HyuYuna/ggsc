@@ -170,7 +170,7 @@
 						<th scope="col">상담방법</th>
 						<th scope="col">상담경위</th>
 						<th scope="col">성별</th>
-						<th scope="col">주요문제</th>
+						<th scope="col">주호소문제</th>
 						<th scope="col">상담요약내용</th>
 						<th scope="col">PDF</th>
 						<th scope="col">최근상담일</th>

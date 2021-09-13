@@ -74,6 +74,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -131,6 +134,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -178,6 +184,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -220,6 +229,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -275,6 +287,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -336,6 +351,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gpem.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gpem.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gpem.REG_ID = #regId#
@@ -407,6 +425,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gecd.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gecd.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gecd.CNSR_ID = #regId#
@@ -432,7 +453,7 @@
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G71' AND ODR = ggd.ZONE_GB) AS zoneGb ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G72' AND ODR = ggd.LOCAL_GB) AS localGb ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G089' AND ODR = ggd.SIGUN_CD) AS sigunGb ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G57' AND ODR = ggd.major_appl_cd) AS majorApplCd ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = ggd.major_appl_cd) AS majorApplCd ,
 			ggd.pgrm_nm ,
 			ggd.cns_cnt ,
 			ggd.atvy_dt ,
@@ -474,6 +495,9 @@
 			</isEqual>
 			<isEqual property="authCd" compareValue="3">
 				AND ggd.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND ggd.CNSR_ID = #regId#
+				</isEqual>
 			</isEqual>
 			<isEqual property="authCd" compareValue="4">
 				AND ggd.CNSR_ID = #regId#
@@ -509,7 +533,7 @@
 			gpcd.cns_dt ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G14' AND ODR = gpcd.cns_methd) AS cnsMethd ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G44' AND ODR = gpcd.cnsle_rel) AS cnsleRel ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G57' AND ODR = gpcd.major_appl_cd) AS majorApplCd ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gpcd.major_appl_cd) AS majorApplCd ,
 			gpcd.cns_cntn ,
 			gpcd.CASE_NO ,
 			date_format(gpcd.db_ins_tm,'%Y.%m.%d') AS dbInsTm
@@ -534,6 +558,9 @@
 			</isEqual>
 			<isEqual property="authCd" compareValue="3">
 				AND gpcd.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND gpcd.CNSR_ID = #regId#
+				</isEqual>
 			</isEqual>
 			<isEqual property="authCd" compareValue="4">
 				AND gpcd.CNSR_ID = #regId#
@@ -599,6 +626,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -832,6 +862,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -1027,6 +1060,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gca.REG_ID = #regId#
@@ -1131,6 +1167,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gpem.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gpem.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gpem.REG_ID = #regId#
@@ -1176,6 +1215,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gpem.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gpem.REG_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gpem.REG_ID = #regId#
@@ -1925,6 +1967,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND gecd.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gecd.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND gecd.CNSR_ID = #regId#
@@ -1970,6 +2015,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -2083,7 +2131,6 @@
 					GS_PER_CNS_DTL
 				WHERE
 					1=1
-				AND CNS_STAT = '1'
 				AND USE_YN = 'Y'
 				<isNotEmpty property="schCnsGb" prepend="AND">
 					CNS_GB = #schCnsGb#
@@ -2101,6 +2148,9 @@
 				</isEqual>
 				<isEqual property="authCd" compareValue="3">
 					AND CENTER_GB = #schCenterGb#
+					<isEqual property="schCenterGb" compareValue="1">
+						AND CNSR_ID = #regId#
+					</isEqual>
 				</isEqual>
 				<isEqual property="authCd" compareValue="4">
 					AND CNSR_ID = #regId#
@@ -2149,6 +2199,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -2182,7 +2235,7 @@
 				ealy.EDU ,
 				cns.CNSR_NM ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G48' AND ODR = left(cns.KILLS_RSKN, 1)) AS killsRskn ,
-				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G57' AND ODR = ealy.MAJOR_APPL_CD) AS majorCd ,
+				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = ealy.MAJOR_APPL_CD) AS majorCd ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G18' AND ODR = cns.CNS_STAT) AS cnsStatCd ,
 				(SELECT YEAR(NOW())-YEAR(cns.BIRTH_DT)+1) AS AGE
 			FROM
@@ -2208,6 +2261,9 @@
 			</isEqual>
 			<isEqual property="authCd" compareValue="3">
 				AND CNS.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND CNS.CNSR_ID = #regId#
+				</isEqual>
 			</isEqual>
 			<isEqual property="authCd" compareValue="4">
 				AND CNS.CNSR_ID = #regId#
@@ -2243,7 +2299,7 @@
 				cns.CNSR_NM ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G48' AND ODR = left(cns.KILLS_RSKN, 1)) AS killsRskn ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G22' AND ODR = cns.CNS_END_CD) AS cnsEndCd ,
-				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G57' AND ODR = ealy.MAJOR_APPL_CD) AS majorCd ,
+				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = ealy.MAJOR_APPL_CD) AS majorCd ,
 				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G18' AND ODR = cns.CNS_STAT) AS cnsStatCd ,
 				(SELECT YEAR(NOW())-YEAR(cns.BIRTH_DT)+1) AS AGE
 			FROM
@@ -2268,6 +2324,9 @@
 			</isEqual>
 			<isEqual property="authCd" compareValue="3">
 				AND CNS.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND CNS.CNSR_ID = #regId#
+				</isEqual>
 			</isEqual>
 			<isEqual property="authCd" compareValue="4">
 				AND CNS.CNSR_ID = #regId#
@@ -2283,7 +2342,7 @@
 			) A
 
 	</select>
-
+	
 	<!-- 개인상담일지 등록 -->
 	<insert id="cnsMngDao.insertPerCns" parameterClass="perCnsVO">
 		INSERT INTO
@@ -2379,18 +2438,6 @@
 		, AHYD_ACPT_DT
 		, AHYD_END_DT
 		, ABUS_OPTN
-		, LIVG_FORM
-		, HOUSE_FORM
-		, HOUSE_CHNG
-		, MERR_STAT
-		, LIVE_FORM
-		, SUJT_HELCY_STAT
-		, DIGN_MHIST
-		, MNDS
-		, ECONO_STAT
-		, RECNT_FMLY_DETH
-		, RECNT_MMAN_DETH
-		, OLDER_WORK_PTPT_YN
 		, KILLS_RSKN
 		, PSYC_QUST
 		, PER_REL_QUST
@@ -2441,7 +2488,8 @@
 		, #cnsEfftPlace#
 		, #cnsRsvtPlace#
 		
-		, (SELECT IFNULL(COUNT(A.NUM),1)+1 FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#)
+		<!--, (SELECT IFNULL(COUNT(A.NUM),1)+1 FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#)-->
+		, #cnsCnt#
 		, #emgcyUrgt#
 		, #cnsDt#
 		, #cnsDtWeekCd#
@@ -2464,18 +2512,6 @@
 		, #ahydAcptDt#
 		, #ahydEndDt#
 		, #abusOptn#
-		, #livgForm#
-		, #houseForm#
-		, #houseChng#
-		, #merrStat#
-		, #liveForm#
-		, #sujtHelcyStat#
-		, #dignMhist#
-		, #mnds#
-		, #econoStat#
-		, #recntFmlyDeth#
-		, #recntMmanDeth#
-		, #olderWorkPtptYn#
 		, #killsRskn#
 		, #psycQust#
 		, #perRelQust#
@@ -2578,6 +2614,7 @@
 			CNS_EFFT_PLACE = #cnsEfftPlace#
 		  , CNS_RSVT_PLACE = #cnsRsvtPlace#
 		  <!-- 조작 못하게 주석 , CNS_CNT = #cnsCnt# -->
+		  , CNS_CNT = #cnsCnt#
 		  , EMGCY_URGT = #emgcyUrgt#
 		  , CNS_DT = #cnsDt#
 		  , CNS_DT_WEEK_CD = #cnsDtWeekCd#
@@ -2600,18 +2637,6 @@
 		  , AHYD_ACPT_DT = #ahydAcptDt#
 		  , AHYD_END_DT = #ahydEndDt#
 		  , ABUS_OPTN = #abusOptn#
-		  , LIVG_FORM = #livgForm#
-		  , HOUSE_FORM = #houseForm#
-		  , HOUSE_CHNG = #houseChng#
-		  , MERR_STAT = #merrStat#
-		  , LIVE_FORM = #liveForm#
-		  , SUJT_HELCY_STAT = #sujtHelcyStat#
-		  , DIGN_MHIST = #dignMhist#
-		  , MNDS = #mnds#
-		  , ECONO_STAT = #econoStat#
-		  , RECNT_FMLY_DETH = #recntFmlyDeth#
-		  , RECNT_MMAN_DETH = #recntMmanDeth#
-		  , OLDER_WORK_PTPT_YN = #olderWorkPtptYn#
 		  , KILLS_RSKN = #killsRskn#
 		  , PSYC_QUST = #psycQust#
 		  , PER_REL_QUST = #perRelQust#
@@ -2738,6 +2763,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND ggd.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND ggd.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND ggd.CNSR_ID = #regId#
@@ -2784,6 +2812,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -3128,6 +3159,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND dtl.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND dtl.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND dtl.CNSR_ID = #regId#
@@ -3175,6 +3209,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -3265,6 +3302,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND dtl.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND dtl.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND dtl.CNSR_ID = #regId#
@@ -3393,6 +3433,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND m.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND m.CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND m.CNSR_ID = #regId#
@@ -3437,6 +3480,9 @@
 		</isEqual>
 		<isEqual property="authCd" compareValue="3">
 			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">
 			AND CNSR_ID = #regId#
@@ -4706,6 +4752,14 @@
 			FROM gs_psy_cns_doc_dtl
 		WHERE 
 			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteExiPsyCnsDocDtl" parameterClass="HashMap">
+		DELETE 
+			FROM gs_psy_cns_doc_dtl
+		WHERE 
+			CASE_NO = #caseNo#
+			AND CNS_DTL_NUM = #num#
 	</update>
 	
 	<update id="cnsMngDao.deleteLinkReq" parameterClass="java.lang.String">

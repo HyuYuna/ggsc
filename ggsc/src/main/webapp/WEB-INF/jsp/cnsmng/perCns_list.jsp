@@ -360,63 +360,8 @@
                 </div>
 			</div> 
 			
-			<h3 class="h3-title"><i class="fa fa-star"></i>개인상담 재신청</h3>
-			<table class="table-style1" style="margin-bottom: 5px;">
-				<colgroup> 
-					<col width="5%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col">상담상태</th>
-						<th scope="col">case.No</th>
-						<th scope="col">상담회기</th>
-						<th scope="col">상담일시</th>
-						<th scope="col">성명</th> 
-						<th scope="col">성별</th>
-						<th scope="col">현재연령</th>
-						<th scope="col">자살위험도</th>
-						<th scope="col">주호소</th>
-						<th scope="col">상담자</th>
-					</tr>
-				</thead>
-				<tbody id="tby1">
-					<c:if test="${cnsCntReList.size() == 0 }">
-						<tr>
-							<td colspan="10">정보가 없습니다.</td>
-						</tr>
-					</c:if>
-					<c:if test="${cnsCntReList.size() > 0 }">
-						<c:forEach items="${cnsCntReList }" var="result">
-							<tr>
-								<td>${result.cnsStatCd }</td>
-								<td>${result.caseNo }</td>
-								<td>${result.cnsCnt }회기</td>
-								<td>${result.cnsDt }</td>
-								<td>${result.cnsleNm }</td>
-								<td>
-									<c:if test="${result.gender eq 'M' }">남</c:if>
-									<c:if test="${result.gender eq 'F' }">여</c:if>
-								</td>
-								<td>${result.age }세</td>
-								<td>${result.killsRskn }</td>
-								<td>${result.majorCd }</td>
-								<td>${result.cnsrNm }</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</tbody>
-			</table>
 		
-			<h3 class="h3-title" style="margin-top:30px;"><i class="fa fa-star"></i>개인상담 종결</h3>
+			<!-- <h3 class="h3-title" style="margin-top:30px;"><i class="fa fa-star"></i>개인상담 종결</h3>
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
 					<col width="5%"></col>
@@ -470,8 +415,7 @@
 						</c:forEach>
 					</c:if>
 				</tbody>
-			</table>
-			
+			</table>  -->
 		</div>
 		<!-- end -->
 

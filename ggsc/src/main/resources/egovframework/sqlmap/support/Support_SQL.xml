@@ -139,22 +139,6 @@
 			case gpcd.ABUS_OPTN when 'Y' then '예' when 'N' then '아니오' ELSE '' END AS abusOptn ,
 			
 			
-					(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G9' AND ODR = gpcd.LIVG_FORM) AS LIVG_FORM ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G10' AND ODR = gpcd.HOUSE_FORM) AS HOUSE_FORM ,
-					( SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_NM = '동거형태' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.LIVE_FORM, ',', numbers.n), ',', -1) CD  FROM numbers INNER JOIN  gs_per_cns_dtl AS B ON CHAR_LENGTH(B.LIVE_FORM)-CHAR_LENGTH(REPLACE(B.LIVE_FORM, ',', ''))>=numbers.n-1 WHERE B.NUM = gpcd.NUM ) ) AS LIVE_FORM ,
-					( SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_NM = '결혼상태' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.MERR_STAT, ',', numbers.n), ',', -1) CD  FROM numbers INNER JOIN  gs_per_cns_dtl AS B ON CHAR_LENGTH(B.MERR_STAT)-CHAR_LENGTH(REPLACE(B.MERR_STAT, ',', ''))>=numbers.n-1 WHERE B.NUM = gpcd.NUM ) ) AS MERR_STAT ,
-			
-		
-			
-			case gpcd.HOUSE_CHNG when '1' then '최근 5년 이내' when '2' then '55세 이후 거주지역 변경하여 이사' ELSE '' END AS houseChng ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G85' AND ODR = gpcd.DIGN_MHIST) AS dignMhist ,
-			case gpcd.SUJT_HELCY_STAT when '1' then '매우 건강함' when '2' then '건강한편' when '3' then '보통' when '4' then '건강하지 않은 편' when '5' then '매우 건강하지 않음' ELSE '' END AS sujtHelcyStat ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G85' AND ODR = gpcd.MNDS) AS mnds ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G87' AND ODR = gpcd.ECONO_STAT) AS econoStat ,
-			case gpcd.RECNT_FMLY_DETH when 'Y' then '유' when 'N' then '무' ELSE '' END AS recntFmlyDeth ,
-			case gpcd.RECNT_MMAN_DETH when 'Y' then '유' when 'N' then '무' ELSE '' END AS recntMmanDeth ,
-			case gpcd.OLDER_WORK_PTPT_YN when '1' then '참여' when '2' then '중단' when '3' then '참여실적 없음' ELSE '' END AS olderWorkPtptYn ,
-			
 			( SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_CD = 'G48' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.KILLS_RSKN, ',', numbers.n), ',', -1) CD  FROM numbers INNER JOIN  gs_per_cns_dtl AS B ON CHAR_LENGTH(B.KILLS_RSKN)-CHAR_LENGTH(REPLACE(B.KILLS_RSKN, ',', ''))>=numbers.n-1 WHERE B.NUM = gpcd.NUM ) ) AS KILLS_RSKN ,
 			( SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_CD = 'G45' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.PSYC_QUST, ',', numbers.n), ',', -1) CD  FROM numbers INNER JOIN  gs_per_cns_dtl AS B ON CHAR_LENGTH(B.PSYC_QUST)-CHAR_LENGTH(REPLACE(B.PSYC_QUST, ',', ''))>=numbers.n-1 WHERE B.NUM = gpcd.NUM ) ) AS PSYC_QUST ,
 			( SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_CD = 'G43' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.PER_REL_QUST, ',', numbers.n), ',', -1) CD  FROM numbers INNER JOIN  gs_per_cns_dtl AS B ON CHAR_LENGTH(B.PER_REL_QUST)-CHAR_LENGTH(REPLACE(B.PER_REL_QUST, ',', ''))>=numbers.n-1 WHERE B.NUM = gpcd.NUM ) ) AS PER_REL_QUST ,

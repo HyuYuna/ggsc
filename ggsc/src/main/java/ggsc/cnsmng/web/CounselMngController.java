@@ -1,7 +1,6 @@
 package ggsc.cnsmng.web;
 
 import java.io.File;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,7 +10,9 @@ import java.net.URLEncoder;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
@@ -1081,12 +1082,13 @@ public class CounselMngController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("cnsList", cnsList);
 		// 개인상담 재신청
-		List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(vo);
+		//List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(vo);
 		// int totalPageCnt3 = counselMngService.getCnsCntReListTotCnt(vo);
-		model.addAttribute("cnsCntReList", cnsCntReList);
+		//model.addAttribute("cnsCntReList", cnsCntReList);
+		
 		// 개인상담 종결
 		List<EgovMap> cnsCntEndList = counselMngService.getCnsCntEndList(vo);
-		// int totalPageCnt4 = counselMngService.getCnsCntEndListTotCnt(vo);
+		//int totalPageCnt4 = counselMngService.getCnsCntEndListTotCnt(vo);
 		model.addAttribute("cnsCntEndList", cnsCntEndList);
 		
 		model.addAttribute("authCd", userAuth);
@@ -1220,6 +1222,26 @@ public class CounselMngController {
 
 		return "redirect:/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
 	}
+	
+	/*@RequestMapping(value = "/perCnsDel.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String perCnsDel(PerCnsVO vo, HttpServletRequest request, ModelMap model) {
+		
+		Map <String,Object> map = new HashMap<String,Object>();
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		
+		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
+		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+		
+		map.put("caseNo" , caseNo);
+		map.put("num" , num);
+		
+		counselMngService.deleteExiPerCnsDoc(map);
+
+		return "redirect:/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
+	}*/
 
 	@RequestMapping(value = "/gCnsList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String gCnsList(GcnsVO vo, HttpServletRequest request, ModelMap model) {
