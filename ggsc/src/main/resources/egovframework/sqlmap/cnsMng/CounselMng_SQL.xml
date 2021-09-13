@@ -4399,7 +4399,7 @@
 			CNS_END_DT = #cnsEndDt#
 		WHERE
 			CASE_NO = #caseNo#
-		AND CNS_CNT = (SELECT * FROM (SELECT IFNULL(COUNT(A.NUM),1) FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#) AS A)
+		AND CNS_CNT = #cnsCnt#
 	</update>
 
 	<!-- pdf 저장 -->

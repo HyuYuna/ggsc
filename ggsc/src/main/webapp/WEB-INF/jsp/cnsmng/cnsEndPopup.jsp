@@ -55,11 +55,14 @@ function fn_save(){
 		$("#cnsGbR").val("1");
 	} else if(cnsGb == "중장년층상담") {
 		$("#cnsGbR").val("2");
+	} else if(cnsGb == '24시노인ON상담') {
+		$("#cnsGbR").val("3");
 	}
 	
 	var cnsleNm = $("#cnsleNm").val();
 	var cnsDtS = $("input[name=cnsDtS]").val();
 	var cnsDtE = $("input[name=cnsDtE]").val();
+	var cnsCnt = $("input[name=cnsCnt]").val();
 	
 	
 	if(cnsleNm.length == 0) {
@@ -85,6 +88,13 @@ function fn_save(){
 		$("#cnsEndMethd").focus();
 		return;
 	}
+	
+	if(cnsCnt.length == 0) {
+		alert("상담회기를 선택해주세요.");
+		$("#cnsCnt").focus();
+		return;
+	}
+	
 	/* if($("input:radio[name='cnsStft']").is(":checked") == false) {
 		alert("내담자 상담만족도를 체크해 주세요.");
 		$("#cnsStft").focus();
@@ -187,6 +197,12 @@ function fn_close(){
 							<input type="radio" id="cnsEndMethd1" name="cnsEndMethd" value="1" /><label for="cnsEndMethd1">면접</label>
 							<input type="radio" id="cnsEndMethd2" name="cnsEndMethd" value="2" /><label for="cnsEndMethd2">전화</label>
 							<input type="radio" id="cnsEndMethd3" name="cnsEndMethd" value="3" /><label for="cnsEndMethd3">기타</label> 
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2">종결처리 하실 상담회기</th>
+						<td colspan="3">
+							<input type="text" class="wd200" id="cnsCnt" name="cnsCnt" value="" onlyNumber />
 						</td>
 					</tr>
 					<tr>

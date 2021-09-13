@@ -325,6 +325,7 @@
 			ADDR = #addr#,
 			CNS_DT_S = #cnsDtS#,
 			CNS_DT_E = #cnsDtE#,
+			CNS_CNT = #cnsCnt#,
 			CNS_END_METHD = #cnsEndMethd#,
 			CNS_STFT = #cnsStft#,
 			HELP_CNTN = #helpCntn#,

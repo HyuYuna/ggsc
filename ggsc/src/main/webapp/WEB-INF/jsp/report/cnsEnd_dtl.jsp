@@ -134,6 +134,12 @@
 						</td>
 					</tr>
 					<tr>
+						<th colspan="2">상담회기</th>
+						<td colspan="3">
+							<input type="text" class="wd200" id="cnsCnt" name="cnsCnt" value="${result.cnsCnt }" onlyNumber />
+						</td>
+					</tr>
+					<tr>
 						<th rowspan="2" colspan="2">내담자 상담만족도</th>
 						<td colspan="3">
 							<input type="radio" id="cnsStft1" name="cnsStft" value="1" <c:if test="${result.cnsStft == 1}"> checked </c:if>/><label for="cnsStft1">1</label>
