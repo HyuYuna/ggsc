@@ -76,6 +76,7 @@
 	function fn_reg() {
 		
 		var cnsleNm = $("#cnsleNm").val();
+		var cnsCnt = $("#cnsCnt").val();
 		var cnsStat = $("#cnsStat").val();
 		var datepicker8 = $("#datepicker8").val(); 
 		var cnsDtStdHour = $("#cnsDtStdHour").val(); 
@@ -93,6 +94,11 @@
 		if(cnsleNm.length == 0) {
 			alert("내담자명을 입력해 주세요");
 			$("#cnsleNm").focus();
+			return;
+		}
+		if(cnsCnt.length == 0) {
+			alert("상담회기를 입력해 주세요");
+			$("#cnsCnt").focus();
 			return;
 		}
 		if(cnsStat == 2) {
