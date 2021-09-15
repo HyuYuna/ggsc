@@ -20,6 +20,7 @@
 <style>
 a { text-decoration:none; color:#333;} 
 .main-menu > li > a:hover {font-weight: bold;}
+body {min-width:320px;}
 </style>
 <body>
 	<div id="wrap">
