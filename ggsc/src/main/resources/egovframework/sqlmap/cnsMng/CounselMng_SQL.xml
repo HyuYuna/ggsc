@@ -540,8 +540,7 @@
 		FROM
 			gs_per_cns_dtl AS gpcd
 		where
-			1=1
-			AND gpcd.CNS_STAT = '1'
+			gpcd.CNS_STAT = '1'
 			AND gpcd.USE_YN = 'Y'
 			<isNotEmpty property="schCnsGb" prepend="AND">
 				gpcd.CNS_GB = #schCnsGb#
