@@ -88,6 +88,8 @@
 		if(param == 'S') {
 			if(confirm("상담사 정보를 수정하시겠습니까?")){
 				
+				var authCd = "${authCd}";
+				
 				var cnsGb = $("#cnsGb").val(); // 상담구분
 				var centerGb = $("#centerGb").val(); // 센터구분
 				var edu = $("#edu").val(); // 학력
@@ -107,10 +109,12 @@
 					$("#centerGb").focus();
 					return;
 				}
-				if($("input:radio[name='cnsrGb']").is(":checked") == false) {
-					alert("상담사 구분을 체크해 주세요.");
-					$("#cnsrGb").focus();
-					return;
+				if(authCd <= 1) {
+					if($("input:radio[name='cnsrGb']").is(":checked") == false) {
+						alert("상담사 구분을 체크해 주세요.");
+						$("#cnsrGb").focus();
+						return;
+					}	
 				}
 				if(userNm.length == 0) {
 					alert("이름을 입력해 주세요.");

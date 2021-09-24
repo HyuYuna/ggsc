@@ -947,28 +947,24 @@
             
             <table class="table-style1" style="margin-top:15px;">
                 <colgroup>
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
-                    <col style="width: 5%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
+                    <col style="width: 6%;" />
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="col" colspan="18" style="text-align: left;">8. 홍보</th>
+                        <th scope="col" colspan="14" style="text-align: left;">8. 홍보</th>
                     </tr>
                     <tr>
                         <td rowspan="2">구분</td>
