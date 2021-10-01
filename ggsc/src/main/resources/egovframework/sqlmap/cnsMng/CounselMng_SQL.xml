@@ -833,7 +833,9 @@
 		<isEqual property="cnsTargetGb" compareValue="Y">
 			, GS_PRE_EXAM_M gpem
 		</isEqual>
-
+		<isEqual property="cnsPerTargetGb" compareValue="Y">
+			, GS_EALY_CNS_DOC gecd
+		</isEqual>
 		WHERE
 		gum.USER_ID = gca.USER_ID
 		<isEqual property="cnsTargetGb" compareValue="Y">
@@ -844,6 +846,9 @@
 			AND gum.USER_ID = gpem.USER_ID
 			AND gpem.CNS_TARGET_GB = 'Y'
 		</isNotEmpty> -->
+		<isEqual property="cnsPerTargetGb" compareValue="Y">
+			AND gum.USER_ID = gecd.CNSLE_ID
+		</isEqual>
 		AND gca.ACPT_YN = 'Y'
 		AND gum.USE_YN = 'Y'
 		<isNotEmpty property="schUserNm" prepend="AND">
@@ -2972,14 +2977,14 @@
 		  DB_INS_TM
 		) VALUES (
 			#num# ,
-			(SELECT A.case_no FROM gs_cns_acpt as A WHERE A.user_id = #cnsleId#) ,
-			(SELECT A.cns_gb FROM gs_cns_acpt as A WHERE A.user_id = #cnsleId#) ,
+			(SELECT A.case_no FROM gs_ealy_cns_doc as A WHERE A.cnsle_id = #cnsleId#) ,
+			(SELECT C.cns_gb FROM gs_ealy_cns_doc as C WHERE C.cnsle_id = #cnsleId#) ,
 			'2' ,
-			(SELECT A.local_gb FROM gs_cns_acpt AS A WHERE A.user_id =#cnsleId#) ,
-			(SELECT A.zone_gb FROM gs_cns_acpt AS A WHERE A.user_id = #cnsleId#) ,
-			(SELECT A.center_gb FROM gs_cns_acpt AS A WHERE A.user_id = #cnsleId#) ,
-			(SELECT B.gender FROM gs_USER_M AS B WHERE B.user_id = #cnsleId#) ,
-			(SELECT B.BIRTH_DT from gs_USER_M AS B WHERE B.user_id = #cnsleId#) ,
+			(SELECT D.local_gb FROM gs_ealy_cns_doc as D WHERE D.cnsle_id = #cnsleId#) ,
+			(SELECT E.zone_gb FROM gs_ealy_cns_doc as E WHERE E.cnsle_id = #cnsleId#) ,
+			(SELECT F.center_gb FROM gs_ealy_cns_doc as F WHERE F.cnsle_id = #cnsleId#) ,
+			(SELECT G.gender FROM gs_ealy_cns_doc as G WHERE G.cnsle_id = #cnsleId#) ,
+			(SELECT H.BIRTH_DT from gs_ealy_cns_doc as H WHERE H.cnsle_id = #cnsleId#) ,
 			#cnsleNm# ,
 			#cnsleId# ,
 			#cnsrNm# ,

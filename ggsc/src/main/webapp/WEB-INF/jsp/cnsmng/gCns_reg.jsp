@@ -100,7 +100,7 @@
 	function findUserPopup(){
 		var userNm = $("#cnsleNm").val();
 		userNm = encodeURI(encodeURIComponent(userNm));		
-		var url = "/gnoincoundb/userSelPopup.do?userNm=" + userNm+"&cnsTargetGb=Y";
+		var url = "/gnoincoundb/userSelPopup.do?userNm=" + userNm+"&cnsTargetGb=Y&cnsPerTargetGb=Y";
 		var name = "회원 찾기";
 		var option = "width = 620, height = 750, top = 50, left = 100, location = yes";
 		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));

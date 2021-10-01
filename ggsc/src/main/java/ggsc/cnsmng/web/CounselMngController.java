@@ -722,6 +722,7 @@ public class CounselMngController {
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("cnsTargetGb", vo.getCnsTargetGb());
+		model.addAttribute("cnsPerTargetGb", vo.getCnsPerTargetGb());
 		model.addAttribute("list", list);
 		model.addAttribute("vo", vo);
 
@@ -822,12 +823,15 @@ public class CounselMngController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
+		vo.setCnsTargetGb("Y");
+		vo.setCnsPerTargetGb("Y");
 		List<EgovMap> list = counselMngService.findUserPopup(vo);
 		int totalPageCnt = counselMngService.getFindUserTotCnt(vo);
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("cnsTargetGb", vo.getCnsTargetGb());
+		model.addAttribute("cnsPerTargetGb", vo.getCnsPerTargetGb());
 		model.addAttribute("list", list);
 		model.addAttribute("vo", vo);
 

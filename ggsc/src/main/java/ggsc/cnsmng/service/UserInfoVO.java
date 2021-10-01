@@ -16,6 +16,7 @@ public class UserInfoVO extends PageVO{
 	private String schUserNm;
 	private String schCenterGb;
 	private String cnsTargetGb;
+	private String cnsPerTargetGb;
 	private String authCd;
 	private String regId;
 	private String schCaseNo;
@@ -49,6 +50,12 @@ public class UserInfoVO extends PageVO{
 	}
 	public void setCnsTargetGb(String cnsTargetGb) {
 		this.cnsTargetGb = cnsTargetGb;
+	}
+	public String getCnsPerTargetGb() {
+		return cnsPerTargetGb;
+	}
+	public void setCnsPerTargetGb(String cnsPerTargetGb) {
+		this.cnsPerTargetGb = cnsPerTargetGb;
 	}
 	public String getBirthDt() {
 		return birthDt;
