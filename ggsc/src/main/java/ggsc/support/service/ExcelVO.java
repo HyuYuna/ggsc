@@ -352,7 +352,7 @@ public class ExcelVO extends PageVO{
 			case 6 :
 				setInit("마음나눔봉사단 목록", 
 						new String[] { "순번", "상담구분", "센터구분", "성명", "일자"},
-						new String[] { "rnum", "cnsNm", "centerNm", "bSubject", "bDate"});
+						new String[] { "rnum", "cnsNm", "centerNm", "voluntNm", "bDate"});
 				break;
 			case 7 :
 				setInit("성인식개선사업 목록", 

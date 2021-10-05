@@ -75,6 +75,12 @@
 		    AND USE_YN = 'Y'
 		    ORDER BY ODR
 		    <!-- 권한별 검색 조건 -->
+		    <isEqual property="authCd" compareValue="2">
+				LIMIT 8
+			</isEqual>
+			<isEqual property="authCd" compareValue="3">
+				LIMIT 8
+			</isEqual>
 			<isEqual property="authCd" compareValue="4">
 				LIMIT 6
 			</isEqual>
