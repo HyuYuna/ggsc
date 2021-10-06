@@ -124,17 +124,9 @@
 				A.USER_ID LIKE CONCAT('%', #schUserId#, '%')
 			</isNotEmpty>
 			
-			<!-- <isNotEqual property="authCd" compareValue="1">
+			<isNotEqual property="authCd" compareValue="1">
 	            AND A.USER_ID = #userId# 
-			</isNotEqual> -->
-			
-			<!-- 권한별 검색 조건 -->
-			<isEqual property="authCd" compareValue="2">
-				AND A.CENTER_GB = #schCenterGb#
-			</isEqual>
-			<isEqual property="authCd" compareValue="3">
-				AND A.USER_ID = #userId#
-			</isEqual>
+			</isNotEqual>
 
 		) A
 		<![CDATA[
