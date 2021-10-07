@@ -4404,6 +4404,7 @@
 		WHERE
 			CASE_NO = #caseNo#
 		AND CNS_CNT = #cnsCnt#
+		AND CNS_DTL_GB_CD != '2'
 	</update>
 
 	<!-- pdf 저장 -->
