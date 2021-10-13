@@ -22,7 +22,6 @@
 		list(userId,"Y");
 		var schCenterGb = "${vo.schCenterGb}";
 		
-		
 		$("select[name=centerGb]").val(schCenterGb);
 		
 		$("#sBtn").css("display", "none");
