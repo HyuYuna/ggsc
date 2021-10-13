@@ -64,6 +64,7 @@
 			url = "/gnoincoundb/exiCnsAcceptList.do?mnuCd=${mnuCd}";
 		} else if (no == 3) {
 			url = "/gnoincoundb/cnsInfoList.do?mnuCd=${mnuCd}";
+			
 		}
 		document.location.href = url;
 	}
