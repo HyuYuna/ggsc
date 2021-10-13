@@ -23,7 +23,6 @@
 		var schCenterGb = "${vo.schCenterGb}";
 		$("select[name=centerGb]").val(schCenterGb);
 		
-		
 		$("#sBtn").css("display", "none");
 		$("#nBtn").css("display", "none");
 		$("#yBtn").css("display", "none");
