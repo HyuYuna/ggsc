@@ -62,6 +62,8 @@
 			url = "/gnoincoundb/cnsAcceptList.do?mnuCd=${mnuCd}";
 		} else if (no == 2) {
 			url = "/gnoincoundb/exiCnsAcceptList.do?mnuCd=${mnuCd}";
+		} else if (no == 3) {
+			url = "/gnoincoundb/cnsInfoList.do?mnuCd=${mnuCd}";
 		}
 		document.location.href = url;
 	}
@@ -150,6 +152,7 @@
 			<ul class="tabs">
 				<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(1);">신규접수관리</li>
 				<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;">기존접수관리</li>
+				<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(3);">정보제공상담</li>
 			</ul>
 		</div>
 			<span style="float:left; margin: 0;">
