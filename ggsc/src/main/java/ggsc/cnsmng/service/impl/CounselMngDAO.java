@@ -32,16 +32,22 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		return (List<EgovMap>)list("cnsMngDao.getPsyCnsListUser", g_idx);
 	}
 	
-	
 	// 상담접수관리 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getCnsAcceptList(CnsAcptVO vo){
 		return (List<EgovMap>)list("cnsMngDao.getCnsAcceptList", vo);
 	}
 	
+	// 기존상담접수관리 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getExiCnsAcceptList(CnsAcptVO vo){
 		return (List<EgovMap>)list("cnsMngDao.getExiCnsAcceptList", vo);
+	}
+	
+	// 정보제공상담 목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsInfoList(CnsAcptVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getCnsInfoList", vo);
 	}
 	
 	// 상담접수관리 목록 갯수
@@ -49,9 +55,13 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		return (Integer)select("cnsMngDao.getCnsAcptListTotCnt", vo);
 	}
 	
-	// 상담접수관리 목록 갯수
+	// 기존상담접수관리 목록 갯수
 	public int getExiCnsAcptListTotCnt(CnsAcptVO vo){
 		return (Integer)select("cnsMngDao.getExiCnsAcptListTotCnt", vo);
+	}
+	
+	public int getCnsInfoListTotCnt(CnsAcptVO vo){
+		return (Integer)select("cnsMngDao.getCnsInfoListTotCnt", vo);
 	}
 	
 	// 상담접수신청 ID중복체크

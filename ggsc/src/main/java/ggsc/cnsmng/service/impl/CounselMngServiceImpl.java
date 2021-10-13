@@ -72,9 +72,15 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		return cnsMngDao.getCnsAcceptList(vo);
 	}
 	
+	// 기존상담접수관리 목록
 	@Override
 	public List<EgovMap> getExiCnsAcceptList(CnsAcptVO vo) {
 		return cnsMngDao.getExiCnsAcceptList(vo);
+	}
+	
+	@Override
+	public List<EgovMap> getCnsInfoList(CnsAcptVO vo) {
+		return cnsMngDao.getCnsInfoList(vo);
 	}
 	
 	@Override
@@ -85,6 +91,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override
 	public int getExiCnsAcptListTotCnt(CnsAcptVO vo) {
 		return cnsMngDao.getExiCnsAcptListTotCnt(vo);
+	}
+	
+	@Override
+	public int getCnsInfoListTotCnt(CnsAcptVO vo) {
+		return cnsMngDao.getCnsInfoListTotCnt(vo);
 	}
 	
 	// 상담접수신청 ID중복 체크

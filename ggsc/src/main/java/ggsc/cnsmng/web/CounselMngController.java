@@ -191,6 +191,72 @@ public class CounselMngController {
 		return "cnsmng/exiCnsAccept_list.main";
 	}
 	
+	
+	@RequestMapping(value = "/cnsInfoList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cnsInfoList(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		
+		// 권한 관리 끝
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		List<EgovMap> InfoList = counselMngService.getCnsInfoList(vo);
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+
+		int totalPageCnt = counselMngService.getCnsInfoListTotCnt(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("InfoList", InfoList);
+		model.addAttribute("cnsGbList", cnsGbList);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+		return "cnsmng/cnsInfo_list.main";
+	}
+	
 
 	@RequestMapping(value = "/cnsAcceptDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cnsAcceptDtl(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
@@ -221,6 +287,11 @@ public class CounselMngController {
 		EgovMap result = null;
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
+		
+		aram.setHclassCd("G14");
+		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsMethdList", cnsMethdList);
+		
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsGbList", cnsGbList);
@@ -228,6 +299,10 @@ public class CounselMngController {
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
+		
+		param.setHclassCd("G21");
+		List<EgovMap> cnsDtlList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsDtlList", cnsDtlList);
 
 		param.setHclassCd("G71");
 		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
@@ -324,6 +399,74 @@ public class CounselMngController {
 		model.addAttribute("loginVo", loginVo);
 				
 		return "cnsmng/exiCnsAccept_dtl";
+	}
+	
+	
+	@RequestMapping(value = "/cnsInfoDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cnsInfoDtl(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		String type = request.getParameter("type") == null ? "" : request.getParameter("type");
+		EgovMap result = null;
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+
+		param.setHclassCd("G71");
+		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("zoneGbList", zoneGbList);
+
+		param.setHclassCd("G58");
+		List<EgovMap> mApplCdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("mApplCdList", mApplCdList);
+
+		param.setHclassCd("G72");
+		List<EgovMap> localGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("localGbList", localGbList);
+		
+		param.setHclassCd("G089");
+		List<EgovMap> sigunList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("sigunList", sigunList);
+		
+		if (type.equals("D")) {
+			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
+			result = counselMngService.getCnsAcceptDtl(caseNo);
+		}
+		
+		model.addAttribute("result", result);
+		model.addAttribute("type", type);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("loginVo", loginVo);
+				
+		return "cnsmng/cnsInfo_dtl";
 	}
 
 	@RequestMapping(value = "/idCheck_ajax.do", method = RequestMethod.POST)
@@ -697,9 +840,11 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 		int userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 		String centerGb = loginVo.get("centerGb").toString();
+		String cnsGb = loginVo.get("cnsGb").toString();
 		String regId = loginVo.get("userId").toString();
 		vo.setSchCenterGb(centerGb);
 		vo.setRegId(regId);
+		vo.setSchCnsGb(cnsGb);
 		
 		switch (userAuth) {
 			case 1: vo.setAuthCd("1"); break; 

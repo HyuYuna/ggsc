@@ -95,6 +95,7 @@
  		]]>
 	</select>
 	
+	<!-- 기존상담접수관리 목록 -->
 	<select id="cnsMngDao.getExiCnsAcceptList" resultClass="egovMap">
 		SELECT *
 		FROM(SELECT gca.*
@@ -154,6 +155,66 @@
  			ORDER BY NUM DESC
  		]]>
 	</select>
+	
+	<!-- 정보제공상담 목록 -->
+	<select id="cnsMngDao.getCnsInfoList" resultClass="egovMap">
+		SELECT *
+		FROM(SELECT gci.*
+		, DATE_FORMAT(gci.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+		, ROW_NUMBER() OVER(ORDER BY gci.NUM) AS RNUM
+		, ROW_NUMBER() OVER(ORDER BY gci.NUM DESC) AS RNUM2
+		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+		, gum.MOBILE AS
+		MOBILE
+		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		FROM
+		GS_CNS_INFO gci, GS_USER_M gum
+		WHERE
+		gci.USER_ID = gum.USER_ID
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gci.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gci.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gci.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gci.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gci.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gci.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gci.REG_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gci.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gci.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY NUM DESC
+ 		]]>
+	</select>
 
 	<!-- 상담접수관리 목록 갯수 -->
 	<select id="cnsMngDao.getCnsAcptListTotCnt" parameterClass="cnsAcptVO" resultClass="Integer">
@@ -201,6 +262,7 @@
 	    </isNotEmpty>
 	</select>
 	
+	<!-- 기존상담접수관리 목록 갯수 -->
 	<select id="cnsMngDao.getExiCnsAcptListTotCnt" parameterClass="cnsAcptVO" resultClass="Integer">
 		SELECT 
 			COUNT(gca.USER_ID)
@@ -243,6 +305,51 @@
 	    </isNotEmpty>
 	    <isNotEmpty property="schEndDate" prepend="AND">
 	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
+	<!-- 정보제공상담 목록 갯수 -->
+	<select id="cnsMngDao.getCnsInfoListTotCnt" parameterClass="cnsAcptVO" resultClass="Integer">
+		SELECT 
+			COUNT(gci.USER_ID)
+		FROM 
+			GS_CNS_INFO gci, GS_USER_M gum
+		WHERE
+		1=1
+		AND gci.USER_ID = gum.USER_ID
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gci.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gci.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM = #schAcptNm#
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gci.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gci.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gci.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gci.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gci.REG_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gci.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gci.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 	</select>
 
@@ -867,7 +974,7 @@
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
 			<isEqual property="schCenterGb" compareValue="1">
-				AND gca.REG_ID = #regId#
+				AND gca.CNS_GB = #schCnsGb#
 			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">

@@ -14,6 +14,7 @@ public class UserInfoVO extends PageVO{
 	private String addr;
 	private String schUserId;
 	private String schUserNm;
+	private String schCnsGb;
 	private String schCenterGb;
 	private String cnsTargetGb;
 	private String cnsPerTargetGb;
@@ -116,6 +117,12 @@ public class UserInfoVO extends PageVO{
 	}
 	public void setSchUserNm(String schUserNm) {
 		this.schUserNm = schUserNm;
+	}
+	public String getSchCnsGb() {
+		return schCnsGb;
+	}
+	public void setSchCnsGb(String schCnsGb) {
+		this.schCnsGb = schCnsGb;
 	}
 	
 }

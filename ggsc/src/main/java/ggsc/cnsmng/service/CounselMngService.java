@@ -19,11 +19,17 @@ public interface CounselMngService {
 	// 기존상담접수관리 목록
 	List<EgovMap> getExiCnsAcceptList(CnsAcptVO vo);
 	
+	// 정보제공상담 목록
+	List<EgovMap> getCnsInfoList(CnsAcptVO vo);
+	
 	// 상담접수관리 목록 갯수
 	int getCnsAcptListTotCnt(CnsAcptVO vo);
 	
-	
+	// 기존상담접수관리 갯수
 	int getExiCnsAcptListTotCnt(CnsAcptVO vo);
+	
+	// 정보제공상담 목록 갯수
+	int getCnsInfoListTotCnt(CnsAcptVO vo);
 	
 	// 상담접수 신청 - 아이디 중복 체크
 	int idCheck(String userId);

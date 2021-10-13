@@ -332,7 +332,7 @@
 			CNS_END_RESN = #cnsEndResn#,
 			CNTN = #cntn#,
 			VLTR_CNTN = #vltrCntn#
-		WHERE CASE_NO = #caseNo#
+		WHERE NUM = #num#
 	</update>
 	
 	<!-- 상담대상자관리대장 목록 -->
