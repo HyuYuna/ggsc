@@ -288,7 +288,7 @@ public class CounselMngController {
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
 		
-		aram.setHclassCd("G14");
+		param.setHclassCd("G14");
 		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsMethdList", cnsMethdList);
 		
