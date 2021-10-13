@@ -22,7 +22,6 @@ public class CommonMngServiceImpl extends EgovAbstractServiceImpl implements Com
 	// 회원관리 목록
 	@Override
 	public List<EgovMap> getMemberMngList(MemberMngVO vo) {
-
 		return commonMngDao.getMemberMngList(vo);
 	}
 	

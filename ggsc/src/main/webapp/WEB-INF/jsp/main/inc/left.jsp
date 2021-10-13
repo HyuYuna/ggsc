@@ -39,7 +39,8 @@
 		</div>
 	</nav>
 	 -->
-	     <div class="side-nav">
+	 
+	   <div class="side-nav">
         <div id="lnb">
             <ul>
             	<c:if test="${mnuList.size() > 0 }">
@@ -69,6 +70,7 @@
 						-->
 					</c:forEach>
             	</c:if>
+            	<!--  초기 조회값이 null 로 갔기 때문에 이 결과가 도출됨 , 추후에 페이지 이동 후 에는 이 if 는 동작되지 않음  -->
             	<c:if test="${mnuList.size() == 0 }">
             	
             		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/counsellor_mng_list.do', 'M01')">운영관리</a></li>
@@ -77,6 +79,7 @@
             		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/resultReportList.do', 'M04')">실적및통계</a></li>
             		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/relatedOrgan_mng_list.do', 'M05')">유관기관관리</a></li>
             		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/overrollStatus.do', 'M06')">모니터링</a></li>
+            		
             		<c:choose>
 						<c:when test="${authCd eq 1 || authCh eq 2 }">
 							<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/noticeList.do', 'M07')">행정지원</a></li>
@@ -84,7 +87,6 @@
 		            		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/menu_mng.do', 'M09')">공통관리</a></li>
 						</c:when>
 					</c:choose>
-            		
             	</c:if>
             </ul>
         </div>
@@ -92,15 +94,12 @@
 	 
 	<script type="text/javascript">
 	
-		$(document).ready(function() {
-			
-		});
-
+		$(document).ready(function() {});
 
 		function fn_goPage(path, mnuCd){
 			path = "/gnoincoundb" + path;
-			
 			path += "?mnuCd=" + mnuCd;
+			console.log(path);
 			document.location.href = path;
 		}
 	</script>

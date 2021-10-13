@@ -29,7 +29,6 @@ import ggsc.com.util.service.ComCodeService;
  * </pre>
  */
 @Controller
-
 @SessionAttributes(types = ComDefaultVO.class)
 public class MainController2 {
 
@@ -56,6 +55,7 @@ public class MainController2 {
 	 * @return 출력페이지정보 "main_headG", "main_head"
 	 * @exception Exception
 	 */
+	
 	@RequestMapping(value = "/left.do", method = RequestMethod.GET)
 	public String left(HttpServletRequest request, @ModelAttribute("MenuVO") MenuVO menuVO, ModelMap model) {
 		
@@ -66,8 +66,7 @@ public class MainController2 {
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
-			if (userAuth == 0)
-				userAuth = 10;
+			if (userAuth == 0) { userAuth = 10; }
 		} catch (NumberFormatException err) {
 			userAuth = 10;
 			userCenterGb = 0;
@@ -75,19 +74,19 @@ public class MainController2 {
 			userAuth = 10;
 			userCenterGb = 0;
 		}
-
 		// 권한 관리 끝
+		
 		
 		String mnuCd = request.getParameter("mnuCd");
 		mnuCd = mnuCd == null ? null : mnuCd.substring(0, 3);
 		model.addAttribute("mnuList", menuService.selectLeftMenuList(mnuCd));
-		model.addAttribute("vo", menuVO);
+		//model.addAttribute("vo", menuVO); -- 페이지에서 미사용됨 
 		model.addAttribute("authCd", userAuth);
 		return "main/inc/left"; // 업무화면의 상단메뉴 화면
 	}
 
 	/**
-	 * 몌뉴 이동
+	 * 몌뉴 이동 - 현재 미사용
 	 */
 	@RequestMapping(value = "/goPage.do", method = RequestMethod.GET)
 	public String goPage(HttpServletRequest request, @ModelAttribute("MenuVO") MenuVO menuVO, ModelMap model) {
@@ -95,7 +94,6 @@ public class MainController2 {
 		model.addAttribute("vo", menuVO);
 		String urlParam = "";
 		return "redirect:" + map.get("mnuPath").toString() + "?" + urlParam + "mnuCd=" + map.get("mnuCd").toString(); // 업무화면의 상단메뉴 화면
-		
 	}
 
 	

@@ -5,9 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <section id="content">
-
 	<!-- start -->
-
 	<h2 class="h2-title">
 		<i class="fa fa-check-square"></i>메뉴관리
 	</h2>
@@ -218,6 +216,7 @@
 <!-- //content -->
 
 <script src="/gnoincoundb/js/util/paging.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		//$("#datepicker1").val($.datepicker.formatDate("yymmdd", new Date()));

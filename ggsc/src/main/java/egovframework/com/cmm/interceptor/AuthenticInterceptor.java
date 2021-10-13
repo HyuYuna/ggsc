@@ -40,8 +40,8 @@ public class AuthenticInterceptor extends WebContentInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 		
-		
 		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
 		if(login==null || login.get("userId") == null || !login.get("apprvYn").equals("Y") ) {
 			ModelAndView modelAndView = new ModelAndView("redirect:/gnoincoundb/login/login.do");
 			throw new ModelAndViewDefiningException(modelAndView);

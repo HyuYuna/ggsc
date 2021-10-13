@@ -32,11 +32,15 @@ public class MenuController {
 	@RequestMapping(value = "/menu_mng.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String menu_mng(MenuVO vo, HttpServletRequest request, ModelMap model) {
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
 		model.addAttribute("mnuCd", mnuCd);
-
+		
+		System.out.println("MENU CODE CHECK : "+mnuCd);
+		
 		if (vo.getCurrentPageNo() == 0) {
 			vo.setCurrentPageNo(1);
 		}
+		
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
 		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
@@ -162,6 +166,7 @@ public class MenuController {
 		if (vo.getCurrentPageNo() == 0) {
 			vo.setCurrentPageNo(1);
 		}
+		
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
 		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수

@@ -653,6 +653,7 @@ public class ReportController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
@@ -1208,5 +1209,68 @@ public class ReportController {
 		return "report/genderAwareness.main";
 
 	}
+	
+	@RequestMapping(value = "/testBBSList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String testBBSList (HttpServletRequest request, ModelMap model, EduAtvyRptVO vo) {
+		
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+		
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
 
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+
+		model.addAttribute("authCd", userAuth);
+		// 권한 관리 끝
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		// 교육대상자 코드
+		param.setHclassCd("G78");
+		List<EgovMap> EduManList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("EduManList", EduManList);
+		
+		// 센터구분
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		List<EgovMap> eduAtvyRptList = reportService.getEduAtvyRptList(vo);
+		int totalPageCnt = reportService.getEduAtvyRptListTotCnt(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("eduAtvyRptList", eduAtvyRptList);
+		model.addAttribute("vo", vo);
+		return "report/testBBSList.main";
+	}
 }

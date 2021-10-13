@@ -26,7 +26,6 @@ import ggsc.join.service.UsermVO;
 
 
 @Controller
-
 public class AdminController {
 	
 	@Resource(name = "beanValidator")
@@ -80,6 +79,7 @@ public class AdminController {
 		model.addAttribute("cnsCenterList", cnsCenterList);
 		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
 		model.addAttribute("mnuCd", mnuCd);
 		model.addAttribute("vo",vo);
 		model.addAttribute("authCd", userAuth);

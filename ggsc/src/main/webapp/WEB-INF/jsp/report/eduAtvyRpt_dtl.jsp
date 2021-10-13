@@ -183,7 +183,7 @@
 </script>
 
 <section id="content">
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>교육활동보고서 등록/수정</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>  등록/수정</h2>
 		
 		<div class="box-style1 x-scroll-auto" >
 			<form name="downForm" id="downForm" method="post">

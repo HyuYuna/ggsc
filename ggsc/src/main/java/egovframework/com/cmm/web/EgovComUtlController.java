@@ -38,9 +38,10 @@ public class EgovComUtlController {
 	 * JSP 호출작업만 처리하는 공통 함수
 	 */
 	/*@RequestMapping(value="/EgovPageLink.do")*/
-	public String moveToPage(@RequestParam("link") String linkPage, 
+	public String moveToPage(@RequestParam("link") String linkPage,  
 			HttpSession session, 
 			@RequestParam(value="menuNo", required=false) String menuNo){
+		
 		String link = linkPage;
 		// service 사용하여 리턴할 결과값 처리하는 부분은 생략하고 단순 페이지 링크만 처리함
 		if (linkPage==null || linkPage.equals("")){
@@ -50,6 +51,7 @@ public class EgovComUtlController {
 			    link=link.substring(0,link.indexOf(","));
 			}
 		}
+		
 		// 선택된 메뉴정보를 세션으로 등록한다.
 		if (menuNo!=null && !menuNo.equals("")){
 			session.setAttribute("menuNo",menuNo);

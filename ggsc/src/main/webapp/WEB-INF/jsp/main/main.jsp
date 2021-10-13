@@ -15,7 +15,7 @@
 		var token = $("meta[name='_csrf']").attr("th:content");
 		var header = $("meta[name='_csrf_header']").attr("th:content");
 		
-		// mianCnsResult_ajax
+		//mianCnsResult_ajax
 		$.ajax({
 			type : "POST",
 			url : "/gnoincoundb/mianCnsResult_ajax.do",
@@ -28,6 +28,7 @@
 		}).done(function(json){
 			var d = json.list[0];
 			var obj = Object.entries(d);
+			
 			for(var i=0;i<obj.length;i++){
 				var c = obj[i];
 				$("td[data-class='" + c[0] + "']").text(c[1]);

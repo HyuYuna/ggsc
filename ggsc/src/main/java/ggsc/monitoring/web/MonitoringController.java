@@ -23,7 +23,6 @@ import ggsc.cnsr.service.GroupVO;
 
 
 @Controller
-
 public class MonitoringController {
 	
 	@Resource(name = "MonitoringService")
@@ -37,10 +36,8 @@ public class MonitoringController {
 	public String overrollStatus(MonitoringVO vo,HttpServletRequest request, ModelMap model){	
 		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		
+	
 		model.addAttribute("mnuCd",mnuCd);
-		
-		
 		return "monitoring/overoll.main";
 	}
 	

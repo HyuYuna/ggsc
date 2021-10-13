@@ -9,9 +9,12 @@
 <script src="/gnoincoundb/js/util/paging.js"></script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$("select[name=schEduManGb]").val("${vo.schEduManGb}"); // 대상자 셀렉에 데이터 집어넣는 거  
-		$("select[name=schCenterGb]").val("${vo.schCenterGb}"); // 센터 셀렉에 데이터 집어 넣는 거
+		$("select[name=schCenterGb]").val("${vo.schCenterGb}"); // 센터 셀렉에 데이터 집어 넣는 거 
+		
+		console.log("${eduAtvyRptList}");
 	});
 	
 	function list(curPage) {
@@ -27,16 +30,22 @@
 	});
 	
 	function fn_detail(eduAtvyNo){
+		console.log(eduAtvyNo);
 		$("#eduAtvyNo").val(eduAtvyNo);
 		document.searchForm.action = "/gnoincoundb/eduAtvyRptDtl.do";
        	document.searchForm.submit();
 	}
 	
 	function fn_reg(){
-		$("#eduAtvyNo").val(0);
+		$("#eduAtvyNo").val(0); // form 에 데이터를 주로 많이 세팅한다 
 		document.searchForm.action = "/gnoincoundb/eduAtvyRptDtl.do";
        	document.searchForm.submit();
 	}
+	
+	
+	$(document).ready(function(){
+
+	});
 	
 </script>
 <style>
@@ -130,7 +139,6 @@
 						<th scope="col">순번</th>
 						<th scope="col">센터구분</th>
 						<th scope="col">작성자</th>
-						<!-- <th scope="col">교육구분</th> --> 
 						<th scope="col">일시</th>
 						<th scope="col">대상자</th>
 						<th scope="col">교육주제</th>
@@ -171,8 +179,6 @@
 			<!-- // 페이징 -->
 		</div>
 		<!-- end -->
-
 	</section>
-
 </html>
 

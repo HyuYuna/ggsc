@@ -68,7 +68,7 @@
 <body oncontextmenu="return false">
 <form name='tmpForm'>
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	<input type='hidden' name='number' />
+	<input type='hidden'       name='number' />
 	<input type='hidden' name='schCnsGb' />
 	<input type='hidden' name='schCenterGb' />
 	<input type='hidden' name='schCnsleNm' />
@@ -119,14 +119,14 @@
 	<!-- content -->
          <tiles:insertAttribute name="body"/>
 
-	<iframe id="excelFrame" name="excelFrame" width="0" height="0" style="display:none;"></iframe>
-	<!-- content -->
-	<!-- footer
-	<footer id="footer">
-		<p>xxxxxxxxxxxxxx  Copyright(C) All Rights Reserved.</p>
-	</footer>
-	 -->
-	<!-- //footer -->
-	</section>
-</body>
+		<iframe id="excelFrame" name="excelFrame" width="0" height="0" style="display:none;"></iframe>
+		<!-- content -->
+		<!-- footer
+		<footer id="footer">
+			<p>xxxxxxxxxxxxxx  Copyright(C) All Rights Reserved.</p>
+		</footer>
+		 -->
+		<!-- //footer -->
+		</section>
+	</body>
 </html>

@@ -34,7 +34,7 @@ public class RelatedOrganMngController {
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		// 상담구분 코드
+		  // 상담구분 코드
 	      GroupVO groupVo = new GroupVO();
 	      groupVo.setHclassCd("G15");
 	      List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(groupVo);

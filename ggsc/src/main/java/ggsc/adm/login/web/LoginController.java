@@ -23,8 +23,6 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.adm.login.service.LoginService;
 import ggsc.adm.login.service.LoginVO;
 
-
-
 @Controller
 /*@RequestMapping(value = "/gnoincoundb" )*/
 public class LoginController {
@@ -50,6 +48,7 @@ public class LoginController {
 			boolean loginPolicyYn = true;
 
 			if (null != resultVO && null != resultVO.get("userId") && loginPolicyYn) {
+				
 				if (resultVO.get("apprvYn").equals("N")) {
 					model.addAttribute("message", "아직 승인처리가 되지 않았습니다.");
 					return "redirect:/gnoincoundb/login/login.do";
@@ -60,7 +59,7 @@ public class LoginController {
 				request.getSession().setAttribute((String) resultVO.get("userId"), listener);
 				
 				model.addAttribute("userVO", resultVO);
-				return "redirect:/gnoincoundb/main.do";
+				return "redirect:/main.do";
 				// return "forward:/main.do";
 
 			} else {
@@ -77,8 +76,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login/logout.do", method = {RequestMethod.GET , RequestMethod.POST})
-	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		return AMSComm.logoutProcBySvNm(request);
 	}
 

@@ -15,21 +15,15 @@ import ams.adm.mnu.MnuVO;
 
 
 @Controller
-
 public class MnuController {
-	
 	
 	@Resource(name = "mnuService")
 	private MnuServiceImpl mnuService;
-
-
-	
-	
 	
 	@RequestMapping(value = "/mnuList.do", method = RequestMethod.GET)
 	public String mnuList(MnuVO vo, HttpServletRequest request, ModelMap model){	
 		model.addAttribute("vo", vo);
-		return "adm/mnu/mnuList.main";
+		return "adm/mnu/mnuList.main"; // path 이동시 .main 이 붙음 세팅 환경이 이렇게 구축 되어 있기 때문에 사용이 가능한것 
 	}
 
 	@RequestMapping(value = "/mnuDtl.do", method = RequestMethod.GET)

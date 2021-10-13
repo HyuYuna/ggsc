@@ -46,6 +46,7 @@ public interface LoginService {
 	 * @param vo LoginVO
 	 * @exception Exception Exception
 	 */
+	
 	public LoginVO searchId(LoginVO vo);
 
 	public EgovMap actionGwLogin(LoginVO loginVO);

@@ -29,11 +29,13 @@ public class MainController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
-			if (userAuth == 0)
-				userAuth = 10;
+			
+			if (userAuth == 0) userAuth = 10;
+			
 		} catch (NumberFormatException err) {
 			userAuth = 10;
 			userCenterGb = 0;
@@ -45,12 +47,12 @@ public class MainController {
 		model.addAttribute("authCd", userAuth);
 		
 		if (request.getSession().getAttribute("LoginVO") != null) {
-			loginVO = (EgovMap) request.getSession()
-					.getAttribute("LoginVO");
+			loginVO = (EgovMap) request.getSession().getAttribute("LoginVO");
 			model.addAttribute("userVO", loginVO);
 		} else {
 			return "redirect:/gnoincoundb/login/login.do";
 		}
+		
 		return "main/main.main";
 	}
 	
@@ -131,9 +133,7 @@ public class MainController {
 	public String main_reservation_ajax(HttpServletRequest request, ModelMap model) {
 			
 		List<EgovMap> list = mainService.getReservationList();
-		
 		model.addAttribute("reservation", list);
-		
 		return "jsonView";
 	}
 	

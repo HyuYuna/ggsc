@@ -30,6 +30,7 @@ import ggsc.adm.login.service.LoginVO;
  *
  *      </pre>
  */
+
 @Service("admLoginService")
 public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginService {
 

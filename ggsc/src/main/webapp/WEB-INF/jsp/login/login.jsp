@@ -33,6 +33,7 @@
 	  		alert(message);
 	  	}
 	});
+	
 	function login(){
 		if(confirm("로그인 하시겠습니까?")) {
 			var frm = document.loginForm;
@@ -40,6 +41,7 @@
 			frm.submit();			
 		}
 	}
+	
 	function cnsrJoinPopup() {
 		var oepnwin;
 		var url = "/gnoincoundb/cnsr_join_info.do";
