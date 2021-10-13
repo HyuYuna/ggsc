@@ -862,7 +862,30 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	public void updateExiCnsAcpt(String caseNo) {
 		cnsMngDao.updateExiCnsAccept(caseNo);
 	}
-	
 
 	
+	//TEST LINE 
+	
+	@Override
+	public List<EgovMap> cnsAcceptList_TEST(CnsAcptVO vo) {
+		List<EgovMap> acceptList = cnsMngDao.getCnsAccpetList_test(vo);
+		return acceptList;
+	}
+
+	@Override
+	public void insertUser_TEST(CnsAcptVO vo) {
+		cnsMngDao.insertUser_TEST(vo);
+		
+	}
+
+	@Override
+	public void insertCnsAccept_TEST(CnsAcptVO vo) {
+		cnsMngDao.insertCnsAccept_TEST(vo);
+		
+	}
+
+	@Override
+	public EgovMap idCheck_test(String userID) {
+		return cnsMngDao.idCheck_test(userID);
+	}	
 }

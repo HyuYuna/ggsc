@@ -676,4 +676,24 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void updateExiCnsAccept(String caseNo) {
 		update("cnsMngDao.updateExiCnsAccept", caseNo);
 	}
+	
+	//TEST LINE 
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsAccpetList_test(CnsAcptVO vo){
+		List<EgovMap> list = (List<EgovMap>) list("cnsMngDao.selectCnsAcceptList_test",vo);
+		return list;
+	}
+	
+	public void insertUser_TEST(CnsAcptVO vo) {
+		insert("cnsMngDao.insertUser_TEST",vo);
+	}
+	
+	public void insertCnsAccept_TEST(CnsAcptVO vo) {
+		insert("cnsMngDao.insertCnsAccept_TEST",vo);
+	}
+	
+	public EgovMap idCheck_test(String userID) {
+		return (EgovMap) select("cnsMngDao.idCheck_test",userID);
+	}
 }

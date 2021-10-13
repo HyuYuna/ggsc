@@ -19,12 +19,17 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		console.log("${vo}");
+		console.log("${type}"); // 전 페이지에서 등록을 누를 때 값을 R 로 고정해 놓았다 
+		
 		if("${authCd}" > 1) {
 			var centerGb = "${vo.schCenterGb}";
 			$("select[name=centerGb]").val(centerGb);
 			$("select[name=sigunGb]").val("${loginVo.sigunCd}");
 			$("select[name=zoneGb]").val("${loginVo.zoneGb}");
 		}
+		
+		 // 권한 관련 
 		var type = "${type}";
 		if(type == "R") {
 			$("#sBtn").css("display","");
@@ -35,7 +40,10 @@
 			$("#uBtn").css("display","");
 			$("#cnsPath").css("display","");
 		}
+		
+		// type 에 따른 컴포넌트 제어 
 	});
+	
 	var idCheck;
 
 	function fn_save(type){
@@ -62,6 +70,7 @@
 			alert("주호소문제를 선택해주세요.");
 			return;
 		}
+		// 빈 값 확인 
 	
 		if(type == "R") {
 			
@@ -70,7 +79,7 @@
 				$("#userId").focus();
 				return;
 			}
-			if(idCheck != "Y" && type == "R"){
+			if(idCheck == "true" && type == "R"){
 				alert("ID 중복확인을 해주세요.");
 				return;
 			}
@@ -140,6 +149,7 @@
 			return;
 		}
 		*/
+		
 		if($("#addr").val()==""){
 			alert("주소를 입력해주세요.");
 			$("#addr").focus();
@@ -151,16 +161,22 @@
 			return;
 		}
 		
+		 // 유효성 검사 
+		
 		
 		
 		if(type == "R"){
-			url = "/gnoincoundb/cnsAcptReg_ajax.do";
+			url = "/gnoincoundb/cnsAcptReg_ajax_test.do";
 		}else if(type == "D"){
 			url = "/gnoincoundb/cnsAcptUpd_ajax.do";
 		}
-		var param = $("#frm").serialize();
+		 
+		// url set 
+		
+		var param = $("#frm").serialize(); // form 동기화 
 		var token = $("meta[name='_csrf']").attr("th:content");
 		var header = $("meta[name='_csrf_header']").attr("th:content");
+		// csrf 값 확인 
 		
 		$.ajax({
 			type : "POST",
@@ -169,7 +185,7 @@
 			dataType : "json",
 			beforeSend : function(xhr){
 				xhr.setRequestHeader(header, token);
-			},
+			}, // ajax 실행 직전에 request header 에 값을 담아 넘기는 메서드 
 			success : function(json) {
 				if(json.msg){
 					alert(json.msg);
@@ -206,7 +222,7 @@
 		
 		$.ajax({
 			type : "POST",
-			url : "/gnoincoundb/idCheck_ajax.do",
+			url : "/gnoincoundb/idCheck_ajax_test.do",
 			data : {userId:param},
 			dataType : "json",
 			beforeSend : function(xhr){
@@ -214,11 +230,9 @@
 			},
 			success : function(json) {
 				var msg = json.msg;
-				idCheck = json.idCheck;
+				var idCheck = json.effectiveness;
 				
-				if(idCheck == "Y") {
-					$("#userId").attr("readOnly","false");		
-				}
+				console.log(idCheck);
 				alert(msg);
 			},
 			error : function(e) {
@@ -268,7 +282,7 @@
 		<i class="fa fa-circle"></i>
 		신청자 정보
 	</h2>
-	<form id="frm" action="/cnsAcptReg_ajax.do" method="post">
+	
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<c:if test="${type == 'D' }">
 			<input type="hidden" id="caseNo" name="caseNo" value="${result.caseNo }">
@@ -446,7 +460,7 @@
 				</c:if>
 			</tbody>
 		</table>
-	</form>
+
 	<div>
 		<c:if test="${type == 'R' }">	
 			<button type="button" class="btn-basic" onclick="javascript:fn_clear();">초기화</button>

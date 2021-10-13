@@ -5,6 +5,7 @@
 
 	<typeAlias alias="egovMap"
 		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+		
 	<typeAlias alias="cnsAcptVO"
 		type="ggsc.cnsmng.service.CnsAcptVO" />
 	<typeAlias alias="preExamVO"
@@ -643,8 +644,7 @@
 	</select>
 
 	<!-- 상담접수신청 ID중복체크 -->
-	<select id="cnsMngDao.idCheck" parameterClass="String"
-		resultClass="int">
+	<select id="cnsMngDao.idCheck" parameterClass="String" resultClass="int">
 		SELECT (
 
 		SELECT (SELECT COUNT(USER_ID)
@@ -4792,6 +4792,152 @@
 		WHERE 
 			CASE_NO = #caseNo#
 	</update> -->
+	
+	
+	<!--  TEST LINE -->
+	<select id="cnsMngDao.selectCnsAcceptList_test" resultClass="egovMap">
+		SELECT *
+		FROM(SELECT gca.*
+		, DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM) AS RNUM
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM2
+		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+		, gum.MOBILE AS
+		MOBILE
+		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE <!--  생년월일 값 세팅  -->
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		FROM
+		GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
+		WHERE
+		gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN != 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY NUM DESC
+ 		]]>
+	</select>
+	
+	<insert id="cnsMngDao.insertUser_TEST" parameterClass="cnsAcptVO">
+		INSERT INTO
+		GS_USER_M_TEST
+		(
+		USER_ID
+		, USER_NM
+		, AUTH_CD
+		, PW
+		, GENDER
+		, BIRTH_DT
+		, EMAIL
+		, ACPT_DT
+		, TEL
+		, MOBILE
+		, ADDR
+		, USE_YN
+		, REG_ID
+		, SIGUN_CD
+		, DB_UPD_TM
+		, DB_INS_TM
+		)
+		VALUES
+		(
+		#userId#
+		, #userNm#
+		, 6
+		, #pw#
+		<!-- , SCP.ENC_B64('KEY1',#pw#) -->
+		, #gender#
+		, #birthDt#
+		, #email#
+		, DATE_FORMAT(NOW(), '%Y-%m-%d') <!--  Data Format Setting -->
+		, #tel#
+		, #mobile#
+		, #addr#
+		, 'Y'
+		, #regId#
+		, #sigunCd#
+		, NOW()							<!--  현재시각 기록 하는 함수  -->
+		, NOW()
+		)
+	</insert>
+	
+	<insert id="cnsMngDao.insertCnsAccept_TEST" parameterClass="cnsAcptVO">
+		INSERT INTO GS_CNS_ACPT_TEST
+		(
+		CASE_NO
+		, USER_ID
+		, CNS_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, ACPT_YN
+		, CNS_HIST_YN
+		, DB_INS_TM
+		, MAJOR_APPL_CD
+		, ACPT_GB
+		, REG_ID
+		, SIGUN_CD
+		)
+		VALUES
+		(
+		CAST(CONCAT(#cnsGb#, #zoneGb#, '9', #centerGb#, (SELECT IFNULL(MAX(gca.NUM), 0)+1 FROM GS_CNS_ACPT gca)) AS UNSIGNED) <!--  난수 생성기 ..? -->
+		, #userId#
+		, #cnsGb#
+		, #zoneGb#
+		, '9'
+		, #centerGb#
+		, 'N'
+		, #cnsHistYn#
+		, NOW()
+		, #majorApplCd#
+		, '3'
+		, #regId#
+		, #sigunCd#
+		)
+	</insert>
+	
+	<select id="cnsMngDao.idCheck_test" resultClass="egovMap">
+		select * from gs_user_m_test
+		where user_id = #userID#
+	</select>
+	
 	
 
 </sqlMap>

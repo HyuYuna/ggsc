@@ -670,6 +670,7 @@ public class ReportController {
 		if (userAuth > 1) { // 센터 검색 권한이 없으면
 			vo.setSchCenterGb(Integer.toString(userCenterGb));
 		}
+		
 		model.addAttribute("authCd", userAuth);
 		model.addAttribute("userId", loginVo.get("userId").toString());
 		model.addAttribute("centerGb", userCenterGb);

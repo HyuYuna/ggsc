@@ -301,5 +301,11 @@ public interface CounselMngService {
 	// 개인상담부터 일괄 삭제
 	public void deleteExiPerCnsDoc(Map<String, Object> map);
 	
+	//TEST
+	public List<EgovMap> cnsAcceptList_TEST(CnsAcptVO vo);
+	public void insertUser_TEST(CnsAcptVO vo);
+	public void insertCnsAccept_TEST(CnsAcptVO vo);
+	public EgovMap idCheck_test(String userID);
+	
 	
 }
