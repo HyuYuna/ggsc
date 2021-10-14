@@ -696,4 +696,22 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public EgovMap idCheck_test(String userID) {
 		return (EgovMap) select("cnsMngDao.idCheck_test",userID);
 	}
+	
+	public EgovMap getCnsAcceptDtl_TEST(String caseNo){
+		return (EgovMap) select("cnsMngDao.getCnsAcceptDtl_TEST",caseNo);
+	}
+	
+	public void updateConfirm_TEST(CnsAcptVO vo) {
+		update("cnsMngDao.updateConfirm_TEST" , vo);
+	}
+	
+	// 사전검사 TESTLINE
+	
+	public void insertPreExamM_TEST(PreExamVO preExamVO) {
+		insert("cnsMngDao.insertPreExamM_TEST",preExamVO);
+		
+	}
+	public void insertPreExamFile_TEST(PreExamVO preExamVO) {
+		insert("cnsMngDao.insertPreExamFile_TEST",preExamVO);
+	}
 }

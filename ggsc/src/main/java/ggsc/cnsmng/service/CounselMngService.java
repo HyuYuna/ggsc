@@ -1,6 +1,5 @@
 package ggsc.cnsmng.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -306,6 +305,8 @@ public interface CounselMngService {
 	public void insertUser_TEST(CnsAcptVO vo);
 	public void insertCnsAccept_TEST(CnsAcptVO vo);
 	public EgovMap idCheck_test(String userID);
-	
-	
+	public EgovMap getCnsAcceptDtl_TEST(String caseNo);
+	public void updateConfirm_TEST(CnsAcptVO vo , String cnsrId);
+	public List<EgovMap> getExiCnsAcceptList_TEST(CnsAcptVO vo);
+	public int getExiCnsAcptListTotCnt_TEST(CnsAcptVO vo);
 }

@@ -178,6 +178,8 @@
 		var header = $("meta[name='_csrf_header']").attr("th:content");
 		// csrf 값 확인 
 		
+		console.log(userId);
+		
 		$.ajax({
 			type : "POST",
 			url : url,
@@ -251,14 +253,14 @@
 		var caseNo = $('#caseNo').val();
 		var cnsGb = $("#cnsGb").val();
 		var userId = "${result.userId}";
-		var userNm = "${result.userNm}";
+		var userNm = "${result.userNm}"; // select 조회로 인 해 나온 이름과 아이디 아이디는 , cnsAcpt 테이블에서 가지고 옴 
 		
 		var token = $("meta[name='_csrf']").attr("th:content");
 		var header = $("meta[name='_csrf_header']").attr("th:content");
 		
 		$.ajax({
 			type : "POST",
-			url : "/gnoincoundb/confirm_ajax.do",
+			url : "/gnoincoundb/confirm_ajax_test.do",
 			data : {acptYn:"Y", caseNo:caseNo, cnsGb:cnsGb, userId:userId, userNm:userNm},
 			dataType : "json",
 			beforeSend : function(xhr){
@@ -282,7 +284,7 @@
 		<i class="fa fa-circle"></i>
 		신청자 정보
 	</h2>
-	
+	<form id="frm" action="/cnsAcptReg_ajax_test.do" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<c:if test="${type == 'D' }">
 			<input type="hidden" id="caseNo" name="caseNo" value="${result.caseNo }">
@@ -460,7 +462,7 @@
 				</c:if>
 			</tbody>
 		</table>
-
+		</form>
 	<div>
 		<c:if test="${type == 'R' }">	
 			<button type="button" class="btn-basic" onclick="javascript:fn_clear();">초기화</button>

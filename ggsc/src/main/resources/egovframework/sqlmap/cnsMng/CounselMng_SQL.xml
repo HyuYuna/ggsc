@@ -4815,7 +4815,7 @@
 		GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
 		WHERE
 		gca.USER_ID = gum.USER_ID
-		AND gca.ACPT_YN != 'Y'
+		AND gca.ACPT_YN != 'Y' <!-- 확인 되지 않은 것 들만 조회 -->
 		<isNotEmpty property="schCnsGb" prepend="AND">
 			gca.CNS_GB = #schCnsGb#
 		</isNotEmpty>
@@ -4938,6 +4938,107 @@
 		where user_id = #userID#
 	</select>
 	
+	<select id="cnsMngDao.getCnsAcceptDtl_TEST" parameterClass="String" resultClass="egovMap">
+		SELECT gca.*
+		, gum.GENDER AS GENDER
+		, gum.MOBILE AS MOBILE
+		<!-- , CONCAT(gum.ADDR, ' ', gum.ADDR_DTL) AS ADDR -->
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		, ( SELECT MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G15' AND ODR = gca.CNS_GB ) CNS_NM
+		, ( SELECT CENTER_NM FROM gs_center_m WHERE NUM = gca.CENTER_GB ) CENTER_NM
+		, ( SELECT MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G72' AND ODR = gca.LOCAL_GB ) LOCAL_NM
+		, ( SELECT MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G71' AND ODR = gca.ZONE_GB ) ZONE_NM
+		, ( SELECT MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G58' AND ODR = gca.MAJOR_APPL_CD ) MAJOR_APPL_NM
+		<!--  List 값이 아님 , vo 세팅은 문자열로 처리 되어 있음  -->
+		FROM GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
+		WHERE gca.USER_ID = gum.USER_ID
+		<!-- AND gca.CASE_NO = #caseNo# -->
+		AND gca.CASE_NO = #caseNo#
+	</select>
+	
+	
+	<update id="cnsMngDao.updateConfirm_TEST" parameterClass="cnsAcptVO">
+		UPDATE
+			GS_CNS_ACPT_TEST
+		SET 
+			ACPT_YN = #acptYn# ,
+			UPDATE_DT = NOW()
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
+	<insert id="cnsMngDao.insertPreExamM_TEST" parameterClass="preExamVO">
+		INSERT INTO
+		GS_PRE_EXAM_M_TEST
+		(
+		CASE_NO
+		, EXAM_DOC_CD
+		, CNS_GB
+		, DOC_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, USER_ID
+		, USER_NM
+		, WRITE_YN
+		, DB_INS_TM
+		, SIGUN_CD
+		, REG_ID
+		, CNS_TARGET_GB
+		)
+		VALUES
+		(
+		#caseNo#
+		, #examDocCd#
+		, #cnsGb#
+		, #docGb#
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, 'N'
+		, NOW()
+		, #sigunCd#
+		, #regId#
+		, 'Y'
+		)
+	</insert>
+	
+	<insert id="cnsMngDao.insertPreExamFile_TEST" parameterClass="preExamVO">
+		INSERT INTO GS_PRE_EXAM_FILE_TEST
+		(
+		NUM
+		, CASE_NO
+		, EXAM_DOC_CD
+		, CNS_GB
+		, DOC_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		)
+		VALUES
+		(
+		<!-- (SELECT NUM FROM GS_PRE_EXAM_M WHERE CASE_NO = #caseNo# AND EXAM_DOC_CD 
+			= #examDocCd#) -->
+		(SELECT NUM FROM GS_PRE_EXAM_M_TEST WHERE CASE_NO = #caseNo#)
+		, #caseNo#
+		,
+		#examDocCd#
+		, #cnsGb#
+		, #docGb#
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		,
+		#cnsleId#
+		)
+	</insert>
 	
 
 </sqlMap>

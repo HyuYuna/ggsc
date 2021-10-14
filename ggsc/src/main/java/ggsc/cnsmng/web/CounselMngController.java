@@ -421,18 +421,22 @@ public class CounselMngController {
 
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 
-		String cnsrId = (String) login.get("userId");
-		EgovMap Details = counselMngService.getCnsAcceptDtl(String.format("%s", vo.getCaseNo()));
+		String cnsrId = (String) login.get("userId"); 												// 상담사가 확인을 하는 것 이니 상담사 아이디가 필요함 
+		EgovMap Details = counselMngService.getCnsAcceptDtl(String.format("%s", vo.getCaseNo())); 	// 세부 신청 vo 신청자의 정보가 들어가있다
 		vo.setZoneGb(Details.get("zoneGb").toString());
 		vo.setLocalGb(Details.get("localGb").toString());
 		vo.setCenterGb(Details.get("centerGb").toString());
 		vo.setSigunCd(Details.get("sigunCd").toString());
+			
 		vo.setRegId(login.get("userId").toString());
+		
 		if(vo.getCaseNo() == 0) {
 			System.out.println("caseNO 값이 0일경우 실행되는 영역 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			counselMngService.updateCnsAcceptCaseNo(vo);
 		}
+		
 		counselMngService.updateConfirm(vo, cnsrId);
+		
 		String msg = "상담접수 신청이 확인 되었습니다.";
 
 		model.addAttribute("msg", msg);
@@ -2295,7 +2299,8 @@ public class CounselMngController {
 		if (type.equals("D")) { 
 			System.out.println("Type D Check");
 			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
-			result = counselMngService.getCnsAcceptDtl(caseNo);
+			result = counselMngService.getCnsAcceptDtl_TEST(caseNo); 
+			System.out.println("Null Valule Check : "+result);
 		}
 		
 		model.addAttribute("result", result);
@@ -2314,9 +2319,14 @@ public class CounselMngController {
 																				// Login 할 시 Session 영역에 있는 데이터를 사용하는 것 이다 다른 setter 들은 다  null 
 		vo.setRegId(login.get("userId").toString()); // setting 
 		
+		System.out.println(login.get("userId").toString());
+		
+		System.out.println(vo.getUserId());
+		System.out.println(vo);
+		
 		counselMngService.insertUser_TEST(vo);
 		counselMngService.insertCnsAccept_TEST(vo);
-		// }
+		
 		return "jsonView";
 	}
 	
@@ -2335,6 +2345,168 @@ public class CounselMngController {
 		}
 		
 		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/confirm_ajax_test.do", method = RequestMethod.POST)
+	public String confirmAjax_test(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		String cnsrId = (String) login.get("userId"); 												// 상담사가 확인을 하는 것 이니 상담사 아이디가 필요함 
+		EgovMap Details = counselMngService.getCnsAcceptDtl_TEST(String.format("%s", vo.getCaseNo())); 	// 세부 신청 vo 신청자의 정보가 들어가있다
+		vo.setZoneGb(Details.get("zoneGb").toString());
+		vo.setLocalGb(Details.get("localGb").toString());
+		vo.setCenterGb(Details.get("centerGb").toString());
+		vo.setSigunCd(Details.get("sigunCd").toString());
+			
+		vo.setRegId(login.get("userId").toString());
+		
+		if(vo.getCaseNo() == 0) { // caseNo 라는 고유값이 존재하지 않을 때 실행되는 if
+			//counselMngService.updateCnsAcceptCaseNo(vo);
+		}
+		
+		counselMngService.updateConfirm_TEST(vo, cnsrId);
+		
+		String msg = "상담접수 신청이 확인 되었습니다.";
+
+		model.addAttribute("msg", msg);
+		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/pretestList_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String pretestList_TEST(PreExamVO vo, HttpServletRequest request, ModelMap model) {
+		
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		// 권한 관리 끝
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		//메뉴 DB 화 세팅 작업 
+
+		GroupVO groupVo = new GroupVO();
+		groupVo.setHclassCd("G15");
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(groupVo);
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsGbList", cnsGbList);			// 상담구분 
+		model.addAttribute("cnsCenterList", cnsCenterList);	// 센터명 구분 
+
+		// 상단에 상담 접수관리 데이터
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		List<EgovMap> preList = counselMngService.getPreList(vo);
+		int totalPageCnt = counselMngService.getPreListTotCnt(vo);
+		
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("preList", preList);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+
+		return "cnsmng/pretestList_test.main";
+	}
+	
+	@RequestMapping(value = "/exiCnsAcceptList_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exiCnsAcceptList_test(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		
+		// 권한 관리 끝
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		List<EgovMap> exiAcceptList = counselMngService.getExiCnsAcceptList_TEST(vo); // 기존접수 관련 
+		
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+
+		int totalPageCnt = counselMngService.getExiCnsAcptListTotCnt_TEST(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("exiAcceptList", exiAcceptList);
+		model.addAttribute("cnsGbList", cnsGbList);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+		return "cnsmng/exiCnsAcceptList_test.main";
 	}
 
 }

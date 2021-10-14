@@ -126,7 +126,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	// 상담접수 신청 확인
 	@Override
 	public void updateConfirm(CnsAcptVO vo, String cnsrId) {
-		cnsMngDao.updateConfirm(vo);
+		cnsMngDao.updateConfirm(vo);// 상담사 테이블 수정 acpt_YN 값 변경 기타 등등 
 		PreExamVO preVO = new PreExamVO();
 		preVO.setCaseNo(vo.getCaseNo());
 		preVO.setCnsleId(vo.getUserId());
@@ -887,5 +887,47 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override
 	public EgovMap idCheck_test(String userID) {
 		return cnsMngDao.idCheck_test(userID);
+	}
+
+	@Override
+	public EgovMap getCnsAcceptDtl_TEST(String caseNo) {
+		return (EgovMap) cnsMngDao.getCnsAcceptDtl_TEST(caseNo);
+		
+	}
+
+	@Override
+	public void updateConfirm_TEST(CnsAcptVO vo, String cnsrId) {	
+		cnsMngDao.updateConfirm_TEST(vo);// 상담사 테이블 수정 acpt_YN 값 변경 기타 등등 
+		
+		PreExamVO preVO = new PreExamVO(); 	// 사전검사 VO 
+		preVO.setCaseNo(vo.getCaseNo()); 	// 고유값 
+		preVO.setCnsleId(vo.getUserId()); 	// 상담대상자 아이디  
+		preVO.setCnsleNm(vo.getUserNm());	// 상담대상자 이름 
+		preVO.setCnsGb(vo.getCnsGb()); 		
+		preVO.setZoneGb(vo.getZoneGb());
+		preVO.setLocalGb(vo.getLocalGb());
+		preVO.setCenterGb(vo.getCenterGb());
+		preVO.setSigunCd(vo.getSigunCd());	// 여기까지 상담대상자 개인정보 
+		preVO.setCnsrId(cnsrId);			// 상담사 아이디 
+		preVO.setDocGb("1");			
+		preVO.setRegId(vo.getRegId());		// 등록자 아이디 
+		preVO.setExamDocCd("0");			// 사전검사지 코드 
+		
+		System.out.println(preVO);
+		
+		cnsMngDao.insertPreExamM_TEST(preVO);
+		cnsMngDao.insertPreExamFile_TEST(preVO);
+	}
+
+	@Override
+	public List<EgovMap> getExiCnsAcceptList_TEST(CnsAcptVO vo) {
+		//cnsMngDao.
+		return null;
+	}
+
+	@Override
+	public int getExiCnsAcptListTotCnt_TEST(CnsAcptVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}	
 }

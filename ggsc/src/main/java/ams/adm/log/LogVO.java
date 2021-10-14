@@ -42,8 +42,4 @@ public class LogVO extends NormalVO  {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
-	
 }

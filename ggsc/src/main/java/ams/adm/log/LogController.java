@@ -13,14 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LogController {
 	
-	
 	@Resource(name = "logService")
 	private LogServiceImpl logService;
 
-
-	
-	
-	
 	@RequestMapping(value = "/logList.do", method = RequestMethod.GET)
 	public String logList(LogVO vo, HttpServletRequest request, ModelMap model){	
 		model.addAttribute("vo", vo);

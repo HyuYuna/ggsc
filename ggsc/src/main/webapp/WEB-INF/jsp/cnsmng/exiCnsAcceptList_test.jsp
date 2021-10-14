@@ -27,44 +27,47 @@
 	</style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log("pageCheck");
+		var page = "${page}";
+		if(page == ""){
+			page = 1;
+		}
+		
+		var schCnsGb = "${vo.schCnsGb}";
+		var schCenterGb = "${vo.schCenterGb}";
+		
+		$("select[name=schCnsGb]").val(schCnsGb);
+		$("select[name=schCenterGb]").val(schCenterGb);
+		$("#totalPageCnt").html("${totalPageCnt}");
+		
 	});
 
-/* 	function fn_excelDown(){
+	function fn_excelDown(){
 		document.location.href = "/gnoincoundb/cnsAcptExcelDown.do";
-	}*/
+	}
+	/*
+	function linkPage(pageNo) {
+		search(pageNo);
+	}
 	
-	/* function fn_goLink(no) {
+	function search(pageNo) {
+		$("#currentPageNo").val(pageNo);
+		$("#frm").submit();
+	}
+	*/
+	
+	function fn_goLink(no) {
 		var url = "";
-		
-		console.log(no);
 		
 		if(no == 1) {
 			url = "/gnoincoundb/cnsAcceptList_test.do?mnuCd=${mnuCd}";
 		} else if (no == 2) {
-			url = "/gnoincoundb/exiCnsAcceptList.do?mnuCd=${mnuCd}";
-		}
-		
-		console.log(url);
-		
-		document.location.href = url;
-	} */
-	
-	function fn_goLink(no){
-		var url = "";
-		
-		if(no == 1){
-			url = "/gnoincoundb/cnsAcceptList_test.do?mnuCd=${mnuCd}";
-			location.href = url;
-		}else if(no == 2){
 			url = "/gnoincoundb/exiCnsAcceptList_test.do?mnuCd=${mnuCd}";
-			location.href = url;
 		}
-		
+		document.location.href = url;
 	}
 	
 	function fn_popup(type, caseNo){
-		var url = "/gnoincoundb/cnsAcceptdtl_test.do?type=" + type + "&caseNo=" + caseNo;
+		var url = "/gnoincoundb/exiCnsAcceptDtl.do?type=" + type + "&caseNo=" + caseNo;
 		var name = "신청자정보";
 		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
 		window.open(url, name, option);
@@ -72,7 +75,7 @@
 	
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/cnsAcceptList.do";
+		document.searchForm.action = "/gnoincoundb/exiCnsAcceptList.do";
        	document.searchForm.submit();
 	}
 	
@@ -80,11 +83,11 @@
 		  if (event.keyCode === 13) {
 		    list(1);
 		  };
-	}); 
+	});
 	
 </script>
 
- <section id="content">
+<section id="content">
 
 	<h2 class="h2-title"><i class="fa fa-check-square"></i>상담접수관리</h2>
 		
@@ -106,13 +109,12 @@
 						</select>
 					</span>
 				</div>
-				
 				<div class="search-group" style="margin-left:70px;">
 					<span class="label"><label>센터구분</label></span>
 					<span class="label2">
 						<select name="schCenterGb" style="width:275px;">
 							<option value="">전체</option>
-							<c:forEach items="${cnsCenterList}" var="result">
+							<c:forEach items="${cnsCenterList }" var="result">
 								<c:choose>
 								<c:when test="${authCd > 1 }">
 									<c:if test="${ result.num eq vo.schCenterGb }" >
@@ -144,22 +146,18 @@
 				</div>
 			</div>
 		</form>
-
-	
 		<div>
 			<ul class="tabs">
-				<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;" onclick="fn_goLink(1);">신규접수관리</li>
-				<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(2);">기존접수관리</li>
+				<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(1);">신규접수관리</li>
+				<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;">기존접수관리</li>
 			</ul>
 		</div>
 			<span style="float:left; margin: 0;">
 				검색 총수 : <span id="totalPageCnt"></span> 건 
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
-				<button type="button" class="btn-basic" onClick="javascript:fn_popup('R', 0);" style="background-color: green;color:white;">등록</button>
 				<button type="button" class="btn-basic" onClick="fn_excelDownload(10, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button>
 			</div>	
-			
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
 					<col width="5%"></col>
@@ -187,13 +185,13 @@
 					</tr>
 				</thead>
 				<tbody id="tby1">
-					<c:if test="${cnsAcceptList.size() == 0 }">
+					<c:if test="${exiAcceptList.size() == 0 }">
 						<tr>
 							<td colspan="9">정보가 없습니다.</td>
 						</tr>
 					</c:if>
-					<c:if test="${cnsAcceptList.size() > 0 }">
-						<c:forEach items="${cnsAcceptList }" var="result">
+					<c:if test="${exiAcceptList.size() > 0 }">
+						<c:forEach items="${exiAcceptList }" var="result">
 							<tr onclick="javascript:fn_popup('D', '${result.caseNo}');">
 								<td>${result.rnum }</td>
 								<td>${result.userNm }</td>
@@ -221,6 +219,6 @@
 			<!-- // 페이징 -->
 		</div>
 		<!-- end -->
-	</section> 
+	</section>
 </html>
 
