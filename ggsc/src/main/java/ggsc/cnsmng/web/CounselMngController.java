@@ -288,10 +288,6 @@ public class CounselMngController {
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
 		
-		param.setHclassCd("G14");
-		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("cnsMethdList", cnsMethdList);
-		
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsGbList", cnsGbList);
@@ -299,10 +295,6 @@ public class CounselMngController {
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
-		
-		param.setHclassCd("G21");
-		List<EgovMap> cnsDtlList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("cnsDtlList", cnsDtlList);
 
 		param.setHclassCd("G71");
 		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
@@ -405,6 +397,9 @@ public class CounselMngController {
 	@RequestMapping(value = "/cnsInfoDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cnsInfoDtl(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
 		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
@@ -431,6 +426,11 @@ public class CounselMngController {
 		EgovMap result = null;
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
+		
+		param.setHclassCd("G14");
+		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsMethdList", cnsMethdList);
+		
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsGbList", cnsGbList);
@@ -438,6 +438,10 @@ public class CounselMngController {
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
+		
+		param.setHclassCd("G21");
+		List<EgovMap> cnsDtlList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsDtlList", cnsDtlList);
 
 		param.setHclassCd("G71");
 		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
@@ -466,7 +470,7 @@ public class CounselMngController {
 		model.addAttribute("authCd", userAuth);
 		model.addAttribute("loginVo", loginVo);
 				
-		return "cnsmng/cnsInfo_dtl";
+		return "cnsmng/cnsInfo_dtl.main";
 	}
 
 	@RequestMapping(value = "/idCheck_ajax.do", method = RequestMethod.POST)
