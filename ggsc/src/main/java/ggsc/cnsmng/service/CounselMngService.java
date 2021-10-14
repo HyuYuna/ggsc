@@ -307,6 +307,10 @@ public interface CounselMngService {
 	public EgovMap idCheck_test(String userID);
 	public EgovMap getCnsAcceptDtl_TEST(String caseNo);
 	public void updateConfirm_TEST(CnsAcptVO vo , String cnsrId);
+	//기존접수 
 	public List<EgovMap> getExiCnsAcceptList_TEST(CnsAcptVO vo);
 	public int getExiCnsAcptListTotCnt_TEST(CnsAcptVO vo);
+	//사전검사
+	public List<EgovMap> getPreList_TEST(PreExamVO vo);
+	public int getPreListTotCnt_TEST(PreExamVO vo);
 }

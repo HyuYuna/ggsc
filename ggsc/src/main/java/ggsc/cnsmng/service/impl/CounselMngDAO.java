@@ -714,4 +714,27 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void insertPreExamFile_TEST(PreExamVO preExamVO) {
 		insert("cnsMngDao.insertPreExamFile_TEST",preExamVO);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getExiCnsAcceptList_TEST(CnsAcptVO vo){
+		List<EgovMap> exiList = (List<EgovMap>)list("cnsMngDao.getExiCnsAcceptList_TEST",vo);
+		return exiList; 
+	}
+	
+	public int getExiCnsAcptListTotCnt_TEST(CnsAcptVO vo){
+		int count = (Integer)select("cnsMngDao.getExiCnsAcptListTotCnt_TEST",vo);
+		return count;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getPreList_TEST(PreExamVO vo){
+		System.out.println("AuthCode Check : "+vo.getAuthCd());
+		List<EgovMap> preList = (List<EgovMap>)list("cnsMngDao.getPreList_TEST",vo);
+		return preList; 
+	}
+	
+	public int getPreListTotCnt_TEST(PreExamVO vo) {
+		System.out.println("AuthCode Check : "+vo.getAuthCd());
+		return (Integer)select("cnsMngDao.getPreListTotCnt_TEST",vo);
+	}
 }

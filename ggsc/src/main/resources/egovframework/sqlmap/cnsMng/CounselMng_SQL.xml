@@ -5040,5 +5040,228 @@
 		)
 	</insert>
 	
+	 <select id="cnsMngDao.getExiCnsAcceptList_TEST" resultClass="egovMap">
+		SELECT *
+		FROM(SELECT gca.*
+		, DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM) AS RNUM
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM2
+		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+		, gum.MOBILE AS
+		MOBILE
+		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		FROM
+		GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
+		WHERE
+		gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN = 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY NUM DESC
+ 		]]>
+	</select>
+	
+	<select id="cnsMngDao.getExiCnsAcptListTotCnt_TEST" parameterClass="cnsAcptVO" resultClass="Integer">
+		SELECT 
+			COUNT(gca.USER_ID)
+		FROM 
+			GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
+		WHERE
+		1=1
+		AND gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN = 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM = #schAcptNm#
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		
+		<!--  권한별 검색 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		
+		<!--  기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select> 
+	
+	<select id="cnsMngDao.getPreList_TEST" parameterClass="PreExamVO"
+		resultClass="EgovMap">
+		SELECT A.*
+		FROM
+		(
+		SELECT
+		ROW_NUMBER() OVER(ORDER BY gpem.NUM) AS RNUM,
+		ROW_NUMBER() OVER(ORDER BY gpem.NUM DESC) AS RNUM2,
+		gpem.NUM ,
+		gpem.CASE_NO ,
+		gpem.USER_NM ,
+		(SELECT mclass_nm FROM gs_m_class WHERE hclass_cd = 'G089' and odr = gpem.sigun_cd) AS sigunCd ,
+		(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gpem.CNS_GB) AS cnsGbNm ,
+		(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G72' AND ODR = gpem.LOCAL_GB ) AS localGbNm ,
+		( SELECT CENTER_NM FROM GS_CENTER_M WHERE NUM = gpem.CENTER_GB ) AS centerGbNm ,
+		DATE_FORMAT(gpem.DB_INS_TM, '%Y-%m-%d') AS DB_INS_TM ,
+		gpem.AGRE_PATH ,
+		gpem.PER_INFO_PATH ,
+		gpem.DOC_CNTN_PATH ,
+		gpem.CNS_TARGET_GB ,
+		gpef.FILE_NM ,
+		gpef.SYS_FILE_NM ,
+		gpef.FILE_PATH ,
+		gpef.FILE_NM2 ,
+		gpef.SYS_FILE_NM2 ,
+		gpef.FILE_PATH2 ,
+		gpef.FILE_NM3 ,
+		gpef.SYS_FILE_NM3 ,
+		gpef.FILE_PATH3
+		FROM
+		GS_PRE_EXAM_M_TEST AS gpem
+		LEFT JOIN GS_PRE_EXAM_FILE_TEST AS gpef
+		ON gpem.num = gpef.NUM
+		WHERE
+		1=1
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gpem.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gpem.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			gpem.USER_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schWriteYn" prepend="AND">
+			gpem.WRITE_YN = #schWriteYn#
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gpem.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gpem.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gpem.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gpem.REG_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gpem.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gpem.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+			ORDER BY NUM DESC
+		]]>
+	</select>
 
+	<!-- 사전검사 목록 총갯수 -->
+	<select id="cnsMngDao.getPreListTotCnt_TEST"
+		parameterClass="preExamVO" resultClass="Integer">
+		SELECT COUNT(*)
+		FROM GS_PRE_EXAM_M_TEST AS gpem
+		WHERE 1=1
+		<!-- AND ZONE_GB = #zoneGb# AND LOCAL_GB = #localGb# AND CENTER_GB = #centerGb# -->
+
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gpem.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gpem.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			gpem.USER_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schWriteYn" prepend="AND">
+			gpem.WRITE_YN = #schWriteYn#
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gpem.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gpem.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gpem.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gpem.REG_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gpem.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gpem.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
 </sqlMap>

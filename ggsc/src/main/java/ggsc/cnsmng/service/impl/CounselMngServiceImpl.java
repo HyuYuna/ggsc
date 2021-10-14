@@ -1,39 +1,13 @@
 package ggsc.cnsmng.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorker;
-import com.itextpdf.tool.xml.XMLWorkerFontProvider;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
-import com.itextpdf.tool.xml.css.CssFile;
-import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
-import com.itextpdf.tool.xml.html.CssAppliers;
-import com.itextpdf.tool.xml.html.CssAppliersImpl;
-import com.itextpdf.tool.xml.html.Tags;
-import com.itextpdf.tool.xml.parser.XMLParser;
-import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
-import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
-import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 
 import ams.cmm.AMSComm;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -921,13 +895,25 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 
 	@Override
 	public List<EgovMap> getExiCnsAcceptList_TEST(CnsAcptVO vo) {
-		//cnsMngDao.
-		return null;
+		List<EgovMap> list = cnsMngDao.getExiCnsAcceptList_TEST(vo);
+		return list;
 	}
 
 	@Override
 	public int getExiCnsAcptListTotCnt_TEST(CnsAcptVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = cnsMngDao.getExiCnsAcptListTotCnt_TEST(vo);
+		return count;
+	}
+
+	@Override
+	public List<EgovMap> getPreList_TEST(PreExamVO vo) {
+		List<EgovMap> preList = cnsMngDao.getPreList_TEST(vo);
+		return preList;
+	}
+
+	@Override
+	public int getPreListTotCnt_TEST(PreExamVO vo) {
+		int count = cnsMngDao.getPreListTotCnt_TEST(vo);
+		return count;
 	}	
 }

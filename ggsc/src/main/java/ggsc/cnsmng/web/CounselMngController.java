@@ -2379,6 +2379,7 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
@@ -2403,10 +2404,12 @@ public class CounselMngController {
 			case 1: vo.setAuthCd("1"); break; 
 			case 2: vo.setAuthCd("2"); break; 
 			case 3: vo.setAuthCd("3"); break; 
-				default: vo.setAuthCd("4"); break; 
+			default: vo.setAuthCd("4"); break; 
 		}
 		// 권한 관리 끝
-
+		
+		System.out.println(vo.getAuthCd());
+		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
 		
@@ -2430,8 +2433,8 @@ public class CounselMngController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
-		List<EgovMap> preList = counselMngService.getPreList(vo);
-		int totalPageCnt = counselMngService.getPreListTotCnt(vo);
+		List<EgovMap> preList = counselMngService.getPreList_TEST(vo); 	// 사전검사 List 
+		int totalPageCnt = counselMngService.getPreListTotCnt_TEST(vo);	// 사전검사 list count
 		
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
