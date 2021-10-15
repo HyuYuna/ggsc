@@ -240,8 +240,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Transactional
 	@Override
 	public void insertPreExamM(PreExamVO vo) {
-		// cnsMngDao.updatePreExamM(vo);
-		// cnsMngDao.updatePreExamD(vo);
+	
 		if(vo.getFile().getSize() != 0 && vo.getWriteYn().equals("N")){	// 사전검사 file 등록
 			// DB에 파일 저장
 			// cnsMngDao.insertPreExamFile(vo);
@@ -915,5 +914,91 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	public int getPreListTotCnt_TEST(PreExamVO vo) {
 		int count = cnsMngDao.getPreListTotCnt_TEST(vo);
 		return count;
-	}	
+	}
+	
+	@Override
+	public List<EgovMap> findUserPopup_test(UserInfoVO vo) {
+		return cnsMngDao.findUserPopup_test(vo);
+	}
+
+	@Override
+	public EgovMap getCnsAgreDocDtl_test(int caseNo) {
+		return cnsMngDao.getCnsAgreDocDtl_test(caseNo);
+	}
+
+	@Override
+	public EgovMap getPrivacyDtl_test(int caseNo) {
+		return cnsMngDao.getPrivacyDtl_test(caseNo);
+	}
+
+	@Override
+	public EgovMap getScScreenDtl_test(int caseNo) {
+		return cnsMngDao.getScScreenDtl_test(caseNo);
+	}
+	
+	@Transactional
+	@Override
+	public void insertPreExamM_test(PreExamVO vo) { // 분기점 
+	
+		if(vo.getFile().getSize() != 0 && vo.getWriteYn().equals("N")){	// 사전검사 file 등록
+			// DB에 파일 저장
+			cnsMngDao.updatePreExamM(vo);
+			// 상담동의서 파일 등록
+			if(vo.getExamDocCd().equals("2")) {
+				// 파일 서버에 저장
+				MultipartFile file = vo.getFile();
+				EgovMap fMap = AMSComm.fileUpload(file, "cnsagredoc");
+				vo.setFileNm((String)fMap.get("fileNm"));
+				vo.setSysFileNm((String)fMap.get("sysFileNm"));
+				vo.setFilePath((String)fMap.get("filePath"));
+				// DB에 파일 저장
+				cnsMngDao.updateCnsAgreDocFile(vo);
+			}
+			// 개인정보동의서 파일 등록
+			if(vo.getExamDocCd().equals("3")) {
+				// 파일 서버에 저장
+				MultipartFile file = vo.getFile();
+				EgovMap fMap = AMSComm.fileUpload(file, "perinfoagre");
+				vo.setFileNm((String)fMap.get("fileNm"));
+				vo.setSysFileNm((String)fMap.get("sysFileNm"));
+				vo.setFilePath((String)fMap.get("filePath"));
+				// DB에 파일 저장
+				cnsMngDao.updatePerInfoAgreFile(vo);
+			}
+			// 노인상담선별척도지 파일 등록
+			if(vo.getExamDocCd().equals("4")) {
+				// 파일 서버에 저장
+				MultipartFile file = vo.getFile();
+				EgovMap fMap = AMSComm.fileUpload(file, "doccntn");
+				vo.setFileNm((String)fMap.get("fileNm"));
+				vo.setSysFileNm((String)fMap.get("sysFileNm"));
+				vo.setFilePath((String)fMap.get("filePath"));
+				// DB에 파일 저장
+				cnsMngDao.updateDocCntnFile(vo);
+			}
+		}else{
+			
+			// 여기서는 값만 입력하여 주는 방향이며 
+			// 추후에 pdf 를 다운로드 하는 방식은 , iFrame 을 사용하여 한다 
+			
+			 if(vo.getExamDocCd().equals("2")){
+				// 상담동의서 등록
+				 
+				cnsMngDao.insertCnsAgreDoc_test(vo);
+				cnsMngDao.updatePreExamM_test(vo);
+				
+			}else if(vo.getExamDocCd().equals("3")){
+				// 개인정보동의서
+				
+				cnsMngDao.insertPerInfoAgre_test(vo);
+				cnsMngDao.updatePreExamM_test(vo);
+				
+			}else if(vo.getExamDocCd().equals("4")){
+				// 노인상담선별척도지
+				
+				cnsMngDao.insertDocCntnComm_test(vo);
+				cnsMngDao.updatePreExamM_test(vo);
+			}
+		}
+	}
 }

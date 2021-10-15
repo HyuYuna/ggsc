@@ -8,9 +8,9 @@
 
 <link href="/gnoincoundb/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="/gnoincoundb/js/jquery-1.11.2.min.js" ></script>
+<!-- <script src="/gnoincoundb/js/jquery-1.11.2.min.js" ></script> -->
 <script src="/gnoincoundb/js/html2canvas.min.js" ></script>
-<script src="/gnoincoundb/js/jspdf.min.js" ></script>
+<!-- <script src="/gnoincoundb/js/jspdf.min.js" ></script> -->
 <script src="/gnoincoundb/js/jquery-accordion-menu.js" ></script>
 <style>
 	ul.tabs{
@@ -58,15 +58,16 @@
 	}
 	
 </style>
-  </head>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		$("#Ubtn").css("display", "none");
 		var fileTarget = $('#file'); 
 		fileTarget.on('change', function(){ // 값이 변경되면
 		    var cur=$(".filebox input[type='file']").val();
 			$(".upload-name").val(cur);
-		}); 
+		});
+		
 		$("input[type=radio]").click(function(){
 			if($("input[name=writeYn]:checked").val() == "Y"){
 				$("#uploadTr").css("display", "none");
@@ -83,10 +84,11 @@
 		var cnsleId = "${detail.cnsleId}";
 		if(cnsleId != "") {
 			$("#caseNo").val("${caseNo}");
-			// 수정기능이 안되므로 등록 버튼 감추기
 			$("#Ibtn").css("display","none");
 			$("#Sbtn").css("display","");
 			$("#findBtn").css("display","none");
+			$('input:radio[name=idvlInfoCntn1Yn]:input[value=${detail.idvlInfoCntn1Yn}]').attr("checked", true);
+			$('input:radio[name=idvlInfoCntn2Yn]:input[value=${detail.idvlInfoCntn2Yn}]').attr("checked", true);
 		} else {
 			$("#Ibtn").css("display","");
 			$("#Sbtn").css("display","none");
@@ -97,29 +99,32 @@
 	
 	function fn_goLink(no){
 		var url = "";
-		var caseNo = "${caseNo}";
+		
 		if(no == 1){
 			url = "/gnoincoundb/securityPledge.do?mnuCd=${mnuCd}";	
 		}else if(no == 2){
-			url = "/gnoincoundb/cnsAgreement.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
+			url = "/gnoincoundb/cnsAgreement_test.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}else if(no == 3){
 			url = "/gnoincoundb/privacyAgreement.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}else{
-			url = "/gnoincoundb/scScreeningScale.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
+			url = "/gnoincoundb/scScreeningScale_test.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}
 		document.location.href = url;
 	}
 	
-	function fn_reg(save) {
-	
+	function fn_reg(save){
+		
+		var writeYn = $("input[name=writeYn]:checked").val();
+		
 		if(save == "U") {
 			var cnsleId = $("#cnsleId").val();
 			if(cnsleId == "") {
 				alert("사용자를 선택해 주세요.");
 				return false;
 			}
+			
 			if(confirm("파일업로드를 하시겠습니까?")) {
-				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}";
+				document.frm.action = "/gnoincoundb/preExamReg_test.do?mnuCd=${mnuCd}";
 		       	document.frm.submit();
 			}
 			return false;
@@ -138,6 +143,17 @@
 		}
 		
 		if($("input[name=writeYn]:checked").val() == "Y"){
+			
+			if($('input:radio[name="idvlInfoCntn1Yn"]').is(':checked')==false){
+				alert("정보 수집에 대한 동의여부를 선택해주세요.");
+				return;
+			}
+			
+			if($('input:radio[name="idvlInfoCntn2Yn"]').is(':checked')==false){
+				alert("민감 정보 수집에 대한 동의여부를 선택해주세요.");
+				return;
+			}
+			
 			if($("#year").val()==""){
 				alert("날짜를 입력해주세요.");
 				$("#year").focus();
@@ -163,9 +179,17 @@
 				$("#day").focus();
 				return;
 			}
-			if($("#cnsleNm2").val()==""){
-				alert("내담자명을 입력해주세요.");
-				$("#cnsleNm2").focus();
+			if($("#seplName").val()==""){
+				alert("성명을 입력해주세요.");
+				$("#seplName").focus();
+				return;
+			}
+			if($('input:radio[name="idvlInfoCntn1Yn"]:checked').val() != 'Y'){
+				alert("정보 수집에 동의해주세요.");
+				return;
+			}
+			if($('input:radio[name="idvlInfoCntn2Yn"]:checked').val() != 'Y'){
+				alert("민감 정보 수집에 동의해주세요.");
 				return;
 			}
 		}else{
@@ -178,35 +202,34 @@
 		
 		if(save == "I") {
 			if(confirm("등록 하시겠습니까?")){
-				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}&save="+save;
+				document.frm.action = "/gnoincoundb/preExamReg_test.do?mnuCd=${mnuCd}&save="+save;
 		       	document.frm.submit();
 			}			
 		} else if(save == "S") {
 			if(confirm("수정 하시겠습니까?")){
-				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}&save="+save;
+				document.frm.action = "/gnoincoundb/preExamReg_test.do?mnuCd=${mnuCd}&save="+save;
 		       	document.frm.submit();
 			}
 		}
-		
 	}
 	
 	function findUserPopup(){
 		var userNm = $("#cnsleNm").val();
 		userNm = encodeURI(encodeURIComponent(userNm));		
 		var caseNo = "${caseNo}";
-		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo; // path 
-		var name = "회원 찾기";	// popup Name 
-		var option = "width = 530, height = 750, top = 50, left = 100, location = yes"; // option 
-		window.open(url, name, option);
-		encodeURI(encodeURIComponent(jindan_name)); // 인코딩 해주는 것 , url
+		var url = "/gnoincoundb/findUserPopup_test.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo;
+		var name = "회원 찾기";
+		var option = "width = 530, height = 750, top = 50, left = 100, location = yes";
+		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));
 	}
 	
 	function getGb(){
 		if(document.getElementById('caseNo').value.length > 0){
 			var token = $("meta[name='_csrf']").attr("th:content");
 			var header = $("meta[name='_csrf_header']").attr("th:content");
+			
 			$.ajax({
-				url : "/gnoincoundb/cnsAcceptDtl_ajax.do",
+				url : "/gnoincoundb/cnsAcceptDtl_ajax_test.do",
 				type : "post",
 				dataType : "json",
 				data : { caseNo : document.getElementById('caseNo').value },
@@ -228,20 +251,20 @@
 	}
 	
 	function fn_list(mnuCd){
-		document.location.href = "/gnoincoundb/pretestList.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/pretestList_test.do?mnuCd=" + mnuCd;
 	}
 	
 </script>
 
 <section id="content">
 
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>상담동의서 등록</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>개인정보동의서 등록</h2>	
 		<div class="box-style1 x-scroll-auto" >
 			<div>
 				<ul class="tabs">
 					<!-- <li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(1);">보안서약서</li> -->
-					<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;">상담동의서</li>
-					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(3);">개인정보동의서</li>
+					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(2);">상담동의서</li>
+					<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;">개인정보동의서</li>
 					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(4);">노인상담선별척도지</li>
 					<div class="txtR" style="width: 73.2%; display: inline-block;">
 						<button type="button" id="Ubtn" class="btn-basic" onClick="javascript:fn_reg('U');" style="background-color: green;color:white;">업로드</button>
@@ -256,12 +279,10 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
 					<input type="hidden" id="caseNo" name="caseNo" value="0" />
-					<input type="hidden" id="sigunCd" name="sigunCd" />
-					<!-- <input type="hidden" id="localGb" name="localGb" value="9"/>
-					<input type="hidden" id="zoneGb" name="zoneGb" /> -->
-					<input type="hidden" id="examDocCd" name="examDocCd" value="2" />
+					<input type="hidden" id="localGb" name="localGb" value="9"/>
+					<input type="hidden" id="examDocCd" name="examDocCd" value="3" />
 					<input type="hidden" id="docGb" name="docGb" value="1" />
-					<input type="hidden" id="agrePath" name="agrePath" value="Y" />
+					<input type="hidden" id="perInfoPath" name="perInfoPath" value="Y" />
 					<table border="1" class="table-write" style="width: 101.2%; position: relative; left: -10px; top: -10px; border-left-style:hidden; border-right-style: hidden; border-top-style: hidden;">
 						<colgroup>
 							<col width="15%" >
@@ -272,7 +293,7 @@
 						<tbody>
 							<tr>
 								<th>문서구분</th>
-								<td>상담동의서</td>
+								<td>개인정보동의서</td>
 								<th>작성여부</th>
 								<td>
 									<input type="radio" style="margin: 0 4px 4px 7px;" name="writeYn" id="writeY" value="Y" checked="checked" /><label for="writeY">예</label>
@@ -306,43 +327,62 @@
 										<label class="btn-basic" style="background-color: gray;color:white;" for="file">찾기</label> 
 									</div>
 								</td>
-							</tr>
+							</tr>						
 						</tbody>
 					</table>
-				<div style="border-style: solid; border-width: thin; width:700px;; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
+				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
 					<div>
-						<h1 style="text-align: center; font-size:x-large; padding-bottom: 20px;">상담동의서</h1>
+						<h1 style="text-align: center; font-size:x-large; padding-bottom: 20px; border-bottom-style: solid; border-width: thin;">개인정보수집·이용·제공 동의서</h1><br>
 					</div>
-					<font style="font-size: medium;">본 동의서의 목적은 노인상담센터가 제공하는 상담서비스에 관한 기본적인 정보를 드리고 이해를 높이고자하는 것입니다. 복사본을 원하시면 상담자에게 요청하시기 바랍니다.</font>
-					<br><br>
-					<h2><span style="font-size: 20px;">▣</span> 비밀보장</h2><br>
-					<font style="font-size: medium">노인상담센터의 상담은 상담자 윤리 규정에 의거하여 비밀보장이 유지됩니다. 각 상담 회기 후 작성되는 상담일지 또한 안전하게 저장됩니다. 
-					상담내용의 비밀보장에는 몇 가지 예외상황이 있습니다.</font><br>
-					<font style="font-size: medium;">1. 상담사의 전문가로서 계속적인 성장을 위하여 사례에 대한 자문을 받는 경우 상담 내용을 나눌 수 있습니다.</font><br>
-					<font style="font-size: medium;">2. 내담자가 자살 시도를 하려고 할 때, 혹은 다른 사람을 해칠 의도가 있을 때, 가정 폭력 등으로 가족구성원이 학대 받고 있을 때, 
-					내담자가 감염 병이 있다는 것을 되었을 때에는 비밀보장이 지켜지지 않을 수 있습니다.</font><br>
-					<font style="font-size: medium;">3. 법원의 요청으로 인해 상담을 받을 경우 모든 상담 내용은 관련기관에 통보될 수 있습니다.</font><br>
-					<font style="font-size: medium;">4. 내담자가 상담자에게 지문이나 대화를 허가한 경우 해당되는 친지나 전문가와 상담 내용의 일부분을 나눌 수 있습니다.</font><br><br>
-					<h2><span style="font-size: 20px;">▣</span> 내담자의 권리</h2><br>
-					<font style="font-size: medium;">상담의 시작과 끝에 대한 결정은 내담자의 권리입니다. 내담자는 상담시작 전 혹은 상담도중에 언제든지 상담을
-					거부하거나 중단할 수 있는 권리가 있습니다. 상담종결을 원할 경우 언제든지 저와 의논해 주시기 바랍니다. 또한 내담자는 자신이 받은 상담 및 심리검사의 기록을 볼 수 있는 권리가 있습니다.</font>
-					<br><br>
-					<h2><span style="font-size: 20px;">▣</span> 녹음동의</h2><br>
-					<font style="font-size: medium;">녹음 동의는 상담자가 전문가로서의 수련과 성장을 위하여 사례에 대하여 자문을 받거나, 더 나은 상담을 제공하기 위하여 상담
-					내용을 녹음을 하는 것에 대한 동의를 구하고자 하는 것입니다.</font><br>
-					<font style="font-size: medium;">녹음 파일은 안전하게 저장되며 녹음 파일에도 비밀보장의 원칙이 적용됩니다. 녹음된 회기 내용은 상담자와 상담자의 수련에 관련된 
-					전문가들만 들을 수 있습니다. 상담의 녹음에 관한 결정은 내담자의 권리입니다. 내담자는 언제든지 녹음을 거부하거나 중단 할 수 있습니다. 녹음이 불편한 경우 언제든지 상담자에게 
-					말씀해 주시기 바랍니다.</font><br>
-					<font style="font-size: medium;">위의 상담동의서 내용을 상담자로부터 충분히 설명을 들었으며 모든 사항에 동의합니다. 나는 질문이 있을 경우 상담자에게 
-					언제든지 질문할 권리를 가지고 있다는 것을 알고 있습니다.</font>
-					<br><br><br>
+					<font style="font-size: small;"> 경기도노인종합상담센터와 <!-- OOO 노인상담센터 --><c:out value="${loginVo.centerNm }" />은 개인정보 보호법에 명기된 관련 법률상의 개인정보처리자가 준수하여야 할 개인정보보호 
+					규정을 준수하며, 관련법령에 의거하여 이용자 권익보호에 최선을 다하고 있습니다. 또한, 본 기관은 [개인정보보호법] 제15조 및 "경기도 노인종합상담센터 설치 및 운영조례" 이하 
+					'상담조례'에 의거하여 귀하의 개인정보 수집·이용함에 있어 동의를 받고 있습니다.</font><br><br>
+					<h2>I. 정보 수집에 대한 동의</h2><br>
+					<font style="font-size: medium; font-weight: bold;">1. 개인정보 수집항목</font><br>
+					<font style="font-size: medium;">성명, 성별, 전화번호, 생년월일, 학력, 문자해독, 주소, 음주, 수면, 경제수준, 주거형태, 주택형태, 
+					결혼상태, 동거상태, 경제상태, 심리상태, 노인일자리 참여 여부</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">2. 개인정보 수집 목적</font><br>
+					<font style="font-size: medium;">경기도상담시스템 및 경기도가 운영하고 있는 취약노인정보시스템에 입력되어 보다 효율적인 서비스 이용자 관리를 위해 
+					추진하고 있는 다양한 서비스 제공 및 서비스 이둉자 중복수혜 확인 등의 목적으로 활용</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">3. 개인정보의 보유 및 파기</font><br>
+					<font style="font-size: medium;">서비스 종료 후 5년간 보존</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">4. 개인정보 제공 동의 거부 권리 및 동의 거부 따른 불이익 내용 또는 제한사항</font><br>
+					<font style="font-size: medium;">귀하는 개인정보 제공 동의를 거부할 권리가 있으며, 동의거부에 따른 불이익은 없습니다. 다만, 일부 서비스는 그 특성에 따라 제한 될 수 있습니다.</font><br>
+					<div style="border-bottom-style: dotted; border-top-style: dotted; border-width: thin; background-color: #D5D5D5; position: relative; left: -20px; width: 698px; text-align: center;">
+						<font style="font-size: medium; font-weight: bold;"> 위 정보 수집에 동의하십니까? </font><input type="radio" id="idvlInfoCntn1Y" name="idvlInfoCntn1Yn" value="Y" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn1Y"> 동의함</label>
+						<input type="radio" id="idvlInfoCntn1N" name="idvlInfoCntn1Yn" value="N" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn1N"> 동의하지 않음(작성종료)</label>
+					</div><br>
+					<h2>II.민감정보 수집에 대한 별도 동의</h2><br>
+					<font style="font-size: medium; font-weight: bold;">1. 민감정보 수집항목(사회복지사업법 시행령 제25조의2 의거)</font><br>
+					<font style="font-size: medium;">종교, 건강(건강상태, 진단병력, 복용약)</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">2. 개인정보 수집 목적</font><br>
+					<font style="font-size: medium;">경기도상담시스템 및 경기도가 운영하고 있는 취약노인정보시스템에 입력되어 보다 효율적인 서비스 이용자 관리를 위해 정부 및 
+					경기도에서 추진하고 있는 다양한 서비스 제공 및 서비스 이용자 중복수혜 확인 등의 목적으로 활용</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">3. 개인정보의 보유 및 파기</font><br>
+					<font style="font-size: medium;">서비스 종료 후 5년간 보존</font><br><br>
+					<font style="font-size: medium; font-weight: bold;">4. 개인정보 제공 동의 거부 권리 및 동의 거부 따른 불이익 내용 또는 제한사항</font><br>
+					<font style="font-size: medium;">귀하는 개인정보 제공 동의를 거부할 권리가 있으며, 동의거부에 따른 불이익은 없습니다. 다만, 일부 서비스는 그 특성에 
+					따라 제한 될 수 있습니다.</font><br>
+					<div style="border-bottom-style: dotted; border-top-style: dotted; border-width: thin; background-color: #D5D5D5; position: relative; left: -20px; width: 698px; text-align: center;">
+						<font style="font-size: medium; font-weight: bold;"> 위 민감 정보 수집에 동의하십니까? </font><input type="radio" id="idvlInfoCntn2Y" name="idvlInfoCntn2Yn" value="Y" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn2Y"> 동의함</label>
+						<input type="radio" id="idvlInfoCntn2N" name="idvlInfoCntn2Yn" value="N" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn2N"> 동의하지 않음(작성종료)</label>
+					</div><br>
+					<font style="font-size: medium;">본인은 위의 내용을 충분히 숙지하였으며, 본 기관의 보다 나은 서비스 제공과 정책수립을 위해 개인정보를 수집, 활용, 제공하는 것에 동의합니다.</font><br>
+					<font style="font-size: medium;">아울러 본 동의서는 서비스 제공 목적을 위한 업무 외에는 사용하지 않을 것을 약속드리며 철저히 비밀로 관리하여 타인에게 공개하거나 
+					유출하지 않을 것임을 알려드립니다.</font><br>
+					<font style="font-size: medium;">개인정보처리방침 세부내용은 담당자(OOOOO)의 안내를 받으시거나, 본 기관의 홈페이지(www.OOOOO.or.kr)를 통하여 확인하시기 바랍니다.</font><br><br>
+					
 					<div style="text-align: center;">
-						<font style="font-size: medium;">날&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;짜 :</font>
 						<input type="text" id="year" name="year" style="width: 60px;" maxlength="4" value="${detail.year }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">년</font>
 						<input type="text" id="month" name="month" style="width: 30px;" maxlength="2" value="${detail.month }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">월</font>
 						<input type="text" id="day" name="day" style="width: 30px;" maxlength="2" value="${detail.day }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">일</font><br>
-						<font style="font-size: medium;">내 담 자 :</font>
-						<input type="text" id="cnsleNm2" name="cnsleNm2" style="width: 130px;" value="${detail.cnsleNm }" readonly="readonly"><font style="font-size: medium;">(서명)</font>
+						<font style="font-size: medium;">본인 확인자</font>
+						<input type="text" name="myselfAgre" style="width: 130px;" maxlength="10" value="${detail.myselfAgre }" oninput="this.value = this.value.replace(/[^a-zㄱ-힣]/, '');"><font style="font-size: medium;">(인 또는 서명)</font><br>
+						<font style="font-size: medium;">보호자 또는 법정대리인</font>
+						<input type="text" name="guardian" style="width: 130px;" maxlength="10" value="${detail.guardian }" oninput="this.value = this.value.replace(/[^a-zㄱ-힣]/, '');"><font style="font-size: medium;">(인 또는 서명)</font>
+					</div><br>
+					<div style="text-align: right;">
+						<h2>경기도노인종합상담센터, OOO노인상담센터 귀하 </h2><br>
 					</div>
 				</div>
 				</form>

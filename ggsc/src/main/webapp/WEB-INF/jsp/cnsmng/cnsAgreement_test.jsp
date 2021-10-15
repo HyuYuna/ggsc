@@ -67,6 +67,9 @@
 		    var cur=$(".filebox input[type='file']").val();
 			$(".upload-name").val(cur);
 		}); 
+		
+		console.log("${detail}");
+		
 		$("input[type=radio]").click(function(){
 			if($("input[name=writeYn]:checked").val() == "Y"){
 				$("#uploadTr").css("display", "none");
@@ -81,6 +84,7 @@
 		
 		var caseNo = "${caseNo}";
 		var cnsleId = "${detail.cnsleId}";
+		
 		if(cnsleId != "") {
 			$("#caseNo").val("${caseNo}");
 			// 수정기능이 안되므로 등록 버튼 감추기
@@ -101,12 +105,15 @@
 		if(no == 1){
 			url = "/gnoincoundb/securityPledge.do?mnuCd=${mnuCd}";	
 		}else if(no == 2){
-			url = "/gnoincoundb/cnsAgreement.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
+			url = "/gnoincoundb/cnsAgreement_test.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}else if(no == 3){
-			url = "/gnoincoundb/privacyAgreement.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
+			url = "/gnoincoundb/privacyAgreement_test.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}else{
-			url = "/gnoincoundb/scScreeningScale.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
+			url = "/gnoincoundb/scScreeningScale_test.do?mnuCd=${mnuCd}&caseNo=${caseNo}";
 		}
+		
+		console.log(url);
+		
 		document.location.href = url;
 	}
 	
@@ -118,12 +125,14 @@
 				alert("사용자를 선택해 주세요.");
 				return false;
 			}
+			
 			if(confirm("파일업로드를 하시겠습니까?")) {
 				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}";
 		       	document.frm.submit();
 			}
 			return false;
 		}
+		
 		
 		if($("#cnsleId").val()==""){
 			alert("ID를 입력해주세요.");
@@ -137,7 +146,7 @@
 			return;
 		}
 		
-		if($("input[name=writeYn]:checked").val() == "Y"){
+		if($("input[name=writeYn]:checked").val() == "Y"){ // 작성여부가 Y 인 경우 
 			if($("#year").val()==""){
 				alert("날짜를 입력해주세요.");
 				$("#year").focus();
@@ -176,14 +185,14 @@
 			}
 		}
 		
-		if(save == "I") {
+		if(save == "I") { // 등록 버튼 
 			if(confirm("등록 하시겠습니까?")){
-				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}&save="+save;
+				document.frm.action = "/gnoincoundb/preExamReg_test.do?mnuCd=${mnuCd}&save="+save;
 		       	document.frm.submit();
 			}			
 		} else if(save == "S") {
 			if(confirm("수정 하시겠습니까?")){
-				document.frm.action = "/gnoincoundb/preExamReg.do?mnuCd=${mnuCd}&save="+save;
+				document.frm.action = "/gnoincoundb/preExamReg_test.do?mnuCd=${mnuCd}&save="+save;
 		       	document.frm.submit();
 			}
 		}
@@ -194,19 +203,20 @@
 		var userNm = $("#cnsleNm").val();
 		userNm = encodeURI(encodeURIComponent(userNm));		
 		var caseNo = "${caseNo}";
-		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo; // path 
+		var url = "/gnoincoundb/findUserPopup_test.do?userNm=" + userNm+"&cnsTargetGb=Y"+"&schCaseNo="+caseNo; // path 
 		var name = "회원 찾기";	// popup Name 
 		var option = "width = 530, height = 750, top = 50, left = 100, location = yes"; // option 
 		window.open(url, name, option);
-		encodeURI(encodeURIComponent(jindan_name)); // 인코딩 해주는 것 , url
+		//encodeURI(encodeURIComponent(jindan_name)); // 인코딩 해주는 것 , url
 	}
 	
 	function getGb(){
 		if(document.getElementById('caseNo').value.length > 0){
 			var token = $("meta[name='_csrf']").attr("th:content");
 			var header = $("meta[name='_csrf_header']").attr("th:content");
+			
 			$.ajax({
-				url : "/gnoincoundb/cnsAcceptDtl_ajax.do",
+				url : "/gnoincoundb/cnsAcceptDtl_ajax_test.do",
 				type : "post",
 				dataType : "json",
 				data : { caseNo : document.getElementById('caseNo').value },
@@ -216,6 +226,9 @@
 			}).done(function(e){
 				var data = e.Detail;
 				var arr = [ 'cnsNm', 'zoneNm', 'centerNm' ];
+				
+				console.log(data);
+				
 				for(var i=0;i<arr.length;i++){
 					$("[data-type='" + arr[i] + "']").text(eval("data." + arr[i] ));
 				}
@@ -228,7 +241,7 @@
 	}
 	
 	function fn_list(mnuCd){
-		document.location.href = "/gnoincoundb/pretestList.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/pretestList_test.do?mnuCd=" + mnuCd;
 	}
 	
 </script>
@@ -253,12 +266,10 @@
 			</div>
 			<div style="border-style: solid; border-width: thin; width:100%; height: auto; padding: 10px 10px 10px 10px;">
 				<form id="frm" name="frm" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
-					<input type="hidden" id="caseNo" name="caseNo" value="0" />
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> <!--  보안 키 값  -->
+					<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" /> 	<!--  메뉴코드  -->
+					<input type="hidden" id="caseNo" name="caseNo" value="0" /> <!--  caseNo  pre_m 테이블 거 -->
 					<input type="hidden" id="sigunCd" name="sigunCd" />
-					<!-- <input type="hidden" id="localGb" name="localGb" value="9"/>
-					<input type="hidden" id="zoneGb" name="zoneGb" /> -->
 					<input type="hidden" id="examDocCd" name="examDocCd" value="2" />
 					<input type="hidden" id="docGb" name="docGb" value="1" />
 					<input type="hidden" id="agrePath" name="agrePath" value="Y" />
@@ -287,13 +298,13 @@
 							</tr>
 							<tr height=33>
 								<th>상담구분</th>
-								<td><span data-type='cnsNm'><c:out value="${detail.cnsGbNm }" /></span></td>
+								<td><span data-type='cnsNm'>${detail.cnsGbNm}</span></td>
 								<th>권역구분</th>
-								<td><span data-type='zoneNm'><c:out value="${detail.zoneGbNm }" /></span></td>
+								<td><span data-type='zoneNm'>${detail.zoneGbNm}</span></td>
 							</tr>
 							<tr height=33>
 								<th>센터구분</th>
-								<td><span data-type='centerNm'><c:out value="${detail.centerGbNm }" /></span></td>
+								<td><span data-type='centerNm'>${detail.centerGbNm }</span></td>
 								<th></th>
 								<td></td>
 							</tr>
@@ -348,10 +359,6 @@
 				</form>
 			</div>
 		</div>
-		
 		<!-- end -->
-
 	</section>
-
 </html>
-

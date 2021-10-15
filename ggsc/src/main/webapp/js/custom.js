@@ -35,6 +35,7 @@ $(function(){
 });
 
 function fn_pdfDownload(number, idx){
+	
 	if(Number(number).toString() != 'NaN'){
        $("#tmpFrame").remove();
         $('body').append("<iframe id='tmpFrame' name='tmpFrame' style='display:none'></iframe>");

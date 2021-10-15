@@ -313,4 +313,13 @@ public interface CounselMngService {
 	//사전검사
 	public List<EgovMap> getPreList_TEST(PreExamVO vo);
 	public int getPreListTotCnt_TEST(PreExamVO vo);
+	
+	// 회원조회
+	public List<EgovMap> findUserPopup_test(UserInfoVO vo);
+	
+	//동의서 관련 
+	public EgovMap getCnsAgreDocDtl_test(int caseNo);	// 상담동의서 
+	public EgovMap getPrivacyDtl_test(int caseNo);		// 개인정보 동의서 
+	public EgovMap getScScreenDtl_test(int caseNo);		// 노인상담선별척도지
+	public void insertPreExamM_test(PreExamVO vo);
 }

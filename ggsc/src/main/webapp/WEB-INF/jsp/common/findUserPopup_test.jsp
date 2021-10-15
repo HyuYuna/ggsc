@@ -61,7 +61,7 @@
 	
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/findUserPopup.do?cnsTargetGb=${cnsTargetGb}&cnsPerTargetGb=${cnsPerTargetGb}";
+		document.searchForm.action = "/gnoincoundb/findUserPopup_test.do?cnsTargetGb=${cnsTargetGb}&cnsPerTargetGb=${cnsPerTargetGb}";
        	document.searchForm.submit();
 	}
 </script>

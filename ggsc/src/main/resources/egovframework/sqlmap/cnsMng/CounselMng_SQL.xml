@@ -1494,8 +1494,7 @@
 	</insert>
 
 	<!-- 상담동의서 등록 -->
-	<insert id="cnsMngDao.insertCnsAgreDoc"
-		parameterClass="preExamVO">
+	<insert id="cnsMngDao.insertCnsAgreDoc" parameterClass="preExamVO">
 		INSERT INTO GS_CNS_AGRE_DOC
 		(
 		CNS_GB
@@ -5264,4 +5263,410 @@
 	    </isNotEmpty>
 	</select>
 	
+	<select id="cnsMngDao.findUserPopup_test" parameterClass="userInfoVO" resultClass="EgovMap">
+
+		SELECT
+		A.*
+		FROM(
+		SELECT
+		row_number() over(ORDER BY gca.NUM) AS RNUM ,
+		row_number() over(ORDER BY gca.NUM DESC) AS RNUM2 ,
+		gum.* ,
+		gca.CASE_NO ,
+		gca.NUM ,
+		(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gca.CNS_GB) AS cnsGb
+		FROM
+		GS_USER_M_TEST gum, GS_CNS_ACPT_TEST gca
+		<!-- <isNotEmpty property="cnsTargetGb">
+			, GS_PRE_EXAM_M gpem
+		</isNotEmpty> -->
+		<isEqual property="cnsTargetGb" compareValue="Y">
+			, GS_PRE_EXAM_M_TEST gpem
+		</isEqual>
+		<isEqual property="cnsPerTargetGb" compareValue="Y">
+			, GS_EALY_CNS_DOC gecd
+		</isEqual>
+		WHERE
+		gum.USER_ID = gca.USER_ID
+		<isEqual property="cnsTargetGb" compareValue="Y">
+			AND gum.USER_ID = gpem.USER_ID
+			AND gpem.CNS_TARGET_GB = 'Y'
+		</isEqual>
+		<!-- <isNotEmpty property="cnsTargetGb">
+			AND gum.USER_ID = gpem.USER_ID
+			AND gpem.CNS_TARGET_GB = 'Y'
+		</isNotEmpty> -->
+		<isEqual property="cnsPerTargetGb" compareValue="Y">
+			AND gum.USER_ID = gecd.CNSLE_ID
+		</isEqual>
+		AND gca.ACPT_YN = 'Y'
+		AND gum.USE_YN = 'Y'
+		<isNotEmpty property="schUserNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schUserNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schUserId" prepend="AND">
+			gum.USER_ID LIKE CONCAT('%', #schUserId#, '%')
+		</isNotEmpty>
+		
+		<isNotEmpty property="schCaseNo" prepend="AND">
+			gca.CASE_NO = #schCaseNo#
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		) A
+	 		<![CDATA[
+			   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+				ORDER BY NUM DESC
+			]]>
+	</select>
+	
+	<!-- 상담동의서 상세보기 -->
+	<select id="cnsMngDao.getCnsAgreDocDtl_test" parameterClass="Integer" resultClass="egovMap">
+		SELECT 
+			gcad.NUM ,
+			gcad.CNS_GB ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gcad.CNS_GB) AS cnsGbNm ,
+			gcad.ZONE_GB ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G71' AND ODR = gcad.ZONE_GB) AS zoneGbNm ,
+			gcad.CENTER_GB ,
+			( SELECT CENTER_NM FROM gs_center_m WHERE NUM = gcad.CENTER_GB ) AS centerGbNm ,
+			gcad.CNSLE_ID ,
+			gcad.CASE_NO ,
+			gcad.WRITE_YN ,
+			gcad.YEAR ,
+			gcad.MONTH ,
+			gcad.DAY ,
+			gcad.CNSLE_NM ,
+			gcad.WRITE_DT ,
+			gcad.CNS_CSNT_SIGN 
+		FROM
+			GS_CNS_AGRE_DOC_TEST AS gcad
+		WHERE
+			gcad.CASE_NO = #caseNum#
+	</select>
+	
+	<!-- 개인정보동의서 상세보기 -->
+	<select id="cnsMngDao.getPrivacyDtl_test" parameterClass="Integer" resultClass="egovMap">
+		SELECT
+			gpia.NUM ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gpia.CNS_GB) AS cnsGbNm ,
+			gpia.ZONE_GB ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G71' AND ODR = gpia.ZONE_GB) AS zoneGbNm ,
+			gpia.CENTER_GB ,
+			( SELECT CENTER_NM FROM gs_center_m WHERE NUM = gpia.CENTER_GB ) AS centerGbNm ,
+			gpia.CNS_GB ,
+			gpia.ZONE_GB ,
+			gpia.CENTER_GB ,
+			gpia.CNSLE_ID ,
+			gpia.CASE_NO ,
+			gpia.LOCAL_GB ,
+			gpia.CNSLE_NM ,
+			gpia.CENTER_NM ,
+			gpia.IDVL_INFO_CNTN1_YN ,
+			gpia.IDVL_INFO_CNTN2_YN ,
+			gpia.IDVL_INFO_CNTN3_YN ,
+			gpia.GUARDIAN ,
+			gpia.MYSELF_AGRE ,
+			gpia.YEAR ,
+			gpia.MONTH ,
+			gpia.DAY ,
+			gpia.WRITE_DT ,
+			gpia.PER_INFO_CFRM_SIGN ,
+			gpia.PER_INFO_SAFER_SIGN 
+		FROM	
+			GS_PER_INFO_AGRE_TEST AS gpia
+		where
+			gpia.CASE_NO = #caseNo#
+	</select>
+	
+	<!-- 노인상담선별척도지 상세보기 -->
+	<select id="cnsMngDao.getScScreenDtl_test" parameterClass="Integer" resultClass="egovMap">
+		SELECT
+			gdcc.NUM ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gdcc.CNS_GB) AS cnsGbNm ,
+			gdcc.ZONE_GB ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G71' AND ODR = gdcc.ZONE_GB) AS zoneGbNm ,
+			gdcc.CENTER_GB ,
+			( SELECT CENTER_NM FROM gs_center_m WHERE NUM = gdcc.CENTER_GB ) AS centerGbNm ,
+			gdcc.CNSLE_ID ,
+			gdcc.CASE_NO ,
+			gdcc.LOCAL_GB ,
+			gdcc.WRITE_YN ,
+			gdcc.DOC_NO ,
+			gdcc.DOC_NM ,
+			gdcc.NAME ,
+			gdcc.INPUT_NM ,
+			gdcc.REWD_NO ,
+			gdcc.STRT_TIME ,
+			gdcc.STRT_MIN ,
+			gdcc.END_TIME_HOUR ,
+			gdcc.END_TIME_MIN ,
+			gdcc.WRITE_DT ,
+			gdcc.GENDER ,
+			gdcc.TOT_TIME ,
+			gdcc.ANSR1 ,
+			gdcc.ANSR1_CNTN ,
+			gdcc.ANSR2 ,
+			gdcc.ANSR2_CNTN ,
+			gdcc.ANSR3 ,
+			gdcc.ANSR3_CNTN ,
+			gdcc.QUST1_ANSR ,
+			gdcc.QUST2_ANSR ,
+			gdcc.QUST3_ANSR ,
+			gdcc.QUST4_ANSR ,
+			gdcc.QUST5_ANSR ,
+			gdcc.QUST6_ANSR ,
+			gdcc.QUST7_ANSR ,
+			gdcc.QUST8_ANSR ,
+			gdcc.QUST9_ANSR ,
+			gdcc.QUST10_ANSR ,
+			gdcc.QUST11_ANSR ,
+			gdcc.QUST12_ANSR ,
+			gdcc.QUST13_ANSR ,
+			gdcc.QUST14_ANSR ,
+			gdcc.QUST15_ANSR ,
+			gdcc.YES_TOT_SCORE ,
+			gdcc.NO_TOT_SCORE ,
+			gdcc.CNSR_OPTN_SCORE ,
+			gdcc.CNSR_OPTN_TOT ,
+			gdcc.INPUT_DT ,
+			gdcc.DB_INS_TM ,
+			gdcc.BIRTH_DT
+		FROM
+			GS_DOC_CNTN_COMM_TEST AS gdcc
+		WHERE
+			gdcc.CASE_NO = #caseNo#
+	</select>
+	
+	<!--  상담동의서 insert  -->
+	<insert id="cnsMngDao.insertCnsAgreDoc_test" parameterClass="preExamVO">
+		INSERT INTO GS_CNS_AGRE_DOC_TEST
+		(
+		CNS_GB
+		, CASE_NO
+		, DOC_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, CNSLE_NM
+		, WRITE_YN
+		, WRITE_DT
+		, CNS_CSNT_SIGN
+		, YEAR
+		, MONTH
+		, DAY
+		, SIGUN_CD
+		, DB_INS_TM
+		)
+		VALUES
+		(
+		#cnsGb#
+		, #caseNo#
+		, #docGb#
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, #writeYn#
+		, CONCAT(#year#, #month#, #day#)
+		, ''
+		, #year#
+		, #month#
+		, #day#
+		, #sigunCd#
+		, NOW()
+		)
+	</insert>
+	
+	<!--  개인정보동의서 insert  -->
+	<insert id="cnsMngDao.insertPerInfoAgre_test" parameterClass="preExamVO">
+		INSERT INTO GS_PER_INFO_AGRE_TEST
+		(
+		CNS_GB
+		, CASE_NO
+		, DOC_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, CNSLE_NM
+		, WRITE_YN
+		, WRITE_DT
+		, CENTER_NM
+		, YEAR
+		, MONTH
+		, DAY
+		, MYSELF_AGRE
+		, GUARDIAN
+		, IDVL_INFO_CNTN1_YN
+		, IDVL_INFO_CNTN2_YN
+		, PER_INFO_CFRM_SIGN
+		, PER_INFO_SAFER_SIGN
+		, SIGUN_CD
+		, DB_INS_TM
+		, CNSR_NM
+		, HOMEPAGE
+		)
+		VALUES
+		(
+		#cnsGb#
+		, #caseNo#
+		, #docGb#
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, #writeYn#
+		, CONCAT(#year#, #month#, #day#)
+		, ''
+		, #year#
+		, #month#
+		, #day#
+		, #myselfAgre#
+		, #guardian#
+		, #idvlInfoCntn1Yn#
+		, #idvlInfoCntn2Yn#
+		, ''
+		, ''
+		, #sigunCd#
+		, NOW()
+		, #cnsrNm#
+		, (SELECT HOMEPAGE FROM GS_CENTER_M WHERE SIGUN_CD = #sigunCd#)
+		)
+	</insert>
+	
+	<insert id="cnsMngDao.insertDocCntnComm_test" parameterClass="preExamVO">
+		INSERT INTO GS_DOC_CNTN_COMM_TEST
+		(
+		CNS_GB
+		, CASE_NO
+		, DOC_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, INPUT_NM
+		, WRITE_YN
+		, REWD_NO
+		, STRT_TIME
+		, STRT_MIN
+		, END_TIME_HOUR
+		, END_TIME_MIN
+		, WRITE_DT
+		, GENDER
+		, BIRTH_DT
+		, TOT_TIME
+		, ANSR1
+		, ANSR1_CNTN
+		, ANSR2
+		, ANSR2_CNTN
+		, ANSR3
+		, ANSR3_CNTN
+		, QUST1_ANSR
+		, QUST2_ANSR
+		, QUST3_ANSR
+		, QUST4_ANSR
+		, QUST5_ANSR
+		, QUST6_ANSR
+		, QUST7_ANSR
+		, QUST8_ANSR
+		, QUST9_ANSR
+		, QUST10_ANSR
+		, QUST11_ANSR
+		, QUST12_ANSR
+		, QUST13_ANSR
+		, QUST14_ANSR
+		, QUST15_ANSR
+		, YES_TOT_SCORE
+		, NO_TOT_SCORE
+		, CNSR_OPTN_SCORE
+		, CNSR_OPTN_TOT
+		, SIGUN_CD
+		, DB_INS_TM
+		)
+		VALUES
+		(
+		#cnsGb#
+		, #caseNo#
+		, #docGb#
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, #writeYn#
+		, #rewdNo#
+		, #strtTime#
+		, #strtMin#
+		, #endTimeHour#
+		, #endTimeMin#
+		, CONCAT(#year#, #month#, #day#)
+		, #gender#
+		, #birthDt#
+		, #totTime#
+		, #ansr1#
+		, #ansr1Cntn#
+		, #ansr2#
+		, #ansr2Cntn#
+		, #ansr3#
+		, #ansr3Cntn#
+		, #qust1Ansr#
+		, #qust2Ansr#
+		, #qust3Ansr#
+		, #qust4Ansr#
+		, #qust5Ansr#
+		, #qust6Ansr#
+		, #qust7Ansr#
+		, #qust8Ansr#
+		, #qust9Ansr#
+		, #qust10Ansr#
+		, #qust11Ansr#
+		, #qust12Ansr#
+		, #qust13Ansr#
+		, #qust14Ansr#
+		, #qust15Ansr#
+		, #yesTotScore#
+		, #noTotScore#
+		, #cnsrOptnScore#
+		, #cnsrOptnTot#
+		, #sigunCd#
+		, NOW()
+		)
+	</insert>
+	
+	<update id="cnsMngDao.updatePreExamM_test" parameterClass="preExamVO">
+		UPDATE
+		GS_PRE_EXAM_M_TEST
+		SET
+		WRITE_YN = 'Y'
+		, DB_UPD_TM = NOW()
+		<isEqual property="agrePath" compareValue="Y">
+			, AGRE_PATH = (SELECT NUM FROM GS_CNS_AGRE_DOC_TEST WHERE CASE_NO = #caseNo#)
+		</isEqual>
+		<isEqual property="perInfoPath" compareValue="Y">
+			, PER_INFO_PATH = (SELECT NUM FROM GS_PER_INFO_AGRE_TEST WHERE CASE_NO = #caseNo#)
+		</isEqual>
+		<isEqual property="docCntnPath" compareValue="Y">
+			, DOC_CNTN_PATH = (SELECT NUM FROM GS_DOC_CNTN_COMM_TEST WHERE CASE_NO = #caseNo#)
+		</isEqual>
+		WHERE
+		CASE_NO = #caseNo#
+		<!-- AND EXAM_DOC_CD = #examDocCd# -->
+		AND USER_ID = #cnsleId#
+	</update>
 </sqlMap>

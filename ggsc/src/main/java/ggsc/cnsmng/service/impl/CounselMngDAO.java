@@ -737,4 +737,44 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		System.out.println("AuthCode Check : "+vo.getAuthCd());
 		return (Integer)select("cnsMngDao.getPreListTotCnt_TEST",vo);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> findUserPopup_test(UserInfoVO vo){
+		
+		List<EgovMap> list =  (List<EgovMap>) list("cnsMngDao.findUserPopup_test", vo);
+		System.out.println(list);
+		return list;
+	}
+	
+	public EgovMap getCnsAgreDocDtl_test(int caseNo) {
+		return (EgovMap)select("cnsMngDao.getCnsAgreDocDtl_test",caseNo);
+	}
+	
+	public EgovMap getPrivacyDtl_test(int caseNo) {
+		return (EgovMap)select("cnsMngDao.getPrivacyDtl_test",caseNo);
+	}
+	
+	public EgovMap getScScreenDtl_test(int caseNo) {
+		return (EgovMap)select("cnsMngDao.getScScreenDtl_test",caseNo);
+	}
+	
+	// 상담 동의서 insert
+	public void insertCnsAgreDoc_test(PreExamVO vo) {
+		insert("cnsMngDao.insertCnsAgreDoc_test",vo);
+	}
+	
+	// 개인정보 동의서 insert
+	public void insertPerInfoAgre_test(PreExamVO vo) {
+		insert("cnsMngDao.insertPerInfoAgre_test",vo);
+	}
+	
+	// 노인상담선별 척도지 insert
+	public void insertDocCntnComm_test(PreExamVO vo) {
+		insert("cnsMngDao.insertDocCntnComm_test",vo);
+	}
+	
+	// 사전검사 테이블 수정 
+	public void updatePreExamM_test(PreExamVO vo) {
+		update("cnsMngDao.updatePreExamM_test",vo);
+	}
 }

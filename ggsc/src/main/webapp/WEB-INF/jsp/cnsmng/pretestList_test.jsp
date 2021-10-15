@@ -24,15 +24,16 @@
 		$("select[name=schCenterGb]").val(schCenterGb);
 		$("select[name=schWriteYn]").val(schWriteYn);
 		$("#totalPageCnt").html("${totalPageCnt}");
+		
+		console.log("${preList}");
 	});
 
 	function fn_detail(caseNo){
-		document.location.href = "/gnoincoundb/cnsAgreement.do?caseNo=" + caseNo + "&mnuCd=${mnuCd}";
+		document.location.href = "/gnoincoundb/cnsAgreement_test.do?caseNo=" + caseNo + "&mnuCd=${mnuCd}";
 	}
 	
 	
-	function fn_popup(){
-		
+	function fn_popup(){ // 안 쓰임 
 		var url = "/gnoincoundb/securityPledge.do";
 		var name = "신청자정보";
 		var option = "width = 500, height = 800, top = 50, left = 100, location = yes";
@@ -41,9 +42,10 @@
 	
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/pretestList.do";
+		document.searchForm.action = "/gnoincoundb/pretestList_test.do";
        	document.searchForm.submit();
 	}
+	
 	function fn_reg(mnuCd){
 		document.location.href = "/gnoincoundb/cnsAgreement.do?mnuCd=" + mnuCd;
 	}
@@ -183,7 +185,7 @@
 						</tr>
 					</c:if>
 					<c:if test="${preList.size() > 0 }">
-						<c:forEach items="${preList }" var="result">
+						<c:forEach items="${preList }" var="result"> 
 							<tr>
 								<td onclick='fn_detail("${result.caseNo}")'>${result.rnum }</td>
 								<td onclick='fn_detail("${result.caseNo}")'>${result.cnsGbNm }</td>
@@ -199,7 +201,7 @@
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm}', '${result.sysFileNm }', '${result.filePath }')">다운로드</button>
 										</c:when>
 										<c:otherwise>
-											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/cnsAgreement.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
+											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/cnsAgreement_test.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -212,7 +214,7 @@
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm2}', '${result.sysFileNm2 }', '${result.filePath2 }')">다운로드</button>
 										</c:when>
 										<c:otherwise>
-											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/privacyAgreement.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
+											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/privacyAgreement_test.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -225,7 +227,7 @@
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm3}', '${result.sysFileNm3 }', '${result.filePath3 }')">다운로드</button>
 										</c:when>
 										<c:otherwise>
-											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/scScreeningScale.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
+											<button type="button" class="btn-basic btn-danger" onclick="location.href='/gnoincoundb/scScreeningScale_test.do?mnuCd=${mnuCd}&caseNo=${result.caseNo}'">작성하기</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
