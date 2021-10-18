@@ -68,8 +68,7 @@
 			$(".upload-name").val(cur);
 		}); 
 		
-		console.log("${detail}");
-		
+
 		$("input[type=radio]").click(function(){
 			if($("input[name=writeYn]:checked").val() == "Y"){
 				$("#uploadTr").css("display", "none");
@@ -96,6 +95,8 @@
 			$("#Sbtn").css("display","none");
 			$("#findBtn").css("display","");
 		}
+		
+		$("#nowDate").click(nowDateInsert);
 		
 	});
 	
@@ -244,6 +245,24 @@
 		document.location.href = "/gnoincoundb/pretestList_test.do?mnuCd=" + mnuCd;
 	}
 	
+	function nowDateInsert(e){
+		
+		var nowDate;
+		nowDate = new Date();
+	
+		year = nowDate.getFullYear();
+		month = nowDate.getMonth()+1;
+		day = nowDate.getDate();
+		
+		$("#year").val(year);
+		$("#month").val(month);
+		$("#day").val(day);
+		
+		if(e != null){ // 클릭시 이벤트 객체가 발생하는데 그것을 확인하여 클릭 후 컴포넌트를 페이지에서 숨긴다
+			$(this).hide();
+		}
+	}
+	
 </script>
 
 <section id="content">
@@ -351,7 +370,7 @@
 						<font style="font-size: medium;">날&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;짜 :</font>
 						<input type="text" id="year" name="year" style="width: 60px;" maxlength="4" value="${detail.year }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">년</font>
 						<input type="text" id="month" name="month" style="width: 30px;" maxlength="2" value="${detail.month }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">월</font>
-						<input type="text" id="day" name="day" style="width: 30px;" maxlength="2" value="${detail.day }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">일</font><br>
+						<input type="text" id="day" name="day" style="width: 30px;" maxlength="2" value="${detail.day }" oninput="this.value = this.value.replace(/[^0-9]/g, '');"><font style="font-size: medium;">일</font>&nbsp;&nbsp;<input type = "button" value = "현재시각 기록" id = "nowDate"/><br>
 						<font style="font-size: medium;">내 담 자 :</font>
 						<input type="text" id="cnsleNm2" name="cnsleNm2" style="width: 130px;" value="${detail.cnsleNm }" readonly="readonly"><font style="font-size: medium;">(서명)</font>
 					</div>
