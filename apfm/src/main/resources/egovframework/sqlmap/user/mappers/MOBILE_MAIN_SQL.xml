@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.mobile.main.service.impl.MobileMainMapper">
+
+	<!-- 로그인 정보  -->
+	<select id="actionLogin" parameterType="loginVO" resultType="EgovMap">
+		SELECT
+			USER_ID ,
+			USER_NM ,
+			USE_YN ,
+			TEL ,
+			MOBILE ,
+			ADDR ,
+			BIRTH_DT ,
+			year(now()) - year(BIRTH_DT)+1 AS age ,
+			GENDER ,
+			APPRV_YN ,
+			email ,
+			ADDR ,
+			SIGUN_CD ,
+			ZONE_GB ,
+			CENTER_GB
+		FROM
+			GS_USER_M
+		WHERE
+			USER_ID = #{userId}
+			<!-- AND PW = #{pw} -->
+			AND PW = SCP.ENC_B64('KEY1',#{pw})
+	</select>
+
+	<!-- 회원 ID 찾기 -->
+	<select id="findUserId" parameterType="loginVO" resultType="EgovMap">
+		SELECT
+			USER_ID ,
+			USER_NM ,
+			EMAIL
+		FROM
+			GS_USER_M
+		WHERE
+			USER_NM = #{userNm}
+		AND MOBILE = #{tel}
+		AND EMAIL = #{email}
+	</select>
+	
+	<!-- 회원 PW 찾기 -->
+	<select id="findPw" parameterType="loginVO" resultType="Integer">
+					
+		SELECT 
+			COUNT(USER_ID)
+		FROM
+			GS_USER_M
+		WHERE
+			USER_NM = #{userNm}
+		AND MOBILE = #{tel}
+		AND EMAIL = #{email}
+	</select>
+	
+	<!-- 회원 PW 재설정 -->
+	<update id="userPwReset" parameterType="loginVO">
+		UPDATE GS_USER_M
+			SET
+				PW = SCP.ENC_B64('KEY1','s12341234')
+			WHERE
+				USER_NM = #{userNm}
+			AND MOBILE = #{tel}
+	</update>
+
+</mapper>

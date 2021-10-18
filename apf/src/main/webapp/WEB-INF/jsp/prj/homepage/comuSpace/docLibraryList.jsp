@@ -38,16 +38,27 @@
            	document.searchForm.submit();
         }
         
-		function fn_fileDown(sysFileNm,filePath,fileNm) {
+		/* function fn_fileDown(sysFileNm,filePath,fileNm) {
 	        document.location.href = "/gnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;
-	  	}
-		
+	  	} */
+		function fn_fileDown(sysFileNm, filePath, fileNm){
+			$("#fileNm").val(fileNm);
+			$("#sysFileNm").val(sysFileNm);
+			$("#filePath").val(filePath);
+			document.downForm.action = "/gnoincoun/fileDown2.do";
+	       	document.downForm.submit();
+		}
   </script>
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
+	<form name="downForm" id="downForm" method="post">
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
 	<div id="wrap">
 		<div style="border-top: 1px solid #f09d4c;">
 			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>

@@ -46,6 +46,9 @@ public class HomepageMainController {
 	private String iv;
 	private String key = "aes256-key-apf";
 	
+	private static final String IS_MOBILE = "MOBI";
+	private static final String IS_PC = "PC";
+	
 
 	/**
 	 * 글 목록을 조회한다. (pageing)
@@ -81,9 +84,15 @@ public class HomepageMainController {
 			model.addAttribute("centerNewsList3", centerNewsList.get(2));
 		}
 		model.addAttribute("map",map);
+		
+		String userAgent = request.getHeader("User-Agent").toUpperCase();
+		if (userAgent.indexOf(IS_MOBILE) > -1) {
+			return "redirect:https://www.gg.go.kr/mgnoincoun/mobileMainList.do";
+		} else {
+			return "/main/main.main";
+		}
 		/*return "/main/main.page";*/
 		/*return "/main/main.main";*/
-		return "/main/main.main";
 	}
 	
 	@RequestMapping(value = "/actionLogin.do")

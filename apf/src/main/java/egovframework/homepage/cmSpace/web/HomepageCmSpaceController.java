@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import ams.cmm.AES256Crypto;
 import egovframework.cmm.util.AES256Util;
@@ -462,7 +463,7 @@ public class HomepageCmSpaceController {
 		return "/comuSpace/onlineCnsDtl.page";
 	}
 	
-	@RequestMapping(value="fileDown.do")
+	@RequestMapping(value="/fileDown.do", method=RequestMethod.GET)
     public void fileDown(CmSpaceVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
         
 		
@@ -493,7 +494,7 @@ public class HomepageCmSpaceController {
 		}
     }
 	//조현서 20210124
-	@RequestMapping(value="fileDown2.do")
+	@RequestMapping(value="/fileDown2.do")
     public void fileDown2(CmSpaceVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
         
 		String FileName = "";
@@ -520,8 +521,10 @@ public class HomepageCmSpaceController {
 			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Bad Padding Exception");
 		}
 
-		String FilePathName2 = utility.func.filePath + FilenameUtils.getName(vo.getFilePath()) + "\\";
-		String FilePathName = utility.func.filePath;
+		// String FilePathName2 = utility.func.filePath + FilenameUtils.getName(vo.getFilePath()) + "\\";
+		// String FilePathName = utility.func.filePath;
+		String FilePathName2 = "C:\\Users\\huensys\\git\\Files\\library\\";
+		String FilePathName = "C:\\Users\\huensys\\git\\Files\\";
 		System.out.println("FilePathName : " + FilePathName);
 		System.out.println("FilePathName2 : " + FilePathName2);
 		File file = new File(FilenameUtils.getFullPath(FilePathName), FilenameUtils.getName(FileName));
