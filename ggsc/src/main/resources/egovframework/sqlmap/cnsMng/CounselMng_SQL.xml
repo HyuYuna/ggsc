@@ -5688,7 +5688,7 @@
 	<!-- 개인정보 동의서 수정 -->
 
 	<update id="cnsMngDao.updatePerInfoAgre_test" parameterClass="preExamVO">
-		UPDATE GS_PER_INFO_AGRE
+		UPDATE GS_PER_INFO_AGRE_TEST
 			SET
 				WRITE_DT = CONCAT(#year#, #month#, #day#) ,
 				YEAR = #year# ,
@@ -5703,7 +5703,7 @@
 	
 	<!--  노인 상담  선별 척도지  수정 -->
 	<update id="cnsMngDao.updateDocCntnComm_test" parameterClass="preExamVO">
-		UPDATE GS_DOC_CNTN_COMM
+		UPDATE GS_DOC_CNTN_COMM_TEST
 			SET
 				STRT_TIME = #strtTime# ,
 				STRT_MIN = #strtMin# ,
