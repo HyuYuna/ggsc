@@ -118,8 +118,7 @@ public class MainController2 {
 		
 		List<EgovMap> topMenuList = menuService.selectTopMenuList(MenuVO);
 		model.addAttribute("topMenuList", topMenuList);
+		System.out.println(topMenuList);
 		return "common/inc/header"; // 업무화면의 상단메뉴 화면
 	}
-
-
 }

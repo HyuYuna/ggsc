@@ -25,10 +25,8 @@
  		</div>
 		<div class="user-area">
 			<div class="login-info">
-				<%-- <i class="fa fa-user-circle"></i><strong>김포시북부노인복지관</strong>&nbsp;&nbsp;<strong>박상담<c:out value = "${userVO.userId }"/></strong> --%>
 				<i class="fa fa-user-circle"></i><strong><c:out value="${userVO.centerNm}"/></strong>&nbsp;&nbsp;<strong><c:out value = "${userVO.userNm }"/></strong>
 				<button type="button" class="btn-primary btn-xs btn-logout" onclick="javascript:logout();"><i class="fa fa-sign-out"></i>LOGOUT</button>
-				<!-- <button type="button" class="btn-defT btn-xs" onclick="javascript:manualDown();"><i class="fa fa-download"></i>매뉴얼다운로드</button> -->
 			</div>
 		</div>
 	<script type="text/javascript">

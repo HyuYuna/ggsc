@@ -1015,4 +1015,10 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 			cnsMngDao.updateDocCntnComm_test(vo);
 		}
 	}
+
+	@Override
+	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo) {
+		List<EgovMap> list = cnsMngDao.getCnsDiaHysList_test(vo);
+		return list;
+	}
 }

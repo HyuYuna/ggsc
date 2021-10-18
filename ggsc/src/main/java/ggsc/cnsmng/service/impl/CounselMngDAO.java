@@ -792,4 +792,10 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void updateDocCntnComm_test(PreExamVO vo) {
 		update("cnsMngDao.updateDocCntnComm_test",vo);
 	}
+	
+	// 개인상담일지 이력정보
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo){
+		return (List<EgovMap>) list("cnsMngDao.getCnsDiaHysList_test",vo);
+	}
 }

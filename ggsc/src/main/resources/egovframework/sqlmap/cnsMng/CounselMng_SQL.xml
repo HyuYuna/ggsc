@@ -4956,7 +4956,7 @@
 		FROM GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
 		WHERE gca.USER_ID = gum.USER_ID
 		<!-- AND gca.CASE_NO = #caseNo# -->
-		AND gca.CASE_NO = #caseNo#
+		AND gca.CASE_NO = #caseNo# <!--  test line 에서 만들어지지 않았기에 이런 세부 정보들을 가지고 올 수 없는 것 -->
 	</select>
 	
 	
@@ -5283,9 +5283,9 @@
 		<isEqual property="cnsTargetGb" compareValue="Y">
 			, GS_PRE_EXAM_M_TEST gpem
 		</isEqual>
-		<isEqual property="cnsPerTargetGb" compareValue="Y">
-			, GS_EALY_CNS_DOC gecd
-		</isEqual>
+		<!-- <isEqual property="cnsPerTargetGb" compareValue="Y">
+			, GS_EALY_CNS_DOC gecd 초기상담신청서 여부 
+		</isEqual> -->
 		WHERE
 		gum.USER_ID = gca.USER_ID
 		<isEqual property="cnsTargetGb" compareValue="Y">
@@ -5296,9 +5296,9 @@
 			AND gum.USER_ID = gpem.USER_ID
 			AND gpem.CNS_TARGET_GB = 'Y'
 		</isNotEmpty> -->
-		<isEqual property="cnsPerTargetGb" compareValue="Y">
-			AND gum.USER_ID = gecd.CNSLE_ID
-		</isEqual>
+		<!-- <isEqual property="cnsPerTargetGb" compareValue="Y">
+			AND gum.USER_ID = gecd.CNSLE_ID 개인상담일지 등록시 findUserPopup 에서만 사용 됨 
+		</isEqual> -->
 		AND gca.ACPT_YN = 'Y'
 		AND gum.USE_YN = 'Y'
 		<isNotEmpty property="schUserNm" prepend="AND">
@@ -5741,5 +5741,75 @@
 				AND CASE_NO = #caseNo#
 	</update>
 	
+	
+	<!-- 개인상담일지 List -->
+	<select id="cnsMngDao.getCnsDiaHysList_test" parameterClass="ealyVO" resultClass="EgovMap">
+		
+		SELECT 
+			A.* 
+		FROM (
+				SELECT				
+					NUM ,
+					ROW_NUMBER() OVER(ORDER BY NUM) AS RNUM ,
+					ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM2 ,	
+					CASE_NO ,
+					CNSR_NM ,
+					CNSLE_NM ,
+					GENDER ,
+					CNS_END_YN ,
+					CNS_CNTN ,
+					CNS_STAT ,
+					CNS_CNT ,
+					CNS_DT ,
+					CNS_DTL_GB_CD ,
+					GCNS_NUM ,
+					(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G18' AND ODR = CNS_STAT) AS CNS_STAT_NM ,
+					DATE_FORMAT(DB_INS_TM, '%Y-%m-%d') AS DB_INS_TM ,
+					(SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(BIRTH_DT)))/365)) AS AGE
+				FROM
+					GS_PER_CNS_DTL_TEST
+				WHERE
+					1=1
+				AND USE_YN = 'Y'
+				<isNotEmpty property="schCnsGb" prepend="AND">
+					CNS_GB = #schCnsGb#
+				</isNotEmpty>
+				<isNotEmpty property="schCenterGb" prepend="AND">
+					CENTER_GB = #schCenterGb#
+				</isNotEmpty>
+				<isNotEmpty property="schCnsleNm" prepend="AND">
+					CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+				</isNotEmpty>
+				
+				<!-- 권한별 검색 조건 -->
+				<isEqual property="authCd" compareValue="2">
+					AND CENTER_GB = #schCenterGb#
+				</isEqual>
+				<isEqual property="authCd" compareValue="3">
+					AND CENTER_GB = #schCenterGb#
+					<isEqual property="schCenterGb" compareValue="1">
+						AND CNSR_ID = #regId#
+					</isEqual>
+				</isEqual>
+				<isEqual property="authCd" compareValue="4">
+					AND CNSR_ID = #regId#
+				</isEqual>
+				
+				<!-- 기간별 검색 -->
+				<isNotEmpty property="schStartDate" prepend="AND">
+			       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			    </isNotEmpty>
+			    <isNotEmpty property="schEndDate" prepend="AND">
+			    	DATE(DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+			    </isNotEmpty>
+				
+			) A
+		
+			<![CDATA[
+				WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+				ORDER BY NUM DESC
+			]]>
+
+	</select>
 	
 </sqlMap>

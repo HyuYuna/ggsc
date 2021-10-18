@@ -4,18 +4,18 @@ import ams.cmm.PageVO;
 
 public class UserInfoVO extends PageVO{
 	
-	private int num;
-	private int caseNo;
-	private String userId;
-	private String userNm;
-	private String cnsGb;
-	private String birthDt;
-	private String email;
-	private String addr;
-	private String schUserId;
-	private String schUserNm;
-	private String schCenterGb;
-	private String cnsTargetGb;
+	private int num;			// number 
+	private int caseNo;			// 고유값 
+	private String userId;		// 유저 아이디 
+	private String userNm;		// 유저 이름 
+	private String cnsGb;		// 
+	private String birthDt;		// 생일 
+	private String email; 		// 이메일 
+	private String addr;		// 주소 
+	private String schUserId;	// 상담사 아이디 
+	private String schUserNm;	// 상담사 이름 
+	private String schCenterGb;	// 센터 정보 
+	private String cnsTargetGb;	
 	private String cnsPerTargetGb;
 	private String authCd;
 	private String regId;

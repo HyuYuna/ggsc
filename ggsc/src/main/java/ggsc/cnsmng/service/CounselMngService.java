@@ -323,4 +323,7 @@ public interface CounselMngService {
 	public EgovMap getScScreenDtl_test(int caseNo);		// 노인상담선별척도지
 	public void insertPreExamM_test(PreExamVO vo);
 	public void updatePreExamD_test(PreExamVO vo);
+	
+	//개인상담일지 
+	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo);
 }

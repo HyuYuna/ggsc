@@ -71,7 +71,7 @@ public class EalyCnsDocVO extends PageVO {
 	private String fileDesc;
 	private int fileSize;
 	
-	private String killsRskn; // 자살위험도
+	private String killsRskn;  // 자살위험도
 	private String cnsEndResn; // 종결사유
 	
 	private String schCnsGb;

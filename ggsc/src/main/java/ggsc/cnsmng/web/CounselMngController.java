@@ -706,6 +706,9 @@ public class CounselMngController {
 			}
 		}
 		
+		System.out.println("USER NAME CHECK : "+userNm);
+		System.out.println("CASE NUMBER : "+schCaseNo);
+		
 		if (schCaseNo.length() > 0) {
 			vo.setSchCaseNo(schCaseNo);
 		}
@@ -1037,6 +1040,7 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
@@ -1072,17 +1076,17 @@ public class CounselMngController {
 		GroupVO param = new GroupVO();
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("cnsGbList", cnsGbList);
+		model.addAttribute("cnsGbList", cnsGbList); // 상담구분코드 
 
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
-		model.addAttribute("cnsCenterList", cnsCenterList);
+		model.addAttribute("cnsCenterList", cnsCenterList);	//  센터구분코드 
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
-		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+		paginationInfo.setRecordCountPerPage(10); 				// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); 						// 페이징 리스트의 사이즈
 
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
@@ -2732,6 +2736,141 @@ public class CounselMngController {
 			url = "redirect:/pretestList_test.do?mnuCd=" + mnuCd +"&caseNo=" + caseNo;
 		}
 		return url;
+	}
+	
+	@RequestMapping(value = "/perCnsList_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String perCnsList_test(EalyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
+		
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		// 초기 로그인 관련된 데이터 
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		// 권한관리 세팅 
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		// 메뉴코드 세팅 ..
+		
+		
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList); 			// 상담구분코드 
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);		// 센터구분코드 
+
+		PaginationInfo paginationInfo = new PaginationInfo(); 	// 페이지네이션 게시판 알고리즘 편의를 위한 객체 
+
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); 				// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); 						// 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		// 초기상담신청서 목록
+		List<EgovMap> ealyList = counselMngService.getEalyCnsDocList(vo);
+		int totalPageCnt = counselMngService.getEalyCnsDocListTotCnt(vo);
+
+		model.addAttribute("ealyList", ealyList); // 페이지에서 미사용됨 
+		model.addAttribute("vo", vo);
+
+		// 상담일지 이력정보
+		List<EgovMap> cnsList = counselMngService.getCnsDiaHysList_test(vo); // test 라인으로 수정됨
+		int totalPageCnt2 = counselMngService.getCnsDiaHysListTotCnt(vo);
+		//model.addAttribute("totalPageCnt2", totalPageCnt2); // 미사용 
+		paginationInfo.setTotalRecordCount(totalPageCnt2); // 전체 게시물 건 수
+
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("cnsList", cnsList);
+		
+		 //개인상담 재신청
+		List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(vo);
+		//int totalPageCnt3 = counselMngService.getCnsCntReListTotCnt(vo);
+		model.addAttribute("cnsCntReList", cnsCntReList);
+		
+		// 개인상담 종결
+		List<EgovMap> cnsCntEndList = counselMngService.getCnsCntEndList(vo);
+		//int totalPageCnt4 = counselMngService.getCnsCntEndListTotCnt(vo);
+		model.addAttribute("cnsCntEndList", cnsCntEndList); // 페이지에서 미사용됨 
+		
+		model.addAttribute("authCd", userAuth);
+		
+		// 공통적으로 쓰이는 로직이라서 함부러 수정하면 안될듯하다 
+		
+		return "cnsmng/perCnsList_test.main";
+	}
+	
+	@RequestMapping(value = "/perCnsRegView_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String perCnsRegView_test(HttpServletRequest request, ModelMap model) {
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
+		model.addAttribute("map", map);
+
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G14");
+		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsMethdList", cnsMethdList);
+
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		param.setHclassCd("G23");
+		List<EgovMap> cnsEndCdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsEndCdList", cnsEndCdList);
+
+		param.setHclassCd("G9");
+		List<EgovMap> livgFormList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("livgFormList", livgFormList);
+
+		param.setHclassCd("G10");
+		List<EgovMap> houseFormList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("houseFormList", houseFormList);
+
+		param.setHclassCd("G18");
+		List<EgovMap> cnsStatList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsStatList", cnsStatList);
+
+		param.setHclassCd("G19");
+		List<EgovMap> cnsrGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsrGbList", cnsrGbList);
+
+		return "cnsmng/perCns_reg_test.main";
 	}
 
 }
