@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
@@ -71,15 +71,15 @@
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-              	<c:out value="${detail.cntn}" escapeXml="false"/>
+              	<c:out value="${detail.cntn}" 	/>
             </div>
           </div><!-- .article-body /-->
             
         </div><!-- .article-list-area /-->
         <div class="btn-wrap line bt bb pt10 pb10 mt20 text-center">
-          <button type="button" class="btn btn-default btn-lg fl" onclick="javascript:fn_movePage('<c:out value="${detail.num}"/>','Y');"><i class="fa fa-caret-left mr5"></i>이전글</button>
+          <button type="button" class="btn btn-default btn-lg fl" onclick="javascript:fn_movePage('<c:out value="${detail.num}" />','Y');"><i class="fa fa-caret-left mr5"></i>이전글</button>
           <button type="button" class="btn btn-normal btn-lg" onclick="location.href='/gnoincoun/centerNewsList.do'"><i class="fa fa-align-justify mr5"></i>목록</button>
-          <button type="button" class="btn btn-default btn-lg fr" onclick="javascript:fn_movePage('<c:out value="${detail.num}"/>','N');">다음글<i class="fa fa-caret-right ml5"></i></button>
+          <button type="button" class="btn btn-default btn-lg fr" onclick="javascript:fn_movePage('<c:out value="${detail.num}" />','N');">다음글<i class="fa fa-caret-right ml5"></i></button>
         </div>
       </div><!-- .content-area /-->
     </div><!-- .container.content-wrapper /-->
