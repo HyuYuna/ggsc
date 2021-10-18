@@ -322,4 +322,5 @@ public interface CounselMngService {
 	public EgovMap getPrivacyDtl_test(int caseNo);		// 개인정보 동의서 
 	public EgovMap getScScreenDtl_test(int caseNo);		// 노인상담선별척도지
 	public void insertPreExamM_test(PreExamVO vo);
+	public void updatePreExamD_test(PreExamVO vo);
 }

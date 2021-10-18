@@ -270,7 +270,7 @@
 					<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" /> 	<!--  메뉴코드  -->
 					<input type="hidden" id="caseNo" name="caseNo" value="0" /> <!--  caseNo  pre_m 테이블 거 -->
 					<input type="hidden" id="sigunCd" name="sigunCd" />
-					<input type="hidden" id="examDocCd" name="examDocCd" value="2" />
+					<input type="hidden" id="examDocCd" name="examDocCd" value="2" /> <!--  서류 별 구분코드  -->
 					<input type="hidden" id="docGb" name="docGb" value="1" />
 					<input type="hidden" id="agrePath" name="agrePath" value="Y" />
 					<table border="1" class="table-write" style="width: 101.2%; position: relative; left: -10px; top: -10px; border-left-style:hidden; border-right-style: hidden; border-top-style: hidden;">

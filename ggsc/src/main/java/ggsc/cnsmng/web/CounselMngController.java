@@ -2701,32 +2701,27 @@ public class CounselMngController {
 	@RequestMapping(value = "/preExamReg_test.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String preExamReg_test(PreExamVO vo, HttpServletRequest request, ModelMap model) {
 
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
-		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");		// 메뉴코드 
+		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");	// pre Table caseNo 
+		String save = request.getParameter("save") == null ? "" : request.getParameter("save");			// 저장 타입 :  I , S , U ... 
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 		EgovMap Details = counselMngService.getCnsAcceptDtl_TEST(String.format("%s", vo.getCaseNo()));
 		
-		vo.setZoneGb((String) Details.get("zoneGb"));
+		vo.setZoneGb((String) Details.get("zoneGb"));	 
 		vo.setLocalGb((String) Details.get("localGb"));
 		vo.setCnsGb((String) Details.get("cnsGb"));
 		vo.setCenterGb((String) Details.get("centerGb"));
 		vo.setSigunCd((String) Details.get("sigunCd"));
 		vo.setCnsrNm((String) loginVo.get("userNm"));
 		// form 에서 날아온 데이터 들  
-		
-		System.out.println(vo.getDocCntnPath());
-		
+				
 		String url = "";
-		if(save.equals("I")) {
-			// 등록일때
-			System.out.println("VO Value Check : "+vo);
+		if(save.equals("I")) { // insert 
 			counselMngService.insertPreExamM_test(vo);			
-		} else if(save.equals("S")) {
-			// 수정일때
-			counselMngService.updatePreExamD(vo);
+		} else if(save.equals("S")) { // update
+			counselMngService.updatePreExamD_test(vo);
 		}
-		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("mnuCd", mnuCd); // menu DB 화 필수코드
 		
 		if (vo.getExamDocCd().equals("2")) {
 			// 상담동의서 등록

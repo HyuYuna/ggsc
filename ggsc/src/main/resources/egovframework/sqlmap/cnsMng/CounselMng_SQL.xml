@@ -5669,4 +5669,77 @@
 		<!-- AND EXAM_DOC_CD = #examDocCd# -->
 		AND USER_ID = #cnsleId#
 	</update>
+	
+	
+	<!--  상담 동의서 수정 -->
+	<update id="cnsMngDao.updateCnsAgreDoc_test" parameterClass="preExamVO">
+		UPDATE GS_CNS_AGRE_DOC_TEST
+			SET
+				WRITE_DT = CONCAT(#year#, #month#, #day#) ,
+				CNS_CSNT_SIGN = '' ,
+				YEAR = #year# ,
+				MONTH = #month# ,
+				DAY = #day# 
+			WHERE
+				CASE_NO = #caseNo#
+				AND CNSLE_ID = #cnsleId#
+	</update>
+	
+	<!-- 개인정보 동의서 수정 -->
+
+	<update id="cnsMngDao.updatePerInfoAgre_test" parameterClass="preExamVO">
+		UPDATE GS_PER_INFO_AGRE
+			SET
+				WRITE_DT = CONCAT(#year#, #month#, #day#) ,
+				YEAR = #year# ,
+				MONTH = #month# ,
+				DAY = #day# ,
+				MYSELF_AGRE = #myselfAgre#,
+				GUARDIAN = #guardian#
+			WHERE
+				CNSLE_ID = #cnsleId#
+				AND CASE_NO = #caseNo#
+	</update>
+	
+	<!--  노인 상담  선별 척도지  수정 -->
+	<update id="cnsMngDao.updateDocCntnComm_test" parameterClass="preExamVO">
+		UPDATE GS_DOC_CNTN_COMM
+			SET
+				STRT_TIME = #strtTime# ,
+				STRT_MIN = #strtMin# ,
+				END_TIME_HOUR = #endTimeHour# ,
+				END_TIME_MIN = #endTimeMin# ,
+				WRITE_DT = CONCAT(#year#, #month#, #day#) ,
+				TOT_TIME = #totTime# ,
+				ANSR1 = #ansr1# ,
+				ANSR1_CNTN = #ansr1Cntn# ,
+				ANSR2 = #ansr2# ,
+				ANSR2_CNTN = #ansr2Cntn# ,
+				ANSR3 = #ansr3# ,
+				ANSR3_CNTN = #ansr3Cntn# ,
+				QUST1_ANSR = #qust1Ansr# ,
+				QUST2_ANSR = #qust2Ansr# ,
+				QUST3_ANSR = #qust3Ansr# ,
+				QUST4_ANSR = #qust4Ansr# ,
+				QUST5_ANSR = #qust5Ansr# ,
+				QUST6_ANSR = #qust6Ansr# ,
+				QUST7_ANSR = #qust7Ansr# ,
+				QUST8_ANSR = #qust8Ansr# ,
+				QUST9_ANSR = #qust9Ansr# ,
+				QUST10_ANSR = #qust10Ansr# ,
+				QUST11_ANSR = #qust11Ansr# ,
+				QUST12_ANSR = #qust12Ansr# ,
+				QUST13_ANSR = #qust13Ansr# ,
+				QUST14_ANSR = #qust14Ansr# ,
+				QUST15_ANSR = #qust15Ansr# ,
+				YES_TOT_SCORE = #yesTotScore# ,
+				NO_TOT_SCORE = #noTotScore# ,
+				CNSR_OPTN_SCORE = #cnsrOptnScore# ,
+				CNSR_OPTN_TOT = #cnsrOptnTot# 
+			WHERE
+				CNSLE_ID = #cnsleId#
+				AND CASE_NO = #caseNo#
+	</update>
+	
+	
 </sqlMap>

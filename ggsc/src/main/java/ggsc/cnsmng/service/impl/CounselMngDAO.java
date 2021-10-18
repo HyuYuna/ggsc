@@ -1,6 +1,5 @@
 package ggsc.cnsmng.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -776,5 +775,21 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	// 사전검사 테이블 수정 
 	public void updatePreExamM_test(PreExamVO vo) {
 		update("cnsMngDao.updatePreExamM_test",vo);
+	}
+	
+	
+	// 상담동의서 수정
+	public void updateCnsAgreDoc_test(PreExamVO vo) {
+		update("cnsMngDao.updateCnsAgreDoc_test",vo);
+	}
+	
+	// 개인정보 동의서 수정 
+	public void updatePerInfoAgre_test(PreExamVO vo) {
+		update("cnsMngDao.updatePerInfoAgre_test",vo);
+	}
+	
+	// 노인척도 ... 수정
+	public void updateDocCntnComm_test(PreExamVO vo) {
+		update("cnsMngDao.updateDocCntnComm_test",vo);
 	}
 }

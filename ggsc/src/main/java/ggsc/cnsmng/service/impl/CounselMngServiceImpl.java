@@ -1001,4 +1001,18 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 			}
 		}
 	}
+	
+	public void updatePreExamD_test(PreExamVO vo) {
+		
+		if(vo.getExamDocCd().equals("2")) {
+			// 상담동의서 수정
+			cnsMngDao.updateCnsAgreDoc_test(vo);
+		} else if(vo.getExamDocCd().equals("3")) {
+			// 개인정보동의서 수정
+			cnsMngDao.updatePerInfoAgre_test(vo);
+		} else if(vo.getExamDocCd().equals("4")) {
+			// 노인상담선별척도지 수정
+			cnsMngDao.updateDocCntnComm_test(vo);
+		}
+	}
 }

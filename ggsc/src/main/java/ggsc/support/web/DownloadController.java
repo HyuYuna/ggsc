@@ -82,6 +82,7 @@ public class DownloadController {
 		
 		EgovMap result = supportService.PDFDownload(vo, vo.getTemplateSQLName()); 	
 		if(result==null) {
+			System.out.println("Null Check");
 			return;
 		}
 		
