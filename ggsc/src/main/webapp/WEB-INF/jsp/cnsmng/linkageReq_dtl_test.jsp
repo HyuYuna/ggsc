@@ -166,12 +166,13 @@
 			}
 		} else {
 			if(confirm("수정 하시겠습니까?")){
-				// var strNum = "$detail.num";
-		  		// var param = parseInt(strNum);
 		  		var psycRstMmseds = $("#psycRstMmseds").val();
 				if(psycRstMmseds == "") {
 					$("#psycRstMmseds").val(0);
 				}
+				
+				console.log(param);
+				
 				document.frm.action = "/gnoincoundb/linkageReqReg_test.do?save="+ param;
 		       	document.frm.submit();
 			}
@@ -265,7 +266,7 @@
 	}
 	
 	function getGb(){ // findUserPopUp 에서 값을 가지고 온다 
-		console.log(document.getElementById('caseNo').value);
+
 		
 		if(document.getElementById('caseNo').value.length > 0){
 			var token = $("meta[name='_csrf']").attr("th:content");
@@ -506,7 +507,7 @@
 				</div>	
 				<div class="btn" style="text-align: right; display: block;">
 				
-					<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('${detail.num}');">수정</button>
+					<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('${detail.num}');">수정</button> <!--  수정 시 에는 기존에 있는 것을 수정하기 때문에 detail.num 값을 이용하여 update시 값에 대한 변동이 없게 만든다 -->
 					<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg('S');">저장</button>
 					
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color:#fc692f;color:white;">목록</button>

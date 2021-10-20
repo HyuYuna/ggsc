@@ -345,4 +345,8 @@ public interface CounselMngService {
 	public void insertLinkageInReq_test(LinkReqVO vo);
 	// 연계의뢰 (외부) 등록
 	public void insertLinkageOutReq_test(LinkReqVO vo);
+	// 연계의뢰 (내부) 수정 
+	public void updateLinkageInReq_test(LinkReqVO vo);
+	// 연계의뢰 (외부) 수정 
+	public void updateLinkageOutReq_test(LinkReqVO vo);
 }

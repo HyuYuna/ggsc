@@ -1105,4 +1105,16 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.insertLinkageOutReq_test(vo);
 		
 	}
+
+	@Override
+	public void updateLinkageInReq_test(LinkReqVO vo) {
+		cnsMngDao.updateLinkageInReq_test(vo);
+		
+	}
+
+	@Override
+	public void updateLinkageOutReq_test(LinkReqVO vo) {
+		cnsMngDao.updateLinkageOutReq_test(vo);
+		
+	}
 }

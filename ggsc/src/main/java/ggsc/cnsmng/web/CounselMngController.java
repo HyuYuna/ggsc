@@ -3385,18 +3385,15 @@ public class CounselMngController {
 		if (request.getParameter("page") != null) {
 			model.addAttribute("page", request.getParameter("page"));
 		}
+		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
 		
 		// 저장타입 구분 
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		System.out.println(save);
 		// 연계구분 코드 
 		String linkReqGb = vo.getLinkReqGb();
-
-		System.out.println(linkReqGb);
-		
 		String cnsrId = (String) login.get("userId");
 		
 		vo.setCnsrId(cnsrId);
@@ -3422,12 +3419,14 @@ public class CounselMngController {
 		} else {
 			if (linkReqGb.equals("1")) {
 				// 내부 연계의뢰서 수정
-				vo.setNum(Integer.parseInt(save)); //?
-				vo.setTelNo(Details.get("mobile").toString());
-				counselMngService.updateLinkageInReq(vo);
+				vo.setNum(Integer.parseInt(save)); 
+				vo.setTelNo(Details.get("mobile").toString());			
+				counselMngService.updateLinkageInReq_test(vo);
 			} else {
+				// 외부 연계의뢰서 수정
 				vo.setNum(Integer.parseInt(save));
-				counselMngService.updateLinkageOutReq(vo);
+				System.out.println(save);
+				counselMngService.updateLinkageOutReq_test(vo);
 			}
 		}
 

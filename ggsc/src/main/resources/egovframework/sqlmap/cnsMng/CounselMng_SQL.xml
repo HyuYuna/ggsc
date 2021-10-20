@@ -6197,8 +6197,7 @@
 		AND NUM = #num#
 	</select>
 	
-	<select id="cnsMngDao.getGcns_test" parameterClass="gCnsVO"
-		resultClass="EgovMap">
+	<select id="cnsMngDao.getGcns_test" parameterClass="gCnsVO" resultClass="EgovMap">
 		SELECT 
 			*
 		FROM 
@@ -6316,7 +6315,7 @@
 		PGRS_RSLT ,
 		ETC
 		) VALUES (
-		(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_LINK_REQ_M_TEST AS A) ,
+		(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_LINK_REQ_M_TEST AS A) , <!--  num을 만드는 방식은 추가 되어 있던 데이터를 기반으로 최대값을 구해 그것에 증가식을 하는 식으로 이루어진다  -->
 		#caseNo# ,
 		#internalGb# ,
 		#linkReqGb# ,
@@ -6442,5 +6441,82 @@
 		#gender#
 		)
 	</insert>
+	<update id="cnsMngDao.updateLinkageInReq_test" parameterClass="linkReqVO">
+		UPDATE GS_LINK_REQ_M_TEST
+		SET
+		LINK_REQ_GB = #linkReqGb# ,
+		CNS_GB = #cnsGb# ,
+		INTERNAL_GB = #internalGb# ,
+		CNS_DTL_GB_CD = '1' ,
+		ZONE_GB = #zoneGb# ,
+		LOCAL_GB = #localGb# ,
+		CENTER_GB = #centerGb# ,
+		CNSLE_ID = #cnsleId# ,
+		CNSR_ID = #cnsrId# ,
+		REQ_DEPT = #reqDept# ,
+		REQ_DEPT_PER = #reqDeptPer# ,
+		REQ_DT = #reqDt# ,
+		HELP_DEPT = #helpDept# ,
+		HELP_DEPT_PER = #helpDeptPer# ,
+		RELY_TERM = #relyTerm# ,
+		CNSLE_NM = #cnsleNm# ,
+		GENDER = #gender# ,
+		BIRTH_DT = #birthDt# ,
+		ADDR = #addr# ,
+		TEL_NO = #telNo# ,
+		RCPT_SGCT = #rcptSgct# ,
+		REQ_RESN_CNTN = #reqResnCntn# ,
+		PGRS_RSLT = #pgrsRslt# ,
+		ETC = #etc#
+		WHERE
+		NUM = #num#
+
+	</update>
+	
+	<update id="cnsMngDao.updateLinkageOutReq_test" parameterClass="linkReqVO">
+		UPDATE GS_LINK_REQ_M_TEST
+		SET
+		LINK_REQ_GB = #linkReqGb# ,
+		CNS_GB = #cnsGb# ,
+		OUTERNAL_GB = #outernalGb# ,
+		ZONE_GB = #zoneGb# ,
+		LOCAL_GB = #localGb# ,
+		CENTER_GB = #centerGb# ,
+		CNSLE_NM = #cnsleNm2# ,
+		TEL_NO = #tel# ,
+		HELP_DEPT = #linkReqOrgNm# ,
+		ADDR = #addr2# ,
+		REQ_DT = #reqDt# ,
+		REQ_DEPT = #reqDept# ,
+		REQ_DEPT_PER = #linkReqName# ,
+		RELY_TERM = #relyTerm# ,
+		LINK_REQ_NAME = #linkReqName# ,
+		LINK_REQ_NM_TEL = #linkReqNmTel# ,
+		CNSLE_HELTH = #cnsleHelth# ,
+		CNSLE_GONG_GB = #cnsleGongGb# ,
+		CNSLE_PSYC_RST = #cnslePsycRst# ,
+		PSYC_RST_MMSEDS = #psycRstMmseds# ,
+		PSYC_RST_ETC = #psycRstEtc# ,
+		CNSR_OP = #cnsrOp# ,
+		LINK_REQ_DESC = #linkReqDesc# ,
+		LINK_REQ_ORG_NM = #linkReqOrgNm# ,
+		LINK_REQ_ORG_TEL = #linkReqOrgTel# ,
+		LINK_REQ_RECV_NAME = #linkReqRecvName# ,
+		LINK_REQ_RECV_YEAR = #linkReqRecvYear# ,
+		LINK_REQ_RECV_MONTH = #linkReqRecvMonth# ,
+		LINK_REQ_RECV_DAY = #linkReqRecvDay# ,
+		LINK_REQ_RECV_RST = #linkReqRecvRst# ,
+		YEAR = #year# ,
+		MONTH = #month# ,
+		DAY = #day# ,
+		REQ_NAME = #reqName# ,
+		ORG_NAME = #orgName# ,
+		DOC_SIGN_PATH =
+		#docSignPath# ,
+		REG_ID = #regId# ,
+		AGE = #age#
+		WHERE
+		NUM = #num#
+	</update>
 	
 </sqlMap>
