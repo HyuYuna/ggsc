@@ -164,9 +164,12 @@
 		var token = $("meta[name='_csrf']").attr("th:content");
 		var header = $("meta[name='_csrf_header']").attr("th:content");
 		var param = $("#caseNo").val();
-		$.ajax({
+		
+		$.ajax({ // 만일 , 회기순으로 저장되는 경우라면 이 동작은 필요없을 수 있다 
+				 // 이 ajax 가 수행하여 얻어온 정보는 , 해당 내담자의 상담 수 이므로 
+				 // 이 수를 활용할지 고려 해볼것
 			type : "POST",
-			url : "/gnoincoundb/perCnsRegCheckAjax.do",
+			url : "/gnoincoundb/perCnsRegCheckAjax_test.do",
 			data : {caseNo:param} ,
 			dataType : "json",
 			beforeSend : function(xhr){
@@ -174,15 +177,9 @@
 			},
 			success : function(json) {
 				var result = json.result;
-				/* if(result > 0) {
-					alert("이미 개인상담이일지가 등록되어있습니다.");
-					return false;
-				} else {
-					document.frm.action = "/perCnsReg.do?mnuCd=${mnuCd}";
-			       	document.frm.submit();
-				} */
+				console.log(result);
 				
-				document.frm.action = "/gnoincoundb/perCnsReg.do?mnuCd=${mnuCd}";
+				document.frm.action = "/gnoincoundb/perCnsReg_test.do?mnuCd=${mnuCd}";
 		       	document.frm.submit();
 			},
 			error : function(e) {
@@ -192,17 +189,8 @@
 		}
 	}
 	
-	/* function fn_reg(){
-		
-		
-		if(confirm("등록 하시겠습니까?")){
-			document.frm.action = "/perCnsReg.do?mnuCd=${mnuCd}";
-	       	document.frm.submit();
-		}
-	} */
-	
 	function fn_list(mnuCd){
-		document.location.href = "/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/perCnsList_test.do?mnuCd=" + mnuCd;
 	}
 	
 	function findUserPopup(){
@@ -241,8 +229,11 @@
 			}).done(function(e){
 				
 				var data = e.Detail;
+				
 				$('input:radio[name=gender]:input[value='+data.gender+']').attr("checked", true);
+				
 				var arr = [ 'cnsNm', 'zoneNm', 'centerNm', 'birthDt', 'gender', 'addr', 'mobile'];
+				
 				for(var i=0;i<arr.length;i++){
 					$("[data-type='" + arr[i] + "']").text(eval("data." + arr[i] ));
 				}
@@ -671,6 +662,7 @@ $(document).on('change','#cnsStat',function(){
 							<c:choose>
 								<c:when test="${result.file1 != null }">
 									<a href="javascript:fn_down('${result.fileNm }', '${result.filePath }');">${result.fileNm }</a>
+									
 								</c:when>
 								<c:when test="${result.file1 == null }">
 									<div class="filebox"> 

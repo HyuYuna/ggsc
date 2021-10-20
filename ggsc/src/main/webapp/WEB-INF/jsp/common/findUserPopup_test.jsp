@@ -17,6 +17,7 @@
 	function fn_select(userId, userNm, caseNo, cnsGb, birthDt, mobile, addr, gender, sigunCd){
 		opener.document.getElementById("cnsleId").value = userId;
 		opener.document.getElementById("cnsleNm").value = userNm;
+		
 		if(opener.document.getElementById("cnsleNm2")){
 			opener.document.getElementById("cnsleNm2").value = userNm;
 		}

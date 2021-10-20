@@ -20,8 +20,9 @@
 	function fn_select(){
 		
 		if(opener.document.getElementById("atdeNm")){
-			opener.document.getElementById("atdeNm").value = checkBoxArr;
+			opener.document.getElementById("atdeNm").value = checkBoxArr; // hidden type 으로 숨겨져 있던 값을 부모 페이지에 컴포넌트를 집어 값을 할당하는 것 
 			opener.document.getElementById("atdeId").value = checkBoxArr2;
+			opener.document.getElementById("atdeCnt").value = checkBoxArr.length; // 참석자 란에 수기로 입력할 필요 없게 만듬
 		}
 		
 		window.close();
@@ -31,13 +32,13 @@
 		
 		$("#currentPageNo").val(curPage);
 		var param = $("#searchForm").serialize(); //ajax로 넘길 data
-		var token = $("meta[name='_csrf']").attr("th:content");
+		var token = $("meta[name='_csrf']").attr("th:content");	
 		var header = $("meta[name='_csrf_header']").attr("th:content");
 		
 		
 		$.ajax({
 			type : "POST",
-			url : "/gnoincoundb/userSelPopupAjax.do",
+			url : "/gnoincoundb/userSelPopupAjax_test.do",
 			data : param,
 			dataType : "json",
 			beforeSend : function(xhr){
@@ -45,15 +46,18 @@
 			},
 			success : function(json) {
 				console.log(json.list);
+				//console.log(json.totalPageCnt); 이 값 안 쓰임 
+				
 				var html = '';
-				$("#totalPageCnt").html(json.totalPageCnt); 
+				
+				//$("#totalPageCnt").html(json.totalPageCnt); 
+				
 				
 				$.each(json.list, function(i, d) {
-					var num = 0;
+				
+					console.log(d);
 					
-					num = (json.totalPageCnt - d.rnum) + 1;
-					html += '<tr onclick="javascript:fn_sel(\''+ d.rnum +'\',\''+ d.userId +'\');">';
-					/* html += '<td><input type="checkbox" id="chk'+d.rnum+'" name="userChk" value="'+d.userNm+'@'+d.userId+'"></td>'; */
+					html += '<tr onclick="javascript:fn_sel(\''+ d.rnum +'\',\''+ d.userId +'\');">'; 
 					html += '<td><input type="checkbox" id="chk'+d.rnum+'" name="userChk" value="'+d.userNm+'"></td>';
 					html += '<td>' + d.rnum + '</td>';
 					html += '<td>' + d.caseNo+ '</td>';
@@ -63,23 +67,23 @@
 					html += '</tr>';
 					
 				});
+				
 				if (json.list.length == 0) {
 					html += '<tr><td colspan="6">정보가 없습니다.</td></tr>';
 				}
+				
 				$("#tby1").html(html);
 
 				var p = json.paginationInfo;
-	        	var pageView = Paging(p.totalRecordCount,10,10,
-	        			p.currentPageNo ,'list' ,1);
+	        	var pageView = Paging(p.totalRecordCount,10,10, p.currentPageNo ,'list' ,1);
 	        	$("#page1").empty().html(pageView);
 	        	
 	        	var checkBoxArr = $("#checkBoxArr").val();
-	    		console.log(checkBoxArr);
 	        	
-	    		if(checkBoxArr.length > 0) {
-	    			if(checkBoxArr != "") {
-	    				var checkBoxArrSplit = checkBoxArr.split(",");
-	    				for (var idx in checkBoxArrSplit) {
+	    		if(checkBoxArr.length > 0) { 							// 배열 안에 값이 있다면 
+	    			if(checkBoxArr != "") {  							// 배열이 비어 있지 않다면 
+	    				var checkBoxArrSplit = checkBoxArr.split(",");  // , 기점으로 자른 후 
+	    				for (var idx in checkBoxArrSplit) { 			// check 상태를 true 로 만들어라 
 	    					$("input[name=userChk][value=" + checkBoxArrSplit[idx] + "]").attr("checked", true);
 	    				}			
 	    			}
@@ -92,33 +96,27 @@
 		});
 	}
 	
-	function fn_sel(rowId,userId) {
+	function fn_sel(rowId,userId) { // 클릭할때마다 정보가 들어온다 . 
 		
 		var row = "chk"+rowId;
 		
-		if($("input[name=userChk][id="+row+"]").is(":checked") == true) {
-			$("input[name=userChk][id="+row+"]").attr("checked", false);
-			checkBoxArr.pop();
+		// toggle
+		if($("input[name=userChk][id="+row+"]").is(":checked") == true) { 
+			$("input[name=userChk][id="+row+"]").attr("checked", false);  // 체크를 풀어라 
+			checkBoxArr.pop(); // 끝 배열의 값을 지운다 
 		} else {
-			console.log("Check In");
-			$("input[name=userChk][id="+row+"]").attr("checked", true);		
-			var abc = $("input[name=userChk][id="+row+"]").val();
-			checkBoxArr.push(abc);
+			$("input[name=userChk][id="+row+"]").attr("checked", true); // 체크가 되어 있지 않은 상태 
+			var value = $("input[name=userChk][id="+row+"]").val(); // 값을 가지고 온 뒤에 
+			checkBoxArr.push(value);	// 배열에 밀어 넣어라 
 		}
+		// 결론 클릭 시 , 체크 된 상태면 값을 제거 아닌 경우에는 체크를 true 로 만들고 값을 밀어 넣는 if
 		
 		if($("input[name=userChk][id="+row+"]").is(":checked") == true) {
 			checkBoxArr2.push(userId);
 		} else {
 			checkBoxArr2.pop();
 		}
-		
-		/* $("input[name=userChk]:checked").each(function(i){
-			checkBoxArr.push($(this).val());
-		}); */
-		
-		console.log(checkBoxArr);
-		console.log(checkBoxArr2);
-		
+			
 		$("#checkBoxArr").val(checkBoxArr);
 		$("#checkBoxArr2").val(checkBoxArr2);
 	}

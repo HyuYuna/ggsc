@@ -435,6 +435,8 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	public void insertGcns(GcnsVO vo) throws Exception {
 		//cnsMngDao.insertGcns(vo);
 		//cnsMngDao.insertGcnsPdf(vo);
+		// Detail 한 부분을 List 로 가지고 오는 부분 때문에 
+		// Pdf 다운로드는 지금 iFrame 이 담당하고 있기 때문에 Delete 됨
 		
 		int gcnsNum = 0;
 		
@@ -446,19 +448,19 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		perVo.setCnsCnt(vo.getCnsCnt());
 		perVo.setCnsDt(vo.getAtvyDt());
 		perVo.setNum(gcnsNum);
-		perVo.setMajorApplCd(vo.getMajorApplCd()); // 주호소문제
-		perVo.setCnsleRel(vo.getOlderRel()); // 내담자와의 관계
-		perVo.setCnsType(vo.getCnsType()); // 상담종류
+		perVo.setMajorApplCd(vo.getMajorApplCd()); 	// 주호소문제
+		perVo.setCnsleRel(vo.getOlderRel()); 		// 내담자와의 관계
+		perVo.setCnsType(vo.getCnsType()); 			// 상담종류
 		
-		String str = vo.getAtdeId();
+		String str = vo.getAtdeId(); // 참석자 명 아이디 
 		String atdeIdArr[] = str.split(",");
-		String str2 = vo.getAtdeNm();
-		String atdeNmArr[] = str2.split(",");
+		String str2 = vo.getAtdeNm();	// 참석자 명 이름 
+		String atdeNmArr[] = str2.split(","); // 스플릿으로 짜름 
 		
-		for(int i = 0; i<atdeIdArr.length; i++) {
-			perVo.setCnsleId(atdeIdArr[i]);
-			perVo.setCnsleNm(atdeNmArr[i]);
-			cnsMngDao.insertAddPerCns(perVo);
+		for(int i = 0; i<atdeIdArr.length; i++) { 
+			perVo.setCnsleId(atdeIdArr[i]);	// 상담자 아이디 
+			perVo.setCnsleNm(atdeNmArr[i]);	// 상담자명 
+			cnsMngDao.insertAddPerCns(perVo); //
 		}
 	}
 	
@@ -1019,6 +1021,52 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override
 	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo) {
 		List<EgovMap> list = cnsMngDao.getCnsDiaHysList_test(vo);
+		return list;
+	}
+
+	@Override
+	public int getPerCnsRegCheck_test(int caseNo) {
+		int count = cnsMngDao.getPerCnsRegCheck_test(caseNo);
+		return count;
+	}
+
+	@Override
+	public void insertPerCns_test(PerCnsVO vo) {
+		cnsMngDao.insertPerCnsDtl_test(vo);
+	}
+
+	@Override
+	public void insertGcns_test(GcnsVO vo) throws Exception{
+		int gcnsNum = 0;
+		
+		gcnsNum = cnsMngDao.insertGcnsDtl_test(vo); // num 번호 , 마지막 값을 기점으로 증가식을 가진채로 데이터가 나온다 
+		
+		PerCnsVO perVo = new PerCnsVO(); //
+		perVo.setCnsrId(vo.getCnsrId());
+		perVo.setCnsrNm(vo.getInputNm());
+		perVo.setCnsCnt(vo.getCnsCnt());
+		perVo.setCnsDt(vo.getAtvyDt());
+		perVo.setNum(gcnsNum);						// Setting
+		perVo.setMajorApplCd(vo.getMajorApplCd()); 	// 주호소문제
+		perVo.setCnsleRel(vo.getOlderRel()); 		// 내담자와의 관계
+		perVo.setCnsType(vo.getCnsType()); 			// 상담종류
+		
+		String str = vo.getAtdeId(); // 참석자 명 아이디 
+		String atdeIdArr[] = str.split(",");
+		String str2 = vo.getAtdeNm();	// 참석자 명 이름 
+		String atdeNmArr[] = str2.split(","); // 스플릿으로 짜름 
+		
+		for(int i = 0; i<atdeIdArr.length; i++) { 
+			perVo.setCnsleId(atdeIdArr[i]);	// 상담자 아이디 
+			perVo.setCnsleNm(atdeNmArr[i]);	// 상담자명 
+			cnsMngDao.insertAddPerCns_test(perVo); //
+		}
+		
+	}
+
+	@Override
+	public List<EgovMap> getGcnsList_test(GcnsVO vo) {
+		List<EgovMap> list = cnsMngDao.getGcnsList_test(vo);
 		return list;
 	}
 }

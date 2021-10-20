@@ -5771,6 +5771,7 @@
 				WHERE
 					1=1
 				AND USE_YN = 'Y'
+				<!--  페이지에서 권역별 , 센터별 , 내담자명 별 .. 등등등 조회 조건 -->
 				<isNotEmpty property="schCnsGb" prepend="AND">
 					CNS_GB = #schCnsGb#
 				</isNotEmpty>
@@ -5810,6 +5811,302 @@
 				ORDER BY NUM DESC
 			]]>
 
+	</select>
+	
+	<!--  개인상담 갯수 체크 -->
+	<select id="cnsMngDao.getPerCnsRegCheck_test" parameterClass="Integer" resultClass="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		GS_PER_CNS_DTL_TEST
+		WHERE
+		CASE_NO = #caseNo#
+	</select>
+	
+	<!--  개인상담 관련 등록 -->
+	<insert id="cnsMngDao.insertPerCns_test" parameterClass="perCnsVO">
+		INSERT INTO
+		GS_PER_CNS_TEST
+		(
+		CASE_NO
+		, CNS_GB
+		, CNS_DTL_GB_CD
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, CNSLE_NM
+		, CNSR_GB
+		, CNSR_NM
+		, CNS_STAT
+		, CNS_END_CD
+		, CNS_END_DT
+		, DEFR_CD
+		, DEFR_DT
+		, RE_REQ_DT
+		, CMBK_DT
+		, BIRTH_DT
+		, GENDER
+		, MOBILE
+		, EMGCY_TEL
+		, ADDR
+		, CNS_END_YN
+		)
+		VALUES
+		(
+		#caseNo#
+		, #cnsGb#
+		, 1
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, #cnsrGb#
+		, #cnsrNm#
+		, #cnsStat#
+		, #cnsEndCd#
+		, #cnsEndDt#
+		, #defrCd#
+		, #defrDt#
+		, #reReqDt#
+		, #cmbkDt#
+		, #birthDt#
+		, #gender#
+		, #mobile#
+		, #emgcyTel#
+		, #addr#
+		, #cnsEndYn#
+		)
+	</insert>
+	
+	<insert id="cnsMngDao.insertGcnsDtl_test" parameterClass="gCnsVO">
+		
+		<selectKey resultClass="int" keyProperty="num">
+
+			SELECT IFNULL(MAX(NUM),0)+1 as num from GS_GCNS_DTL_TEST
+
+		</selectKey>
+	
+		INSERT INTO
+		GS_GCNS_DTL_TEST
+		(
+		CASE_NO
+		, CNSR_ID
+		, CNS_GB
+		, CNS_DTL_GB_CD
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, CNSLE_NM
+		, CNS_CNT
+		, PGRM_CD
+		, PGRM_NM
+		, ATVY_TITLE
+		, ATVY_DT
+		, ATVY_STRT_HOUR
+		, ATVY_STRT_MIN
+		, ATVY_END_HOUR
+		, ATVY_END_MIN
+		, ATVY_TOT_MIN
+		, ATVY_PLACE
+		, LEADER_GB
+		, ANCHOR
+		, INPUT_NM
+		, ATDE_CNT
+		, ATDE_NM
+		, ATVY_GOAL
+		, PGRM_CNTN
+		, EVAT
+		, AFTER_PLAN
+		, ETC
+		, REG_ID
+		, DB_INS_TM
+		, OLDER_REL
+		, GENDER
+		, BIRTH_DT
+		, CNS_TYPE
+		, PSYC_QUST
+		, PER_REL_QUST
+		, PSNG
+		, DMTA
+		, DSM
+		, HELTH_QUST
+		, ECONO_QUST
+		, SUNG_QUST
+		, LIFE_QUST
+		, COUPLE_QUST
+		, FAMILY_QUST
+		, PART_QUST
+		, ETC_QUST
+		, ATDE_ID
+		)
+		VALUES
+		(
+		#caseNo#
+		, #cnsrId#
+		, #cnsGb#
+		, 2
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsleNm#
+		, #cnsCnt#
+		, #pgrmCd#
+		, #pgrmNm#
+		, #atvyTitle#
+		, #atvyDt#
+		, #atvyStrtHour#
+		, #atvyStrtMin#
+		, #atvyEndHour#
+		, #atvyEndMin#
+		, #atvyTotMin#
+		, #atvyPlace#
+		, #leaderGb#
+		, #anchor#
+		, #inputNm#
+		, #atdeCnt#
+		, #atdeNm#
+		, #atvyGoal#
+		, #pgrmCntn#
+		, #evat#
+		, #afterPlan#
+		, #etc#
+		, #regId#
+		, NOW()
+		, #olderRel#
+		, (SELECT GENDER FROM GS_USER_M_TEST WHERE USER_ID = #cnsleId#)
+		, #birthDt#
+		, #cnsType#
+		, #psycQust#
+		, #perRelQust#
+		, #psng#
+		, #dmta#
+		, #dsm#
+		, #helthQust#
+		, #econoQust#
+		, #sungQust#
+		, #lifeQust#
+		, #coupleQust#
+		, #familyQust#
+		, #partQust#
+		, #etcQust#
+		, #atdeId#
+		)
+	</insert>
+	
+	<!-- 집단상담일지 등록(개인상담 각각 값 추가) -->
+	<insert id="cnsMngDao.insertAddPerCns_test" parameterClass="perCnsVO">
+		INSERT INTO 
+			GS_PER_CNS_DTL_TEST
+		(
+		  GCNS_NUM ,
+		  CASE_NO ,
+		  CNS_GB ,
+		  CNS_DTL_GB_CD ,
+		  LOCAL_GB ,
+		  ZONE_GB ,
+		  CENTER_GB ,
+		  GENDER ,
+		  BIRTH_DT ,
+		  CNSLE_NM ,
+		  CNSLE_ID ,
+		  CNSR_NM ,
+		  USE_YN ,
+		  CNS_STAT ,
+		  CNS_CNT ,
+		  CNS_DT ,
+		  CNSLE_REL , 
+		  CNS_TYPE ,
+		  CNSR_ID ,
+		  DB_INS_TM
+		) VALUES (
+			#num# ,
+			(SELECT A.case_no from gs_pre_exam_m_test as A WHERE A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			(SELECT A.cns_gb from gs_pre_exam_m_test as A WHERE A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			'2' , <!--  집단상담 구분코드  -->
+			(SELECT A.local_gb FROM gs_pre_exam_m_test as A WHERE A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			(SELECT A.zone_gb FROM gs_pre_exam_m_test as A WHERE A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			(SELECT A.center_gb FROM gs_pre_exam_m_test as A WHERE A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			(SELECT B.gender FROM gs_pre_exam_m_test as A , gs_user_m_test as B WHERE A.user_id = B.user_id AND A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			(SELECT B.birth_dt FROM gs_pre_exam_m_test as A , gs_user_m_test as B WHERE A.user_id = B.user_id AND A.user_id = #cnsleId# AND A.cns_target_gb = 'Y') ,
+			#cnsleNm# ,
+			#cnsleId# ,
+			#cnsrNm# ,
+			'Y' ,
+			'1' ,
+			#cnsCnt# ,
+			#cnsDt# ,
+			#cnsleRel# ,
+			#cnsType# ,
+			#cnsrId# ,
+			NOW()
+		)
+	</insert>
+	
+	<select id="cnsMngDao.getGcnsList_test" parameterClass="gCnsVO" resultClass="EgovMap">
+		SELECT
+		A.*,
+		(SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(A.B_YEAR)))/365)) AS AGE
+		FROM (
+		SELECT
+		ROW_NUMBER() OVER(ORDER BY ggd.NUM) AS RNUM,
+		ROW_NUMBER() OVER(ORDER BY ggd.NUM DESC) AS RNUM2,
+		(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = ggd.CNS_GB) AS CNS_GB_NM,
+		(SELECT BIRTH_DT FROM GS_USER_M WHERE USER_ID = ggd.CNSLE_ID) AS B_YEAR,
+		<!-- (SELECT USER_NM FROM GS_USER_M WHERE USER_ID = ggd.CNSLE_ID) AS CNSLE_NM, -->
+		ggp.FILE_NM,
+		ggp.SYS_FILE_NM,
+		ggp.FILE_PATH,
+		ggd.* ,
+		DATE_FORMAT(ggd.DB_INS_TM, '%Y-%m-%d') AS dbInsTm2
+		FROM
+		GS_GCNS_DTL_TEST ggd
+		LEFT JOIN GS_GCNS_PDF ggp
+		ON ggd.NUM = ggp.NUM AND ggd.CASE_NO =	ggp.CASE_NO
+		WHERE
+			1=1
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			ggd.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			ggd.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schPgrmNm" prepend="AND">
+			ggd.PGRM_NM LIKE CONCAT('%', #schPgrmNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schLeaderNm" prepend="AND">
+			ggd.LEADER LIKE CONCAT('%', #schLeaderNm#, '%')
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND ggd.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND ggd.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND ggd.CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND ggd.CNSR_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(ggd.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(ggd.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+		<![CDATA[
+			WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+			ORDER BY RNUM DESC
+		]]>
 	</select>
 	
 </sqlMap>

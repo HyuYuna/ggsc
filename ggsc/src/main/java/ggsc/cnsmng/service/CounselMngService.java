@@ -326,4 +326,12 @@ public interface CounselMngService {
 	
 	//개인상담일지 
 	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo);
+	public int getPerCnsRegCheck_test(int caseNo);
+	public void insertPerCns_test(PerCnsVO vo);
+	
+	//집단 상담일지 
+	
+	public void insertGcns_test(GcnsVO vo) throws Exception;
+	
+	public List<EgovMap> getGcnsList_test(GcnsVO vo);
 }

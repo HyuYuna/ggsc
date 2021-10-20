@@ -798,4 +798,26 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo){
 		return (List<EgovMap>) list("cnsMngDao.getCnsDiaHysList_test",vo);
 	}
+	
+	public int getPerCnsRegCheck_test(int caseNo) {
+		return (Integer)select("cnsMngDao.getPerCnsRegCheck_test",caseNo);
+	}
+	
+	public void insertPerCnsDtl_test(PerCnsVO vo) {
+		insert("cnsMngDao.insertPerCnsDtl_test",vo);
+	}
+	
+	// 집단상담 insert
+	public int insertGcnsDtl_test(GcnsVO vo) {
+		return (Integer) insert("cnsMngDao.insertGcnsDtl_test",vo);
+	}
+	
+	public void insertAddPerCns_test(PerCnsVO vo) {
+		insert("cnsMngDao.insertAddPerCns_test",vo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getGcnsList_test(GcnsVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getGcnsList_test",vo);
+	}
 }

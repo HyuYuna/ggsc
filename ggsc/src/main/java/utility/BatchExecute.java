@@ -18,7 +18,10 @@ import ggsc.support.web.Batch;
 
 @Component
 public class BatchExecute implements ApplicationListener<ContextRefreshedEvent>{
-
+	// Application Listener 를 상속 받음으로써 서버라는 Context가 로드 될 때 실행되는 객체이다 . 
+	// 이 객체는 서버 로드시 필요한 정보들을 메모리 상에 로드하기 위해 있는 것 일텐데 프로젝트 내 에서 스프링이 왠만한 작업들을 다 
+	// 처리하기 때문에 이 ApplicationListener 는 행하는 것이 없는 듯 하다
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		 SchedulerFactory schedulerFactory = new StdSchedulerFactory();
@@ -38,6 +41,7 @@ public class BatchExecute implements ApplicationListener<ContextRefreshedEvent>{
 	            scheduler.scheduleJob(job, trigger);
 	            scheduler.start();*/
 	            
+	        	System.out.println("onApplicationEvent Start");
 	            
 	            System.out.println("=================================BATCH END=================================================");
 	        } catch (Exception e) {

@@ -44,7 +44,7 @@ public class LoginController {
 	public String actionLogin(@ModelAttribute("AdmLoginVO") LoginVO loginVO, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		
 		try {
-			EgovMap resultVO = loginService.actionLogin(loginVO);
+			EgovMap resultVO = loginService.actionLogin(loginVO); 
 			boolean loginPolicyYn = true;
 
 			if (null != resultVO && null != resultVO.get("userId") && loginPolicyYn) {
@@ -60,8 +60,7 @@ public class LoginController {
 				
 				model.addAttribute("userVO", resultVO);
 				return "redirect:/main.do";
-				// return "forward:/main.do";
-
+				
 			} else {
 				model.addAttribute("message", "로그인에 실패하였습니다.");
 				return "redirect:/gnoincoundb/login/login.do";
@@ -101,7 +100,7 @@ public class LoginController {
 			utility.func.Logging(this.getClass().getName(), e);
 		}
 		
-		return "redirect:/gnoincoundb/login/login.do";
+		return "redirect:/login/login.do";
 		
 	}
 

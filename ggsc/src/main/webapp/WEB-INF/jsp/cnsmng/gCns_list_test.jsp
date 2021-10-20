@@ -33,6 +33,8 @@
 			page = 1;
 		}
 		
+		
+		console.log("pageCheck");
 	});
 
 	function fn_down(fileNm, sysFileNm, filePath){
@@ -44,22 +46,19 @@
 	}
 	
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/gCnsRegView.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/gCnsRegView_test.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_detail(caseNo, num){
 		var mnuCd = $("#mnuCd").val();
 		document.location.href = "/gnoincoundb/gCnsDtl.do?caseNo=" + caseNo + "&num=" + num + "&mnuCd=" + mnuCd;
-		/* $("#caseNo").val(caseNo);
-		$("#num").val(num);
-		document.searchForm.action = "/gCnsDtl.do";
-       	document.searchForm.submit(); */
+
 	}
 	
 	function list(curPage) {
 		
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/gCnsList.do";
+		document.searchForm.action = "/gnoincoundb/gCnsList_test.do";
        	document.searchForm.submit();
 	}
 	
@@ -72,7 +71,7 @@
 		var url = "";
 		
 		if(no == 1){
-			url = "/gnoincoundb/perCnsList.do?mnuCd=${mnuCd}";	
+			url = "/gnoincoundb/perCnsList_test.do?mnuCd=${mnuCd}";	
 		}else if(no == 2){
 			url = "/gnoincoundb/gCnsList.do?mnuCd=${mnuCd}";
 		}else if(no == 3){
@@ -107,8 +106,6 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" id="currentPageNo" name="currentPageNo" value="1" />
 			<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
-			<!-- <input type="hidden" id="caseNo" name="caseNo" value="" />
-			<input type="hidden" id="num" name="num" value="" /> -->
 
 			<div class="search-box">
 				<div class="search-group" style="margin-left:60px;">
@@ -174,9 +171,7 @@
 					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(5);">수퍼비전</li>
 				</ul>
 			</div>
-			
-		
-			
+					
 			<h3 class="h3-title" style="display: inline-block;"><i class="fa fa-star"></i>집단상담일지 이력정보</h3>
 			<div style="float: right; display: inline-block;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd }');" style="background-color: green;color:white;">집단상담일지등록</button>
@@ -187,7 +182,6 @@
 					<col width="5%"></col>
 					<col width="7%"></col> 
 					<col width="7%"></col>
-					<%-- <col width="6%"></col> --%>
 					<col width="12%"></col>
 					<col width="6%"></col>
 					<col width="12%"></col>
@@ -202,7 +196,6 @@
 						<th scope="col">순번</th>
 						<th scope="col">상담구분</th>
 						<th scope="col">작성자</th>
-						<!-- <th scope="col">현재연령</th> -->
 						<th scope="col">프로그램명</th>
 						<th scope="col">참석인원</th>
 						<th scope="col">활동장소</th> 
@@ -259,181 +252,6 @@
                     </ul>
                 </div>
 			</div>
-			<!-- 
-			<h3 class="h3-title"><i class="fa fa-star"></i>집단상담 재신청</h3>
-			<table class="table-style1" style="margin-bottom: 5px;">
-				<colgroup> 
-					<col width="5%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="*"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col">상담상태</th>
-						<th scope="col">case.No</th>
-						<th scope="col">상담회기</th>
-						<th scope="col">상담일시</th>
-						<th scope="col">성명</th> 
-						<th scope="col">성별</th>
-						<th scope="col">현재연령</th>
-						<th scope="col">자살위험도</th>
-						<th scope="col">주호소</th>
-						<th scope="col">주결과</th>
-						<th scope="col">상담자</th>
-						<th scope="col">상담일지수정</th>
-					</tr>
-				</thead>
-				<tbody id="tby1">
-					<c:if test="${cnsCntReList.size() == 0 }">
-						<tr>
-							<td colspan="12">정보가 없습니다.</td>
-						</tr>
-					</c:if>
-					<c:if test="${cnsCntReList.size() > 0 }">
-						<c:forEach items="${cnsCntReList }" var="result">
-							<tr onclick="javascript:fn_detail('${result.caseNo}');">
-								<td>상담상태</td>
-								<td>${result.caseNo }</td>
-								<td>${result.cnsCnt }</td>
-								<td>${result.cnsDt }</td>
-								<td>${result.cnsleNm }</td>
-								<td>${result.gender }</td>
-								<td>현재연령</td>
-								<td>${result.killsRskn }</td>
-								<td>${result.majorApplCd }</td>
-								<td>주결과</td>
-								<td>${result.cnsrNm }</td>
-								<td>상담일지수정</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</tbody>
-			</table>
-		
-			<h3 class="h3-title" style="margin-top:30px;"><i class="fa fa-star"></i>집단상담 종결</h3>
-			<table class="table-style1" style="margin-bottom: 5px;">
-				<colgroup> 
-					<col width="5%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="*"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col">상담상태</th>
-						<th scope="col">사유</th>
-						<th scope="col">상담회기</th>
-						<th scope="col">상담일시</th>
-						<th scope="col">성명</th> 
-						<th scope="col">성별</th>
-						<th scope="col">현재연령</th>
-						<th scope="col">자살위험도</th>
-						<th scope="col">주호소</th>
-						<th scope="col">주결과</th>
-						<th scope="col">상담자</th>
-						<th scope="col">상담일지수정</th>
-					</tr>
-				</thead>
-				<tbody id="tby1">
-					<c:if test="${cnsCntEndList.size() == 0 }">
-						<tr>
-							<td colspan="12">정보가 없습니다.</td>
-						</tr>
-					</c:if>
-					<c:if test="${cnsCntEndList.size() > 0 }">
-						<c:forEach items="${cnsCntEndList }" var="result">
-							<tr onclick="javascript:fn_detail('${result.caseNo}');">
-								<td>상담상태</td>
-								<td>${result.cnsEndResn }</td>
-								<td>${result.cnsCnt }</td>
-								<td>${result.cnsDt }</td>
-								<td>${result.cnsleNm }</td>
-								<td>${result.gender }</td>
-								<td>현재연령</td>
-								<td>${result.killsRskn }</td>
-								<td>${result.majorApplCd }</td>
-								<td>주결과</td>
-								<td>${result.cnsrNm }</td>
-								<td>상담일지수정</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</tbody>
-			</table>
-			
-			<h3 class="h3-title" style="margin-top:30px;"><i class="fa fa-star"></i>심리검사</h3>
-			<table class="table-style1" style="margin-bottom: 5px;">
-				<colgroup> 
-					<col width="5%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="7%"></col>
-					<col width="*"></col>
-					<col width="7%"></col>
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col">case.No</th>
-						<th scope="col">상담회기</th>
-						<th scope="col">일자</th>
-						<th scope="col">C-SRS</th>
-						<th scope="col">GDS-K-R</th> 
-						<th scope="col">SSI</th>
-						<th scope="col">GHS</th>
-						<th scope="col">GSIS</th>
-						<th scope="col">이사</th>
-						<th scope="col">거주지</th>
-						<th scope="col">사별</th>
-					</tr>
-				</thead>
-				<tbody id="tby1">
-					<c:if test="${cnsCntEndList.size() == 0 }">
-						<tr>
-							<td colspan="11">정보가 없습니다.</td>
-						</tr>
-					</c:if>
-					<c:if test="${cnsCntEndList.size() > 0 }">
-						<c:forEach items="${cnsCntEndList }" var="result">
-							<tr onclick="javascript:fn_detail('${result.caseNo}');">
-								<td>상담상태</td>
-								<td>${result.cnsEndResn }</td>
-								<td>${result.cnsCnt }</td>
-								<td>${result.cnsDt }</td>
-								<td>${result.cnsleNm }</td>
-								<td>${result.gender }</td>
-								<td>현재연령</td>
-								<td>${result.killsRskn }</td>
-								<td>${result.majorApplCd }</td>
-								<td>주결과</td>
-								<td>${result.cnsrNm }</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-				</tbody>
-			</table>
-			-->
 		</div>
 		<!-- end -->
 	</section>

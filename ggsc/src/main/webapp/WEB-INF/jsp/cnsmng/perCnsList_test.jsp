@@ -84,7 +84,7 @@
 		if(no == 1){
 			url = "/gnoincoundb/perCnsList.do?mnuCd=${mnuCd}";	
 		}else if(no == 2){
-			url = "/gnoincoundb/gCnsList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/gCnsList_test.do?mnuCd=${mnuCd}";
 		}else if(no == 3){
 			url = "/gnoincoundb/psyCnsList.do?mnuCd=${mnuCd}";
 		}else if(no == 4){
