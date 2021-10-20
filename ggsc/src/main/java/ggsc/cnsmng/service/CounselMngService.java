@@ -350,3 +350,4 @@ public interface CounselMngService {
 	// 연계의뢰 (외부) 수정 
 	public void updateLinkageOutReq_test(LinkReqVO vo);
 }
+

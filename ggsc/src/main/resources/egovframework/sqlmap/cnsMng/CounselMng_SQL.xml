@@ -6473,6 +6473,7 @@
 
 	</update>
 	
+	
 	<update id="cnsMngDao.updateLinkageOutReq_test" parameterClass="linkReqVO">
 		UPDATE GS_LINK_REQ_M_TEST
 		SET

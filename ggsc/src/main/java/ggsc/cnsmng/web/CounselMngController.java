@@ -3432,5 +3432,6 @@ public class CounselMngController {
 
 		return "redirect:/linkageReqList_test.do?mnuCd=" + mnuCd;
 	}
+	
 
 }

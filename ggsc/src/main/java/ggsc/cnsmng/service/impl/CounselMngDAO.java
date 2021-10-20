@@ -852,5 +852,6 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	
 	public void updateLinkageOutReq_test(LinkReqVO vo) {
 		update("cnsMngDao.updateLinkageOutReq_test",vo);
-	}	
+	}
+	
 }
