@@ -55,7 +55,7 @@
 	function fn_detail(caseNo, num ,cnsDtlGbCd){
 		if(cnsDtlGbCd == 1) {
 			var mnuCd = $("#mnuCd").val();
-			document.location.href = "/gnoincoundb/perCnsDtl.do?mnuCd="+mnuCd+"&caseNo="+caseNo+"&num="+num;
+			document.location.href = "/gnoincoundb/perCnsDtl_test.do?mnuCd="+mnuCd+"&caseNo="+caseNo+"&num="+num;
 		} else if(cnsDtlGbCd == 2) {
 			var mnuCd = $("#mnuCd").val();
 			document.location.href = "/gnoincoundb/gCnsDtl.do?mnuCd="+mnuCd+"&caseNo=0"+"&num="+num;
@@ -88,10 +88,13 @@
 		}else if(no == 3){
 			url = "/gnoincoundb/psyCnsList.do?mnuCd=${mnuCd}";
 		}else if(no == 4){
-			url = "/gnoincoundb/linkageReqList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/linkageReqList_test.do?mnuCd=${mnuCd}";
 		}else{
 			url = "/gnoincoundb/superVisionList.do?mnuCd=${mnuCd}";
 		}
+		
+		console.log(url);
+		
 		document.location.href = url;
 	}
 </script>
@@ -106,7 +109,7 @@
 	<h2 class="h2-title"><i class="fa fa-check-square"></i>개인상담관리</h2>
 		<div class="box-style1 x-scroll-auto" >
 		<!-- 검색영역 -->
-		<form name="searchForm" id="searchForm" action="/perCnsList.do" method="get" onsubmit="return false">
+		<form name="searchForm" id="searchForm" action="/perCnsList_test.do" method="get" onsubmit="return false">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" id="currentPageNo" name="currentPageNo" value="1" />
 			<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />

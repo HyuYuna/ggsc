@@ -240,11 +240,6 @@
 				</ul>
 			</div>
 			
-			<!-- 
-			<div class="btn" style="float: right; margin: 0;">
-				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd }');" style="background-color: green;color:white;">초기상담신청서작성</button>
-			</div>
-			 -->	
 			<h3 class="h3-title"><i class="fa fa-star"></i>상담내용</h3>
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
@@ -369,7 +364,6 @@
 					<col width="7%"></col>
 					<col width="5%"></col>
 					<col width="7%"></col>
-					<%-- <col width="7%"></col> --%>
 				</colgroup>
 				<thead>
 					<tr>

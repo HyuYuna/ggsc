@@ -10,9 +10,7 @@ import java.net.URLEncoder;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
@@ -1528,11 +1526,11 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
-			if (userAuth == 0)
-				userAuth = 10;
+			if (userAuth == 0) { userAuth = 10; }
 		} catch (NumberFormatException err) {
 			userAuth = 10;
 			userCenterGb = 0;
@@ -1605,7 +1603,8 @@ public class CounselMngController {
 
 		return "jsonView";
 	}
-
+	
+	//연계 의뢰서 
 	@RequestMapping(value = "/linkageReqList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String linkageReqList(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
 
@@ -1657,8 +1656,8 @@ public class CounselMngController {
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
-		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+		paginationInfo.setRecordCountPerPage(10); 				// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); 						// 페이징 리스트의 사이즈
 
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
@@ -3156,6 +3155,283 @@ public class CounselMngController {
 
 		model.addAttribute("list", list);
 		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/linkageReqList_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String linkageReqList_test(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); 				// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); 						// 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		// 연계의뢰서 목록
+		List<EgovMap> linkList = counselMngService.getLinkageReqList_test(vo);
+		int totalPageCnt = counselMngService.getLinkageReqListTotCnt(vo);
+		//model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("linkList", linkList);
+
+		// 상담내용 목록(연계)
+		List<EgovMap> list = counselMngService.getLinkCnsList(vo);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);
+		
+		model.addAttribute("authCd", userAuth);
+
+		return "cnsmng/linkageReq_list_test.main";
+	}
+	
+	@RequestMapping(value = "/perCnsDtl_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String perCnsDtl_test(PerCnsVO vo, HttpServletRequest request, ModelMap model) {
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
+		model.addAttribute("map", map);
+
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G14");
+		List<EgovMap> cnsMethdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsMethdList", cnsMethdList);
+
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		param.setHclassCd("G23");
+		List<EgovMap> cnsEndCdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsEndCdList", cnsEndCdList);
+
+		param.setHclassCd("G9");
+		List<EgovMap> livgFormList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("livgFormList", livgFormList);
+
+		param.setHclassCd("G10");
+		List<EgovMap> houseFormList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("houseFormList", houseFormList);
+
+		param.setHclassCd("G18");
+		List<EgovMap> cnsStatList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsStatList", cnsStatList);
+
+		param.setHclassCd("G19");
+		List<EgovMap> cnsrGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsrGbList", cnsrGbList);
+
+		EgovMap result = counselMngService.getPerCns_test(vo);
+		model.addAttribute("result", result);
+		return "cnsmng/perCns_dtl_test.main";
+	}
+	
+	@RequestMapping(value = "/gCnsDtl_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String gCnsDtl_test(GcnsVO vo, HttpServletRequest request, ModelMap model) {
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
+		model.addAttribute("map", map);
+
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		param.setHclassCd("G71");
+		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("zoneGbList", zoneGbList);
+		
+		param.setHclassCd("G90");
+		List<EgovMap> leaderGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("leaderGbList", leaderGbList);
+		
+		// 센터구분 코드
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+
+		EgovMap result = counselMngService.getGcns_test(vo);
+		model.addAttribute("result", result);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("loginVo", loginVo);
+		
+		return "cnsmng/gCns_dtl_test.main";
+	}
+	
+	@RequestMapping(value = "/linkageReqDtl_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String linkageReqDtl_test(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+		model.addAttribute("num", num);
+		// 빈 값이면 빈값 그대로 regist 기능을 함께 공용으로 사용하는 것이 있어서 이렇게 처리함 
+		
+		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
+		model.addAttribute("map", map);
+		
+		
+		// 지역구분
+		//model.addAttribute("areaCode", comCodeService.selectAreaList());
+		// 센터구분
+		//model.addAttribute("centerGbCode", comCodeService.selectCenterGbList());
+		// 권역구분
+		//model.addAttribute("zoneGbCode", comCodeService.selectZoneGbList());
+		// 상담구분
+		//model.addAttribute("cnsGbCode", comCodeService.selectCnsGbList());
+
+		// 내부연계구분
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G35");
+		List<EgovMap> internalGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("internalGbList", internalGbList);
+		
+		param.setHclassCd("G36");
+		List<EgovMap> outernalGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("outernalGbList", outernalGbList);
+		
+		// 연계의뢰서 상세보기
+		EgovMap reqDtl = null;
+		
+		if (num != "") {
+			int intNum = Integer.parseInt(num);
+			reqDtl = counselMngService.getLinkageReqDetail_test(intNum);
+		}
+		
+		model.addAttribute("detail", reqDtl);
+
+		return "cnsmng/linkageReq_dtl_test.main";
+	}
+	
+	@RequestMapping(value = "/linkageReqReg_test.do", method = RequestMethod.POST)
+	public String linkageReqReg_test(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+		if (request.getParameter("page") != null) {
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		// 저장타입 구분 
+		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
+		
+		System.out.println(save);
+		// 연계구분 코드 
+		String linkReqGb = vo.getLinkReqGb();
+
+		System.out.println(linkReqGb);
+		
+		String cnsrId = (String) login.get("userId");
+		
+		vo.setCnsrId(cnsrId);
+		EgovMap Details = counselMngService.getCnsAcceptDtl_TEST(String.format("%s", vo.getCaseNo()));
+		vo.setCnsGb(Details.get("cnsGb").toString());
+		vo.setZoneGb(Details.get("zoneGb").toString());
+		vo.setLocalGb(Details.get("localGb").toString());
+		vo.setCenterGb(Details.get("centerGb").toString());
+		vo.setBirthDt(Details.get("birthDt").toString());
+		vo.setGender(Details.get("gender").toString());
+		vo.setTelNo(Details.get("tel").toString());
+		vo.setAddr(Details.get("addr").toString());
+
+		if (save.equals("S")) {
+			if (linkReqGb.equals("1")) {
+				vo.setTelNo(Details.get("mobile").toString()); // 폰 번호 
+				counselMngService.insertLinkageInReq_test(vo);
+			} else {
+				// 외부 연계의뢰서 등록
+				counselMngService.insertLinkageOutReq_test(vo);
+			}
+
+		} else {
+			if (linkReqGb.equals("1")) {
+				// 내부 연계의뢰서 수정
+				vo.setNum(Integer.parseInt(save)); //?
+				vo.setTelNo(Details.get("mobile").toString());
+				counselMngService.updateLinkageInReq(vo);
+			} else {
+				vo.setNum(Integer.parseInt(save));
+				counselMngService.updateLinkageOutReq(vo);
+			}
+		}
+
+		return "redirect:/linkageReqList_test.do?mnuCd=" + mnuCd;
 	}
 
 }

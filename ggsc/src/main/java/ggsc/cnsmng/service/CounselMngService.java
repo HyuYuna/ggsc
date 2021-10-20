@@ -328,10 +328,21 @@ public interface CounselMngService {
 	public List<EgovMap> getCnsDiaHysList_test(EalyCnsDocVO vo);
 	public int getPerCnsRegCheck_test(int caseNo);
 	public void insertPerCns_test(PerCnsVO vo);
+	public EgovMap getPerCns_test(PerCnsVO vo);
 	
 	//집단 상담일지 
 	
 	public void insertGcns_test(GcnsVO vo) throws Exception;
-	
 	public List<EgovMap> getGcnsList_test(GcnsVO vo);
+	public EgovMap getGcns_test(GcnsVO vo);
+	
+	// 연계의뢰서
+	public List<EgovMap> getLinkageReqList_test(LinkReqVO vo);
+	
+	// 연계의뢰 상세 
+	public EgovMap getLinkageReqDetail_test(int num);
+	// 연계의뢰 (내부) 등록 
+	public void insertLinkageInReq_test(LinkReqVO vo);
+	// 연계의뢰 (외부) 등록
+	public void insertLinkageOutReq_test(LinkReqVO vo);
 }

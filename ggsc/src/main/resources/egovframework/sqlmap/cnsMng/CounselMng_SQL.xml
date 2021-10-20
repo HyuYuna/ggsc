@@ -2679,8 +2679,7 @@
 	</update>
 
 	<!-- 개인상담일지 상세 -->
-	<select id="cnsMngDao.getPerCns" parameterClass="perCnsVO"
-		resultClass="EgovMap">
+	<select id="cnsMngDao.getPerCns" parameterClass="perCnsVO" resultClass="EgovMap">
 		<!-- SELECT gpc.CNSLE_NM,
 		gpc.CNSR_GB,
 		gpc.CNSR_NM,
@@ -3184,8 +3183,7 @@
 		]]>
 	</select>
 
-	<select id="cnsMngDao.getPsyCnsListUser" parameterClass="int"
-		resultClass="EgovMap">
+	<select id="cnsMngDao.getPsyCnsListUser" parameterClass="int" resultClass="EgovMap">
 		CALL gs_sp_PsyCnsList_ajax(#g_idx#)
 	</select>
 	
@@ -3421,15 +3419,19 @@
 		GS_LINK_REQ_M AS m
 		WHERE
 		1=1
+		<!--  연계구분 내부 , 외부  -->
 		<isNotEmpty property="schLinkReqGb" prepend="AND">
 			m.LINK_REQ_GB = #schLinkReqGb#
 		</isNotEmpty>
+		<!--  센터검색조건 -->
 		<isNotEmpty property="schCenterGb" prepend="AND">
 			m.CENTER_GB = #schCenterGb#
 		</isNotEmpty>
+		<!--  내담자명 으로 검색 조건 -->
 		<isNotEmpty property="schCnsleNm" prepend="AND">
 			m.CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
 		</isNotEmpty>
+		
 		<!-- 권한별 검색 조건 -->
 		<isEqual property="authCd" compareValue="2">
 			AND m.CENTER_GB = #schCenterGb#
@@ -3440,9 +3442,11 @@
 				AND m.CNSR_ID = #regId#
 			</isEqual>
 		</isEqual>
+		
 		<isEqual property="authCd" compareValue="4">
 			AND m.CNSR_ID = #regId#
 		</isEqual>
+		
 		<!-- 기간별 검색 -->
 		<isNotEmpty property="schStartDate" prepend="AND">
 	       	DATE(m.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
@@ -3452,11 +3456,11 @@
 	    </isNotEmpty>
 		
 		) A
+		
 		<![CDATA[
 			WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
 			ORDER BY RNUM DESC
 		]]>
-		
 	</select>
 
 	<!-- 연계의뢰서 목록 갯수 -->
@@ -6108,5 +6112,335 @@
 			ORDER BY RNUM DESC
 		]]>
 	</select>
+	
+	<!--  연계구분 List  -->
+	<select id="cnsMngDao.getLinkageReqList_test" parameterClass="linkReqVO" resultClass="EgovMap">
+		SELECT
+		A.*
+		FROM (
+		SELECT
+		ROW_NUMBER() OVER(ORDER BY m.NUM) AS RNUM ,
+		ROW_NUMBER() OVER(ORDER BY m.NUM DESC) AS RNUM2 ,
+		m.NUM ,
+		m.CASE_NO ,
+		m.LINK_REQ_GB ,
+		m.REQ_DEPT ,
+		m.REQ_DEPT_PER ,
+		DATE_FORMAT(m.REQ_DT, '%Y-%m-%d') AS reqDt ,
+		m.HELP_DEPT ,
+		<!-- DATE_FORMAT(m.RELY_TERM, '%Y-%m-%d') AS relyTerm , -->
+		DATE_FORMAT(str_to_date(m.RELY_TERM,'%Y.%m.%d'), '%Y-%m-%d') AS relyTerm ,
+		<!-- pdf.SYS_FILE_NM ,
+		pdf.FILE_NM ,
+		pdf.FILE_PATH , -->
+		m.SYS_FILE_NM2 ,
+		m.FILE_NM2 ,
+		m.FILE_PATH2 ,
+		m.SYS_FILE_NM3 ,
+		m.FILE_NM3 ,
+		m.FILE_PATH3
+		FROM
+		GS_LINK_REQ_M_TEST AS m
+		WHERE
+		1=1
+		<!--  연계구분 내부 , 외부  -->
+		<isNotEmpty property="schLinkReqGb" prepend="AND">
+			m.LINK_REQ_GB = #schLinkReqGb#
+		</isNotEmpty>
+		<!--  센터검색조건 -->
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			m.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<!--  내담자명 으로 검색 조건 -->
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			m.CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND m.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND m.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND m.CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		
+		<isEqual property="authCd" compareValue="4">
+			AND m.CNSR_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(m.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(m.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		
+		) A
+		
+		<![CDATA[
+			WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+			ORDER BY RNUM DESC
+		]]>
+	</select>
+	
+	<select id="cnsMngDao.getPerCns_test" parameterClass="perCnsVO" resultClass="EgovMap">
+		SELECT
+			*
+		FROM
+			GS_PER_CNS_DTL_TEST
+		WHERE
+			CASE_NO = #caseNo#
+		AND NUM = #num#
+	</select>
+	
+	<select id="cnsMngDao.getGcns_test" parameterClass="gCnsVO"
+		resultClass="EgovMap">
+		SELECT 
+			*
+		FROM 
+			GS_GCNS_DTL_TEST
+		WHERE 
+			CASE_NO = #caseNo#
+		AND NUM = #num#
+	</select>
+	
+		<!-- 연계의뢰서 상세보기 -->
+	<select id="cnsMngDao.getLinkageReqDetail_test" parameterClass="Integer" resultClass="EgovMap">
+			
+		SELECT
+		A.*
+		FROM (
+			SELECT
+				A.NUM ,
+				A.CASE_NO ,
+				A.LINK_REQ_GB ,
+				A.CNS_GB ,
+				A.CNS_DTL_GB_CD ,
+				A.ZONE_GB ,
+				A.LOCAL_GB ,
+				A.CENTER_GB ,
+				A.CNSLE_ID ,
+				A.CNSR_ID ,
+				A.REQ_DEPT ,
+				A.REQ_DEPT_PER ,
+				DATE_FORMAT(A.REQ_DT,
+				'%Y-%m-%d') AS reqDt ,
+				A.HELP_DEPT ,
+				A.HELP_DEPT_PER ,
+				DATE_FORMAT(A.RELY_TERM, '%Y-%m-%d') AS relyTerm ,
+				A.CNSLE_NM ,
+				CASE
+				A.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE A.GENDER END AS
+				GENDER ,
+				A.BIRTH_DT ,
+				A.ADDR ,
+				A.TEL_NO ,
+				A.RCPT_SGCT ,
+				A.REQ_RESN_CNTN ,
+				A.PGRS_RSLT ,
+				A.PSYC_RST_MMSEDS ,
+				A.PSYC_RST_ETC ,
+				A.ETC ,
+				A.LINK_REQ_NAME ,
+				A.LINK_REQ_NM_TEL ,
+				A.CNSLE_HELTH ,
+				A.CNSLE_GONG_GB ,
+				A.CNSLE_PSYC_RST ,
+				A.CNSR_OP ,
+				A.LINK_REQ_DESC ,
+				A.LINK_REQ_ORG_NM ,
+				A.LINK_REQ_ORG_TEL ,
+				A.LINK_REQ_RECV_NAME ,
+				A.LINK_REQ_RECV_YEAR ,
+				A.LINK_REQ_RECV_MONTH ,
+				A.LINK_REQ_RECV_DAY ,
+				A.LINK_REQ_RECV_RST ,
+				A.YEAR ,
+				A.MONTH ,
+				A.DAY ,
+				A.REQ_NAME ,
+				A.ORG_NAME ,
+				A.DOC_SIGN_PATH ,
+				A.REG_ID ,
+				A.DB_INS_TM ,
+				A.AGE ,
+				A.OUTERNAL_GB ,
+				A.INTERNAL_GB ,
+				<!-- B.FILE_NM ,
+				B.FILE_PATH ,
+				B.SYS_FILE_NM , -->
+				A.FILE_NM2 ,
+				A.FILE_PATH2 ,
+				A.SYS_FILE_NM2 ,
+				A.FILE_NM3 ,
+				A.FILE_PATH3 ,
+				A.SYS_FILE_NM3
+			FROM
+				GS_LINK_REQ_M_TEST AS A
+		) A
+		WHERE
+			A.NUM = #num#
+	</select>
+	
+	<insert id="cnsMngDao.insertLinkageInReq_test" parameterClass="linkReqVO">
+		INSERT INTO GS_LINK_REQ_M_TEST
+		(
+		NUM ,
+		CASE_NO ,
+		INTERNAL_GB ,
+		LINK_REQ_GB ,
+		CNS_GB ,
+		CNS_DTL_GB_CD ,
+		ZONE_GB ,
+		LOCAL_GB ,
+		CENTER_GB ,
+		CNSLE_ID ,
+		CNSR_ID ,
+		REQ_DEPT ,
+		REQ_DEPT_PER ,
+		REQ_DT ,
+		HELP_DEPT ,
+		HELP_DEPT_PER ,
+		RELY_TERM ,
+		CNSLE_NM ,
+		GENDER ,
+		BIRTH_DT ,
+		ADDR ,
+		TEL_NO ,
+		RCPT_SGCT ,
+		REQ_RESN_CNTN ,
+		PGRS_RSLT ,
+		ETC
+		) VALUES (
+		(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_LINK_REQ_M_TEST AS A) ,
+		#caseNo# ,
+		#internalGb# ,
+		#linkReqGb# ,
+		#cnsGb# ,
+		'1' ,
+		#zoneGb# ,
+		#localGb# ,
+		#centerGb# ,
+		#cnsleId# ,
+		#cnsrId# ,
+		#reqDept# ,
+		#reqDeptPer# ,
+		#reqDt# ,
+		#helpDept# ,
+		#helpDeptPer# ,
+		#relyTerm# ,
+		#cnsleNm# ,
+		#gender# ,
+		#birthDt# ,
+		#addr# ,
+		#telNo# ,
+		#rcptSgct# ,
+		#reqResnCntn# ,
+		#pgrsRslt# ,
+		#etc#
+		)
+	</insert>
+	
+	<insert id="cnsMngDao.insertLinkageOutReq_test" parameterClass="linkReqVO">
+		INSERT INTO GS_LINK_REQ_M_TEST
+		(
+		NUM ,
+		CASE_NO ,
+		OUTERNAL_GB ,
+		LINK_REQ_GB ,
+		CNS_GB ,
+		CNS_DTL_GB_CD ,
+		ZONE_GB ,
+		LOCAL_GB ,
+		CENTER_GB ,
+		CNSLE_ID ,
+		CNSLE_NM ,
+		CNSR_ID ,
+		TEL_NO ,
+		HELP_DEPT ,
+		REQ_DEPT_PER ,
+		REQ_DT ,
+		RELY_TERM ,
+		REQ_DEPT ,
+		LINK_REQ_NAME ,
+		LINK_REQ_NM_TEL ,
+		CNSLE_HELTH ,
+		CNSLE_GONG_GB ,
+		CNSLE_PSYC_RST ,
+		PSYC_RST_MMSEDS ,
+		PSYC_RST_ETC ,
+		CNSR_OP ,
+		LINK_REQ_DESC ,
+		LINK_REQ_ORG_NM ,
+		LINK_REQ_ORG_TEL ,
+		LINK_REQ_RECV_NAME ,
+		LINK_REQ_RECV_YEAR ,
+		LINK_REQ_RECV_MONTH ,
+		LINK_REQ_RECV_DAY ,
+		LINK_REQ_RECV_RST ,
+		ADDR ,
+		YEAR ,
+		MONTH ,
+		DAY ,
+		REQ_NAME ,
+		ORG_NAME ,
+		DOC_SIGN_PATH ,
+		REG_ID ,
+		DB_INS_TM ,
+		AGE ,
+		gender
+
+		) VALUES (
+		(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_LINK_REQ_M_TEST AS A) ,
+		#caseNo# ,
+		#outernalGb# ,
+		#linkReqGb# ,
+		#cnsGb# ,
+		'1' ,
+		#zoneGb# ,
+		#localGb# ,
+		#centerGb# ,
+		#cnsleId# ,
+		#cnsleNm2# ,
+		#cnsrId# ,
+		#tel# ,
+		#linkReqOrgNm# ,
+		#linkReqName# ,
+		#reqDt# ,
+		#relyTerm# ,
+		#reqDept# ,
+		#linkReqName# ,
+		#linkReqNmTel# ,
+		#cnsleHelth# ,
+		#cnsleGongGb# ,
+		#cnslePsycRst# ,
+		#psycRstMmseds# ,
+		#psycRstEtc# ,
+		#cnsrOp# ,
+		#linkReqDesc# ,
+		#linkReqOrgNm# ,
+		#linkReqOrgTel# ,
+		#linkReqRecvName# ,
+		#linkReqRecvYear# ,
+		#linkReqRecvMonth# ,
+		#linkReqRecvDay# ,
+		#linkReqRecvRst# ,
+		#addr2# ,
+		#year# ,
+		#month# ,
+		#day# ,
+		#reqName# ,
+		#orgName# ,
+		#docSignPath# ,
+		#regId# ,
+		now() ,
+		#age# ,
+		#gender#
+		)
+	</insert>
 	
 </sqlMap>

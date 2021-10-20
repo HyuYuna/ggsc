@@ -51,7 +51,7 @@
 	
 	function fn_detail(caseNo, num){
 		var mnuCd = $("#mnuCd").val();
-		document.location.href = "/gnoincoundb/gCnsDtl.do?caseNo=" + caseNo + "&num=" + num + "&mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/gCnsDtl_test.do?caseNo=" + caseNo + "&num=" + num + "&mnuCd=" + mnuCd;
 
 	}
 	

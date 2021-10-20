@@ -1069,4 +1069,40 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		List<EgovMap> list = cnsMngDao.getGcnsList_test(vo);
 		return list;
 	}
+
+	@Override
+	public List<EgovMap> getLinkageReqList_test(LinkReqVO vo) {
+		List<EgovMap> LinkageList = cnsMngDao.getLinkageReqList_test(vo);
+		return LinkageList;
+	}
+
+	@Override
+	public EgovMap getPerCns_test(PerCnsVO vo) {
+		EgovMap result = cnsMngDao.getPerCns_test(vo);
+		return result;
+	}
+
+	@Override
+	public EgovMap getGcns_test(GcnsVO vo) {
+		EgovMap result = cnsMngDao.getGcns_test(vo);
+		return result;
+	}
+
+	@Override
+	public EgovMap getLinkageReqDetail_test(int num) {
+		EgovMap result = cnsMngDao.getLinkageReqDetail_test(num);
+		return result;
+	}
+
+	@Override
+	public void insertLinkageInReq_test(LinkReqVO vo) {
+		cnsMngDao.insertLinkageInReq_test(vo);
+		
+	}
+
+	@Override
+	public void insertLinkageOutReq_test(LinkReqVO vo) {
+		cnsMngDao.insertLinkageOutReq_test(vo);
+		
+	}
 }

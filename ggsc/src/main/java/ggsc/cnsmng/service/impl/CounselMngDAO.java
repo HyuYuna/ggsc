@@ -807,9 +807,17 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		insert("cnsMngDao.insertPerCnsDtl_test",vo);
 	}
 	
+	public EgovMap getPerCns_test(PerCnsVO vo) {
+		return (EgovMap) select("cnsMngDao.getPerCns_test",vo);
+	}
+	
 	// 집단상담 insert
 	public int insertGcnsDtl_test(GcnsVO vo) {
 		return (Integer) insert("cnsMngDao.insertGcnsDtl_test",vo);
+	}
+	
+	public EgovMap getGcns_test(GcnsVO vo) {
+		return (EgovMap) select("cnsMngDao.getGcns_test",vo);
 	}
 	
 	public void insertAddPerCns_test(PerCnsVO vo) {
@@ -820,4 +828,22 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public List<EgovMap> getGcnsList_test(GcnsVO vo){
 		return (List<EgovMap>)list("cnsMngDao.getGcnsList_test",vo);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getLinkageReqList_test(LinkReqVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getLinkageReqList_test",vo);
+	}
+	
+	public EgovMap getLinkageReqDetail_test(int num) {
+		return (EgovMap) select("cnsMngDao.getLinkageReqDetail_test",num);
+	}
+	
+	public void insertLinkageInReq_test(LinkReqVO vo) {
+		insert("cnsMngDao.insertLinkageInReq_test",vo);
+	}
+	
+	public void insertLinkageOutReq_test(LinkReqVO vo) {
+		insert("cnsMngDao.insertLinkageOutReq_test",vo);
+	}
+	
 }
