@@ -14,6 +14,24 @@
 		
 		function fn_reg() {
 			
+			if($("#eduName").val()==""){
+				alert("교육명을 입력해주세요.");
+				$("#eduName").focus();
+				return;
+			}
+			
+			if($("#regDate").val()==""){
+				alert("신청날짜를 입력해주세요.");
+				$("#regDate").focus();
+				return;
+			}
+			
+			if($("#regDate").val().length != 8){
+				alert("신청날짜를 8자리로 입력해주세요.");
+				$("#regDate").focus();
+				return;
+			}
+			
 			if($("#userNm").val()==""){
 				alert("이름을 입력해주세요.");
 				$("#userNm").focus();
@@ -137,6 +155,14 @@
               <col width="110px" />
               <col />
               <tbody>
+              	<tr>
+                  <th scope="row">교육명<i class="cr">*</i></th>
+                  <td><input type="text" class="form-control" id="eduName" name="eduName"  ></td>
+                </tr>
+                <tr>
+                  <th scope="row">신청날짜<i class="cr">*</i></th>
+                  <td><input type="text" class="form-control" id="regDate" name="regDate"  ></td>
+                </tr>
                 <tr>
                   <th scope="row">이름<i class="cr">*</i></th>
                   <td><input type="text" class="form-control" id="userNm" name="userNm" maxlength="6" readonly value="${map.userNm }"></td>

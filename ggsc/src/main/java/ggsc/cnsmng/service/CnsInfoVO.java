@@ -2,7 +2,7 @@ package ggsc.cnsmng.service;
 
 import ams.cmm.PageVO;
 
-public class CnsAcptVO extends PageVO {
+public class CnsInfoVO extends PageVO {
 	
 	private String cnsGb;
 	private String userId;
@@ -19,7 +19,6 @@ public class CnsAcptVO extends PageVO {
 	private String cnsDtl;
 	private String cnsCntn;
 	private String acptYn;
-	private int num;
 	private int caseNo;
 	private String regId;
 	private String authCd;
@@ -117,6 +116,13 @@ public class CnsAcptVO extends PageVO {
 	}
 	public void setRegId(String regId) {
 		this.regId = regId;
+	}
+	public String getmajorApplCd() {
+		return majorApplCd;
+	}
+	public void setmajorApplCd(String majorApplCd) {
+		this.majorApplCd = majorApplCd;
+		
 	}
 	public String getCnsGb() {
 		return cnsGb;
@@ -250,12 +256,7 @@ public class CnsAcptVO extends PageVO {
 	public void setSchDt(String schDt) {
 		this.schDt = schDt;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+	
 	public int getCaseNo() {
 		return caseNo;
 	}

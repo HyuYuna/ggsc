@@ -350,7 +350,9 @@
 				<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color: green;color:white;">목록</button>
 				<button type="button" id="sBtn" class="btn-basic" onClick="javascript:fn_cnsrCheck('S');" style="background-color: green;color:white;">저장</button>
 				<button type="button" id="uBtn" class="btn-basic" onClick="javascript:fn_reg('U',0);" style="background-color: green;color:white;">수정</button>
-				<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
+				<c:if test="${authCd <= 1 }">
+					<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
+				</c:if>
 			</div>	
 			<form name="downForm" id="downForm" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

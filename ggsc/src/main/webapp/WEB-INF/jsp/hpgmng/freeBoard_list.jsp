@@ -121,10 +121,10 @@
 								<td style='text-indent:10px; text-align:left' onclick="javascript:fn_detail('${result.num}')">
 									<c:choose>
 										<c:when test="${fn:length(result.title) > 60 }">
-											<c:out value="${fn:substring(result.title,0,60) }..."/>
+											<c:out value="${fn:substring(result.title,0,60) }..." escapeXml="false" />
 										</c:when>
 										<c:otherwise>
-											<c:out value="${result.title }" />
+											<c:out value="${result.title }" escapeXml="false" />
 										</c:otherwise>
 									</c:choose>
 								</td>

@@ -183,11 +183,11 @@
 			</c:if>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" id="title" name="title" maxlength="50" value="<c:out value="${detail.title}" escapeXml="true" />" /></td>
+				<td><input type="text" id="title" name="title" maxlength="50" value="<c:out value="${detail.title}" escapeXml="false" />" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td style="text-align: left;"><textarea id="rcontent" name="cntn" cols="100" rows="20"><c:out value="${detail.cntn}" escapeXml="true" /></textarea></td>
+				<td style="text-align: left;"><textarea id="rcontent" name="cntn" cols="100" rows="20"><c:out value="${detail.cntn}" escapeXml="false" /></textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>

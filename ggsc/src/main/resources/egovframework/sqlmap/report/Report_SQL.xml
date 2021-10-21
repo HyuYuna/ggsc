@@ -316,8 +316,10 @@
 	
 	<!-- 상담사례종결서 수정 -->
 	<update id="reportDao.updateCnsEnd" parameterClass="cnsEndVO">
-		UPDATE GS_CNS_END
-		SET CLIENT_NM = #clientNm#,
+		UPDATE 
+			GS_CNS_END
+		SET 
+			CLIENT_NM = #clientNm#,
 			CNSLE_NM  = #cnsleNm#,
 			BIRTH_DT = #birthDt#, 
 			TEL = #tel#,
@@ -332,7 +334,8 @@
 			CNS_END_RESN = #cnsEndResn#,
 			CNTN = #cntn#,
 			VLTR_CNTN = #vltrCntn#
-		WHERE NUM = #num#
+		WHERE 
+			NUM = #num#
 	</update>
 	
 	<!-- 상담대상자관리대장 목록 -->

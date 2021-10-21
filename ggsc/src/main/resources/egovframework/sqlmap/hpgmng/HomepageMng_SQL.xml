@@ -828,6 +828,8 @@
 				EMAIL ,
 				LOCAL_GB , 
 				SIGUN_CD ,
+				REG_DATE ,
+				EDU_NAME ,
 				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM
 			FROM
 				GS_EDU_APP
@@ -900,7 +902,9 @@
 				PHONE = #phone# ,
 				EMAIL = #email# ,
 				CENTER_NM = #centerNm# ,
-				DEPART = #depart#
+				DEPART = #depart# ,
+				EDU_NAME = #eduName# ,
+				REG_DATE = #regDate#
 			WHERE
 				NUM = #num#
 	</update>

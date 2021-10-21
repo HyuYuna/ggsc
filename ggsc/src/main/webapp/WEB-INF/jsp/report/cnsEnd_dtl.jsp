@@ -74,6 +74,7 @@
 				<input type="hidden" id="cnsleId" name="cnsleId" value="${result.cnsleId}" />
 				<input type="hidden" id="caseNo" name="caseNo" value="${result.caseNo }" />
 				<input type="hidden" id="cnsGb" name="cnsGb" value="${result.cnsGb}"/>
+				<input type="hidden" id="num" name="num" value="${result.num }" />
 				<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
 				<table class="table-write">
 					<colgroup>

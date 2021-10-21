@@ -17,14 +17,6 @@
 			$("select[name=sigunGb]").val("${loginVo.sigunCd}");
 			$("select[name=zoneGb]").val("${loginVo.zoneGb}");
 		}
-		var type = "${type}";
-		if(type == "R") {
-			$("#sBtn").css("display","");
-			$("#uBtn").css("display","none");
-		} else if(type == "D") {
-			$("#sBtn").css("display","none");
-			$("#uBtn").css("display","");
-		}
 		
 	});
 	var idCheck;
@@ -33,24 +25,24 @@
 		var url = "";
 		
 		// 공백제거
-		$("#tel").val($("#tel").val().replace(/\D/g,""));
 		$("#birthDt").val($("#birthDt").val().replace(/\D/g,""));
-		var tel = $("#tel").val();
 		var mobile = $("#mobile").val();
 		
 		var userId = $("#userId").val(); // 아이디
 		var pw = $("#pw").val(); // 비밀번호
+		var cnsCnt = $("#cnsCnt").val();
+		var datepicker8 = $("#datepicker8").val(); 
+		var cnsDtStdHour = $("#cnsDtStdHour").val(); 
+		var cnsDtStdMin = $("#cnsDtStdMin").val(); 
+		var cnsDtEndHour = $("#cnsDtEndHour").val();
+		var cnsDtEndMin = $("#cnsDtEndMin").val();
+		var cnsTimeTotMin = $("#cnsTimeTotMin").val();
 		
 		var centerGb = $("#centerGb").val();
 		
 		if(centerGb == "" || centerGb == null){
 			alert("센터구분을 선택해주세요.");
 			$("#centerGb").focus();
-			return;
-		}
-		
-		if($('input:radio[name="majorApplCd"]').is(':checked')==false){
-			alert("주호소문제를 선택해주세요.");
 			return;
 		}
 	
@@ -66,26 +58,26 @@
 				return;
 			}
 			var num = pw.search(/[0-9]/g);
-			 var eng = pw.search(/[a-z]/ig);
-			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+			var eng = pw.search(/[a-z]/ig);
+			var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 	
-			 if(pw.length < 8 || pw.length > 20){
-				  alert("8자리 ~ 20자리 이내로 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }else if(pw.search(/\s/) != -1){
-				  alert("비밀번호는 공백 없이 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }else if(num < 0 || eng < 0 || spe < 0){
-				  alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }
+			if(pw.length < 8 || pw.length > 20){
+				alert("8자리 ~ 20자리 이내로 입력해주세요.");
+				$("#pw").focus();
+				return false;
+			} else if(pw.search(/\s/) != -1){
+				alert("비밀번호는 공백 없이 입력해주세요.");
+				$("#pw").focus();
+				return false;
+			} else if(num < 0 || eng < 0 || spe < 0){
+			  alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
+			  $("#pw").focus();
+	  		  return false;
+			}
 		}
 		
 		if($("#userNm").val()==""){
-			alert("이름를 입력해주세요.");
+			alert("이름을 입력해주세요.");
 			$("#userNm").focus();
 			return;
 		}
@@ -114,23 +106,57 @@
 		}
 		
 		if($("#cnsMethdList").val()==""){
-			alert("상담형태를 입력해주세요.");
+			alert("상담방법을 선택해주세요.");
 			$("#cnsMethdList").focus();
 			return;
 		}
 		
 		if($("#cnsDtl").val()==""){
-			alert("상담경위를 입력해주세요.");
+			alert("상담경위를 선택해주세요.");
 			$("#cnsDtl").focus();
 			return;
 		}
 		
+		if($('input:radio[name="majorApplCd"]').is(':checked')==false){
+			alert("주호소문제를 선택해주세요.");
+			return;
+		}
 		
+		if(datepicker8.length == 0) {
+			alert("상담일시를 입력해 주세요");
+			$("#datepicker8").focus();
+			return;
+		}
+		if(cnsDtStdHour.length == 0) {
+			alert("상담일시 시간을 입력해 주세요");
+			$("#cnsDtStdHour").focus();
+			return;
+		}
+		if(cnsDtStdMin.length == 0) {
+			alert("상담일시 시간을 입력해 주세요");
+			$("#cnsDtStdMin").focus();
+			return;
+		}
+		if(cnsDtEndHour.length == 0) {
+			alert("상담일시 시간을 입력해 주세요");
+			$("#cnsDtEndHour").focus();
+			return;
+		}
+		if(cnsDtEndMin.length == 0) {
+			alert("상담일시 시간을 입력해 주세요");
+			$("#cnsDtEndMin").focus();
+			return;
+		}
+		if(cnsTimeTotMin.length == 0) {
+			alert("상담일시 총시간을 입력해 주세요");
+			$("#cnsTimeTotMin").focus();
+			return;
+		}
 		
 		if(type == "R"){
-			url = "/gnoincoundb/cnsAcptReg_ajax.do";
+			url = "/gnoincoundb/cnsInfoReg_ajax.do?mnuCd=${mnuCd}";
 		}else if(type == "D"){
-			url = "/gnoincoundb/cnsAcptUpd_ajax.do";
+			url = "/gnoincoundb/cnsInfoUpd_ajax.do?mnuCd=${mnuCd}";
 		}
 		var param = $("#frm").serialize();
 		var token = $("meta[name='_csrf']").attr("th:content");
@@ -149,20 +175,29 @@
 					alert(json.msg);
 				}else{
 					if(type == "R") {
-						alert("상담접수가 완료 되었습니다.");
+						alert("정보제공상담접수가 완료 되었습니다.");
 					} else if(type == "D") {
-						alert("상담접수가 수정 되었습니다.");
+						alert("정보제공상담접수가 수정 되었습니다.");
 					}
-					
-					opener.parent.location.reload();
-					window.close();	
 				}
-				
+				document.location.href = "/gnoincoundb/cnsInfoList.do?mnuCd=${mnuCd}";
+
 			},
 			error : function(e) {
 				alert("서버와 통신 오류입니다.");
 			}
 		});
+	}
+	
+	function fn_delete() {
+		if(confirm("해당 회원의 정보처리상담과 회원이 삭제됩니다. 삭제하시겠습니까?")) {
+			document.frm.action = "/gnoincoundb/cnsInfoDel.do?mnuCd=${mnuCd}";
+	       	document.frm.submit();
+		}
+	}
+	
+	function fn_list(mnuCd){
+		document.location.href = "/gnoincoundb/cnsInfoList.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_idCheck() {
@@ -214,13 +249,22 @@
 		<div class="box-style1 x-scroll-auto" >
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color: green;color:white;">목록</button>
-				<button type="button" id="sBtn" class="btn-basic" onClick="javascript:fn_cnsrCheck('S');" style="background-color: green;color:white;">저장</button>
-				<button type="button" id="uBtn" class="btn-basic" onClick="javascript:fn_reg('U',0);" style="background-color: green;color:white;">수정</button>
-				<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
+				<c:if test="${result == null}">
+					<button type="button" id="sBtn" class="btn-basic" onclick="javascript:fn_save('R');">저장</button>
+				</c:if>
+				<c:if test="${ result != null && (authCd <= 3 || ( authCd > 3 && userId == result.cnsrId )) }">
+					<button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('D');">수정</button>
+				</c:if>
+				<c:if test="${authCd <= 1 }">
+					<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
+				</c:if>
 			</div>	
 			<form id="frm" name="frm" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+				<c:if test="${result != null}">
+					<input type="hidden" name="userId" value="${result.userId }" />
+					<input type="hidden" name="num" value="${result.num }" />
+				</c:if>
 				<table class="table-write">
 					<colgroup>
 						<col width="10%"></col>
@@ -295,7 +339,7 @@
 						</select>
 					</td>
 				</tr>
-				<c:if test="${type == 'R' }">	
+				<c:if test="${result == null}">
 					<tr>
 						<th>아이디 <span style="color: red;">*</span></th>
 						<td colspan="3"><input type="text" class="wd200" id="userId" name="userId" oninput="this.value = this.value.replace(/[^a-z0-9]/, '');" maxlength=20/>&emsp;<button type="button" class="btn-basic" onclick="javascript:fn_idCheck();">중복확인</button></td>
@@ -329,7 +373,7 @@
 					<td colspan="6">
 						<select class="wd200" id="cnsMethd" name="cnsMethd">
 							<c:forEach items="${cnsMethdList }" var="list">
-								<option value="${list.odr }">${list.mclassNm }</option>
+								<option value="${list.odr }" <c:if test="${list.odr == result.cnsMethd }">selected</c:if> >${list.mclassNm }</option>
 							</c:forEach>
 						</select> 
 					</td>
@@ -339,7 +383,7 @@
 					<td colspan="6">
 						<select class="wd200" id="cnsDtl" name="cnsDtl">
 							<c:forEach items="${cnsDtlList }" var="list">
-								<option value="${list.odr }">${list.mclassNm }</option>
+								<option value="${list.odr }" <c:if test="${list.odr == result.cnsDtl }">selected</c:if> >${list.mclassNm }</option>
 							</c:forEach>
 						</select> 
 					</td>

@@ -79,9 +79,19 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		insert("cnsMngDao.insertCnsAccept", vo);
 	}
 	
+	// 정보제공상담 신청
+	public void insertCnsInfo(CnsAcptVO vo){
+		insert("cnsMngDao.insertCnsInfo", vo);
+	}
+	
 	// 상담접수 상세
 	public EgovMap getCnsAcceptDtl(String caseNo){
 		return (EgovMap)select("cnsMngDao.getCnsAcceptDtl", caseNo);
+	}
+	
+	// 정보제공상담 상세
+	public EgovMap getCnsInfoDtl(int num){
+		return (EgovMap)select("cnsMngDao.getCnsInfoDtl",  num);
 	}
 	
 	// 상담접수신청 회원 수정
@@ -89,9 +99,19 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.updateUser", vo);
 	}
 	
+	// 정보제공상담 회원 수정
+	public void updateUserInfo(CnsAcptVO vo){
+		update("cnsMngDao.updateUserInfo", vo);
+	}
+	
 	// 상담접수 신청 수정
 	public void updateCnsAccept(CnsAcptVO vo){
 		update("cnsMngDao.updateCnsAccept", vo);
+	}
+	
+	// 정보제공상담 신청 수정
+	public void updateCnsInfo(CnsAcptVO vo){
+		update("cnsMngDao.updateCnsInfo", vo);
 	}
 	
 	// 상담접수 신청 확인
@@ -685,5 +705,21 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	
 	public void updateExiCnsAccept(String caseNo) {
 		update("cnsMngDao.updateExiCnsAccept", caseNo);
+	}
+	
+	public void deleteCnsInfo(String userId) {
+		update("cnsMngDao.deleteCnsInfo", userId);
+	}
+	
+	public void deleteUserInfo(String userId) {
+		update("cnsMngDao.deleteUserInfo", userId);
+	}
+	
+	public void deleteGcns(int num) {
+		update("cnsMngDao.deleteGcns", num);
+	}
+	
+	public void deleteGcnsPer(int num) {
+		update("cnsMngDao.deleteGcnsPer", num);
 	}
 }

@@ -100,7 +100,7 @@
 		            <c:forEach var="result" items="${freeBoardList}" varStatus="status">
 			            <tr>
 			              <td class="num hidden-xs"><c:out value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}"/><%-- <c:out value="${result.num}"/> --%></td>
-			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}"/></a></td>
+			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}" escapeXml="false" /></a></td>
 			              <td class="time"><c:out value="${result.dbInsTm}"/></td>
 			              <%-- <td class="file hidden-xs">
             	            <c:if test="${result.fileNm != null }">

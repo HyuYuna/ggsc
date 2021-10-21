@@ -237,7 +237,7 @@ public class CounselMngController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
-		List<EgovMap> InfoList = counselMngService.getCnsInfoList(vo);
+		List<EgovMap> infoList = counselMngService.getCnsInfoList(vo);
 		GroupVO param = new GroupVO();
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
@@ -249,7 +249,7 @@ public class CounselMngController {
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
-		model.addAttribute("InfoList", InfoList);
+		model.addAttribute("infoList", infoList);
 		model.addAttribute("cnsGbList", cnsGbList);
 		model.addAttribute("cnsCenterList", cnsCenterList);
 		model.addAttribute("vo", vo);
@@ -397,6 +397,8 @@ public class CounselMngController {
 	@RequestMapping(value = "/cnsInfoDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cnsInfoDtl(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
 		
+		int num = vo.getNum();
+		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
 		
@@ -422,8 +424,6 @@ public class CounselMngController {
 		}
 		// 권한 관리 끝
 		
-		String type = request.getParameter("type") == null ? "" : request.getParameter("type");
-		EgovMap result = null;
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
 		
@@ -459,20 +459,34 @@ public class CounselMngController {
 		List<EgovMap> sigunList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("sigunList", sigunList);
 		
-		if (type.equals("D")) {
-			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
-			result = counselMngService.getCnsAcceptDtl(caseNo);
+		if ( num != 0) {
+			EgovMap result = counselMngService.getCnsInfoDtl(num);
+			model.addAttribute("result", result);
 		}
 		
-		model.addAttribute("result", result);
-		model.addAttribute("type", type);
 		model.addAttribute("vo", vo);
 		model.addAttribute("authCd", userAuth);
 		model.addAttribute("loginVo", loginVo);
 				
 		return "cnsmng/cnsInfo_dtl.main";
 	}
+	
+	
+	@RequestMapping(value = "/cnsInfoDel.do", method = RequestMethod.POST)
+	public String cnsInfoDel(HttpServletRequest request, ModelMap model) {
 
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		String userId =  request.getParameter("userId") == null ? "" : request.getParameter("userId");
+
+		counselMngService.deleteCnsInfo(userId);
+		
+
+		return "redirect:/gnoincoundb/cnsInfoList.do?mnuCd=" + mnuCd;
+	}
+
+	
 	@RequestMapping(value = "/idCheck_ajax.do", method = RequestMethod.POST)
 	public String idCheckAjax(HttpServletRequest request, ModelMap model) {
 
@@ -492,6 +506,7 @@ public class CounselMngController {
 		return "jsonView";
 	}
 
+	
 	@RequestMapping(value = "/cnsAcptReg_ajax.do", method = RequestMethod.POST)
 	public String cnsAcptRegAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
 		/*
@@ -515,6 +530,22 @@ public class CounselMngController {
 		// }
 		return "jsonView";
 	}
+	
+	@RequestMapping(value = "/cnsInfoReg_ajax.do", method = RequestMethod.POST)
+	public String cnsInfoRegAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+		vo.setRegId(login.get("userId").toString());
+		
+		counselMngService.insertUser(vo);
+		counselMngService.insertCnsInfo(vo);
+		// }
+		return "jsonView";
+	}
+	
 	
 	@RequestMapping(value = "/exiCnsAcptDel_ajax.do", method = RequestMethod.POST)
 	public String exiCnsAcptRegAjax(HttpServletRequest request, ModelMap model) {
@@ -556,6 +587,26 @@ public class CounselMngController {
 		
 		counselMngService.updateExiCnsAcpt(caseNo);
 		
+		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/cnsInfoUpd_ajax.do", method = RequestMethod.POST)
+	public String cnsInfoUpdAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		/*
+		 * if(func.OnlyNumber(vo.getBirthDt(), 0) == 0) {
+		 * model.addAttribute("msg","[생년월일]을 입력해주세요"); }else
+		 * if(func.OnlyNumber(vo.getMobile(),0) == 0){
+		 * model.addAttribute("msg","[핸드폰]를 입력해주세요"); }else
+		 * if(func.OnlyNumber(vo.getmajorApplCd(), 0) == 0) {
+		 * model.addAttribute("msg","[주호소 문제]를 선택해주세요"); }else
+		 * if(func.OnlyNumber(vo.getGender(), 0) == 0) {
+		 * model.addAttribute("msg","[성별]을 선택해주세요"); }else
+		 * if(func.OnlyNumber(vo.getCnsHistYn(), 0) == 0) {
+		 * model.addAttribute("msg","[상담 이력]을 선택해주세요"); }else {
+		 */
+		counselMngService.updateUserInfo(vo);
+		counselMngService.updateCnsInfo(vo);
+		// }
 		return "jsonView";
 	}
 
@@ -1639,11 +1690,26 @@ public class CounselMngController {
 		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
 		counselMngService.updateGcns(vo);
 		if(vo.getClearYn().equals("Y")) {
-			counselMngService.insertGcns(vo);
+			counselMngService.insertUpdGcns(vo);
 		}
 
 		return "redirect:/gnoincoundb/gCnsList.do?mnuCd=" + mnuCd;
 	}
+	
+	@RequestMapping(value = "/gCnsDel.do", method = RequestMethod.POST)
+	public String gcnsDel(HttpServletRequest request, ModelMap model) {
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		int num =  Integer.parseInt(request.getParameter("num") == null ? "" : request.getParameter("num"));
+
+		counselMngService.deleteGcns(num);
+		
+
+		return "redirect:/gnoincoundb/gCnsList.do?mnuCd=" + mnuCd;
+	}
+	
 
 	@RequestMapping(value = "/psyCnsList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String psyCnsList(PsyCnsVO vo, HttpServletRequest request, ModelMap model) {

@@ -107,10 +107,10 @@
 								<td style="text-align: left; text-indent:10px;">
 									<c:choose>
 										<c:when test="${fn:length(result.title) > 40 }">
-											<c:out value="${fn:substring(result.title,0,40) }..."/>
+											<c:out value="${fn:substring(result.title,0,40) }..." escapeXml="false"/>
 										</c:when>
 										<c:otherwise>
-											<c:out value="${result.title }" />
+											<c:out value="${result.title }" escapeXml="false" />
 										</c:otherwise>
 									</c:choose>
 								</td>

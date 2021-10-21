@@ -108,6 +108,8 @@ public class EduAppVO extends PageVO{
 	private String joinOrgCd;
 	private String regId;
 	private String writer;
+	private String eduName;
+	private String regDate;
 
 	
 	public int getNum() {
@@ -212,7 +214,18 @@ public class EduAppVO extends PageVO{
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
+	public String getEduName() {
+		return eduName;
+	}
+	public void setEduName(String eduName) {
+		this.eduName = eduName;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	
 	
 	

@@ -94,15 +94,17 @@
 			&nbsp;&nbsp;
 			<table class="table-style1" style= "margin-bottom: 5px;">
 				<colgroup> 
-					<col width="2%"></col>
-					<col width="7%"></col> 
-					<col width="10%"></col>
+					<col width="8%"></col>
+					<col width="10%"></col> 
+					<col width="*"></col>
+					<col width="15%"></col>
 					<col width="10%"></col>
 				</colgroup>
 				<thead>
 					<tr>
 						<th scope="col">번호</th>
 						<th scope="col">작성자</th>
+						<th scope="col">교육명</th>
 						<th scope="col">기관명</th> 
 						<th scope="col">부서</th>
 					</tr>
@@ -118,6 +120,7 @@
 							<tr onclick="javascript:fn_detail('${result.num}')">
 								<td>${result.rnum }</td>
 								<td>${result.userNm }</td>
+								<td>${result.eduName }</td>
 								<td>${result.centerNm }</td>
 								<td>${result.depart}</td>
 							</tr> 

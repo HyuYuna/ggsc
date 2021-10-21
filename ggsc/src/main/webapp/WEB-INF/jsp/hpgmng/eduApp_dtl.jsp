@@ -39,6 +39,11 @@
 			alert('[대상 인원]을 입력해주세요.');
 			return false;
 		}  */
+		if($("#regDate").val().length != 8){
+			alert("신청날짜를 8자리로 입력해주세요.");
+			$("#regDate").focus();
+			return;
+		}
 		
 		
 		var msg = "";
@@ -98,6 +103,13 @@
 						</td>
 					</tr>
 					<tr>
+						<th>교육명</th>
+						<td>
+							<input type="text" class="wd200" id="eduName"  name="eduName"  value="${detail.eduName }" />
+						</td>
+					</tr>
+					
+					<tr>
 						<th>휴대폰</th>
 						<td>
 							<input type="text" class="wd200" id="phone"  name="phone"  value="${detail.phone }" />
@@ -113,6 +125,12 @@
 						<th>기관명</th>
 						<td>
 							<input type="text" class="wd200" id="centerNm"  name="centerNm" value="${detail.centerNm }" />
+						</td>
+					</tr>
+					<tr>
+						<th>신청날짜</th>
+						<td>
+							<input type="text" class="wd200" id="regDate"  name="regDate"  value="${detail.regDate }" />
 						</td>
 					</tr>
 					<tr>

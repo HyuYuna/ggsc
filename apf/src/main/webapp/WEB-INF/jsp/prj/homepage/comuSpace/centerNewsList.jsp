@@ -38,9 +38,13 @@
            	document.searchForm.submit();
         }
         
-		function fn_fileDown(sysFileNm,filePath,fileNm) {
-	        document.location.href = "/gnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;
-	  	}
+        function fn_fileDown(sysFileNm, filePath, fileNm){
+			$("#fileNm").val(fileNm);
+			$("#sysFileNm").val(sysFileNm);
+			$("#filePath").val(filePath);
+			document.downForm.action = "/gnoincoun/fileDown2.do";
+	       	document.downForm.submit();
+		}
 		
   </script>
 <style>
@@ -48,6 +52,11 @@
 	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
+	<form name="downForm" id="downForm" method="post">
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
 	<div id="wrap">
        <div style="border-top: 1px solid #f09d4c;">
 			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
@@ -91,7 +100,7 @@
 		            <c:forEach var="result" items="${centerNewsList}" varStatus="status">
 			            <tr>
 			              <td class="num hidden-xs"><c:out value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}"/></td>
-			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}"/></a></td>
+			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}" escapeXml="false" /></a></td>
 			              <td class="time"><c:out value="${result.dbInsTm}"/></td>
 			              <td class="file hidden-xs">
 			              	<c:if test="${result.fileNm != null }">

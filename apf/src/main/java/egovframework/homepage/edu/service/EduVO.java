@@ -8,6 +8,8 @@ public class EduVO {
 	private String cnsGb;
 	private String userNm;
 	private String zoneGb;
+	private String eduName;
+	private String regDate;
 	private String cnsReqGb;
 	private String centerGb;
 	private String cnsleId;
@@ -64,11 +66,23 @@ public class EduVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	public String getLocalGb() {
 		return localGb;
 	}
 	public void setLocalGb(String localGb) {
 		this.localGb = localGb;
+	}
+	public String getEduName() {
+		return eduName;
+	}
+	public void setEduName(String eduName) {
+		this.eduName = eduName;
 	}
 	public String getMajorApplCd() {
 		return majorApplCd;

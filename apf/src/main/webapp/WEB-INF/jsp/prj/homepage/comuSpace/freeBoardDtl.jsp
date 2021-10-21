@@ -46,7 +46,7 @@
           <div class="board_box article-header" >
             <div class="txt_area">   
               <!-- 제목 -->
-              <strong class="tit"><c:out value="${detail.title }" escapeXml="true" /> </strong>
+              <strong class="tit"><c:out value="${detail.title }" escapeXml="false" /> </strong>
               <!-- 제목 //-->
               <!-- 글등록정보 -->
               <div class="user_area">
@@ -68,7 +68,7 @@
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-              	<c:out value="${detail.cntn}" escapeXml="true"/>
+              	<c:out value="${detail.cntn}" escapeXml="false" />
             </div>
           </div><!-- .article-body /-->
             

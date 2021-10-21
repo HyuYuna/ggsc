@@ -72,8 +72,8 @@
 			) values (
 				#authCd# ,
 				#userId# ,
-				#pw# ,
-				<!-- SCP.ENC_B64('KEY1',#pw#) , -->
+				<!--  #pw# , -->
+				SCP.ENC_B64('KEY1',#pw#) ,
 				#cnsrNm# ,
 				#gender# ,
 				#birthDt# ,

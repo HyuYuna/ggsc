@@ -68,15 +68,16 @@
 		document.location.href = url;
 	}
 	
-	function fn_popup(type, caseNo){
-		var url = "/gnoincoundb/cnsInfoDtl.do?type=" + type + "&caseNo=" + caseNo;
-		var name = "신청자정보";
-		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
-		window.open(url, name, option);
+	function fn_reg(){
+		$("#num").val(0);
+		document.searchForm.action = "/gnoincoundb/cnsInfoDtl.do";
+		document.searchForm.submit();
 	}
 	
-	function fn_reg(type, mnuCd){
-		document.location.href = "/gnoincoundb/cnsInfoDtl.do?type=" + type + "&mnuCd=" + mnuCd;
+	function fn_detail(num) {
+		$("#num").val(num);
+		document.searchForm.action = "/gnoincoundb/cnsInfoDtl.do";
+		document.searchForm.submit();
 	}
 	
 	function list(curPage) {
@@ -102,6 +103,7 @@
 		<form name="searchForm" id="searchForm" action="" method="get" onsubmit="return false">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" id="currentPageNo" name="currentPageNo" value="1" />
+				<input type="hidden" id="num" name="num" value="0" />
 			<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
 			<div class="search-box">
 				<div class="search-group" style="margin-left:70px;">
@@ -164,19 +166,18 @@
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
 				<!-- <button type="button" class="btn-basic" onClick="javascript:fn_popup('R', 0);" style="background-color: green;color:white;">등록</button> -->
-				<button type="button" class="btn-basic" onClick="javascript:fn_reg('R','${mnuCd }');" style="background-color: green;color:white;">등록</button> 
-				<button type="button" class="btn-basic" onClick="fn_excelDownload(10, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button>
+				<button type="button" class="btn-basic" onClick="javascript:fn_reg();" style="background-color: green;color:white;">등록</button> 
+				<!-- <button type="button" class="btn-basic" onClick="fn_excelDownload(10, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button> -->
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
 					<col width="5%"></col>
 					<col width="10%"></col> 
+					<col width="15%"></col>
 					<col width="5%"></col>
 					<col width="15%"></col>
 					<col width="5%"></col>
-					<col width="35%"></col>
-					<col width="5%"></col>
-					<col width="5%"></col>
+					<col width="20%"></col>
 					<col width="10%"></col>
 				</colgroup>
 							
@@ -184,15 +185,14 @@
 					<tr>
 						<th scope="col">순번</th>
 						<th scope="col">신청자</th>
+						<th scope="col">id</th>
 						<th scope="col">성별</th> 
 						<th scope="col">연락처</th>
 						<th scope="col">연령</th>
 						<th scope="col">주소</th>
-						<th scope="col">상담이력</th>
-						<th scope="col">접수확인</th>
 						<th scope="col">신청일자</th>
 					</tr>
-				</thead>
+				</thead>	
 				<tbody id="tby1">
 					<c:if test="${infoList.size() == 0 }">
 						<tr>
@@ -201,15 +201,14 @@
 					</c:if>
 					<c:if test="${infoList.size() > 0 }">
 						<c:forEach items="${infoList }" var="result">
-							<tr onclick="javascript:fn_reg('D', '${mnuCd }');">
+							<tr onclick="javascript:fn_detail('${result.num }');">
 								<td>${result.rnum }</td>
 								<td>${result.userNm }</td>
+								<td>${result.userId }</td>
 								<td>${result.gender}</td>
 								<td data-pattern='mobile' style="text-align: left; text-indent:10px;">${result.mobile }</td>
 								<td>${result.age }세</td>
 								<td style="text-align: left; text-indent:10px;">${result.addr }</td>
-								<td><c:if test="${result.cnsHistYn == 'Y' }">유</c:if><c:if test="${result.cnsHistYn != 'Y' }">무</c:if></td>
-								<td><c:if test="${result.acptYn == 'Y' }">확인</c:if><c:if test="${result.acptYn != 'Y' }">미확인</c:if></td>
 								<td>${result.dbInsTm2 }</td>
 							</tr>
 						</c:forEach>

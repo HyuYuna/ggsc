@@ -22,7 +22,6 @@
 				ACPT_DT ,
 				DB_INS_TM ,
 				SIGUN_CD ,
-				ZONE_GB ,
 				CENTER_GB
 				
 			) VALUES (
@@ -44,7 +43,6 @@
 				DATE_FORMAT(NOW(), '%Y-%m-%d') ,
 				NOW() ,
 				#{sigunCd} ,
-				#{zoneGb} ,
 				#{centerGb}
 			)
 	</insert>

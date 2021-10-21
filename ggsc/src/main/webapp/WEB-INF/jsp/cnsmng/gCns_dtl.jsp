@@ -175,6 +175,13 @@ function fn_update(){
 	}
 }
 
+function fn_delete() {
+	if(confirm("집단상담과 해당 참석자의 개인상담이 삭제됩니다. 삭제하시겠습니까?")) {
+		document.frm.action = "/gnoincoundb/gCnsDel.do?mnuCd=${mnuCd}";
+		document.frm.submit();
+	}
+}
+
 function fn_list(mnuCd){
 	document.location.href = "/gnoincoundb/gCnsList.do?mnuCd=" + mnuCd;
 }
@@ -205,13 +212,16 @@ function findUserPopup(){
 		<div class="box-style1 x-scroll-auto" >
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color: green;color:white;">목록</button>
-				<button type="button" class="btn-basic" onClick="javascript:fn_update();" style="background-color: green;color:white;">저장</button>
+				<button type="button" class="btn-basic" onClick="javascript:fn_update();" style="background-color: green;color:white;">수정</button>
+				<c:if test="${authCd <= 1 }">
+					<button type="button" id="dBtn" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
+				</c:if>
 			</div>	
 			<form id="frm" name="frm" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="hidden" id="caseNo" name="caseNo" value="${result.caseNo }" />
 				<input type="hidden" id="num" name="num" value="${result.num }" />
-				<input type="hidden" id="atdeId" name="atdeId" />
+				<input type="hidden" id="atdeId" name="atdeId" value="${result.atdeId }" />
 				<input type="hidden" id="clearYn" name="clearYn" />
 				<input type="hidden" id="oriAtdeId" name="oriAtdeId" value="${result.atdeId }" />
 				<input type="hidden" id="oriAtdeNm" name="oriAtdeNm" value="${result.atdeNm }" />

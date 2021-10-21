@@ -2,22 +2,29 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
-  <script>
-		function fn_fileDown() {
-	  		var sysFileNm = "${detail.sysFileNm}";
-	  		var filePath = "${detail.filePath}";
-	  		var fileNm = "${detail.fileNm}";
-	        document.location.href = "/gnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;
-	  	}
+	<script>
+		function fn_fileDown(sysFileNm, filePath, fileNm){
+			$("#fileNm").val(fileNm);
+			$("#sysFileNm").val(sysFileNm);
+			$("#filePath").val(filePath);
+			document.downForm.action = "/gnoincoun/fileDown2.do";
+			document.downForm.submit();
+		}
+		
 	  	function fn_movePage(num,prevYn) {
 	  		document.location.href = "/gnoincoun/centerNewsDtl.do?num="+num+"&prevYn="+prevYn;
 	  	}
-  </script>
+	</script>
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 	/* .container {width: 100%;} */
 </style>
 <section class="service-2 section">
+	<form name="downForm" id="downForm" method="post">
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
 	<div id="wrap">
 	  	<div style="border-top: 1px solid #f09d4c;">
 			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
@@ -48,7 +55,7 @@
           <div class="board_box article-header" >
             <div class="txt_area">   
               <!-- 제목 -->
-              <strong class="tit"><c:out value="${detail.title }" /> </strong>
+              <strong class="tit"><c:out value="${detail.title }" escapeXml="false" /> </strong>
               <!-- 제목 //-->
               <!-- 글등록정보 -->
               <div class="user_area">
@@ -62,7 +69,7 @@
             </div>
             <div class="file-area">
               <c:if test="${detail.fileNm != null }">
-	              <a href="javascript:fn_fileDown()" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a>
+	              <a href="javascript:fn_fileDown('<c:out value="${detail.sysFileNm}"/>','<c:out value="${detail.filePath}"/>','<c:out value="${detail.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a>
               </c:if>
               <!-- <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일2 다운로드</a>
               <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일3 다운로드</a> -->

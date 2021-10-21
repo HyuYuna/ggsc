@@ -1,6 +1,5 @@
 package ggsc.cnsmng.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,14 +39,26 @@ public interface CounselMngService {
 	// 상담접수 신청
 	void insertCnsAccept(CnsAcptVO vo);
 	
+	// 상담접수 신청
+	void insertCnsInfo(CnsAcptVO vo);
+	
 	// 상담정수 상세
 	EgovMap getCnsAcceptDtl(String caseNo);
+	
+	// 정보제공상담 상세
+	EgovMap getCnsInfoDtl(int num);
 	
 	// 상담접수 회원 수정
 	void updateUser(CnsAcptVO vo);
 	
+	// 정보제공상담 회원 수정
+	void updateUserInfo(CnsAcptVO vo);
+	
 	// 상담접수 신청 수정
 	void updateCnsAccept(CnsAcptVO vo);
+	
+	// 정보제공상담 신청 수정
+	void updateCnsInfo(CnsAcptVO vo);
 	
 	// 상담접수 신청 확인
 	void updateConfirm(CnsAcptVO vo, String cnsrId);
@@ -175,6 +186,9 @@ public interface CounselMngService {
 	
 	// 집단상담일지 등록
 	void insertGcns(GcnsVO vo) throws Exception;
+	
+	// 집단상담일지 등록(내담자 수정시)
+	void insertUpdGcns(GcnsVO vo) throws Exception;
 	
 	// 집단상담일지 상세
 	EgovMap getGcns(GcnsVO vo);
@@ -306,6 +320,12 @@ public interface CounselMngService {
 	
 	// 개인상담부터 일괄 삭제
 	public void deleteExiPerCnsDoc(Map<String, Object> map);
+	
+	// 정보제공상담(유저도) 삭제
+	void deleteCnsInfo(String userId);
+	
+	// 집단상담(개인상담도) 삭제
+	void deleteGcns(int num);
 	
 	
 }

@@ -78,6 +78,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		return cnsMngDao.getExiCnsAcceptList(vo);
 	}
 	
+	// 정보제공상담 목록
 	@Override
 	public List<EgovMap> getCnsInfoList(CnsAcptVO vo) {
 		return cnsMngDao.getCnsInfoList(vo);
@@ -116,10 +117,22 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.insertCnsAccept(vo);
 	}
 	
+	// 정보제공상담 신청
+	@Override
+	public void insertCnsInfo(CnsAcptVO vo) {
+		cnsMngDao.insertCnsInfo(vo);
+	}
+	
 	// 상담접수 상세
 	@Override
 	public EgovMap getCnsAcceptDtl(String caseNo) {
 		return cnsMngDao.getCnsAcceptDtl(caseNo);
+	}
+	
+	// 정보제공상담 상세
+	@Override
+	public EgovMap getCnsInfoDtl(int num) {
+		return cnsMngDao.getCnsInfoDtl(num);
 	}
 	
 	// 상담접수신청 회원수정
@@ -128,12 +141,24 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.updateUser(vo);
 	}
 	
+	// 정보제공상담 회원수정
+	@Override
+	public void updateUserInfo(CnsAcptVO vo) {
+		cnsMngDao.updateUserInfo(vo);
+	}
+	
 	// 상담접수 신청 수정
 	@Override
 	public void updateCnsAccept(CnsAcptVO vo) {
 		cnsMngDao.updateCnsAccept(vo);
 	}
 	
+	// 정보제공상담 신청 수정
+	@Override
+	public void updateCnsInfo(CnsAcptVO vo) {
+		cnsMngDao.updateCnsInfo(vo);
+	}
+
 	// 상담접수 신청 확인
 	@Override
 	public void updateConfirm(CnsAcptVO vo, String cnsrId) {
@@ -500,6 +525,35 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		}
 	}
 	
+	// 집단상담일지(내담자 수정시) 등록
+	@Override
+	public void insertUpdGcns(GcnsVO vo) throws Exception {
+		
+		int num = vo.getNum();
+		cnsMngDao.deleteGcnsPer(num);
+		
+		PerCnsVO perVo = new PerCnsVO();
+		perVo.setCnsrId(vo.getCnsrId());
+		perVo.setCnsrNm(vo.getInputNm());
+		perVo.setCnsCnt(vo.getCnsCnt());
+		perVo.setCnsDt(vo.getAtvyDt());
+		perVo.setNum(num);
+		perVo.setMajorApplCd(vo.getMajorApplCd()); // 주호소문제
+		perVo.setCnsleRel(vo.getOlderRel()); // 내담자와의 관계
+		perVo.setCnsType(vo.getCnsType()); // 상담종류
+		
+		String str = vo.getAtdeId();
+		String atdeIdArr[] = str.split(",");
+		String str2 = vo.getAtdeNm();
+		String atdeNmArr[] = str2.split(",");
+		
+		for(int i = 0; i<atdeIdArr.length; i++) {
+			perVo.setCnsleId(atdeIdArr[i]);
+			perVo.setCnsleNm(atdeNmArr[i]);
+			cnsMngDao.insertAddPerCns(perVo);
+		}
+	}
+	
 	// 집단상담일지 상세
 	@Override
 	public EgovMap getGcns(GcnsVO vo) {
@@ -523,6 +577,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		perVo.setCnsCnt(vo.getCnsCnt());
 		perVo.setCnsDt(vo.getAtvyDt());
 		perVo.setCnsleRel(vo.getOlderRel());
+		perVo.setCnsType(vo.getCnsType());
 		perVo.setNum(vo.getNum());
 		
 		if(vo.getClearYn().equals("N")) {
@@ -533,11 +588,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 			}
 			cnsMngDao.updateGcnsDtl(vo);
 		} else if(vo.getClearYn().equals("Y")) {
-			for(int i = 0; i<atdeIdArr.length; i++) {
+			/*for(int i = 0; i<atdeIdArr.length; i++) {
 				perVo.setCnsleId(atdeIdArr[i]);
 				// use_yn 'N' 처리
 				cnsMngDao.updateDelPerCns(perVo);
-			}
+			} */
 			cnsMngDao.updateGcnsDtl(vo);
 		}
 		
@@ -872,6 +927,20 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override 
 	public void updateExiCnsAcpt(String caseNo) {
 		cnsMngDao.updateExiCnsAccept(caseNo);
+	}
+	
+	// 정보제공상담(유저도) 삭제
+	@Override 
+	public void deleteCnsInfo(String userId) {
+		cnsMngDao.deleteCnsInfo(userId);
+		cnsMngDao.deleteUserInfo(userId);
+	}
+	
+	// 집단상담(개인상담도) 삭제
+	@Override 
+	public void deleteGcns(int num) {
+		cnsMngDao.deleteGcns(num);
+		cnsMngDao.deleteGcnsPer(num);
 	}
 	
 

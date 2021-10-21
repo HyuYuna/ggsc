@@ -465,7 +465,6 @@ public class HomepageCmSpaceController {
 	
 	@RequestMapping(value="/fileDown.do", method=RequestMethod.GET)
     public void fileDown(CmSpaceVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
 		
 		String FileName = vo.getSysFileNm();
 		String FilePathName = utility.func.filePath;
@@ -521,10 +520,8 @@ public class HomepageCmSpaceController {
 			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Bad Padding Exception");
 		}
 
-		// String FilePathName2 = utility.func.filePath + FilenameUtils.getName(vo.getFilePath()) + "\\";
-		// String FilePathName = utility.func.filePath;
-		String FilePathName2 = "C:\\Users\\huensys\\git\\Files\\library\\";
-		String FilePathName = "C:\\Users\\huensys\\git\\Files\\";
+		String FilePathName2 = utility.func.filePath + FilenameUtils.getName(vo.getFilePath()) + "\\";
+		String FilePathName = utility.func.filePath;
 		System.out.println("FilePathName : " + FilePathName);
 		System.out.println("FilePathName2 : " + FilePathName2);
 		File file = new File(FilenameUtils.getFullPath(FilePathName), FilenameUtils.getName(FileName));

@@ -158,25 +158,24 @@
 	
 	<!-- 정보제공상담 목록 -->
 	<select id="cnsMngDao.getCnsInfoList" resultClass="egovMap">
-		SELECT *
-		FROM(SELECT gci.*
-		, DATE_FORMAT(gci.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
-		, ROW_NUMBER() OVER(ORDER BY gci.NUM) AS RNUM
-		, ROW_NUMBER() OVER(ORDER BY gci.NUM DESC) AS RNUM2
-		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
-		, gum.MOBILE AS
-		MOBILE
-		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
-		, gum.ADDR AS ADDR
-		, gum.BIRTH_DT AS BIRTH_DT
-		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
-		, gum.EMAIL AS EMAIL
-		, gum.TEL AS TEL
-		, gum.USER_NM AS USER_NM
+		SELECT 
+			* FROM 	
+		(SELECT
+			gci.num
+			, DATE_FORMAT(gci.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+			, ROW_NUMBER() OVER(ORDER BY gci.NUM) AS RNUM
+			, ROW_NUMBER() OVER(ORDER BY gci.NUM DESC) AS RNUM2
+			, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+			, gum.MOBILE AS MOBILE
+			, gum.ADDR AS ADDR
+			, gum.BIRTH_DT AS BIRTH_DT
+			, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
+			, gum.USER_NM AS USER_NM
+			, gum.USER_ID AS USER_ID
 		FROM
-		GS_CNS_INFO gci, GS_USER_M gum
+			GS_CNS_INFO gci, GS_USER_M gum
 		WHERE
-		gci.USER_ID = gum.USER_ID
+			gci.USER_ID = gum.USER_ID
 		<isNotEmpty property="schCnsGb" prepend="AND">
 			gci.CNS_GB = #schCnsGb#
 		</isNotEmpty>
@@ -847,6 +846,62 @@
 		, #sigunCd#
 		)
 	</insert>
+	
+	<!-- 정보제공상담 신청 -->
+	<insert id="cnsMngDao.insertCnsInfo" parameterClass="cnsAcptVO">
+		INSERT INTO GS_CNS_INFO
+		(
+		USER_ID
+		, CNS_GB
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, SIGUN_CD
+		, GENDER
+		, BIRTH
+		, MOBILE
+		, ADDR
+		, CNS_METHD
+		, CNS_DTL
+		, MAJOR_APPL_CD
+		, CNS_DT
+		, CNS_DT_WEEK_CD
+		, CNS_DT_STD_HOUR
+		, CNS_DT_STD_MIN
+		, CNS_DT_END_HOUR
+		, CNS_DT_END_MIN
+		, CNS_TIME_TOT_MIN
+		, CNS_CNTN
+		, DB_INS_TM
+		, REG_ID
+		)
+		VALUES
+		(
+		#userId#
+		, #cnsGb#
+		, #zoneGb#
+		, '9'
+		, #centerGb#
+		, #sigunCd#
+		, #gender#
+		, #birthDt#
+		, #mobile#
+		, #addr#
+		, #cnsMethd#
+		, #cnsDtl#
+		, #majorApplCd#
+		, #cnsDt#
+		, #cnsDtWeekCd#
+		, #cnsDtStdHour#
+		, #cnsDtStdMin#
+		, #cnsDtEndHour#
+		, #cnsDtEndMin#
+		, #cnsTimeTotMin#
+		, #cnsCntn#
+		, NOW()
+		, #regId#
+		)
+	</insert>
 
 	<!-- 상담접수관리 상세 -->
 	<select id="cnsMngDao.getCnsAcceptDtl" parameterClass="String"
@@ -871,6 +926,41 @@
 		<!-- AND gca.CASE_NO = #caseNo# -->
 		AND gca.CASE_NO = #caseNo#
 	</select>
+	
+	<!-- 정보제공상담 상세 -->
+	<select id="cnsMngDao.getCnsInfoDtl" parameterClass="int" resultClass="egovMap">
+		SELECT 
+			gci.NUM
+			, gci.CNS_GB
+			, gci.ZONE_GB
+			, gci.CENTER_GB
+			, gci.LOCAL_GB
+			, gci.SIGUN_CD
+			, gci.CNS_DT
+			, gci.CNS_DT_WEEK_CD
+			, gci.CNS_DT_STD_HOUR
+			, gci.CNS_DT_STD_MIN
+			, gci.CNS_DT_END_HOUR
+			, gci.CNS_DT_END_MIN
+			, gci.CNS_TIME_TOT_MIN
+			, gci.CNS_METHD
+			, gci.CNS_DTL
+			, gci.MAJOR_APPL_CD
+			, gci.CNS_CNTN
+			, gum.GENDER AS GENDER
+			, gum.MOBILE AS MOBILE
+			, gum.ADDR AS ADDR
+			, gum.BIRTH_DT AS BIRTH_DT
+			, gum.USER_NM AS USER_NM
+			, gum.USER_ID AS USER_ID
+		FROM 
+			GS_CNS_INFO gci, gs_user_m gum
+		WHERE 
+			gci.USER_ID = gum.USER_ID
+		AND 
+			gci.num = #num#
+	</select>
+
 
 	<!-- 상담접수신청 회원수정 -->
 	<update id="cnsMngDao.updateUser" parameterClass="cnsAcptVO">
@@ -878,15 +968,30 @@
 			GS_USER_M
 		SET 
 			USER_NM = #userNm#
-		, GENDER = #gender#
-		, BIRTH_DT = #birthDt#
-		, EMAIL = #email#
-		, TEL = #tel#
-		, MOBILE = #mobile#
-		, ADDR = #addr#
-		, SIGUN_CD = #sigunCd#
+			, GENDER = #gender#
+			, BIRTH_DT = #birthDt#
+			, EMAIL = #email#
+			, TEL = #tel#
+			, MOBILE = #mobile#
+			, ADDR = #addr#
+			, SIGUN_CD = #sigunCd#
 		WHERE 
 			USER_ID = (SELECT USER_ID FROM GS_CNS_ACPT WHERE CASE_NO = #caseNo#)
+	</update>
+	
+	<!-- 정보제공상담 회원수정 -->
+	<update id="cnsMngDao.updateUserInfo" parameterClass="cnsAcptVO">
+		UPDATE
+			GS_USER_M 
+		SET 
+			SIGUN_CD = #sigunCd# ,
+			USER_NM = #userNm# ,
+			GENDER = #gender# ,
+			BIRTH_DT = #birthDt# ,
+			MOBILE = #mobile# ,
+			ADDR = #addr#
+		WHERE 
+			USER_ID = #userId#
 	</update>
 
 	<!-- 상담접수 신청 수정 -->
@@ -907,6 +1012,35 @@
 			CASE_NO = #caseNo#
 	</update>
 
+	<!-- 정보제공상담 신청 수정 -->
+	<update id="cnsMngDao.updateCnsInfo" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_CNS_INFO
+		SET
+			CNS_GB = #cnsGb#,
+			ZONE_GB = #zoneGb# ,
+			CENTER_GB = #centerGb# ,
+			SIGUN_CD = #sigunCd# ,
+			GENDER = #gender# ,
+			BIRTH = #birthDt# ,
+			MOBILE = #mobile# ,
+			ADDR = #addr# ,
+			CNS_METHD = #cnsMethd# ,
+			CNS_DTL = #cnsDtl# ,
+			MAJOR_APPL_CD = #majorApplCd# ,
+			CNS_DT = #cnsDt# ,
+		    CNS_DT_WEEK_CD = #cnsDtWeekCd# ,
+		  	CNS_DT_STD_HOUR = #cnsDtStdHour# ,
+		  	CNS_DT_STD_MIN = #cnsDtStdMin# ,
+		  	CNS_DT_END_HOUR = #cnsDtEndHour# ,
+		  	CNS_DT_END_MIN = #cnsDtEndMin# ,
+		 	CNS_TIME_TOT_MIN = #cnsTimeTotMin# ,
+			CNS_CNTN = #cnsCntn# ,
+			UPDATE_DT = NOW()
+		WHERE
+			num = #num#
+	</update>
+	
 	<!-- 상담접수 신청 확인 -->
 	<update id="cnsMngDao.updateConfirm" parameterClass="cnsAcptVO">
 		UPDATE
@@ -2942,14 +3076,8 @@
 	<!-- 집단상담일지(상세) 등록 -->
 	<insert id="cnsMngDao.insertGcnsDtl" parameterClass="gCnsVO">
 		
-		<selectKey resultClass="int" keyProperty="num">
-
-			SELECT IFNULL(MAX(NUM),0)+1 as num from GS_GCNS_DTL
-
-		</selectKey>
-	
 		INSERT INTO
-		GS_GCNS_DTL
+			GS_GCNS_DTL
 		(
 		CASE_NO
 		, CNSR_ID
@@ -3055,6 +3183,11 @@
 		, #etcQust#
 		, #atdeId#
 		)
+		
+		<selectKey resultClass="int" keyProperty="num">
+	    	SELECT  LAST_INSERT_ID()
+		</selectKey>
+		
 	</insert>
 	
 	<!-- 집단상담일지 등록(개인상담 각각 값 추가) -->
@@ -3178,7 +3311,7 @@
 	<!-- 집단상담일지 수정 -->
 	<update id="cnsMngDao.updateGcnsDtl" parameterClass="gCnsVO">
 		UPDATE
-		GS_GCNS_DTL
+			GS_GCNS_DTL
 		SET CNS_GB = #cnsGb#
 		, ZONE_GB = #zoneGb#
 		, CENTER_GB = #centerGb#
@@ -3197,6 +3330,7 @@
 		, ANCHOR = #anchor#
 		, INPUT_NM = #inputNm#
 		, ATDE_CNT = #atdeCnt#
+		, ATDE_ID = #atdeId#
 		, ATDE_NM = #atdeNm#
 		, ATVY_GOAL = #atvyGoal#
 		, PGRM_CNTN = #pgrmCntn#
@@ -4886,6 +5020,34 @@
 			FROM gs_cns_end
 		WHERE 
 			CASE_NO = #caseNo#
+	</update>
+	
+	<update id="cnsMngDao.deleteCnsInfo" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_cns_Info
+		WHERE 
+			USER_ID = #userId#
+	</update>
+	
+	<update id="cnsMngDao.deleteUserInfo" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_user_m
+		WHERE 
+			USER_ID = #userId#
+	</update>
+	
+	<update id="cnsMngDao.deleteGcns" parameterClass="Integer">
+		DELETE 
+			FROM gs_gcns_dtl
+		WHERE 
+			NUM = #num#
+	</update>
+	
+	<update id="cnsMngDao.deleteGcnsPer" parameterClass="Integer">
+		DELETE 
+			FROM gs_per_cns_dtl
+		WHERE 
+			GCNS_NUM = #num#
 	</update>
 	
 	

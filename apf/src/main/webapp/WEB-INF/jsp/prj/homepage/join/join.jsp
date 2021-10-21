@@ -201,14 +201,6 @@
 					</c:forEach>
 				</select>
 		  </div>
-		  <div class="form-group">
-          		<label for="pwChk">권역구분<i class="cr">*</i></label>
-          		<select class="form-control" name="zoneGb" id="zoneGb" >
-					<c:forEach items="${zoneList }" var="result">
-						<option value="${result.odr }">${result.mclassNm }</option>
-					</c:forEach>
-				</select>
-		  </div>
           <div class="form-group">
             <label class="control-label" for="userNm">성명<i class="cr">*</i></label>
             <input type="text" id="userNm" name="userNm" class="form-control" maxlength="8" onlyKorean oninput="this.value = this.value.replace(/[^ㄱ-힣]/, '');">
