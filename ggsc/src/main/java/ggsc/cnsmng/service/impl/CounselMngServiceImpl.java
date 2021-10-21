@@ -1118,4 +1118,46 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.updateLinkageOutReq_test(vo);
 		
 	}
+
+	@Override
+	public List<EgovMap> getSuperVisionList_ajax(SupperVisionVO vo) {
+		List<EgovMap> list = cnsMngDao.getSuperVisionList_ajax(vo);
+		return list;
+	}
+
+	@Override
+	public EgovMap getSuperVisionDtl_test(int num) {
+		EgovMap result = cnsMngDao.getSuperVisionDtl_test(num);
+		return result;
+	}
+
+	@Override
+	public EgovMap getSuperVisionReplyDtl_test(int num) {
+		EgovMap result = cnsMngDao.getSuperVisionReplyDtl_test(num);
+		return result;
+	}
+	
+	// 의뢰
+	@Override
+	public void insertSuperVisionReg_test(SupperVisionVO vo) {
+		cnsMngDao.insertSuperVisionReg_test(vo);
+	}
+
+	@Override
+	public void updateSuperVisionReg_test(SupperVisionVO vo) {
+		cnsMngDao.updateSuperVisionReg_test(vo);
+	}
+	
+	// 답변
+	@Override
+	public void insertSuperVisionReplyReg_test(SupperVisionVO vo) {
+		cnsMngDao.insertSuperVisionReplyReg_test(vo);
+		cnsMngDao.updateSpAnswerYn_test(vo);
+	}
+
+	@Override
+	public void updateSuperVisionReplyReg_test(SupperVisionVO vo) {
+		cnsMngDao.updateSuperVisionReplyReg_test(vo);
+	}
+	
 }

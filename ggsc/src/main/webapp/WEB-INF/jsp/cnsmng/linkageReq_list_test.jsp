@@ -88,15 +88,15 @@
 		var url = "";
 		
 		if(no == 1){
-			url = "/gnoincoundb/perCnsList.do?mnuCd=${mnuCd}";	
+			url = "/gnoincoundb/perCnsList_test.do?mnuCd=${mnuCd}";	
 		}else if(no == 2){
-			url = "/gnoincoundb/gCnsList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/gCnsList_test.do?mnuCd=${mnuCd}";
 		}else if(no == 3){
 			url = "/gnoincoundb/psyCnsList.do?mnuCd=${mnuCd}";
 		}else if(no == 4){
-			url = "/gnoincoundb/linkageReqList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/linkageReqList_test.do?mnuCd=${mnuCd}";
 		}else{
-			url = "/gnoincoundb/superVisionList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/superVisionList_test.do?mnuCd=${mnuCd}";
 		}
 		document.location.href = url;
 	}

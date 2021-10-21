@@ -349,5 +349,21 @@ public interface CounselMngService {
 	public void updateLinkageInReq_test(LinkReqVO vo);
 	// 연계의뢰 (외부) 수정 
 	public void updateLinkageOutReq_test(LinkReqVO vo);
+	
+	//test 
+	public List<EgovMap> getSuperVisionList_ajax(SupperVisionVO vo);
+	
+	// superVison detail 
+	public EgovMap getSuperVisionDtl_test(int num);
+	// superVison detail reply
+	public EgovMap getSuperVisionReplyDtl_test(int num);
+	
+	// superVison 의뢰정보 U , I
+	public void insertSuperVisionReg_test(SupperVisionVO vo);
+	public void updateSuperVisionReg_test(SupperVisionVO vo);
+	
+	// superVision 답변정보 U , I
+	public void insertSuperVisionReplyReg_test(SupperVisionVO vo);
+	public void updateSuperVisionReplyReg_test(SupperVisionVO vo);
 }
 

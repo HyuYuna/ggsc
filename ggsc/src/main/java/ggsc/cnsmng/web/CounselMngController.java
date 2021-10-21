@@ -1929,12 +1929,14 @@ public class CounselMngController {
 		EgovMap replyDtl = null;
 		if (num != "") {
 			int intNum = Integer.parseInt(num);
-			svDtl = counselMngService.getSuperVisionDtl(intNum);
+			svDtl = counselMngService.getSuperVisionDtl(intNum); // 의뢰정보 
+			
 			if (svDtl != null) {
+				
 				String answerYn = (String) svDtl.get("answerYn");
 
 				if (answerYn.equals("Y")) {
-					replyDtl = counselMngService.getSuperVisionReplyDtl(intNum);
+					replyDtl = counselMngService.getSuperVisionReplyDtl(intNum); // 답변정보 
 				}
 			}
 		}
@@ -3431,6 +3433,183 @@ public class CounselMngController {
 		}
 
 		return "redirect:/linkageReqList_test.do?mnuCd=" + mnuCd;
+	}
+	
+	@RequestMapping(value = "/superVisionList_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String superVisionList_test(LinkReqVO vo, SupperVisionVO svo, HttpServletRequest request, ModelMap model) {
+	
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		
+		// 권한 관리 끝
+		
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		param.setHclassCd("G72");
+		List<EgovMap> localGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("localGbList", localGbList);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+		
+		return "cnsmng/superVision_list_test.main";
+	}
+	
+	// TEST 
+	@RequestMapping(value = "/superVisionList_ajax.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String superVisionList_ajax(HttpServletRequest request, ModelMap model,SupperVisionVO vo) {
+		
+		String schCnsGb = request.getParameter("schCnsGb");
+		String schCnsleNm = request.getParameter("schCnsleNm");
+		String schStartDate = request.getParameter("schStartDate");
+		String schEndDate = request.getParameter("schEndDate");
+		
+		vo.setSchCnsGb(schCnsGb);
+		vo.setSchCnsleNm(schCnsleNm);
+		vo.setSchStartDate(schStartDate);
+		vo.setSchEndDate(schEndDate);
+		
+		List<EgovMap> sList = counselMngService.getSuperVisionList_ajax(vo);
+		model.addAttribute("sList", sList);		
+		return "jsonView";
+		
+	}
+	
+
+	@RequestMapping(value = "/superVisionDtl_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String superVisionDtl_test(LinkReqVO vo, SupperVisionVO svo, HttpServletRequest request, ModelMap model) {
+
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb; // 로그인 한 사람 권한 , 등록 센터 
+		
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString()); // 로그인 한 사람 권한 
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString()); // 담당 상담소 
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		
+		String regId = loginVo.get("userId").toString();
+		vo.setRegId(regId);
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+			default: vo.setAuthCd("4"); break; 
+		}
+		
+		// 권한 관리 끝
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+
+		// 의뢰정보
+		EgovMap svDtl = null;
+		// 답변정보
+		EgovMap replyDtl = null;
+		if (num != "") {
+			int intNum = Integer.parseInt(num);
+			svDtl = counselMngService.getSuperVisionDtl_test(intNum); // 의뢰정보 
+			
+			if (svDtl != null) {
+				
+				String answerYn = (String) svDtl.get("answerYn");
+
+				if (answerYn.equals("Y")) {
+					replyDtl = counselMngService.getSuperVisionReplyDtl_test(intNum); // 답변정보 
+				}
+			}
+		}
+
+		model.addAttribute("detail", svDtl);
+		model.addAttribute("replyDtl", replyDtl);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("loginVo", loginVo);
+		
+		return "cnsmng/superVision_dtl_test.main";
+	}
+	
+	@RequestMapping(value = "/superVisionReg_test.do", method = RequestMethod.POST)
+	public String superVisionReg_test(SupperVisionVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
+
+		vo.setCnsGb(login.get("cnsGb").toString());
+		vo.setZoneGb(login.get("zoneGb").toString());
+		vo.setCenterGb(login.get("centerGb").toString());
+
+		vo.setCnsrGb(login.get("cnsrGb").toString());
+		vo.setCnsrId(login.get("userId").toString());
+		vo.setCaseNo(0);
+
+		if (save.equals("S")) {
+			// 슈퍼비전 의뢰내용 저장
+			counselMngService.insertSuperVisionReg_test(vo);
+		} else if (save.equals("U")) {
+			// 슈퍼비전 의뢰내용 수정
+			counselMngService.updateSuperVisionReg_test(vo);
+		} else if (save.equals("R")) {
+			// 슈퍼비전 답변내용 등록
+			counselMngService.insertSuperVisionReplyReg_test(vo);
+		} else if (save.equals("RU")) {
+			// 슈퍼비전 답변내용 수정
+			counselMngService.updateSuperVisionReplyReg_test(vo);
+		}
+
+		return "redirect:/superVisionList_test.do?mnuCd=" + mnuCd;
+
 	}
 	
 

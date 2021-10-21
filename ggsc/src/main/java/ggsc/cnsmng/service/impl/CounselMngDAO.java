@@ -854,4 +854,40 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.updateLinkageOutReq_test",vo);
 	}
 	
+	//test 
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getSuperVisionList_ajax(SupperVisionVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getSuperVisionList_ajax",vo);
+	};
+	
+	// SuperVison detail 
+	public EgovMap getSuperVisionDtl_test(int num) {
+		return (EgovMap) select("cnsMngDao.getSuperVisionDtl_test",num);
+	};
+	
+	//SuperVison detail reply 
+	public EgovMap getSuperVisionReplyDtl_test(int num){
+		return (EgovMap)select("cnsMngDao.getSuperVisionReplyDtl_test",num);
+	}
+	
+	//superVison insert 
+	public void insertSuperVisionReg_test(SupperVisionVO vo) {
+		insert("cnsMngDao.insertSuperVisionReg_test",vo);
+	}
+	//superVison update 
+	public void updateSuperVisionReg_test(SupperVisionVO vo ) {
+		update("cnsMngDao.updateSuperVisionReg_test",vo);
+	}
+	// superVison reply insert
+	public void insertSuperVisionReplyReg_test(SupperVisionVO vo) {
+		insert("cnsMngDao.insertSuperVisionReplyReg_test",vo);
+	}
+	//superVison reply update 
+	public void updateSuperVisionReplyReg_test(SupperVisionVO vo) {
+		update("cnsMngDao.updateSuperVisionReplyReg_test",vo);
+	}
+	
+	public void updateSpAnswerYn_test(SupperVisionVO vo) {
+		update("cnsMngDao.updateSpAnswerYn_test",vo);
+	}
 }

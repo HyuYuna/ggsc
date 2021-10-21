@@ -6520,4 +6520,190 @@
 		NUM = #num#
 	</update>
 	
+	<select id="cnsMngDao.getSuperVisionList_ajax" parameterClass="supperVisionVO" resultClass="EgovMap">
+		SELECT
+		A.*
+		FROM (
+		SELECT
+		ROW_NUMBER() OVER(ORDER BY M.NUM) AS RNUM ,
+		ROW_NUMBER() OVER(ORDER BY M.NUM DESC) AS RNUM2 ,
+		M.NUM ,
+		M.CNS_GB ,
+		M.REL_ORG_NM ,
+		M.CNSR_GB ,
+		M.REQ_DT ,
+		M.REQ_CNSR ,
+		M.ANSWER_YN ,
+		D.RPLY_CNSR
+		FROM
+		GS_SVSN_M_TEST AS M
+		LEFT JOIN
+		GS_SVSN_D_TEST AS D
+		ON M.NUM = D.NUM
+		WHERE
+		1=1
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			M.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<!-- <isNotEmpty property="schLocalGb" prepend="AND">
+			M.LOCAL_GB = #schLocalGb#
+		</isNotEmpty> -->
+	<!-- 	<isNotEmpty property="schCenterGb" prepend="AND">
+			M.CENTER_GB = #schCenterGb#
+		</isNotEmpty> -->
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			M.REQ_CNSR LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(M.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(M.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		) A
+	</select>
+	
+	<select id="cnsMngDao.getSuperVisionDtl_test" parameterClass="Integer" resultClass="EgovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			CNSR_ID ,
+			REQ_CNSR ,
+			REL_ORG_NM ,
+			REQ_DT ,
+			REQ_CNTN ,
+			FILE_NM ,
+			ANSWER_YN
+		FROM
+			GS_SVSN_M_TEST
+		WHERE
+			NUM = #num#
+	</select>
+	
+	<select id="cnsMngDao.getSuperVisionReplyDtl_test" parameterClass="Integer" resultClass="EgovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			RPLY_CNSR ,
+			REL_ORG_NM ,
+			RPLY_DT ,
+			RPLY_CNTN ,
+			FILE_NM
+		FROM
+			GS_SVSN_D_TEST
+		WHERE
+			NUM = #num#
+	</select>
+	
+	<insert id="cnsMngDao.insertSuperVisionReg_test" parameterClass="supperVisionVO">
+		INSERT INTO GS_SVSN_M_TEST
+		(
+		NUM ,
+		CNS_GB ,
+		CNSR_GB ,
+		CNS_DTL_GB_CD ,
+		ZONE_GB ,
+		LOCAL_GB ,
+		CENTER_GB ,
+		CNSR_ID ,
+		FILE_NM ,
+		SYS_FILE_NM ,
+		FILE_PATH ,
+		ANSWER_YN ,
+		TITLE ,
+		REQ_CNSR ,
+		REL_ORG_NM ,
+		REQ_DT ,
+		REQ_CNTN
+		) VALUES (
+		(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_SVSN_M_TEST AS A) ,
+		#cnsGb# ,
+		#cnsrGb# ,
+		'1' ,
+		#zoneGb# ,
+		#localGb# ,
+		#centerGb# ,
+		#cnsrId# ,
+		#fileNm# ,
+		#sysFileNm# ,
+		#filePath# ,
+		'N' ,
+		#title# ,
+		#reqCnsr# ,
+		#relOrgNm# ,
+		#reqDt# ,
+		#reqCntn#
+		)
+	</insert>
+	
+	<update id="cnsMngDao.updateSuperVisionReg_test" parameterClass="supperVisionVO">
+		UPDATE GS_SVSN_M_TEST
+		SET
+		TITLE = #title# ,
+		REQ_CNSR = #reqCnsr# ,
+		REL_ORG_NM =
+		#relOrgNm# ,
+		REQ_DT = #reqDt# ,
+		REQ_CNTN = #reqCntn#
+		WHERE
+		NUM = #num#
+	</update>
+	
+	<!-- 슈퍼비전 답변내용 등록 -->
+	<insert id="cnsMngDao.insertSuperVisionReplyReg_test" parameterClass="supperVisionVO">
+		INSERT INTO GS_SVSN_D_TEST
+		(
+		NUM ,
+		CNS_GB ,
+		CNSR_GB ,
+		CNS_DTL_GB_CD ,
+		ZONE_GB ,
+		LOCAL_GB ,
+		CENTER_GB ,
+		CNSR_ID ,
+		TITLE ,
+		RPLY_CNSR ,
+		REL_ORG_NM ,
+		RPLY_DT ,
+		RPLY_CNTN
+		) VALUES (
+		#num# ,
+		#cnsGb# ,
+		#cnsrGb# ,
+		'1' ,
+		#zoneGb# ,
+		#localGb# ,
+		#centerGb# ,
+		#cnsrId# ,
+		#title# ,
+		#rplyCnsr# ,
+		#relOrgNm# ,
+		#rplyDt# ,
+		#rplyCntn#
+		)
+	</insert>
+	
+	<update id="cnsMngDao.updateSuperVisionReplyReg_test" parameterClass="supperVisionVO">
+		UPDATE GS_SVSN_D_TEST
+		SET
+		TITLE = #title# ,
+		RPLY_CNSR = #rplyCnsr# ,
+		REL_ORG_NM = #relOrgNm# ,
+		RPLY_DT = #rplyDt# ,
+		RPLY_CNTN = #rplyCntn#
+		<!-- <isNotEmpty property="sysFileNm"> , FILE_NM = #fileNm# , SYS_FILE_NM 
+			= #sysFileNm# , FILE_PATH = #filePath# </isNotEmpty> -->
+		WHERE
+		NUM = #num#
+	</update>
+	
+	<update id="cnsMngDao.updateSpAnswerYn_test" parameterClass="supperVisionVO">
+		UPDATE GS_SVSN_M_TEST
+		SET
+		ANSWER_YN = 'Y'
+		WHERE
+		NUM = #num#
+	</update>
+	
 </sqlMap>

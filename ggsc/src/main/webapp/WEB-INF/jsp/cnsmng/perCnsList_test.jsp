@@ -58,7 +58,7 @@
 			document.location.href = "/gnoincoundb/perCnsDtl_test.do?mnuCd="+mnuCd+"&caseNo="+caseNo+"&num="+num;
 		} else if(cnsDtlGbCd == 2) {
 			var mnuCd = $("#mnuCd").val();
-			document.location.href = "/gnoincoundb/gCnsDtl.do?mnuCd="+mnuCd+"&caseNo=0"+"&num="+num;
+			document.location.href = "/gnoincoundb/gCnsDtl_test.do?mnuCd="+mnuCd+"&caseNo=0"+"&num="+num;
 		}
 	}
 	
@@ -90,7 +90,7 @@
 		}else if(no == 4){
 			url = "/gnoincoundb/linkageReqList_test.do?mnuCd=${mnuCd}";
 		}else{
-			url = "/gnoincoundb/superVisionList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/superVisionList_test.do?mnuCd=${mnuCd}";
 		}
 		
 		console.log(url);
