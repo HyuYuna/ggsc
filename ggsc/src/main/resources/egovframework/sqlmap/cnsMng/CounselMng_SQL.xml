@@ -6836,5 +6836,46 @@
 		)
 	</insert>
 	
+	<select id="cnsMngDao.getCnsDiaHysListTotCnt_test" parameterClass="ealyVO" resultClass="Integer">
+		
+		SELECT				
+			count(*)
+		FROM
+			GS_PER_CNS_DTL_TEST
+		WHERE
+			1=1
+		AND CNS_STAT = '1'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND CNSR_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		
+	</select>
+	
 	
 </sqlMap>

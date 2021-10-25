@@ -891,4 +891,9 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void updateSpAnswerYn_test(SupperVisionVO vo) {
 		update("cnsMngDao.updateSpAnswerYn_test",vo);
 	}
+	
+	public int getCnsDiaHysListTotCnt_test(EalyCnsDocVO vo) {
+		int count = (Integer)select("cnsMngDao.getCnsDiaHysListTotCnt_test",vo);
+		return count;
+	}
 }

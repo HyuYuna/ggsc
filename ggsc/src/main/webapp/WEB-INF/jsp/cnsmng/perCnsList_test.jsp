@@ -33,6 +33,8 @@
 			page = 1;
 		}
 		
+		console.log("${paginationInfo}");
+		
 		var schCnsGb = "${vo.schCnsGb}";		// 상담구분 
 		var schCenterGb = "${vo.schCenterGb}";  // 센터구분 		
 		$("select[name=schCnsGb]").val(schCnsGb);
@@ -63,13 +65,13 @@
 	}
 	
 	function fn_search(mnuCd) {
-		document.searchForm.action = "/gnoincoundb/perCnsList.do";
+		document.searchForm.action = "/gnoincoundb/perCnsList_test.do";
        	document.searchForm.submit(); 
 	}
 	
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/perCnsList.do";
+		document.searchForm.action = "/gnoincoundb/perCnsList_test.do";
        	document.searchForm.submit();
 	}
 	
@@ -290,6 +292,7 @@
 				<div id="paging">
                     <ul class="pagination">
                       	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="list" />
+                      	<!--  js 에서 jsFunction 이름을 사용함 parameter 명 fnName : list 가 되는 것 -->
                       	<form:hidden path="pageIndex" />
                     </ul>
                 </div>

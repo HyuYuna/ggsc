@@ -1111,6 +1111,7 @@ public class CounselMngController {
 
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("cnsList", cnsList);
+		
 		// 개인상담 재신청
 		//List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(vo);
 		// int totalPageCnt3 = counselMngService.getCnsCntReListTotCnt(vo);
@@ -2817,8 +2818,8 @@ public class CounselMngController {
 
 		// 상담일지 이력정보
 		List<EgovMap> cnsList = counselMngService.getCnsDiaHysList_test(vo); // test 라인으로 수정됨
-		int totalPageCnt2 = counselMngService.getCnsDiaHysListTotCnt(vo);
-		//model.addAttribute("totalPageCnt2", totalPageCnt2); // 미사용 
+		int totalPageCnt2 = counselMngService.getCnsDiaHysListTotCnt_test(vo);
+		model.addAttribute("totalPageCnt2", totalPageCnt2); // 미사용 
 		paginationInfo.setTotalRecordCount(totalPageCnt2); // 전체 게시물 건 수
 
 		model.addAttribute("paginationInfo", paginationInfo);

@@ -365,5 +365,8 @@ public interface CounselMngService {
 	// superVision 답변정보 U , I
 	public void insertSuperVisionReplyReg_test(SupperVisionVO vo);
 	public void updateSuperVisionReplyReg_test(SupperVisionVO vo);
+	
+	//
+	public int getCnsDiaHysListTotCnt_test(EalyCnsDocVO vo);
 }
 

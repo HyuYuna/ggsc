@@ -1159,5 +1159,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	public void updateSuperVisionReplyReg_test(SupperVisionVO vo) {
 		cnsMngDao.updateSuperVisionReplyReg_test(vo);
 	}
+
+	@Override
+	public int getCnsDiaHysListTotCnt_test(EalyCnsDocVO vo) {
+		int count = cnsMngDao.getCnsDiaHysListTotCnt_test(vo);
+		return count;
+	}
 	
 }
