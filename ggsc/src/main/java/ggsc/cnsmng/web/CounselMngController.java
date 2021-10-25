@@ -65,9 +65,11 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			
 			if (userAuth == 0)
 				userAuth = 10;
 		} catch (NumberFormatException err) {
@@ -81,6 +83,7 @@ public class CounselMngController {
 		if (userAuth > 1) { // 센터 검색 권한이 없으면
 			vo.setSchCenterGb(Integer.toString(userCenterGb));
 		}
+		// 센터검색 권한을 막는다 . 관리자 권한은 이 if 가 절대 실행되지 않는다 
 		
 		String regId = loginVo.get("userId").toString();
 		vo.setRegId(regId);
@@ -89,7 +92,7 @@ public class CounselMngController {
 			case 1: vo.setAuthCd("1"); break; 
 			case 2: vo.setAuthCd("2"); break; 
 			case 3: vo.setAuthCd("3"); break; 
-				default: vo.setAuthCd("4"); break; 
+		    default: vo.setAuthCd("4"); break; 
 		}
 		
 		// 권한 관리 끝
@@ -108,7 +111,9 @@ public class CounselMngController {
 		GroupVO param = new GroupVO();
 		param.setHclassCd("G15");
 		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
-
+		
+		System.out.println(acceptList);
+		
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 
@@ -266,6 +271,7 @@ public class CounselMngController {
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		int userAuth, userCenterGb;
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
@@ -3610,6 +3616,74 @@ public class CounselMngController {
 
 		return "redirect:/superVisionList_test.do?mnuCd=" + mnuCd;
 
+	}
+	
+	@RequestMapping(value = "/exiCnsAcceptDtl_test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exiCnsAcceptDtl_test(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
+		
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		String type = request.getParameter("type") == null ? "" : request.getParameter("type");
+		EgovMap result = null;
+		// 상담구분 코드
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G15");
+		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("cnsGbList", cnsGbList);
+
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+
+		param.setHclassCd("G71");
+		List<EgovMap> zoneGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("zoneGbList", zoneGbList);
+
+		param.setHclassCd("G58");
+		List<EgovMap> mApplCdList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("mApplCdList", mApplCdList);
+
+		param.setHclassCd("G72");
+		List<EgovMap> localGbList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("localGbList", localGbList);
+		
+		param.setHclassCd("G089");
+		List<EgovMap> sigunList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("sigunList", sigunList);
+		
+		if (type.equals("D")) {
+			String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
+			result = counselMngService.getCnsAcceptDtl_TEST(caseNo);
+		}
+		
+		model.addAttribute("result", result);
+		model.addAttribute("type", type);
+		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("loginVo", loginVo);
+				
+		return "cnsmng/exiCnsAccept_dtl_test";
 	}
 	
 

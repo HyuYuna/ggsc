@@ -44,16 +44,6 @@
 	function fn_excelDown(){
 		document.location.href = "/gnoincoundb/cnsAcptExcelDown.do";
 	}
-	/*
-	function linkPage(pageNo) {
-		search(pageNo);
-	}
-	
-	function search(pageNo) {
-		$("#currentPageNo").val(pageNo);
-		$("#frm").submit();
-	}
-	*/
 	
 	function fn_goLink(no) {
 		var url = "";
@@ -67,7 +57,7 @@
 	}
 	
 	function fn_popup(type, caseNo){
-		var url = "/gnoincoundb/exiCnsAcceptDtl.do?type=" + type + "&caseNo=" + caseNo;
+		var url = "/gnoincoundb/exiCnsAcceptDtl_test.do?type=" + type + "&caseNo=" + caseNo;
 		var name = "신청자정보";
 		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
 		window.open(url, name, option);
@@ -75,7 +65,7 @@
 	
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
-		document.searchForm.action = "/gnoincoundb/exiCnsAcceptList.do";
+		document.searchForm.action = "/gnoincoundb/exiCnsAcceptList_test.do";
        	document.searchForm.submit();
 	}
 	

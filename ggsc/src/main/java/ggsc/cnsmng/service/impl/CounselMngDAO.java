@@ -684,6 +684,7 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		return list;
 	}
 	
+	
 	public void insertUser_TEST(CnsAcptVO vo) {
 		insert("cnsMngDao.insertUser_TEST",vo);
 	}

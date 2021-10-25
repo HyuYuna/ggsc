@@ -55,7 +55,9 @@ public class LoginController {
 				}
 
 				request.getSession().setAttribute("LoginVO", resultVO);
-				EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener();
+				
+				EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener(); // 중복로그인 방지 
+				
 				request.getSession().setAttribute((String) resultVO.get("userId"), listener);
 				
 				model.addAttribute("userVO", resultVO);

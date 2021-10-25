@@ -69,12 +69,10 @@
   			justify-content: center; /* align horizontal */
   			align-items: center;
   		}
-  		
-  		.ag-header .ag-cell {
-  			display: flex;
-  			justify-content: center; /* align horizontal */
-  			align-items: center;
-  		}
+  				
+  		.ag-header-cell-label {
+   			justify-content: center;
+		} /* header label center setting */
 	</style>
 	<script>
 	var gridOptions;

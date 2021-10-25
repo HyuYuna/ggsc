@@ -10,7 +10,7 @@
 	<select id="MainDAO.getReservationList" resultClass="egovMap">
 		SELECT B.CNSLE_NM, A.CNS_RSVT_DT, B.CNS_STAT, C.MCLASS_NM   FROM gs_per_cns_dtl AS A
 		INNER JOIN gs_per_cns AS B ON a.CASE_NO = B.CASE_NO
-		INNER JOIN gs_m_class AS C ON B.CNS_STAT = C.ODR AND HCLASS_CD = 'G18'
+		INNER JOIN gs_m_class AS C ON B.CNS_STAT = C.ODR AND HCLASS_CD = 'G18' <!--  중분류  -->
 		WHERE CNS_RSVT_DT >= DATE_FORMAT(NOW(),'%Y-%m-%d')
 		ORDER BY CNS_RSVT_DT ASC 
 	</select>

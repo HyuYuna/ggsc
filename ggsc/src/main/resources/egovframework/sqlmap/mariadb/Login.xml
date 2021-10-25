@@ -30,9 +30,7 @@
 			 	ON A.USER_ID = B.USER_ID
 			WHERE
 			 	A.USER_ID = #userId#
-			 	AND A.PW = #pw#
-			    <!-- AND A.PW = SCP.ENC_B64('KEY1',#pw#) -->
-			
+			 	AND A.PW = #pw#		
 	</select>
 
 	

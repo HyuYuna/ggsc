@@ -4,34 +4,34 @@ import ams.cmm.PageVO;
 
 public class CnsAcptVO extends PageVO {
 	
-	private String cnsGb;
-	private String userId;
-	private String pw;
-	private String userNm;
-	private String gender;
-	private String birthDt;
-	private String email;
-	private String tel;
-	private String mobile;
-	private String addr;
+	private String cnsGb;		// 상담구분코드 
+	private String userId;		// 내담자 계정 ID 
+	private String pw;			// 내담자 계정 비밀번호 
+	private String userNm;		// 내담자 이름 
+	private String gender;		// 성별 
+	private String birthDt;		// 생년월일 
+	private String email;		// 이메일 
+	private String tel;			// 전화번호 
+	private String mobile;		// 휴대전화 번호 
+	private String addr;		// 주소 
 	private String cnsHistYn;
-	private String acptYn;
-	private int caseNo;
-	private String regId;
-	private String authCd;
-	private String sigunCd;
+	private String acptYn;		// 승인여부 
+	private int caseNo;			// 내담자 고유값 
+	private String regId;		// 등록자 아이디 , ( 상담사 ID )
+	private String authCd;		// 권한 코드 
+	private String sigunCd;		// 시군 코드 
 	
-	private String zoneGb;
-	private String localGb;
-	private String centerGb;
+	private String zoneGb;		// 권역구분 
+	private String localGb;		// 지역구분 
+	private String centerGb;	// 센터구분 
 	
-	private String majorApplCd;
-	private String schCnsGb;
-	private String schCenterGb;
-	private String schAcptNm;
-	private String schDt;
-	private String schStartDate;
-	private String schEndDate;
+	private String majorApplCd; // 주요 문제 ( 주호소 증상 )
+	private String schCnsGb;	// 쿼리 조회시 사용되는 , 상담구분  
+	private String schCenterGb;	// 쿼리 조회시 사용되는 , 센터구분 
+	private String schAcptNm;	// 쿼리 조회시 사용되는 내담자 명 
+	private String schDt;		
+	private String schStartDate;// between 조회절에 사용되는 시작일자  
+	private String schEndDate;	// between 조회절에 사용되는 마지막 일자 
 	
 	
 	public String getSigunCd() {

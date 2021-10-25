@@ -17,6 +17,7 @@ import java.io.Serializable;
  *  @see
  *
  */
+
 @SuppressWarnings("serial")
 public class LoginVO implements Serializable{
 
@@ -35,11 +36,11 @@ public class LoginVO implements Serializable{
 	private String userId;
 	private String userNm;
 	private String centerNm;
-	private String centerGb; // 센터구분
-	private String cnsrGb; // 상담사구분
-	private String cnsGb; // 상담구분
-	private String zoneGb; // 권역구분
-	private String localGb; // 지역구분
+	private String centerGb; 	// 센터구분
+	private String cnsrGb; 		// 상담사구분
+	private String cnsGb; 		// 상담구분
+	private String zoneGb; 		// 권역구분
+	private String localGb; 	// 지역구분
 	private String mobile;
 	
 	public String getMobile() {

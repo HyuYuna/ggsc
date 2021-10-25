@@ -38,13 +38,12 @@
 	<!-- 상담접수관리 목록 -->
 	<select id="cnsMngDao.getCnsAcceptList" resultClass="egovMap">
 		SELECT *
-		FROM(SELECT gca.*
+		FROM (SELECT gca.*
 		, DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
 		, ROW_NUMBER() OVER(ORDER BY gca.NUM) AS RNUM
 		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM2
 		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
-		, gum.MOBILE AS
-		MOBILE
+		, gum.MOBILE AS MOBILE
 		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
 		, gum.ADDR AS ADDR
 		, gum.BIRTH_DT AS BIRTH_DT
@@ -4799,26 +4798,22 @@
 	
 	<!--  TEST LINE -->
 	<select id="cnsMngDao.selectCnsAcceptList_test" resultClass="egovMap">
-		SELECT *
-		FROM(SELECT gca.*
-		, DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
+		SELECT 
+		 DATE_FORMAT(gca.DB_INS_TM , '%Y-%m-%d') AS dbInsTm2
 		, ROW_NUMBER() OVER(ORDER BY gca.NUM) AS RNUM
 		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM2
 		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
-		, gum.MOBILE AS
-		MOBILE
-		<!-- , CONCAT(IFNULL(gum.ADDR, ''), ' ', IFNULL(gum.ADDR_DTL, '')) AS ADDR -->
+		, gum.MOBILE AS MOBILE
 		, gum.ADDR AS ADDR
 		, gum.BIRTH_DT AS BIRTH_DT
-		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE <!--  생년월일 값 세팅  -->
+		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
 		, gum.EMAIL AS EMAIL
 		, gum.TEL AS TEL
 		, gum.USER_NM AS USER_NM
-		FROM
-		GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
-		WHERE
-		gca.USER_ID = gum.USER_ID
-		AND gca.ACPT_YN != 'Y' <!-- 확인 되지 않은 것 들만 조회 -->
+		, gca.case_no AS caseNo
+		FROM gs_cns_acpt_test gca , gs_user_m_test gum
+		WHERE gca.USER_ID = gum.USER_ID 
+		AND gca.ACPT_YN != 'Y' 
 		<isNotEmpty property="schCnsGb" prepend="AND">
 			gca.CNS_GB = #schCnsGb#
 		</isNotEmpty>
@@ -4851,11 +4846,8 @@
 	    <isNotEmpty property="schEndDate" prepend="AND">
 	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 	    </isNotEmpty>
-		) A
-		<![CDATA[
- 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
- 			ORDER BY NUM DESC
- 		]]>
+	    
+		AND num BETWEEN #firstIndex# AND #lastIndex# ORDER BY num DESC 
 	</select>
 	
 	<insert id="cnsMngDao.insertUser_TEST" parameterClass="cnsAcptVO">

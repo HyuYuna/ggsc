@@ -64,6 +64,7 @@
 </style>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$("#Ubtn").css("display", "none");
 		var fileTarget = $('#file'); 
