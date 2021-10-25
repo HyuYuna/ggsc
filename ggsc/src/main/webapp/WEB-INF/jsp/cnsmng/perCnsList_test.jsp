@@ -217,6 +217,7 @@
 							<td colspan="12">정보가 없습니다.</td>
 						</tr>
 					</c:if>
+					
 					<c:if test="${cnsList.size() > 0 }">
 						<c:forEach items="${cnsList }" var="result">
 							<c:if test="${result.cnsDtlGbCd eq '1' }">

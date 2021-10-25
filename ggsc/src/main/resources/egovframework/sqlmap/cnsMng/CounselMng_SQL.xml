@@ -4784,18 +4784,6 @@
 	</update>
 	
 	
-	
-	<!-- <update id="cnsMngDao.updateExiCnsAccept" parameterClass="java.lang.String">
-		UPDATE
-			GS_CNS_ACPT
-		SET
-			
-		
-		WHERE 
-			CASE_NO = #caseNo#
-	</update> -->
-	
-	
 	<!--  TEST LINE -->
 	<select id="cnsMngDao.selectCnsAcceptList_test" resultClass="egovMap">
 		SELECT 
@@ -6697,5 +6685,156 @@
 		WHERE
 		NUM = #num#
 	</update>
+	
+	<insert id="cnsMngDao.insertPerCnsDtl_test" parameterClass="perCnsVO">
+		INSERT
+		INTO GS_PER_CNS_DTL_TEST
+		(
+		  CASE_NO
+		, SIGUN_CD  
+		, CNS_GB
+		, CNS_DTL_GB_CD
+		, ZONE_GB
+		, LOCAL_GB
+		, CENTER_GB
+		, CNSLE_ID
+		, CNS_EFFT_PLACE
+		, CNS_RSVT_PLACE
+		, CNS_CNT
+		, EMGCY_URGT
+		, CNS_DT
+		, CNS_DT_WEEK_CD
+		, CNS_DT_STD_HOUR
+		, CNS_DT_STD_MIN
+		, CNS_DT_END_HOUR
+		, CNS_DT_END_MIN
+		, CNS_TIME_TOT_MIN
+		, CNS_RSVT_DT
+		, CNS_RSVT_WEEK_CD
+		, CNS_RSVT_STRT_HOUR
+		, CNS_RSVT_STRT_MIN
+		, CNS_RSVT_END_HOUR
+		, CNS_RSVT_END_MIN
+		, CNS_RSVT_TOT_MIN
+		, CNSLE_REL
+		, CNS_METHD
+		, KILLS_OPTN
+		, AHYD_SUPT_YN
+		, AHYD_ACPT_DT
+		, AHYD_END_DT
+		, ABUS_OPTN
+		, KILLS_RSKN
+		, PSYC_QUST
+		, PER_REL_QUST
+		, PSNG
+		, DMTA
+		, DSM
+		, HELTH_QUST
+		, ECONO_QUST
+		, LIFE_QUST
+		, CNS_ITVT_LINK
+		, CNS_CNT_EVAT_CNTN
+		, DAFT_MNG
+		, CNS_CNTN
+		, EMOT_CPTV_DEGR
+		, HELP_DEGR
+		, CNS_CHNG_DEGR
+		, MAJOR_APPL_CD
+		
+		, CNSLE_NM
+		, CNSR_GB
+		, CNSR_NM
+		, CNSR_ID
+		, CNS_STAT
+		, CNS_END_CD
+		, CNS_END_DT
+		, DEFR_CD
+		, DEFR_DT
+		, RE_REQ_DT
+		, CMBK_DT
+		, BIRTH_DT
+		, GENDER
+		, MOBILE
+		, EMGCY_TEL
+		, ADDR
+		, CNS_END_YN
+		, USE_YN
+		)
+		VALUES
+		(
+		  #caseNo#
+		, #sigunCd#  
+		, #cnsGb#
+		, 1
+		, #zoneGb#
+		, #localGb#
+		, #centerGb#
+		, #cnsleId#
+		, #cnsEfftPlace#
+		, #cnsRsvtPlace#
+		
+		<!--, (SELECT IFNULL(COUNT(A.NUM),1)+1 FROM GS_PER_CNS_DTL AS A WHERE A.CNS_DTL_GB_CD = '1' AND A.CNSLE_ID = #cnsleId#)-->
+		, #cnsCnt#
+		, #emgcyUrgt#
+		, #cnsDt#
+		, #cnsDtWeekCd#
+		, #cnsDtStdHour#
+		, #cnsDtStdMin#
+		, #cnsDtEndHour#
+		, #cnsDtEndMin#
+		, #cnsTimeTotMin#
+		, #cnsRsvtDt#
+		, #cnsRsvtWeekCd#
+		, #cnsRsvtStrtHour#
+		, #cnsRsvtStrtMin#
+		, #cnsRsvtEndHour#
+		, #cnsRsvtEndMin#
+		, #cnsRsvtTotMin#
+		, #cnsleRel#
+		, #cnsMethd#
+		, #killsOptn#
+		, #ahydSuptYn#
+		, #ahydAcptDt#
+		, #ahydEndDt#
+		, #abusOptn#
+		, #killsRskn#
+		, #psycQust#
+		, #perRelQust#
+		, #psng#
+		, #dmta#
+		, #dsm#
+		, #helthQust#
+		, #econoQust#
+		, #lifeQust#
+		, #cnsItvtLink#
+		, #cnsCntEvatCntn#
+		, #daftMng#
+		, #cnsCntn#
+		, #emotCptvDegr#
+		, #helpDegr#
+		, #cnsChngDegr#
+		, #majorApplCd#
+		
+				, #cnsleNm#
+		, #cnsrGb#
+		, #cnsrNm#
+		, #cnsrId#
+		, #cnsStat#
+		, #cnsEndCd#
+		, #cnsEndDt#
+		, #defrCd#
+		, #defrDt#
+		, #reReqDt#
+		, #cmbkDt#
+		, #birthDt#
+		, #gender#
+		, #mobile#
+		, #emgcyTel#
+		, #addr#
+		, #cnsEndYn#
+		, 'Y'
+		)
+	</insert>
+	
 	
 </sqlMap>

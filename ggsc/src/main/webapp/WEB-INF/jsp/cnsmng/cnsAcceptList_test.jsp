@@ -44,8 +44,6 @@
 	}
 	
 	function fn_popup(type, caseNo){
-		console.log(type);
-		console.log(caseNo);
 		var url = "/gnoincoundb/cnsAcceptdtl_test.do?type=" + type + "&caseNo=" + caseNo;
 		var name = "신청자정보";
 		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
@@ -183,8 +181,13 @@
 								<td data-pattern='mobile' style="text-align: left; text-indent:10px;">${result.mobile }</td>
 								<td>${result.age }세</td>
 								<td style="text-align: left; text-indent:10px;">${result.addr }</td>
-								<td><c:if test="${result.cnsHistYn == 'Y' }">유</c:if><c:if test="${result.cnsHistYn != 'Y' }">무</c:if></td>
-								<td><c:if test="${result.acptYn == 'Y' }">확인</c:if><c:if test="${result.acptYn != 'Y' }">미확인</c:if></td>
+								<td><c:if test="${result.cnsHistYn == 'Y' }">유</c:if>
+									<c:if test="${result.cnsHistYn != 'Y' }">무</c:if>
+								</td>
+								<td>
+									<c:if test="${result.acptYn == 'Y' }">확인</c:if>
+									<c:if test="${result.acptYn != 'Y' }">미확인</c:if>
+								</td>
 								<td>${result.dbInsTm2 }</td> <!--  DB insert 시간   -->
 							</tr>
 						</c:forEach>
@@ -205,4 +208,3 @@
 		<!-- end -->
 	</section> 
 </html>
-

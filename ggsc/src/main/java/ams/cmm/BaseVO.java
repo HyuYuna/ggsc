@@ -98,6 +98,4 @@ public class BaseVO {
 	public void setSchText(String schText) {
 		this.schText = schText;
 	}
-
-
 }
