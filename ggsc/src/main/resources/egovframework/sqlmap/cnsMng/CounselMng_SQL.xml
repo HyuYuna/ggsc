@@ -6877,5 +6877,175 @@
 		
 	</select>
 	
+	<select id="cnsMngDao.getGcnsListTotCnt_test" parameterClass="gCnsVO"
+		resultClass="Integer">
+		SELECT 
+			COUNT(CASE_NO)
+		FROM 
+			GS_GCNS_DTL_TEST
+		WHERE
+			1=1
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schPgrmNm" prepend="AND">
+			PGRM_NM LIKE CONCAT('%', #schPgrmNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schLeaderNm" prepend="AND">
+			LEADER LIKE CONCAT('%', #schLeaderNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND CNSR_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
+	<select id="cnsMngDao.getLinkageReqListTotCnt_test" parameterClass="linkReqVO" resultClass="Integer">
+		SELECT
+			COUNT(NUM)
+		FROM
+			GS_LINK_REQ_M_TEST
+		where
+			1=1
+		<isNotEmpty property="schLinkReqGb" prepend="AND">
+			link_req_gb = #schLinkReqGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND CNSR_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
+	<select id="cnsMngDao.getCnsAcptListTotCnt_test" parameterClass="cnsAcptVO" resultClass="Integer">
+		SELECT 
+			COUNT(gca.USER_ID)
+		FROM 
+			GS_CNS_ACPT_TEST gca, GS_USER_M_TEST gum
+		WHERE
+		1=1
+		AND gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN != 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM = #schAcptNm#
+		</isNotEmpty>
+		<isNotEmpty property="schDt" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%y.%m.%d') = #schDt#
+		</isNotEmpty>
+		
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gca.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gca.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
+	<!-- 회원 찾기(명) -->
+	<select id="cnsMngDao.getFindUserTotCnt_test" parameterClass="userInfoVO" resultClass="Integer">
+		SELECT
+		count(gca.CASE_NO)
+		FROM
+		GS_USER_M_TEST gum, GS_CNS_ACPT_TEST gca
+		<isEqual property="cnsTargetGb" compareValue="Y">
+			, GS_PRE_EXAM_M_TEST gpem
+		</isEqual>
+		<!-- <isNotEmpty property="cnsTargetGb">
+			, GS_PRE_EXAM_M gpem
+		</isNotEmpty> -->
+		WHERE gum.USER_ID = gca.USER_ID
+		<isEqual property="cnsTargetGb" compareValue="Y">
+			AND gum.USER_ID = gpem.USER_ID
+			AND gpem.CNS_TARGET_GB = 'Y'
+		</isEqual>
+		<!-- <isNotEmpty property="cnsTargetGb">
+			AND gum.USER_ID = gpem.USER_ID
+			AND gpem.CNS_TARGET_GB = 'Y'
+		</isNotEmpty> -->
+		AND gca.ACPT_YN = 'Y'
+		AND gum.USE_YN = 'Y'
+		<isNotEmpty property="schUserNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schUserNm#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="schUserId" prepend="AND">
+			gum.USER_ID LIKE CONCAT('%', #schUserId#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+	</select>
+	
+	
 	
 </sqlMap>

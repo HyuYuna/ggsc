@@ -368,5 +368,9 @@ public interface CounselMngService {
 	
 	//
 	public int getCnsDiaHysListTotCnt_test(EalyCnsDocVO vo);
+	public int getGcnsListTotCnt_test(GcnsVO vo);
+	public int getLinkageReqListTotCnt_test(LinkReqVO vo);
+	public int getCnsAcptListTotCnt_test(CnsAcptVO vo);
+	public int getFindUserTotCnt_test(UserInfoVO vo);
 }
 

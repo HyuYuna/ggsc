@@ -1165,5 +1165,29 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		int count = cnsMngDao.getCnsDiaHysListTotCnt_test(vo);
 		return count;
 	}
+
+	@Override
+	public int getGcnsListTotCnt_test(GcnsVO vo) {
+		int count = cnsMngDao.getGcnsListTotCnt_test(vo);
+		return count;
+	}
+
+	@Override
+	public int getLinkageReqListTotCnt_test(LinkReqVO vo) {
+		int count = cnsMngDao.getLinkageReqListTotCnt_test(vo);
+		return count;
+	}
+
+	@Override
+	public int getCnsAcptListTotCnt_test(CnsAcptVO vo) {
+		int count =  cnsMngDao.getCnsAcptListTotCnt_test(vo);
+		return count;
+	}
+
+	@Override
+	public int getFindUserTotCnt_test(UserInfoVO vo) {
+		int count =  cnsMngDao.getFindUserTotCnt_test(vo);
+		return count;
+	}
 	
 }

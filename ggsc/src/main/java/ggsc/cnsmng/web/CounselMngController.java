@@ -2249,9 +2249,10 @@ public class CounselMngController {
 			param.setHclassCd("G15");
 			List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
 			List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
-			int totalPageCnt = counselMngService.getCnsAcptListTotCnt(vo);
+			int totalPageCnt = counselMngService.getCnsAcptListTotCnt_test(vo);
 			List<EgovMap> acceptList = counselMngService.cnsAcceptList_TEST(vo);
 		
+			paginationInfo.setTotalRecordCount(totalPageCnt);
 			model.addAttribute("cnsAcceptList",acceptList);
 			model.addAttribute("paginationInfo",paginationInfo);
 			model.addAttribute("cnsGbList",cnsGbList);
@@ -2614,9 +2615,7 @@ public class CounselMngController {
 		
 		List<EgovMap> list = counselMngService.findUserPopup_test(vo);
 		
-		System.out.println(list);
-		
-		int totalPageCnt = counselMngService.getFindUserTotCnt(vo);
+		int totalPageCnt = counselMngService.getFindUserTotCnt_test(vo);
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -3015,7 +3014,7 @@ public class CounselMngController {
 
 		// 집단상담일지 이력정보
 		List<EgovMap> gCnsList = counselMngService.getGcnsList_test(vo);
-		int totalPageCnt2 = counselMngService.getGcnsListTotCnt(vo);
+		int totalPageCnt2 = counselMngService.getGcnsListTotCnt_test(vo);
 		model.addAttribute("totalPageCnt2", totalPageCnt2);
 		paginationInfo.setTotalRecordCount(totalPageCnt2); // 전체 게시물 건 수
 
@@ -3225,8 +3224,7 @@ public class CounselMngController {
 
 		// 연계의뢰서 목록
 		List<EgovMap> linkList = counselMngService.getLinkageReqList_test(vo);
-		int totalPageCnt = counselMngService.getLinkageReqListTotCnt(vo);
-		//model.addAttribute("totalPageCnt", totalPageCnt);
+		int totalPageCnt = counselMngService.getLinkageReqListTotCnt_test(vo);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 
 		model.addAttribute("paginationInfo", paginationInfo);

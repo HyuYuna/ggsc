@@ -896,4 +896,25 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		int count = (Integer)select("cnsMngDao.getCnsDiaHysListTotCnt_test",vo);
 		return count;
 	}
+	
+	public int getGcnsListTotCnt_test(GcnsVO vo) {
+		int count = (Integer)select("cnsMngDao.getGcnsListTotCnt_test",vo);
+		return count; 
+	}
+	
+	public int getLinkageReqListTotCnt_test(LinkReqVO vo) {
+		int count = (Integer)select("cnsMngDao.getLinkageReqListTotCnt_test",vo);
+		return count; 
+	}
+	
+	public int getCnsAcptListTotCnt_test(CnsAcptVO vo) {
+		int count = (Integer)select("cnsMngDao.getCnsAcptListTotCnt_test",vo);
+		return count; 
+	}
+	
+	public int getFindUserTotCnt_test(UserInfoVO vo) {
+		int count = (Integer)select("cnsMngDao.getFindUserTotCnt_test",vo);
+		return count; 
+		
+	}
 }
