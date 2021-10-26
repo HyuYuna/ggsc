@@ -370,6 +370,5 @@ function setChartValue(chartObj, obj, ctx, t ){
 	}
 	
 	graph(ctx, eval(chartObj), t);
-	
 }
 </script>

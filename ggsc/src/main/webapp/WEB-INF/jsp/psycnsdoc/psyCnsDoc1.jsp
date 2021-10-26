@@ -145,7 +145,8 @@
 		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y&cnsPerTargetGb=Y";
 		var name = "회원 찾기";
 		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
-		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));
+		window.open(url, name, option);
+		encodeURI(encodeURIComponent(jindan_name));
 	}
 </script>
 <style>
@@ -391,8 +392,6 @@
 	            		<c:when test="${param.dtlIdx == 0}"> <button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">저장</button> </c:when>
 	            		<c:when test="${param.dtlIdx > 0 }"> <button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">수정</button> </c:when>
 	            	</c:choose>
-					
-					
 				</div>
             </div>
             </form>

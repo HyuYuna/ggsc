@@ -113,6 +113,7 @@
 					return;
 				}
 				console.log(json.psyCnsList);
+				
 				$.each(json.psyCnsList, function(i, d) {
 					html += '<tr>';
 					html += '<td onclick="javascript:fn_popupDoc(\''+d.psyNum+'\' , \''+d.gIdx+'\', \''+d.dtlIdx+'\', \'' + d.psyOrder + '\');">' + d.psyOrder + '</td>';

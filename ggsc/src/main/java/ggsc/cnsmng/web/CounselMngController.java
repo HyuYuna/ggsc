@@ -2634,6 +2634,7 @@ public class CounselMngController {
 		if (request.getAttribute("caseNo") != null) {
 			caseNo = (String) request.getAttribute("caseNo");
 		}
+		
 		if (caseNo == null) {
 			caseNo = String.format("%s", vo.getCaseNo());
 		}

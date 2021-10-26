@@ -3256,8 +3256,7 @@
 	</select>
 
 	<!-- 상담내용 목록(연계) -->
-	<select id="cnsMngDao.getLinkCnsList" parameterClass="linkReqVO"
-		resultClass="EgovMap">
+	<select id="cnsMngDao.getLinkCnsList" parameterClass="linkReqVO" resultClass="EgovMap">
 		
 		SELECT
 			A.*

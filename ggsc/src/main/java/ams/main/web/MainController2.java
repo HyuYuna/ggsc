@@ -78,7 +78,11 @@ public class MainController2 {
 		
 		
 		String mnuCd = request.getParameter("mnuCd");
+		
 		mnuCd = mnuCd == null ? null : mnuCd.substring(0, 3);
+		
+		System.out.println("MENU CHECK : "+mnuCd);
+		
 		model.addAttribute("mnuList", menuService.selectLeftMenuList(mnuCd));
 		//model.addAttribute("vo", menuVO); -- 페이지에서 미사용됨 
 		model.addAttribute("authCd", userAuth);
@@ -118,7 +122,6 @@ public class MainController2 {
 		
 		List<EgovMap> topMenuList = menuService.selectTopMenuList(MenuVO);
 		model.addAttribute("topMenuList", topMenuList);
-		System.out.println(topMenuList);
 		return "common/inc/header"; // 업무화면의 상단메뉴 화면
 	}
 }

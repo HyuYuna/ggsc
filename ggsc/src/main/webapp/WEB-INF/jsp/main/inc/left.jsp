@@ -3,43 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	<h1 class="logo txt-center"><a href="/gnoincoundb/main.do"><img src="/gnoincoundb/images/logo.png" /></a></h1>
-	<!-- 
-	<nav id="nav">
-		<div id="jquery-accordion-menu" class="jquery-accordion-menu navy">
-			<ul id="demo-list" style="width: 200px;">
-			
-				<c:forEach var="result" items="${mnuList}">
-					<c:if test="${result.mnuLvl == 1 }">
-						<li id="${result.mnuCd }"><a href="#" onclick="javascript:fn_goPage('${result.mnuPath }', '${result.mnuCd }')" style="white-space: normal;">${result.mnuNm }</a></li>
-					</c:if>
-					<c:if test="${result.mnuLvl == 2 }">
-						<li id="${result.mnuCd }"><a href="javascript:fn_goPage('${result.mnuPath }', '${fn:substring(result.mnuCd, 0, 3) }')" style="white-space: normal; padding-left: 30px;">${result.mnuNm }</a></li>
-					</c:if>
-					<c:if test="${result.mnuLvl == 3 }">
-						<li id="${result.mnuCd }"><a href="javascript:fn_goPage('${result.mnuPath }', '${fn:substring(result.mnuCd, 0, 3) }')" style="white-space: normal; padding-left: 40px;"></i>${result.mnuNm }</a></li>
-					</c:if>
-				</c:forEach>
-				 
-			 
-				<li><a href="#"><i class="fa fa-angle-right"></i>생산일보</a></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>업무일보</a><span class="jquery-accordion-menu-label">12</span></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>출고현황</a></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>생산계획</a></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>생산관리</a></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>업무일보관리</a></li>
-				<li><a href="#"><i class="fa fa-angle-right"></i>공통관리</a>
-					<ul class="submenu">
-						<li><a href="#"><i class="fa fa-angle-right"></i>생산일보 관리</a></li>
-						<li><a href="#"><i class="fa fa-angle-right"></i>업무일보 관리</a></li>
-						<li><a href="#"><i class="fa fa-angle-right"></i>출고현황 관리</a></li>
-					</ul>
-				</li>
-				
-			</ul>
-		</div>
-	</nav>
-	 -->
-	 
 	   <div class="side-nav">
         <div id="lnb">
             <ul>
@@ -63,11 +26,7 @@
 								</c:choose>
 							</c:if>
 						</c:if>
-						<!-- 
-						<c:if test="${result.mnuLvl == 3 }">
-							<li id="${result.mnuCd }"><a href="javascript:fn_goPage('${result.mnuPath }', '${fn:substring(result.mnuCd, 0, 3) }')" style="white-space: normal; padding-left: 40px;">${result.mnuNm }</a></li>
-						</c:if>
-						-->
+					
 					</c:forEach>
             	</c:if>
             	<!--  초기 조회값이 null 로 갔기 때문에 이 결과가 도출됨 , 추후에 페이지 이동 후 에는 이 if 는 동작되지 않음  -->
@@ -94,7 +53,9 @@
 	 
 	<script type="text/javascript">
 	
-		$(document).ready(function() {});
+		$(document).ready(function() {
+			console.log("${mnuList}");
+		});
 
 		function fn_goPage(path, mnuCd){
 			path = "/gnoincoundb" + path;
