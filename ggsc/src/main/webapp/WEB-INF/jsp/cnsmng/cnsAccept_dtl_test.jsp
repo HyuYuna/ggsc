@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="/gnoincoundb/css/style.css">
 <script src="/gnoincoundb/js/jquery-1.11.2.min.js" ></script>
 <script src="/gnoincoundb/js/custom.js" ></script>
+<!--  카카오 주소찾기 js  -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -33,16 +35,31 @@
 		var type = "${type}";
 		if(type == "R") {
 			$("#sBtn").css("display","");
-			$("#uBtn").css("display","none");
-			$("#cnsPath").css("display","none");
+			$("#uBtn").css("display","none"); // 안 보임 
+			$("#cnsPath").css("display","none"); // 이제 보임 
 		} else if(type == "D") {
 			$("#sBtn").css("display","none");
 			$("#uBtn").css("display","");
 			$("#cnsPath").css("display","");
 		}
-		
 		// type 에 따른 컴포넌트 제어 
+		
+		$("#adressSearch").click(searchAdress);
 	});
+	
+	function searchAdress(){
+		 new daum.Postcode({
+		        oncomplete: function(data) { // 주소 클릭이 끝난 후에 처리되는 서비스 
+		           cnsrAdress = data.address;
+		        	if($("#addr").val() == ""){
+		           		$("#addr").val(cnsrAdress);
+		        	}else{
+		        		$("#addr").val("");
+		        		$("#addr").val(cnsrAdress);
+		        	}
+		        }
+		    }).open();
+	}
 	
 	var idCheck;
 
@@ -130,26 +147,7 @@
 			$("#mobile").focus();
 			return;
 		}
-		
-		/*if($("#email").val()==""){
-			alert("이메일을 입력해주세요.");
-			$("#email").focus();
-			return;
-		}
-		
-		if($("#tel").val()==""){
-			alert("전화번호를 입력해주세요.");
-			$("#tel").focus();
-			return;
-		}
-		
-		if($("#mobile").val()==""){
-			alert("핸드폰을 입력해주세요.");
-			$("#mobile").focus();
-			return;
-		}
-		*/
-		
+
 		if($("#addr").val()==""){
 			alert("주소를 입력해주세요.");
 			$("#addr").focus();
@@ -346,16 +344,6 @@
 						</select>
 					</td>
 				</tr>
-				<%-- <tr>
-					<th>지역구분 <span style="color: red;">*</span></th>
-					<td>
-						<select id="localGb" name="localGb">
-							<c:forEach items="${localGbList }" var="list">
-								<option value="${list.odr }" <c:if test="${list.odr == result.localGb }">selected</c:if>>${list.mclassNm }</option>
-							</c:forEach>
-						</select>
-					</td>
-				</tr> --%>
 				<tr>
 					<th>시군구분 <span style="color: red;">*</span></th>
 					<td>
@@ -422,7 +410,10 @@
 				</tr>
 				<tr>
 					<th>주소<span style="color: red;"> *</span></th>
-					<td><input type="text" id="addr" name="addr" value="${result.addr }"/></td>
+					<td>
+						<input type="text" id="addr" name="addr" class = "wd300" value="${result.addr }"/>
+						<button type="button" class="btn-basic" id = "adressSearch">주소찾기</button>
+					</td>
 				</tr>
 				<tr>
 					<th>상담이력 <span style="color: red;">*</span></th>

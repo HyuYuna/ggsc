@@ -2329,6 +2329,8 @@ public class CounselMngController {
 			result = counselMngService.getCnsAcceptDtl_TEST(caseNo); 
 			System.out.println("Null Valule Check : "+result);
 		}
+		// R 인 경우에는 조회되지 않고 그냥 빈 값만 넘어간다 . 필요한 데이터만 뽑아서 ~ 
+		// Result 는 빈 값이라는 이야기 
 		
 		model.addAttribute("result", result);
 		model.addAttribute("type", type);
