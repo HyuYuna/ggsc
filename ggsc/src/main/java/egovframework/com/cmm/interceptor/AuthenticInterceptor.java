@@ -1,10 +1,5 @@
 package egovframework.com.cmm.interceptor;
 
-import egovframework.com.cmm.LoginVO;
-
-import egovframework.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
-import egovframework.rte.psl.dataaccess.util.EgovMap;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
+
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 /**
  * 인증여부 체크 인터셉터
@@ -48,20 +45,5 @@ public class AuthenticInterceptor extends WebContentInterceptor {
 		}else {
 			return true;
 		}
-		
-		/*
-		if(EgovUserDetailsHelper.isAuthenticated()) {
-		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		
-		
-		if (loginVO.getId() != null) {
-			return true;
-		} else {
-			ModelAndView modelAndView = new ModelAndView("redirect:/login/login.do");
-			throw new ModelAndViewDefiningException(modelAndView);
-		}
-		*/
 	}
-	
-
 }

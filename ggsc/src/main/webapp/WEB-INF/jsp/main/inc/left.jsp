@@ -30,6 +30,7 @@
 					</c:forEach>
             	</c:if>
             	<!--  초기 조회값이 null 로 갔기 때문에 이 결과가 도출됨 , 추후에 페이지 이동 후 에는 이 if 는 동작되지 않음  -->
+            	<!--  mnuList 가 조회되지 않았을 시 에 , goPage 함수에 메뉴코드를 넘겨주어 가공하여 path를 location.href로 호출함  -->
             	<c:if test="${mnuList.size() == 0 }">
             	
             		<li class="noto500 fMenu" id=""><a class="fmOn" href="javascript:fn_goPage('/counsellor_mng_list.do', 'M01')">운영관리</a></li>
@@ -61,6 +62,8 @@
 			path = "/gnoincoundb" + path;
 			path += "?mnuCd=" + mnuCd;
 			console.log(path);
+		 	// path 체크를 하면 request parameter 에 메뉴코드가 항시 들어있게 만들어져 있음 .
+		 	// 그렇기 때문에 ,
 			document.location.href = path;
 		}
 	</script>

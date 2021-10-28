@@ -35,20 +35,29 @@ $(function(){
 });
 
 function fn_pdfDownload(number, idx){
+
+	console.log(number);
+	console.log(idx);
+	
 	
 	if(Number(number).toString() != 'NaN'){
        $("#tmpFrame").remove();
         $('body').append("<iframe id='tmpFrame' name='tmpFrame' style='display:none'></iframe>");
+        
 		var frm = document.createElement('form');
+		
 		frm.method = 'post';
 		frm.action = 'pdfDownload.do?test=0';
 		frm.target = 'tmpFrame';
 		frm.name='pdfForm';
 		frm.style.display = 'none';
 		frm.appendChild($("input[name='_csrf']")[0]);
+		
 		frm.appendChild($("<input type='hidden' name='Number' value='" + number + "' />")[0]);
 		frm.appendChild($("<input type='hidden' name='num' value='" + idx + "' />")[0]);
+		
 		$('body').append(frm);
+		
 		frm.submit();
 	}else{
 		alert('파일을 다운로드 할 수 없습니다.');

@@ -3,9 +3,14 @@
       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
+
     <definition name="main" template="/WEB-INF/jsp/layout/main.jsp">
+    <!--  최종적으로 content page 가 반응하는 페이지 -->
         <put-attribute name="left" value="/left.do"/>
         <put-attribute name="header"  value="/header.do"/>
+        <!--  매번 .main 으로 들어올 때마다 left.do , header.do 를 이용하여 메뉴조회가 이루어진다  -->
+        <!--  즉 디자인 프레임워크를 필요로 하는 페이지들만이 메뉴를 클릭할때마다 로드 받는 다는 말이 된다 -->
+        <!--  메뉴 코드를 보내주는 이유도 다 여기에 입각하는 듯 하다 . -->
     </definition>
    
     <definition name="*/*/*.main" extends="main">

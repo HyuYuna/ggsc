@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>egovframework.pst</display-name>
+  
+  <!--  문자열 인코딩 해주는 필터 utf-8 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -13,6 +15,8 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
+  <!--  파일다운로드 필터 -->
   <filter>
     <filter-name>multipartFilter</filter-name>
     <filter-class>
@@ -27,6 +31,8 @@
     <filter-name>multipartFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
+  <!--  시큐리티 filter -->
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -35,6 +41,7 @@
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
   <filter>
     <filter-name>xssEscapeServletFilter</filter-name>
     <filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
@@ -43,6 +50,8 @@
     <filter-name>xssEscapeServletFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!--  로그에 찍히던 request parameter 확인하는 객체 -->
   <filter>
     <filter-name>HTMLTagFilter</filter-name>
     <filter-class>egovframework.com.cmm.filter.HTMLTagFilter</filter-class>
@@ -51,20 +60,28 @@
     <filter-name>HTMLTagFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
   <listener>
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>
+  
+  <!--  공통적으러 사용되는 객체 로드시켜주는 ContextLoaderListener -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <!--  spring setting file 로드 시키는 path -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:egovframework/spring/com/context-*.xml, classpath*:egovframework/spring/com/security-context.xml</param-value>
   </context-param>
+  
   <context-param>
     <param-name>defaultHtmlEscape</param-name>
     <param-value>true</param-value>
   </context-param>
+  
+  <!--  현 프로젝트에서 모든 요청을 받는 dispatcher servlet -->
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -78,13 +95,17 @@
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!--  얘는 안 쓰임  -->
   <servlet-mapping>
     <servlet-name>action</servlet-name>
     <url-pattern>*.aj</url-pattern>
   </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
   <login-config>
     <auth-method>BASIC</auth-method>
   </login-config>

@@ -534,7 +534,7 @@
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G14' AND ODR = gpcd.cns_methd) AS cnsMethd ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G44' AND ODR = gpcd.cnsle_rel) AS cnsleRel ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gpcd.major_appl_cd) AS majorApplCd ,
-			gpcd.cns_cntn ,
+			concat(substr(gpcd.cns_cntn ,1 ,25) , '...') AS cns_cntn,
 			gpcd.CASE_NO ,
 			date_format(gpcd.db_ins_tm,'%Y.%m.%d') AS dbInsTm
 		FROM

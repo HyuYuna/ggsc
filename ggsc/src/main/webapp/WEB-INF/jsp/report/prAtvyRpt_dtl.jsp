@@ -1,4 +1,3 @@
-
 <%@ page import="egovframework.rte.psl.dataaccess.util.EgovMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,8 +8,8 @@
 
 
 	
-    <script src="/gnoincoundb/js/html2canvas.min.js" ></script>
-    <script src="/gnoincoundb/js/jspdf.min.js" ></script>
+    <script src="/gnoincoundb/js/html2canvas.min.js"></script>
+    <script src="/gnoincoundb/js/jspdf.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -27,17 +26,7 @@
 	function fn_save(save){
 		
 		var frm = document.frm;
-
-		/* if(frm.cnsGb.value.length == 0 ){
-			alert('[상담구분]을 선택해주세요.');
-			return false;
-		}else  if(frm.zoneGb.value.length == 0 ){
-			alert('[권역구분]을 선택해주세요.');
-			return false;
-		} else if(frm.localGb.value.length == 0 ){
-			alert('[지역구분]을 선택해주세요.');
-			return false;
-		} */
+		
 		if(frm.centerGb.value.length == 0 ){
 			alert('[센터구분]을 선택해주세요.');
 			return false;

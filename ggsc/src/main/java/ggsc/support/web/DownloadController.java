@@ -50,9 +50,7 @@ import ggsc.support.service.ExcelVO;
 import ggsc.support.service.PdfVO;
 import ggsc.support.service.SupportService;
 
-
 @Controller
-
 public class DownloadController {
 	@Resource(name = "supportService")
 	private SupportService supportService;
@@ -77,10 +75,12 @@ public class DownloadController {
 	
 		vo.setNumber( Integer.parseInt(request.getParameter("Number").toString()));
 		vo.setNum( Integer.parseInt(request.getParameter("num").toString()));
+		
 		String inputFile = utility.func.pdfTemplatePath + vo.getTemplateName() + ".html";
 		String fontPath = utility.func.pdfTemplatePath + "NanumGothic-Bold.ttf";
 		
-		EgovMap result = supportService.PDFDownload(vo, vo.getTemplateSQLName()); 	
+		EgovMap result = supportService.PDFDownload(vo, vo.getTemplateSQLName()); 
+		
 		if(result==null) {
 			System.out.println("Null Check");
 			return;
@@ -90,11 +90,15 @@ public class DownloadController {
 			InputStream is = new FileInputStream(inputFile);
 
 			InputStreamReader isr = new InputStreamReader(is);
+			
 			BufferedReader buffer = new BufferedReader(isr);
+			
 			String tmp, content = "";
+			
 			while ((tmp = buffer.readLine()) != null) {
 				content += tmp;
 			}
+			
 			buffer.close();
 			isr.close();
 			

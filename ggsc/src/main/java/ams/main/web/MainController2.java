@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ams.adm.menu.service.MenuService;
-import ams.cmm.AMSComm;
-import ams.cmm.AMSDate;
 import ams.main.mnu.service.MenuManageService;
 import ams.main.mnu.service.MenuVO;
 import ams.main.service.MainService;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
-import ggsc.cnsr.service.GroupVO;
 import ggsc.com.util.service.ComCodeService;
 
 /**
@@ -59,14 +56,18 @@ public class MainController2 {
 	@RequestMapping(value = "/left.do", method = RequestMethod.GET)
 	public String left(HttpServletRequest request, @ModelAttribute("MenuVO") MenuVO menuVO, ModelMap model) {
 		
-		// 권한 관리 시작
+		System.out.println("Request Value Check : "+request);
+		
+		// 권한 관리시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
-		int userAuth, userCenterGb;
+		int userAuth, userCenterGb; 
+		
 		try {
 			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
 			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
 			if (userAuth == 0) { userAuth = 10; }
+			
 		} catch (NumberFormatException err) {
 			userAuth = 10;
 			userCenterGb = 0;
@@ -77,11 +78,13 @@ public class MainController2 {
 		// 권한 관리 끝
 		
 		
-		String mnuCd = request.getParameter("mnuCd");
+		String mnuCd = request.getParameter("mnuCd"); // 요청시 실행이 되긴 되는데 .. request param으로 이 값을 보낸적이 없는데 ?
 		
 		mnuCd = mnuCd == null ? null : mnuCd.substring(0, 3);
 		
 		System.out.println("MENU CHECK : "+mnuCd);
+		// substring 으로 문자열을 자르기 때문에 조회시 최상위 코드만 조회된다 
+		
 		
 		model.addAttribute("mnuList", menuService.selectLeftMenuList(mnuCd));
 		//model.addAttribute("vo", menuVO); -- 페이지에서 미사용됨 

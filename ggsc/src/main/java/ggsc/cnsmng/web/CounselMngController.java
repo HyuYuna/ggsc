@@ -72,6 +72,7 @@ public class CounselMngController {
 			
 			if (userAuth == 0)
 				userAuth = 10;
+			
 		} catch (NumberFormatException err) {
 			userAuth = 10;
 			userCenterGb = 0;
@@ -92,7 +93,7 @@ public class CounselMngController {
 			case 1: vo.setAuthCd("1"); break; 
 			case 2: vo.setAuthCd("2"); break; 
 			case 3: vo.setAuthCd("3"); break; 
-		    default: vo.setAuthCd("4"); break; 
+		   default: vo.setAuthCd("4"); break; 
 		}
 		
 		// 권한 관리 끝
@@ -126,6 +127,9 @@ public class CounselMngController {
 		model.addAttribute("cnsCenterList", cnsCenterList); // 센터구분 
 		model.addAttribute("vo", vo);
 		model.addAttribute("authCd", userAuth);
+		
+		System.out.println("Request Value Check Controller : "+request);
+		
 		return "cnsmng/cnsAccept_list.main";
 	}
 	
@@ -3685,6 +3689,4 @@ public class CounselMngController {
 				
 		return "cnsmng/exiCnsAccept_dtl_test";
 	}
-	
-
 }
