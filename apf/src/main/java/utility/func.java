@@ -9,15 +9,15 @@ import java.time.format.DateTimeFormatter;
 import org.apache.log4j.Logger;
 
 public class func {
-//	public static final boolean useSSH = false;
-//	public static final String filePath = "C:\\Users\\huensys\\git\\Files\\";
-//	public static final String secureKeyPath = "C:/Users/huensys/Settings/key";
-//	private static final String LogPath = "C:\\Users\\huensys\\git\\log\\";
+	/*public static final boolean useSSH = false;
+	public static final String filePath = "C:\\Users\\huensys\\git\\Files\\";
+	public static final String secureKeyPath = "C:/Users/huensys/Settings/key";
+	private static final String LogPath = "C:\\Users\\huensys\\git\\log\\"; */
 	
 	public static final boolean useSSH = true;
 	public static final String filePath = "/software/tomcat/webapps/files/";
 	public static final String secureKeyPath = "/software/key";
-	private static final String LogPath = "/software/tomcat/webapps/log/";
+	private static final String LogPath = "/software/tomcat/webapps/log/"; 
 	
 	public static int OnlyNumber(String str, int defaultValue) {
 		int returnValue; 

@@ -364,6 +364,9 @@
 					<c:if test="${ result != null && (authCd <= 1 || ( authCd > 1 && userId == result.cnsrId )) }">
 						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
 					</c:if>
+					<c:if test="${result != null}">
+						<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(27, '${result.eduAtvyNo }')">PDF 다운</button>
+					</c:if>
 				</div>	
 			</form>
 		</div>

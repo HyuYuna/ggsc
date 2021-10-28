@@ -446,6 +446,66 @@
 			NUM = #num#
 	</select>
 	
+	<!-- 네트워크구축회의 보고서 PDF -->
+	<select id="supportDao.PDFntwkMeetRptDtl" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT
+			gnmr.INPUT_NM AS survey1y,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G39' AND ODR = gnmr.JOIN_ORG_CD) AS survey2y ,
+			date_format(str_to_date(gnmr.MEET_DT,'%Y.%m.%d'),'%Y년 %m월 %d일') AS survey3y ,
+			gnmr.JOIN_MAN AS survey4y ,
+			gnmr.JOIN_PLACE AS survey5y ,
+			gnmr.JOIN_CNTN AS survey6y
+		FROM
+			gs_ntwk_meet_rpt as gnmr
+		WHERE 
+			NTWK_MEET_NO = #num#
+	</select>
+	
+	<!-- 교육활동보고서 PDF -->
+	<select id="supportDao.PDFeduAtvyRptDtl" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT
+			gear.INPUT_NM AS survey1y,
+			(SELECT CENTER_NM FROM gs_center_m WHERE NUM = gear.CENTER_GB ) AS survey2y ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G91' AND ODR = gear.HOST_GB) AS survey3y ,
+			gear.EDU_PEOPLE AS survey4y ,
+			date_format(str_to_date(gear.EDU_DT,'%Y.%m.%d'),'%Y년 %m월 %d일') AS survey5y ,
+			CONCAT(RIGHT(CONCAT('00',gear.EDU_STT_HOUR),2),':',RIGHT(CONCAT('00',gear.EDU_STT_MIN),2)) survey6y ,
+			CONCAT(RIGHT(CONCAT('00',gear.EDU_END_HOUR),2),':',RIGHT(CONCAT('00',gear.EDU_END_MIN),2)) survey7y ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G76' AND ODR = gear.EDU_TITLE) AS survey8y ,
+			(SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_NM = '교육방법' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.EDU_WAY, ',', numbers.n), ',', -1) CD  FROM numbers  INNER JOIN  gs_edu_atvy_rpt AS B ON CHAR_LENGTH(B.EDU_WAY)-CHAR_LENGTH(REPLACE(B.EDU_WAY, ',', ''))>=numbers.n-1 WHERE B.EDU_ATVY_NO = gear.EDU_ATVY_NO ) ) AS survey9y ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G78' AND ODR = gear.EDU_MAN) AS survey10y ,
+			gear.PSYC_EXAM_CNTN AS survey11y ,
+			gear.MAJOR_CNTN AS survey12y
+			
+		FROM
+			GS_EDU_ATVY_RPT as gear
+		WHERE 
+			EDU_ATVY_NO = #num#
+	</select>
+	
+	<!-- 홍보활동보고서  PDF -->
+	<select id="supportDao.PDFprAtvyRptDtl" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT
+			gpar.INPUT_NM AS survey1y,
+			(SELECT CENTER_NM FROM gs_center_m WHERE NUM = gpar.CENTER_GB ) AS survey2y ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G42' AND ODR = gpar.PROMOTION) AS survey3y ,
+			date_format(str_to_date(gpar.PR_ATVY_DT,'%Y.%m.%d'),'%Y년 %m월 %d일') AS survey4y ,
+			CONCAT(RIGHT(CONCAT('00',gpar.PR_STT_HOUR),2),':',RIGHT(CONCAT('00',gpar.PR_STT_MIN),2)) survey5y ,
+			CONCAT(RIGHT(CONCAT('00',gpar.PR_END_HOUR),2),':',RIGHT(CONCAT('00',gpar.PR_END_MIN),2)) survey6y ,
+			(SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD = ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_NM = '홍보활동' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.PR_ATVY_AREA, ',', numbers.n), ',', -1) CD  FROM numbers  INNER JOIN  gs_pr_atvy_rpt AS B ON CHAR_LENGTH(B.PR_ATVY_AREA)-CHAR_LENGTH(REPLACE(B.PR_ATVY_AREA, ',', ''))>=numbers.n-1 WHERE B.PR_ATVY_NO = gpar.PR_ATVY_NO ) ) AS survey7y , 
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G92' AND ODR = gpar.PR_ATVY_PTCT_GB) AS survey8y ,
+			gpar.PR_ATVY_PTCT AS survey9y ,
+			(SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM gs_m_class WHERE HCLASS_CD in ( SELECT HCLASS_CD FROM gs_h_class WHERE HCLASS_NM = '교육대상' ) AND ODR IN ( SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(B.PR_ATVY_RCPT, ',', numbers.n), ',', -1) CD  FROM numbers  INNER JOIN  gs_pr_atvy_rpt AS B ON CHAR_LENGTH(B.PR_ATVY_RCPT)-CHAR_LENGTH(REPLACE(B.PR_ATVY_RCPT, ',', ''))>=numbers.n-1 WHERE B.PR_ATVY_NO = gpar.PR_ATVY_NO ) ) AS survey10y , 
+			gpar.PR_ATVY_MAN survey11y ,
+			gpar.PR_ATVY_PLACE survey12y ,
+			gpar.PSYC_EXAM survey13y ,
+			gpar.PR_ATVY_CNTN survey14y
+		FROM
+			gs_pr_atvy_rpt as gpar
+		WHERE 
+			PR_ATVY_NO = #num#
+	</select>
+	
 	<!-- 심리검사1 - 상담사전사후기록지 PDF -->
 	<select id="supportDao.PDFpsyCnsDoc1" parameterClass="PdfVO" resultClass="egovMap">
 		SELECT 

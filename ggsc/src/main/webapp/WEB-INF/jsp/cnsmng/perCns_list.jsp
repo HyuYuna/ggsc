@@ -299,12 +299,12 @@
 									<td style="text-align: left; text-indent: 5px;" onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">
 										<c:choose>
 										   <c:when test="${fn:length(result.cnsCntn) > 25 }">
-										      <c:out value="${fn:substring(result.cnsCntn,0,25) }..." />        
+										      <c:out value="${fn:substring(result.cnsCntn,0,25) }..." escapeXml="false" />        
 										   </c:when>
 										   <c:otherwise>
-										      <c:out value="${result.cnsCntn}" /> 
+										      <c:out value="${result.cnsCntn}" escapeXml="false" /> 
 										   </c:otherwise>
-										</c:choose>									
+										</c:choose>									 
 									</td>
 									<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">${result.age }세</td>
 									<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">${result.cnsStatNm }</td>

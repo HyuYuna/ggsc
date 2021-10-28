@@ -301,10 +301,10 @@
 								<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}');" style="text-align: left; text-indent: 5px;">
 									<c:choose>
 									   <c:when test="${fn:length(result.pgrmCntn) > 25 }">
-									      <c:out value="${fn:substring(result.pgrmCntn,0,25) }..." />        
+									      <c:out value="${fn:substring(result.pgrmCntn,0,25) }..." escapeXml="false" />        
 									   </c:when>
 									   <c:otherwise>
-									      <c:out value="${result.pgrmCntn}" /> 
+									      <c:out value="${result.pgrmCntn}" escapeXml="false" /> 
 									   </c:otherwise>
 									</c:choose>									
 								</td>

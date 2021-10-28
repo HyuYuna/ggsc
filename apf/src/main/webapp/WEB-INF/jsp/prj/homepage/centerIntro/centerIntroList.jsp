@@ -2,6 +2,18 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
+	
+	<style>
+		table {
+		    text-align : center;
+		}
+		th {
+			text-align : center;
+			padding : 10px 18px 12px;
+		}
+		td {
+		}
+	</style>
     <script>
 	  	$(document).ready(function() {
 	  		$("#operating").css("display","none");
@@ -229,7 +241,60 @@
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
 			<div style="width: 920px; margin: auto; margin-top: 30px;">
-				<img src='/gnoincoun/images/cenIntro14.png' alt="함께하는 사람들" style="width: 920px;"/>
+				<img src='/gnoincoun/images/cenIntro14.png' alt="함께하는 사람들"
+					style="width: 920px;" />
+				<!--  <div style="margin-top: 35px;">
+					<table class="table table-bordered" style="vertical-align:middle;">
+						<colgroup>
+							<col width="30%" />
+							<col width="10%" />
+							<col width="8%" />
+							<col width="15%" />
+							<col width="35%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">직급</th>
+								<th scope="col">이름</th>
+								<th scope="col">전화번호</th>
+								<th scope="col">당담업무</th>
+							</tr>
+						</thead>
+						<tbody style="vertical-align:middle;">
+							<tr>
+								<td colspan="2" rowspan="2">센터장</th>
+								<td rowspan="2">김미나</td>
+								<td rowspan="2">070-4832-6360</td>
+								<td>• 센터 운영 총괄</td>
+							</tr>
+							<tr>
+								<td>• 대외 협력업무</td>
+							</tr>
+							<tr>
+								<td rowspan="5">노인상담지원팀</th>
+								<td rowspan="2">팀장</td>
+								<td rowspan="2">오명심</td>
+								<td rowspan="2">070-4832-6361</td>
+								<td>• 센터 사업 총괄</td>
+							</tr>
+							<tr>	
+								<td>• 복무 및 인사관리</td>
+							</tr>
+							<tr>
+								<td rowspan="3">과장</th>
+								<td rowspan="3">박경숙</td>
+								<td rowspan="3">070-4832-6363</td>
+								<td>• 상담지원사업</td>
+							</tr>
+							<tr>	
+								<td>• 교육지원사업</td>
+							</tr>
+							<tr>	
+								<td>• 외부지원사업</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> -->
 			</div>
 			<div style="width: 100%; text-align: center; margin-top: 20px;">
 				<!-- <button type="button" class="btn btn-success" style="border-radius: 11px;" onclick="location.href='/gnoincoun/comfCnsWrite.do'">온라인상담 예약하기</button> -->

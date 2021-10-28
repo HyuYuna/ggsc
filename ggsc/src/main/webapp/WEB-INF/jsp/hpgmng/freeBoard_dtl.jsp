@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <link href="/gnoincoundb/css/style.css" rel="stylesheet">
+<script src="/gnoincoundb/editor/js/bootstrap_3.3.5.js"></script>
+<link rel="stylesheet" href="/gnoincoundb/editor/css/bootstrap_3.3.5.css">
 <%-- <script src="/gnoincoundb/editor/js/summernote_0.8.3.js"></script>
 <script src="/gnoincoundb/editor/js/summernote_0.8.3.min.js"></script>
 <script src="/gnoincoundb/editor/lang/summernote-ko-KR.js"></script>

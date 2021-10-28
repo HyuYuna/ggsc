@@ -37,6 +37,7 @@
 </style>
 <section class="service-2 section">
 	<form name="downForm" id="downForm" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
 		<input type="hidden" id="filePath" name="filePath" value="" />

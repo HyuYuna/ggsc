@@ -431,8 +431,8 @@ public class ExcelVO extends PageVO{
 				break;
 			case 22 : 
 				setInit("개인상담현황",
-						new String[] {"순번", "caseNo", "상담상태", "상담구분", "상담회기", "상담자구분", "시군구분", "센터구분", "상담자명", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "긴급연락처", "상담일시", "내담자와의관계", "상담방법", "주호소문제", "상담내용", "등록일시"},
-						new String[] {"rnum", "caseNo", "cnsStat", "cnsGb", "cnsCnt", "cnsrGb", "sigunCd", "centerGb", "cnsrNm", "cnsleNm", "birthDt", "gender", "addr", "mobile", "emgcyTel", "cnsDt", "cnsMethd", "cnsleRel", "majorApplCd", "cnsCntn", "dbInsTm"});
+						new String[] {"순번", "caseNo", "상담상태", "상담구분", "상담회기", "상담자구분", "시군구분", "센터구분", "상담자명", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "긴급연락처", "상담일시", "내담자와의관계", "상담방법", "주호소문제", "상담내용", "등록일시","주/야간"},
+						new String[] {"rnum", "caseNo", "cnsStat", "cnsGb", "cnsCnt", "cnsrGb", "sigunCd", "centerGb", "cnsrNm", "cnsleNm", "birthDt", "gender", "addr", "mobile", "emgcyTel", "cnsDt", "cnsMethd", "cnsleRel", "majorApplCd", "cnsCntn", "dbInsTm","shift"});
 				break;
 			case 23 : 
 				setInit("집단상담현황",

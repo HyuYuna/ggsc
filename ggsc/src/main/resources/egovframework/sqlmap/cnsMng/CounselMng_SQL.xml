@@ -573,11 +573,11 @@
 			ggd.atde_nm ,
 			ggd.atvy_title ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = '17' AND ODR = ggd.CNS_TYPE) AS cnsType ,
-			ggd.atvy_goal ,
-			ggd.pgrm_cntn ,
-			ggd.evat ,
-			ggd.after_plan ,
-			ggd.etc ,
+			left(ggd.atvy_goal, 25) as atvy_goal ,
+			left(ggd.pgrm_cntn , 25) as pgrm_cntn ,
+			left(ggd.evat , 25) as evat ,
+			left(ggd.after_plan , 25) as after_plan ,
+			left(ggd.etc , 25) as etc ,
 			date_format(ggd.db_ins_tm,'%Y.%m.%d') AS dbInsTm
 		FROM
 			gs_gcns_dtl ggd
@@ -640,9 +640,24 @@
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G14' AND ODR = gpcd.cns_methd) AS cnsMethd ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G44' AND ODR = gpcd.cnsle_rel) AS cnsleRel ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gpcd.major_appl_cd) AS majorApplCd ,
-			gpcd.cns_cntn ,
+			left(gpcd.cns_cntn, 25) as cns_cntn,
 			gpcd.CASE_NO ,
-			date_format(gpcd.db_ins_tm,'%Y.%m.%d') AS dbInsTm
+			date_format(gpcd.db_ins_tm,'%Y.%m.%d') AS dbInsTm ,
+			CASE 
+				WHEN 
+					gpcd.cns_gb = '3' 
+						then
+							CASE
+								WHEN
+									RIGHT(CONCAT('00',gpcd.CNS_DT_STD_HOUR),2) IN ('18','19','20','21','22','23','00','01','02','03','04','05','06','07','08')
+								THEN 
+									'야간' 
+								ELSE
+									'주간' 
+							end
+				ELSE 
+					NULL 
+			END AS shift
 		FROM
 			gs_per_cns_dtl AS gpcd
 		where
@@ -1108,7 +1123,7 @@
 		<isEqual property="authCd" compareValue="3">
 			AND gca.CENTER_GB = #schCenterGb#
 			<isEqual property="schCenterGb" compareValue="1">
-				AND gca.CNS_GB = #schCnsGb#
+				AND gca.REG_ID = #regId#
 			</isEqual>
 		</isEqual>
 		<isEqual property="authCd" compareValue="4">

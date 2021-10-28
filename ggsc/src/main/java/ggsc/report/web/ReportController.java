@@ -874,7 +874,7 @@ public class ReportController {
 		List<EgovMap> cnsLocalList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("cnsLocalList", cnsLocalList);
 		
-		// 지역구분 코드
+		// 홍보 코드
 		param.setHclassCd("G42");
 		List<EgovMap> promotionList = adminManageService.getGroupMngDtlMList(param);
 		model.addAttribute("promotionList", promotionList);

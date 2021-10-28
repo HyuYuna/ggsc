@@ -116,8 +116,18 @@
 			$("#cnsDtStdHour").focus();
 			return;
 		}
+		if(cnsDtStdHour.length != 2){
+			alert("상담일시 시간을 2자리로 입력해 주세요.");
+			$("#cnsDtStdHour").focus();
+			return;
+		}
 		if(cnsDtStdMin.length == 0) {
-			alert("상담일시 시간을 입력해 주세요");
+			alert("상담일시 분을 입력해 주세요");
+			$("#cnsDtStdMin").focus();
+			return;
+		}
+		if(cnsDtStdMin.length != 2){
+			alert("상담일시 분을 2자리로 입력해 주세요.");
 			$("#cnsDtStdMin").focus();
 			return;
 		}
@@ -126,8 +136,18 @@
 			$("#cnsDtEndHour").focus();
 			return;
 		}
+		if(cnsDtEndHour.length != 2){
+			alert("상담일시 시간을 2자리로 입력해 주세요.");
+			$("#cnsDtEndHour").focus();
+			return;
+		}
 		if(cnsDtEndMin.length == 0) {
-			alert("상담일시 시간을 입력해 주세요");
+			alert("상담일시 분을 입력해 주세요");
+			$("#cnsDtEndMin").focus();
+			return;
+		}
+		if(cnsDtEndMin.length != 2){
+			alert("상담일시 분을 2자리로 입력해 주세요.");
 			$("#cnsDtEndMin").focus();
 			return;
 		}

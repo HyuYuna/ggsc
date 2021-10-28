@@ -46,14 +46,27 @@
 				alert("로그인 후에 글쓰기를 하실 수 있습니다.");
 				// location.href="/gnoincoun/login.do";
 			}
-		}        
-        
+		}       
+		
+		function fn_fileDown(sysFileNm, filePath, fileNm){
+			$("#fileNm").val(fileNm);
+			$("#sysFileNm").val(sysFileNm);
+			$("#filePath").val(filePath);
+			document.downForm.action = "/gnoincoun/fileDown2.do";
+	       	document.downForm.submit();
+		}
   </script>
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
+	<form name="downForm" id="downForm" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
 	<div id="wrap">
 	<div style="border-top: 1px solid #f09d4c;">
 		<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
@@ -81,6 +94,7 @@
 	              <col class="hidden-xs" style="width: 80px" />
 	              <col  />
 	              <col style="width: 120px" />
+	              <col class="hidden-xs" style="width: 100px" />
 	              <col class="hidden-xs"  style="width: 80px" />
 	            </colgroup>
 	            <thead class="hidden-xs">
@@ -88,6 +102,7 @@
 	                <th scope="col" class="num hidden-xs">번호</th>
 	                <th scope="col" class="subject">제목</th>
 	                <th scope="col" class="time">등록일</th>
+	                <th scope="col" class="file hidden-xs">첨부파일</th>
 	                <th scope="col" class="no hidden-xs">조회수</th>
 	              </tr>
 	            </thead>
@@ -97,6 +112,11 @@
 			              <td class="num hidden-xs"><c:out value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}"/><%-- <c:out value="${result.num}"/> --%></td>
 			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}" escapeXml="false" /></a></td>
 			              <td class="time"><c:out value="${result.dbInsTm}"/></td>
+		               	  <td class="file hidden-xs">
+				              <c:if test="${result.fileNm != null }">
+				              	<a href="javascript:fn_fileDown('<c:out value="${result.sysFileNm}"/>','<c:out value="${result.filePath}"/>','<c:out value="${result.fileNm}"/>')" class="btn btn-default btn-sm"><i class="fa fa-download mr5"></i><span>다운로드</span></a>
+				              </c:if>			              	
+			              </td>
 			              <td class="no hidden-xs"><c:out value="${result.viewCount }"/></td>
 			            </tr>
 		            </c:forEach>

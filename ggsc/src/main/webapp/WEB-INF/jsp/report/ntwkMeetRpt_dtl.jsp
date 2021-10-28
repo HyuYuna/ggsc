@@ -155,7 +155,6 @@
 	<h2 class="h2-title"><i class="fa fa-check-square"></i>네트워크구축회의 등록/수정</h2>
 		
 		<div class="box-style1 x-scroll-auto" >
-			
 			<form name="downForm" id="downForm" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="hidden" id="fileNm" name="fileNm" value="" />
@@ -268,6 +267,9 @@
 					</c:if>
 					<c:if test="${ result != null && (authCd <= 1 || ( authCd > 1 && userId == result.cnsrId )) }">
 						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
+					</c:if>
+					<c:if test="${result != null}">
+						<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(26, '${result.ntwkMeetNo }')">PDF 다운</button>
 					</c:if>
 				</div>
 

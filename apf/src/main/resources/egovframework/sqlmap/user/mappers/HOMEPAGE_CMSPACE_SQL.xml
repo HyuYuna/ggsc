@@ -5,13 +5,18 @@
 	<!-- 공지사항 목록 -->
 	<select id="getNoticeList" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
-			NUM ,
-			VIEW_COUNT ,
-			TITLE ,
-			WRITER ,
-			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+			A.NUM ,
+			A.VIEW_COUNT ,
+			A.TITLE ,
+			A.WRITER ,
+			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
+			F.FILE_NM ,
+			F.SYS_FILE_NM ,
+			F.FILE_PATH
 		FROM
-			GS_NOTICE_A
+			GS_NOTICE_A AS A
+		LEFT JOIN GS_NOTICE_A_FILE AS F
+			ON A.NUM = F.FILE_NUM
 		where
 			1=1 
 			

@@ -253,7 +253,7 @@
 						<th>홍보 대상자</th>
 						<td>
 							<c:forEach items="${cnsEdu4List }" var="list">
-								<input type="checkbox" id="prAtvyRcpt${list.odr}" name="prAtvyRcpt" value="${list.odr}" <c:if test="${fn:contains(result.prAtvyArea, list.odr)}">checked</c:if>/><label for="prAtvyRcpt${list.odr}">&nbsp;${list.mclassNm}</label>
+								<input type="checkbox" id="prAtvyRcpt${list.odr}" name="prAtvyRcpt" value="${list.odr}" <c:if test="${fn:contains(result.prAtvyRcpt, list.odr)}">checked</c:if>/><label for="prAtvyRcpt${list.odr}">&nbsp;${list.mclassNm}</label>
 							</c:forEach>
 						</td>
 					</tr>
@@ -306,7 +306,9 @@
 					<c:if test="${ result != null && (authCd <= 1 || ( authCd > 1 && userId == result.cnsrId )) }">
 						<button type="button" class="btn-basic"  onClick="javascript:fn_save('D');">삭제</button>
 					</c:if>
-					
+					<c:if test="${result != null}">
+						<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(28, '${result.prAtvyNo }')">PDF 다운</button>
+					</c:if>
 				</div>	
 			</form>
 		</div>
