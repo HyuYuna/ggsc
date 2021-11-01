@@ -11,8 +11,9 @@
 			text-align : center;
 			padding : 10px 18px 12px;
 		}
-		td {
-		}
+		ul[style] li a{
+			font-size:16px;
+	}
 	</style>
     <script>
 	  	$(document).ready(function() {

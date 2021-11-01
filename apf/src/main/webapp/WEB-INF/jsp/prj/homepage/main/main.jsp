@@ -21,11 +21,22 @@
 a { text-decoration:none; color:#333;} 
 .main-menu > li > a:hover {font-weight: bold;}
 body {min-width:320px;}
+.logo-box img{
+	/* width:25%;
+	height:25%; */
+	width: auto; height: auto;
+	max-width: 300px;
+    max-height: 300px;
+}
+
+#topMenuPart a {
+	font-size : 19px;
+}
 </style>
 <body>
 	<div id="wrap">
 		<div class='header wrap'>
-			<span class='logo-box'><a href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/images/logo.png" alt="경기도노인종합상담센터" class='logo'/></a></span>
+			<span class='logo-box'><a href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/images/logoRetouch.png" alt="경기도노인종합상담센터" class='logo'/></a></span>
 			<!-- <ul class='navigator'>
 				<li>로그인</li>
 				<li>회원가입</li>
@@ -50,13 +61,14 @@ body {min-width:320px;}
 					전체 메뉴</li>
 			</ul>
 
-			<ul class='main-menu'>
+			<ul class='main-menu' id="topMenuPart">
 				<li><a href="/gnoincoun/comfCnsWrite.do">맘편한상담<c:out value="${loginVo.userNm }"/></a></li>
 				<li><a href="/gnoincoun/psyInfo.do">간편한심리검사</a></li>
 				<li><a href="/gnoincoun/eduAppWrite.do">교육신청</a></li>
 				<li><a href="/gnoincoun/centerIntroList.do">센터안내</a></li>
 				<li><a href="/gnoincoun/busiIntroList.do">센터사업소개</a></li>
 				<li><a href="/gnoincoun/centerNewsList.do">소통공간</a></li>
+				<li><a href="#">공지사항</a></li>
 			</ul>
 		</div>
 
@@ -76,9 +88,9 @@ body {min-width:320px;}
 				<li><a href="/gnoincoun/centerIntroList.do"><img src="/gnoincoun/images/banner_05.png" alt="센터안내"/></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do"><img src="/gnoincoun/images/banner_06.png" alt="시군지원사업"/></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do?gubun=noin"><img src="/gnoincoun/images/banner_07.png" alt="24시노인온상담"/></a></li>
+				<li><a href="/gnoincoun/busiIntroList.do?gubun=gender"><img src="/gnoincoun/images/banner_08.png" alt="성인지교육사업"/></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do?gubun=mid"><img src="/gnoincoun/images/banner_09.png" alt="중장년상담"/></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do?gubun=weak"><img src="/gnoincoun/images/banner_10.png" alt="취약노인지원사업"/></a></li>
-				<li><a href="/gnoincoun/busiIntroList.do?gubun=gender"><img src="/gnoincoun/images/banner_08.png" alt="성인지교육사업"/></a></li>
 			</div>
 		</div>
 
@@ -226,7 +238,7 @@ body {min-width:320px;}
 					</div>
 					<div class='text-content'>
 						<p>경기도노인종합상담센터</p>
-						<div>05836 경기도 수원시 장안구 경수대로 1150, 도서관 3층     대표 : 김미나     고유번호 : 136-82-61243<br>
+						<div>16207  경기도 수원시 장안구 경수대로 1150, 도서관 3층     대표 : 김미나     고유번호 : 722-82-00367<br>
 							  전화 :  031-222-1360     팩스 : 070-4832-6366     이메일 :  ggnoincoun@gmail.com     개인정보담당자 : 강진주</div>
 					</div>
 

@@ -206,6 +206,7 @@ public class HomepagePsyCnsController {
 	// 심리검사 Info
 	@RequestMapping(value = "/psyInfo.do")
 	public String psyInfo(PsyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
+		
 		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
 		if(map == null) {
 			model.addAttribute("loginYn", "N");

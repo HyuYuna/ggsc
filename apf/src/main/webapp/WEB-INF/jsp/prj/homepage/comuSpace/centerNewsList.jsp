@@ -50,6 +50,9 @@
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 	#paging {text-align: center;}
+	ul[style] li a{
+		font-size:18px;
+	}
 </style>
 <section class="service-2 section">
 	<form name="downForm" id="downForm" method="post">
@@ -63,7 +66,7 @@
 			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
 		</div>
 		<div style="width: 910px; margin: auto;">
-			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">소통공간</span>
+			<span style="float: left; margin-top: 20px; margin-bottom: 15px; font: bold; font-weight: 900;">소통공간</span>
 			<ul class="main-menu" style="width: 400px; float: right;margin-top: 20px; margin-bottom: 15px;">
 				<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
 				<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
