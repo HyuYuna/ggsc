@@ -52,6 +52,9 @@
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 	#paging {text-align: center;}
+	ul[style] li a{
+		font-size:18px;
+	}
 </style>
 <section class="service-2 section">
 	<form name="downForm" id="downForm" method="post">

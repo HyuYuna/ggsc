@@ -2,7 +2,6 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
-
     <script>
 	  	$(document).ready(function() {
 	  		
@@ -98,10 +97,6 @@
   </script>
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
-	
-	ul[style] li a{
-		font-size:16px;
-	}
 </style>
 <section class="service-2 section">
 	<div id="wrap">
@@ -110,7 +105,7 @@
 		</div>
 		<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px; font: bold; font-weight: 900;">센터사업소개</span>
-			<ul class="main-menu" style="width: 600px; font-size: 16px; float: right; margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
+			<ul class="main-menu" style="width: 600px; font-size: 15px; float: right; margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
 				<li><a href="javascript: sigunSupp();">시군지원사업</a></li>
 				<li><a href="javascript: noin24();">24노인온상담</a></li>
 				<li><a href="javascript: middleCns();">중장년마음돌봄<br/>전화상담</a></li>
