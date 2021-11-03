@@ -7,9 +7,6 @@
     max-height: 300px;
 }
 
-#topMenuPart a {
-	font-size : 19px;
-}
 </style>
 <div class='header wrap' style="margin-top: 15px;">
 	<span class='logo-box'><a href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/images/logoRetouch.png" alt="경기도노인종합상담센터" class='logo' /></a></span>
@@ -38,7 +35,6 @@
 		<li><a href="/gnoincoun/centerIntroList.do">센터안내</a></li>
 		<li><a href="/gnoincoun/busiIntroList.do">센터사업소개</a></li>
 		<li><a href="/gnoincoun/centerNewsList.do">소통공간</a></li>
-		<li><a href="#">공지사항</a></li>
 	</ul>
 	
 </div>

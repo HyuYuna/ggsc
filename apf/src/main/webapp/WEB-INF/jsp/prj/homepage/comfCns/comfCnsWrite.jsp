@@ -35,8 +35,8 @@
 		<div style="border-top: 1px solid #f09d4c;">
 			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
 		</div>
-		<div style="width: 945px; margin: auto;">
-			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">맘편한 상담</span>
+		<div style="width: 850px; margin: auto; margin-top:20px; margin-bottom:20px;">
+			<span style="margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">맘편한 상담</span>
 			<!-- <ul class="main-menu" style="width: 300px; float: right;margin-top: 20px; margin-bottom: 15px;"> margin-right: 26%;
 				<li><a href="javascript: cnsCall();">전화상담</a></li>
 				<li><a href="javascript: cnsVisit();">내방상담</a></li>
@@ -55,7 +55,7 @@
               <col />
               <tbody>
                 <tr>
-                  <th scope="row">상담신청구분<i class="cr">*</i></th>
+                  <th scope="row">상담신청<br/>구분<i class="cr">*</i></th>
                   <td>
                     <div class="select">
                       	<select class="form-control" id="cnsReqGb" name="cnsReqGb">

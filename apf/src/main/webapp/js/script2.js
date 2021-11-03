@@ -26,7 +26,7 @@ $(function(){
 			$('.site-select-list').toggle();
 	  });
 
-	  $(".map_img").click(function(e){
+	 /* $(".map_img").click(function(e){
 			var x = e.originalEvent.layerX;
 			var y = e.originalEvent.layerY;
 
@@ -36,6 +36,6 @@ $(function(){
 				$('#nowMap').text('남양주');
 			}
 			console.log(e.originalEvent.layerX + '/' + e.originalEvent.layerY);
-		});
+		}); */
 
 });
