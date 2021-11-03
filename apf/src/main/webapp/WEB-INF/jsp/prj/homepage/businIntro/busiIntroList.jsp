@@ -144,7 +144,7 @@
 			<div style="width: 920px; margin: auto; margin-top: 30px;">
 				<img src='/gnoincoun/images/busi9.png' alt="온라인상담" style="width: 920px;"/>
 			</div>
-			
+			<a href = "https://docs.google.com/forms/d/e/1FAIpQLSeOWHP4sSmpQJ055KTYCK3vUk8fMCjAf2KiGlthYIvCx0xkvg/viewform" id = "onMaumRink">· 온(ON-温)마음편지</a>
 		</div>
 		<div id="weakSupp">
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
