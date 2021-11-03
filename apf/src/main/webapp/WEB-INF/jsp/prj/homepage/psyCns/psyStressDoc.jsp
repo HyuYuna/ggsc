@@ -45,6 +45,17 @@
 		} */
 	  
 	  function fn_reg() {
+			
+		  var arr = [];
+		  for(i=1; i<35; i++) {
+			  arr[i] = $('input[name="no'+i+'"]:checked').val();
+			  
+			  if (arr[i] == undefined) {
+				  alert(i+"번 내용을 입력해주세요");
+				  return false;
+			  }
+		  }	
+		  
 		  var total = 0;
 		  var sumCnt = $("#sumCnt").val();
 		  if(sumCnt != "") {
