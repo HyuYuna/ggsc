@@ -6,7 +6,6 @@
 	max-width: 300px;
     max-height: 300px;
 }
-
 </style>
 <div class='header wrap' style="margin-top: 15px;">
 	<span class='logo-box'><a href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/images/logoRetouch.png" alt="경기도노인종합상담센터" class='logo' /></a></span>

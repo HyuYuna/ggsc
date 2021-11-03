@@ -17,6 +17,7 @@
   <script src="assets/js/html5shiv.min.js"></script>
   <script src="assets/js/respond.min.js"></script>
 <![endif]-->
+
 <!-- Custom styles for this template -->
 <link href="/gnoincoun/assets/css/theme.css" rel="stylesheet">
 <link href="/gnoincoun/css/ggsc-main.css" rel="stylesheet">

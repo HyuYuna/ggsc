@@ -56,3 +56,5 @@ body { flex:1; font-family:'Noto Sans KR'}
 .site-list { margin-top:80px; }
 
 .site-list > li { display:inline; margin-right:10px; } 
+
+#onMaumRink{position: absolute;  top:894.8px;  left:517px;  font-size:12.8px;  color:gray;  opacity: 0.15;}

@@ -125,6 +125,7 @@
 				<!-- <button type="button" class="btn btn-warning" style="border-radius: 11px;" >전화상담 신청하기</button> -->
 			</div>
 		</div>
+		
 		<div id="noin24">
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
@@ -137,8 +138,9 @@
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
 			<div style="width: 920px; margin: auto; margin-top: 30px;">
-				<img src='/gnoincoun/images/busi9.png' alt="온라인상담" style="width: 920px;"/>
+				<img src='/gnoincoun/images/busi9.png' alt="온라인상담" style="width: 920px; position: relative;"/>
 			</div>
+			<a href = "https://docs.google.com/forms/d/e/1FAIpQLSeOWHP4sSmpQJ055KTYCK3vUk8fMCjAf2KiGlthYIvCx0xkvg/viewform" id = "onMaumRink">· 온(ON-温)마음편지</a>
 			
 		</div>
 		<div id="weakSupp">
