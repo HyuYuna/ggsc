@@ -16,22 +16,26 @@
 	<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 	<script src="/gnoincoun/assets/js/swiper-bundle.min.js"></script>
 	<script src="/gnoincoun/js/script2.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.border-btn-box > li').hover(
+		    function() { $(this).addClass('active'); } ,
+			function() { $(this).removeClass('active'); }
+		);
+	});
+	</script>
 </head>
 <style>
 a { text-decoration:none; color:#333;} 
 .main-menu > li > a:hover {font-weight: bold;}
+
 body {min-width:320px;}
 .logo-box img{
-	/* width:25%;
-	height:25%; */
 	width: auto; height: auto;
 	max-width: 300px;
     max-height: 300px;
 }
 
-#topMenuPart a {
-	font-size : 19px;
-}
 </style>
 <body>
 	<div id="wrap">
@@ -68,7 +72,6 @@ body {min-width:320px;}
 				<li><a href="/gnoincoun/centerIntroList.do">센터안내</a></li>
 				<li><a href="/gnoincoun/busiIntroList.do">센터사업소개</a></li>
 				<li><a href="/gnoincoun/centerNewsList.do">소통공간</a></li>
-				<li><a href="#">공지사항</a></li>
 			</ul>
 		</div>
 
@@ -157,9 +160,13 @@ body {min-width:320px;}
 			<div class='border-header'>
 				<h2>센터소식</h2>
 				<ul class='border-btn-box'>
-					<li class='active'><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
-				<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
-				<li><a href="/gnoincoun/freeBoardList.do">자유게시판</a></li>
+					<!-- <li class='active'>
+						<a href="/gnoincoun/centerNewsList.do">센터소식</a>
+					</li> -->
+					<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
+					<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
+					<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
+					<li><a href="/gnoincoun/freeBoardList.do">자유게시판</a></li>
 				</ul>
 			</div>
 
@@ -273,7 +280,7 @@ body {min-width:320px;}
 					<span><a href="">개인정보취급방침</a></span>
 					<span><a href="">이메일추출방지정책</a></span>
 					<span><a href="">장애인차별금지법</a></span>
-					<span><a href="">찾아오시는 길</a></span>
+					<span><a href="/gnoincoun/centerIntroList.do?gubun=directions">찾아오시는 길</a></span>
 					<span class='copyright'>Copyright (c) 2021 GNOIN. All rights reserved.</span>
 				</div>
 			</div>

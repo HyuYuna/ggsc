@@ -19,7 +19,7 @@
 		}
   </script>
 <style>
-	#wrap {width: 30%; margin: auto; height: 594px;}
+	#wrap {width: 30%; margin: auto; height: 594px; margin-top:28px;}
 </style>
 <section class="service-2 section">
 	<div id="wrap">

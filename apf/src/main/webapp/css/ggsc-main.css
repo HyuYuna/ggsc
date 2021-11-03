@@ -5,9 +5,10 @@ body { flex:1; font-family:'Noto Sans KR'}
 
 #wrap { padding-top:15px; position:relative; } 
 .wrap { width:1120px; margin:0 auto;  } 
+#topMenuPart a { font-size : 18px; }
 
 .header .navigator  { float:right; } 
-.header .navigator li {color:#78808d;font-size:10pt;display:inline;cursor:pointer;position: relative;padding: 0 20px; vertical-align:top; } 
+.header .navigator li {color:#78808d;font-size:11pt;display:inline;cursor:pointer;position: relative;padding: 0 20px; vertical-align:top; } 
 .header .navigator li:after {height: 10px;width: 1px;content: '';font-size:7pt;position: absolute;right: 0;background-color: #78808d; transform: translate(0, -50%);top: 50%;} 
 .header .navigator li:last-child:after { height:0; width:0;  } 
 .header .navigator li.all-menu { color:#ef9842 }
@@ -15,7 +16,7 @@ body { flex:1; font-family:'Noto Sans KR'}
 
 .all-menu-icon { background:url('./images/all-menu.png') no-repeat center center; padding:5px; margin-right:5px;  } 
 
-.main-menu { display:flex; margin-top:30px; margin-bottom:25px; } 
+.main-menu { display:flex; margin-top:50px; margin-bottom:11px; } 
 .main-menu > li { flex:1; text-align:center; cursor:pointer; color:#3b3f48; } 
 .main-menu > li > a { text-decoration:none; }
 .main-menu > li > a:hover { font-weight:bold; }

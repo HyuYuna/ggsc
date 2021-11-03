@@ -30,10 +30,7 @@
   </script>
 <style>
 	#wrap {width: 100%; margin: auto; height: 594px;}
-	
-	ul[style] li a{
-			font-size:18px;
-	}
+
 </style>
 <section class="service-2 section">
 	<div id="wrap">

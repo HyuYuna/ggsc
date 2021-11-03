@@ -27,6 +27,13 @@
 	  		$("#operating2").css("display","none");
 	  		$("#operating3").css("display","none");
 	  		$("#operating4").css("display","none");
+	  		
+	  		var gubun = "${gubun}"
+	  		
+  			if(gubun == "directions") {
+		  		$("#greeting").css("display","none");
+		  		$("#directions").css("display","");
+	  		}
 		});
 	  	
 	  	function greeting() {
@@ -167,7 +174,7 @@
 				<li><a href="javascript: operating();">운영법인</a></li>
 				<li><a href="javascript: vision();">미션과 비전</a></li>
 				<li><a href="javascript: pathway();">걸어온길</a></li>
-				<li><a href="javascript: together();">함께하는 사람들</a></li>
+				<li><a href="javascript: together();">함께하는<br/>사람들</a></li>
 				<li><a href="javascript: centerInfo();">시군센터</a></li>
 				<li><a href="javascript: directions();">오시는길</a></li>
 			</ul>
@@ -188,10 +195,10 @@
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
 			<div style="width: 100%; margin: auto; text-align: center; margin-top: 30px; margin-bottom: 30px;">
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('1')">소개</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('2')">설립목적</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('3')">주요사업</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('4')">조직도</button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('1')"><font size = "3px">소개</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('2')"><font size = "3px">설립목적</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('3')"><font size = "3px">주요사업</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: operatingBtn('4')"><font size = "3px">조직도</font></button>
 			</div>
 			
 			<div id="operating1" style="width: 920px; margin: auto;">
@@ -219,10 +226,10 @@
 			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
 			</div>
 			<div style="width: 100%; margin: auto; text-align: center; margin-top: 30px; margin-bottom: 30px;">
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('1')">2020 ~ 2021</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('2')">2018 ~ 2019</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('3')">2016 ~ 2017</button>
-				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('4')">1999 ~ 2012</button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('1')"><font size = "3px">2020 ~ 2021</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('2')"><font size = "3px">2018 ~ 2019</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('3')"><font size = "3px">2016 ~ 2017</font></button>
+				<button type="button" class="btn btn-primary" style="width: 150px; background-color: #f09d4c; border-color: #f09d4c;" onclick="javascript: pathwayBtn('4')"><font size = "3px">1999 ~ 2012</font></button>
 			</div>
 			
 			<div id="pathwayBtn1" style="width: 920px; margin: auto;">
