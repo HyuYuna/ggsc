@@ -30,7 +30,7 @@
 		    var no;
 		    for(i=1; i<8; i++) {
 		   	    no = $('input[name="no'+i+'"]:checked').val();
-		   	   	
+		   	    	    
 		   		total = total+parseInt(no);
 		    }
 			$("#sumCnt").val(total);
@@ -143,9 +143,9 @@
                     <tr class="bBottom">
                         <td class="bRight-none">3.</td>
                         <td class="txt-left">나는 사람들이 주변에 있는 것이 편안하다.</td>
-                        <td><input type="radio" id="no31" name="no3" value="2" /></td>
+                        <td><input type="radio" id="no31" name="no3" value="0" /></td>
                         <td><input type="radio" id="no32" name="no3" value="1" /></td>
-                        <td class="bRight-none"><input type="radio" id="no33" name="no3" value="0" /></td>
+                        <td class="bRight-none"><input type="radio" id="no33" name="no3" value="2" /></td>
                     </tr>
                 </tbody>
             </table>
