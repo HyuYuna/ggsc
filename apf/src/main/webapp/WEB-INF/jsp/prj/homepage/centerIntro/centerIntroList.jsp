@@ -432,22 +432,24 @@
 									<div class='row'>
 										<li class='subject'>지역 검색</li>
 										<li class='content select2' style="min-height: 0;">
-											<select><option value=''>경기도</select>
+											<select>
+												<option value=''>경기도
+											</select>
 											<select><option value=''>고양시</select>
 										</li>
 									</div>
-									<div class='row'>
+									<!--  <div class='row'>
 										<li class='subject'>명칭 검색</li>
 										<li class='content' style='position:relative; min-height: 0;"'>
 											<input type='text' class='form-control' />
 											<img src="/gnoincoun/images/map/icon_search.png" style='position:absolute; top:0; right:0; cursor:pointer;  '/>
 										</li>
-									</div>
+									</div> -->
 	
 									<div class='bar mg20'></div>
 	
 									<div class='map-search-text'>
-										<span>지역 검색에서 시/군/구가 안 나오면 해당 지역에 센터가 없음으로 명칭 검색에서 명칭을 입력해 주세요.</span>
+										<!-- <span>지역 검색에서 시/군/구가 안 나오면 해당 지역에 센터가 없음으로 명칭 검색에서 명칭을 입력해 주세요.</span> -->
 	
 										<div class='mapList'>지도에 있는 마커를 선택하시면<br>상세 지부가 나타납니다.</div>
 									</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
-	select { -webkit-appearance:menulist; -moz-appearance:menulist; -o-appearance:menulist;appearance:menulist;}
+.selectpicker { -webkit-appearance:menulist; -moz-appearance:menulist; -o-appearance:menulist;appearance:menulist;}
+.select2 { -webkit-appearance:menulist; -moz-appearance:menulist; -o-appearance:menulist;appearance:menulist;}
 </style>
 <footer id="footer">
 	<div class='footer-top'>

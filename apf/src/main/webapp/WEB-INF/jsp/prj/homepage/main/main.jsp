@@ -35,63 +35,191 @@
 	function goLink(idx) {
 		if (idx = 1) {
 			 window.open("http://gpsilver.org/home/"); 
+		} else if (idx = 2) {
+			window.open("https://test.narangdesign.com/mail/withnoin/201801/index.html"); 
 		}
 	}
 	
 	function listCenter(idx){
+		  idx = Number(idx);
 		  console.log("idx : "+idx);
 		  var html = undefined;
 		  switch(idx){
 			  // 내용 회원관 랜덤으로 나와야함 ajax로
 
-			case 1 : //가평
+		  case 1 : //가평
 				$("#nowMap").text('가평');
 				html = 	'<table style="border:1px;">' +
-						'<colgroup>' +
-						'<col width="10%"><col width="10%"><col width="10%">' +
-						'</colgroup>' +
-					    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-					    '</tr>' +
-						'<tr style="cursor:pointer;" onclick="goLink(1)">' +
-							'<td class="title" >가평군 노인복지관</td>' +
-							'<td class="address">경기도 가평군 가평읍 읍내리 625-8</td>' +
-							'<td class="tel">031-581-6063</td>' +
-						'</tr>' +
-						'</table>'
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(1)">' +
+					'<td class="title" >가평군 노인복지관</td>' +
+					'<td class="address">경기도 가평군 가평읍 읍내리 625-8</td>' +
+					'<td class="tel">031-581-6063</td>' +
+				'</tr>' +
+				'</table>'
 				break;
 			case 2 : // 경북
 				$("#nowMap").text('고양')
 				html =  '<table style="border:1px;">' +
-						'<colgroup>' +
-						'<col width="10%"><col width="10%"><col width="10%">' +
-						'</colgroup>' +
-					    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-					    '</tr>' +
-						'<tr>' +
-						'<td class="title" onClick="location.href= "gpsilver.org/home/" style="cursor:pointer;">고양시덕양노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 덕양구 화정동 846</td>' +
-						'<td class="tel">031-969-7781</td>' +
-						'</tr>' +
-						'<tr>' +
-						'<td class="title">고양시일산노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
-						'<td class="tel">031-919-8677</td>' +
-						'</tr>' +
-						'<tr>' +
-						'<td class="title">고양시대화노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
-						'<td class="tel">031-919-8677</td>' +
-						'</tr>' +
-						'</table>'
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(2)">' +
+					'<td class="title" style="cursor:pointer;">고양시덕양노인종합복지관</td>' +
+					'<td class="address">경기도 고양시 덕양구 화정동 846</td>' +
+					'<td class="tel">031-969-7781</td>' +
+				'</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(3)">' +
+					'<td class="title">고양시일산노인종합복지관</td>' +
+					'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
+					'<td class="tel">031-919-8677</td>' +
+				'</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(4)">' +
+					'<td class="title">고양시대화노인종합복지관</td>' +
+					'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
+					'<td class="tel">031-919-8677</td>' +
+				'</tr>' +
+				'</table>'
 				break;
+			case 3 : // 과천 
+				$("#nowMap").text('과천')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(5)">' +
+					'<td class="title" >과천시노인복지관</td>' +
+					'<td class="address">경기도 과천시 문원로57</td>' +
+					'<td class="tel">02-502-8500</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+				
+			case 4 :
+				$("#nowMap").text('광명')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(6)">' +
+					'<td class="title" >광명소하노인종합복지관</td>' +
+					'<td class="address">경기도 광명시 소하로25</td>' +
+					'<td class="tel">02-2625-9300</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+				
+			case 5 :
+				$("#nowMap").text('광주')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(7)">' +
+					'<td class="title" >광주시노인복지관</td>' +
+					'<td class="address">경기도 광주시 파발로 202</td>' +
+					'<td class="tel">031-766-9129</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+				
+			case 6 :
+				$("#nowMap").text('구리')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(8)">' +
+					'<td class="title" >구리시종합사회복지관</td>' +
+					'<td class="address">경기도 구리시 벌말로129번길 50</td>' +
+					'<td class="tel">031-556-8100</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+				
+			case 7 :
+				$("#nowMap").text('군포')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(9)">' +
+					'<td class="title" >군포시노인복지관</td>' +
+					'<td class="address">경기도 구리시 벌말로129번길 50</td>' +
+					'<td class="tel">031-556-8100</td>' +
+				'</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(10)">' +
+					'<td class="title" >군포시늘푸른노인복지관</td>' +
+					'<td class="address">경기도 군포시 산본천로 101</td>' +
+					'<td class="tel">031-392-5755</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+				
+			case 8 :
+				$("#nowMap").text('김포')
+				html = 	'<table style="border:1px;">' +
+				'<colgroup>' +
+				'<col width="10%"><col width="10%"><col width="10%">' +
+				'</colgroup>' +
+			    '<tr>' +
+				    '<th>센터명</th>' +
+				    '<th>주소</th>' +
+				    '<th>연락처</th>' +
+			    '</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(11)">' +
+					'<td class="title" >김포시노인종합복지관</td>' +
+					'<td class="address">경기도 김포시 사우중로 74번길 48</td>' +
+					'<td class="tel">031-997-9300</td>' +
+				'</tr>' +
+				'<tr style="cursor:pointer;" onclick="goLink(12)">' +
+					'<td class="title" >김포시북부노인복지관</td>' +
+					'<td class="address">경기도 김포시 통진읍 마송1로 16번길 40-2</td>' +
+					'<td class="tel">031-984-0108</td>' +
+				'</tr>' +
+				'</table>'
+			break;
+					
 			
-		  }
+		}
+		  
 		if(html){
 			$('.mapList').html(html);
 			console.log(html);
@@ -237,25 +365,59 @@ th, td {
 
 						<div class='right'>
 							<div class='map-search'>
+							 	<form id="searchForm" name="searchForm" method="post">
 								<div class='row'>
 									<li class='subject'>지역 검색</li>
 									<li class='content select2'>
 										<select><option value=''>경기도</select>
-										<select><option value=''>고양시</select>
+										<select class="form-control" id="localGb" name="localGb" onchange="javascript:listCenter(this.value);">
+											<option value='1'>가평군</option>
+											<option value='2'>고양시</option>
+											<option value='3'>과천시</option>
+											<option value='4'>광명시</option>
+											<option value='5'>광주시</option>
+											<option value='6'>구리시</option>
+											<option value='7'>군포시</option>
+											<option value='8'>김포시</option>
+											<option value='9'>남양주시</option>
+											<option value='10'>동두천시</option>
+											<option value='11'>부천시</option>
+											<option value='12'>성남시</option>
+											<option value='13'>수원시</option>
+											<option value='14'>시흥시</option>
+											<option value='15'>안산시</option>
+											<option value='16'>안성시</option>
+											<option value='17'>안양시</option>
+											<option value='18'>양주시</option>
+											<option value='19'>양평군</option>
+											<option value='20'>여주시</option>
+											<option value='21'>연천군</option>
+											<option value='22'>오산시</option>
+											<option value='23'>용인시</option>
+											<option value='24'>의왕시</option>
+											<option value='25'>의정부시</option>
+											<option value='26'>이천시</option>
+											<option value='27'>파주시</option>
+											<option value='28'>평택시</option>
+											<option value='29'>포천시</option>
+											<option value='30'>하남시</option>
+											<option value='31'>화성시</option>
+										</select>
 									</li>
 								</div>
 								<div class='row'>
-									<li class='subject'>명칭 검색</li>
+									<!-- <li class='subject'>명칭 검색</li> 
 									<li class='content' style='position:relative'>
 										<input type='text' class='form-control' />
 										<img src="/gnoincoun/images/map/icon_search.png" style='position:absolute; top:0; right:0; cursor:pointer;  '/>
-									</li>
+									</li> -->
 								</div>
+								</form>
 
 								<div class='bar mg20'></div>
 
 								<div class='map-search-text'>
-									<span>지역 검색에서 시/군/구가 안 나오면 해당 지역에 센터가 없음으로 명칭 검색에서 명칭을 입력해 주세요.</span>
+									<!-- <span>지역 검색에서 시/군/구가 안 나오면 해당 지역에 센터가 없음으로 명칭 검색에서 명칭을 입력해 주세요.</span> -->
 
 									<div class='mapList'>지도에 있는 마커를 선택하시면<br>상세 지부가 나타납니다.</div>
 								</div>
