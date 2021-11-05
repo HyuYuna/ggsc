@@ -68,8 +68,8 @@
 		<input type="hidden" id="filePath" name="filePath" value="" />
 	</form>
 	<div id="wrap">
-	<div style="border-top: 1px solid #f09d4c;">
-		<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
+	<div style="border-top: 1px solid #f09d4c; overflow: hidden;">
+		<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" />
 	</div>
 	<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">소통공간</span>

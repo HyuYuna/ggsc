@@ -17,6 +17,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.homepage.cmSpace.service.CmSpaceVO;
 import egovframework.homepage.cmSpace.service.HomepageCmSpaceService;
+import egovframework.homepage.main.service.CenterVO;
 import egovframework.homepage.main.service.HomepageMainService;
 import egovframework.homepage.main.service.LoginVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -257,6 +258,18 @@ public class HomepageMainController {
 		homepageMainService.userPwReset(vo);
 		model.addAttribute("msg","비밀번호 재설정 완료됐습니다. \n변경된 비밀번호로 로그인 하시기 바랍니다.");
 		return "jsonView";
+	}
+	
+	@RequestMapping(value = "/getCenterMapList.do")
+	public String getCenterMapList(CenterVO vo , ModelMap model, HttpServletRequest request) throws Exception {
+		
+		String idx = request.getParameter("idx") == null ? "" : request.getParameter("idx");
+		String localGb = request.getParameter("idx") == null ? "" : request.getParameter("idx");
+		vo.setLocalGb(localGb);
+		List<EgovMap> centerList = homepageMainService.getCenterList(vo);
+		model.addAttribute("centerList",centerList);
+		return "jsonView";
+
 	}
 	
 	// ID,PW 찾기

@@ -91,8 +91,8 @@
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-		<div style="border-top: 1px solid #f09d4c;">
-			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
+		<div style="border-top: 1px solid #f09d4c; overflow: hidden;">
+			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담" />
 		</div>
 		<section id="content">
 			<div style="width: 800px; margin: auto;">

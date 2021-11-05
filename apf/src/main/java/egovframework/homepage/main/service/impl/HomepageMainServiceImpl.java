@@ -70,4 +70,9 @@ public class HomepageMainServiceImpl extends EgovAbstractServiceImpl implements 
 		return homepageMainMapper.getCenterManageList(centerVO);
 	}
 	
+	// 센터 검색
+	public List<EgovMap> getCenterList(CenterVO centerVO) {
+		return homepageMainMapper.getCenterList(centerVO);
+	}
+	
 }

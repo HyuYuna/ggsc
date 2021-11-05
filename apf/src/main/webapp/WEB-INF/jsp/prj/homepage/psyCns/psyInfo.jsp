@@ -34,8 +34,8 @@
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-        <div style="border-top: 1px solid #f09d4c;">
-			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담" style="width: 1920px;"/>
+        <div style="border-top: 1px solid #f09d4c; overflow: hidden;">
+			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담"/>
 		</div>
 		<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">간편한심리검사</span>

@@ -131,7 +131,7 @@ body { flex:1; font-family:'Noto Sans KR'}
 .map-search-text  { text-align:left; } 
 .map-search-text span { font-size:.8em; color:#777; } 
 
-.marker-text { text-align:center; font-size:.85em; color:#777; margin:40px 0; } 
+.mapList { text-align:center; font-size:.85em; color:#777; margin:40px 0; } 
 
 
 

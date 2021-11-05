@@ -29,4 +29,7 @@ public interface HomepageMainMapper {
 	// 센터 목록
 	List<EgovMap> getCenterManageList(CenterVO centerVO);
 	
+	//센터 검색
+	List<EgovMap> getCenterList(CenterVO centerVO);
+	
 }

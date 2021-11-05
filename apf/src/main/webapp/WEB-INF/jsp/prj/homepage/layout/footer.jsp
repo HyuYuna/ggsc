@@ -15,7 +15,7 @@
 			</div>
 
 			<select class="selectpicker" onchange="if(this.value) window.open(this.value);" style="height:30px; float:right; position:relative;">
-				<option value="http://www.mohw.go.kr/">유관사이트 바로가기</option>
+				<option value="">유관사이트 바로가기</option>
 				<option value="http://www.mohw.go.kr/">보건복지부</option>
 				<option value="https://www.gg.go.kr/">경기도청</option>
 				<option value="https://gg.pass.or.kr/">경기도사회서비스원</option>
