@@ -242,6 +242,11 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 		update("hpgmngDao.updatePopup", vo);
 	}
 	
+	// 팝업업로드 수정
+	public void updatePopupUpload(PopupVO vo) {
+		update("hpgmngDao.updatePopupUpload", vo);
+	}
+	
 //	// FAQ 목록
 //	@SuppressWarnings("unchecked")
 //	public List<EgovMap> getFaqList(FaqVO vo) {

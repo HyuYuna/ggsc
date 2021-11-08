@@ -1050,9 +1050,20 @@
 	<update id="hpgmngDao.updatePopup" parameterClass="popupVO">
 		UPDATE GS_POPUP_A
 			SET
-				TITLE = #title# ,
+				TITLE = #title# 
 			WHERE
 				NUM = #num#
+	</update>
+	
+	<update id="hpgmngDao.updatePopupUpload" parameterClass="popupVO">
+		UPDATE GS_POPUP_A_FILE
+			SET
+				FILE_NM = #fileNm# ,
+				SYS_FILE_NM = #sysFileNm# ,
+				FILE_PATH = #filePath# ,
+				DB_UPD_TM = now()
+			WHERE
+				FILE_NUM = #num#
 	</update>
 	
 	

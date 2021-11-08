@@ -279,6 +279,16 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	@Override
 	public void updatePopup(PopupVO vo) {
 		hpgmngDao.updatePopup(vo);
+		
+		if(vo.getFile().getSize() != 0) {
+			MultipartFile file = vo.getFile();
+			EgovMap fMap = AMSComm.fileUpload(file, "popup");
+			vo.setFileNm((String)fMap.get("fileNm"));
+			vo.setSysFileNm((String)fMap.get("sysFileNm"));
+			vo.setFilePath((String)fMap.get("filePath"));
+			// 첨부파일이 있으면 업로드
+			hpgmngDao.updatePopupUpload(vo);			
+		} 
 	}
 	
 //	// FAQ 목록
