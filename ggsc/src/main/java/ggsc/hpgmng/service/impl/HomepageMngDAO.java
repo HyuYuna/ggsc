@@ -12,6 +12,7 @@ import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
+import ggsc.hpgmng.service.PopupVO;
 
 @Repository("hpgmngDao")
 public class HomepageMngDAO extends EgovAbstractDAO {
@@ -208,6 +209,37 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	// 교육신청 수정
 	public void updateEduApp(EduAppVO vo) {
 		update("hpgmngDao.updateEduApp", vo);
+	}
+	
+	// 팝업 목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getPopupList(PopupVO vo) {
+		return (List<EgovMap>)list("hpgmngDao.getPopupList", vo);
+	}
+	
+	// 팝업 갯수
+	public int getPopupListTotCnt(PopupVO vo) {
+		return (Integer)select("hpgmngDao.getPopupListTotCnt" , vo);
+	}
+	
+	// 팝업 상세
+	public EgovMap getPopupDtl(int num) {
+		return  (EgovMap)select("hpgmngDao.getPopupDtl", num);
+	}
+	
+	// 팝업 등록
+	public void insertPopup(PopupVO vo) {
+		insert("hpgmngDao.insertPopup", vo);
+	}
+	
+	// 팝업 파일업로드 등록
+	public void insertPopupUpload(PopupVO vo) {
+		insert("hpgmngDao.insertPopupUpload", vo);
+	}
+	
+	// 팝업 수정
+	public void updatePopup(PopupVO vo) {
+		update("hpgmngDao.updatePopup", vo);
 	}
 	
 //	// FAQ 목록

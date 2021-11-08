@@ -17,6 +17,7 @@ import ggsc.hpgmng.service.HomepageMngService;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
+import ggsc.hpgmng.service.PopupVO;
 
 @Service("hpgmngService")
 public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements HomepageMngService {
@@ -234,6 +235,50 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	@Override
 	public void updateEduApp(EduAppVO vo) {
 		hpgmngDao.updateEduApp(vo);
+	}
+	
+	// 팝업 목록
+	@Override
+	public List<EgovMap> getPopupList(PopupVO vo) {
+		return hpgmngDao.getPopupList(vo);
+	}
+	
+	// 팝업 갯수
+	@Override
+	public int getPopupListTotCnt(PopupVO vo) {
+		return hpgmngDao.getPopupListTotCnt(vo);
+	}
+	
+	// 팝업 상세
+	@Override
+	public EgovMap getPopupDtl(int num) {
+		return hpgmngDao.getPopupDtl(num);
+	}
+	
+	// 팝업 등록
+	@Override
+	public void insertPopup(PopupVO vo) {
+		hpgmngDao.insertPopup(vo);
+		
+		if(vo.getFile().getSize() != 0) {
+			MultipartFile file = vo.getFile();
+			EgovMap fMap = AMSComm.fileUpload(file, "popup");
+			fMap.put("regId", vo.getRegId());
+			fMap.put("writer", vo.getWriter());
+			
+			vo.setFileNm(fMap.get("fileNm").toString());
+			vo.setSysFileNm(fMap.get("sysFileNm").toString());
+			vo.setFilePath(fMap.get("filePath").toString());
+			
+			// 첨부파일이 있으면 업로드
+			hpgmngDao.insertPopupUpload(vo);			
+		}
+	}
+	
+	// 팝업 수정
+	@Override
+	public void updatePopup(PopupVO vo) {
+		hpgmngDao.updatePopup(vo);
 	}
 	
 //	// FAQ 목록

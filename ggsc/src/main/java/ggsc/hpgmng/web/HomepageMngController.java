@@ -19,6 +19,7 @@ import ggsc.hpgmng.service.HomepageMngService;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
+import ggsc.hpgmng.service.PopupVO;
 
 
 @Controller
@@ -639,7 +640,7 @@ public class HomepageMngController {
 	
 	
 	@RequestMapping(value = "/eduAppReg.do", method = RequestMethod.POST)
-	public String YsmExampleReg(HttpServletRequest request, ModelMap model, EduAppVO vo){
+	public String eduAppReg(HttpServletRequest request, ModelMap model, EduAppVO vo){
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
@@ -660,6 +661,120 @@ public class HomepageMngController {
 		} 
 		
 		return "redirect:/gnoincoundb/eduAppList.do?mnuCd=" + mnuCd;
+	}
+	
+	// 팝업 목록
+	@RequestMapping(value = "/popupList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String popupList(PopupVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap loginVO = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			// userCenterGb = Integer.parseInt(loginVO.get("centerGb").toString());
+			if (userAuth >= 4) {
+				model.addAttribute("authCdYn", "N");
+			} else {
+				model.addAttribute("authCdYn", "Y");
+			}
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
+
+		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
+		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
+
+		model.addAttribute("authCd", userAuth);
+		List<EgovMap> popupList = hpgmngService.getPopupList(vo);
+		model.addAttribute("popupList", popupList);
+		int totalPageCnt = hpgmngService.getPopupListTotCnt(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
+		model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("vo", vo);
+
+		return "hpgmng/popup_list.main";
+
+	}
+	
+		
+	@RequestMapping(value = "/popupDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String popupDtl(PopupVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+		// 권한 관리 끝
+		
+		EgovMap popupDtl = null;
+		if(num !=""){
+			int intNum = Integer.parseInt(num);
+			popupDtl = hpgmngService.getPopupDtl(intNum);
+		} 
+		
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("detail", popupDtl);
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("userId",loginVO.get("userId").toString());
+		model.addAttribute("vo", vo);
+		return "hpgmng/popup_dtl.main";
+	}
+		
+		
+	@RequestMapping(value = "/popupReg.do", method = RequestMethod.POST)
+	public String popupReg(HttpServletRequest request, ModelMap model, PopupVO vo){
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
+		
+		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)map.get("userId");
+		String writer = (String)map.get("userNm");
+		vo.setWriter(writer);
+		vo.setRegId(regId);
+		
+		if(save.equals("S")) {
+			hpgmngService.insertPopup(vo);
+		} else if(save.equals("U")) {
+			hpgmngService.updatePopup(vo);
+		}
+		
+		return "redirect:/gnoincoundb/popupList.do?mnuCd=" + mnuCd;
 	}
 	
 	

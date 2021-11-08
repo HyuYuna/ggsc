@@ -92,8 +92,8 @@ public class HomepageMainController {
 		} else {
 			return "/main/main.main";
 		}
-		/*retun";*rn "/main/main.page"; */
-		/*return "/main/main.main; */ 
+		/*return "/main/main.page";*/
+		/*return "/main/main.main";*/
 	}
 	
 	@RequestMapping(value = "/actionLogin.do")

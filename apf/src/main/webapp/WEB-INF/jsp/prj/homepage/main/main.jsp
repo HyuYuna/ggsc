@@ -18,6 +18,18 @@
 	<script src="/gnoincoun/js/script2.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		
+		<!-- window.open("/gnoincoun/images/logoRetouch.png", "a", "width=400, height=300, left=100, top=50"); -->
+		
+		  var img=new Image();
+		  img.src="/gnoincoun/images/logoRetouch.png";
+		  var img_width=img.width;
+		  var win_width=img.width+25;
+		  var img_height=img.height;
+		  var win=img.height+30;
+		  var OpenWindow=window.open('/gnoincoun/images/logoRetouch.png','_blank', 'width='+img_width+', height='+img_height+', menubars=no, scrollbars=auto');
+		  OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
+		
 		$('.border-btn-box > li').hover(
 		    function() { $(this).addClass('active'); } ,
 			function() { $(this).removeClass('active'); }
@@ -34,66 +46,66 @@
 	
 	function goLink(idx) {
 		switch(idx){
-			case 1 : location.href = "http://gpsilver.org/home/"; break;
-			case 2 : location.href = "https://test.narangdesign.com/mail/withnoin/201801/index.html"; break;
-			case 3 : location.href = "https://ilsansenior.org/"; break;
-			case 4 : location.href = "https://www.dh-seniorwelfarecenter.co.kr/index.php"; break;
-			case 5 : location.href = "https://www.gcsilver.or.kr/"; break;
-			case 6 : location.href = "http://www.gmsenior.or.kr/"; break;
-			case 7 : location.href = "http://www.gjswc.kr/gjnoin/index.do"; break;
-			case 8 : location.href = "http://www.guriwelfare.or.kr/bbs/view.php?id=TemP_kurinews&page=1"; break;
-			case 9 : location.href = "https://www.gpbokji.org/"; break;
-			case 10 : location.href = "http://www.nprsenior.or.kr/"; break;
-			case 11 : location.href = "https://gimposenior.org/"; break;
-			case 12 : location.href = "http://www.gpnsenior.org/main/"; break;
-			case 13 : location.href = "http://nyjsw.or.kr/"; break;
-			case 14 : location.href = "https://www.dongbusenior.or.kr/"; break;
-			case 15 : location.href = "http://www.js1004.kr/"; break;
-			case 16 : location.href = "http://www.ddcnoin.org/"; break;
-			case 17 : location.href = "http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency02/seniorWelfareAgency02_1.jsp"; break;
-			case 18 : location.href = "http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency03/seniorWelfareAgency03_1.jsp"; break;
-			case 19 : location.href = "http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency01/seniorWelfareAgency01_1.jsp"; break;
-			case 20 : location.href = "https://bdsenior.or.kr/main/main.php"; break;
-			case 21 : location.href = "http://sunobok.or.kr/"; break;
-			case 22 : location.href = "http://www.sswc.kr/online/"; break;
-			case 23 : location.href = "http://www.jwnoin.org/"; break;
-			case 24 : location.href = "http://www.ypinetree.or.kr/"; break;
-			case 25 : location.href = "http://www.gnoin.kr/"; break;
-			case 26 : location.href = "http://www.bambat.org/ "; break;
-			case 27 : location.href = "http://www.seoho.or.kr/user/index.jsp"; break;
-			case 28 : location.href = "http://www.ggsenior.or.kr/"; break;
-			case 29 : location.href = "http://www.budnae.or.kr/"; break;
-			case 30 : location.href = "http://www.pangyonoin.or.kr/main/main.html"; break;
-			case 31 : location.href = "https://scsnoin.or.kr/"; break;
-			case 32 : location.href = "http://shsenior.or.kr/main/"; break;
-			case 33 : location.href = "https://cafe.daum.net/dwsws"; break;
-			case 34 : location.href = "http://www.ansansenior.or.kr/main/main.php"; break;
-			case 35 : location.href = "http://www.anseongnoin.or.kr/"; break;
-			case 36 : location.href = "http://www.happytown.or.kr/"; break;
-			case 37 : location.href = "http://www.yjhcsenior.or.kr/html/index/"; break; // 양주시 접속문제 있음 400 error
-			case 38 : location.href = "http://www.ypsilver21.or.kr/"; break;
-			case 39 : location.href = "http://www.yjsilver.or.kr/main.php"; break;
-			case 40 : location.href = "http://www.lycsenior.org/"; break;
-			case 41 : location.href = "http://www.osannoin.or.kr/main/ "; break;
-			case 42 : location.href = "http://www.ygsenior.or.kr/"; break;
-			case 43 : location.href = "http://sujibokji.or.kr/main.php#1"; break;
-			case 44 : location.href = "http://www.yiswc.or.kr/website/"; break;
-			case 45 : location.href = "http://www.noinlove.or.kr/"; break;
-			case 46 : location.href = "http://uwsenior.or.kr/"; break;
-			case 47 : location.href = "https://www.songsan.ne.kr/"; break;
-			case 48 : location.href = "http://sgwelfare.org/"; break;
-			case 49 : location.href = "https://uswc4u.or.kr/ "; break;
-			case 50 : location.href = "http://www.ichonold.or.kr/"; break;
-			case 51 : location.href = "https://www.pajusenior.or.kr/"; break;
-			case 52 : location.href = "http://www.ptsenior.or.kr/"; break;
-			case 53 : location.href = "https://bbnoin.or.kr:41004/"; break;
-			case 54 : location.href = "http://www.sbnoin.net/ "; break;
-			case 55 : location.href = "http://pssenior.or.kr/"; break;
-			case 56 : location.href = "http://www.pcsc.kr/"; break;
-			case 57 : location.href = "http://www.youngnak-noin.or.kr/"; break;
-			case 58 : location.href = "https://www.dtsenior.or.kr/dongtan/index.do"; break;
-			case 59 : location.href = "https://www.hssenior.or.kr/index/"; break;
-			case 60 : location.href = "http://www.hs-seobu.or.kr/main"; break;
+			case 1 : window.open("http://gpsilver.org/home/"); break;
+			case 2 : window.open("https://test.narangdesign.com/mail/withnoin/201801/index.html"); break;
+			case 3 : window.open("https://ilsansenior.org/"); break;
+			case 4 : window.open("https://www.dh-seniorwelfarecenter.co.kr/index.php"); break;
+			case 5 : window.open("https://www.gcsilver.or.kr/"); break;
+			case 6 : window.open("http://www.gmsenior.or.kr/"); break;
+			case 7 : window.open("http://www.gjswc.kr/gjnoin/index.do"); break;
+			case 8 : window.open("http://www.guriwelfare.or.kr/bbs/view.php?id=TemP_kurinews&page=1"); break;
+			case 9 : window.open("https://www.gpbokji.org/"); break;
+			case 10 : window.open("http://www.nprsenior.or.kr/"); break;
+			case 11 : window.open("https://gimposenior.org/"); break;
+			case 12 : window.open("http://www.gpnsenior.org/main/"); break;
+			case 13 : window.open("http://nyjsw.or.kr/"); break;
+			case 14 : window.open("https://www.dongbusenior.or.kr/"); break;
+			case 15 : window.open("http://www.js1004.kr/"); break;
+			case 16 : window.open("http://www.ddcnoin.org/"); break;
+			case 17 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency02/seniorWelfareAgency02_1.jsp"); break;
+			case 18 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency03/seniorWelfareAgency03_1.jsp"); break;
+			case 19 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency01/seniorWelfareAgency01_1.jsp"); break;
+			case 20 : window.open("https://bdsenior.or.kr/main/main.php"); break;
+			case 21 : window.open("http://sunobok.or.kr/"); break;
+			case 22 : window.open("http://www.sswc.kr/online/"); break;
+			case 23 : window.open("http://www.jwnoin.org/"); break;
+			case 24 : window.open("http://www.ypinetree.or.kr/"); break;
+			case 25 : window.open("http://www.gnoin.kr/"); break;
+			case 26 : window.open("http://www.bambat.org/ "); break;
+			case 27 : window.open("http://www.seoho.or.kr/user/index.jsp"); break;
+			case 28 : window.open("http://www.ggsenior.or.kr/"); break;
+			case 29 : window.open("http://www.budnae.or.kr/"); break;
+			case 30 : window.open("http://www.pangyonoin.or.kr/main/main.html"); break;
+			case 31 : window.open("https://scsnoin.or.kr/"); break;
+			case 32 : window.open("http://shsenior.or.kr/main/"); break;
+			case 33 : window.open("https://cafe.daum.net/dwsws"); break;
+			case 34 : window.open("http://www.ansansenior.or.kr/main/main.php"); break;
+			case 35 : window.open("http://www.anseongnoin.or.kr/"); break;
+			case 36 : window.open("http://www.happytown.or.kr/"); break;
+			case 37 : window.open("http://www.yjhcsenior.or.kr/html/index/"); break; // 양주시 접속문제 있음 400 error
+			case 38 : window.open("http://www.ypsilver21.or.kr/"); break;
+			case 39 : window.open("http://www.yjsilver.or.kr/main.php"); break;
+			case 40 : window.open("http://www.lycsenior.org/"); break;
+			case 41 : window.open("http://www.osannoin.or.kr/main/ "); break;
+			case 42 : window.open("http://www.ygsenior.or.kr/"); break;
+			case 43 : window.open("http://sujibokji.or.kr/main.php#1"); break;
+			case 44 : window.open("http://www.yiswc.or.kr/website/"); break;
+			case 45 : window.open("http://www.noinlove.or.kr/"); break;
+			case 46 : window.open("http://uwsenior.or.kr/"); break;
+			case 47 : window.open("https://www.songsan.ne.kr/"); break;
+			case 48 : window.open("http://sgwelfare.org/"); break;
+			case 49 : window.open("https://uswc4u.or.kr/ "); break;
+			case 50 : window.open("http://www.ichonold.or.kr/"); break;
+			case 51 : window.open("https://www.pajusenior.or.kr/"); break;
+			case 52 : window.open("http://www.ptsenior.or.kr/"); break;
+			case 53 : window.open("https://bbnoin.or.kr:41004/"); break;
+			case 54 : window.open("http://www.sbnoin.net/ "); break;
+			case 55 : window.open("http://pssenior.or.kr/"); break;
+			case 56 : window.open("http://www.pcsc.kr/"); break;
+			case 57 : window.open("http://www.youngnak-noin.or.kr/"); break;
+			case 58 : window.open("https://www.dtsenior.or.kr/dongtan/index.do"); break;
+			case 59 : window.open("https://www.hssenior.or.kr/index/"); break;
+			case 60 : window.open("http://www.hs-seobu.or.kr/main"); break;
 		}
 	}
 	

@@ -44,7 +44,7 @@
 			<span><a href="">개인정보취급방침</a></span>
 			<span><a href="">이메일추출방지정책</a></span>
 			<span><a href="">장애인차별금지법</a></span>
-			<span><a href="">찾아오시는 길</a></span>
+			<span><a href="/gnoincoun/centerIntroList.do?gubun=directions">찾아오시는 길</a></span>
 			<span class='copyright'>Copyright (c) 2021 GNOIN. All rights reserved.</span>
 		</div>
 	</div>

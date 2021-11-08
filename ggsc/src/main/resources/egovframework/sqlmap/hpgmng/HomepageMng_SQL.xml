@@ -10,6 +10,7 @@
 	<typeAlias alias="newsVO" type="ggsc.hpgmng.service.NewsVO"/>
 	<typeAlias alias="onlineAskVO" type="ggsc.hpgmng.service.OnlineAskVO"/>
 	<typeAlias alias="eduAppVO" type="ggsc.hpgmng.service.EduAppVO"/>
+	<typeAlias alias="popupVO" type="ggsc.hpgmng.service.PopupVO"/>
 <!--	<typeAlias alias="faqVO" type="ggsc.support.service.FaqVO"/>-->
 
 	<!-- 센터소식 목록 -->
@@ -905,6 +906,151 @@
 				DEPART = #depart# ,
 				EDU_NAME = #eduName# ,
 				REG_DATE = #regDate#
+			WHERE
+				NUM = #num#
+	</update>
+	
+	<!-- 팝업 목록  -->
+	<select id="hpgmngDao.getPopupList" parameterClass="popupVO" resultClass="egovMap">
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY gpa.NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY gpa.NUM DESC) AS RNUM2 ,
+				gpa.NUM ,
+				gpa.VIEW_COUNT,
+				gpa.TITLE ,
+				gpa.CNTN ,
+				gpa.WRITER ,
+				gpa.REG_ID ,
+				DATE_FORMAT(gpa.DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM,
+				gpaf.FILE_NM,
+				gpaf.SYS_FILE_NM,
+				gpaf.FILE_PATH
+			FROM
+				GS_POPUP_A gpa
+			LEFT JOIN
+				GS_POPUP_A_FILE gpaf
+			ON 
+				gpa.NUM = gpaf.FILE_NUM 
+			WHERE 
+				1 = 1
+			<isNotEmpty property="schText"> 
+				<isEqual property="schType" compareValue="1"> 
+					AND USER_NM LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual property="schType" compareValue="2"> 
+					AND CENTER_NM LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual property="schType" compareValue="3"> 
+					AND DEPART LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
+			) A
+		<![CDATA[
+ 		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+ 			ORDER BY RNUM DESC
+ 		]]>
+	</select>
+	
+	<!-- 팝업 갯수  -->
+	<select id="hpgmngDao.getPopupListTotCnt" parameterClass="popupVO" resultClass="Integer">
+		SELECT 
+			COUNT(*)
+		FROM 
+			GS_POPUP_A
+		WHERE 
+			1=1
+		<isNotEmpty property="schText"> 
+			<isEqual property="schType" compareValue="1"> 
+				AND USER_NM LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual property="schType" compareValue="2"> 
+				AND CENTER_NM LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual property="schType" compareValue="3"> 
+				AND DEPART LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="schStartDate" prepend="AND">
+			DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+		</isNotEmpty>
+		<isNotEmpty property="schEndDate" prepend="AND">
+			DATE_FORMAT(DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+		</isNotEmpty>
+	</select>
+	
+	<!-- 팝업 상세 -->
+	<select id="hpgmngDao.getPopupDtl" parameterClass="Integer" resultClass="egovMap">		
+		SELECT
+			A.NUM ,
+			A.TITLE ,
+			A.WRITER ,
+			A.REG_ID ,
+			CAST(A.CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			B.FILE_NM ,
+			B.FILE_PATH ,
+			B.SYS_FILE_NM
+		FROM
+			GS_POPUP_A AS A
+		LEFT JOIN GS_POPUP_A_FILE AS B
+			ON A.NUM = B.FILE_NUM
+		WHERE
+			A.NUM = #num#
+	</select>
+	
+	<!-- 팝업관리 등록  -->
+	<insert id="hpgmngDao.insertPopup" parameterClass="popupVO">
+		INSERT INTO GS_POPUP_A(
+			<!-- NUM , -->
+			WRITER,
+			TITLE,
+			CNTN,
+			REG_ID,
+			DB_INS_TM
+		) VALUES(
+			<!-- (SELECT IFNULL(MAX(A.NUM), 0)+1 FROM GS_POPUP_A AS A) , -->
+			#writer#,
+			#title#,
+			#cntn#,
+			#regId#,
+			NOW()
+		)	
+	</insert>
+	
+	<!-- 팝업관리 파일업로드 등록  -->
+	<insert id="hpgmngDao.insertPopupUpload" parameterClass="popupVO">
+		INSERT INTO GS_POPUP_A_FILE
+			(
+				FILE_NUM ,
+				REG_ID ,
+				REG_NM ,
+				FILE_NM ,
+				SYS_FILE_NM ,
+				FILE_PATH ,
+				DB_INS_TM
+			) VALUES (
+				(SELECT IFNULL(MAX(A.NUM),0) FROM GS_POPUP_A AS A) ,
+				#regId# ,
+				#writer# ,
+				#fileNm# ,
+				#sysFileNm# ,
+				#filePath# ,
+				now()
+			)
+	</insert>
+	
+	<update id="hpgmngDao.updatePopup" parameterClass="popupVO">
+		UPDATE GS_POPUP_A
+			SET
+				TITLE = #title# ,
 			WHERE
 				NUM = #num#
 	</update>

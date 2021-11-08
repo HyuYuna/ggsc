@@ -93,6 +93,21 @@ public interface HomepageMngService {
 	// 교육신청 수정
 	void updateEduApp(EduAppVO vo);
 	
+	// 팝업 목록
+	List<EgovMap> getPopupList(PopupVO vo);
+	
+	// 팝업 갯수
+	int getPopupListTotCnt(PopupVO vo);
+	
+	// 팝업 상세
+	EgovMap getPopupDtl(int num);
+	
+	// 팝업 등록
+	void insertPopup(PopupVO vo);
+	
+	// 팝업 수정
+	void updatePopup(PopupVO vo);
+	
 //	// FAQ 목록
 //	List<EgovMap> getFaqList(FaqVO vo);
 //	
