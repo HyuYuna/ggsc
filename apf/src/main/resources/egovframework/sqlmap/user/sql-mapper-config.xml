@@ -9,6 +9,7 @@
 		<typeAlias alias="loginVO" type="egovframework.user.main.service.LoginVO"/>
 		<typeAlias alias="notVO" type="egovframework.user.notice.service.NotVO"/>
 		<typeAlias alias="aboutVO" type="egovframework.user.about.service.AboutVO"/>
+		<typeAlias alias="popupVO" type="egovframework.homepage.main.service.PopupVO"/>
 		<typeAlias alias="busiVO" type="egovframework.user.busi.service.BusiVO"/>
 		<typeAlias alias="regVO" type="egovframework.user.reg.service.RegVO"/>
 		<!-- <typeAlias alias="mypageVO" type="egovframework.user.mypage.service.MypageVO"/> -->

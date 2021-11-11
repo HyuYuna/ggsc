@@ -1,13 +1,27 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+
+<script src="/gnoincoun/editor/js/summernote_0.8.3.js"></script>
+<script src="/gnoincoun/editor/js/summernote_0.8.3.min.js"></script>
+<script src="/gnoincoun/editor/lang/summernote-ko-KR.js"></script>
+<script src="/gnoincoun/editor/js/bootstrap_3.3.5.js"></script>
+<link rel="stylesheet" href="/gnoincoun/editor/css/summernote_0.8.3.css">   
 	<script>
+		$(document).ready(function() {
+		   $('#rcontent').summernote({
+		        minHeight: 400,
+		        maxHeight: null,
+		        focus: true, 
+		        lang : 'ko-KR',
+		   });
+		});
 		function fn_fileDown(sysFileNm, filePath, fileNm){
 			$("#fileNm").val(fileNm);
 			$("#sysFileNm").val(sysFileNm);
 			$("#filePath").val(filePath);
-			document.downForm.action = "/gnoincoun/fileDown2.do";
+			document.downForm.action = "/gnoincoundb/fileDown2.do";
 			document.downForm.submit();
 		}
 		
@@ -20,7 +34,7 @@
 	/* .container {width: 100%;} */
 </style>
 <section class="service-2 section">
-	<form name="downForm" id="downForm" method="post">
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
@@ -78,7 +92,7 @@
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-              	<c:out value="${detail.cntn }" escapeXml="false"/>
+            <textarea id="rcontent" name="content" readonly="readonly" ><c:out value="${detail.cntn }" escapeXml="false" /></textarea>
             </div>
           </div><!-- .article-body /-->
             

@@ -45,7 +45,7 @@
 			$("#fileNm").val(fileNm);
 			$("#sysFileNm").val(sysFileNm);
 			$("#filePath").val(filePath);
-			document.downForm.action = "/gnoincoun/fileDown2.do";
+			document.downForm.action = "/gnoincoundb/fileDown2.do";
 	       	document.downForm.submit();
 		}
   </script>
@@ -54,7 +54,7 @@
 	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
-	<form name="downForm" id="downForm" method="post">
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />

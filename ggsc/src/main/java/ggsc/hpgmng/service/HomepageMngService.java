@@ -108,6 +108,9 @@ public interface HomepageMngService {
 	// 팝업 수정
 	void updatePopup(PopupVO vo);
 	
+	// 팝업 삭제
+	void deletePopup(PopupVO vo);
+	
 //	// FAQ 목록
 //	List<EgovMap> getFaqList(FaqVO vo);
 //	

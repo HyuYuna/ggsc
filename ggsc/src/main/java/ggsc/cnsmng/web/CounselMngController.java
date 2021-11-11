@@ -2287,6 +2287,66 @@ public class CounselMngController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/fileDown2.do")
+	public void fileDown2(PreExamVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		String FileName = "";
+
+		try {
+			FileName = AES256Crypto.getInstance().AESDecode(vo.getSysFileNm());
+		} catch (InvalidKeyException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Invalid Key Exception");
+		} catch (NoSuchAlgorithmException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : No Such AlgorithmException");
+		} catch (NoSuchPaddingException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : No Such Padding Exception");
+		} catch (InvalidAlgorithmParameterException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Invaild Algorithm Parameter Exception");
+		} catch (IllegalBlockSizeException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Illegal Block Size Exception");
+		} catch (BadPaddingException e) {
+			FileName = vo.getSysFileNm();
+			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Bad Padding Exception");
+		}
+
+		String FilePathName2 = utility.func.filePath + FilenameUtils.getName(vo.getFilePath()) + "\\";
+		String FilePathName = utility.func.filePath;
+		System.out.println("FilePathName : " + FilePathName);
+		System.out.println("FilePathName2 : " + FilePathName2);
+		File file = new File(FilenameUtils.getFullPath(FilePathName), FilenameUtils.getName(FileName));
+		if (!file.exists()) {
+			file = new File(FilenameUtils.getFullPath(FilePathName2), FilenameUtils.getName(FileName));
+			System.out.println("파일 객체2의 값 : " + file);
+		}
+		System.out.println("파일 객체의 값 : " + file);
+
+		if (file.exists() && file.isFile()) {
+			System.out.println("File Exists : " + utility.func.filePath + vo.getFilePath() + "/" + FileName);
+			response.setContentType("application/octet-stream; charset=utf-8");
+			response.setContentLength((int) file.length());
+			String browser = getBrowser(request);
+			//String disposition = getDisposition(FileName, browser);
+			String disposition = getDisposition(vo.getFileNm(), browser);
+			response.setHeader("Content-Disposition", disposition);
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			OutputStream out = response.getOutputStream();
+			FileInputStream fis = null;
+			fis = new FileInputStream(file);
+			FileCopyUtils.copy(fis, out);
+			if (fis != null)
+				fis.close();
+			out.flush();
+			out.close();
+			System.out.println("File Donwload Complete");
+		}
+
+	}
 
 	@RequestMapping(value = "/cnsEndPopup.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cnsEndPopup(HttpServletRequest request, ModelMap model) {

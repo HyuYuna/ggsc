@@ -22,7 +22,7 @@
 		$("#fileNm").val(fileNm);
 		$("#sysFileNm").val(sysFileNm);
 		$("#filePath").val(filePath);
-		document.downForm.action = "/gnoincoun/fileDown2.do";
+		document.downForm.action = "/gnoincoundb/fileDown2.do";
        	document.downForm.submit();
 	}
 	
@@ -33,10 +33,11 @@
 
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
+	#note-toolbar {display:none;}
 	/* .container {width: 100%;} */
 </style>
 <section class="service-2 section">
-	<form name="downForm" id="downForm" method="post">
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
@@ -94,9 +95,7 @@
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-				<textarea id="rcontent" name="content">
-					<c:out value="${detail.cntn }" escapeXml="false" />
-				</textarea>
+				<textarea id="rcontent" name="content" readonly="readonly" ><c:out value="${detail.cntn }" escapeXml="false" /></textarea>
 			</div>
           </div>
           </div><!-- .article-body /-->

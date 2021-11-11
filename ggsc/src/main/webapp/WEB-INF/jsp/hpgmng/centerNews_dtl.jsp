@@ -1,24 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <script src="/gnoincoundb/editor/js/summernote_0.8.3.js"></script>
+<link href="/gnoincoundb/css/style.css" rel="stylesheet">
+<script src="/gnoincoundb/editor/js/summernote_0.8.3.js"></script>
 <script src="/gnoincoundb/editor/js/summernote_0.8.3.min.js"></script>
 <script src="/gnoincoundb/editor/lang/summernote-ko-KR.js"></script>
 <script src="/gnoincoundb/editor/js/bootstrap_3.3.5.js"></script>
 <link rel="stylesheet" href="/gnoincoundb/editor/css/summernote_0.8.3.css">
-<link rel="stylesheet" href="/gnoincoundb/editor/css/bootstrap_3.3.5.css"> --%>
+<link rel="stylesheet" href="/gnoincoundb/editor/css/bootstrap_3.3.5.css">
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
-	   var writer = "${detail.writer }";
-	   if(writer != "") {
-		   $("#saveBtn").css("display", "none");
-		   $("#updateBtn").css("display", "");
-	   } else {
-		   $("#saveBtn").css("display", "");
-		   $("#updateBtn").css("display", "none");
-	   }
 		
 	   $('#rcontent').summernote({
 	        minHeight: 400,
@@ -37,6 +29,15 @@
 	   
 	   $("#rcontent").focus();
 	   $("#downBtn").css("display", "none");
+	   
+	   var writer = "${detail.writer }";
+	   if(writer != "") {
+		   $("#saveBtn").css("display", "none");
+		   $("#updateBtn").css("display", "");
+	   } else {
+		   $("#saveBtn").css("display", "");
+		   $("#updateBtn").css("display", "none");
+	   }
 	   
 	   var fileTarget1 = $('#file'); 
 	   fileTarget1.on('change', function(){

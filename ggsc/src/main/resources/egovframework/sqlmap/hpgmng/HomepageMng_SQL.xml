@@ -1066,6 +1066,20 @@
 				FILE_NUM = #num#
 	</update>
 	
+	<update id="hpgmngDao.deletePopup" parameterClass="popupVO">
+		DELETE FROM 
+			GS_POPUP_A
+		WHERE
+			NUM = #num#
+	</update>
+	
+	<update id="hpgmngDao.deletePopupUpload" parameterClass="popupVO">
+		DELETE FROM 
+			GS_POPUP_A_FILE
+		WHERE
+			FILE_NUM = #num#
+	</update>	
+	
 	
 	<!-- FAQ 목록  -->
 	<select id="hpgmngDao.getFaqList" parameterClass="faqVO" resultClass="egovMap">

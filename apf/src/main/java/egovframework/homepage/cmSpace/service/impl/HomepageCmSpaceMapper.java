@@ -3,6 +3,7 @@ package egovframework.homepage.cmSpace.service.impl;
 import java.util.List;
 
 import egovframework.homepage.cmSpace.service.CmSpaceVO;
+import egovframework.homepage.main.service.PopupVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
@@ -77,6 +78,9 @@ public interface HomepageCmSpaceMapper {
 	
 	// 자유게시판 목록 갯수
 	int getFreeBoardTotal(CmSpaceVO vo);
+	
+	// 메인화면 팝업
+	public List<EgovMap> getPopupListM(PopupVO vo);
 	
 	// 자유게시판 등록
 	void insertFreeBoardReg(CmSpaceVO vo);

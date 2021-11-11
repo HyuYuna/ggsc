@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import egovframework.homepage.cmSpace.service.CmSpaceVO;
 import egovframework.homepage.cmSpace.service.HomepageCmSpaceService;
 import egovframework.homepage.freeBbs.service.BbsVO;
+import egovframework.homepage.main.service.PopupVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
@@ -123,6 +124,11 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 	// 자유게시판 목록 갯수
 	public int getFreeBoardTotal(CmSpaceVO vo) {
 		return homepageCmSpaceMapper.getFreeBoardTotal(vo);
+	}
+	
+	// 메인화면 팝업
+	public List<EgovMap> getPopupListM(PopupVO vo) {
+		return homepageCmSpaceMapper.getPopupListM(vo);
 	}
 	
 	// 자유게시판 등록

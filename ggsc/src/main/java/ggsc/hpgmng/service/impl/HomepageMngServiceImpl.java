@@ -291,6 +291,13 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 		} 
 	}
 	
+	// 팝업 수정
+	@Override
+	public void deletePopup(PopupVO vo) {
+		hpgmngDao.deletePopup(vo);
+		hpgmngDao.deletePopupUpload(vo);			
+	}
+	
 //	// FAQ 목록
 //	@Override
 //	public List<EgovMap> getFaqList(FaqVO vo) {

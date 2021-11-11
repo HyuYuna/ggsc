@@ -141,6 +141,54 @@ public class FileController {
 		}
 	}
 	
+	@RequestMapping("/getPopup.do")
+	public void getPopup(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws Exception {
+
+		String realFile = utility.func.popupPath;
+		String fileNm = req.getParameter("fileNm");
+		fileNm = fileNm.replaceAll("/images/", "");
+		System.out.println("FileName : " + fileNm);
+		
+		String ext = fileNm.substring(fileNm.lastIndexOf("."));
+		
+		String[] exts = new String[] { "jpg", "jpeg", "bmp", "png" };
+		boolean uploadOK = false;
+	    for(String a : exts) {
+	    	if(a.equals(ext.substring(1,ext.length()).toLowerCase())) {
+	    		uploadOK = true;
+	    		break;
+	    	}
+	    }
+		
+	    if(!uploadOK) return;
+	    
+	
+		BufferedOutputStream out = null;
+		InputStream in = null;
+		
+		
+		try {
+			res.setContentType("image/" + ext);
+			res.setHeader("Content-Disposition", "inline;filename=" + fileNm);
+			File file = new File(realFile + fileNm);
+			if(file.exists()){
+				in = new FileInputStream(file);
+				out = new BufferedOutputStream(res.getOutputStream());
+				int len;
+				byte[] buf = new byte[1024];
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+			}
+		} catch (Exception e) {
+			utility.func.Logging("getPopup.do", e);
+		} finally {
+			if(out != null){ out.flush(); }
+			if(out != null){ out.close(); }
+			if(in != null){ in.close(); }
+		}
+	}
+	
 	@RequestMapping(value = "/ImageUpload.do")
 	public String uploadImgFile(HttpServletRequest request, ModelMap model, @RequestParam("file") MultipartFile file){
 		System.out.println("Image Upload Start");

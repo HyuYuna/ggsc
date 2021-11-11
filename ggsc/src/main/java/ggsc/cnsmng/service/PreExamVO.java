@@ -88,6 +88,24 @@ public class PreExamVO extends PageVO {
 	
 	private MultipartFile file;
 	
+	private int viewCount;
+	private String title;
+	private String writer;
+	private String cntn;
+	
+	private String pw;
+	private String openStatYn;
+	
+	private String ansTitle;
+	private String ansCntn;
+	private String regNm;
+	private String ansDbInsTm;
+	
+	private int viewCnt;
+	
+	private int fileSize;
+	private String prevYn;
+	
 	private String fileNm;
 	private String sysFileNm;
 	private String filePath;
@@ -634,6 +652,108 @@ public class PreExamVO extends PageVO {
 	}
 	public void setBirthDt(String birthDt) {
 		this.birthDt = birthDt;
+	}
+	public int getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getCntn() {
+		return cntn;
+	}
+	public void setCntn(String cntn) {
+		this.cntn = cntn;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	public String getOpenStatYn() {
+		return openStatYn;
+	}
+	public void setOpenStatYn(String openStatYn) {
+		this.openStatYn = openStatYn;
+	}
+	public String getAnsTitle() {
+		return ansTitle;
+	}
+	public void setAnsTitle(String ansTitle) {
+		this.ansTitle = ansTitle;
+	}
+	public String getAnsCntn() {
+		return ansCntn;
+	}
+	public void setAnsCntn(String ansCntn) {
+		this.ansCntn = ansCntn;
+	}
+	public String getRegNm() {
+		return regNm;
+	}
+	public void setRegNm(String regNm) {
+		this.regNm = regNm;
+	}
+	public String getAnsDbInsTm() {
+		return ansDbInsTm;
+	}
+	public void setAnsDbInsTm(String ansDbInsTm) {
+		this.ansDbInsTm = ansDbInsTm;
+	}
+	public int getViewCnt() {
+		return viewCnt;
+	}
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
+	}
+	public int getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+	public String getPrevYn() {
+		return prevYn;
+	}
+	public void setPrevYn(String prevYn) {
+		this.prevYn = prevYn;
+	}
+	public String getSchCnsGb() {
+		return schCnsGb;
+	}
+	public void setSchCnsGb(String schCnsGb) {
+		this.schCnsGb = schCnsGb;
+	}
+	public String getSchZoneGb() {
+		return schZoneGb;
+	}
+	public void setSchZoneGb(String schZoneGb) {
+		this.schZoneGb = schZoneGb;
+	}
+	public String getSchLocalGb() {
+		return schLocalGb;
+	}
+	public void setSchLocalGb(String schLocalGb) {
+		this.schLocalGb = schLocalGb;
+	}
+	public String getSchAcptNm() {
+		return schAcptNm;
+	}
+	public void setSchAcptNm(String schAcptNm) {
+		this.schAcptNm = schAcptNm;
 	}
 	@Override
 	public String toString() {

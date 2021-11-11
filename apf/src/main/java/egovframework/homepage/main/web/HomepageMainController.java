@@ -1,6 +1,7 @@
 package egovframework.homepage.main.web;
 
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import ams.cmm.AES256Crypto;
 import egovframework.homepage.cmSpace.service.CmSpaceVO;
 import egovframework.homepage.cmSpace.service.HomepageCmSpaceService;
 import egovframework.homepage.main.service.CenterVO;
 import egovframework.homepage.main.service.HomepageMainService;
 import egovframework.homepage.main.service.LoginVO;
+import egovframework.homepage.main.service.PopupVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.user.main.service.MainDefaultVO;
@@ -60,9 +63,11 @@ public class HomepageMainController {
 	 */
 	
 	@RequestMapping(value = "/homepageMainList.do")
-	public String homepageMainList(CmSpaceVO cmSpaceVO, ModelMap model, HttpServletRequest request) throws Exception {
+	public String homepageMainList(CmSpaceVO cmSpaceVO, PopupVO popupVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
+		int popupCnt = 0;
 		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
 		if(map == null) {
 			model.addAttribute("loginYn", "N");
 		} else {
@@ -76,6 +81,19 @@ public class HomepageMainController {
 		// 문서자료실 목록
 		List<EgovMap> docLibraryList = homepageCmSpaceService.getDocLibraryListM(cmSpaceVO);
 		model.addAttribute("docLibraryList", docLibraryList);
+		
+		// 팝업 목록
+		List<EgovMap> popupList = homepageCmSpaceService.getPopupListM(popupVO);
+		List<String> popup = new ArrayList<String>();
+		
+		for(EgovMap map1 : popupList) {
+			String FileName = AES256Crypto.getInstance().AESDecode((String) map1.get("sysFileNm"));
+			popup.add(FileName);
+			popupCnt += 1;
+		} 
+		
+		model.addAttribute("popup", popup); 
+		model.addAttribute("popupCnt", popupCnt); 
 		
 		// 센터 목록
 		List<EgovMap> centerNewsList = homepageCmSpaceService.getCenterNewsListM(cmSpaceVO);

@@ -772,6 +772,8 @@ public class HomepageMngController {
 			hpgmngService.insertPopup(vo);
 		} else if(save.equals("U")) {
 			hpgmngService.updatePopup(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deletePopup(vo);
 		}
 		
 		return "redirect:/gnoincoundb/popupList.do?mnuCd=" + mnuCd;

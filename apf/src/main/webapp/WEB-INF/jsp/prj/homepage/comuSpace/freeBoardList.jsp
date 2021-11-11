@@ -38,9 +38,13 @@
            	document.searchForm.submit();
         }
         
-		function fn_fileDown(sysFileNm,filePath,fileNm) {
-	        document.location.href = "/gnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;
-	  	}
+        function fn_fileDown(sysFileNm, filePath, fileNm) {
+    		$("#fileNm").val(fileNm);
+    		$("#sysFileNm").val(sysFileNm);
+    		$("#filePath").val(filePath);
+    		document.downForm.action = "/gnoincoundb/fileDown2.do";
+    		document.downForm.submit();
+    	}
 		
 		function fn_reg() {
 			var loginYn = "${loginYn}";
@@ -58,7 +62,7 @@
 	#paging {text-align: center;}
 </style>
 <section class="service-2 section">
-	<form name="downForm" id="downForm" method="post">
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />

@@ -420,6 +420,25 @@
 		LIMIT 4
 	</select>
 	
+	<!-- 팝업 목록-->
+	<select id="getPopupListM" parameterType="popupVO" resultType="egovMap">
+		SELECT
+			A.NUM ,
+			A.VIEW_COUNT ,
+			A.TITLE ,
+			A.WRITER ,
+			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
+			F.FILE_NM ,
+			F.SYS_FILE_NM ,
+			F.FILE_PATH
+		FROM
+			GS_POPUP_A AS A
+		LEFT JOIN GS_POPUP_A_FILE AS F
+			ON A.NUM = F.FILE_NUM
+		where
+			1=1 
+	</select>
+	
 	<!-- 자유게시판 목록 갯수 -->
 	<select id="getFreeBoardTotal" parameterType="cmSpaceVO" resultType="Integer">
 		SELECT

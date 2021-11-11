@@ -17,843 +17,759 @@
 	<script src="/gnoincoun/assets/js/swiper-bundle.min.js"></script>
 	<script src="/gnoincoun/js/script2.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() {
-		
-		<!-- window.open("/gnoincoun/images/logoRetouch.png", "a", "width=400, height=300, left=100, top=50"); -->
-		
-		  var img=new Image();
-		  img.src="/gnoincoun/images/logoRetouch.png";
-		  var img_width=img.width;
-		  var win_width=img.width+25;
-		  var img_height=img.height;
-		  var win=img.height+30;
-		  var OpenWindow=window.open('/gnoincoun/images/logoRetouch.png','_blank', 'width='+img_width+', height='+img_height+', menubars=no, scrollbars=auto');
-		  OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+url+"' width='"+win_width+"'>");
-		
-		$('.border-btn-box > li').hover(
-		    function() { $(this).addClass('active'); } ,
-			function() { $(this).removeClass('active'); }
-		);
-	});
-	
-	function fn_fileDown(sysFileNm, filePath, fileNm){
-		$("#fileNm").val(fileNm);
-		$("#sysFileNm").val(sysFileNm);
-		$("#filePath").val(filePath);
-		document.downForm.action = "/gnoincoun/fileDown2.do";
-       	document.downForm.submit();
-	}
-	
-	function goLink(idx) {
-		switch(idx){
-			case 1 : window.open("http://gpsilver.org/home/"); break;
-			case 2 : window.open("https://test.narangdesign.com/mail/withnoin/201801/index.html"); break;
-			case 3 : window.open("https://ilsansenior.org/"); break;
-			case 4 : window.open("https://www.dh-seniorwelfarecenter.co.kr/index.php"); break;
-			case 5 : window.open("https://www.gcsilver.or.kr/"); break;
-			case 6 : window.open("http://www.gmsenior.or.kr/"); break;
-			case 7 : window.open("http://www.gjswc.kr/gjnoin/index.do"); break;
-			case 8 : window.open("http://www.guriwelfare.or.kr/bbs/view.php?id=TemP_kurinews&page=1"); break;
-			case 9 : window.open("https://www.gpbokji.org/"); break;
-			case 10 : window.open("http://www.nprsenior.or.kr/"); break;
-			case 11 : window.open("https://gimposenior.org/"); break;
-			case 12 : window.open("http://www.gpnsenior.org/main/"); break;
-			case 13 : window.open("http://nyjsw.or.kr/"); break;
-			case 14 : window.open("https://www.dongbusenior.or.kr/"); break;
-			case 15 : window.open("http://www.js1004.kr/"); break;
-			case 16 : window.open("http://www.ddcnoin.org/"); break;
-			case 17 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency02/seniorWelfareAgency02_1.jsp"); break;
-			case 18 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency03/seniorWelfareAgency03_1.jsp"); break;
-			case 19 : window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency01/seniorWelfareAgency01_1.jsp"); break;
-			case 20 : window.open("https://bdsenior.or.kr/main/main.php"); break;
-			case 21 : window.open("http://sunobok.or.kr/"); break;
-			case 22 : window.open("http://www.sswc.kr/online/"); break;
-			case 23 : window.open("http://www.jwnoin.org/"); break;
-			case 24 : window.open("http://www.ypinetree.or.kr/"); break;
-			case 25 : window.open("http://www.gnoin.kr/"); break;
-			case 26 : window.open("http://www.bambat.org/ "); break;
-			case 27 : window.open("http://www.seoho.or.kr/user/index.jsp"); break;
-			case 28 : window.open("http://www.ggsenior.or.kr/"); break;
-			case 29 : window.open("http://www.budnae.or.kr/"); break;
-			case 30 : window.open("http://www.pangyonoin.or.kr/main/main.html"); break;
-			case 31 : window.open("https://scsnoin.or.kr/"); break;
-			case 32 : window.open("http://shsenior.or.kr/main/"); break;
-			case 33 : window.open("https://cafe.daum.net/dwsws"); break;
-			case 34 : window.open("http://www.ansansenior.or.kr/main/main.php"); break;
-			case 35 : window.open("http://www.anseongnoin.or.kr/"); break;
-			case 36 : window.open("http://www.happytown.or.kr/"); break;
-			case 37 : window.open("http://www.yjhcsenior.or.kr/html/index/"); break; // 양주시 접속문제 있음 400 error
-			case 38 : window.open("http://www.ypsilver21.or.kr/"); break;
-			case 39 : window.open("http://www.yjsilver.or.kr/main.php"); break;
-			case 40 : window.open("http://www.lycsenior.org/"); break;
-			case 41 : window.open("http://www.osannoin.or.kr/main/ "); break;
-			case 42 : window.open("http://www.ygsenior.or.kr/"); break;
-			case 43 : window.open("http://sujibokji.or.kr/main.php#1"); break;
-			case 44 : window.open("http://www.yiswc.or.kr/website/"); break;
-			case 45 : window.open("http://www.noinlove.or.kr/"); break;
-			case 46 : window.open("http://uwsenior.or.kr/"); break;
-			case 47 : window.open("https://www.songsan.ne.kr/"); break;
-			case 48 : window.open("http://sgwelfare.org/"); break;
-			case 49 : window.open("https://uswc4u.or.kr/ "); break;
-			case 50 : window.open("http://www.ichonold.or.kr/"); break;
-			case 51 : window.open("https://www.pajusenior.or.kr/"); break;
-			case 52 : window.open("http://www.ptsenior.or.kr/"); break;
-			case 53 : window.open("https://bbnoin.or.kr:41004/"); break;
-			case 54 : window.open("http://www.sbnoin.net/ "); break;
-			case 55 : window.open("http://pssenior.or.kr/"); break;
-			case 56 : window.open("http://www.pcsc.kr/"); break;
-			case 57 : window.open("http://www.youngnak-noin.or.kr/"); break;
-			case 58 : window.open("https://www.dtsenior.or.kr/dongtan/index.do"); break;
-			case 59 : window.open("https://www.hssenior.or.kr/index/"); break;
-			case 60 : window.open("http://www.hs-seobu.or.kr/main"); break;
+		$(document).ready(function() {
+			let list = [];
+			<c:forEach var="popupImg" items="${popup}" varStatus="status">
+				list.push("${popupImg}");
+			</c:forEach>
+			
+			for (var i = 0; i < "${popupCnt}"; i++) {
+				var img = new Image();
+				var imgsrc = list[i];
+				var filePath = "/gnoincoundb/getPopup.do?fileNm=/";
+				img.src = filePath + imgsrc;
+				var path = filePath + imgsrc;
+				var OpenWindow = window.open('', '_blank','width=100%, height=auto, menubars=no, scrollbars=auto');
+				OpenWindow.document.write("<style>body{margin:0px;}</style><img src='"+path+"' onclick='window.close();'>");
+			}
+			$('.border-btn-box > li').hover(
+				    function() { $(this).addClass('active'); } ,
+					function() { $(this).removeClass('active'); 
+			});
+		});
+
+		function fn_fileDown(sysFileNm, filePath, fileNm) {
+			$("#fileNm").val(fileNm);
+			$("#sysFileNm").val(sysFileNm);
+			$("#filePath").val(filePath);
+			document.downForm.action = "/gnoincoundb/fileDown2.do";
+			document.downForm.submit();
 		}
-	}
-	
-	function listCenter(idx){
-		  idx = Number(idx);
-		  console.log("idx : "+idx);
-		  var html = undefined;
-		  switch(idx){
-			  case 1 : //가평
-					$("#nowMap").text('가평');
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(1)">' +
-						'<td class="title" >가평군 노인복지관</td>' +
-						'<td class="address">경기도 가평군 가평읍 읍내리 625-8</td>' +
-						'<td class="tel">031-581-6063</td>' +
-					'</tr>' +
-					'</table>'
-					break;
-				case 2 : // 고양
-					$("#nowMap").text('고양')
-					html =  '<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(2)">' +
-						'<td class="title" style="cursor:pointer;">고양시덕양노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 덕양구 화정동 846</td>' +
-						'<td class="tel">031-969-7781</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(3)">' +
-						'<td class="title">고양시일산노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
-						'<td class="tel">031-919-8677</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(4)">' +
-						'<td class="title">고양시대화노인종합복지관</td>' +
-						'<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>' +
-						'<td class="tel">031-919-8677</td>' +
-					'</tr>' +
-					'</table>'
-					break;
-				case 3 : // 과천 
-					$("#nowMap").text('과천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(5)">' +
-						'<td class="title" >과천시노인복지관</td>' +
-						'<td class="address">경기도 과천시 문원로57</td>' +
-						'<td class="tel">02-502-8500</td>' +
-					'</tr>' +
-					'</table>'
+
+		function goLink(idx) {
+			switch (idx) {
+			case 1:
+				window.open("http://gpsilver.org/home/");
 				break;
-					
-				case 4 :
-					$("#nowMap").text('광명');
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(6)">' +
-						'<td class="title" >광명소하노인종합복지관</td>' +
-						'<td class="address">경기도 광명시 소하로25</td>' +
-						'<td class="tel">02-2625-9300</td>' +
-					'</tr>' +
-					'</table>'
+			case 2:
+				window.open("https://test.narangdesign.com/mail/withnoin/201801/index.html");
 				break;
-					 
-				case 5 :
-					$("#nowMap").text('광주')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(7)">' +
-						'<td class="title" >광주시노인복지관</td>' +
-						'<td class="address">경기도 광주시 파발로 202</td>' +
-						'<td class="tel">031-766-9129</td>' +
-					'</tr>' +
-					'</table>'
+			case 3:
+				window.open("https://ilsansenior.org/");
 				break;
-					
-				case 6 :
-					$("#nowMap").text('구리')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(8)">' +
-						'<td class="title" >구리시종합사회복지관</td>' +
-						'<td class="address">경기도 구리시 벌말로129번길 50</td>' +
-						'<td class="tel">031-556-8100</td>' +
-					'</tr>' +
-					'</table>'
+			case 4:
+				window.open("https://www.dh-seniorwelfarecenter.co.kr/index.php");
 				break;
-					
-				case 7 :
-					$("#nowMap").text('군포')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(9)">' +
-						'<td class="title" >군포시노인복지관</td>' +
-						'<td class="address">경기 군포시 고산로 223</td>' +
-						'<td class="tel">031-556-8100</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(10)">' +
-						'<td class="title" >군포시늘푸른노인복지관</td>' +
-						'<td class="address">경기도 군포시 산본천로 101</td>' +
-						'<td class="tel">031-392-5755</td>' +
-					'</tr>' +
-					'</table>'
+			case 5:
+				window.open("https://www.gcsilver.or.kr/");
 				break;
-					
-				case 8 :
-					$("#nowMap").text('김포')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(11)">' +
-						'<td class="title" >김포시노인종합복지관</td>' +
-						'<td class="address">경기도 김포시 사우중로 74번길 48</td>' +
-						'<td class="tel">031-997-9300</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(12)">' +
-						'<td class="title" >김포시북부노인복지관</td>' +
-						'<td class="address">경기도 김포시 통진읍 마송1로 16번길 40-2</td>' +
-						'<td class="tel">031-984-0108</td>' +
-					'</tr>' +
-					'</table>'
+			case 6:
+				window.open("http://www.gmsenior.or.kr/");
 				break;
-					
-				case 9 :
-					$("#nowMap").text('남양주')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(13)">' +
-						'<td class="title" >남양주시노인복지관</td>' +
-						'<td class="address">경기도 남양주시 진건읍 진건오남로 359</td>' +
-						'<td class="tel">031-573-6598</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(14)">' +
-						'<td class="title" >남양주시동부노인복지관</td>' +
-						'<td class="address">경기도 남양주시 수동면 비룡로 801-47</td>' +
-						'<td class="tel">031-559-5880</td>' +
-					'<tr style="cursor:pointer;" onclick="goLink(15)">' +
-						'<td class="title" >해피누리노인복지관</td>' +
-						'<td class="address">경기도 남양주시 늘을2로 67</td>' +
-						'<td class="tel">031-590-3000</td>' +
-					'</tr>' +
-					'</table>'
+			case 7:
+				window.open("http://www.gjswc.kr/gjnoin/index.do");
 				break;
-					
-				case 10 :
-					$("#nowMap").text('동두천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(16)">' +
-						'<td class="title" >동두천노인복지관</td>' +
-						'<td class="address">경기도 동두천시 동두천로 264</td>' +
-						'<td class="tel">031-857-9918</td>' +
-					'</tr>' +
-				'</tr>' +
-					'</table>'
+			case 8:
+				window.open("http://www.guriwelfare.or.kr/bbs/view.php?id=TemP_kurinews&page=1");
 				break;
-				
-				case 11 :
-					$("#nowMap").text('부천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(17)">' +
-						'<td class="title" >부천소사노인복지기관</td>' +
-						'<td class="address">경기도 부천시 길주로 210</td>' +
-						'<td class="tel">032-347-9534</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(18)">' +
-						'<td class="title" >부천오정노인복지관</td>' +
-						'<td class="address">경기도 부천시 길주로 210</td>' +
-						'<td class="tel">032-683-9290</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(19)">' +
-						'<td class="title" >부천시원미노인복지관</td>' +
-						'<td class="address">경기도 부천시 길주로 210</td>' +
-						'<td class="tel">032-667-0261</td>' +
-					'</tr>' +
-					'</table>'
+			case 9:
+				window.open("https://www.gpbokji.org/");
 				break;
-					
-				case 12 :
-					$("#nowMap").text('성남')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(20)">' +
-						'<td class="title">분당노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 분당구 불정로 50</td>' +
-						'<td class="tel">031-785-9200</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(21)">' +
-						'<td class="title" >수정노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 수정구 수정남로 268번길 28</td>' +
-						'<td class="tel"> 031-731-3393</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(22)">' +
-						'<td class="title" >수정중앙노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 수정구 성남대로 1480번길 38</td>' +
-						'<td class="tel">031-752-3366</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(23)">' +
-						'<td class="title" >중원노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 중원구 제일로 35번길 51</td>' +
-						'<td class="tel"> 031-751-7450</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(24)">' +
-						'<td class="title" >황송노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 중원구 금상로 132</td>' +
-						'<td class="tel">031-731-5520</td>' +
-					'</tr>' +
-					'</table>'
+			case 10:
+				window.open("http://www.nprsenior.or.kr/");
 				break;
-					
-				case 13 :
-					$("#nowMap").text('수원')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(25)">' +
-						'<td class="title">경기도노인종합상담센터</td>' +
-						'<td class="address"> 경기도 수원시 장안구 경수대로 1150</td>' +
-						'<td class="tel">031-222-1360</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(26)">' +
-						'<td class="title" >밤밭노인복지관</td>' +
-						'<td class="address">수원시 장안구 상률로 53</td>' +
-						'<td class="tel">031-271-8859</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(27)">' +
-						'<td class="title" >서호노인복지관</td>' +
-						'<td class="address">경기도 수원시 권선구 구운로4번길 34</td>' +
-						'<td class="tel">031-291-0911</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(28)">' +
-						'<td class="title" >광교노인복지관</td>' +
-						'<td class="address">경기도 수원시 영통구 센트럴타운로 22</td>' +
-						'<td class="tel">031-8006-7400</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(29)">' +
-						'<td class="title" >버드내노인복지관</td>' +
-						'<td class="address">경기도 수원시 권선구 권선로 564번길 36</td>' +
-						'<td class="tel">031-898-6544</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(30)">' +
-						'<td class="title" >판교노인종합복지관</td>' +
-						'<td class="address">경기도 성남시 분당구 판교역로 99</td>' +
-						'<td class="tel">031-620-2810</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(31)">' +
-						'<td class="title" >SK청솔노인복지관</td>' +
-						'<td class="address">경기도 수원시 장안구 장안로 174</td>' +
-						'<td class="tel">031-257-6811</td>' +
-					'</tr>' +
-					'</table>'
+			case 11:
+				window.open("https://gimposenior.org/");
 				break;
-				
-				case 14 :
-					$("#nowMap").text('시흥')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(32)">' +
-						'<td class="title">시흥노인종합복지관</td>' +
-						'<td class="address">경기도 시흥시 장현능곡로 214</td>' +
-						'<td class="tel">031-404-3122</td>' +
-					'</tr>' +
-					'</table>'
+			case 12:
+				window.open("http://www.gpnsenior.org/main/");
 				break;
-					
-				case 15 :
-					$("#nowMap").text('안산')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(33)">' +
-						'<td class="title">단원구노인복지관</td>' +
-						'<td class="address">경기도 안산시 단원구 선부광장 1로 134</td>' +
-						'<td class="tel">031-405-1188</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(34)">' +
-						'<td class="title">상록구노인복지관</td>' +
-						'<td class="address">경기도 안산시 상록구 고잔로 162</td>' +
-						'<td class="tel">031-414-2271</td>' +
-					'</tr>' +
-					'</table>'
+			case 13:
+				window.open("http://nyjsw.or.kr/");
 				break;
-				
-				case 16 :
-					$("#nowMap").text('안성')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(35)">' +
-						'<td class="title">안성시노인복지관</td>' +
-						'<td class="address">경기도 안성시 장기로 109</td>' +
-						'<td class="tel">031-674-0794</td>' +
-					'</tr>' +
-					'</table>'
+			case 14:
+				window.open("https://www.dongbusenior.or.kr/");
 				break;
-					
-				case 17 :
-					$("#nowMap").text('안양')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(36)">' +
-						'<td class="title">안양시노인종합복지관</td>' +
-						'<td class="address">경기도 안양시 동안구 경수대로 665번길 74-30</td>' +
-						'<td class="tel">031-455-0551</td>' +
-					'</tr>' +
-					'</table>'
+			case 15:
+				window.open("http://www.js1004.kr/");
 				break;
-				
-				case 18 :
-					$("#nowMap").text('양주')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(37)">' +
-						'<td class="title">양주시회천노인복지관</td>' +
-						'<td class="address">경기도 양주시 화합로 1426번길 90</td>' +
-						'<td class="tel">031-859-9081</td>' +
-					'</tr>' +
-					'</table>'
+			case 16:
+				window.open("http://www.ddcnoin.org/");
 				break;
-				
-				case 19 :
-					$("#nowMap").text('양평')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(38)">' +
-						'<td class="title">양평군노인복지관</td>' +
-						'<td class="address">경기도 양평군 양평대교길 4번길 5</td>' +
-						'<td class="tel">031-774-9751</td>' +
-					'</tr>' +
-					'</table>'
+			case 17:
+				window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency02/seniorWelfareAgency02_1.jsp");
 				break;
-				
-				case 20 :
-					$("#nowMap").text('여주')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(39)">' +
-						'<td class="title">여주시노인복지관</td>' +
-						'<td class="address">경기도 여주시 여흥로 160번길 27</td>' +
-						'<td class="tel"> 031-881-0050</td>' +
-					'</tr>' +
-					'</table>'
+			case 18:
+				window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency03/seniorWelfareAgency03_1.jsp");
 				break;
-				
-				case 21 :
-					$("#nowMap").text('연천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(40)">' +
-						'<td class="title">연천군노인복지관</td>' +
-						'<td class="address">경기도 연천군 연천읍 문화로108번길 11</td>' +
-						'<td class="tel">031-834-6080</td>' +
-					'</tr>' +
-					'</table>'
+			case 19:
+				window.open("http://senior.bucheon4u.kr/senior/seniorWelfareAgency/seniorWelfareAgency01/seniorWelfareAgency01_1.jsp");
 				break;
-				
-				case 22 :
-					$("#nowMap").text('오산')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(41)">' +
-						'<td class="title">오산노인종합복지관</td>' +
-						'<td class="address">경기도 오산시 수청로 192</td>' +
-						'<td class="tel">031-290-8530</td>' +
-					'</tr>' +
-					'</table>'
+			case 20:
+				window.open("https://bdsenior.or.kr/main/main.php");
 				break;
-				
-				case 23 :
-					$("#nowMap").text('용인')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(42)">' +
-						'<td class="title">용인기흥노인복지관</td>' +
-						'<td class="address">경기도 용인시 기흥구 산양로 71</td>' +
-						'<td class="tel">031-284-8852</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(43)">' +
-						'<td class="title">용인시수지노인복지관</td>' +
-						'<td class="address">경기도 용인시 수지구 포은대로 435</td>' +
-						'<td class="tel">031-270-0000</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(44)">' +
-						'<td class="title">용인시처인노인복지관</td>' +
-						'<td class="address">경기도 용인시 처인구 중부대로 1199</td>' +
-						'<td class="tel">031-324-9303</td>' +
-					'</tr>' +
-					'</table>'
+			case 21:
+				window.open("http://sunobok.or.kr/");
 				break;
-				
-				case 24 :
-					$("#nowMap").text('의왕')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(45)">' +
-						'<td class="title">의왕시사랑채노인복지관</td>' +
-						'<td class="address">경기도 의왕시 복지로 109 내손동 공용청사내</td>' +
-						'<td class="tel">031-425-3676</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(46)">' +
-						'<td class="title">의왕시아름채노인복지관</td>' +
-						'<td class="address">경기도 의왕시 문화공원로 47</td>' +
-						'<td class="tel">031-427-0580</td>' +
-					'</tr>' +
-					'</table>'
+			case 22:
+				window.open("http://www.sswc.kr/online/");
 				break;
-					
-				case 25 :
-					$("#nowMap").text('의정부')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(47)">' +
-						'<td class="title">송산노인종합복지관</td>' +
-						'<td class="address">경기 의정부시 용민로 99</td>' +
-						'<td class="tel">031-852-2595</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(48)">' +
-						'<td class="title">신곡노인종합복지관</td>' +
-						'<td class="address">경기도 의정부시 금신로297번길 38</td>' +
-						'<td class="tel">031-840-5300</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(49)">' +
-						'<td class="title">의정부노인종합복지관</td>' +
-						'<td class="address">경기도 의정부시 경의로85번길 16-12</td>' +
-						'<td class="tel">031-826-0742</td>' +
-					'</tr>' +
-					'</table>'
+			case 23:
+				window.open("http://www.jwnoin.org/");
 				break;
-				
-				case 26 :
-					$("#nowMap").text('이천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(50)">' +
-						'<td class="title">이천시노인종합복지관</td>' +
-						'<td class="address">경기도 이천시 남천로 31</td>' +
-						'<td class="tel">031-636-0190</td>' +
-					'</tr>' +
-					'</table>'
+			case 24:
+				window.open("http://www.ypinetree.or.kr/");
 				break;
-				
-				case 27 :
-					$("#nowMap").text('파주')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(51)">' +
-						'<td class="title">파주시노인복지관</td>' +
-						'<td class="address">경기도 파주시 가나무로 130</td>' +
-						'<td class="tel">031-943-0730</td>' +
-					'</tr>' +
-					'</table>'
+			case 25:
+				window.open("http://www.gnoin.kr/");
 				break;
-				
-				case 28 :
-					$("#nowMap").text('평택')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(52)">' +
-						'<td class="title">평택남부노인복지관</td>' +
-						'<td class="address">경기 평택시 평택5로 220</td>' +
-						'<td class="tel">031-8036-4900</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(53)">' +
-						'<td class="title">평택북부노인복지관</td>' +
-						'<td class="address">경기 평택시 서정로 295</td>' +
-						'<td class="tel">031-615-3915</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(54)">' +
-						'<td class="title">평택서부노인복지관</td>' +
-						'<td class="address">경기도 평택시 안중읍 안현로 400</td>' +
-						'<td class="tel">031-683-0030</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(55)">' +
-						'<td class="title">팽성노인복지관</td>' +
-						'<td class="address">경기도 평택시 팽성읍 팽성남산4길 6</td>' +
-						'<td class="tel">031-650-2640</td>' +
-					'</tr>' +
-					'</table>'
+			case 26:
+				window.open("http://www.bambat.org/ ");
 				break;
-					
-				case 29 :
-					$("#nowMap").text('포천')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(56)">' +
-						'<td class="title">포천시노인복지관</td>' +
-						'<td class="address">경기도 포천시 군내면 청성로 5</td>' +
-						'<td class="tel">031-8083-7777</td>' +
-					'</tr>' +
-					'</table>'
+			case 27:
+				window.open("http://www.seoho.or.kr/user/index.jsp");
 				break;
-					
-				case 30 :
-					$("#nowMap").text('하남')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(57)">' +
-						'<td class="title">영락재가노인지원서비스센터</td>' +
-						'<td class="address">경기도 하남시 안터로 55-1</td>' +
-						'<td class="tel">031-794-9368</td>' +
-					'</tr>' +
-					'</table>'
+			case 28:
+				window.open("http://www.ggsenior.or.kr/");
 				break;
-					
-				case 31 :
-					$("#nowMap").text('화성')
-					html = 	'<table style="border:1px;">' +
-					'<colgroup>' +
-					'<col width="10%"><col width="10%"><col width="10%">' +
-					'</colgroup>' +
-				    '<tr>' +
-					    '<th>센터명</th>' +
-					    '<th>주소</th>' +
-					    '<th>연락처</th>' +
-				    '</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(58)">' +
-						'<td class="title">화성시동탄노인복지관</td>' +
-						'<td class="address">경기도 화성시 동탄대로8길 36</td>' +
-						'<td class="tel">031-8077-1800</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(59)">' +
-						'<td class="title">화성시남부노인복지관</td>' +
-						'<td class="address">경기도 화성시 향남읍 토성로 37-22</td>' +
-						'<td class="tel">031-366-5678</td>' +
-					'</tr>' +
-					'<tr style="cursor:pointer;" onclick="goLink(60)">' +
-						'<td class="title">화성시서부노인복지관</td>' +
-						'<td class="address">경기도 화성시 남양읍 시청로 155</td>' +
-						'<td class="tel">031-8077-2605</td>' +
-					'</tr>' +
-					'</table>'
+			case 29:
+				window.open("http://www.budnae.or.kr/");
 				break;
+			case 30:
+				window.open("http://www.pangyonoin.or.kr/main/main.html");
+				break;
+			case 31:
+				window.open("https://scsnoin.or.kr/");
+				break;
+			case 32:
+				window.open("http://shsenior.or.kr/main/");
+				break;
+			case 33:
+				window.open("https://cafe.daum.net/dwsws");
+				break;
+			case 34:
+				window.open("http://www.ansansenior.or.kr/main/main.php");
+				break;
+			case 35:
+				window.open("http://www.anseongnoin.or.kr/");
+				break;
+			case 36:
+				window.open("http://www.happytown.or.kr/");
+				break;
+			case 37:
+				window.open("http://www.yjhcsenior.or.kr/html/index/");
+				break; // 양주시 접속문제 있음 400 error
+			case 38:
+				window.open("http://www.ypsilver21.or.kr/");
+				break;
+			case 39:
+				window.open("http://www.yjsilver.or.kr/main.php");
+				break;
+			case 40:
+				window.open("http://www.lycsenior.org/");
+				break;
+			case 41:
+				window.open("http://www.osannoin.or.kr/main/ ");
+				break;
+			case 42:
+				window.open("http://www.ygsenior.or.kr/");
+				break;
+			case 43:
+				window.open("http://sujibokji.or.kr/main.php#1");
+				break;
+			case 44:
+				window.open("http://www.yiswc.or.kr/website/");
+				break;
+			case 45:
+				window.open("http://www.noinlove.or.kr/");
+				break;
+			case 46:
+				window.open("http://uwsenior.or.kr/");
+				break;
+			case 47:
+				window.open("https://www.songsan.ne.kr/");
+				break;
+			case 48:
+				window.open("http://sgwelfare.org/");
+				break;
+			case 49:
+				window.open("https://uswc4u.or.kr/ ");
+				break;
+			case 50:
+				window.open("http://www.ichonold.or.kr/");
+				break;
+			case 51:
+				window.open("https://www.pajusenior.or.kr/");
+				break;
+			case 52:
+				window.open("http://www.ptsenior.or.kr/");
+				break;
+			case 53:
+				window.open("https://bbnoin.or.kr:41004/");
+				break;
+			case 54:
+				window.open("http://www.sbnoin.net/ ");
+				break;
+			case 55:
+				window.open("http://pssenior.or.kr/");
+				break;
+			case 56:
+				window.open("http://www.pcsc.kr/");
+				break;
+			case 57:
+				window.open("http://www.youngnak-noin.or.kr/");
+				break;
+			case 58:
+				window.open("https://www.dtsenior.or.kr/dongtan/index.do");
+				break;
+			case 59:
+				window.open("https://www.hssenior.or.kr/index/");
+				break;
+			case 60:
+				window.open("http://www.hs-seobu.or.kr/main");
+				break;
+			}
 		}
-		  
-		if(html){
-			$('.mapList').html(html);
-			console.log(html);
-		} 
-		
-	}
-		
+
+		function listCenter(idx) {
+			idx = Number(idx);
+			console.log("idx : " + idx);
+			var html = undefined;
+			switch (idx) {
+			case 1: //가평
+				$("#nowMap").text('가평');
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(1)">'
+						+ '<td class="title" >가평군 노인복지관</td>'
+						+ '<td class="address">경기도 가평군 가평읍 읍내리 625-8</td>'
+						+ '<td class="tel">031-581-6063</td>' + '</tr>'
+						+ '</table>'
+				break;
+			case 2: // 고양
+				$("#nowMap").text('고양')
+				html = '<table style="border:1px;">'
+						+ '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>'
+						+ '<tr>'
+						+ '<th>센터명</th>'
+						+ '<th>주소</th>'
+						+ '<th>연락처</th>'
+						+ '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(2)">'
+						+ '<td class="title" style="cursor:pointer;">고양시덕양노인종합복지관</td>'
+						+ '<td class="address">경기도 고양시 덕양구 화정동 846</td>'
+						+ '<td class="tel">031-969-7781</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(3)">'
+						+ '<td class="title">고양시일산노인종합복지관</td>'
+						+ '<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>'
+						+ '<td class="tel">031-919-8677</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(4)">'
+						+ '<td class="title">고양시대화노인종합복지관</td>'
+						+ '<td class="address">경기도 고양시 일산동구 장항동 호수로 731</td>'
+						+ '<td class="tel">031-919-8677</td>' + '</tr>'
+						+ '</table>'
+				break;
+			case 3: // 과천 
+				$("#nowMap").text('과천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(5)">'
+						+ '<td class="title" >과천시노인복지관</td>'
+						+ '<td class="address">경기도 과천시 문원로57</td>'
+						+ '<td class="tel">02-502-8500</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 4:
+				$("#nowMap").text('광명');
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(6)">'
+						+ '<td class="title" >광명소하노인종합복지관</td>'
+						+ '<td class="address">경기도 광명시 소하로25</td>'
+						+ '<td class="tel">02-2625-9300</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 5:
+				$("#nowMap").text('광주')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(7)">'
+						+ '<td class="title" >광주시노인복지관</td>'
+						+ '<td class="address">경기도 광주시 파발로 202</td>'
+						+ '<td class="tel">031-766-9129</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 6:
+				$("#nowMap").text('구리')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(8)">'
+						+ '<td class="title" >구리시종합사회복지관</td>'
+						+ '<td class="address">경기도 구리시 벌말로129번길 50</td>'
+						+ '<td class="tel">031-556-8100</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 7:
+				$("#nowMap").text('군포')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(9)">'
+						+ '<td class="title" >군포시노인복지관</td>'
+						+ '<td class="address">경기 군포시 고산로 223</td>'
+						+ '<td class="tel">031-556-8100</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(10)">'
+						+ '<td class="title" >군포시늘푸른노인복지관</td>'
+						+ '<td class="address">경기도 군포시 산본천로 101</td>'
+						+ '<td class="tel">031-392-5755</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 8:
+				$("#nowMap").text('김포')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(11)">'
+						+ '<td class="title" >김포시노인종합복지관</td>'
+						+ '<td class="address">경기도 김포시 사우중로 74번길 48</td>'
+						+ '<td class="tel">031-997-9300</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(12)">'
+						+ '<td class="title" >김포시북부노인복지관</td>'
+						+ '<td class="address">경기도 김포시 통진읍 마송1로 16번길 40-2</td>'
+						+ '<td class="tel">031-984-0108</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 9:
+				$("#nowMap").text('남양주')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(13)">'
+						+ '<td class="title" >남양주시노인복지관</td>'
+						+ '<td class="address">경기도 남양주시 진건읍 진건오남로 359</td>'
+						+ '<td class="tel">031-573-6598</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(14)">'
+						+ '<td class="title" >남양주시동부노인복지관</td>'
+						+ '<td class="address">경기도 남양주시 수동면 비룡로 801-47</td>'
+						+ '<td class="tel">031-559-5880</td>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(15)">'
+						+ '<td class="title" >해피누리노인복지관</td>'
+						+ '<td class="address">경기도 남양주시 늘을2로 67</td>'
+						+ '<td class="tel">031-590-3000</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 10:
+				$("#nowMap").text('동두천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(16)">'
+						+ '<td class="title" >동두천노인복지관</td>'
+						+ '<td class="address">경기도 동두천시 동두천로 264</td>'
+						+ '<td class="tel">031-857-9918</td>' + '</tr>'
+						+ '</tr>' + '</table>'
+				break;
+
+			case 11:
+				$("#nowMap").text('부천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(17)">'
+						+ '<td class="title" >부천소사노인복지기관</td>'
+						+ '<td class="address">경기도 부천시 길주로 210</td>'
+						+ '<td class="tel">032-347-9534</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(18)">'
+						+ '<td class="title" >부천오정노인복지관</td>'
+						+ '<td class="address">경기도 부천시 길주로 210</td>'
+						+ '<td class="tel">032-683-9290</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(19)">'
+						+ '<td class="title" >부천시원미노인복지관</td>'
+						+ '<td class="address">경기도 부천시 길주로 210</td>'
+						+ '<td class="tel">032-667-0261</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 12:
+				$("#nowMap").text('성남')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(20)">'
+						+ '<td class="title">분당노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 분당구 불정로 50</td>'
+						+ '<td class="tel">031-785-9200</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(21)">'
+						+ '<td class="title" >수정노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 수정구 수정남로 268번길 28</td>'
+						+ '<td class="tel"> 031-731-3393</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(22)">'
+						+ '<td class="title" >수정중앙노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 수정구 성남대로 1480번길 38</td>'
+						+ '<td class="tel">031-752-3366</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(23)">'
+						+ '<td class="title" >중원노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 중원구 제일로 35번길 51</td>'
+						+ '<td class="tel"> 031-751-7450</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(24)">'
+						+ '<td class="title" >황송노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 중원구 금상로 132</td>'
+						+ '<td class="tel">031-731-5520</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 13:
+				$("#nowMap").text('수원')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(25)">'
+						+ '<td class="title">경기도노인종합상담센터</td>'
+						+ '<td class="address"> 경기도 수원시 장안구 경수대로 1150</td>'
+						+ '<td class="tel">031-222-1360</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(26)">'
+						+ '<td class="title" >밤밭노인복지관</td>'
+						+ '<td class="address">수원시 장안구 상률로 53</td>'
+						+ '<td class="tel">031-271-8859</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(27)">'
+						+ '<td class="title" >서호노인복지관</td>'
+						+ '<td class="address">경기도 수원시 권선구 구운로4번길 34</td>'
+						+ '<td class="tel">031-291-0911</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(28)">'
+						+ '<td class="title" >광교노인복지관</td>'
+						+ '<td class="address">경기도 수원시 영통구 센트럴타운로 22</td>'
+						+ '<td class="tel">031-8006-7400</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(29)">'
+						+ '<td class="title" >버드내노인복지관</td>'
+						+ '<td class="address">경기도 수원시 권선구 권선로 564번길 36</td>'
+						+ '<td class="tel">031-898-6544</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(30)">'
+						+ '<td class="title" >판교노인종합복지관</td>'
+						+ '<td class="address">경기도 성남시 분당구 판교역로 99</td>'
+						+ '<td class="tel">031-620-2810</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(31)">'
+						+ '<td class="title" >SK청솔노인복지관</td>'
+						+ '<td class="address">경기도 수원시 장안구 장안로 174</td>'
+						+ '<td class="tel">031-257-6811</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 14:
+				$("#nowMap").text('시흥')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(32)">'
+						+ '<td class="title">시흥노인종합복지관</td>'
+						+ '<td class="address">경기도 시흥시 장현능곡로 214</td>'
+						+ '<td class="tel">031-404-3122</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 15:
+				$("#nowMap").text('안산')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(33)">'
+						+ '<td class="title">단원구노인복지관</td>'
+						+ '<td class="address">경기도 안산시 단원구 선부광장 1로 134</td>'
+						+ '<td class="tel">031-405-1188</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(34)">'
+						+ '<td class="title">상록구노인복지관</td>'
+						+ '<td class="address">경기도 안산시 상록구 고잔로 162</td>'
+						+ '<td class="tel">031-414-2271</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 16:
+				$("#nowMap").text('안성')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(35)">'
+						+ '<td class="title">안성시노인복지관</td>'
+						+ '<td class="address">경기도 안성시 장기로 109</td>'
+						+ '<td class="tel">031-674-0794</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 17:
+				$("#nowMap").text('안양')
+				html = '<table style="border:1px;">'
+						+ '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>'
+						+ '<tr>'
+						+ '<th>센터명</th>'
+						+ '<th>주소</th>'
+						+ '<th>연락처</th>'
+						+ '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(36)">'
+						+ '<td class="title">안양시노인종합복지관</td>'
+						+ '<td class="address">경기도 안양시 동안구 경수대로 665번길 74-30</td>'
+						+ '<td class="tel">031-455-0551</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 18:
+				$("#nowMap").text('양주')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(37)">'
+						+ '<td class="title">양주시회천노인복지관</td>'
+						+ '<td class="address">경기도 양주시 화합로 1426번길 90</td>'
+						+ '<td class="tel">031-859-9081</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 19:
+				$("#nowMap").text('양평')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(38)">'
+						+ '<td class="title">양평군노인복지관</td>'
+						+ '<td class="address">경기도 양평군 양평대교길 4번길 5</td>'
+						+ '<td class="tel">031-774-9751</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 20:
+				$("#nowMap").text('여주')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(39)">'
+						+ '<td class="title">여주시노인복지관</td>'
+						+ '<td class="address">경기도 여주시 여흥로 160번길 27</td>'
+						+ '<td class="tel"> 031-881-0050</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 21:
+				$("#nowMap").text('연천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(40)">'
+						+ '<td class="title">연천군노인복지관</td>'
+						+ '<td class="address">경기도 연천군 연천읍 문화로108번길 11</td>'
+						+ '<td class="tel">031-834-6080</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 22:
+				$("#nowMap").text('오산')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(41)">'
+						+ '<td class="title">오산노인종합복지관</td>'
+						+ '<td class="address">경기도 오산시 수청로 192</td>'
+						+ '<td class="tel">031-290-8530</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 23:
+				$("#nowMap").text('용인')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(42)">'
+						+ '<td class="title">용인기흥노인복지관</td>'
+						+ '<td class="address">경기도 용인시 기흥구 산양로 71</td>'
+						+ '<td class="tel">031-284-8852</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(43)">'
+						+ '<td class="title">용인시수지노인복지관</td>'
+						+ '<td class="address">경기도 용인시 수지구 포은대로 435</td>'
+						+ '<td class="tel">031-270-0000</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(44)">'
+						+ '<td class="title">용인시처인노인복지관</td>'
+						+ '<td class="address">경기도 용인시 처인구 중부대로 1199</td>'
+						+ '<td class="tel">031-324-9303</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 24:
+				$("#nowMap").text('의왕')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(45)">'
+						+ '<td class="title">의왕시사랑채노인복지관</td>'
+						+ '<td class="address">경기도 의왕시 복지로 109 내손동 공용청사내</td>'
+						+ '<td class="tel">031-425-3676</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(46)">'
+						+ '<td class="title">의왕시아름채노인복지관</td>'
+						+ '<td class="address">경기도 의왕시 문화공원로 47</td>'
+						+ '<td class="tel">031-427-0580</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 25:
+				$("#nowMap").text('의정부')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(47)">'
+						+ '<td class="title">송산노인종합복지관</td>'
+						+ '<td class="address">경기 의정부시 용민로 99</td>'
+						+ '<td class="tel">031-852-2595</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(48)">'
+						+ '<td class="title">신곡노인종합복지관</td>'
+						+ '<td class="address">경기도 의정부시 금신로297번길 38</td>'
+						+ '<td class="tel">031-840-5300</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(49)">'
+						+ '<td class="title">의정부노인종합복지관</td>'
+						+ '<td class="address">경기도 의정부시 경의로85번길 16-12</td>'
+						+ '<td class="tel">031-826-0742</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 26:
+				$("#nowMap").text('이천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(50)">'
+						+ '<td class="title">이천시노인종합복지관</td>'
+						+ '<td class="address">경기도 이천시 남천로 31</td>'
+						+ '<td class="tel">031-636-0190</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 27:
+				$("#nowMap").text('파주')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(51)">'
+						+ '<td class="title">파주시노인복지관</td>'
+						+ '<td class="address">경기도 파주시 가나무로 130</td>'
+						+ '<td class="tel">031-943-0730</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 28:
+				$("#nowMap").text('평택')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(52)">'
+						+ '<td class="title">평택남부노인복지관</td>'
+						+ '<td class="address">경기 평택시 평택5로 220</td>'
+						+ '<td class="tel">031-8036-4900</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(53)">'
+						+ '<td class="title">평택북부노인복지관</td>'
+						+ '<td class="address">경기 평택시 서정로 295</td>'
+						+ '<td class="tel">031-615-3915</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(54)">'
+						+ '<td class="title">평택서부노인복지관</td>'
+						+ '<td class="address">경기도 평택시 안중읍 안현로 400</td>'
+						+ '<td class="tel">031-683-0030</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(55)">'
+						+ '<td class="title">팽성노인복지관</td>'
+						+ '<td class="address">경기도 평택시 팽성읍 팽성남산4길 6</td>'
+						+ '<td class="tel">031-650-2640</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 29:
+				$("#nowMap").text('포천')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(56)">'
+						+ '<td class="title">포천시노인복지관</td>'
+						+ '<td class="address">경기도 포천시 군내면 청성로 5</td>'
+						+ '<td class="tel">031-8083-7777</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 30:
+				$("#nowMap").text('하남')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(57)">'
+						+ '<td class="title">영락재가노인지원서비스센터</td>'
+						+ '<td class="address">경기도 하남시 안터로 55-1</td>'
+						+ '<td class="tel">031-794-9368</td>' + '</tr>'
+						+ '</table>'
+				break;
+
+			case 31:
+				$("#nowMap").text('화성')
+				html = '<table style="border:1px;">' + '<colgroup>'
+						+ '<col width="10%"><col width="10%"><col width="10%">'
+						+ '</colgroup>' + '<tr>' + '<th>센터명</th>'
+						+ '<th>주소</th>' + '<th>연락처</th>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(58)">'
+						+ '<td class="title">화성시동탄노인복지관</td>'
+						+ '<td class="address">경기도 화성시 동탄대로8길 36</td>'
+						+ '<td class="tel">031-8077-1800</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(59)">'
+						+ '<td class="title">화성시남부노인복지관</td>'
+						+ '<td class="address">경기도 화성시 향남읍 토성로 37-22</td>'
+						+ '<td class="tel">031-366-5678</td>' + '</tr>'
+						+ '<tr style="cursor:pointer;" onclick="goLink(60)">'
+						+ '<td class="title">화성시서부노인복지관</td>'
+						+ '<td class="address">경기도 화성시 남양읍 시청로 155</td>'
+						+ '<td class="tel">031-8077-2605</td>' + '</tr>'
+						+ '</table>'
+				break;
+			}
+
+			if (html) {
+				$('.mapList').html(html);
+				console.log(html);
+			}
+
+		}
 	</script>
 </head>
 <style>
@@ -877,6 +793,12 @@ th, td {
 </style>
 <body>
 	<div id="wrap">
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
 		<div class='header wrap'>
 			<span class='logo-box'><a href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/images/logoRetouch.png" alt="경기도노인종합상담센터" class='logo'/></a></span>
 			<!-- <ul class='navigator'>
@@ -1177,9 +1099,9 @@ th, td {
 			<div class='footer-bottom'>
 				<div class='wrap'>
 					<span><a href="">이용약관</a></span>
-					<span><a href="">개인정보취급방침</a></span>
-					<span><a href="">이메일추출방지정책</a></span>
-					<span><a href="">장애인차별금지법</a></span>
+					<span><a href="/gnoincoun/noticeDtl.do?num=57">개인정보취급방침</a></span>
+					<span><a href="/gnoincoun/noticeDtl.do?num=60">이메일추출방지정책</a></span>
+					<span><a href="/gnoincoun/noticeDtl.do?num=61">장애인차별금지법</a></span>
 					<span><a href="/gnoincoun/centerIntroList.do?gubun=directions">찾아오시는 길</a></span>
 					<span class='copyright'>Copyright (c) 2021 GNOIN. All rights reserved.</span>
 				</div>

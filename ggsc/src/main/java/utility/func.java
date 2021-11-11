@@ -15,6 +15,7 @@ import egovframework.com.cmm.service.EgovProperties;
 public class func {
 	public static final String filePath = EgovProperties.getProperty("Globals.filePath");
 	public static final String imagePath = EgovProperties.getProperty("Globals.imagePath");
+	public static final String popupPath = EgovProperties.getProperty("Globals.popupPath");
 	public static final String LogPath = EgovProperties.getProperty("Globals.logPath");
 	public static final String secureKeyPath = EgovProperties.getProperty("Globals.secureKeyPath");
 	public static final String pdfTemplatePath = EgovProperties.getProperty("Globals.pdfTemplatePath");

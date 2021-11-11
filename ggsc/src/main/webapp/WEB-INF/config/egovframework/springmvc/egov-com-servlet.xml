@@ -69,6 +69,8 @@
             <mvc:exclude-mapping path="/cnsr_join_info.do"/>
             <mvc:exclude-mapping path="/cnsr_join_write.do"/>
             <mvc:exclude-mapping path="/idCheck_ajax.do"/>
+            <mvc:exclude-mapping path="/getImage.do"/>
+            <mvc:exclude-mapping path="/fileDown2.do"/>
             <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
