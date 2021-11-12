@@ -1062,6 +1062,7 @@
 			SET
 				FILE_NM = #fileNm# ,
 				SYS_FILE_NM = #sysFileNm# ,
+				REAL_FILE_NM = #realFileNm# ,
 				FILE_PATH = #filePath# ,
 				DB_UPD_TM = now()
 			WHERE
