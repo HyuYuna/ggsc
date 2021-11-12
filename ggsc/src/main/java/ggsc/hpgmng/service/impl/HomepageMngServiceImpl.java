@@ -1,12 +1,20 @@
 package ggsc.hpgmng.service.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import ams.cmm.AES256Crypto;
 import ams.cmm.AMSComm;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -261,14 +269,39 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 		hpgmngDao.insertPopup(vo);
 		
 		if(vo.getFile().getSize() != 0) {
+			String RealFileName = "";
 			MultipartFile file = vo.getFile();
 			EgovMap fMap = AMSComm.fileUpload(file, "popup");
 			fMap.put("regId", vo.getRegId());
 			fMap.put("writer", vo.getWriter());
 			
 			vo.setFileNm(fMap.get("fileNm").toString());
-			vo.setSysFileNm(fMap.get("sysFileNm").toString());
 			vo.setFilePath(fMap.get("filePath").toString());
+			vo.setSysFileNm(fMap.get("sysFileNm").toString());
+			try {
+				RealFileName = AES256Crypto.getInstance().AESDecode(vo.getSysFileNm());
+			} catch (InvalidKeyException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Invalid Key Exception");
+			} catch (NoSuchAlgorithmException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : No Such AlgorithmException");
+			} catch (NoSuchPaddingException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : No Such Padding Exception");
+			} catch (InvalidAlgorithmParameterException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Invaild Algorithm Parameter Exception");
+			} catch (IllegalBlockSizeException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Illegal Block Size Exception");
+			} catch (BadPaddingException e) {
+				RealFileName = vo.getSysFileNm();
+				utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Bad Padding Exception");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			vo.setRealFileNm(RealFileName);
 			
 			// 첨부파일이 있으면 업로드
 			hpgmngDao.insertPopupUpload(vo);			

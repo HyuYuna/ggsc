@@ -28,6 +28,7 @@ public class PopupVO {
 	private MultipartFile file;
 	private String fileNm;
 	private String sysFileNm;
+	private String realFileNm;
 	private String filePath;
 	private int fileSize;
 	private String fileDesc;
@@ -158,6 +159,12 @@ public class PopupVO {
 	}
 	public void setSysFileNm(String sysFileNm) {
 		this.sysFileNm = sysFileNm;
+	}
+	public String getRealFileNm() {
+		return realFileNm;
+	}
+	public void setRealFileNm(String realFileNm) {
+		this.realFileNm = realFileNm;
 	}
 	public String getFilePath() {
 		return filePath;

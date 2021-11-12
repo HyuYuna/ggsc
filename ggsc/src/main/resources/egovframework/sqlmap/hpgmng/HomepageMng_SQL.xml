@@ -1034,6 +1034,7 @@
 				REG_NM ,
 				FILE_NM ,
 				SYS_FILE_NM ,
+				REAL_FILE_NM ,
 				FILE_PATH ,
 				DB_INS_TM
 			) VALUES (
@@ -1042,6 +1043,7 @@
 				#writer# ,
 				#fileNm# ,
 				#sysFileNm# ,
+				#realFileNm# ,
 				#filePath# ,
 				now()
 			)

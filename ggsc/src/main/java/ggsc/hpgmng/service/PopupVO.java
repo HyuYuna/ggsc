@@ -18,6 +18,7 @@ public class PopupVO extends PageVO{
 	
 	private String fileNm;
 	private String sysFileNm;
+	private String realFileNm;
 	private String filePath;
 	private String fileSize;
 	private MultipartFile file;
@@ -68,6 +69,12 @@ public class PopupVO extends PageVO{
 	}
 	public void setSysFileNm(String sysFileNm) {
 		this.sysFileNm = sysFileNm;
+	}
+	public String getRealFileNm() {
+		return realFileNm;
+	}
+	public void setRealFileNm(String realFileNm) {
+		this.realFileNm = realFileNm;
 	}
 	public String getFilePath() {
 		return filePath;

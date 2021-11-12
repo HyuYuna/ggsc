@@ -87,7 +87,7 @@ public class HomepageMainController {
 		List<String> popup = new ArrayList<String>();
 		
 		for(EgovMap map1 : popupList) {
-			String FileName = AES256Crypto.getInstance().AESDecode((String) map1.get("sysFileNm"));
+			String FileName = (String) map1.get("realFileNm");
 			popup.add(FileName);
 			popupCnt += 1;
 		} 
