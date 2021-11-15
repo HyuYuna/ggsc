@@ -69,7 +69,7 @@
 			<ul class="main-menu" style="width: 400px; float: right;margin-top: 20px; margin-bottom: 15px;">
 				<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
 				<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
-				<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
+				<li><a href="/gnoincoun/docLibraryList.do" style = "font-weight:bolder;">문서자료실</a></li>
 				<li><a href="/gnoincoun/freeBoardList.do">자유게시판</a></li>
 			</ul>
 		</div>

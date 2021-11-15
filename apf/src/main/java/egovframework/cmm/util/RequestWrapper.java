@@ -39,14 +39,9 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 
 		String value = super.getParameter(parameter);
 
-		if (value == null) {
-
-			return null;
-
-		}
+		if (value == null) { return null; }
 
 		return cleanXSS(value);
-
 	}
 
 	public String getHeader(String name) {

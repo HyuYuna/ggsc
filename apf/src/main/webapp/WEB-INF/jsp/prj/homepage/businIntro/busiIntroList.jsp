@@ -33,6 +33,8 @@
 	  		if(gubun == "gender") {
 		  		$("#genderEdu").css("display","");
 	  		}
+	  		
+	  		$("#focus1").css("font-weight","bolder");
 		});
 	  	
 	  	function sigunSupp() {
@@ -41,6 +43,12 @@
 	  		$("#middleCns").css("display","none");
 	  		$("#weakSupp").css("display","none");
 	  		$("#genderEdu").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","bolder");
+	  		$("#focus2").css("font-weight","normal");
+	  		$("#focus3").css("font-weight","normal");
+	  		$("#focus4").css("font-weight","normal");
+	  		$("#focus5").css("font-weight","normal");
 		}
 	  	
 	  	function noin24() {
@@ -49,6 +57,12 @@
 	  		$("#middleCns").css("display","none");
 	  		$("#weakSupp").css("display","none");
 	  		$("#genderEdu").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","bolder");
+	  		$("#focus3").css("font-weight","normal");
+	  		$("#focus4").css("font-weight","normal");
+	  		$("#focus5").css("font-weight","normal");
 		}
 	  	
 	  	function middleCns() {
@@ -57,6 +71,12 @@
 	  		$("#middleCns").css("display","");
 	  		$("#weakSupp").css("display","none");
 	  		$("#genderEdu").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal");
+	  		$("#focus3").css("font-weight","bolder");
+	  		$("#focus4").css("font-weight","normal");
+	  		$("#focus5").css("font-weight","normal");
 		}
 	  	
 	  	function weakSupp() {
@@ -65,6 +85,12 @@
 	  		$("#middleCns").css("display","none");
 	  		$("#weakSupp").css("display","");
 	  		$("#genderEdu").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal");
+	  		$("#focus3").css("font-weight","normal");
+	  		$("#focus4").css("font-weight","bolder");
+	  		$("#focus5").css("font-weight","normal");
 		}
 	  	
 	  	function genderEdu() {
@@ -73,6 +99,12 @@
 	  		$("#middleCns").css("display","none");
 	  		$("#weakSupp").css("display","none");
 	  		$("#genderEdu").css("display","");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal");
+	  		$("#focus3").css("font-weight","normal");
+	  		$("#focus4").css("font-weight","normal");
+	  		$("#focus5").css("font-weight","bolder");
 		}
 	  	
 		/* function sigunSuppBtn(no) {
@@ -111,11 +143,11 @@
 		<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px; font: bold; font-weight: 900;">센터사업소개</span>
 			<ul class="main-menu" style="width: 600px; float: right; margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
-				<li><a href="javascript: sigunSupp();">시군지원사업</a></li>
-				<li><a href="javascript: noin24();">24노인온상담</a></li>
-				<li><a href="javascript: middleCns();">중장년마음돌봄<br/>전화상담</a></li>
-				<li><a href="javascript: weakSupp();">취약노인<br/>지원사업</a></li>
-				<li><a href="javascript: genderEdu();">성인지교육사업</a></li>
+				<li><a href="javascript: sigunSupp();" id="focus1">시군지원사업</a></li>
+				<li><a href="javascript: noin24();" id="focus2">24노인온상담</a></li>
+				<li><a href="javascript: middleCns();" id="focus3">중장년마음돌봄<br/>전화상담</a></li>
+				<li><a href="javascript: weakSupp();" id="focus4">취약노인<br/>지원사업</a></li>
+				<li><a href="javascript: genderEdu();" id="focus5">성인지교육사업</a></li>
 			</ul>
 		</div>
 		

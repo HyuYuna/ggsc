@@ -766,6 +766,7 @@
 
 			if (html) {
 				$('.mapList').html(html);
+				$("#localGb").val(idx).attr("selected","selected");
 				console.log(html);
 			}
 

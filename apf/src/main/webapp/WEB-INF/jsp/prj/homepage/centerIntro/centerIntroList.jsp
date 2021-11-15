@@ -39,6 +39,8 @@
 		  		$("#greeting").css("display","none");
 		  		$("#directions").css("display","");
 	  		}
+	  		$("#focus1").css("font-weight","bolder");
+	  	
 		});
 	  	
 	  	function greeting() {
@@ -49,6 +51,14 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","bolder");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","normal ");
+	  		$("#focus6").css("font-weight","normal ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 	  	
 	  	function operating() {
@@ -59,6 +69,14 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","bolder ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","normal ");
+	  		$("#focus6").css("font-weight","normal ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 	  	
 	  	function vision() {
@@ -69,6 +87,14 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none"); 
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","bolder ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","normal ");
+	  		$("#focus6").css("font-weight","normal ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 	  	
 	  	function pathway() {
@@ -83,6 +109,14 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none"); 
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","bolder ");
+	  		$("#focus5").css("font-weight","normal ");
+	  		$("#focus6").css("font-weight","normal ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 	  	
 	  	function together() {
@@ -93,6 +127,14 @@
 	  		$("#together").css("display","");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","bolder ");
+	  		$("#focus6").css("font-weight","normal ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 	  	
 	  	function centerInfo() {
@@ -103,6 +145,14 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","");
 	  		$("#directions").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","normal");
+	  		$("#focus6").css("font-weight","bolder ");
+	  		$("#focus7").css("font-weight","normal ");
 		}
 		
 		function directions() {
@@ -113,6 +163,15 @@
 	  		$("#together").css("display","none");
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","");
+	  		
+	  		//css 
+	  		$("#focus1").css("font-weight","normal");
+	  		$("#focus2").css("font-weight","normal ");
+	  		$("#focus3").css("font-weight","normal ");
+	  		$("#focus4").css("font-weight","normal ");
+	  		$("#focus5").css("font-weight","normal");
+	  		$("#focus6").css("font-weight","normal");
+	  		$("#focus7").css("font-weight","bolder ");
 		}
 		
 		function operatingBtn(no) {
@@ -968,6 +1027,7 @@
 		  
 		if(html){
 			$('.mapList').html(html);
+			$("#localGb").val(idx).attr("selected","selected");
 			console.log(html);
 		} 
 		
@@ -987,13 +1047,13 @@
 		<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px; font: bold; font-weight: 900;">센터안내</span>
 			<ul class="main-menu" style="width: 730px; font-size: 14px; float: right; margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
-				<li><a href="javascript: greeting();">인사말</a></li>
-				<li><a href="javascript: operating();">운영법인</a></li>
-				<li><a href="javascript: vision();">미션과 비전</a></li>
-				<li><a href="javascript: pathway();">걸어온길</a></li>
-				<li><a href="javascript: together();">함께하는<br/>사람들</a></li>
-				<li><a href="javascript: centerInfo();">시군센터</a></li>
-				<li><a href="javascript: directions();">오시는길</a></li>
+				<li><a href="javascript: greeting();" id = "focus1">인사말</a></li>
+				<li><a href="javascript: operating();" id = "focus2">운영법인</a></li>
+				<li><a href="javascript: vision();" id = "focus3">미션과 비전</a></li>
+				<li><a href="javascript: pathway();" id = "focus4">걸어온길</a></li>
+				<li><a href="javascript: together();" id = "focus5" >함께하는<br/>사람들</a></li>
+				<li><a href="javascript: centerInfo();" id = "focus6">시군센터</a></li>
+				<li><a href="javascript: directions();" id = "focus7">오시는길</a></li>
 			</ul>
 		</div>
 		

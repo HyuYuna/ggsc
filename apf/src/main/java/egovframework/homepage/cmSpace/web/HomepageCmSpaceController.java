@@ -499,7 +499,7 @@ public class HomepageCmSpaceController {
 		String FileName = "";
 
 		try {
-			FileName = AES256Crypto.getInstance().AESDecode(vo.getSysFileNm());
+			FileName = AES256Crypto.getInstance().AESDecode(vo.getSysFileNm()); // 암호화 
 		} catch (InvalidKeyException e) {
 			FileName = vo.getSysFileNm();
 			utility.func.Logging(this.getClass().getName(), "DECODE_ERROR : Invalid Key Exception");
@@ -524,29 +524,33 @@ public class HomepageCmSpaceController {
 		String FilePathName = utility.func.filePath;
 		System.out.println("FilePathName : " + FilePathName);
 		System.out.println("FilePathName2 : " + FilePathName2);
-		File file = new File(FilenameUtils.getFullPath(FilePathName), FilenameUtils.getName(FileName));
+		
+		File file = new File(FilenameUtils.getFullPath(FilePathName), FilenameUtils.getName(FileName)); // Path 랑 이름을 주어 객체 획득 
+		
 		if (!file.exists()) {
 			file = new File(FilenameUtils.getFullPath(FilePathName2), FilenameUtils.getName(FileName));
 			System.out.println("파일 객체2의 값 : " + file);
 		}
+		
 		System.out.println("파일 객체의 값 : " + file);
 
 		if (file.exists() && file.isFile()) {
+			
 			System.out.println("File Exists : " + utility.func.filePath + vo.getFilePath() + "/" + FileName);
 			response.setContentType("application/octet-stream; charset=utf-8");
 			response.setContentLength((int) file.length());
-			String browser = getBrowser(request);
-			String disposition = getDisposition(vo.getFileNm(), browser);
+			String browser = getBrowser(request); // 브라우저 종류 체크 
+			String disposition = getDisposition(vo.getFileNm(), browser); // 파일이름 인코딩 
 			response.setHeader("Content-Disposition", disposition);
-			response.setHeader("Content-Transfer-Encoding", "binary");
-			OutputStream out = response.getOutputStream();
-			FileInputStream fis = null;
-			fis = new FileInputStream(file);
-			FileCopyUtils.copy(fis, out);
-			if (fis != null)
-				fis.close();
-			out.flush();
+			response.setHeader("Content-Transfer-Encoding", "binary"); // header 타입 , 즉 다운로드가 되는 Content 타입을 response 헤더에 세팅 
+			OutputStream out = response.getOutputStream(); // outStream get 
+			FileInputStream fis = null;						// Input 
+			fis = new FileInputStream(file);				// read 함 
+			FileCopyUtils.copy(fis, out); 					
+			if (fis != null) fis.close();
+			out.flush();									// path 에 있는 파일을 그대로 flush 함 . 
 			out.close();
+			
 			System.out.println("File Donwload Complete");
 		}
     }
