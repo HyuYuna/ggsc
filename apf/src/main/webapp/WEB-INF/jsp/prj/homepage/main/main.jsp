@@ -28,24 +28,22 @@
 				var imgsrc = list[i];
 				var filePath = "http://localhost:8085/gnoincoundb/getPopup.do?fileNm=/";
 				img.src = filePath + imgsrc;
-				// 이 시점에서 이미 load가 완료 된 것인가 ?
-				var path = filePath + imgsrc;
-				
-				console.log(img.width);
-				
-				console.log(1);
-				img.onload = function(){ // 상위에 Image 객체가 생성되어 있기 때문에 onload 를 실행할시 바로 실행됨 . 버블링 , 캡쳐링과 연관없음 
-									     // 위의 라인에 이미 객체가 생성되어 있기때문에 즉시실행 .. 인 듯함 조금 더 공부가 필요할듯 하다 
-					var OpenWindow = window.open('','_blank','width='+this.width+', height='+this.height+', menubars=no, scrollbars=auto');
-					OpenWindow.document.write("<title>경기도노인상담센터 팝업</title>");
-					OpenWindow.document.write("<style>body{ margin:0px;}</style><img src='"+path+"' onclick='window.close();'>");
-				};
+				var path = filePath+imgsrc;
+				onPopupList(img,path);
 			}
 			$('.border-btn-box > li').hover(
 				    function() { $(this).addClass('active'); } ,
 					function() { $(this).removeClass('active'); 
 			});
 		});
+		
+		function onPopupList(img,filePath){
+			img.onload = function(){ 					
+				var OpenWindow = window.open('','_blank','width='+this.width+', height='+this.height+', menubars=no, scrollbars=auto');
+				OpenWindow.document.write("<title>경기도노인상담센터 팝업</title>");
+				OpenWindow.document.write("<style>body{ margin:0px;}</style><img src='"+filePath+"' onclick='window.close();'>");
+			};
+		}
 
 		function fn_fileDown(sysFileNm, filePath, fileNm) {
 			$("#fileNm").val(fileNm);
