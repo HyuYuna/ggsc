@@ -20,6 +20,7 @@ public class ComCodeServiceImpl extends EgovAbstractServiceImpl implements ComCo
 	// TODO ibatis 사용
 	@Resource(name = "comCodeMapper")
 	private ComCodeMapper comCodeMapper;
+	
 	// TODO mybatis 사용
 	//  @Resource(name="sampleMapper")
 	//	private SampleMapper sampleDAO;
@@ -40,6 +41,7 @@ public class ComCodeServiceImpl extends EgovAbstractServiceImpl implements ComCo
 	public List<?> selectCenterGbList(){
 		try {
 			return comCodeMapper.selectCenterGbList();
+			
 		} catch (Exception err) {
 			// TODO: handle exception
 			utility.func.Logging(this.getClass().getName(), err);

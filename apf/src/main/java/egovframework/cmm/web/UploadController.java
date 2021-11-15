@@ -31,24 +31,28 @@ public class UploadController {
 	 * @exception Exception
 	 */
     @RequestMapping(value="/cmm/board/upload_file.do")/////
-	public String upload_file(MultipartHttpServletRequest request,
-			HttpServletResponse response,
-			ModelMap model)
-			{///////
+	public String upload_file(MultipartHttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		try{
 			String currentDate = DateTimeUtil.currentDate();
 			String rootPath = request.getRealPath("/");
-			String filePath = rootPath+Globals.boardFileUrl+currentDate;
+			String filePath = rootPath+Globals.boardFileUrl+currentDate; // 
+			
 			File dir = new File(filePath);
-	        if (!dir.isDirectory()) {
-	            dir.mkdirs();
+			
+	        if (!dir.isDirectory()) { // File 객체가 path를 받았다 . 해당 디렉토리가 존재하는가 ? 
+	            dir.mkdirs(); // 존재하지 않으면 만들어라 .
 	        }
-	        List<MultipartFile> mf = request.getFiles("file");
+	        
+	        List<MultipartFile> mf = request.getFiles("file"); // multipart 로 보내서 
 	        List<EgovMap> urlList = new ArrayList<EgovMap>();
+	        
 	        if(mf!=null){
+	        	
 	        	for(int i=0;i<mf.size();i++){
 	    	        String originalfileName = mf.get(i).getOriginalFilename();
+	    	        
 	    	    	int pos = originalfileName.lastIndexOf( "." );
+	    	    	
 	    	    	String fileName = originalfileName.substring(0,pos);
 	    	    	String fileExt = originalfileName.substring(pos + 1);
 	    	        String saveFileName = fileName+ "_"+DateTimeUtil.currentDateTime() + "." + fileExt;

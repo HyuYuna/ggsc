@@ -32,13 +32,14 @@ public class HomepageComfCnsController {
 	public String comfCnsWrite(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 		
 		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
 		if(map == null) {
 			model.addAttribute("loginYn", "N");	
-			response.setContentType("text/html; charset=UTF-8");		 
+			response.setContentType("text/html; charset=UTF-8"); // 응답타입이 html 이다 
 			PrintWriter out = response.getWriter();		 
-			out.println("<script>alert('로그인 후에 상담신청을 할 수 있습니다.');</script>");
-			out.flush();
-			return "/main/login.page";
+			out.println("<script>alert('로그인 후에 상담신청을 할 수 있습니다.');</script>"); // alert 창 시에 백지인 이유도 여기 있음 
+			out.flush(); // flush 는 문자열의 흐름이 막힐 때 사용될 것 임 
+			return "/main/login.page"; // 해당 것으로 이동
 		} else {
 			model.addAttribute("loginYn", "Y");
 		}

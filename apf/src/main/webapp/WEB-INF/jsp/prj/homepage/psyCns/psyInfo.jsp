@@ -5,16 +5,24 @@
     <script>
 	  	$(document).ready(function() {
 	  		$("#psyExam").css("display","none");
+	  		
+	  		$("#focus1").css("font-weight","bolder");
 		});
 	  	
 		function psyInfo() {
 			$("#psyInfo").css("display","");
 			$("#psyExam").css("display","none");
+			
+			$("#focus1").css("font-weight","bolder");
+			$("#focus2").css("font-weight","normal");
 		}
 		
 		function psyExam() {
 			$("#psyInfo").css("display","none");
 			$("#psyExam").css("display","");
+			
+			$("#focus1").css("font-weight","normal");
+			$("#focus2").css("font-weight","bolder");
 		}
 		
 		function fn_move(url) {
@@ -26,11 +34,11 @@
 				  // location.href="/login.do";
 			  }
 		  }
+	 
 		
   </script>
 <style>
 	#wrap {width: 100%; margin: auto; height: 594px;}
-
 </style>
 <section class="service-2 section">
 	<div id="wrap">
@@ -40,8 +48,8 @@
 		<div style="width: 910px; margin: auto;">
 			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">간편한심리검사</span>
 			<ul class="main-menu" style="width: 300px; float: right;margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
-				<li><a href="javascript: psyInfo();">간편심리검사소개</a></li>
-				<li><a href="javascript: psyExam();">간편심리검사</a></li>
+				<li><a href="javascript: psyInfo();" id = "focus1">간편심리검사소개</a></li>
+				<li><a href="javascript: psyExam();" id = "focus2">간편심리검사</a></li>
 			</ul>
 		</div>
 		

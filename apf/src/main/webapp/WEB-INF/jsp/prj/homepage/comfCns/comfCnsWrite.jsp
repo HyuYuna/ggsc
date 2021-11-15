@@ -10,7 +10,7 @@
 				document.location = "/gnoincoun/login.do";
 			}
 			
-			$('input:radio[name=gender]:input[value="${map.gender}"]').attr("checked", true);
+			$('input:radio[name=gender]:input[value="${map.gender}"]').attr("checked", true); // 로그인 이 안 된 상태에선 접근이 안 되기 때문에 이 로직은 필수실행됨 
 		});
 		
 		function fn_reg() {
