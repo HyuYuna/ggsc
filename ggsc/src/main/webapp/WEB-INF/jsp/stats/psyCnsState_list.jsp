@@ -10,6 +10,7 @@
 
 <script type="text/javascript">
 	$(function(){
+		console.log(list);
 		list();
 	});
 	function fn_excelDown(){
@@ -31,15 +32,15 @@
 		}).done(function(json){
 			var d = json.list[0];
 			var obj = Object.entries(d);
-			for(var i=0;i<obj.length;i++){
-				var c = obj[i];
-				$("td[data-class='" + c[0] + "']").text(c[1]);
+			for (var i=0; i<obj.length;i++) {
+				var p = obj[i];
+				$("td[data-class='" + p[0] + "']").text(p[1]);
 			}
-			console.log(d);
-		}).fail(function(e){
-			alert("서버와 통신 오류입니다.");
-		});
-	}
+					
+			}).fail(function(e){
+				alert("서버와 통신 오류입니다.");
+			});
+		}
 </script>
 <style>
 	.search-group select{width:150px;}
@@ -113,47 +114,65 @@
 			
             <table class="table-style1" style="margin-top:1px;">
                 <colgroup>
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
-                	<col style="width: 9%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
                 </colgroup>
-                <tbody>
+                <tbody id="tbl_item_box">
                     <tr>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="10">심리검사</th>
+                        <th scope="col" colspan="16">심리검사</th>
                     </tr>
                     <tr>
+                        <td>상담사전사후기록지</td>
                         <td>DUKE-AD 간략우울</td>
+                        <td>죽음학대 질문지</td>
                         <td>GDS-KR 노인우울</td>
                         <td>GDS-SI 노인우울 자살사고</td>
-                        <td>불안</td>
-                        <td>스트레스</td>
-                        <td>사별스트레스</td>
-                        <td>대안관계변화</td>
-                        <td>부부의사소통</td>
+                        <td>노인절망감척도</td>
+                        <td>사회적지지척도</td>
+                        <td>대인관계변화척도</td>
+                        <td>한국형 알코올 중독 선별 검사</td>
+                        <td>불안척도</td>
+                        <td>스트레스 척도</td>
+                        <td>사별스트레스 척도</td>
+                        <td>부부친밀감 척도</td>
+                        <td>부부의사소통 척도</td>
+                        <td>문장완성검사</td>
                         <td>MMSE-K 치매선별</td>
-                        <td>기타</td>
                     </tr>
-                    <tr>
-                    	<td data-class='cntPsyTotal'>&nbsp;</td>
-                    	<td data-class='cntPsyDukead'>&nbsp;</td>
-                    	<td data-class='cntPsyGdskr'>&nbsp;</td>
-                    	<td data-class='cntPsyGdssi'>&nbsp;</td>
-                    	<td data-class='cntPsyPersonrel'>&nbsp;</td>
-                    	<td data-class='cntPsyAnxiety'>&nbsp;</td>
-                    	<td data-class='cntPsyStress'>&nbsp;</td>
-                    	<td data-class='cntPsyBervstress'>&nbsp;</td>
-                    	<td data-class='cntPsyCoupletk'>&nbsp;</td>
-                    	<td data-class='cntPsyMmsek'>&nbsp;</td>
-                    	<td data-class='cntPsyEtc'>&nbsp;</td>
+                     <tr>
+                        <td data-class='p0'></td>
+                        <td data-class='p1'></td>
+                        <td data-class='p2'></td>
+                        <td data-class='p3'></td>
+                        <td data-class='p4'></td>
+                        <td data-class='p5'></td>
+                        <td data-class='p6'></td>
+                        <td data-class='p7'></td>
+                        <td data-class='p8'></td>
+                        <td data-class='p9'></td>
+                        <td data-class='p10'></td>
+                        <td data-class='p11'></td>
+                        <td data-class='p12'></td>
+                        <td data-class='p13'></td>
+                        <td data-class='p14'></td>
+                        <td data-class='p15'></td>
+                        <td data-class='p16'></td>
                     </tr>
                 </tbody>
             </table>

@@ -87,8 +87,8 @@
 			$("#rcontent").focus();
 			return;
 		}
-		if(rcontent.length > 500){
-			alert("내용을 500자 이내로 입력해 주세요.");
+		if(rcontent.length > 3000){
+			alert("내용을 3000자 이내로 입력해 주세요.");
 			$("#rcontent").focus();
 			return;
 		}

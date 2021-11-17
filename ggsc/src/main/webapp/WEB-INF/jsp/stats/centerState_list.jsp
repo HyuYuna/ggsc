@@ -32,13 +32,13 @@
 			for(var i=0;i<json.list.length;i++){
 				var obj = json.list[i];
 				
-				if(obj.centerNm==null){
+				if(obj.majorStr==null){
 					$("#tbl_item_box").append('<tr class="item"><td colspan=15>등록된 정보가 없습니다.</td></tr>'); 
 				}else{
 					var p_total = Number(obj.p1) + Number(obj.p2) + Number(obj.p3) + Number(obj.p4) +  Number(obj.p5) + Number(obj.p6) + Number(obj.p7) + Number(obj.p8);
 					var g_total = Number(obj.g1) + Number(obj.g2) + Number(obj.g3) + Number(obj.g4) +  Number(obj.g5) + Number(obj.g6) + Number(obj.g7);
 					$("#tbl_item_box").append('<tr class="item">' + 
-							'<td>' + obj.centerNm + '</td>' +
+							'<td>' + obj.majorStr + '</td>' +
 							'<td>' + p_total + '</td>' +
 							'<td>' + obj.p1 + '</td>' +
 							'<td>' + obj.p2 + '</td>' +
