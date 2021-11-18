@@ -887,7 +887,7 @@
 			<table class="table-style1" style="margin-top:1px; width: 10500px;">
                 <colgroup>
                     <%
-                    	for(int i=0; i<174; i++) {
+                    	for(int i=0; i<178; i++) {
                     		%><col style="width: 0.3%;" /><%
                     	}
                     %>
@@ -898,7 +898,7 @@
                     	<th scope="col" rowspan="4">상담센터</th>
                     	<th scope="col" colspan="8">1-1. 성별</th>
                     	<th scope="col" colspan="8">1-2. 내담자와 관계</th>
-                    	<th scope="col" colspan="12">1-3. 연령별 현황</th>
+                    	<th scope="col" colspan="16">1-3. 연령별 현황</th>
                     	<th scope="col" colspan="15">2. 상담경위</th>
                     	<th scope="col" colspan="15">3. 상담방법</th>
                     	<th scope="col" colspan="11">4-1. 상담내용</th>
@@ -919,7 +919,7 @@
                         <th scope="col" rowspan="2">본인</th>
                         <th scope="col" colspan="6">본인 외</th>
                         <th scope="col" colspan="2" rowspan="2">계</th>
-                        <th scope="col" colspan="10">연령</th>
+                        <th scope="col" colspan="14">연령</th>
                         <th scope="col" rowspan="2">계</th>
                         <th scope="col" rowspan="2">소계</th>
                         <th scope="col">내부의뢰</th>
@@ -964,11 +964,13 @@
                     	<td>친인척</td>
                     	<td>이웃</td>
                     	<td>유관기관</td>
+                    	<td colspan="2">50 ~ 55대</td>
+                    	<td colspan="2">56 ~ 60대</td>
                     	<td colspan="2">60대</td>
                     	<td colspan="2">70대</td>
                     	<td colspan="2">80대</td>
                     	<td colspan="2">90대 이상</td>
-                    	<td colspan="2">60대 미만</td>
+                    	<td colspan="2">50대 미만</td>
                     	<td>수행기관</td>
                     	<td>소계</td>
                     	<td>치매관련<br>기관</td>
@@ -1107,6 +1109,10 @@
                         <td>명</td>
                         <td>건</td>
                         <td>명</td>
+                        <td>건</td>
+                        <td>명</td>
+                        <td>건</td>
+                        <td>명</td>
                         <td>명</td>
                         
                         <td>명</td>
@@ -1215,7 +1221,6 @@
                     	<td data-class='c29'>&nbsp;</td>
                     	<td data-class='c30'>&nbsp;</td>
                     	<td data-class='c31'>&nbsp;</td>
-                    	<td data-class='c171'>&nbsp;</td>
                     	<td data-class='c32'>&nbsp;</td>
                     	<td data-class='c33'>&nbsp;</td>
                     	<td data-class='c34'>&nbsp;</td>
@@ -1354,6 +1359,7 @@
                     	<td data-class='c167'>&nbsp;</td>
                     	<td data-class='c168'>&nbsp;</td>
                     	<td data-class='c169'>&nbsp;</td>
+                    	<td data-class='c171'>&nbsp;</td>
                     </tr>                
                 </tbody>                 
             </table>                     

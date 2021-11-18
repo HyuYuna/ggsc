@@ -18,6 +18,7 @@ public class CnsInfoVO extends PageVO {
 	private String cnsMethd;
 	private String cnsDtl;
 	private String cnsCntn;
+	private String cnsleRel;
 	private String acptYn;
 	private int caseNo;
 	private String regId;
@@ -56,6 +57,12 @@ public class CnsInfoVO extends PageVO {
 	}
 	public void setCnsDt(String cnsDt) {
 		this.cnsDt = cnsDt;
+	}
+	public String getCnsleRel() {
+		return cnsleRel;
+	}
+	public void setCnsleRel(String cnsleRel) {
+		this.cnsleRel = cnsleRel;
 	}
 	public String getCnsDtWeekCd() {
 		return cnsDtWeekCd;

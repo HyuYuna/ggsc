@@ -24,6 +24,7 @@ public class CnsAcptVO extends PageVO {
 	private String regId;
 	private String authCd;
 	private String sigunCd;
+	private String cnsleRel;
 	
 	private String cnsDt;
 	private String cnsDtWeekCd;
@@ -46,6 +47,13 @@ public class CnsAcptVO extends PageVO {
 	private String schEndDate;
 	
 	
+	
+	public String getCnsleRel() {
+		return cnsleRel;
+	}
+	public void setCnsleRel(String cnsleRel) {
+		this.cnsleRel = cnsleRel;
+	}
 	public String getSigunCd() {
 		return sigunCd;
 	}

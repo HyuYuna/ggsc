@@ -117,6 +117,11 @@
 			return;
 		}
 		
+		if($('input:radio[name="cnsleRel"]').is(':checked')==false){
+			alert("내담자와의 관계를 선택해주세요.");
+			return;
+		}
+		
 		if($('input:radio[name="majorApplCd"]').is(':checked')==false){
 			alert("주호소문제를 선택해주세요.");
 			return;
@@ -386,6 +391,14 @@
 								<option value="${list.odr }" <c:if test="${list.odr == result.cnsDtl }">selected</c:if> >${list.mclassNm }</option>
 							</c:forEach>
 						</select> 
+					</td>
+				</tr>
+				<tr>
+					<th>내담자와의 관계<span style="color: red;">*</span></th>
+					<td colspan="7">
+						<c:forEach items="${cnsleRelList}" var="list" varStatus="index">
+							<input type="radio" id="cnsleRel${index.count}" name="cnsleRel" value="${list.odr}" <c:if test="${result.cnsleRel eq list.odr }">checked="checked"</c:if> /><label for="cnsleRel${index.count }">${list.mclassNm }</label>
+						</c:forEach>
 					</td>
 				</tr>
 				<tr>

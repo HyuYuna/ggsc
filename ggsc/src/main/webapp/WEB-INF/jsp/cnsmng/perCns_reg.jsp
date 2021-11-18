@@ -156,11 +156,14 @@
 			$("#cnsTimeTotMin").focus();
 			return;
 		}
+		if($('input:radio[name="cnsleRel"]').is(':checked')==false){
+			alert("내담자와의 관계를 선택해주세요.");
+			return;
+		}
 		if($("input:radio[name='majorApplCd']").is(":checked") == false) {
 			alert("주호소문제를 체크해 주세요.");
 			return;
 		}
-		
 		if(cnsRsvtStrtHour.length == 0) {
 			$("#cnsRsvtStrtHour").val(0);
 		}
@@ -486,7 +489,7 @@ $(document).on('change','#cnsStat',function(){
 						</td>
 					</tr>
 					<tr>
-						<th>내담자의관계</th>
+						<th>내담자의관계<span style="color: red;">*</span></th>
 						<td colspan="4">
 							<input type="radio" id="cnsleRel1" name="cnsleRel" value="1" /><label for="cnsleRel1">노인본인</label>
 							<input type="radio" id="cnsleRel2" name="cnsleRel" value="2" /><label for="cnsleRel2">배우자</label>

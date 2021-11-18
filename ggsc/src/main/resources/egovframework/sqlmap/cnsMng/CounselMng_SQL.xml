@@ -876,6 +876,7 @@
 		, BIRTH
 		, MOBILE
 		, ADDR
+		, CNSLE_REL
 		, CNS_METHD
 		, CNS_DTL
 		, MAJOR_APPL_CD
@@ -902,6 +903,7 @@
 		, #birthDt#
 		, #mobile#
 		, #addr#
+		, #cnsleRel#
 		, #cnsMethd#
 		, #cnsDtl#
 		, #majorApplCd#
@@ -960,6 +962,7 @@
 			, gci.CNS_TIME_TOT_MIN
 			, gci.CNS_METHD
 			, gci.CNS_DTL
+			, gci.CNSLE_REL
 			, gci.MAJOR_APPL_CD
 			, gci.CNS_CNTN
 			, gum.GENDER AS GENDER
@@ -1040,6 +1043,7 @@
 			BIRTH = #birthDt# ,
 			MOBILE = #mobile# ,
 			ADDR = #addr# ,
+			CNSLE_REL = #cnsleRel# ,
 			CNS_METHD = #cnsMethd# ,
 			CNS_DTL = #cnsDtl# ,
 			MAJOR_APPL_CD = #majorApplCd# ,
