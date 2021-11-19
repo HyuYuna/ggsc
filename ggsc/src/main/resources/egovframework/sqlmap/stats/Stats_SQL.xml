@@ -6189,174 +6189,28 @@
 	</select>
 	
 	<select id="resultStatsDAO.getPsyCnsStateList" parameterClass="ResultReportVO" resultClass="egovMap">
-		
-			SELECT
-			(	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL WHERE 1=1 
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_TOTAL' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '102'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_DUKEAD' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '104'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_GDSKR' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '105'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_GDSSI' ,
-	   	    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '108'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_PERSONREL' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '110'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_ANXIETY' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '111'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_STRESS' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '112'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_BERVSTRESS' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '114'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_COUPLETK' ,
-		    (	
-		   		select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '116'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>
-		    ) as 'CNT_PSY_MMSEK' ,
-		    (	
-		   		select (select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '101'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>)
-		   		+
-		   		(select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '103'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>)
-		   		+
-		   		(select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '109'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>)
-		   		+
-		   		(select count(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '115'
-		   		<isNotEmpty property="schCnsGb" prepend="AND"> 
-				 CNS_GB = #schCnsGb#
-				</isNotEmpty>
-				<isNotEmpty property="schCenterGb" prepend="AND"> 
-				CENTER_GB = #schCenterGb#
-				</isNotEmpty>
-				<isNotEmpty property="schDateGb" prepend="AND"> 
-					WRITE_DT = #schDateGb#
-				</isNotEmpty>)
-		    ) as 'CNT_PSY_ETC'
-	
+		call gs_sp_psyCnsStateList(
+		<isNotEmpty property="schCnsGb">
+			#schCnsGb# 
+		</isNotEmpty>
+		<isEmpty property="schCnsGb">
+			0
+		</isEmpty>
+		,
+		<isNotEmpty property="schCenterGb">
+			#schCenterGb# 
+		</isNotEmpty>
+		<isEmpty property="schCenterGb">
+			0
+		</isEmpty>
+		,
+		<isNotEmpty property="schDateGb">
+			#schDateGb# 
+		</isNotEmpty>
+		<isEmpty property="schDateGb">
+			''
+		</isEmpty>
+		)
 	</select>
 	
 	<!-- 59개 센터별 값 -->
