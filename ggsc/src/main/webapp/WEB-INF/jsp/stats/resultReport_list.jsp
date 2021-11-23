@@ -884,10 +884,10 @@
 					</c:if>
 				</div>
 			</h3>
-			<table class="table-style1" style="margin-top:1px; width: 10500px;">
+			<table class="table-style1" style="margin-top:1px; width: 13400px;">
                 <colgroup>
                     <%
-                    	for(int i=0; i<178; i++) {
+                    	for(int i=0; i<219; i++) {
                     		%><col style="width: 0.3%;" /><%
                     	}
                     %>
@@ -899,18 +899,18 @@
                     	<th scope="col" colspan="8">1-1. 성별</th>
                     	<th scope="col" colspan="8">1-2. 내담자와 관계</th>
                     	<th scope="col" colspan="16">1-3. 연령별 현황</th>
-                    	<th scope="col" colspan="15">2. 상담경위</th>
-                    	<th scope="col" colspan="15">3. 상담방법</th>
-                    	<th scope="col" colspan="11">4-1. 상담내용</th>
+                    	<th scope="col" colspan="17">2. 상담경위</th>
+                    	<th scope="col" colspan="18">3. 상담방법</th>
+                    	<th scope="col" colspan="41">4-1. 상담내용</th>
                         <th scope="col" colspan="20">4-2. 정보 제공 및 연계</th>
-                        <th scope="col" colspan="9">○ 4-3. 상담진행현황</th>
-                        <th scope="col" colspan="11">○ 4-4. 심리검사</th>
+                        <th scope="col" colspan="7">○ 4-3. 상담진행현황</th>
+                        <th scope="col" colspan="17">○ 4-4. 심리검사</th>
                         <th scope="col" colspan="7">5. 상담지원봉사자 활동</th>
                         <th scope="col" colspan="7">6. 네트워크 활동</th>
                         <th scope="col" colspan="12">○ 7-1. 대상</th>
                         <th scope="col" colspan="6">○ 7-2. 진행형태</th>
                         <th scope="col" colspan="16">○ 7-3. 내용</th>
-                        <th scope="col" colspan="13">8. 홍보</th>
+                        <th scope="col" colspan="11">8. 홍보</th>
                 	</tr>
                     <tr>	
                         <th scope="col" colspan="2" rowspan="2">계</th>
@@ -921,30 +921,30 @@
                         <th scope="col" colspan="2" rowspan="2">계</th>
                         <th scope="col" colspan="14">연령</th>
                         <th scope="col" rowspan="2">계</th>
-                        <th scope="col" rowspan="2">소계</th>
-                        <th scope="col">내부의뢰</th>
-                        <th scope="col" colspan="8">외부의뢰</th>
-                        <th scope="col" rowspan="2">자발적신청</th>
-                        <th scope="col" rowspan="2">발굴</th>
-                        <th scope="col" rowspan="2">신규 -기타</th>
+                        <th scope="col" colspan="2">내부의뢰</th>
+                        <th scope="col" colspan="12">외부의뢰</th>
+                        <th scope="col" rowspan="2">발굴(자발적신청,외부발굴 등)</th>
                         <th scope="col" rowspan="2">기존<br>내담자(명)</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="6">개인상담(건)</th>
+                        <th scope="col" colspan="7">개인상담(건)</th>
+                        <th scope="col" colspan="3">집단상담(건)</th>
+                        <th scope="col" colspan="7">정보제공상담(건)</th>
+                        <th scope="col" rowspan="2">계(건)</th>
+                        <th scope="col" colspan="16">개인상담(건)</th>
                         <th scope="col" colspan="8">집단상담(건)</th>
-                        <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="10">주호소 문제</th>
-                        <th scope="col" rowspan="2">계(건)</th>
+                        <th scope="col" colspan="16">정보제공상담(건)</th>
+                        <th scope="col" rowspan="2">합계(건)<br/>(내부+외부)</th>
                         <th scope="col" colspan="7">내부 연계</th>
                         <th scope="col" colspan="12">외부 연계</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="3">단회기 상담(1회 종결)</th>
+                        <th scope="col" rowspan="2">정보제공상담</th>
                         <th scope="col" colspan="5">지속상담</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="10">심리검사</th>
+                        <th scope="col" colspan="16">심리검사</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="6">5. 상담지원봉사자 활동</th>
+                        <th scope="col" colspan="6">상담지원봉사자 활동</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="6">6. 네트워크 활동</th>
+                        <th scope="col" colspan="6">네트워크 활동</th>
                         <th scope="col" colspan="2" rowspan="2">계(건)</th>
                         <th scope="col" colspan="10">교육대상</th>
                         <th scope="col" colspan="2" rowspan="2">계</th>
@@ -952,7 +952,7 @@
                         <th scope="col" colspan="2" rowspan="2">계</th>
                         <th scope="col" colspan="14">교육 내용</th>
                         <th scope="col" colspan="3" rowspan="2">계</th>
-                        <th scope="col" colspan="10">홍보</th>
+                        <th scope="col" colspan="8">홍보</th>
                     </tr>
                     <tr>
                         <td colspan="2">소계</td>
@@ -971,77 +971,124 @@
                     	<td colspan="2">80대</td>
                     	<td colspan="2">90대 이상</td>
                     	<td colspan="2">50대 미만</td>
+                    	<td>소계</td>
                     	<td>수행기관</td>
                     	<td>소계</td>
-                    	<td>치매관련<br>기관</td>
-                    	<td>정신건강<br>자살예방센터</td>
-                    	<td>노인보호<br>전문기관</td>
-                    	<td>방문간호<br>센터</td>
-                    	<td>재가노인관련기관</td>
-                    	<td>행정기관</td>
-                    	<td>기타-기관</td>
+                        <td>정신건강자살예방센터</td>
+                        <td>노인보호전문기관</td>
+                        <td>보건소방문간호</td>
+                        <td>일자리관련기관</td>
+                        <td>법률기관</td>
+                        <td>성폭력가정폭력상담소</td>
+                        <td>치매관련기관</td>
+                        <td>건강가정다문화가정지원센터</td>
+                        <td>재가노인관련기관</td>
+                        <td>행정기관(무한돌봄)</td>
+                        <td>기타</td>
                     	<td>소계</td>
                     	<td>내방</td>
                     	<td>방문</td>
                     	<td>전화</td>
-                    	<td>온라인</td>
+                    	<td>홈페이지</td>
+                    	<td>모바일</td>
                     	<td>기타</td>
+                    	<td>소계</td>
+                    	<td>대면</td>
+                    	<td>온라인</td>
+                    	<td>소계</td>
+                    	<td>내방</td>
+                    	<td>방문</td>
+                    	<td>전화</td>
+                    	<td>홈페이지</td>
+                    	<td>모바일</td>
+                    	<td>기타</td>
+                    	
+                    	<td>소계</td>
+                    	<td>심리·정서</td>
+                    	<td>대인관계</td>
+                    	<td>치매</td>
+                    	<td>중독</td>
+                    	<td>정신건강장애</td>
+                    	<td>자살</td>
+                    	<td>경제</td>
+                    	<td>생활</td>
+                    	<td>성</td>
+                    	<td>부부</td>
+                    	<td>가족</td>
+                    	<td>학대</td>
+                    	<td>노년생애준비</td>
+                    	<td>재난</td>
+                    	<td>기타</td>
+                    	
                     	<td>소계</td>
                     	<td>사별애도</td>
                     	<td>죽음준비</td>
-                    	<td>관계개선<br>의사소통</td>
-                    	<td>심리·정서</td>
+                    	<td>관계개선의사소통</td>
+                    	<td>심리정서</td>
                     	<td>자아통합</td>
                     	<td>치매예방</td>
                     	<td>기타</td>
+                    	
+                    	<td>소계</td>
                     	<td>심리·정서</td>
                     	<td>대인관계</td>
-                    	<td>건강</td>
-                    	<td>자살</td>
-                    	<td>경제,생활</td>
                     	<td>치매</td>
+                    	<td>중독</td>
+                    	<td>정신건강장애</td>
+                    	<td>자살</td>
+                    	<td>경제</td>
+                    	<td>생활</td>
                     	<td>성</td>
-                    	<td>학대</td>
+                    	<td>부부</td>
                     	<td>가족</td>
+                    	<td>학대</td>
+                    	<td>노년생애준비</td>
+                    	<td>재난</td>
                     	<td>기타</td>
-                    	<td>소계</td>
+                    	
+                    	<td>내부연계소계</td>
                     	<td>여가</td>
                     	<td>법률,세무</td>
                     	<td>경제후원</td>
                     	<td>취업,일자리</td>
                     	<td>생활,식생활,<br>주거</td>
                     	<td>기타</td>
-                    	<td>소계</td>
+                    	
+                    	<td>외부연계 소계</td>
                     	<td>정신보건자살예방센터</td>
                     	<td>노인보호전문기관</td>
                     	<td>보건소방문간호</td>
                     	<td>일자리관련기관</td>
-                    	<td>무한돌봄센터긴급지원</td>
+                    	<td>재가노인관련기관</td>
                     	<td>법률기관</td>
                     	<td>성폭력,가정폭력상담소</td>
-                    	<td>치매안심센터</td>
-                    	<td>건강가정다문화가정</td>
-                    	<td>행정기관주민센터</td>
+                    	<td>치매관련기관</td>
+                    	<td>건강가정 다문화가정 지원센터</td>
+                    	<td>행정기관(무한돌봄)</td>
                     	<td>기타</td>
-                    	<td>소계</td>
-                    	<td>단순정보상담</td>
-                    	<td>복지서비스안내</td>
+                    	
                     	<td>소계</td>
                     	<td>10회기이내</td>
                     	<td>20회기이내</td>
                     	<td>20회기이상30회기미만</td>
                     	<td>30회기이상</td>
                     	
-                    	<td>DUKE-간략우울</td>
-                    	<td>GDS-KR 노인우울</td>
-                    	<td>GDS-SI노인우울 자살사고</td>
-                    	<td>불안</td>
-                    	<td>스트레스</td>
-                    	<td>사별 스트레스</td>
-                    	<td>대인관계 변화</td>
-                    	<td>부부 의사소통</td>
-                    	<td>MMSE-K 치매선별</td>
-                    	<td>기타</td>
+                    	<td>상담사전사후기록지</td>
+                    	<td>DUKE-AD</td>
+                    	<td>죽음학대 질문지</td>
+                    	<td>노인우울척도</td>
+                    	<td>노인우울및자살사고 척도</td>
+                    	<td>노인절망감척도</td>
+                    	<td>사회적지지척도</td>
+                    	<td>대인관계변화척도</td>
+                    	<td>한국형 알코올 중독 선별 검사</td>
+                    	<td>불안척도</td>
+                    	<td>스트레스 척도</td>
+                    	<td>사별 스트레스 척도</td>
+                    	<td>부부친밀감 척도</td>
+                    	<td>부부의사소통 척도</td>
+                    	<td>문장완성검사</td>
+                    	<td>치매선별용 한국어판 간이정신상태검사</td>
                     	
                     	<td>사후관리-안부확인(방문)</td>
                     	<td>사후관리-안부확인(전화)</td>
@@ -1068,13 +1115,12 @@
                     	<td colspan="2">죽음준비</td>
                     	<td colspan="2">치매예방</td>
                     	<td colspan="2">학대예방</td>
-						<td colspan="2">행사</td>
-						<td colspan="2">행사</td>
-						<td colspan="2">방문홍보</td>
-						<td>대중매체</td>
-						<td>인터넷</td>
-						<td>설치물</td>
-						<td colspan="2">홍보물품</td>
+						<td colspan="2">기타</td>
+						<td>대중매체 홍보</td>
+						<td>인터넷 홍보</td>
+						<td>설치물 활용</td>
+						<td colspan="2">직접 황동</td>
+						<td colspan="2">홍보물품 및 자료 제작(해당 월 제작 물품만 기재 )</td>
 						<td>기타</td>
                     </tr>
                     <tr>
@@ -1112,8 +1158,6 @@
                         <td>건</td>
                         <td>명</td>
                         <td>건</td>
-                        <td>명</td>
-                        <td>명</td>
                         
                         <td>명</td>
                         <td>명</td>
@@ -1126,12 +1170,15 @@
                         <td>명</td>
                         <td>명</td>
                         <td>명</td>
-                        
+                        <td>명</td>
+                        <td>명</td>
+                        <td>명</td>
+                        <td>명</td>
                         <td>명</td>
                         <td>명</td>
                         
                         <%
-                        	for(int i=0; i<80; i++) { // 69
+                        	for(int i=0; i<117; i++) { // 69
                         		%><td>건</td><%
                         	}
                         %>
@@ -1176,13 +1223,11 @@
                         <td>회</td>
                         <td>명</td>
                         <td>개(매)</td>
+                        <td>회(건)</td>
+                        <td>회(건)</td>
+                        <td>회</td>
                         <td>회</td>
                         <td>명</td>
-                        <td>회</td>
-                        <td>명</td>
-                        <td>회</td>
-                        <td>회</td>
-                        <td>회</td>
                         <td>회</td>
                         <td>개(매)</td>
                         <td>회(건)</td>
@@ -1190,176 +1235,11 @@
                     <tr>
                     	<td>&nbsp;</td>
                     	<td>합계</td>
-                    	<td data-class='c1'>&nbsp;</td>
-                    	<td data-class='c2'>&nbsp;</td>
-                    	<td data-class='c3'>&nbsp;</td>
-                    	<td data-class='c4'>&nbsp;</td>
-                    	<td data-class='c5'>&nbsp;</td>
-                    	<td data-class='c6'>&nbsp;</td>
-                    	<td data-class='c7'>&nbsp;</td>
-                    	<td data-class='c8'>&nbsp;</td>
-                    	<td data-class='c9'>&nbsp;</td>
-                    	<td data-class='c10'>&nbsp;</td>
-                    	<td data-class='c11'>&nbsp;</td>
-                    	<td data-class='c12'>&nbsp;</td>
-                    	<td data-class='c13'>&nbsp;</td>
-                    	<td data-class='c14'>&nbsp;</td>
-                    	<td data-class='c15'>&nbsp;</td>
-                    	<td data-class='c16'>&nbsp;</td>
-                    	<td data-class='c17'>&nbsp;</td>
-                    	<td data-class='c18'>&nbsp;</td>
-                    	<td data-class='c19'>&nbsp;</td>
-                    	<td data-class='c20'>&nbsp;</td>
-                    	<td data-class='c21'>&nbsp;</td>
-                    	<td data-class='c22'>&nbsp;</td>
-                    	<td data-class='c23'>&nbsp;</td>
-                    	<td data-class='c24'>&nbsp;</td>
-                    	<td data-class='c25'>&nbsp;</td>
-                    	<td data-class='c26'>&nbsp;</td>
-                    	<td data-class='c27'>&nbsp;</td>
-                    	<td data-class='c28'>&nbsp;</td>
-                    	<td data-class='c29'>&nbsp;</td>
-                    	<td data-class='c30'>&nbsp;</td>
-                    	<td data-class='c31'>&nbsp;</td>
-                    	<td data-class='c32'>&nbsp;</td>
-                    	<td data-class='c33'>&nbsp;</td>
-                    	<td data-class='c34'>&nbsp;</td>
-                    	<td data-class='c35'>&nbsp;</td>
-                    	<td data-class='c36'>&nbsp;</td>
-                    	<td data-class='c37'>&nbsp;</td>
-                    	<td data-class='c38'>&nbsp;</td>
-                    	<td data-class='c39'>&nbsp;</td>
-                    	<td data-class='c40'>&nbsp;</td>
-                    	<td data-class='c41'>&nbsp;</td>
-                    	<td data-class='c42'>&nbsp;</td>
-                    	<td data-class='c43'>&nbsp;</td>
-                    	<td data-class='c44'>&nbsp;</td>
-                    	<td data-class='c45'>&nbsp;</td>
-                    	<td data-class='c46'>&nbsp;</td>
-                    	<td data-class='c47'>&nbsp;</td>
-                    	<td data-class='c48'>&nbsp;</td>
-                    	<td data-class='c49'>&nbsp;</td>
-                    	<td data-class='c50'>&nbsp;</td>
-                    	<td data-class='c51'>&nbsp;</td>
-                    	<td data-class='c52'>&nbsp;</td>
-                    	<td data-class='c53'>&nbsp;</td>
-                    	<td data-class='c54'>&nbsp;</td>
-                    	<td data-class='c55'>&nbsp;</td>
-                    	<td data-class='c56'>&nbsp;</td>
-                    	<td data-class='c57'>&nbsp;</td>
-                    	<td data-class='c58'>&nbsp;</td>
-                    	<td data-class='c59'>&nbsp;</td>
-                    	<td data-class='c60'>&nbsp;</td>
-                    	<td data-class='c61'>&nbsp;</td>
-                    	<td data-class='c62'>&nbsp;</td>
-                    	<td data-class='c63'>&nbsp;</td>
-                    	<td data-class='c64'>&nbsp;</td>
-                    	<td data-class='c65'>&nbsp;</td>
-                    	<td data-class='c66'>&nbsp;</td>
-                    	<td data-class='c67'>&nbsp;</td>
-                    	<td data-class='c68'>&nbsp;</td>
-                    	<td data-class='c69'>&nbsp;</td>
-                    	<td data-class='c70'>&nbsp;</td>
-                    	<td data-class='c71'>&nbsp;</td>
-                    	<td data-class='c72'>&nbsp;</td>
-                    	<td data-class='c73'>&nbsp;</td>
-                    	<td data-class='c74'>&nbsp;</td>
-                    	<td data-class='c75'>&nbsp;</td>
-                    	<td data-class='c76'>&nbsp;</td>
-                    	<td data-class='c77'>&nbsp;</td>
-                    	<td data-class='c78'>&nbsp;</td>
-                    	<td data-class='c79'>&nbsp;</td>
-                    	<td data-class='c80'>&nbsp;</td>
-                    	<td data-class='c81'>&nbsp;</td>
-                    	<td data-class='c82'>&nbsp;</td>
-                    	<td data-class='c83'>&nbsp;</td>
-                    	<td data-class='c84'>&nbsp;</td>
-                    	<td data-class='c85'>&nbsp;</td>
-                    	<td data-class='c86'>&nbsp;</td>
-                    	<td data-class='c87'>&nbsp;</td>
-                    	<td data-class='c88'>&nbsp;</td>
-                    	<td data-class='c89'>&nbsp;</td>
-                    	<td data-class='c90'>&nbsp;</td>
-                    	<td data-class='c91'>&nbsp;</td>
-                    	<td data-class='c92'>&nbsp;</td>
-                    	<td data-class='c93'>&nbsp;</td>
-                    	<td data-class='c94'>&nbsp;</td>
-                    	<td data-class='c95'>&nbsp;</td>
-                    	<td data-class='c96'>&nbsp;</td>
-                    	<td data-class='c97'>&nbsp;</td>
-                    	<td data-class='c98'>&nbsp;</td>
-                    	<td data-class='c99'>&nbsp;</td>
-                    	<td data-class='c100'>&nbsp;</td>
-                    	<td data-class='c101'>&nbsp;</td>
-                    	<td data-class='c102'>&nbsp;</td>
-                    	<td data-class='c103'>&nbsp;</td>
-                    	<td data-class='c104'>&nbsp;</td>
-                    	<td data-class='c105'>&nbsp;</td>
-                    	<td data-class='c106'>&nbsp;</td>
-                    	<td data-class='c107'>&nbsp;</td>
-                    	<td data-class='c108'>&nbsp;</td>
-                    	<td data-class='c109'>&nbsp;</td>
-                    	<td data-class='c110'>&nbsp;</td>
-                    	<td data-class='c111'>&nbsp;</td>
-                    	<td data-class='c112'>&nbsp;</td>
-                    	<td data-class='c113'>&nbsp;</td>
-                    	<td data-class='c114'>&nbsp;</td>
-                    	<td data-class='c115'>&nbsp;</td>
-                    	<td data-class='c116'>&nbsp;</td>
-                    	<td data-class='c117'>&nbsp;</td>
-                    	<td data-class='c118'>&nbsp;</td>
-                    	<td data-class='c119'>&nbsp;</td>
-                    	<td data-class='c120'>&nbsp;</td>
-                    	<td data-class='c121'>&nbsp;</td>
-                    	<td data-class='c122'>&nbsp;</td>
-                    	<td data-class='c123'>&nbsp;</td>
-                    	<td data-class='c124'>&nbsp;</td>
-                    	<td data-class='c125'>&nbsp;</td>
-                    	<td data-class='c126'>&nbsp;</td>
-                    	<td data-class='c127'>&nbsp;</td>
-                    	<td data-class='c128'>&nbsp;</td>
-                    	<td data-class='c129'>&nbsp;</td>
-                    	<td data-class='c130'>&nbsp;</td>
-                    	<td data-class='c131'>&nbsp;</td>
-                    	<td data-class='c132'>&nbsp;</td>
-                    	<td data-class='c133'>&nbsp;</td>
-                    	<td data-class='c134'>&nbsp;</td>
-                    	<td data-class='c135'>&nbsp;</td>
-                    	<td data-class='c136'>&nbsp;</td>
-                    	<td data-class='c137'>&nbsp;</td>
-                    	<td data-class='c138'>&nbsp;</td>
-                    	<td data-class='c139'>&nbsp;</td>
-                    	<td data-class='c140'>&nbsp;</td>
-                    	<td data-class='c141'>&nbsp;</td>
-                    	<td data-class='c142'>&nbsp;</td>
-                    	<td data-class='c143'>&nbsp;</td>
-                    	<td data-class='c144'>&nbsp;</td>
-                    	<td data-class='c145'>&nbsp;</td>
-                    	<td data-class='c146'>&nbsp;</td>
-                    	<td data-class='c147'>&nbsp;</td>
-                    	<td data-class='c148'>&nbsp;</td>
-                    	<td data-class='c149'>&nbsp;</td>
-                    	<td data-class='c150'>&nbsp;</td>
-                    	<td data-class='c151'>&nbsp;</td>
-                    	<td data-class='c152'>&nbsp;</td>
-                    	<td data-class='c153'>&nbsp;</td>
-                    	<td data-class='c154'>&nbsp;</td>
-                    	<td data-class='c155'>&nbsp;</td>
-                    	<td data-class='c156'>&nbsp;</td>
-                    	<td data-class='c157'>&nbsp;</td>
-                    	<td data-class='c158'>&nbsp;</td>
-                    	<td data-class='c159'>&nbsp;</td>
-                    	<td data-class='c160'>&nbsp;</td>
-                    	<td data-class='c161'>&nbsp;</td>
-                    	<td data-class='c162'>&nbsp;</td>
-                    	<td data-class='c163'>&nbsp;</td>
-                    	<td data-class='c164'>&nbsp;</td>
-                    	<td data-class='c165'>&nbsp;</td>
-                    	<td data-class='c166'>&nbsp;</td>
-                    	<td data-class='c167'>&nbsp;</td>
-                    	<td data-class='c168'>&nbsp;</td>
-                    	<td data-class='c169'>&nbsp;</td>
-                    	<td data-class='c171'>&nbsp;</td>
+                    	<%
+                    		for(int i=1; i<212; i++) {
+                    			%><td data-class='c<%=i%>'>&nbsp;</td><%
+                    		}
+                    	%>
                     </tr>                
                 </tbody>                 
             </table>                     
