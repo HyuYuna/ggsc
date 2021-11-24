@@ -26,7 +26,7 @@
 			for (var i = 0; i < "${popupCnt}"; i++) {
 				var img = new Image();
 				var imgsrc = list[i];
-				var filePath = "http://localhost:8085/gnoincoundb/getPopup.do?fileNm=/";
+				var filePath = "/gnoincoundb/getPopup.do?fileNm=/";
 				img.src = filePath + imgsrc;
 				var path = filePath+imgsrc;
 				onPopupList(img,path);
@@ -37,19 +37,19 @@
 			});
 		});
 		
-		function onPopupList(img,filePath){
+	    function onPopupList(img,filePath){
 			img.onload = function(){ 					
 				var OpenWindow = window.open('','_blank','width='+this.width+', height='+this.height+', menubars=no, scrollbars=auto');
 				OpenWindow.document.write("<title>경기도노인상담센터 팝업</title>");
 				OpenWindow.document.write("<style>body{ margin:0px;}</style><img src='"+filePath+"' onclick='window.close();'>");
 			};
-		}
+		} 
 
 		function fn_fileDown(sysFileNm, filePath, fileNm) {
 			$("#fileNm").val(fileNm);
 			$("#sysFileNm").val(sysFileNm);
 			$("#filePath").val(filePath);
-			document.downForm.action = "http://localhost:8085/gnoincoundb/fileDown2.do";
+			document.downForm.action = "/gnoincoundb/fileDown2.do";
 			document.downForm.submit();
 		}
 

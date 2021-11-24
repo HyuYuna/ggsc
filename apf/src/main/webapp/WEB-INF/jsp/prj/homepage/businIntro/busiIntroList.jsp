@@ -84,6 +84,8 @@
 	  		$("#noin24").css("display","none");
 	  		$("#middleCns").css("display","none");
 	  		$("#weakSupp").css("display","");
+	  		$("#weakSupp1").css("display","");
+	  		$("#weakSupp2").css("display","none");
 	  		$("#genderEdu").css("display","none");
 	  		
 	  		$("#focus1").css("font-weight","normal");
