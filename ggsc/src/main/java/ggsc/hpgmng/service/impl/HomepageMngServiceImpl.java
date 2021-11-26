@@ -20,12 +20,12 @@ import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
-import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.HomepageMngService;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
 import ggsc.hpgmng.service.PopupVO;
+import ggsc.hpgmng.service.NoticeVO;
 
 @Service("hpgmngService")
 public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements HomepageMngService {
@@ -35,36 +35,83 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	
 	// 공지사항 목록
 	@Override
-	public List<EgovMap> getNoticeList(HnoticeVO vo) {
+	public List<EgovMap> getNoticeList(NoticeVO vo) {
 		return hpgmngDao.getNoticeList(vo);
 	}
 	
 	// 공지사항 갯수
 	@Override
-	public int getNoticeListTotCnt(HnoticeVO vo) {
+	public int getNoticeListTotCnt(NoticeVO vo) {
 		return hpgmngDao.getNoticeListTotCnt(vo);
 	}
 	
 	// 공지사항 등록
 	@Override
-	public void insertNotice(HnoticeVO vo) {
+	public void insertNotice(NoticeVO vo) {
 		hpgmngDao.insertNotice(vo);
 		
-		if(vo.getFile().getSize() != 0) {
+		/*if(vo.getFile().getSize() != 0) {
 			MultipartFile file = vo.getFile();
 			EgovMap fMap = AMSComm.fileUpload(file, "notice");
-			fMap.put("regId", vo.getRegId());
-			fMap.put("writer", vo.getWriter());
-			
+			vo.setFileNm((String)fMap.get("fileNm"));
+			vo.setSysFileNm((String)fMap.get("sysFileNm"));
+			vo.setFilePath((String)fMap.get("filePath"));
 			// 첨부파일이 있으면 업로드
-			hpgmngDao.insertNoticeUpload(fMap);			
+			supportDao.insertNoticeUpload(vo);			
+		} else {
+			vo.setFileNm("");
+			vo.setSysFileNm("");
+			vo.setFilePath("");
+			// 첨부파일이 없을때
+			supportDao.insertNoticeUpload(vo);	
+		}*/
+		
+		if(vo.getFile()!=null) {
+			if(vo.getFile().getSize() != 0) {
+				System.out.println("File Upload Start");
+				MultipartFile file = vo.getFile();
+				System.out.println("Upload File Name : " + vo.getFile().getName());
+				
+				EgovMap fMap = AMSComm.fileUpload(file, "report");
+				
+				System.out.println("File Upload End");
+				
+				fMap.put("regId", vo.getRegId());
+				//fMap.put("writer", vo.getUserNum());
+				
+				vo.setFileNm(fMap.get("fileNm").toString());
+				vo.setSysFileNm(fMap.get("sysFileNm").toString());
+				vo.setFilePath(fMap.get("filePath").toString());
+				/*try {
+					vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
+				}catch(Exception err) {
+					vo.setFileSize(0);
+				}*/
+				hpgmngDao.insertNoticeUpload(vo);
+			}
+		}else {
+			vo.setFileNm(null);
+			vo.setSysFileNm(null);
+			vo.setFilePath(null);
+			hpgmngDao.insertNoticeUpload(vo);
+			// vo.setFileSize(0);
 		}
 	}
 	
 	// 공지사항 수정
 	@Override
-	public void updateNotice(HnoticeVO vo) {
+	public void updateNotice(NoticeVO vo) {
 		hpgmngDao.updateNotice(vo);
+		
+		if(vo.getFile().getSize() != 0) {
+			MultipartFile file = vo.getFile();
+			EgovMap fMap = AMSComm.fileUpload(file, "notice");
+			vo.setFileNm((String)fMap.get("fileNm"));
+			vo.setSysFileNm((String)fMap.get("sysFileNm"));
+			vo.setFilePath((String)fMap.get("filePath"));
+			// 첨부파일이 있으면 업로드
+			hpgmngDao.updateNoticeUpload(vo);			
+		} 
 	}
 	
 	// 공지사항 상세

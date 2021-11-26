@@ -3,20 +3,21 @@ package ggsc.hpgmng.service;
 import java.util.List;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
+import ggsc.hpgmng.service.NoticeVO;
 
 public interface HomepageMngService {
 	
 	// 공지사항 목록
-	List<EgovMap> getNoticeList(HnoticeVO vo);
+	List<EgovMap> getNoticeList(NoticeVO vo);
 	
 	// 공지사항 갯수
-	int getNoticeListTotCnt(HnoticeVO vo);
+	int getNoticeListTotCnt(NoticeVO vo);
 	
 	// 공지사항 등록
-	void insertNotice(HnoticeVO vo);
+	void insertNotice(NoticeVO vo);
 	
 	// 공지사항 수정
-	void updateNotice(HnoticeVO vo);
+	void updateNotice(NoticeVO vo);
 	
 	// 공지사항 상세
 	EgovMap getNoticeDtl(int num);

@@ -8,21 +8,6 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 public interface SupportService {
 	
-	// 공지사항 목록
-	List<EgovMap> getNoticeList(NoticeVO vo);
-	
-	// 공지사항 갯수
-	int getNoticeListTotCnt(NoticeVO vo);
-	
-	// 공지사항 등록
-	void insertNotice(NoticeVO vo);
-	
-	// 공지사항 수정
-	void updateNotice(NoticeVO vo);
-	
-	// 공지사항 상세
-	EgovMap getNoticeDtl(int num);
-	
 	// FAQ 목록
 	List<EgovMap> getFaqList(FaqVO vo);
 	
