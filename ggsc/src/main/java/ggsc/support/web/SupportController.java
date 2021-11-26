@@ -29,10 +29,8 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import ggsc.cnsr.service.AdminManageService;
 import ggsc.cnsr.service.GroupVO;
-import ggsc.support.service.ChtrVO;
 import ggsc.support.service.FaqVO;
 import ggsc.support.service.MailVO;
-import ggsc.support.service.NoticeVO;
 import ggsc.support.service.RescRoomVO;
 import ggsc.support.service.SignVO;
 import ggsc.support.service.SupportService;
@@ -153,98 +151,6 @@ public class SupportController {
 		
 		model.addAttribute("numbers", values);
 		return "jsonView";
-	}
-	
-	@RequestMapping(value = "/noticeList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String noticeList(NoticeVO vo, HttpServletRequest request, ModelMap model){	
-		
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		model.addAttribute("mnuCd", mnuCd);
-		
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
-		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
-
-		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
-		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
-		
-		List<EgovMap> noticeList = supportService.getNoticeList(vo);
-		model.addAttribute("noticeList", noticeList);
-		int totalPageCnt = supportService.getNoticeListTotCnt(vo);
-		model.addAttribute("totalPageCnt", totalPageCnt);
-		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
-		model.addAttribute("paginationInfo", paginationInfo);
-		model.addAttribute("vo", vo);
-		
-		return "support/notice_list.main";
-	}
-	
-	@RequestMapping(value = "/noticeDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String noticeDtl(NoticeVO vo, HttpServletRequest request, ModelMap model){
-		
-		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
-		
-		// 권한 관리 시작
-		int userAuth;
-		try {
-			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
-			if (userAuth == 0)
-				userAuth = 10;
-		} catch (NumberFormatException err) {
-			userAuth = 10;
-		} catch (NullPointerException err) {
-			userAuth = 10;
-		}
-	
-		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
-			vo.setSchCenterGb(Integer.toString(userCenterGb));
-		}*/
-		
-		switch (userAuth) {
-			case 1: vo.setAuthCd(1); break; 
-			case 2: vo.setAuthCd(2); break; 
-			case 3: vo.setAuthCd(3); break; 
-				default: vo.setAuthCd(4); break; 
-		}
-		// 권한 관리 끝
-		
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
-		model.addAttribute("mnuCd", mnuCd);
-		
-		EgovMap noticeDtl = null;
-		if(num !=""){
-			int intNum = Integer.parseInt(num);
-			noticeDtl = supportService.getNoticeDtl(intNum);
-		}
-		
-		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", noticeDtl);
-		model.addAttribute("vo", vo);
-		model.addAttribute("userId", loginVO.get("userId").toString());
-		
-		return "support/notice_dtl.main";
-	}
-	
-	@RequestMapping(value = "/noticeReg.do", method = RequestMethod.POST)
-	public String noticeReg(HttpServletRequest request, ModelMap model, NoticeVO vo){
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
-		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
-		
-		if(save.equals("S")) {
-			supportService.insertNotice(vo);	
-		} else if(save.equals("U")) {
-			supportService.updateNotice(vo);
-		}
-		
-		return "redirect:/gnoincoundb/noticeList.do?mnuCd=" + mnuCd;
 	}
 	
 	@RequestMapping(value = "/faqList.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -915,70 +821,6 @@ public class SupportController {
 		}
 		
 		return "jsonView";
-	}
-	
-	@RequestMapping(value = "/galleryList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String galleryList(NoticeVO vo, HttpServletRequest request, ModelMap model){	
-				
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		model.addAttribute("mnuCd", mnuCd);
-		
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
-		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setPageSize(10); // 페이징 리스트의 사이즈
-
-		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
-		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
-		
-		List<EgovMap> noticeList = supportService.getNoticeList(vo);
-		model.addAttribute("noticeList", noticeList);
-		int totalPageCnt = supportService.getNoticeListTotCnt(vo);
-		model.addAttribute("totalPageCnt", totalPageCnt);
-		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
-		model.addAttribute("paginationInfo", paginationInfo);
-		model.addAttribute("vo", vo);
-		
-		return "support/gallery_list.main";
-	}
-	
-	@RequestMapping(value = "/galleryDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String galleryDtl(NoticeVO vo, HttpServletRequest request, ModelMap model){
-
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
-		model.addAttribute("mnuCd", mnuCd);
-		
-		EgovMap noticeDtl = null;
-		if(num !=""){
-			int intNum = Integer.parseInt(num);
-			noticeDtl = supportService.getNoticeDtl(intNum);
-		}
-		
-		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", noticeDtl);
-		
-		return "support/gallery_dtl.main";
-	}
-	
-	@RequestMapping(value = "/galleryReg.do", method = RequestMethod.POST)
-	public String galleryReg(HttpServletRequest request, ModelMap model, NoticeVO vo){
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
-		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
-		
-		if(save.equals("S")) {
-			supportService.insertNotice(vo);	
-		} else if(save.equals("U")) {
-			supportService.updateNotice(vo);
-		}
-		
-		return "redirect:/gnoincoundb/galleryList.do?mnuCd=" + mnuCd;
 	}
 	
 }

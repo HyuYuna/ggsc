@@ -8,46 +8,46 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
-import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
 import ggsc.hpgmng.service.PopupVO;
+import ggsc.hpgmng.service.NoticeVO;
 
 @Repository("hpgmngDao")
 public class HomepageMngDAO extends EgovAbstractDAO {
 
 	// 공지사항 목록
 	@SuppressWarnings("unchecked")
-	public List<EgovMap> getNoticeList(HnoticeVO vo){
+	public List<EgovMap> getNoticeList(NoticeVO vo){
 		return (List<EgovMap>)list("hpgmngDao.getNoticeList", vo);
 	}
 	
 	// 공지사항 갯수
-	public int getNoticeListTotCnt(HnoticeVO vo){
+	public int getNoticeListTotCnt(NoticeVO vo){
 		return (Integer)select("hpgmngDao.getNoticeListTotCnt", vo);
 	}
 	
 	// 공지사항 등록
-	public void insertNotice(HnoticeVO vo){
+	public void insertNotice(NoticeVO vo){
 		insert("hpgmngDao.insertNotice", vo);
 	}
 	
 	// 공지사항 파일업로드 등록
-	public void insertNoticeUpload(EgovMap map) {
-		insert("hpgmngDao.insertNoticeUpload", map);
+	public void insertNoticeUpload(NoticeVO vo) {
+		insert("hpgmngDao.insertNoticeUpload", vo);
 	}
 	
 	// 공지사항 수정
-	public void updateNotice(HnoticeVO vo) {
+	public void updateNotice(NoticeVO vo) {
 		update("hpgmngDao.updateNotice", vo);
 	}
 	
 	
-//	// 공지사항 파일업로드 수정
-//	public void updateNoticeUpload(NoticeVO vo) {
-//		update("hpgmngDao.updateNoticeUpload", vo);
-//	}
+	// 공지사항 파일업로드 수정
+	public void updateNoticeUpload(NoticeVO vo) {
+		update("hpgmngDao.updateNoticeUpload", vo);
+	}
 	
 	// 공지사항 상세
 	public EgovMap getNoticeDtl(int num){

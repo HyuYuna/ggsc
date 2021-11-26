@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.main.service.CalendarVO;
-import ggsc.support.service.NoticeVO;
 
 @Repository("MainDAO")
 public class MainDAO extends EgovAbstractDAO {

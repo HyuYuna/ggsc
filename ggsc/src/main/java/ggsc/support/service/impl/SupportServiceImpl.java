@@ -26,7 +26,6 @@ import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.support.service.FaqVO;
 import ggsc.support.service.MailVO;
-import ggsc.support.service.NoticeVO;
 import ggsc.support.service.PdfVO;
 import ggsc.support.service.RescRoomVO;
 import ggsc.support.service.SignVO;
@@ -45,93 +44,6 @@ public class SupportServiceImpl extends EgovAbstractServiceImpl implements Suppo
 	@Override 
 	public EgovMap PDFDownload(PdfVO vo, String sqlName) {
 		return supportDao.PDFDownload(vo, sqlName); 
-	}
-	
-	// 공지사항 목록
-	@Override
-	public List<EgovMap> getNoticeList(NoticeVO vo) {
-		return supportDao.getNoticeList(vo);
-	}
-	
-	// 공지사항 갯수
-	@Override
-	public int getNoticeListTotCnt(NoticeVO vo) {
-		return supportDao.getNoticeListTotCnt(vo);
-	}
-	
-	// 공지사항 등록
-	@Override
-	public void insertNotice(NoticeVO vo) {
-		supportDao.insertNotice(vo);
-		
-		/*if(vo.getFile().getSize() != 0) {
-			MultipartFile file = vo.getFile();
-			EgovMap fMap = AMSComm.fileUpload(file, "notice");
-			vo.setFileNm((String)fMap.get("fileNm"));
-			vo.setSysFileNm((String)fMap.get("sysFileNm"));
-			vo.setFilePath((String)fMap.get("filePath"));
-			// 첨부파일이 있으면 업로드
-			supportDao.insertNoticeUpload(vo);			
-		} else {
-			vo.setFileNm("");
-			vo.setSysFileNm("");
-			vo.setFilePath("");
-			// 첨부파일이 없을때
-			supportDao.insertNoticeUpload(vo);	
-		}*/
-		
-		if(vo.getFile()!=null) {
-			if(vo.getFile().getSize() != 0) {
-				System.out.println("File Upload Start");
-				MultipartFile file = vo.getFile();
-				System.out.println("Upload File Name : " + vo.getFile().getName());
-				
-				EgovMap fMap = AMSComm.fileUpload(file, "report");
-				
-				System.out.println("File Upload End");
-				
-				fMap.put("regId", vo.getRegId());
-				//fMap.put("writer", vo.getUserNum());
-				
-				vo.setFileNm(fMap.get("fileNm").toString());
-				vo.setSysFileNm(fMap.get("sysFileNm").toString());
-				vo.setFilePath(fMap.get("filePath").toString());
-				/*try {
-					vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
-				}catch(Exception err) {
-					vo.setFileSize(0);
-				}*/
-				supportDao.insertNoticeUpload(vo);
-			}
-		}else {
-			vo.setFileNm(null);
-			vo.setSysFileNm(null);
-			vo.setFilePath(null);
-			supportDao.insertNoticeUpload(vo);
-			// vo.setFileSize(0);
-		}
-	}
-	
-	// 공지사항 수정
-	@Override
-	public void updateNotice(NoticeVO vo) {
-		supportDao.updateNotice(vo);
-		
-		if(vo.getFile().getSize() != 0) {
-			MultipartFile file = vo.getFile();
-			EgovMap fMap = AMSComm.fileUpload(file, "notice");
-			vo.setFileNm((String)fMap.get("fileNm"));
-			vo.setSysFileNm((String)fMap.get("sysFileNm"));
-			vo.setFilePath((String)fMap.get("filePath"));
-			// 첨부파일이 있으면 업로드
-			supportDao.updateNoticeUpload(vo);			
-		} 
-	}
-	
-	// 공지사항 상세
-	@Override
-	public EgovMap getNoticeDtl(int num) {
-		return supportDao.getNoticeDtl(num);
 	}
 	
 	// FAQ 목록

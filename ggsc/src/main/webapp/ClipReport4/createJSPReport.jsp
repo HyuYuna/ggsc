@@ -1,4 +1,3 @@
-
 <%@page import="com.clipsoft.clipreport.oof.OOFFile"%>
 <%@page import="com.clipsoft.clipreport.oof.OOFDocument"%>
 <%@page import="java.io.File"%>

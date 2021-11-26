@@ -921,7 +921,7 @@
 			) as 'C10',
 			(
 				select 
-					(select count(*) from gs_per_cns_dtl as gpct WHERE use_yn = 'Y' 
+					(select count(*) from gs_per_cns_dtl as gpct WHERE use_yn = 'Y'  and cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
 						CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -935,7 +935,7 @@
 						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 					</isNotEmpty>)
 					+
-					(select count(*) from GS_CNS_INFO as gci where 1=1
+					(select count(*) from GS_CNS_INFO as gci where cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
 						gci.CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -7375,8 +7375,8 @@
 					</isNotEmpty>) 
 			) as 'C10',
 			(
-				select 
-					(select count(*) from gs_per_cns_dtl as gpct WHERE cns_dtl_gb_cd = '1' AND use_yn = 'Y' 
+				sselect 
+					(select count(*) from gs_per_cns_dtl as gpct WHERE use_yn = 'Y'  and cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
 						CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -7388,47 +7388,20 @@
 					</isNotEmpty>
 					<isNotEmpty property="schEndDate" prepend="AND">
 						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
-					</isNotEmpty>) 
-					+ 
-					(select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl as gpct WHERE cns_dtl_gb_cd = '2' AND use_yn = 'Y'
+					</isNotEmpty>)
+					+
+					(select count(*) from GS_CNS_INFO as gci where cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
-						CNS_GB = #schCnsGb#
+						gci.CNS_GB = #schCnsGb#
 					</isNotEmpty>
 					<isNotEmpty property="schCenterGb" prepend="AND"> 
-						CENTER_GB = #schCenterGb#
+						gci.CENTER_GB = #schCenterGb#
 					</isNotEmpty>
 					<isNotEmpty property="schStartDate" prepend="AND">
-				      	DATE(gpct.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+				      	DATE(gci.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 					</isNotEmpty>
 					<isNotEmpty property="schEndDate" prepend="AND">
-						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
-					</isNotEmpty>)  -
-					(select count(*) from gs_per_cns_dtl as gpct where cnsle_rel = '1' AND cns_dtl_gb_cd = '1' AND use_yn = 'Y' 
-					<isNotEmpty property="schCnsGb" prepend="AND"> 
-						CNS_GB = #schCnsGb#
-					</isNotEmpty>
-					<isNotEmpty property="schCenterGb" prepend="AND"> 
-						CENTER_GB = #schCenterGb#
-					</isNotEmpty>
-					<isNotEmpty property="schStartDate" prepend="AND">
-				      	DATE(gpct.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
-					</isNotEmpty>
-					<isNotEmpty property="schEndDate" prepend="AND">
-						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
-					</isNotEmpty>) 
-					- 
-					(select TRUNCATE(IFNULL(sum(cns_cnt),0)+0 ,0) from gs_per_cns_dtl as gpct where cnsle_rel = '1' AND cns_dtl_gb_cd = '2' AND use_yn = 'Y' 
-					<isNotEmpty property="schCnsGb" prepend="AND"> 
-						CNS_GB = #schCnsGb#
-					</isNotEmpty>
-					<isNotEmpty property="schCenterGb" prepend="AND"> 
-						CENTER_GB = #schCenterGb#
-					</isNotEmpty>
-					<isNotEmpty property="schStartDate" prepend="AND">
-				      	DATE(gpct.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
-					</isNotEmpty>
-					<isNotEmpty property="schEndDate" prepend="AND">
-						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+						DATE(gci.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 					</isNotEmpty>)
 			) AS 'C11' ,
 			(
@@ -10970,7 +10943,7 @@
 			) as 'C10',
 			(
 				select 
-					(select count(*) from gs_per_cns_dtl as gpct WHERE use_yn = 'Y' 
+					(select count(*) from gs_per_cns_dtl as gpct WHERE use_yn = 'Y'  and cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
 						CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -10984,7 +10957,7 @@
 						DATE(gpct.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 					</isNotEmpty>)
 					+
-					(select count(*) from GS_CNS_INFO as gci where 1=1
+					(select count(*) from GS_CNS_INFO as gci where cnsle_rel != 1
 					<isNotEmpty property="schCnsGb" prepend="AND"> 
 						gci.CNS_GB = #schCnsGb#
 					</isNotEmpty>

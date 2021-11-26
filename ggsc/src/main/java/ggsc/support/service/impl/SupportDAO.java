@@ -9,7 +9,6 @@ import com.daou.ppurio.mmsVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.support.service.FaqVO;
-import ggsc.support.service.NoticeVO;
 import ggsc.support.service.PdfVO;
 import ggsc.support.service.RescRoomVO;
 import ggsc.support.service.SignVO;
@@ -23,43 +22,6 @@ public class SupportDAO extends EgovAbstractDAO {
 	// PDF 다운로드
 	public EgovMap PDFDownload(PdfVO vo, String sqlName) {
 		return (EgovMap)select("supportDao." + sqlName, vo);
-	}
-	
-	
-	// 공지사항 목록
-	@SuppressWarnings("unchecked")
-	public List<EgovMap> getNoticeList(NoticeVO vo){
-		return (List<EgovMap>)list("supportDao.getNoticeList", vo);
-	}
-	
-	// 공지사항 갯수
-	public int getNoticeListTotCnt(NoticeVO vo){
-		return (Integer)select("supportDao.getNoticeListTotCnt", vo);
-	}
-	
-	// 공지사항 등록
-	public void insertNotice(NoticeVO vo){
-		insert("supportDao.insertNotice", vo);
-	}
-	
-	// 공지사항 파일업로드 등록
-	public void insertNoticeUpload(NoticeVO vo) {
-		insert("supportDao.insertNoticeUpload", vo);
-	}
-	
-	// 공지사항 수정
-	public void updateNotice(NoticeVO vo) {
-		update("supportDao.updateNotice", vo);
-	}
-	
-	// 공지사항 파일업로드 수정
-	public void updateNoticeUpload(NoticeVO vo) {
-		update("supportDao.updateNoticeUpload", vo);
-	}
-	
-	// 공지사항 상세
-	public EgovMap getNoticeDtl(int num){
-		return (EgovMap)select("supportDao.getNoticeDtl", num);
 	}
 	
 	// FAQ 목록

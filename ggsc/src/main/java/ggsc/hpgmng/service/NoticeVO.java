@@ -1,4 +1,4 @@
-package ggsc.support.service;
+package ggsc.hpgmng.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

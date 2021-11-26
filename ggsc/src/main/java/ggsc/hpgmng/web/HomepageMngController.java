@@ -14,12 +14,12 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import ggsc.hpgmng.service.EduAppVO;
 import ggsc.hpgmng.service.FreeBrdVO;
-import ggsc.hpgmng.service.HnoticeVO;
 import ggsc.hpgmng.service.HomepageMngService;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
 import ggsc.hpgmng.service.OnlineAskVO;
 import ggsc.hpgmng.service.PopupVO;
+import ggsc.hpgmng.service.NoticeVO;
 
 
 @Controller
@@ -28,13 +28,8 @@ public class HomepageMngController {
 	@Resource(name = "hpgmngService")
 	private HomepageMngService hpgmngService;
 
-	@RequestMapping(value = "/hNoticeList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String noticeList(HnoticeVO vo, HttpServletRequest request, ModelMap model){	
-		/*
-		if(request.getParameter("page") != null){
-			model.addAttribute("page", request.getParameter("page"));
-		}
-		*/
+	@RequestMapping(value = "/noticeList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String noticeList(NoticeVO vo, HttpServletRequest request, ModelMap model){	
 		
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
@@ -58,8 +53,8 @@ public class HomepageMngController {
 		return "hpgmng/notice_list.main";
 	}
 	
-	@RequestMapping(value = "/hNoticeDtl.do", method = { RequestMethod.GET, RequestMethod.POST } )
-	public String noticeDtl(HnoticeVO vo, HttpServletRequest request, ModelMap model){
+	@RequestMapping(value = "/noticeDtl.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String noticeDtl(NoticeVO vo, HttpServletRequest request, ModelMap model){
 		/*
 		if(request.getParameter("page") != null){
 			model.addAttribute("page", request.getParameter("page"));
@@ -81,8 +76,8 @@ public class HomepageMngController {
 		return "hpgmng/notice_dtl.main";
 	}
 	
-	@RequestMapping(value = "/hNoticeReg.do", method = RequestMethod.POST)
-	public String noticeReg(HttpServletRequest request, ModelMap model, HnoticeVO vo){
+	@RequestMapping(value = "/noticeReg.do", method = RequestMethod.POST)
+	public String noticeReg(HttpServletRequest request, ModelMap model, NoticeVO vo){
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
@@ -98,7 +93,7 @@ public class HomepageMngController {
 			hpgmngService.updateNotice(vo);
 		}
 		
-		return "redirect:/gnoincoundb/hNoticeList.do?mnuCd=" + mnuCd;
+		return "redirect:/gnoincoundb/noticeList.do?mnuCd=" + mnuCd;
 	}
 	
 	@RequestMapping(value = "/freeBoardList.do", method = { RequestMethod.GET, RequestMethod.POST })
