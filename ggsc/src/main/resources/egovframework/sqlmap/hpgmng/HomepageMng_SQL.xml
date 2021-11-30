@@ -100,9 +100,7 @@
 	
 	<!-- 센터소식 등록-->
 	<insert id="hpgmngDao.insertCenterNews" parameterClass="newsVO">
-	<![CDATA[
 		INSERT INTO GS_CENTER_NEWS(
-			NUM,
 			WRITER,
 			TITLE,
 			CNTN,
@@ -110,7 +108,6 @@
 			DB_INS_TM ,
 			IMG_PATH
 		) VALUES(
-			(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_CENTER_NEWS A) ,
 			#writer#,
 			#title#,
 			#cntn#,
@@ -118,11 +115,14 @@
 			NOW() ,
 			#imgPath#
 		)	
-		]]>
+		
+		<selectKey resultClass="int" keyProperty="num">
+	    	SELECT  LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 	<!-- 센터소식 파일업로드 등록  -->
-	<insert id="hpgmngDao.insertCenterNewsUpload" parameterClass="egovMap">
+	<insert id="hpgmngDao.insertCenterNewsUpload" parameterClass="newsVO">
 		INSERT INTO GS_CENTER_NEWS_FILE
 			(
 				FILE_NUM ,
@@ -134,7 +134,7 @@
 				FILE_SIZE,
 				DB_INS_TM 
 			) VALUES (
-				(SELECT IFNULL(MAX(NUM),0) FROM GS_CENTER_NEWS) ,
+				#num# , 
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -155,18 +155,34 @@
 				NUM = #num#
 	</update>
 	
-	<!-- 센터소식 파일업로드 수정 
-	<update id="hpgmngDao.updateNoticeUpload" parameterClass="noticeVO">
-		UPDATE GS_NOTICE_A_FILE
+	<!-- 센터소식 파일업로드 수정 -->
+	<update id="hpgmngDao.updateCenterNewsUpload" parameterClass="newsVO">
+		UPDATE GS_CENTER_NEWS_FILE
 			SET
 				FILE_NM = #fileNm# ,
 				SYS_FILE_NM = #sysFileNm# ,
 				FILE_PATH = #filePath# ,
 				DB_UPD_TM = now()
 			WHERE
-				NUM = #num#
+				FILE_NUM = #num#
 	</update>
-	 -->
+	
+	<!-- 센터소식 삭제  -->
+	<update id="hpgmngDao.deleteCenterNews" parameterClass="Integer">
+		DELETE FROM
+			GS_CENTER_NEWS
+		WHERE 
+			NUM = #newsNum#
+	</update>
+	
+	<!-- 센터소식 파일업로드 삭제  -->
+	<update id="hpgmngDao.deleteCenterNewsUpload" parameterClass="Integer">
+		DELETE FROM
+			GS_CENTER_NEWS_FILE
+		WHERE 
+			FILE_NUM = #newsNum#
+	</update>
+	
 	<!-- 센터소식 상세-->	
 	<select id="hpgmngDao.getCenterNewsDtl" parameterClass="Integer" resultClass="egovMap">		
 		SELECT
@@ -290,6 +306,11 @@
 			#regId#,
 			NOW()
 		)	
+		
+		<selectKey resultClass="int" keyProperty="num">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		
 	</insert>
 	
 	<!-- 공지사항 파일업로드 등록  -->
@@ -304,7 +325,7 @@
 				FILE_PATH ,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(A.NUM),0) FROM GS_NOTICE_A AS A) ,
+				#num# ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -323,6 +344,22 @@
 				DB_UPD_TM = now()
 			WHERE
 				NUM = #num#
+	</update>
+	
+	<!-- 공지사항 삭제  -->
+	<update id="hpgmngDao.deleteNotice" parameterClass="Integer">
+		DELETE FROM
+			GS_NOTICE_A
+		WHERE 
+			NUM = #noticeNum#
+	</update>
+	
+	<!-- 공지사항 파일업로드 삭제  -->
+	<update id="hpgmngDao.deleteNoticeUpload" parameterClass="Integer">
+		DELETE FROM
+			GS_NOTICE_A_FILE
+		WHERE 
+			FILE_NUM = #noticeNum#
 	</update>
 	
 	<!-- 공지사항 파일업로드 수정  -->
@@ -451,27 +488,28 @@
 	
 	<!-- 게시판관리 등록-->
 	<insert id="hpgmngDao.insertFreeBoard" parameterClass="freeBrdVO">
-	<![CDATA[
 		INSERT INTO GS_FREE_BOARD(
-			NUM,
 			WRITER,
 			TITLE,
 			CNTN,
 			REG_ID,
 			DB_INS_TM
 		) VALUES(
-			(SELECT IFNULL(MAX(A.NUM), 0)+1 FROM GS_FREE_BOARD A) ,
 			#writer#,
 			#title#,
 			#cntn#,
 			#regId#,
 			NOW()
 		)	
-		]]>
+		
+		<selectKey resultClass="int" keyProperty="num">
+	    	SELECT  LAST_INSERT_ID()
+		</selectKey>
+		
 	</insert>
 	
 	<!-- 게시판관리 파일업로드 등록  -->
-	<insert id="hpgmngDao.insertFreeBoardUpload" parameterClass="egovMap">
+	<insert id="hpgmngDao.insertFreeBoardUpload" parameterClass="freeBrdVO">
 		INSERT INTO GS_FREE_BOARD_FILE
 			(
 				FILE_NUM ,
@@ -483,7 +521,7 @@
 				FILE_SIZE,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(NUM),0) FROM GS_FREE_BOARD) ,
+				#num# ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -513,9 +551,26 @@
 				FILE_PATH = #filePath# ,
 				DB_UPD_TM = now()
 			WHERE
-				NUM = #num#
+				FILE_NUM = #num#
 	</update>
 	 -->
+	 
+	 <!-- 게시판관리 삭제  -->
+	<update id="hpgmngDao.deleteFreeBoard" parameterClass="Integer">
+		DELETE FROM
+			GS_FREE_BOARD
+		WHERE 
+			NUM = #freeBrdNum#
+	</update>
+	
+	<!-- 게시판관리 파일업로드 삭제  -->
+	<update id="hpgmngDao.deleteFreeBoardUpload" parameterClass="Integer">
+		DELETE FROM
+			GS_FREE_BOARD_FILE
+		WHERE 
+			FILE_NUM = #freeBrdNum#
+	</update>
+	 
 	<!-- 게시판관리 상세-->	
 	<select id="hpgmngDao.getFreeBoardDtl" parameterClass="Integer" resultClass="egovMap">		
 		SELECT
@@ -619,27 +674,28 @@
 	
 	<!-- 문서자료실 등록-->
 	<insert id="hpgmngDao.insertLibrary" parameterClass="libraryVO">
-	<![CDATA[
 		INSERT INTO GS_LIBRARY(
-			NUM,
 			WRITER,
 			TITLE,
 			CNTN,
 			REG_ID,
 			DB_INS_TM
 		) VALUES(
-			(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_LIBRARY A) ,
 			#writer#,
 			#title#,
 			#cntn#,
 			#regId#,
 			NOW()
 		)	
-		]]>
+		
+		<selectKey resultClass="int" keyProperty="num">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		
 	</insert>
 	
 	<!-- 문서자료실 파일업로드 등록  -->
-	<insert id="hpgmngDao.insertLibraryUpload" parameterClass="egovMap">
+	<insert id="hpgmngDao.insertLibraryUpload" parameterClass="libraryVO">
 		INSERT INTO GS_LIBRARY_FILE
 			(
 				FILE_NUM ,
@@ -651,7 +707,7 @@
 				FILE_SIZE,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(NUM),0) FROM GS_LIBRARY) ,
+				#num# ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -672,18 +728,34 @@
 				NUM = #num#
 	</update>
 	
-	<!-- 문서자료실 파일업로드 수정 
+	<!-- 문서자료실 파일업로드 수정  -->
 	<update id="hpgmngDao.updateLibraryUpload" parameterClass="libraryVO">
-		UPDATE GS_NOTICE_A_FILE
+		UPDATE GS_LIBRARY_FILE
 			SET
 				FILE_NM = #fileNm# ,
 				SYS_FILE_NM = #sysFileNm# ,
 				FILE_PATH = #filePath# ,
 				DB_UPD_TM = now()
 			WHERE
-				NUM = #num#
+				FILE_NUM = #num#
 	</update>
-	 -->
+	
+	<!-- 문서자료실 삭제  -->
+	<update id="hpgmngDao.deleteLibrary" parameterClass="Integer">
+		DELETE FROM
+			GS_LIBRARY
+		WHERE 
+			NUM = #libraryNum#
+	</update>
+	
+	<!-- 문서자료실 파일업로드 삭제  -->
+	<update id="hpgmngDao.deleteLibraryUpload" parameterClass="Integer">
+		DELETE FROM
+			GS_LIBRARY_FILE
+		WHERE 
+			FILE_NUM = #libraryNum#
+	</update>
+
 	<!-- 문서자료실 상세-->	
 	<select id="hpgmngDao.getLibraryDtl" parameterClass="Integer" resultClass="egovMap">		
 		SELECT

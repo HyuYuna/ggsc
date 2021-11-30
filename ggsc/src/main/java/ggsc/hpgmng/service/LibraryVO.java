@@ -20,6 +20,11 @@ public class LibraryVO extends PageVO{
 	private String schDcuType;
 	private String schDcuText;
 	
+	private String fileNm;
+	private String sysFileNm;
+	private String filePath;
+	private String fileSize;
+	
 	public int getAuthCd() {
 		return authCd;
 	}
@@ -94,4 +99,29 @@ public class LibraryVO extends PageVO{
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	public String getFileNm() {
+		return fileNm;
+	}
+	public void setFileNm(String fileNm) {
+		this.fileNm = fileNm;
+	}
+	public String getSysFileNm() {
+		return sysFileNm;
+	}
+	public void setSysFileNm(String sysFileNm) {
+		this.sysFileNm = sysFileNm;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+	
 }

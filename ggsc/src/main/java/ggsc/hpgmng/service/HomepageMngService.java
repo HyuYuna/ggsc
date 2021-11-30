@@ -19,6 +19,9 @@ public interface HomepageMngService {
 	// 공지사항 수정
 	void updateNotice(NoticeVO vo);
 	
+	// 공지사항 삭제
+	void deleteNotice(int noticeNum);
+	
 	// 공지사항 상세
 	EgovMap getNoticeDtl(int num);
 	
@@ -33,6 +36,9 @@ public interface HomepageMngService {
 	
 	// 게시판관리 수정
 	void updateFreeBoard(FreeBrdVO vo);
+	
+	// 게시판관리 삭제
+	void deleteFreeBoard(int freeBrdNum);
 	
 	// 게시판관리 상세
 	EgovMap getFreeBoardDtl(int num);
@@ -49,6 +55,9 @@ public interface HomepageMngService {
 	// 문서자료실 수정
 	void updateLibrary(LibraryVO vo);
 	
+	// 문서자료실 삭제
+	void deleteLibrary(int libraryNum);
+	
 	// 문서자료실 상세
 	EgovMap getLibraryDtl(int num);
 	
@@ -63,6 +72,9 @@ public interface HomepageMngService {
 	
 	// 센터소식 수정
 	void updateCenterNews(NewsVO vo);
+	
+	// 문서자료실 삭제
+	void deleteCenterNews(int newsNum);
 	
 	// 센터소식 상세
 	EgovMap getCenterNewsDtl(int num);

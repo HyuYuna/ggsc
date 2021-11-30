@@ -20,6 +20,11 @@ public class NewsVO extends PageVO{
 	private String schText;
 	private String schType;
 	
+	private String fileNm;
+	private String sysFileNm;
+	private String filePath;
+	private String fileSize;
+	
 	private String imgPath;
 	
 	public int getAuthCd() {
@@ -109,5 +114,30 @@ public class NewsVO extends PageVO{
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
+	public String getFileNm() {
+		return fileNm;
+	}
+	public void setFileNm(String fileNm) {
+		this.fileNm = fileNm;
+	}
+	public String getSysFileNm() {
+		return sysFileNm;
+	}
+	public void setSysFileNm(String sysFileNm) {
+		this.sysFileNm = sysFileNm;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+	
 	
 }
