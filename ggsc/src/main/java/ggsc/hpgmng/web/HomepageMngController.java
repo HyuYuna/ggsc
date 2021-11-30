@@ -55,6 +55,32 @@ public class HomepageMngController {
 	
 	@RequestMapping(value = "/noticeDtl.do", method = { RequestMethod.GET, RequestMethod.POST } )
 	public String noticeDtl(NoticeVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
 		/*
 		if(request.getParameter("page") != null){
 			model.addAttribute("page", request.getParameter("page"));
@@ -70,7 +96,9 @@ public class HomepageMngController {
 			noticeDtl = hpgmngService.getNoticeDtl(intNum);
 		}
 		
+		model.addAttribute("userId", loginVO.get("userId").toString());
 		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
 		model.addAttribute("detail", noticeDtl);
 		
 		return "hpgmng/notice_dtl.main";
@@ -87,10 +115,15 @@ public class HomepageMngController {
 		vo.setWriter(writer);
 		vo.setRegId(regId);
 		
+		int noticeNum = vo.getNum();
+		
+		
 		if(save.equals("S")) {
 			hpgmngService.insertNotice(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateNotice(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deleteNotice(noticeNum);
 		}
 		
 		return "redirect:/gnoincoundb/noticeList.do?mnuCd=" + mnuCd;
@@ -162,6 +195,7 @@ public class HomepageMngController {
 		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
 		model.addAttribute("detail", freeBrdDtl);
 		model.addAttribute("vo", vo);
+		model.addAttribute("authCd", userAuth);
 		model.addAttribute("userId", loginVO.get("userId").toString());
 		
 		return "hpgmng/freeBoard_dtl.main";
@@ -178,10 +212,14 @@ public class HomepageMngController {
 		vo.setWriter(writer);
 		vo.setRegId(regId);
 		
+		int freeBrdNum = vo.getNum();
+		
 		if(save.equals("S")) {
 			hpgmngService.insertFreeBoard(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateFreeBoard(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deleteFreeBoard(freeBrdNum);
 		}
 		
 		return "redirect:/gnoincoundb/freeBoardList.do?mnuCd=" + mnuCd;
@@ -269,10 +307,14 @@ public class HomepageMngController {
 		vo.setWriter(writer);
 		vo.setRegId(regId);
 		
+		int libraryNum = vo.getNum();
+		
 		if(save.equals("S")) {
 			hpgmngService.insertLibrary(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateLibrary(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deleteLibrary(libraryNum);
 		}
 		
 		return "redirect:/gnoincoundb/libraryList.do?mnuCd=" + mnuCd;
@@ -422,6 +464,7 @@ public class HomepageMngController {
 		
 		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
 		model.addAttribute("detail", newsDtl);
+		model.addAttribute("authCd", userAuth);
 		model.addAttribute("userId",loginVO.get("userId").toString());
 		model.addAttribute("vo", vo);
 		
@@ -439,10 +482,14 @@ public class HomepageMngController {
 		vo.setWriter(writer);
 		vo.setRegId(regId);
 		
+		int newsNum = vo.getNum();
+		
 		if(save.equals("S")) {
 			hpgmngService.insertCenterNews(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateCenterNews(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deleteCenterNews(newsNum);
 		}
 		
 		return "redirect:/gnoincoundb/centerNewsList.do?mnuCd=" + mnuCd;

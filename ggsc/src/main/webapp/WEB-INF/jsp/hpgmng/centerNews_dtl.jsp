@@ -107,6 +107,11 @@
 				document.frm.action = "/gnoincoundb/centerNewsReg.do?save=" +param;
 		       	document.frm.submit();
 			}
+		} else if(param == "D") {
+			if(confirm("삭제 하시겠습니까?")){
+				document.frm.action = "/gnoincoundb/centerNewsReg.do?save=" +param;
+		       	document.frm.submit();
+			}
 		}
 		
 	}  	
@@ -209,6 +214,9 @@
 		<button type="button" class="btn-basic" id="saveBtn" onClick="javascript:fn_reg('S');" style="background-color:#fc692f;color:white;">등록</button>
 		<c:if test="${ vo.authCd <= 4 && userId == detail.regId || vo.authCd eq 1 }">
 			<button type="button" class="btn-basic" id="updateBtn" onClick="javascript:fn_reg('U');" style="background-color:#fc692f;color:white;">수정</button>
+		</c:if>
+		<c:if test="${ detail != null && (authCd <= 1 || ( authCd > 1 && userId == detail.regId )) }">
+			<button type="button" class="btn-basic" id="deleteBtn" onClick="javascript:fn_reg('D');" style="background-color:green;color:white;">삭제</button>
 		</c:if>
 		<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd}');" style="background-color:#fc692f;color:white;">목록</button>
 	</div>	

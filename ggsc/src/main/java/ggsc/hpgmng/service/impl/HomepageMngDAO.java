@@ -29,8 +29,8 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 공지사항 등록
-	public void insertNotice(NoticeVO vo){
-		insert("hpgmngDao.insertNotice", vo);
+	public int insertNotice(NoticeVO vo){
+		return (Integer) insert("hpgmngDao.insertNotice", vo);
 	}
 	
 	// 공지사항 파일업로드 등록
@@ -47,6 +47,16 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	// 공지사항 파일업로드 수정
 	public void updateNoticeUpload(NoticeVO vo) {
 		update("hpgmngDao.updateNoticeUpload", vo);
+	}
+	
+	// 공지사항 삭제
+	public void deleteNotice(int noticeNum) {
+		update("hpgmngDao.deleteNotice", noticeNum);
+	}
+	
+	// 공지사항 파일업로드 삭제
+	public void deleteNoticeUpload(int noticeNum) {
+		update("hpgmngDao.deleteNoticeUpload", noticeNum);
 	}
 	
 	// 공지사항 상세
@@ -66,18 +76,28 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 게시판관리 등록
-	public void insertFreeBoard(FreeBrdVO vo){
-		insert("hpgmngDao.insertFreeBoard", vo);
+	public int insertFreeBoard(FreeBrdVO vo){
+		return (Integer) insert("hpgmngDao.insertFreeBoard", vo);
 	}
 	
 	// 게시판관리 파일업로드 등록
-	public void insertFreeBoardUpload(EgovMap map) {
-		insert("hpgmngDao.insertFreeBoardUpload", map);
+	public void insertFreeBoardUpload(FreeBrdVO vo) {
+		insert("hpgmngDao.insertFreeBoardUpload", vo);
 	}
 	
 	// 게시판관리 수정
 	public void updateFreeBoard(FreeBrdVO vo) {
 		update("hpgmngDao.updateFreeBoard", vo);
+	}
+	
+	// 게시판관리 삭제
+	public void deleteFreeBoard(int freeBrdNum) {
+		update("hpgmngDao.deleteFreeBoard", freeBrdNum);
+	}
+	
+	// 게시판관리 업로드 삭제
+	public void deleteFreeBoardUpload(int freeBrdNum) {
+		update("hpgmngDao.deleteFreeBoardUpload", freeBrdNum);
 	}
 	
 	
@@ -103,13 +123,13 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 문서자료실 등록
-	public void insertLibrary(LibraryVO vo){
-		insert("hpgmngDao.insertLibrary", vo);
+	public int insertLibrary(LibraryVO vo){
+		return (Integer)insert("hpgmngDao.insertLibrary", vo);
 	}
 	
 	// 문서자료실 파일업로드 등록
-	public void insertLibraryUpload(EgovMap map) {
-		insert("hpgmngDao.insertLibraryUpload", map);
+	public void insertLibraryUpload(LibraryVO vo) {
+		insert("hpgmngDao.insertLibraryUpload", vo);
 	}
 	
 	// 문서자료실 수정
@@ -117,10 +137,20 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 		update("hpgmngDao.updateLibrary", vo);
 	}
 	
-//	// 문서자료실 파일업로드 수정
-//	public void updateLibraryUpload(LibraryVO vo) {
-//		update("hpgmngDao.updateLibraryUpload", vo);
-//	}
+	// 문서자료실 파일업로드 수정
+	public void updateLibraryUpload(LibraryVO vo) {
+		update("hpgmngDao.updateLibraryUpload", vo);
+	}
+	
+	// 문서자료실 삭제
+	public void deleteLibrary(int libraryNum) {
+		update("hpgmngDao.deleteLibrary", libraryNum);
+	}
+	
+	// 문서자료실 업로드 삭제
+	public void deleteLibraryUpload(int libraryNum) {
+		update("hpgmngDao.deleteLibraryUpload", libraryNum);
+	}
 	
 	// 문서자료실 상세
 	public EgovMap getLibraryDtl(int num){
@@ -139,13 +169,13 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 센터소식 등록
-	public void insertCenterNews(NewsVO vo){
-		insert("hpgmngDao.insertCenterNews", vo);
+	public int insertCenterNews(NewsVO vo){
+		return (Integer)insert("hpgmngDao.insertCenterNews", vo);
 	}
 	
 	// 센터소식 파일업로드 등록
-	public void insertCenterNewsUpload(EgovMap map) {
-		insert("hpgmngDao.insertCenterNewsUpload", map);
+	public void insertCenterNewsUpload(NewsVO vo) {
+		insert("hpgmngDao.insertCenterNewsUpload", vo);
 	}
 	
 	// 센터소식 수정
@@ -154,10 +184,20 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	
-//	// 센터소식 파일업로드 수정
-//	public void updateCenterNewsUpload(LibraryVO vo) {
-//		update("hpgmngDao.updateCenterNewsUpload", vo);
-//	}
+	// 센터소식 파일업로드 수정
+	public void updateCenterNewsUpload(NewsVO vo) {
+		update("hpgmngDao.updateCenterNewsUpload", vo);
+	}
+	
+	// 문서자료실 삭제
+	public void deleteCenterNews(int newsNum) {
+		update("hpgmngDao.deleteCenterNews", newsNum);
+	}
+	
+	// 문서자료실 업로드 삭제
+	public void deleteCenterNewsUpload(int newsNum) {
+		update("hpgmngDao.deleteCenterNewsUpload", newsNum);
+	}
 	
 	// 센터소식 상세
 	public EgovMap getCenterNewsDtl(int num){
