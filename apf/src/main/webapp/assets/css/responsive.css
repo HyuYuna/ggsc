@@ -87,10 +87,10 @@ html, body {min-width: 320px; font-size: 18px; }
   .page-header .title .fa{font-size: 32px; width: 50px; height: 50px; line-height: 50px; display: none;  /* color: #fff; background-color:#f09d4c;*/ }
   .breadcrumb { display: inline-block; position: absolute;  right: 0; top:44px; margin-bottom:0; background-color: transparent; padding-right: 0; font-size: 16px; text-align: right; /*border-top: solid 1px #eee; border-bottom: solid 1px #eee;*/}
   .breadcrumb>li+li:before {content: ">";}
-  .breadcrumb a {color: #000; color: #777;}
-  .breadcrumb > .active {color: #000;}
+  .breadcrumb a {color: #000;}
+  .breadcrumb > .active {color: #000; font-weight:bold;}
   h1.title { font-size: 32px; font-weight: 500; color: #000;}
-  h2.title { font-size: 24px; font-weight: 500; color: #f09d4c; position: relative; margin-bottom: 20px;}
+  h2.title { font-size: 24px; font-weight: 500; color: #09378a; position: relative; margin-bottom: 20px;}
   h2.title:after {content:''; position: absolute; left:3px; bottom:-10px;  width: 10px; height: 2px; background-color: #000; border-radius: 1px; }
   h3.title { font-size: 20px; color: #000;  }
   /* 풀버튼 : 글쓰기 */

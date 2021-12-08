@@ -15,7 +15,7 @@
 					  전화 :  031-222-1360     팩스 : 070-4832-6366     이메일 :  ggnoincoun@gmail.com     개인정보담당자 : 강진주</div>
 			</div>
 
-			<select class="selectpicker" onchange="if(this.value) window.open(this.value);" style="height:30px; float:right; position:relative;">
+			<select class="selectpicker" onchange="if(this.value) window.open(this.value);" style="height:30px; float:right; position:relative; color:black;">
 				<option value="">유관사이트 바로가기</option>
 				<option value="http://www.mohw.go.kr/">보건복지부</option>
 				<option value="https://www.gg.go.kr/">경기도청</option>

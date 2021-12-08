@@ -18,18 +18,23 @@
 	<script src="/gnoincoun/js/script2.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			let list = [];
+			let imageList = [];
+			let numList = [];
 			<c:forEach var="popupImg" items="${popup}" varStatus="status">
-				list.push("${popupImg}");
+				imageList.push("${popupImg}");
+				numList.push("${popupNum[status.index]}");
 			</c:forEach>
+			console.log(imageList);
+			console.log(numList);
 			
 			for (var i = 0; i < "${popupCnt}"; i++) {
 				var img = new Image();
-				var imgsrc = list[i];
-				var filePath = "/gnoincoundb/getPopup.do?fileNm=/";
+				var imgsrc = imageList[i];
+				var filePath = "http://localhost:8085/gnoincoundb/getPopup.do?fileNm=/";
 				img.src = filePath + imgsrc;
 				var path = filePath+imgsrc;
-				onPopupList(img,path);
+				var num = numList[i];
+				onPopupList(img,path,num);
 			}
 			$('.border-btn-box > li').hover(
 				    function() { $(this).addClass('active'); } ,
@@ -37,13 +42,48 @@
 			});
 		});
 		
-	    function onPopupList(img,filePath){
-			img.onload = function(){ 					
-				var OpenWindow = window.open('','_blank','width='+this.width+', height='+this.height+', menubars=no, scrollbars=auto');
-				OpenWindow.document.write("<title>경기도노인상담센터 팝업</title>");
-				OpenWindow.document.write("<style>body{ margin:0px;}</style><img src='"+filePath+"' onclick='window.close();'>");
+		function getCookie(name) {
+	        var nameOfCookie = name + "=";
+	        var x = 0;
+	        while ( x <= document.cookie.length ) {
+	            var y = (x+nameOfCookie.length);
+	            if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+	                if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+	                    endOfCookie = document.cookie.length;
+	                return unescape( document.cookie.substring( y, endOfCookie ) );
+	            }
+	            x = document.cookie.indexOf( " ", x ) + 1;
+	        if ( x == 0 )
+	        break;
+	        }
+	        return "";
+	    }
+		
+	    function onPopupList(img,filePath,num){
+			img.onload = function(){ 	
+				var MAX_WIDTH = 850;
+		        var MAX_HEIGHT = 850;
+		        var width = this.width;
+		        var height = this.height;
+		        if (width > height) {
+		            if (width > MAX_WIDTH) {
+		                height *= MAX_WIDTH / width;
+		                width = MAX_WIDTH;
+		            }
+		        } else {
+		            if (height > MAX_HEIGHT) {
+		                width *= MAX_HEIGHT / height;
+		                height = MAX_HEIGHT;
+		            }
+		        }
+				var url = "/gnoincoun/popup.do?filePath="+filePath+"&num="+num+"&width="+width+"&height="+height;
+				if(getCookie(num) != "done"){
+					height = height+50;
+					window.open(url,num,'width='+width+', height='+height+', menubars=no, scrollbars=auto');
+				}
 			};
 		} 
+	    
 
 		function fn_fileDown(sysFileNm, filePath, fileNm) {
 			$("#fileNm").val(fileNm);
@@ -897,7 +937,8 @@
 				$('.mapList').html(html);
 				$(".mapList").children().children().children().children('th').css('background-color','gray');
 				$(".mapList").children().children().children().children('th').css('color','white');
-				$(".mapList").children().children().children().children('td').css('height','45px');
+				$(".mapList").children().children().children().children('th').css('font-size','17px');
+				$(".mapList").children().children().children().children('td').css('color','initial');
 				var trTag = $(".mapList").children().children().children('tr');
 				trTag.hover(function(){$(this).css('background-color','#E8E8E8');},function(){$(this).css('background-color','initial')});
 				$("#localGb").val(idx).attr("selected","selected");
@@ -908,14 +949,12 @@
 	</script>
 </head>
 <style>
-a { text-decoration:none; color:#333;} 
-.main-menu > li > a:hover {font-weight: bold;}
+a { text-decoration:none; color:#000;} 
 
 body {min-width:320px;}
 .logo-box img{
 	width: auto; height: auto;
-	max-width: 300px;
-    max-height: 300px;
+	max-width: 350px;
 }
 table {
     border: 1px solid #444444;
@@ -957,7 +996,8 @@ th, td {
 				</c:choose>
 				<li class='all-menu'>
 					<span class='all-menu-icon'></span>
-					전체 메뉴</li>
+					전체 메뉴
+				</li>
 			</ul>
 
 			<ul class='main-menu' id="topMenuPart">
@@ -970,18 +1010,20 @@ th, td {
 			</ul>
 		</div>
 
-		<div class='full main-image' style="overflow: hidden;">
+		<div class='full main-image'>
 			<img src='/gnoincoun/images/main.png' alt="행복한 세상"/>
 		</div>
-
-		<div class='wrap main-content'>
+		
+		<div class="main-content" style="width:1300px; margin:0 auto;">
 			<div class='banner-box-01'>
 				<li><a href="/gnoincoun/centerIntroList.do"><img src="/gnoincoun/images/banner_01.png" alt="이렇게 이용하세요"/></a></li>
 				<li><a href="/gnoincoun/psyInfo.do"><img src="/gnoincoun/images/banner_02.png" alt="간편한 심리검사"/></a></li>
 				<li><a href="/gnoincoun/comfCnsWrite.do"><img src="/gnoincoun/images/banner_03.png" alt="맘편한 상담"/></a></li>
 				<li><a href="/gnoincoun/mypageView.do"><img src="/gnoincoun/images/banner_04.png" alt="마이페이지"/></a></li>
+				<li style="text-align:initial;"><a href=""><img src="/gnoincoun/images/banner_05.png" alt="편지상담"/></a></li>
 			</div>
-
+		</div>
+		<div class='wrap main-content'>
 			<div class='banner-box-02'>
 				<li><a href="/gnoincoun/busiIntroList.do"><img src="/gnoincoun/images/banner_06.png" alt="시군지원사업"/></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do?gubun=noin"><img src="/gnoincoun/images/banner_07.png" alt="24시노인온상담"/></a></li>
@@ -1002,7 +1044,7 @@ th, td {
 				<div class='map-box'>
 					<div class='main-title'>
 						<div class='left'><img src="/gnoincoun/images/map/icon_map.png" alt="icon" class='map_icon'/>&nbsp;지도에 표시된 마커를 선택해주세요.</div>
-						<div class='right'>선택지역 : <span id='nowMap'>전체</span></div>
+						<div class='right'>선택지역 : <span id='nowMap'></span></div>
 					</div>
 					<div class='main-content'>
 						<div class='left'>
@@ -1051,10 +1093,11 @@ th, td {
 							<div class='map-search'>
 							 	<form id="searchForm" name="searchForm" method="post">
 								<div class='row'>
-									<li class='subject'>지역 검색</li>
+									<li class='subject' style="color:initial;">지역 검색</li>
 									<li class='content select2'>
 										<select><option value=''>경기도</select>
 										<select class="form-control" id="localGb" name="localGb" onchange="javascript:listCenter(this.value);">
+											<option>--------</option>
 											<option value='1'>가평군</option>
 											<option value='2'>고양시</option>
 											<option value='3'>과천시</option>
@@ -1118,9 +1161,6 @@ th, td {
 			<div class='border-header'>
 				<h2>센터소식</h2>
 				<ul class='border-btn-box'>
-					<!-- <li class='active'>
-						<a href="/gnoincoun/centerNewsList.do">센터소식</a>
-					</li> -->
 					<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
 					<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
 					<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
@@ -1129,53 +1169,86 @@ th, td {
 			</div>
 
 			<div class='board-list'>
-				<ul>
-					<li class='board-image'><img src="/gnoincoun/images/board_01.png" /></li>
+				<c:forEach items="${centerNewsList}" var="result" begin="0" end="3" step="1" varStatus="status">
+					<ul>
+						<a href="/gnoincoun/centerNewsDtl.do?num=${result.num}" target="_blank">
+							<li class='board-image'>
+								<img src="http://localhost:8085/gnoincoundb/getImage.do?fileNm=/${result.image}" alt="${result.title}"/>
+							</li>
+						<ul class='board-text'>
+							<li class='date'>
+								<span class='date_ym'>${result.yearmonth}</span><br>
+								<span class='date_d'>${result.date}</span>
+							</li>
+							<li class='subject'>${result.title}</li>
+							<dd class='icon_arrow'></dd>
+						</ul>
+						</a>
+					</ul>
+				</c:forEach>
+				<!-- <ul>
+					<a href="/gnoincoun/centerNewsDtl.do?num=${centerNews0.num}" target="_blank">
+						<li class='board-image'>
+							<img src="/gnoincoundb/getImage.do?fileNm=/${centerNews0.image}" alt="${centerNews0.title}"/>
+						</li>
 					<ul class='board-text'>
 						<li class='date'>
-							<span class='date_ym'>2021.01</span><br>
-							<span class='date_d'>19</span>
+							<span class='date_ym'>${centerNews0.yearmonth}</span><br>
+							<span class='date_d'>${centerNews0.date}</span>
 						</li>
-						<li class='subject'>경기도형 노인맞춤돌봄서비스 종사자 안전관리메뉴얼 안내</li>
+						<li class='subject'>${centerNews0.title}</li>
 						<dd class='icon_arrow'></dd>
 					</ul>
+					</a>
 				</ul>
 
 				<ul>
-					<li class='board-image'><img src="/gnoincoun/images/board_02.png" /></li>
+					<a href="/gnoincoun/centerNewsDtl.do?num=${centerNews1.num}" target="_blank">
+						<li class='board-image'>
+							<img src="/gnoincoundb/getImage.do?fileNm=/${centerNews1.image}" alt="${centerNews1.title}"/>
+						</li>
 					<ul class='board-text'>
 						<li class='date'>
-							<span class='date_ym'>2021.01</span><br>
-							<span class='date_d'>15</span>
+							<span class='date_ym'>${centerNews1.yearmonth}</span><br>
+							<span class='date_d'>${centerNews1.date}</span>
 						</li>
-						<li class='subject'>2020년 경기도노인종합상담센터 5차 직원 채용 서류전형 합격자 공고</li>
+						<li class='subject'>${centerNews1.title}</li>
 						<dd class='icon_arrow'></dd>
 					</ul>
+					</a>
 				</ul>
 
 				<ul>
-					<li class='board-image'><img src="/gnoincoun/images/board_03.png" /></li>
+					<a href="/gnoincoun/centerNewsDtl.do?num=${centerNews2.num}" target="_blank">
+						<li class='board-image'>
+							<img src="/gnoincoundb/getImage.do?fileNm=/${centerNews2.image}" alt="${centerNews2.title}"/>
+						</li>
 					<ul class='board-text'>
 						<li class='date'>
-							<span class='date_ym'>2020.12</span><br>
-							<span class='date_d'>17</span>
+							<span class='date_ym'>${centerNews2.yearmonth}</span><br>
+							<span class='date_d'>${centerNews2.date}</span>
 						</li>
-						<li class='subject'>2020년 경기도노인종합상담센터 5차 직원[행정직] 채용 공고</li>
+						<li class='subject'>${centerNews2.title}</li>
 						<dd class='icon_arrow'></dd>
 					</ul>
+					</a>
 				</ul>
 
 				<ul>
-					<li class='board-image'><img src="/gnoincoun/images/board_04.png" /></li>
+					<a href="/gnoincoun/centerNewsDtl.do?num=${centerNews3.num}" target="_blank">
+						<li class='board-image'>
+							<img src="/gnoincoundb/getImage.do?fileNm=/${centerNews3.image}" alt="${centerNews3.title}"/>
+						</li>
 					<ul class='board-text'>
 						<li class='date'>
-							<span class='date_ym'>2020.11</span><br>
-							<span class='date_d'>16</span>
+							<span class='date_ym'>${centerNews3.yearmonth}</span><br>
+							<span class='date_d'>${centerNews3.date}</span>
 						</li>
-						<li class='subject'>경기도노인종합상담센터 20주년 심포지엄 개최 안내</li>
+						<li class='subject'>${centerNews3.title}</li>
 						<dd class='icon_arrow'></dd>
 					</ul>
-				</ul>
+					</a>
+				</ul> -->
 			</div>
 
 
@@ -1207,7 +1280,7 @@ th, td {
 							  전화 :  031-222-1360     팩스 : 070-4832-6366     이메일 :  ggnoincoun@gmail.com     개인정보담당자 : 강진주</div>
 					</div>
 					
-					<select class="selectpicker" onchange="if(this.value) window.open(this.value);" style="height:30px; float:right; position:relative;">
+					<select class="selectpicker" onchange="if(this.value) window.open(this.value);" style="height:30px; float:right; position:relative; font-size:16px;">
 						<option value="">유관사이트 바로가기</option>
 						<option value="http://www.mohw.go.kr/">보건복지부</option>
 						<option value="https://www.gg.go.kr/">경기도청</option>

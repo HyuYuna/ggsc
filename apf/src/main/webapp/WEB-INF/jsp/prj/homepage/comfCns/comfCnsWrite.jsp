@@ -35,15 +35,15 @@
 		<div style="border-top: 1px solid #f09d4c; overflow: hidden;" >
 			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담"/>
 		</div>
-		<div style="width: 850px; margin: auto; margin-top:20px; margin-bottom:20px;">
-			<span style="margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">맘편한 상담</span>
+		<div style="width: 850px; margin: auto; margin-top:30px; margin-bottom:30px;">
+			<span style="margin-top: 20px; margin-bottom: 15px; font-size: 18px; font-weight: 600;">맘편한 상담</span>
 			<!-- <ul class="main-menu" style="width: 300px; float: right;margin-top: 20px; margin-bottom: 15px;"> margin-right: 26%;
 				<li><a href="javascript: cnsCall();">전화상담</a></li>
 				<li><a href="javascript: cnsVisit();">내방상담</a></li>
 				<li><a href="javascript: cnsOnline();">온라인상담</a></li>
 			</ul> -->
 		</div>
-		<div class="content" style="width: 50%; margin: auto;">
+		<div class="content" style="width: 40%; margin: auto;">
         	<form class="form-wrap" name="frm" method="post" enctype="multipart/form-data">
         	<!-- <input type="hidden" id="phone" name="phone" /> -->
         	<input type="hidden" id="zoneGb" name="zoneGb" value="${map.zoneGb }" />
@@ -387,7 +387,7 @@
               </tbody>
             </table>
          <div class="btn-wrap line pb20">
-            <button type="button" class="btn btn-primary btn-lg w100p" style="background-color: #f09d4c; border-color: #f09d4c;" onClick="javascript:fn_reg();">신청하기</button>
+            <button type="button" class="btn btn-primary btn-lg w100p" onClick="javascript:fn_reg();">신청하기</button>
           </div>
         <!-- </form> --><!-- .form-wrap /-->
         <!-- <div class="btn-wrap line bt bb pt10 pb10">

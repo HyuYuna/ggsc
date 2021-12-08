@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import ams.cmm.AES256Crypto;
@@ -85,24 +87,34 @@ public class HomepageMainController {
 		// 팝업 목록
 		List<EgovMap> popupList = homepageCmSpaceService.getPopupListM(popupVO);
 		List<String> popup = new ArrayList<String>();
+		List<Integer> popupNum = new ArrayList<Integer>();
 		
-		for(EgovMap map1 : popupList) {
-			String FileName = (String) map1.get("realFileNm");
+		for(EgovMap popupMap : popupList) {
+			String FileName = (String) popupMap.get("realFileNm");
+			int FileNum = (Integer) popupMap.get("num");
 			popup.add(FileName);
+			popupNum.add(FileNum);
 			popupCnt += 1;
 		} 
 		
 		model.addAttribute("popup", popup); 
+		model.addAttribute("popupNum", popupNum); 
 		model.addAttribute("popupCnt", popupCnt); 
 		
 		// 센터 목록
 		List<EgovMap> centerNewsList = homepageCmSpaceService.getCenterNewsListM(cmSpaceVO);
-		if(centerNewsList.size() > 0) {
-			model.addAttribute("centerNewsList1", centerNewsList.get(0));
-			model.addAttribute("centerNewsList2", centerNewsList.get(1));
-			model.addAttribute("centerNewsList3", centerNewsList.get(2));
+		/*if(centerNewsList.size() > 0) {
+			for(int i=0; i<4; i++) {
+				try {
+					model.addAttribute("centerNews"+i, centerNewsList.get(i));
+				} catch(Exception e) {
+				}
+			}
 		}
+		int centerNewsSize = centerNewsList.size();
+		model.addAttribute("centerSize",centerNewsSize); */
 		model.addAttribute("map",map);
+		model.addAttribute("centerNewsList",centerNewsList);
 		
 		String userAgent = request.getHeader("User-Agent").toUpperCase();
 		if (userAgent.indexOf(IS_MOBILE) > -1) {
@@ -205,6 +217,22 @@ public class HomepageMainController {
 
 		return "/main/login.page";
 		// return "/login";
+	}
+	
+	@RequestMapping(value = "/popup.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String popup(ModelMap model, HttpServletRequest request) throws Exception {
+		
+		String filePath = request.getParameter("filePath") == null ? "" : request.getParameter("filePath");
+		String popupNum = request.getParameter("num") == null ? "" : request.getParameter("num");
+		String width = request.getParameter("width") == null ? "" : request.getParameter("width");
+		String height = request.getParameter("height") == null ? "" : request.getParameter("height");
+
+		model.addAttribute("filePath",filePath);
+		model.addAttribute("popupNum",popupNum);
+		model.addAttribute("width",width);
+		model.addAttribute("height",height);
+		
+		return "/prj/homepage/popup/popup";
 	}
 	
 	@RequestMapping(value = "/logout.do")

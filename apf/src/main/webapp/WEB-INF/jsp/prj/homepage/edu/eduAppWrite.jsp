@@ -96,12 +96,12 @@
 		</div>
 		<section id="content">
 			<div style="width: 800px; margin: auto;">
-				<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">개인정보 수집 및 이용에 대한 동의서</span>
+				<span style="float: left; margin-top: 30px; margin-bottom: 30px;font-size: 18px; font-weight: 600;">개인정보 수집 및 이용에 대한 동의서</span>
 			</div>
 			<br/><br/>
-			<div style="border-width: thin; width:100%; height: auto; padding: 10px 10px 10px 10px;">
+			<div style="border-width: thin; width:100%; height: auto; padding: 40px 10px 10px 10px;">
 				<form  method="post" enctype="multipart/form-data">
-				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
+				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 0 20px; margin: 0 auto;">
 						<font style="font-size: small;"> 경기도노인종합상담센터는 개인정보 보호법에 명기된
 							관련 법률상의 개인정보처리자가 준수하여야 할 개인정보보호 규정을 준수하며, 관련 법령에 의거하여 교육 신청자
 							권익보호에 최선을 다하고 있습니다. 아래 내용을 충분히 숙지하신 후 본인이 직접 동의란에 체크해 주시기 바랍니다.</font><br><br>
@@ -127,7 +127,7 @@
 					</ul>
 					<div style="border-bottom-style: dotted; border-top-style: dotted; border-width: thin; background-color: #D5D5D5; position: relative; left: -20px; width: 698px; text-align: center;">
 						<font style="font-size: medium; font-weight: bold;">※ 아울러 본 동의서에 따라 기입한 개인정보는 교육진행 목적 외에는 사용하지 않을 것을 약속드리며, 철저히 비밀로 관리하여 타인에게 공개하거나 유출하지 않을 것임을 알려드립니다.</font> <br/><br/><br/>
-						<font style="font-size: medium; font-weight: bold;"> “개인정보 보호법”에 명기된 관련 법률에 의거, 개인정보 수집 및 이용에 동의하십니까? </font><br/>
+						<font style="font-size: medium; font-weight: bold;"> “개인정보 보호법”에 명기된 관련 법률에 의거, 개인정보 수집 및 이용에 동의하십니까? </font><br/><br/>
 						<input type="radio" id="idvlInfoCntn1Y" name="idvlInfoCntn1Yn" value="Y" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn1Y"> 동의함</label>
 						<input type="radio" id="idvlInfoCntn1N" name="idvlInfoCntn1Yn" value="N" style="width: 15px; height: 15px;"/><label style="font-size: medium;" for="idvlInfoCntn1N"> 동의하지 않음(작성종료)</label>
 					</div>
@@ -140,11 +140,11 @@
 
 	</section>
 		<br/>
-		<div style="width: 945px; margin: auto;">
-			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">교육 참가 신청서</span>
+		<div style="width: 800px; margin: auto;">
+			<span style="float: left; margin-top: 50px; margin-bottom: 30px;font-size: 18px; font-weight: 900;">교육 참가 신청서</span>
 		</div>
 		<br/>
-		<div class="content" style="width: 50%; margin: auto;">
+		<div class="content" style="width: 40%; margin: auto;">
         	<form class="form-wrap" name="frm" method="post" enctype="multipart/form-data">
         	<!-- <input type="hidden" id="phone" name="phone" /> -->
         	<input type="hidden" id="zoneGb" name="zoneGb" value="${map.zoneGb }" />
@@ -209,7 +209,7 @@
               </tbody>
             </table>
          <div class="btn-wrap line pb20">
-            <button type="button" class="btn btn-primary btn-lg w100p" style="background-color: #f09d4c; border-color: #f09d4c;" onClick="javascript:fn_reg();">신청하기</button>
+            <button type="button" class="btn btn-primary btn-lg w100p" onClick="javascript:fn_reg();">신청하기</button>
           </div>
             </form> <!-- 상담신청하기 form -->
        </div><!-- content -->

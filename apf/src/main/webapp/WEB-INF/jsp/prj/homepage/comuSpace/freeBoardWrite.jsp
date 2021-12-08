@@ -50,11 +50,11 @@
     <div class="container content-wrapper" style="width: 970px;">
       <div class="page-header">
         <h1 class="title"><i class="fa fa-comments-o"></i>자유게시판</h1>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
           <li><a href="/gnoincoun/homepageMainList.do">홈</a></li>
           <li><a href="#">소통의 공간</a></li>
           <li class="active">자유게시판</li>
-        </ol>
+        </ol> -->
       </div>
       <div class="content-area">
         <form class="form-wrap" id="frm" name="frm" method="post" enctype="multipart/form-data">

@@ -4,24 +4,27 @@ html { display:flex; }
 body { flex:1; font-family:'Noto Sans KR'}
 
 #wrap { padding-top:15px; position:relative; } 
+#wrap > div > img { display: block; margin: 0px auto; } 
 .wrap { width:1120px; margin:0 auto;  } 
 #topMenuPart a { font-size : 18px; font-weight:bold;}
 
+.header .logo-box a:hover {opacity:0.7;}
+
 .header .navigator  { float:right; } 
-.header .navigator li {color:#78808d;font-size:11pt;display:inline;cursor:pointer;position: relative;padding: 0 20px; vertical-align:top; } 
+.header .navigator li {color:#78808d;font-size:12pt;display:inline;cursor:pointer;position: relative;padding: 0 20px; vertical-align:top; } 
 .header .navigator li:after {height: 10px;width: 1px;content: '';font-size:7pt;position: absolute;right: 0;background-color: #78808d; transform: translate(0, -50%);top: 50%;} 
 .header .navigator li:last-child:after { height:0; width:0;  } 
 .header .navigator li.all-menu { color:#ef9842 }
 .navigator .all-menu{ font-weight:bold; }
 .navigator li a{ font-weight:bold; }
 
-.all-menu-icon { background:url('./images/all-menu.png') no-repeat center center; padding:5px; margin-right:5px;  } 
+.all-menu-icon { background:url('../images/all-menu.png') no-repeat center center; padding:5px; margin-right:5px;  } 
 .navigator .all-menu{ font-weight:bold; }
 
 .main-menu { display:flex; margin-top:50px; margin-bottom:11px; } 
-.main-menu > li { flex:1; text-align:center; cursor:pointer; color:#3b3f48; } 
-.main-menu > li > a { text-decoration:none; }
-.main-menu > li > a:hover { font-weight:bold; }
+.main-menu > li { flex:1; text-align:center; cursor:pointer; color:black; } 
+.main-menu > li > a { text-decoration:none; font-size:17px;}
+.main-menu > li > a:hover {color: #299bbb;}
 
 .main-image { border-top:1px solid #f09d4c; margin-bottom:100px;}
 
@@ -58,3 +61,9 @@ body { flex:1; font-family:'Noto Sans KR'}
 .site-list { margin-top:80px; }
 
 .site-list > li { display:inline; margin-right:10px; } 
+
+.menu {width: 920px; margin: auto; margin-top: 60px;}
+
+.menu-current {float: left; margin-top: 20px; margin-bottom: 15px; font-size: 18px; font-weight: bold;}
+
+.sub-menu {width: 150px; background-color: #f7f7f7; border: 1px #b6b9ba solid; color:black;}

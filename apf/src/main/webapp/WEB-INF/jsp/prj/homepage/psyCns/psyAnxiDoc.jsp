@@ -89,7 +89,6 @@
   </script>
 <style>
 	#wrap {width: 70%; margin: auto;}
-	section * { font-weight:bold;}
 </style>
 <section class="service-2 section">
 	<div id="wrap">
@@ -141,7 +140,7 @@
 	               </colgroup>
 	               <thead>
 	                   <tr>
-	                       <th scope="col" colspan="2">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
+	                       <th scope="col" colspan="2" style="">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 	                       <th scope="col">아니다</th>
 	                       <th scope="col">때때로<br>그렇다</th>
 	                       <th scope="col">자주<br>그렇다</th>

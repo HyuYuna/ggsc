@@ -1,15 +1,37 @@
 $(function(){
-	$('.banner-box-01 li').hover(function(){
+	$('.banner-box-01 li').mouseover(function(){
 		$('.banner-box-01 img').each(function(){
 			$(this).attr('src', $(this).attr('src').replace('_hover',''));
 		});
 		$(this).find('img')[0].src = $(this).find('img').attr('src').replace('.png','_hover.png');
+		
+	});
+	$('.banner-box-01 li').mouseout(function(){
+		$('.banner-box-01 img').each(function(){
+			$(this).attr('src', $(this).attr('src').replace('_hover',''));
+		});
+	});
+	
+	$('.banner-box-02 li').mouseover(function(){
+		$('.banner-box-02 img').each(function(){
+			$(this).attr('src', $(this).attr('src').replace('_hover',''));
+		});
+		$(this).find('img')[0].src = $(this).find('img').attr('src').replace('.png','_hover.png');
+	});
+	$('.banner-box-02 li').mouseout(function(){
+		$('.banner-box-02 img').each(function(){
+			$(this).attr('src', $(this).attr('src').replace('_hover',''));
+		});
 	});
 
-	$(".board-list > ul").hover(function(){
+	$(".board-list > ul").mouseover(function(){
 		const parent = $(this);
-		$(".board-list > ul .board-text").removeClass('hover');
-		parent.find('.board-text').addClass('hover');
+		$(".board-list > ul .board-text").removeClass('mouseover');
+		parent.find('.board-text').addClass('mouseover');
+	});
+	$(".board-list > ul").mouseout(function(){
+		const parent = $(this);
+		$(".board-list > ul .board-text").removeClass('mouseover');
 	});
 
 	var swiper = new Swiper(".mySwiper", {
@@ -20,6 +42,8 @@ $(function(){
 			prevEl: '.swiper-button-prev',
 		  },
       });
+	
+	
 
 
 	  $('.site-select > li').click(function(){

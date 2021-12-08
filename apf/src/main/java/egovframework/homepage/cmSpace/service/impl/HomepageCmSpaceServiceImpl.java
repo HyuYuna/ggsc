@@ -72,7 +72,7 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 		return homepageCmSpaceMapper.getCenterNewsList(vo);
 	}
 	
-	// 메인화면 센터소식(보여질 목록 3개)
+	// 메인화면 센터소식(보여질 목록 4개)
 	public List<EgovMap> getCenterNewsListM(CmSpaceVO vo) {
 		return homepageCmSpaceMapper.getCenterNewsListM(vo);
 	}

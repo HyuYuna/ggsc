@@ -46,7 +46,7 @@
 			<img src='/gnoincoun/images/cns1.jpg' alt="맘편한 상담"/>
 		</div>
 		<div style="width: 910px; margin: auto;">
-			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">간편한심리검사</span>
+			<span class="menu-current">간편한심리검사</span>
 			<ul class="main-menu" style="width: 300px; float: right;margin-top: 20px; margin-bottom: 15px;"> <!-- margin-right: 26%; -->
 				<li><a href="javascript: psyInfo();" id = "focus1">간편심리검사소개</a></li>
 				<li><a href="javascript: psyExam();" id = "focus2">간편심리검사</a></li>

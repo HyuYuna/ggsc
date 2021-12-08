@@ -31,7 +31,7 @@ public interface HomepageCmSpaceMapper {
 	// 센터소식 목록
 	List<EgovMap> getCenterNewsList(CmSpaceVO vo);
 	
-	// 메인화면 센터소식(보여질 목록 3개)
+	// 메인화면 센터소식(보여질 목록 4개)
 	List<EgovMap> getCenterNewsListM(CmSpaceVO vo);
 	
 	// 센터목록 갯수

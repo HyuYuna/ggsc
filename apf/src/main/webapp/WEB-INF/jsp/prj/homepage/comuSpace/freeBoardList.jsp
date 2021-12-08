@@ -73,12 +73,12 @@
 			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담"/>
 		</div>
 		<div style="width: 910px; margin: auto;">
-			<span style="float: left; margin-top: 20px; margin-bottom: 15px;font: bold; font-weight: 900;">소통공간</span>
+			<span class="menu-current">자유게시판</span>
 			<ul class="main-menu" style="width: 400px; float: right;margin-top: 20px; margin-bottom: 15px;">
 				<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
 				<li><a href="/gnoincoun/noticeList.do">공지사항</a></li>
 				<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
-				<li><a href="/gnoincoun/freeBoardList.do" style = "font-weight:bolder;">자유게시판</a></li>
+				<li><a href="/gnoincoun/freeBoardList.do" style="font-weight:bolder;">자유게시판</a></li>
 			</ul>
 		</div>
 		<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
@@ -89,7 +89,7 @@
         <input type="hidden" id="searchKeywordFrm" name="searchKeyword" />     
         <input type="hidden" id="pageIndex" name="pageIndex" />
          <div class="table-wrap table-list" style="margin-top: 35px;">
-       		<table class="table">
+       		<table class="table table-board">
 	            <colgroup>
 	              <col class="hidden-xs" style="width: 80px" />
 	              <col  />
@@ -108,9 +108,9 @@
 	            </thead>
 	            <tbody>
 		            <c:forEach var="result" items="${freeBoardList}" varStatus="status">
-			            <tr>
+			             <tr onclick="javascript:fn_detail('<c:out value="${result.num}"/>');">
 			              <td class="num hidden-xs"><c:out value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}"/><%-- <c:out value="${result.num}"/> --%></td>
-			              <td class="subject"><a href="javascript:fn_detail('<c:out value="${result.num}"/>');" class="tit"><c:out value="${result.title}" escapeXml="false" /></a></td>
+			              <td class="subject"><c:out value="${result.title}" escapeXml="false" /></td>
 			              <td class="time"><c:out value="${result.dbInsTm}"/></td>
 			              <%-- <td class="file hidden-xs">
             	            <c:if test="${result.fileNm != null }">

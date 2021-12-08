@@ -181,19 +181,22 @@
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 	
-	<!-- 메인화면 센터소식(보여질 목록 3개) -->
+	<!-- 메인화면 센터소식(보여질 목록 4개) -->
 	<select id="getCenterNewsListM" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
 			NUM ,
 			TITLE,
 			CNTN ,
+			SUBSTRING(CNTN, LOCATE('getImage.do?fileNm=/images/', cntn) +27 , 40 ) AS image ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m') AS yearmonth ,
+			DATE_FORMAT(DB_INS_TM , '%d') AS date ,
 			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
 		FROM
 			GS_CENTER_NEWS
 		WHERE
-			1=1
+			CNTN LIKE '%/gnoincoundb/getImage.do?fileNm=/images%'
 		ORDER BY NUM DESC
-			LIMIT 3
+			LIMIT 4
 	</select>
 	
 	<!-- 센터목록 갯수 -->

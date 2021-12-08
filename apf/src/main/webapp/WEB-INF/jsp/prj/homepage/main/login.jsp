@@ -19,11 +19,11 @@
 		}
   </script>
 <style>
-	#wrap {width: 30%; margin: auto; height: 594px; margin-top:28px;}
+	#wrap {width: 30%; margin: auto; height: 500px; margin-top:55px; margin-bottom:-5px;}
 </style>
 <section class="service-2 section">
 	<div id="wrap">
-        <h2 class="title">로그인</h2>
+        <h2 class="title" style="font-weight:bold;">로그인</h2>
 	  	<form id="loginForm" name="loginForm" method="post">
 			<fieldset id="acField">
 				<div class="form-group">

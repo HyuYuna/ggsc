@@ -92,7 +92,6 @@
   </script>
 <style>
 	#wrap {width: 70%; margin: auto;}
-	section * { font-weight:bold;}
 </style>
 <section class="service-2 section">
 	<div id="wrap">
