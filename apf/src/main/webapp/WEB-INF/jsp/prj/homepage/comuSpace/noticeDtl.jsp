@@ -31,35 +31,24 @@
  	}
 </script>
 
-<style>
-	#wrap {width: 100%; margin: auto; height: auto;}
-	#note-toolbar {display:none;}
-	/* .container {width: 100%;} */
-</style>
+<section class="title_explain hidden-xs">
+	<div class="container">
+		<dl>
+			<dt>소통의 공간</dt>
+			<dd class="explanation">함께 나누는 사랑, 모두가 행복해집니다.</dd>
+			<dd class="explanEng">Communication Board</dd>
+		</dl>
+	</div>
+</section>
 <section class="service-2 section">
-	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">>
+	<form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="fileNm" name="fileNm" value="" />
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
 		<input type="hidden" id="filePath" name="filePath" value="" />
 	</form>
-	<div id="wrap">
-	  	<div style="border-top: 1px solid #f09d4c; overflow: hidden;">
-			<img src='/gnoincoun/images/bbs1.jpg' alt="맘편한 상담" />
-		</div>
-		<div style="width: 910px; margin: auto;">
-			<span class="menu-current">공지사항</span>
-			<ul class="main-menu" style="width: 400px; float: right;margin-top: 20px; margin-bottom: 15px;">
-				<li><a href="/gnoincoun/centerNewsList.do">센터소식</a></li>
-				<li><a href="/gnoincoun/noticeList.do" style = "font-weight:bolder;">공지사항</a></li>
-				<li><a href="/gnoincoun/docLibraryList.do">문서자료실</a></li>
-				<li><a href="/gnoincoun/freeBoardList.do">자유게시판</a></li>
-			</ul>
-		</div>
-		<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-		</div>
 		 <!-- 서브 비쥬얼 영역 //-->
-    <div class="container content-wrapper" style="width: 970px; margin-top: 0px;">
+    <div class="container content-wrapper" style="margin-top: 0px;">
       <div class="page-header">
         <h1 class="title"><i class="fa fa-comments-o"></i>공지사항</h1>
         <ol class="breadcrumb">
@@ -109,5 +98,4 @@
         </div>
       </div><!-- .content-area /-->
     </div><!-- .container.content-wrapper /-->
-	</div>
 </section> <!-- End section -->

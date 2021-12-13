@@ -1,7 +1,7 @@
 * { padding:0; margin:0; list-style:none; box-sizing:border-box; }
 
 html { display:flex; } 
-body { flex:1; font-family:'Noto Sans KR'}
+body { flex:1;}
 
 #wrap { padding-top:15px; position:relative; } 
 .wrap { width:1120px; margin:0 auto;  } 
@@ -44,7 +44,7 @@ body { flex:1; font-family:'Noto Sans KR'}
 
 .border-header h2 { width:auto; display:inline; }
 .border-btn-box { float:right;  } 
-.border-btn-box > li { display:inline; border-radius:10px; padding:10px 20px; border:3px solid #d7d7d7; cursor:pointer; font-weight:600;} 
+.border-btn-box > li { display:inline; border-radius:10px; padding:10px 20px; border:3px solid #d7d7d7; cursor:pointer; font-weight:500;} 
 .border-btn-box > li.active { color:#fff; background-color:#ef9842; border:3px solid #ef9842; margin:0 3px;} 
 
 .board-list { display:flex; margin-top:40px; justify-content:space-between; } 

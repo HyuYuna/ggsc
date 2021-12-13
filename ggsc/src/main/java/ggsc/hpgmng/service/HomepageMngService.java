@@ -91,6 +91,9 @@ public interface HomepageMngService {
 	// 온라인상담 수정
 	void updateOnlineAsk(OnlineAskVO vo);
 	
+	// 온라인상담 수정
+	void deleteOnlineAsk(int onlineNum);
+	
 	// 온라인상담 상세
 	EgovMap getOnlineAskDtl(int num);
 	

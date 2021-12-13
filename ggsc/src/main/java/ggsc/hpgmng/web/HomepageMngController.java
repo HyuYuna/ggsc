@@ -578,10 +578,14 @@ public class HomepageMngController {
 		vo.setRegNm(regNm);
 		vo.setRegId(regId);
 		
+		int onlineNum = vo.getNum();
+		
 		if(save.equals("S")) {
 			hpgmngService.insertOnlineAsk(vo);	
 		} else if(save.equals("U")) {
 			hpgmngService.updateOnlineAsk(vo);
+		} else if(save.equals("D")) {
+			hpgmngService.deleteOnlineAsk(onlineNum);
 		}
 		
 		return "redirect:/gnoincoundb/onlineAskList.do?mnuCd=" + mnuCd;

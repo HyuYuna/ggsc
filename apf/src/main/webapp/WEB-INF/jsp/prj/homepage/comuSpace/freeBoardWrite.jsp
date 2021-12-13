@@ -30,24 +30,21 @@
 	}
   </script>
 <style>
-	#wrap {width: 50%; margin: auto; height: auto;}
+	#wrap {margin: auto; height: auto;}
 </style>
+<section class="title_explain hidden-xs">
+	<div class="container">
+		<dl>
+			<dt>소통의 공간</dt>
+			<dd class="explanation">함께 나누는 사랑, 모두가 행복해집니다.</dd>
+			<dd class="explanEng">Communication Board</dd>
+		</dl>
+	</div>
+</section>
 <section class="service-2 section">
 	<div id="wrap">
-            <section class="title_explain hidden-xs" style="margin-top: 0px; height: 120px;">
-      <div class="container" style="font-size: 22px; margin-top: 0px;">
-        <dl style="margin-top: 10px;">
-          <dt>
-            소통의 공간    </dt>
-          <dd class="explanation">
-            함께 나누는 사랑, 모두가 행복해집니다.    </dd>
-          <dd class="explanEng">
-            Communication Board    </dd>
-        </dl>
-      </div>
-    </section>
-    <!-- 서브 비쥬얼 영역 //-->
-    <div class="container content-wrapper" style="width: 970px;">
+		<!-- 서브 비쥬얼 영역 //-->
+    <div class="container content-wrapper" style="margin:0 auto;">
       <div class="page-header">
         <h1 class="title"><i class="fa fa-comments-o"></i>자유게시판</h1>
         <!-- <ol class="breadcrumb">

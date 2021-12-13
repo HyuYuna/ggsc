@@ -33,7 +33,6 @@
 				<option value="http://www.kgacold.co.kr/">경기도재가노인복지협회</option>
 				<option value="https://noininfo.or.kr/">경기도노인복지시설엽합회</option>
 				<option value="https://happycam5060.or.kr:45870/">경기도중장년해피캠퍼스 남부센터</option>
-				<option value="https://http://www.gaswc.or.kr/">경기도노인복지관협회</option>
 				<option value="https://www.mentalhealth.or.kr/">경기도정신건강복지센터</option>
 			</select>
 		</div>

@@ -14,7 +14,7 @@
 	
 	function closeWin(id,checkbox) {
 		if (checkbox.checked ) {
-			setCookie(id, "done" , 1 );
+			setCookie(id, "done" , 24 );
 		}
 		self.close();
 	}

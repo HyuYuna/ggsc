@@ -559,11 +559,12 @@
 			NUM ,
 			TITLE ,
 			WRITER ,
+			REG_ID ,
 			OPEN_STAT_YN ,
 			ANSWER_YN ,
 			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
 		FROM
-			GS_CNS_ASK
+			GS_ONLINE_ASK
 		WHERE
 			1=1
 		<if test="searchKeyword != null">
@@ -588,7 +589,7 @@
 		SELECT
 			count(NUM)
 		FROM
-			GS_CNS_ASK
+			GS_ONLINE_ASK
 		WHERE
 			1=1
 		<if test="searchKeyword != null">
@@ -607,17 +608,15 @@
 	
 	<!-- 온라인상담 등록 -->
 	<insert id="insertOnlineCnsReg" parameterType="cmSpaceVO">
-		INSERT INTO GS_CNS_ASK
+		INSERT INTO GS_ONLINE_ASK
 			(
-				PW ,
 				TITLE ,
 				WRITER ,
 				CNTN ,
-				CNSLE_ID ,
+				REG_ID ,
 				OPEN_STAT_YN ,
 				DB_INS_TM 
 			) VALUES (
-				#{pw} ,
 				#{title} ,
 				#{writer} ,
 				#{cntn} ,
@@ -629,7 +628,7 @@
 	
 	<!-- 온라인상담 파일업로드 등록 -->
 	<insert id="insertOnlineCnsFileUpload" parameterType="cmSpaceVO">
-		INSERT INTO GS_CNS_ASK_FILE
+		INSERT INTO GS_ONLINE_ASK_FILE
 			(
 				FILE_NUM ,
 				REG_ID ,
@@ -656,7 +655,6 @@
 				
 		SELECT
 			A.NUM ,
-			A.PW ,
 			A.TITLE ,
 			A.WRITER ,
 			A.CNTN ,
@@ -664,16 +662,16 @@
 			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
 			ANS.ANS_TITLE ,
 			ANS.ANS_CNTN ,
-			ANS.CNSR_NM ,
-			DATE_FORMAT(ANS.ANS_DB_INS_TM , '%Y-%M-%D') AS ANSDBINSTM ,
+			ANS.REG_NM ,
+			DATE_FORMAT(ANS.ANS_DB_INS_TM , '%Y-%m-%d') AS ansDbInsTm ,
 			ANSF.FILE_NM ,
 			ANSF.SYS_FILE_NM ,
 			ANSF.FILE_PATH
 		FROM
-			GS_CNS_ASK AS A
-		LEFT JOIN GS_CNS_ASK_ANS AS ANS
+			GS_ONLINE_ASK AS A
+		LEFT JOIN GS_ONLINE_ASK_ANS AS ANS
 			ON A.NUM = ANS.NUM
-		LEFT JOIN GS_CNS_ASK_FILE AS ANSF
+		LEFT JOIN GS_ONLINE_ASK_FILE AS ANSF
 			ON A.NUM = ANSF.FILE_NUM
 		WHERE
 			1=1

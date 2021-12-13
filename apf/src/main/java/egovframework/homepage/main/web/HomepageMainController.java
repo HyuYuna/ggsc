@@ -260,7 +260,7 @@ public class HomepageMainController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/main/oldCnsCenter";
+		return "/main/oldCnsCenter.page";
 	}
 	
 	// ID,PW 찾기

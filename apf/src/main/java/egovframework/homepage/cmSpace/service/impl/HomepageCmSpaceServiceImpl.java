@@ -164,12 +164,12 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 	public void insertOnlineCnsReg(CmSpaceVO vo) throws Exception {
 		
 		homepageCmSpaceMapper.insertOnlineCnsReg(vo);
-		MultipartFile file = vo.getFile();
+		/*MultipartFile file = vo.getFile();
 		EgovMap fMap = fileUpload(file, vo);
 		if(vo.getFile().getSize() != 0){
 			// 온라인상담 파일업로드
 			homepageCmSpaceMapper.insertOnlineCnsFileUpload(vo);
-		}
+		} */
 	}
 	
 	// 온라인상담 상세

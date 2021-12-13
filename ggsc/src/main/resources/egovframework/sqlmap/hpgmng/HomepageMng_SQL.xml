@@ -820,8 +820,6 @@
 					</isEqual>
 				</isNotEmpty>
 			
-			
-			
 			) A
 		<![CDATA[
  		   	WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
@@ -890,6 +888,15 @@
 		]]>
 	</insert>
 	
+	<!-- 온라인상담 답변여부 수정  -->
+	<update id="hpgmngDao.updateOnlineAskAnswer" parameterClass="onlineAskVO">
+		UPDATE GS_ONLINE_ASK
+			SET
+				ANSWER_YN = 'Y'
+			WHERE
+				NUM = #num#
+	</update>
+	
 	<!-- 온라인상담 수정  -->
 	<update id="hpgmngDao.updateOnlineAsk" parameterClass="onlineAskVO">
 		UPDATE GS_ONLINE_ASK_ANS
@@ -899,6 +906,22 @@
 				REG_NM = #regNm#
 			WHERE
 				NUM = #num#
+	</update>
+	
+	<!-- 온라인상담 삭제  -->
+	<update id="hpgmngDao.deleteOnlineAsk" parameterClass="Integer">
+		DELETE FROM
+			GS_ONLINE_ASK
+		WHERE 
+			NUM = #onlineNum#
+	</update>
+	
+	<!-- 온라인상담 답변 삭제  -->
+	<update id="hpgmngDao.deleteOnlineAskAns" parameterClass="Integer">
+		DELETE FROM
+			GS_ONLINE_ASK_ANS
+		WHERE 
+			NUM = #onlineNum#
 	</update>
 	
 	<!-- 온라인상담 상세-->	

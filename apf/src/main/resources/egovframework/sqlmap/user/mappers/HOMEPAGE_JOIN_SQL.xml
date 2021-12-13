@@ -36,7 +36,7 @@
 				#{mobile} ,
 				#{addr} ,
 				#{joinPath} ,
-				'1' ,
+				'6' ,
 				'Y' ,
 				'Y' ,
 				#{birthDt} ,

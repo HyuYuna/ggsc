@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="file:///C|/Users/asdf/Documents/favicon.ico">
     <title>인사말</title>
     <!-- Bootstrap core CSS -->
     <link href="/gnoincoun/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -24,77 +23,6 @@
     <link href="/gnoincoun/assets/css/theme.css" rel="stylesheet">
   </head>
   <body>
-    <!-- 헤더 ================================================== -->
-    <header class="navbar-wrapper">
-      <nav class="navbar navbar-static-top">
-        <div class="navbar-header">
-          <div class="container">
-            <a class="navbar-brand" href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/assets/img/logo.png" alt="경기도노인종합상담센터" /></a>
-            <div class="social-icons pull-right">
-              <ul class="nav nav-pills">
-                <li><a href="/gnoincoun/homepageMainList.do" class="btn btn-primary btn-xs"><i class="fa fa-home mr5"></i>홈</a></li>
-                <c:choose>
-				    <c:when test="${loginYn eq 'Y'}">
-				        <li><a href="/gnoincoun/logout.do" class="btn btn-primary btn-xs"><i class="fa fa-lock mr5"></i>로그아웃</a></li>
-				        <li><a href="/gnoincoun/mypageView.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>마이페이지</a></li>
-				    </c:when>
-				    <c:otherwise>
-				        <li><a href="/gnoincoun/login.do" class="btn btn-primary btn-xs"><i class="fa fa-unlock-alt mr5"></i>로그인</a></li>
-				        <li><a href="/gnoincoun/agree.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>회원가입</a></li>
-				    </c:otherwise>
-				</c:choose> 
-              </ul>
-            </div>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">전체메뉴</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-        </div>
-
-        <div id="navbar" class="collapse navbar-collapse">
-          <div class="container">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">센터소개<i class="fa fa-angle-down"></i></a>
-              <ul class="dropdown-menu"  role="menu">
-                <li class="dropdown-item"><a href="/gnoincoun/salutation.do">인사말<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/operatCorp.do">운영법인<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/missionVis.do">미션관 비젼 <i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/centerFoot.do">센터의 발자취<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/peopleTg.do">함께하는 사람들<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/directions.do">오시는길<i class="fa fa-caret-right"></i></a></li>
-              </ul>
-            </li>
-            <li class="dropdown active">
-              <a href="/gnoincoun/oldCnsCenter.do">시&middot;군 노인상담센터</a>
-            </li>            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">사업소개<i class="fa fa-angle-down"></i></a>
-              <ul class="dropdown-menu"  role="menu">
-                <li class="dropdown-item"><a href="/gnoincoun/cnsSupport.do">상담지원사업<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/eduBusin.do">교육사업<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/publicBusin.do">홍보사업<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/linkBusin.do">연계협력사업<i class="fa fa-caret-right"></i></a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">소통의 공간<i class="fa fa-angle-down"></i></a>
-              <ul class="dropdown-menu"  role="menu">
-                <li class="dropdown-item"><a href="/gnoincoun/centerNewsList.do">센터소식<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/docLibraryList.do">문서자료실<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/freeBoardList.do">자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/comfCnsWrite.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
-              </ul>
-            </li>
-          </ul>
-            </div>
-        </div><!-- navbar-collapse -->
-      </nav>
-    </header>
     <!-- 컨텐츠  ================================================== -->
     <!-- 서브 비쥬얼 영역 -->
     <section class="title_explain hidden-xs">
@@ -110,15 +38,7 @@
       </div>
     </section>
     <!-- 서브 비쥬얼 영역 //-->
-    <div class="container content-wrapper">
-      <div class="page-header">
-        <h1 class="title">시&middot;군 노인상담센터</h1>
-        <ol class="breadcrumb">
-          <li><a href="/gnoincoun/homepageMainList.do">홈</a></li>
-          <li><a href="#">센터소개</a></li>
-          <li class="active">시&middot;군 노인상담센터</li>
-        </ol>
-      </div>
+    <div class="container content-wrapper" style="padding-bottom:10px;">
       <div class="content">
         <div class="acronym" style="display:block">
           <p style="background-image:url('/gnoincoun/assets/img/acronym03.png');"><strong> 경기도의 31개 시ㆍ군에는
@@ -151,8 +71,7 @@
                 <div class="territory"><img src="/gnoincoun/assets/img/bg_map.png" usemap="#Map" border="0" alt="경기도 지도">
                   <map name="Map">
                     <area shape="poly" coords="104,5,123,26,135,23,136,29,163,33,162,45,133,75,133,84,116,89,103,100,88,104,67,118,32,117,24,112,16,120,3,111,3,93,24,88,28,71,32,59,43,52,61,43,70,32,79,15,103,4" href="#" alt="북부권역">
-                    <area shape="poly" coords="165,45,190,59,191,73,180,76,182,111,198,110,233,126,220,136,225,147,217,156,219,185,200,197,195,205,176,210,174,200,150,184,144,174,135,176,137,163,125,159,115,160,122,146,109,140,116,124,104,123,101,105,117,90,133,88,135,76" href="#" alt="동부권역
-=">
+                    <area shape="poly" coords="165,45,190,59,191,73,180,76,182,111,198,110,233,126,220,136,225,147,217,156,219,185,200,197,195,205,176,210,174,200,150,184,144,174,135,176,137,163,125,159,115,160,122,146,109,140,116,124,104,123,101,105,117,90,133,88,135,76" href="#" alt="동부권역">
                     <area shape="poly" coords="95,141,81,141,80,146,70,166,73,175,79,179,98,180,105,166,121,147,110,138" href="#" alt="중부권역">
                     <area shape="poly" coords="45,128,38,136,50,143,41,148,28,162,44,171,66,172,79,141,59,139,59,129,49,124" href="#" alt="서부권역">
                     <area shape="poly" coords="52,174,47,181,34,176,26,184,30,199,44,191,54,193,43,201,38,211,54,223,69,233,95,231,108,224,131,235,142,230,150,232,155,221,173,212,171,202,153,188,146,186,144,178,131,177,134,163,111,159,99,181,81,181,70,171" href="#" alt="남부권역">
@@ -160,8 +79,8 @@
                   <ul>
                     <li onmouseover="javascript:selectGigan('1');">동부권역<em>10</em></li>
                     <li onmouseover="javascript:selectGigan('2');">서부권역<em>10</em></li>
-                    <li onmouseover="javascript:selectGigan('3');">남부권역<em>11</em></li>
-                    <li onmouseover="javascript:selectGigan('4');">북부권역<em>13</em></li>
+                    <li onmouseover="javascript:selectGigan('3');">남부권역<em>12</em></li>
+                    <li onmouseover="javascript:selectGigan('4');">북부권역<em>14</em></li>
                     <li onmouseover="javascript:selectGigan('5');">중부권역<em>14</em></li>
                   </ul>
                 </div>
@@ -189,10 +108,10 @@
                           <td><a href="http://gjswc.org" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                       <tr>
-                          <td> 구리시노인상담센터 </td>
+                          <td> 구리시노인복지관 </td>
                           <td class="l"> 경기도 구리시 동구릉로 30번길 25-8 </td>
                           <td> 031-556-9988 </td>
-                          <td> - </td>
+                          <td><a href="http://www.guriwelfare.or.kr/bbs/view.php?id=TemP_kurinews&page=1" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                       <tr>
                           <td> 남양주시노인복지관 </td>
@@ -234,7 +153,7 @@
                           <td> 해피누리노인복지관 </td>
                           <td class="l"> 경기도 남양주시 늘을2로 67</td>
                           <td> 031-593-3000</td>
-                          <td>-</td>
+                          <td><a href="http://www.js1004.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                   </tbody></table>
                   </div>
@@ -311,7 +230,7 @@
                   </tbody></table>
                   </div>
                   <div id="details3" class="details table-responsive" style="display: none;">
-                    <h4>남부권역<em>11개 기관</em></h4>
+                    <h4>남부권역<em>12개 기관</em></h4>
                     <table class="table table-condensed">
                       <tbody>
                         <tr>
@@ -386,11 +305,17 @@
                             <td> 031-366-5678 </td>
                             <td><a href="http://hssenior.or.kr" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                         </tr>
+                        <tr>
+                            <td> 화성시서부노인복지관 </td>
+                            <td class="l"> 경기도 화성시 남양읍 시청로 155 모두누림센터 4층 </td>
+                            <td> 031-8077-2605 </td>
+                            <td><a href="https://www.hs-seobu.or.kr/main" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                   <div id="details4" class="details table-responsive" style="display: none;">
-                    <h4>북부권역<em>13개 기관</em></h4>
+                    <h4>북부권역<em>14개 기관</em></h4>
                     <table class="table table-condensed">
                       <tbody>
                         <tr>
@@ -398,6 +323,12 @@
                           <th> 주소 </th>
                           <th> 전화번호 </th>
                           <th> 홈페이지 </th>
+                      </tr>
+                       <tr>
+                          <td> 경기도노인종합상담센터 </td>
+                          <td class="l"> 경기도 수원시 장안구 경수대로 1150 </td>
+                          <td> 031-222-1360 </td>
+                          <td><a href="https://www.gnoin.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                       <tr>
                           <td> 고양시덕양노인종합복지관 </td>
@@ -547,7 +478,7 @@
                           <td> 의왕시아름채노인복지관 </td>
                           <td class="l"> 경기도 의왕시 문화공원로 47 </td>
                           <td> 070-8915-2222 </td>
-                          <td><a href="http://uwsenior.or.kr" target="_blank"><img src="/gnoincounassets/img/blit_internet.png"></a></td>
+                          <td><a href="http://uwsenior.or.kr" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                       <tr>
                           <td> 중원노인종합복지관 </td>
@@ -583,34 +514,10 @@
       </div><!-- .content /-->
     </div><!-- .container /-->
     <!-- FOOTER -->
-    <footer>
-      <div class="copyaddress">
-        <ul>
-          <!--<li><b>경기도노인종합상담센터</b></li>-->
-          <li><span>주소 : </span><a href="javascript:top_address()">경기도 수원시 장안구 경수대로 1150, 도서관 3층</a></li>
-          <li><span>사업자등록번호 : </span>722-82-00367<span class="ml10">대표 : </span>김미나</li>
-          <!--<li class="col col-xs-4 text-right"><span>대표 : </span>김미나</li>-->
-          <li><span> TEL : </span> <a href="javascript:top_tel()">031-222-1360</a></li>
-          <li><span> FAX : </span><a href="javascript:top_fax()">070-4832-6366</a></li>
-          <li><span>E-mail : </span><a href="javascript:top_email()">ggnoincoun@gmail.com</a></li>
-          <li><span>개인정보담당자 : </span>김지원  </li>
-          <li class="copyright">COPYRIGHT(c) <b>GNOIN</b> ALL RIGHT RESERVED</li>
-        </ul>
-      </div>
-     <!-- <p class="pull-right"><a href="#">Top</a></p>-->
-    </footer>
 
     <script src="/gnoincoun/assets/js/jquery.min.js"></script>
     <script src="/gnoincoun/assets/js/bootstrap.min.js"></script>
     <!--<script src="assets/js/docs.min.js"></script>-->
     <script src="/gnoincoun/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-      $(document).ready(function(){ 
-          // 로그인 회원가입 관리자 메뉴  
-        $('.navbar-toggle').on('click', function() {
-          $('.social-icons').fadeToggle(200);
-        });
-      });
-		</script>
   </body>
 </html>

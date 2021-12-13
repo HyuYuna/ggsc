@@ -367,12 +367,22 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	@Override
 	public void insertOnlineAsk(OnlineAskVO vo) {
 		hpgmngDao.insertOnlineAsk(vo);
+		
+		// 온라인상담 답변 여부 수정
+		hpgmngDao.updateOnlineAskAnswer(vo);
 	}
 	
 	// 온라인상담 수정
 	@Override
 	public void updateOnlineAsk(OnlineAskVO vo) {
 		hpgmngDao.updateOnlineAsk(vo);
+	}
+	
+	// 온라인상담 삭제
+	@Override
+	public void deleteOnlineAsk(int onlineNum) {
+		hpgmngDao.deleteOnlineAsk(onlineNum);
+		hpgmngDao.deleteOnlineAskAns(onlineNum);
 	}
 	
 	// 온라인상담 상세

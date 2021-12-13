@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="file:///C|/Users/asdf/Documents/favicon.ico">
     <!-- Bootstrap core CSS -->
     <!--<link href="/gnoincoun/assets/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -62,34 +63,12 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">센터소개<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu"  role="menu">
-                <li class="dropdown-item">
-	                <a href="/gnoincoun/centerIntroList.do">인사말
-	                <i class="fa fa-caret-right"></i></a>
-                </li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=operating">운영법인
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=vision">미션과 비젼 
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=pathway">걸어온길
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=together">함께하는
-						사람들<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=centerInfo">시군센터
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=directions">오시는길
-					<i class="fa fa-caret-right"></i></a>
-				</li>
+                <li class="dropdown-item"><a href="/gnoincoun/salutation.do">인사말<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/operatCorp.do">운영법인<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/missionVis.do">미션관 비젼 <i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/centerFoot.do">센터의 발자취<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/peopleTg.do">함께하는 사람들<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/directions.do">오시는길<i class="fa fa-caret-right"></i></a></li>
               </ul>
             </li>
             <li>
@@ -98,39 +77,20 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">사업소개<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu"  role="menu">
-                <li class="dropdown-item">
-	                <a href="/gnoincoun/busiIntroList.do">시군지원사업
-	                <i class="fa fa-caret-right"></i></a>
-                </li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/busiIntroList.do?gubun=noin">24시노인온상담
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/busiIntroList.do?gubun=mid">중장년마음돌봄 전화상담
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/busiIntroList.do?gubun=weak">취약노인 지원사업
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/busiIntroList.do?gubun=gender">성인지교육사업
-					<i class="fa fa-caret-right"></i></a>
-				</li>
+                <li class="dropdown-item"><a href="/gnoincoun/cnsSupport.do">상담지원사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/eduBusin.do">교육사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/publicBusin.do">홍보사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/linkBusin.do">연계협력사업<i class="fa fa-caret-right"></i></a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">소통의 공간<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu"  role="menu">
                 <li class="dropdown-item"><a href="/gnoincoun/centerNewsList.do">센터소식<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/noticeList.do">공지사항<i class="fa fa-caret-right"></i></a></li>
                 <li class="dropdown-item"><a href="/gnoincoun/docLibraryList.do">문서자료실<i class="fa fa-caret-right"></i></a></li>
                 <li class="dropdown-item"><a href="/gnoincoun/freeBoardList.do">자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/onlineCnsList.do">온라인상담<i class="fa fa-caret-right"></i></a></li>
                 <li class="dropdown-item"><a href="/gnoincoun/comfCnsWrite.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/psyInfo.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
-                <li class="dropdown-item"><a href="/gnoincoun/eduAppWrite.do">교육신청<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
               </ul>
             </li>
           </ul>
@@ -138,7 +98,7 @@
         </div><!-- navbar-collapse -->
       </nav>
     </header>
-    <div style="margin-bottom:100px;">
+    <div style="margin-bottom:130px;">
     </div>
   
 	

@@ -21,7 +21,7 @@
 <style>
 	#wrap {width: 30%; margin: auto; height: 500px; margin-top:55px; margin-bottom:-5px;}
 </style>
-<section class="service-2 section">
+<section class="service-2 section" style="padding-top:10px;">
 	<div id="wrap">
         <h2 class="title" style="font-weight:bold;">로그인</h2>
 	  	<form id="loginForm" name="loginForm" method="post">

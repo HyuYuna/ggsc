@@ -22,6 +22,7 @@
 	</style>
     <script>
 	  	$(document).ready(function() {
+	  		$("#greeting").css("display","none");
 	  		$("#operating").css("display","none");
 	  		$("#vision").css("display","none");
 	  		$("#pathway").css("display","none");
@@ -29,17 +30,50 @@
 	  		$("#centerInfo").css("display","none");
 	  		$("#directions").css("display","none");
 	  		
+			$("#pathwayBtn2").css("display","none");
+			$("#pathwayBtn3").css("display","none");
+			$("#pathwayBtn4").css("display","none");
+	  		
 	  		$("#operating2").css("display","none");
 	  		$("#operating3").css("display","none");
 	  		$("#operating4").css("display","none");
 	  		
 	  		var gubun = "${gubun}"
 	  		
-  			if(gubun == "directions") {
-		  		$("#greeting").css("display","none");
-		  		$("#directions").css("display","");
+  			if(gubun == "" || gubun == null) {
+		  		$("#greeting").css("display","");
+		  		$("#focus1").css("font-weight","bolder");
 	  		}
-	  		$("#focus1").css("font-weight","bolder");
+	  		if(gubun == "operating") {
+				$("#operating").css("display","");
+				$("#focus2").css("font-weight","bolder");
+	  		}
+	  		
+	  		if(gubun == "vision") {
+		  		$("#vision").css("display","");
+		  		$("#focus3").css("font-weight","bolder");
+	  		}
+	  		
+	  		if(gubun == "pathway") {
+		  		$("#pathway").css("display","");
+		  		$("#focus4").css("font-weight","bolder");
+	  		}
+	  		
+	  		if(gubun == "together") {
+		  		$("#together").css("display","");
+		  		$("#focus5").css("font-weight","bolder");
+	  		}
+	  		
+	  		if(gubun == "centerInfo") {
+		  		$("#centerInfo").css("display","");
+		  		$("#focus6").css("font-weight","bolder");
+	  		}
+	  		
+  			if(gubun == "directions") {
+		  		$("#directions").css("display","");
+		  		$("#focus7").css("font-weight","bolder");
+	  		}
+  			
 	  	
 		});
 	  	
@@ -1082,28 +1116,20 @@
 <style>
 	#wrap {width: 100%; margin: auto; height: auto;}
 </style>
+<section class="title_explain hidden-xs">
+	<div class="container">
+		<dl>
+			<dt>센터소개</dt>
+			<dd class="explanation">마음으로 만나는 어르신의 행복한 노후</dd>
+			<dd class="explanEng">GNOIN Hall Introdution</dd>
+		</dl>
+	</div>
+</section>
 <section class="service-2 section" style="margin-top:-14px;">
 	<div id="wrap">
-        <div style="border-top: 1px solid #f09d4c; overflow: hidden;">
-			<img src='/gnoincoun/images/cenIntro1.jpg' alt="맘편한 상담" />
-		</div>
-		<div style="width: 910px; margin: auto;">
-			<span class="menu-current">센터안내</span>
-			<ul class="main-menu" style="width: 730px; font-size: 14px; float: right; margin-top: 9px; margin-bottom: 15px; align-items:center;"> <!-- margin-right: 26%; -->
-				<li><a href="javascript: greeting();" id = "focus1">인사말</a></li>
-				<li><a href="javascript: operating();" id = "focus2">운영법인</a></li>
-				<li><a href="javascript: vision();" id = "focus3">미션과 비전</a></li>
-				<li><a href="javascript: pathway();" id = "focus4">걸어온길</a></li>
-				<li><a href="javascript: together();" id = "focus5" >함께하는<br/>사람들</a></li>
-				<li><a href="javascript: centerInfo();" id = "focus6">시군센터</a></li>
-				<li><a href="javascript: directions();" id = "focus7">오시는길</a></li>
-			</ul>
-		</div>
 		
 		<!-- content 영역 -->
 		<div id="greeting">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div class="menu">
 				<img src='/gnoincoun/images/cenIntro2.jpg' alt="전화상담" style="width: 920px;"/>
 			</div>
@@ -1112,8 +1138,6 @@
 			</div>
 		</div>
 		<div id="operating">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div style="width: 100%; margin: auto; text-align: center; margin-top: 30px; margin-bottom: 30px;">
 				<button type="button" class="btn btn-primary sub-menu" onclick="javascript: operatingBtn('1')"><font size = "4px">소개</font></button>
 				<button type="button" class="btn btn-primary sub-menu" onclick="javascript: operatingBtn('2')"><font size = "4px">설립목적</font></button>
@@ -1136,15 +1160,11 @@
 			
 		</div>
 		<div id="vision">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div style="width: 920px; margin: auto; margin-top: 60px;">
 				<img src='/gnoincoun/images/cenIntro16.png' alt="미션과 비전" style="width: 920px;"/>
 			</div>
 		</div>
 		<div id="pathway">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div style="width: 100%; margin: auto; text-align: center; margin-top: 30px; margin-bottom: 30px;">
 				<button type="button" class="btn btn-primary sub-menu" onclick="javascript: pathwayBtn('1')"><font size = "4px">2020 ~ 2021</font></button>
 				<button type="button" class="btn btn-primary sub-menu" onclick="javascript: pathwayBtn('2')"><font size = "4px">2018 ~ 2019</font></button>
@@ -1166,8 +1186,6 @@
 			</div>
 		</div>
 		<div id="together">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div style="width: 920px; margin: auto; margin-top: 30px;">
 				<img src='/gnoincoun/images/cenIntro14.png' alt="함께하는 사람들"
 					style="width: 920px;" />
@@ -1229,8 +1247,6 @@
 			</div>
 		</div>
 		<div id="centerInfo">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div class='full bg-gray'>
 				<div class='wrap'>
 				<div style="width: 100%; text-align: center; margin-top: 50px;">
@@ -1287,8 +1303,8 @@
 									<div class='row'>
 									<li class='subject' style="color:initial; text-align:center;">지역 검색</li>
 									<li class='content select2' style="min-height: 0;">
-										<select><option value=''>경기도</select>
-										<select  id="localGb" name="localGb" onchange="javascript:listCenter(this.value);">
+										<select style="appearance:menulist;"><option value=''>경기도</select>
+										<select id="localGb" name="localGb" onchange="javascript:listCenter(this.value);"  style="appearance:menulist;">
 											<option>--------</option>
 											<option value='1'>가평군</option>
 											<option value='2'>고양시</option>
@@ -1349,8 +1365,6 @@
 			</div>
 		</div>
 		<div id="directions">
-			<div style="border-bottom: 1px solid #CFCFCF; padding-bottom: 63px;">
-			</div>
 			<div style="width: 920px; margin: auto;">
 				<img src='/gnoincoun/images/cenIntro5.jpg' alt="온라인상담" style="width: 920px;"/>
 			</div>

@@ -220,9 +220,24 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 		insert("hpgmngDao.insertOnlineAsk", vo);
 	}
 	
+	// 온라인상담 답변 여부 수정
+	public void updateOnlineAskAnswer(OnlineAskVO vo) {
+		update("hpgmngDao.updateOnlineAskAnswer", vo);
+	}
+	
 	// 온라인상담 수정
 	public void updateOnlineAsk(OnlineAskVO vo) {
 		update("hpgmngDao.updateOnlineAsk", vo);
+	}
+	
+	// 온라인상담 삭제
+	public void deleteOnlineAsk(int onlineNum) {
+		update("hpgmngDao.deleteOnlineAsk", onlineNum);
+	}
+	
+	// 온라인상담 답변 삭제
+	public void deleteOnlineAskAns(int onlineNum) {
+		update("hpgmngDao.deleteOnlineAskAns", onlineNum);
 	}
 	
 	// 온라인상담 상세

@@ -96,7 +96,7 @@ blockquote.traffic { padding:0px !important;margin:0px 0px 50px 30px;}
 /* 시군 노인상담센터 */
 .acronym  {display:block;font-size:0px;margin:0px 0px 20px 0px;overflow:hidden; position:relative; /*background-color:#dfedf4;*/} 
 .acronym p { padding:20px 0;display:block; border-bottom: solid 1px #eee; border-radius:3px;background-color:#fff;background-position:right top;background-repeat:no-repeat;}
-.acronym p strong{ display:block;font-size:17px;font-weight:bold;color:#f09d4c;}
+.acronym p strong{ display:block;font-size:17px;font-weight:bold;color:#2699FB;}
 .acronym p strong span {font-size:13px;display:block;font-weight:normal;color:#999;}
 .acronym input { position:absolute;right:10px;top:10px;background:url('../img/bg_linkbutton.png') repeat-x center -5px;font:bold 20px/50px "NanumGothic";letter-spacing:-1px;color:#0a3652;border:0px;border-radius:5px;box-shadow:0px 0px 5px #d5d5d5;padding:0px 20px;}
 .acronym input:hover {background:url('../img/bg_linkbutton.png') repeat-x center -64px;cursor:pointer;}

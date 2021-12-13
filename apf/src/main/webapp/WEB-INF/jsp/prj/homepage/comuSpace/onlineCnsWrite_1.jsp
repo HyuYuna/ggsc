@@ -39,6 +39,78 @@
 	}
   </script>
   <body>
+    <!-- 헤더 ================================================== -->
+    <header class="navbar-wrapper">
+      <nav class="navbar navbar-static-top">
+        <div class="navbar-header">
+          <div class="container">
+            <a class="navbar-brand" href="/gnoincoun/homepageMainList.do"><img src="/gnoincoun/assets/img/logo.png" alt="경기도노인종합상담센터" /></a>
+            <div class="social-icons pull-right">
+              <ul class="nav nav-pills">
+                <li><a href="/gnoincoun/homepageMainList.do" class="btn btn-primary btn-xs"><i class="fa fa-home mr5"></i>홈</a></li>
+                <c:choose>
+				    <c:when test="${loginYn eq 'Y'}">
+				        <li><a href="/gnoincoun/logout.do" class="btn btn-primary btn-xs"><i class="fa fa-lock mr5"></i>로그아웃</a></li>
+				        <li><a href="/gnoincoun/mypageView.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>마이페이지</a></li>
+				    </c:when>
+				    <c:otherwise>
+				        <li><a href="/gnoincoun/login.do" class="btn btn-primary btn-xs"><i class="fa fa-unlock-alt mr5"></i>로그인</a></li>
+				        <li><a href="/gnoincoun/agree.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>회원가입</a></li>
+				    </c:otherwise>
+				</c:choose> 
+              </ul>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">전체메뉴</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+          <div class="container">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">센터소개<i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu"  role="menu">
+                <li class="dropdown-item"><a href="/gnoincoun/salutation.do">인사말<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/operatCorp.do">운영법인<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/missionVis.do">미션관 비젼 <i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/centerFoot.do">센터의 발자취<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/peopleTg.do">함께하는 사람들<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/directions.do">오시는길<i class="fa fa-caret-right"></i></a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/gnoincoun/oldCnsCenter.do">시&middot;군 노인상담센터</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">사업소개<i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu"  role="menu">
+                <li class="dropdown-item"><a href="/gnoincoun/cnsSupport.do">상담지원사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/eduBusin.do">교육사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/publicBusin.do">홍보사업<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/linkBusin.do">연계협력사업<i class="fa fa-caret-right"></i></a></li>
+              </ul>
+            </li>
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">소통의 공간<i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu"  role="menu">
+                <li class="dropdown-item"><a href="/gnoincoun/centerNewsList.do">센터소식<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/docLibraryList.do">문서자료실<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/freeBoardList.do">자유게시판<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item active"><a href="/gnoincoun/comfCnsWrite.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
+                <li class="dropdown-item"><a href="/gnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+            </div>
+        </div><!-- navbar-collapse -->
+      </nav>
+    </header>
+    <!-- 컨텐츠  ================================================== -->
     <!-- 서브 비쥬얼 영역 -->
     <section class="title_explain hidden-xs">
       <div class="container">
@@ -55,11 +127,11 @@
     <!-- 서브 비쥬얼 영역 //-->
     <div class="container content-wrapper">
       <div class="page-header">
-        <h1 class="title"><i class="fa fa-comments-o"></i>온라인상담</h1>
+        <h1 class="title"><i class="fa fa-comments-o"></i>상담문의하기</h1>
         <ol class="breadcrumb">
           <li><a href="/gnoincoun/homepageMainList.do">홈</a></li>
           <li><a href="#">소통의 공간</a></li>
-          <li class="active">온라인상담</li>
+          <li class="active">상담문의하기</li>
         </ol>
       </div>
       <div class="content-area">
@@ -77,6 +149,14 @@
 	            <input type="text" class="form-control" id="writer" name="writer" readonly="readonly">
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label" for="pw">비밀번호<i class="cr">*</i></label>
+                <input type="password" class="form-control" id="pw" name="pw">
+              </div>
+          </div>
             <div class="col-sm-6">
               <label class="control-label" for="openStatYn">공개유무<i class="cr">*</i></label>
               <!--<div class="label-tit">공개유무</div>-->
@@ -92,17 +172,16 @@
               </div>
             </div>
           </div>
-          </div>
           <div class="form-group">
             <label class="control-label" for="cntn">내용</label>
             <textarea rows="5" class="form-control" id="cntn" name="cntn"></textarea>
           </div>
-          <!-- 파일첨부 -->
-          <!-- <div class="form-group clearfix">
+          <!-- 파일첨부 /-->
+          <div class="form-group clearfix">
             <label class="control-label" for="">첨부파일</label>
             <div class="filebox"> <input class="upload-name" value="파일선택" disabled="disabled"><label for="ex_filename">파일</label> <input type="file" id="ex_filename" name="file" class="upload-hidden"></div>
-          </div> -->
-          <!-- 등록하기 -->
+          </div>
+          <!-- 파일첨부 /-->
           <div class="btn-wrap line bt bb pt10 pb10 mt20 text-center hidden-xs">
             <button type="button" onclick="javascript:fn_onlineCnsReg();"class="btn btn-primary btn-lg fr">등록하기</button>
           </div>

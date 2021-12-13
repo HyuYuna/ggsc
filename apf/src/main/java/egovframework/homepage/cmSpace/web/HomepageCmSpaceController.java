@@ -399,6 +399,9 @@ public class HomepageCmSpaceController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("vo", vo);
 		
+		String userId = map == null ? "" : (String)map.get("userId");
+		model.addAttribute("userId",userId);
+		
 		// 온라인상담 목록
 		List<EgovMap> onlineCnsList = homepageCmSpaceService.getOnlineCnsList(vo);
 		model.addAttribute("onlineCnsList", onlineCnsList);
