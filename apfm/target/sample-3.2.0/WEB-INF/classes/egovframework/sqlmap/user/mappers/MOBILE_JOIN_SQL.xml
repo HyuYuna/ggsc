@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.mobile.join.service.impl.MobileJoinMapper">
+
+	<!-- 회원가입 등록 -->
+	<insert id="insertJoinReg" parameterType="joinVO">
+		INSERT INTO GS_USER_M
+			(
+				USER_ID ,
+				USER_NM ,
+				AUTH_CD ,
+				ZONE_GB ,
+				CENTER_GB ,
+				SIGUN_CD ,
+				PW ,
+				GENDER ,
+				EMAIL ,
+				TEL ,
+				MOBILE ,
+				ADDR ,
+				JOIN_PATH ,
+				USE_YN ,
+				APPRV_YN ,
+				BIRTH_DT ,
+				ACPT_DT ,
+				DB_INS_TM
+				
+			) VALUES (
+			
+				#{userId} ,
+				#{userNm} ,
+				'6' ,
+				#{zoneGb} ,
+				#{centerGb} ,
+				#{sigunCd} ,
+				#{pw} ,
+				<!-- SCP.ENC_B64('KEY1',#{pw}) , -->
+				#{gender} ,
+				#{email} ,
+				#{tel} ,
+				#{mobile} ,
+				#{addr} ,
+				#{joinPath} ,
+				'Y' ,
+				'Y' ,
+				#{birthDt} ,
+				DATE_FORMAT(NOW(), '%Y-%m-%d') ,
+				NOW()
+			)
+	</insert>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="getIdCheck" parameterType="String" resultType="Integer">
+		SELECT 
+			COUNT(USER_ID)
+		FROM 
+			GS_USER_M
+		WHERE 
+			USER_ID = #{userId}
+	</select>
+	
+	<!-- 분류관리 상세보기(중분류)  -->
+	<select id="getGroupMngDtlMList" parameterType="commonVO" resultType="egovMap">
+		SELECT
+			M.MCLASS_CD ,
+			M.MCLASS_NM ,
+			M.ODR ,
+			H.HCLASS_CD
+		FROM
+			GS_H_CLASS AS H
+		INNER JOIN GS_M_CLASS AS M
+			ON H.HCLASS_CD = M.HCLASS_CD
+		WHERE
+			H.HCLASS_CD = #{hclassCd}#
+			AND M.USE_YN = 'Y' 
+		ORDER BY M.MCLASS_CD ASC
+	</select>
+	
+	<!-- 센터관리 목록 조회(select 코드용)  -->
+	<select id="getCenterManageList" parameterType="centerVO" resultType="egovMap">
+		SELECT *
+		FROM (
+			SELECT 
+				ROW_NUMBER() OVER(ORDER BY NUM DESC) AS RNUM ,
+				NUM ,
+				(select MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G71' AND ODR = zone_gb) AS zoneGb ,
+				(select MCLASS_NM FROM gs_m_class WHERE HCLASS_CD = 'G72' AND ODR = local_gb) AS localNm ,
+				SIGUN_CD ,
+				LOCAL_GB ,
+				SIGUN_NM ,
+				CENTER_NM ,
+				CENTER_GB ,
+				ADDR ,
+				ADDR_DTL ,
+				ZIP_CD ,
+				HOMEPAGE ,
+				TEL ,
+				USE_YN ,
+				REG_ID ,
+				DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+			FROM
+				GS_CENTER_M
+			WHERE
+				1=1
+		
+		) A
+		
+	</select>
+
+</mapper>

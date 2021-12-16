@@ -66,7 +66,7 @@
 		for (var i = 0; i < "${popupCnt}"; i++) {
 			var img = new Image();
 			var imgsrc = imageList[i];
-			var filePath = "http://localhost:8085/gnoincoundb/getPopup.do?fileNm=/";
+			var filePath = "/gnoincoundb/getPopup.do?fileNm=/";
 			img.src = filePath + imgsrc;
 			var path = filePath + imgsrc;
 			var num = numList[i];
@@ -1534,7 +1534,7 @@ th, td {
 						<a href="/gnoincoun/centerNewsDtl.do?num=${result.num}"
 							target="_blank">
 							<li class='board-image'><img
-								src="http://localhost:8085/gnoincoundb/getImage.do?fileNm=/${result.image}"
+								src="/gnoincoundb/getImage.do?fileNm=/${result.image}"
 								alt="${result.title}" /></li>
 							<ul class='board-text'>
 								<li class='date'><span class='date_ym'>${result.yearmonth}</span><br>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<sqlMap resource="egovframework/sqlmap/user/main/EgovMain_Main_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/user_Join_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_MAIN_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_JOIN_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_MYPAGE_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_PSYCNS_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_COMFCNS_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_FREEBBS_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_CARELIBRARY_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_COMCODE_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_CNSASK_SQL.xml"/>
+	<sqlMap resource="egovframework/sqlmap/user/mappers/MOBILE_MAILSEND_SQL.xml"/>
+</sqlMapConfig>

@@ -1,0 +1,355 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="file:///C|/Users/asdf/Documents/favicon.ico">
+    <title>알려드려요&amp;자유게시판</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/mgnoincoun/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/mgnoincoun/assets/css/font-awesome.min.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/mgnoincoun/assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Custom styles for this template -->
+    <link href="/mgnoincoun/assets/css/theme.css" rel="stylesheet">
+  </head>
+  <script>
+	
+  	function fn_reg() {
+  		if(confirm("회원가입을 하시겠습니까?")) {
+  			
+  			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 이메일 유효성검사
+  			var userId = $("#userId").val().replace(/ /gi, ""); // 아이디
+  			var pw = $("#pw").val().replace(/ /gi, "") // 비밀번호
+  			var pwChk = $("#pwChk").val().replace(/ /gi, "") // 비밀번호 확인
+  			var userNm = $("#userNm").val().replace(/ /gi, ""); // 이름
+  			var birthDt = $("#birthDt").val().replace(/\D/g,""); // 생년월일
+  			var email = $("#email").val().replace(/ /gi, ""); // 이메일
+  			/* var tel = $("#tel").val().replace(/ /gi, ""); // 전화번호 */
+  			var mobile = $("#mobile").val().replace(/ /gi, ""); // 핸드폰
+  			var addr = $("#addr").val().replace(/ /gi, ""); // 주소
+  			
+  			
+  			if($("input:radio[name='joinPath']").is(":checked") == false) {
+  				alert("가입경로를 체크해 주세요.");
+  				$("#joinPath").focus();
+  				return;
+  			}
+  			if(userId.length == 0) {
+  				alert("아이디를 입력해 주세요.");
+  				$("#userId").focus();
+  				return;
+  			}
+  			if(userId.length < 5) {
+  				alert("아이디를 6글자 이상으로 입력해 주세요.");
+  				$("#userId").focus();
+  				return;
+  			}
+  			if(pw.length == 0) {
+  				alert("비밀번호를 입력해 주세요.");
+  				$("#pw").focus();
+  				return;
+  			}
+  			
+  			 var num = pw.search(/[0-9]/g);
+  			 var eng = pw.search(/[a-z]/ig);
+  			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+  			 if(pw.length < 8 || pw.length > 20){
+  				  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+  				  $("#pw").focus();
+  				  return false;
+  			 }else if(pw.search(/\s/) != -1){
+  				  alert("비밀번호는 공백 없이 입력해주세요.");
+  				  $("#pw").focus();
+  				  return false;
+  			 }else if(num < 0 || eng < 0){
+  				  alert("영문,숫자를 혼합하여 입력해주세요.");
+  				  $("#pw").focus();
+  				  return false;
+  			 }
+  			
+  			if(pwChk.length == 0) {
+  				alert("비밀번호를 입력해 주세요.");
+  				$("#pwChk").focus();
+  				return;
+  			}
+  			if(pw != pwChk) {
+  				alert("비밀번호가 동일하지 않습니다.");
+  				$("#pwChk").focus();
+  				return;
+  			}
+  			if(userNm.length == 0) {
+  				alert("이름을 입력해 주세요.");
+  				$("#userNm").focus();
+  				return;
+  			}
+  			if($("input:radio[name='gender']").is(":checked") == false) {
+  				alert("성별을 체크해 주세요.");
+  				$("#gender").focus();
+  				return;
+  			}
+  			if(birthDt.length == 0) {
+  				alert("생년월일을 입력해주세요.");
+  				$("#birthDt").focus();
+  				return;
+  			}
+			if(birthDt.length != 8) {
+				alert("생년월일을 정확하게 입력해주세요.");
+				$("#birthDt").focus();
+				return;
+			}
+			/* if(email.length == 0) {
+				alert("이메일을 입력해주세요.");
+				$("#email").focus();
+				return;
+			}
+			if(exptext.test(email) == false) {
+  				alert("이메일을 옳바르게 입력해 주세요.");
+  				$("#email").focus();
+  				return;
+  			}
+  			if(tel.length == 0) {
+  				alert("전화번호를 입력해주세요.");
+  				$("#tel").focus();
+  				return;
+  			} */
+  			if(mobile.length == 0) {
+  				alert("연락처를 입력해 주세요.");
+  				$("#mobile").focus();
+  				return;
+  			}
+  			if(addr.length == 0) {
+  				alert("주소를 입력해주세요.");
+  				$("#addr").focus();
+  				return;
+  			}
+  			document.frm.action = "/mgnoincoun/joinReg.do";
+  			document.frm.submit();
+  			alert("등록되었습니다.");
+  		}
+  	}
+  	
+	 function fn_idCheck() {
+		var userId = $("#userId").val().replace(/ /gi, ""); // 아이디
+		if(userId.length <= 5) {
+			alert("아이디를 6글자 이상으로 입력해 주세요.");
+			$("#userId").focus();
+			return;
+		}
+		 
+	 	// var param = $("#frm").serialize(); 
+	 	var userId = $("#userId").val();
+		$.ajax({
+			type : "POST",
+			url : "/mgnoincoun/userIdCheck.do",
+			// data : {acptYn:"Y", caseNo:caseNo, cnsGb:cnsGb, userId:userId, userNm:userNm},
+			// data : param,
+			data : {userId:userId} ,
+			dataType : "json",
+			success : function(json) {
+				alert(json.msg);
+				if(json.idCheck == "Y") {
+					$("#userId").attr("readonly",true);					
+				}
+			},
+			error : function(e) {
+			  	alert("서버와 통신 오류입니다.");
+			}
+		});
+	 }
+  	
+  </script>
+  <body>
+    <!-- 헤더 ================================================== -->
+    <header class="navbar-wrapper">
+      <nav class="navbar navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/mgnoincoun/mobileMainList.do"><img src="/mgnoincoun/assets/img/logo.png" alt="경기도노인종합상담센터" /></a>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">전체메뉴</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/mgnoincoun/psyCnsIntro.do">이렇게 이용하세요<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/comfCnsInsert.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/mypageView.do">마이 페이지<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/freeBbsList.do">알려드려요 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/careLibraryList.do">마음돌봄 자료실<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/cnsAskList.do">상담문의하기<i class="fa fa-caret-right"></i></a></li>                
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="social-icons pull-right">
+          <ul class="nav nav-pills">
+            <li><a href="/mgnoincoun/mobileMainList.do" class="btn btn-primary btn-xs"><i class="fa fa-home mr5"></i>홈</a></li>
+             <c:choose>
+				 <c:when test="${loginYn eq 'Y'}">
+				     <li><a href="/mgnoincoun/logout.do" class="btn btn-primary btn-xs"><i class="fa fa-lock mr5"></i>로그아웃</a></li>
+				     <li><a href="/mgnoincoun/mypageView.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>마이페이지</a></li>
+				 </c:when>
+				 <c:otherwise>
+				     <li><a href="/mgnoincoun/login.do" class="btn btn-primary btn-xs"><i class="fa fa-unlock-alt mr5"></i>로그인</a></li>
+				     <li><a href="/mgnoincoun/agree.do" class="btn btn-primary  btn-xs"><i class="fa fa-user mr5"></i>회원가입</a></li>
+				 </c:otherwise>
+			 </c:choose>
+          </ul>
+        </div>
+    </header><!-- header.navbar-wrapper /-->
+    <!-- 컨텐츠  ================================================== -->
+    <div class="container content-wrapper">
+      <div class="page-header">
+        <h1 class="title"><i class="fa fa-comments-o"></i>회원가입</h1>
+        <ol class="breadcrumb">
+          <li><a href="/mgnoincoun/mobileMainList.do">Home</a></li>
+          <!--<li><a href="#">센터소개</a></li>-->
+          <li class="active">회원가입</li>
+        </ol>
+      </div>
+      <h2 class="title">개인정보</h2>
+      <div class="login-content">
+		<form class="form-wrap" id="frm" name="frm" method="post">
+          <div class="form-group line bt bb pt15 pb10">
+            <label class="control-label" for="">가입경로</label>
+            <div class="fr">
+              <span class="radio-custom"><input type="radio" name="joinPath" id="joinPath1" value="I" checked="checked"><label for="joinPath1"><i></i><span>인터넷</span></label></span>
+              <span class="radio-custom"><input type="radio" name="joinPath" id="joinPath2" value="Y" ><label for="joinPath2"><i></i><span>유튜브</span></label></span>
+              <span class="radio-custom"><input type="radio" name="joinPath" id="joinPath3" value="T" ><label for="joinPath3"><i></i><span>TV</span></label></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="userId">아이디<i class="cr">*</i></label>
+            <div class="input-group">
+              <input name="userId" id="userId" type="text" class="form-control" placeholder="Your ID" oninput="this.value = this.value.replace(/[^a-z0-9]/, '');" maxlength="15">
+              <span class="input-group-btn"><button type="button" class="btn btn-primary" onClick="fn_idCheck()">중복확인</button></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pw">비밀번호<i class="cr">*</i></label>
+            <input name="pw" id="pw" type="password" class="form-control" placeholder="Password" maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="pwChk">비밀번호 확인<i class="cr">*</i></label>
+            <input name="pwChk" id="pwChk" type="password" class="form-control" placeholder="Password" maxlength="20">
+          </div>
+          
+		  <div class="form-group">
+		  	   <label for="pwChk">시군구분<i class="cr">*</i></label>
+               <select class="form-control" id="sigunCd" name="sigunCd">
+					<c:forEach items="${sigunCdList }" var="code">
+						<option value="${code.odr }">${code.mclassNm }</option>
+					</c:forEach>
+				</select>
+          </div>
+          <div class="form-group">
+          		<label for="pwChk">센터구분<i class="cr">*</i></label>
+          		<select class="form-control" name="centerGb" id="centerGb" >
+					<c:forEach items="${cnsCenterList }" var="result">
+						<option value="${result.num }">${result.centerGb }</option>
+					</c:forEach>
+				</select>
+		  </div>
+		  <div class="form-group">
+          		<label for="pwChk">권역구분<i class="cr">*</i></label>
+          		<select class="form-control" name="zoneGb" id="zoneGb" >
+					<c:forEach items="${zoneList }" var="result">
+						<option value="${result.odr }">${result.mclassNm }</option>
+					</c:forEach>
+				</select>
+		  </div>
+          <div class="form-group">
+            <label class="control-label" for="userNm">성명<i class="cr">*</i></label>
+            <input type="text" id="userNm" name="userNm" class="form-control" maxlength="8" onlyKorean oninput="this.value = this.value.replace(/[^ㄱ-힣]/, '');">
+          </div>
+          <div class="form-group line bb pb10">
+            <label class="control-label" for="">성별<i class="cr">*</i></label>
+            <div class="fr">
+              <span class="radio-custom"><input type="radio" name="gender" id="gender1" value="M" checked="checked"><label for="gender1"><i></i><span>남</span></label></span>
+              <span class="radio-custom"><input type="radio" name="gender" id="gender2" value="F" ><label for="gender2"><i></i><span>여</span></label></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="birthDt">생년월일<i class="cr">*</i></label>
+            <input type="text" id="birthDt" name="birthDt" class="form-control" placeholder="19810101" maxlength="8" value="${map.birthDt }" oninput="this.value = this.value.replace(/[^0-9]/, '');">
+            <!-- <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-default ico"><i class="fa fa-calendar"></i></button>
+              </span>
+            </div> -->
+          </div>
+          <!-- <div class="form-group">
+            <label class="control-label" for="telNo">연락처<i class="cr">*</i></label>
+            <input type="text" class="form-control" id="tel" name="tel">
+          </div> -->
+          <div class="form-group">
+            <label class="control-label" for="email">이메일</label>
+            <input type="text" class="form-control" id="email" name="email" maxlength="30" value="${map.email }">
+          </div>
+          <!-- <div class="form-group">
+            <label class="control-label" for="tel">전화번호<i class="cr">*</i></label>
+            <input type="text" class="form-control" id="tel" name="tel" maxlength="20" oninput="this.value = this.value.replace(/[^0-9]/, '');">
+          </div> -->
+          <div class="form-group">
+            <label class="control-label" for="mobile">전화번호<i class="cr">*</i></label>
+            <input type="text" class="form-control" id="mobile" name="mobile" maxlength="20" value="${map.mobile }" oninput="this.value = this.value.replace(/[^0-9]/, '');">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="addr">주소<i class="cr">*</i></label>
+            <input type="text" class="form-control" id="addr" name="addr" maxlength="40" value="${map.addr }">
+            <!-- <input type="text" class="form-control mt5" id="">
+            <input type="text" class="form-control mt5" id=""> -->
+          </div>
+          <div class="btn-wrap line bt pt20">
+            <button type="button" class="btn btn-primary btn-lg w100p" onClick="javascript:fn_reg();">회원가입</button>
+            <button type="button" class="btn btn-primary btn-lg w100p" onclick="location.href='/mgnoincoun/login.do'" style="color: #fff; background-color: #78849E; border-color: #78849E;">로그인</button>
+          </div>
+        </form>
+	  </div>
+    </div><!-- .container.content-wrapper /-->
+    <!-- FOOTER -->
+    <footer>
+      <div class="copyaddress">
+        <ul>
+          <li><b>경기도노인종합상담센터</b></li>
+          <li><span>주소 : </span><a href="javascript:top_address()">경기도 수원시 장안구 경수대로 1150, 도서관 3층</a></li>
+          <li><span>사업자등록번호 : </span>722-82-00367<span class="ml10">대표 : </span>김미나</li>
+          <li><span> TEL : </span> <a href="javascript:top_tel()">031-222-1360</a></li>
+          <li><span> FAX : </span><a href="javascript:top_fax()">070-4832-6366</a></li>
+          <li><span>E-mail : </span><a href="javascript:top_email()">ggnoincoun@gmail.com</a></li>
+          <li><span>개인정보담당자 : </span>김지원  </li>
+          <li class="copyright">COPYRIGHT(c) <b>GNOIN</b> ALL RIGHT RESERVED</li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="/mgnoincoun/assets/js/jquery.min.js"></script>
+    <script src="/mgnoincoun/assets/js/bootstrap.min.js"></script>
+    <!--<script src="assets/js/docs.min.js"></script>-->
+    <script src="/mgnoincoun/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      $(document).ready(function(){ 
+          // 로그인 회원가입 관리자 메뉴  
+        $('.navbar-toggle').on('click', function() {
+          $('.social-icons').fadeToggle(200);
+        });
+      });
+		</script>
+  </body>
+</html>

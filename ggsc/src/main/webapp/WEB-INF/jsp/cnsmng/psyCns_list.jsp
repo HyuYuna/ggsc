@@ -53,12 +53,6 @@
 	}
 	
 	function fn_popupDoc(psyNum, gIdx, dtlIdx, rnum){
-		
-		if(psyNum == "106" || psyNum == "107" || psyNum == "113") {
-			alert("사용하지 않는 심리검사지입니다.");
-			return false;
-		}
-		
 		var mnuCd = "${mnuCd}";
 		var url = "/gnoincoundb/psyCnsDoc.do?mnuCd="+mnuCd+"&psyNum="+psyNum+"&gIdx="+gIdx+"&dtlIdx="+dtlIdx + "&rnum=" + rnum;
 		var name = "상담사전사후기록지";

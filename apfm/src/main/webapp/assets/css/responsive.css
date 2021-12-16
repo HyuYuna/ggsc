@@ -1,0 +1,132 @@
+@charset "utf-8";
+/*@media (max-width: 767px){
+.nav-justified>li {
+    display: table-cell;
+    width: 1%;
+}
+  }*/
+@media (min-width: 768px) {
+  .container { width: 100%}
+  .desktop {display: block}
+  .breadcrumb {display: block;}
+  .social-icons {display: inline-block; top:10px; right: 20px; width: auto; min-width: auto; background-color: transparent; border: none; height: auto; position: absolute;}
+  .social-icons li > a { background-color: #fff; color: #333; border-left: solid 1px #eee; padding: 1px 10px; border: none;}
+  .social-icons li:first-child > a { border-left: none;}
+  .social-icons .btn .fa {color: #767676;}
+  .social-icons .nav.nav-pills li > a:hover { background-color: #fff;  color: #735bff;}
+  .social-icons .nav.nav-pills li > a:hover i.fa {  color: #735bff;}
+   /* 공통 */
+  .navbar-wrapper {border-top: solid 1px #ddd;  border-bottom: solid 1px #ddd; /*background-color: #735bff; */}
+  .navbar-wrapper .navbar {height: 98px;}
+  .container .navbar-collapse {position: absolute; padding:0; border: none; clear: both; background-color: transparent; text-align: center; border-top: solid 1px #eee;}
+  .navbar-collapse .navbar-nav { margin: auto; width: auto;background-color: transparent; float: none; display: inline-block; }
+  .navbar-nav .dropdown-menu>li>a { font-size: 16px; padding: 8px 20px;}
+  .navbar-nav .dropdown-menu>li>a .fa{ display: none;}
+  .navbar-nav>li>.dropdown-menu { padding: 0;}
+  .navbar-nav .dropdown:hover >.dropdown-menu { display: block;}
+  .navbar-wrapper .navbar .container {margin: 0 auto; padding: 0 30px;}
+  /*.navbar-nav>li { width: 21%;}
+  .navbar-nav>li:nth-child(2) { width: 37%;}*/
+  .navbar-nav>li {padding:  0 10px; /*border-left: solid 1px #ddd;*/ }
+  .navbar-nav>li:after { position: absolute; top: calc(50% - 5px);  right:0;  content:''; display: inline-block; height: 10px; width: 1px; background-color:#ccc;}
+  .navbar-nav>li:last-child:after { display: none;}
+  .navbar-nav>li >a { border-bottom: none; font-size: 15px; padding: 10px 0; position:relative;}
+  .navbar-nav>li > a:after{ position: absolute; bottom:-3px; left:0; right:0;  content:''; height: 3px; background-color:#735BFF; display: none; }
+  .navbar-nav>li >a i.fa { display: none;}
+  .nav.navbar-nav>li>a:focus, 
+  .nav.navbar-nav>li>a:hover { color: #000; }
+  .nav.navbar-nav>li>a:hover:after { display: block; background-color: rgba(115, 91, 255, 0.7);}
+  .navbar-nav>li.active > a { background-color: transparent; font-weight: 500}
+  .navbar-nav>li.active > a:hover { background-color:#fff; color:#735BFF;} 
+  .navbar-nav>li.active > a:after{ display: block;}
+  .navbar-nav>li.active > a:hover:after{ display: block;background-color:#735BFF; }
+  .gg-relate { margin-top: 15px; width: auto;}
+  footer {border-top: solid 1px #ddd; background-color: transparent;}
+  .copyaddress { width: 750px;}
+  .copyaddress li:first-child {float: none; }
+  .copyaddress li.copyright {clear: both; }
+  .copyaddress li {float: left;}
+  /* 공통 서브화면 */
+ /* .container.content-wrapper { width: 100%; margin-left:0; margin-right:0; padding:0;}*/
+  .container.content-wrapper {margin-top: 90px;}
+  .page-header {position: relative; height: 100px; /*  border-bottom: solid 1px #eee; background-color: #eee;  margin-bottom: 20px; */}
+  .page-header .title{font-size: 32px; line-height: 50px; }
+  .page-header .title .fa{font-size: 32px; width: 50px; height: 50px; line-height: 50px; display: none;  /* color: #fff; background-color:#735BFF;*/ }
+  .breadcrumb { display: block; position: absolute; right: 0; top:20px; margin-bottom:0; background-color: transparent; }
+  .breadcrumb>li+li:before {content: ">";}
+  .breadcrumb a {color: #000; color: #777}
+  .breadcrumb > .active {color: #000;}
+  
+   /* main */
+  .carousel {margin-top: 98px;}
+  .main-menu { margin: 15px auto; width: 100%; display: table; /* box-shadow: 0 5px 10px rgba(0, 0, 0, .05); */} 
+  .main-menu .col-sm-2 {margin-left: -1px;}
+  .main-menu .col-sm-2:first-child {margin-left:0;}
+  /*.main-menu .col-sm-2 {width: calc(16.66666667% - 4px);}
+  .main-menu .col-sm-2 a { border: solid 1px #ccc;}*/
+  .main-menu .icon-box-vertical{ /*height: 100px; top: 13px;border-right: solid 1px #eee;*/ }
+  .main-menu .col-xs-4 {border-color:#ddd;/* margin: 2px;*/}
+  .main-menu .col-xs-4:nth-child(4),
+  .main-menu .col-xs-4:nth-child(5),
+  .main-menu .col-xs-4:nth-child(6) {border-color:#ddd #ddd #ddd #ddd }
+
+  .main-menu .col-xs-4:nth-child(2),
+  .main-menu .col-xs-4:nth-child(3),
+  .main-menu .col-xs-4:nth-child(5),
+  .main-menu .col-xs-4:nth-child(6) {border-color:#ddd #ddd #ddd #ddd}
+ /* .main-menu .col-xs-4:first-child {margin-left: calc(50% - 380px);}*/
+  /*.carousel {height: 442px;}
+  .carousel-indicators { width: 750px; left: calc(50% - 350px); text-align: left; margin:0; }
+  .carousel .item { height: 442px; }
+  .carousel-caption { width: 760px; left: calc(50% - 380px);}
+  .carousel-inner > .item > img{ right: calc(50% - 380px); height: 442px;}
+  .carousel .item .carousel-caption  { color: #fff !important; font-size: 1.5em; padding-top: 50px; }
+  .carousel .item .carousel-caption h1 strong { color: #fff !important;}
+  .carousel .item.item01 { background-color: #735BFF;}
+  .container-fluid {padding: 0;}
+  .main-menu { margin: 0 auto; width: 100%; box-shadow: 0 5px 10px rgba(0, 0, 0, .05); display: table; } 
+  .main-menu .col-xs-4 {border: none; width: 127px; display: table-cell;}
+  .main-menu .icon-box-vertical{border-right: solid 1px #eee; height: 100px; top: 13px;}
+  .main-menu .col-xs-4:first-child {margin-left: calc(50% - 380px);}*/
+ 
+  
+  /* 탭메뉴 */
+  .nav-tabs.nav-justified>li>a {padding: 10px; font: 18px;}
+  /* 간편한 심리검사 */
+  .quick-question li { width: 49%;}
+  .quick-question li:nth-child(2),
+  .quick-question li:nth-child(4) { margin-left: 2%;}
+/*
+  .navbar-wrapper {
+    margin-top: 0;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  
+
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+*/
+
+  
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px){
+}
