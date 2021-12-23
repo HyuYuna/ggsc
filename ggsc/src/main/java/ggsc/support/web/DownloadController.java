@@ -1556,7 +1556,7 @@ public class DownloadController {
 			cell.setCellValue("사별 스트레스 척도");
 			cell = row.createCell(152);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("한국형 알코올 중독 선별 검사");
+			cell.setCellValue("스트레스자각척도");
 			cell = row.createCell(153);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("부부 의사소통 척도");
@@ -1568,7 +1568,7 @@ public class DownloadController {
 			cell.setCellValue("치매선별용 한국어판 간이정신상태검사");
 			cell = row.createCell(156);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("중장년상담선별척도지");
+			cell.setCellValue("상담선별척도지");
 			cell = row.createCell(157);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("불안척도(특성불안)");
