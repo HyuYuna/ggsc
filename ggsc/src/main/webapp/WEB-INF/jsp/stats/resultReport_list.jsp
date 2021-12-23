@@ -887,7 +887,7 @@
 			<table class="table-style1" style="margin-top:1px; width: 13400px;">
                 <colgroup>
                     <%
-                    	for(int i=0; i<219; i++) {
+                    	for(int i=0; i<223; i++) {
                     		%><col style="width: 0.3%;" /><%
                     	}
                     %>
@@ -901,10 +901,10 @@
                     	<th scope="col" colspan="16">1-3. 연령별 현황</th>
                     	<th scope="col" colspan="17">2. 상담경위</th>
                     	<th scope="col" colspan="18">3. 상담방법</th>
-                    	<th scope="col" colspan="41">4-1. 상담내용</th>
+                    	<th scope="col" colspan="43">4-1. 상담내용</th>
                         <th scope="col" colspan="20">4-2. 정보 제공 및 연계</th>
                         <th scope="col" colspan="7">○ 4-3. 상담진행현황</th>
-                        <th scope="col" colspan="17">○ 4-4. 심리검사</th>
+                        <th scope="col" colspan="19">○ 4-4. 심리검사</th>
                         <th scope="col" colspan="7">5. 상담지원봉사자 활동</th>
                         <th scope="col" colspan="7">6. 네트워크 활동</th>
                         <th scope="col" colspan="12">○ 7-1. 대상</th>
@@ -930,9 +930,9 @@
                         <th scope="col" colspan="3">집단상담(건)</th>
                         <th scope="col" colspan="7">정보제공상담(건)</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="16">개인상담(건)</th>
+                        <th scope="col" colspan="17">개인상담(건)</th>
                         <th scope="col" colspan="8">집단상담(건)</th>
-                        <th scope="col" colspan="16">정보제공상담(건)</th>
+                        <th scope="col" colspan="17">정보제공상담(건)</th>
                         <th scope="col" rowspan="2">합계(건)<br/>(내부+외부)</th>
                         <th scope="col" colspan="7">내부 연계</th>
                         <th scope="col" colspan="12">외부 연계</th>
@@ -940,7 +940,7 @@
                         <th scope="col" rowspan="2">정보제공상담</th>
                         <th scope="col" colspan="5">지속상담</th>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="16">심리검사</th>
+                        <th scope="col" colspan="18">심리검사</th>
                         <th scope="col" rowspan="2">계(건)</th>
                         <th scope="col" colspan="6">상담지원봉사자 활동</th>
                         <th scope="col" rowspan="2">계(건)</th>
@@ -1008,8 +1008,8 @@
                     	<td>대인관계</td>
                     	<td>치매</td>
                     	<td>중독</td>
-                    	<td>정신건강장애</td>
-                    	<td>자살</td>
+                    	<td>정신건강·장애 </td>
+                    	<td>건강</td>
                     	<td>경제</td>
                     	<td>생활</td>
                     	<td>성</td>
@@ -1017,6 +1017,7 @@
                     	<td>가족</td>
                     	<td>학대</td>
                     	<td>노년생애준비</td>
+                    	<td>자살</td>
                     	<td>재난</td>
                     	<td>기타</td>
                     	
@@ -1034,8 +1035,8 @@
                     	<td>대인관계</td>
                     	<td>치매</td>
                     	<td>중독</td>
-                    	<td>정신건강장애</td>
-                    	<td>자살</td>
+                    	<td>정신건강·장애 </td>
+                    	<td>건강</td>
                     	<td>경제</td>
                     	<td>생활</td>
                     	<td>성</td>
@@ -1043,6 +1044,7 @@
                     	<td>가족</td>
                     	<td>학대</td>
                     	<td>노년생애준비</td>
+                    	<td>자살</td>
                     	<td>재난</td>
                     	<td>기타</td>
                     	
@@ -1073,22 +1075,24 @@
                     	<td>20회기이상30회기미만</td>
                     	<td>30회기이상</td>
                     	
-                    	<td>노인상담선별척도지</td>
+                    	<td>상담 사전·사후 기록지</td>
                     	<td>DUKE-AD</td>
                     	<td>죽음학대 질문지</td>
                     	<td>노인우울척도</td>
                     	<td>노인우울및자살사고 척도</td>
-                    	<td>노인절망감척도</td>
-                    	<td>사회적지지척도</td>
+                    	<td>한국형 알코올 중독 선별 검사(AUDIT-K)</td>
+                    	<td>심리적 안녕감척도</td>
                     	<td>대인관계변화척도</td>
                     	<td>한국형 알코올 중독 선별 검사</td>
                     	<td>불안척도</td>
                     	<td>스트레스 척도</td>
                     	<td>사별 스트레스 척도</td>
-                    	<td>부부친밀감 척도</td>
+                    	<td>한국형 알코올 중독 선별 검사</td>
                     	<td>부부의사소통 척도</td>
-                    	<td>문장완성검사</td>
+                    	<td>한국판 자기자비 척도</td>
                     	<td>치매선별용 한국어판 간이정신상태검사</td>
+                    	<td>중장년상담선별척도지</td>
+                    	<td>불안척도(특성불안)</td>
                     	
                     	<td>사후관리-안부확인(방문)</td>
                     	<td>사후관리-안부확인(전화)</td>
@@ -1178,7 +1182,7 @@
                         <td>명</td>
                         
                         <%
-                        	for(int i=0; i<117; i++) { // 69
+                        	for(int i=0; i<121; i++) { // 69
                         		%><td>건</td><%
                         	}
                         %>
@@ -1236,7 +1240,7 @@
                     	<td>&nbsp;</td>
                     	<td>합계</td>
                     	<%
-                    		for(int i=1; i<212; i++) {
+                    		for(int i=1; i<216; i++) {
                     			%><td data-class='c<%=i%>'>&nbsp;</td><%
                     		}
                     	%>

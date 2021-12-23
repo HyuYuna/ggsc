@@ -67,7 +67,7 @@
 			</c:if>
 			<!-- <button type="button" class="btn-basic" onClick="javascript:fn_save();" style="background-color: green;color:white;">수정</button> -->
 			<!-- <button type="button" class="btn-basic" onClick="javascript:fn_pdf();" style="background-color: green;color:white;">PDF</button> -->
-			<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(23, '${result.num }')">PDF 다운</button>
+			<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(36, '${result.num }')">PDF 다운</button>
 		</div>	
 			<form id="frm" name="frm" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

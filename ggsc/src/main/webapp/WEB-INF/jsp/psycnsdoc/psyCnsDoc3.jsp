@@ -22,14 +22,6 @@
 	<script src="/gnoincoundb/js/common.js"></script>
 </head>
 <script>
-	$(document).ready(function() {
-	  	var msg = "${msg}";
-	  	if(msg.length > 0) {
-	  		alert(msg);
-	  		window.close();
-	  	}
-	});
-	
 	if('${param.gIdx}' == ''){
 		opener.location.reload();
 		var msg = "${msg}";
@@ -41,14 +33,6 @@
 	
 	$(document).ready(function() {
 	  	getValues();
-	  	var cnsleNm = $("#cnsleNm").val();
-	  	if(cnsleNm == "") {
-	  		$("#sBtn").css("display","none");
-	  		$("#uBtn").css("display","");
-	  	} else {
-	  		$("#sBtn").css("display","");
-	  		$("#uBtn").css("display","none");
-	  	}
 	});
 	
 	function getValues(){
@@ -446,8 +430,10 @@
             </form>
             <div class="btn" style="text-align: right; display: block; margin-top: 15px;">
             	<button type="button" class="btn-basic" onclick="window.close();" style="background-color:#fc692f;color:white;">닫기</button>
-				<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('U');" style="background-color:#fc692f;color:white;">수정</button>
-				<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg('S');" style="background-color:#fc692f;color:white;">저장</button>
+				<c:choose>
+	            	<c:when test="${param.dtlIdx == 0}"> <button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">저장</button> </c:when>
+	            	<c:when test="${param.dtlIdx > 0 }"> <button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">수정</button> </c:when>
+	            </c:choose>
 			</div>
         </div>
     </div>

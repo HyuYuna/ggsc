@@ -131,11 +131,13 @@
                 	<col style="width: 5%;" />
                 	<col style="width: 5%;" />
                 	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
+                	<col style="width: 5%;" />
                 </colgroup>
                 <tbody id="tbl_item_box">
                     <tr>
                         <th scope="col" rowspan="2">계(건)</th>
-                        <th scope="col" colspan="16">심리검사</th>
+                        <th scope="col" colspan="18">심리검사</th>
                     </tr>
                     <tr>
                         <td>상담사전사후기록지</td>
@@ -143,17 +145,19 @@
                         <td>죽음학대 질문지</td>
                         <td>GDS-KR 노인우울</td>
                         <td>GDS-SI 노인우울 자살사고</td>
-                        <td>노인절망감척도</td>
-                        <td>사회적지지척도</td>
+                        <td>상담사전사후기록지</td>
+                        <td>심리적 안녕감척도</td>
                         <td>대인관계변화척도</td>
                         <td>한국형 알코올 중독 선별 검사</td>
                         <td>불안척도</td>
                         <td>스트레스 척도</td>
                         <td>사별스트레스 척도</td>
-                        <td>부부친밀감 척도</td>
+                        <td>스트레스자각척도</td>
                         <td>부부의사소통 척도</td>
-                        <td>문장완성검사</td>
-                        <td>MMSE-K 치매선별</td>
+                        <td>한국판 자기자비 척도</td>
+                        <td>치매선별용 한국어판 간이정신상태검사</td>
+                        <td>중장년상담선별척도지</td>
+                        <td>불안 척도(특성불안)</td>
                     </tr>
                      <tr>
                         <td data-class='p0'></td>
@@ -173,6 +177,8 @@
                         <td data-class='p14'></td>
                         <td data-class='p15'></td>
                         <td data-class='p16'></td>
+                        <td data-class='p17'></td>
+                        <td data-class='p18'></td>
                     </tr>
                 </tbody>
             </table>

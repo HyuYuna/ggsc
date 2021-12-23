@@ -330,7 +330,7 @@
 							</tr>						
 						</tbody>
 					</table>
-				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
+				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px auto auto auto;">
 					<div>
 						<h1 style="text-align: center; font-size:x-large; padding-bottom: 20px; border-bottom-style: solid; border-width: thin;">개인정보수집·이용·제공 동의서</h1><br>
 					</div>

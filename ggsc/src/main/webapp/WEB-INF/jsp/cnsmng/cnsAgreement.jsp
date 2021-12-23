@@ -308,7 +308,7 @@
 							</tr>
 						</tbody>
 					</table>
-				<div style="border-style: solid; border-width: thin; width:700px;; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
+				<div style="border-style: solid; border-width: thin; width:700px;; height: auto; padding: 30px 20px 20px 20px; margin: 10px auto auto auto;">
 					<div>
 						<h1 style="text-align: center; font-size:x-large; padding-bottom: 20px;">상담동의서</h1>
 					</div>

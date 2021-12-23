@@ -683,7 +683,6 @@
 		SELECT 
 			cnsle_nm ,
 			case_no ,
-			case NO20 when 'M' then '남자' when 'F' then '여자' ELSE '알수없음' END AS survey1y ,
 			NO21 AS survey1n ,
 			tel_no AS survey24y ,
 			NO22 AS survey23n ,
@@ -730,6 +729,213 @@
 			CASE WHEN NO18 = '3' THEN 'active' ELSE '' END SURVEY22Y ,
 			CASE WHEN NO18 = '4' THEN 'active' ELSE '' END SURVEY22N ,
 			CASE WHEN NO19 = '1' THEN '예'when NO19 = '2' then '아니오' ELSE '' END SURVEY23Y 
+		FROM 
+			gs_psy_cns_doc_dtl
+		WHERE 
+			NUM = #num#
+	</select>
+	
+	
+	<!-- 심리검사6 - 한국형 알코올 중독 선별 검사(AUDIT-K)  -->
+	<select id="supportDao.PDFpsyCnsDoc6" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT 
+			cnsle_nm ,
+			case_no ,
+			tel_no AS survey1y ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
+			CASE WHEN NO1 = '1' THEN 'active' ELSE '' END SURVEY2Y ,
+			CASE WHEN NO1 = '2' THEN 'active' ELSE '' END SURVEY2N ,
+			CASE WHEN NO1 = '3' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = '4' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO1 = '5' THEN 'active' ELSE '' END SURVEY4Y ,
+			
+			CASE WHEN NO2 = '1' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO2 = '2' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO2 = '3' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO2 = '4' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO2 = '5' THEN 'active' ELSE '' END SURVEY6N ,
+			
+			CASE WHEN NO3 = '1' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO3 = '2' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO3 = '3' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO3 = '4' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO3 = '5' THEN 'active' ELSE '' END SURVEY9Y ,
+			
+			CASE WHEN NO4 = '1' THEN 'active' ELSE '' END SURVEY9N ,
+			CASE WHEN NO4 = '2' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO4 = '3' THEN 'active' ELSE '' END SURVEY10N ,
+			CASE WHEN NO4 = '4' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO4 = '5' THEN 'active' ELSE '' END SURVEY11N ,
+			
+			CASE WHEN NO5 = '1' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO5 = '2' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO5 = '3' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO5 = '4' THEN 'active' ELSE '' END SURVEY13N ,
+			CASE WHEN NO5 = '5' THEN 'active' ELSE '' END SURVEY14Y ,
+			
+			CASE WHEN NO6 = '1' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO6 = '2' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO6 = '3' THEN 'active' ELSE '' END SURVEY15N ,
+			CASE WHEN NO6 = '4' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO6 = '5' THEN 'active' ELSE '' END SURVEY16N ,
+			
+			CASE WHEN NO7 = '1' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO7 = '2' THEN 'active' ELSE '' END SURVEY17N ,
+			CASE WHEN NO7 = '3' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO7 = '4' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO7 = '5' THEN 'active' ELSE '' END SURVEY19Y ,
+			
+			CASE WHEN NO8 = '1' THEN 'active' ELSE '' END SURVEY19N ,
+			CASE WHEN NO8 = '2' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO8 = '3' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO8 = '4' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO8 = '5' THEN 'active' ELSE '' END SURVEY21N ,
+			
+			CASE WHEN NO9 = '1' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO9 = '2' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO9 = '3' THEN 'active' ELSE '' END SURVEY23Y ,
+			CASE WHEN NO9 = '4' THEN 'active' ELSE '' END SURVEY23N ,
+			CASE WHEN NO9 = '5' THEN 'active' ELSE '' END SURVEY24Y ,
+			
+			CASE WHEN NO10 = '1' THEN 'active' ELSE '' END SURVEY24N ,
+			CASE WHEN NO10 = '2' THEN 'active' ELSE '' END SURVEY25Y ,
+			CASE WHEN NO10 = '3' THEN 'active' ELSE '' END SURVEY25N ,
+			CASE WHEN NO10 = '4' THEN 'active' ELSE '' END SURVEY26Y ,
+			CASE WHEN NO10 = '5' THEN 'active' ELSE '' END SURVEY26N ,
+			NO11 AS SURVEY27Y ,
+			NO12 AS SURVEY27N ,
+			NO13 AS SURVEY28Y ,
+			NO14 AS SURVEY28N ,
+			NO15 AS SURVEY29Y ,
+			NO16 AS SURVEY29N 
+		FROM 
+			gs_psy_cns_doc_dtl
+		WHERE 
+			NUM = #num#
+	</select>
+	
+	<!-- 심리검사7 - 심리적 안녕감척도 PDF -->
+	<select id="supportDao.PDFpsyCnsDoc7" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT 
+			cnsle_nm ,
+			case_no ,
+			tel_no AS survey1y ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
+			CASE WHEN NO1 = '1' THEN 'active' ELSE '' END SURVEY2Y ,
+			CASE WHEN NO1 = '2' THEN 'active' ELSE '' END SURVEY2N ,
+			CASE WHEN NO1 = '3' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = '4' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO1 = '5' THEN 'active' ELSE '' END SURVEY4Y ,
+			
+			CASE WHEN NO2 = '1' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO2 = '2' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO2 = '3' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO2 = '4' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO2 = '5' THEN 'active' ELSE '' END SURVEY6N ,
+			
+			CASE WHEN NO3 = '1' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO3 = '2' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO3 = '3' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO3 = '4' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO3 = '5' THEN 'active' ELSE '' END SURVEY9Y ,
+			
+			CASE WHEN NO4 = '1' THEN 'active' ELSE '' END SURVEY9N ,
+			CASE WHEN NO4 = '2' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO4 = '3' THEN 'active' ELSE '' END SURVEY10N ,
+			CASE WHEN NO4 = '4' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO4 = '5' THEN 'active' ELSE '' END SURVEY11N ,
+			
+			CASE WHEN NO5 = '1' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO5 = '2' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO5 = '3' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO5 = '4' THEN 'active' ELSE '' END SURVEY13N ,
+			CASE WHEN NO5 = '5' THEN 'active' ELSE '' END SURVEY14Y ,
+			
+			CASE WHEN NO6 = '1' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO6 = '2' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO6 = '3' THEN 'active' ELSE '' END SURVEY15N ,
+			CASE WHEN NO6 = '4' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO6 = '5' THEN 'active' ELSE '' END SURVEY16N ,
+			
+			CASE WHEN NO7 = '1' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO7 = '2' THEN 'active' ELSE '' END SURVEY17N ,
+			CASE WHEN NO7 = '3' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO7 = '4' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO7 = '5' THEN 'active' ELSE '' END SURVEY19Y ,
+			
+			CASE WHEN NO8 = '1' THEN 'active' ELSE '' END SURVEY19N ,
+			CASE WHEN NO8 = '2' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO8 = '3' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO8 = '4' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO8 = '5' THEN 'active' ELSE '' END SURVEY21N ,
+			
+			CASE WHEN NO9 = '1' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO9 = '2' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO9 = '3' THEN 'active' ELSE '' END SURVEY23Y ,
+			CASE WHEN NO9 = '4' THEN 'active' ELSE '' END SURVEY23N ,
+			CASE WHEN NO9 = '5' THEN 'active' ELSE '' END SURVEY24Y ,
+			
+			CASE WHEN NO10 = '1' THEN 'active' ELSE '' END SURVEY24N ,
+			CASE WHEN NO10 = '2' THEN 'active' ELSE '' END SURVEY25Y ,
+			CASE WHEN NO10 = '3' THEN 'active' ELSE '' END SURVEY25N ,
+			CASE WHEN NO10 = '4' THEN 'active' ELSE '' END SURVEY26Y ,
+			CASE WHEN NO10 = '5' THEN 'active' ELSE '' END SURVEY26N ,
+			
+			CASE WHEN NO11 = '1' THEN 'active' ELSE '' END SURVEY27Y ,
+			CASE WHEN NO11 = '2' THEN 'active' ELSE '' END SURVEY27N ,
+			CASE WHEN NO11 = '3' THEN 'active' ELSE '' END SURVEY28Y ,
+			CASE WHEN NO11 = '4' THEN 'active' ELSE '' END SURVEY28N ,
+			CASE WHEN NO11 = '5' THEN 'active' ELSE '' END SURVEY29Y ,
+			
+			CASE WHEN NO12 = '1' THEN 'active' ELSE '' END SURVEY29N ,
+			CASE WHEN NO12 = '2' THEN 'active' ELSE '' END SURVEY30Y ,
+			CASE WHEN NO12 = '3' THEN 'active' ELSE '' END SURVEY30N ,
+			CASE WHEN NO12 = '4' THEN 'active' ELSE '' END SURVEY31Y ,
+			CASE WHEN NO12 = '5' THEN 'active' ELSE '' END SURVEY31N ,
+			
+			CASE WHEN NO13 = '1' THEN 'active' ELSE '' END SURVEY32Y ,
+			CASE WHEN NO13 = '2' THEN 'active' ELSE '' END SURVEY32N ,
+			CASE WHEN NO13 = '3' THEN 'active' ELSE '' END SURVEY33Y ,
+			CASE WHEN NO13 = '4' THEN 'active' ELSE '' END SURVEY33N ,
+			CASE WHEN NO13 = '5' THEN 'active' ELSE '' END SURVEY34Y ,
+			
+			CASE WHEN NO14 = '1' THEN 'active' ELSE '' END SURVEY34N ,
+			CASE WHEN NO14 = '2' THEN 'active' ELSE '' END SURVEY35Y ,
+			CASE WHEN NO14 = '3' THEN 'active' ELSE '' END SURVEY35N ,
+			CASE WHEN NO14 = '4' THEN 'active' ELSE '' END SURVEY36Y ,
+			CASE WHEN NO14 = '5' THEN 'active' ELSE '' END SURVEY36N ,
+			
+			CASE WHEN NO15 = '1' THEN 'active' ELSE '' END SURVEY37Y ,
+			CASE WHEN NO15 = '2' THEN 'active' ELSE '' END SURVEY37N ,
+			CASE WHEN NO15 = '3' THEN 'active' ELSE '' END SURVEY38Y ,
+			CASE WHEN NO15 = '4' THEN 'active' ELSE '' END SURVEY38N ,
+			CASE WHEN NO15 = '5' THEN 'active' ELSE '' END SURVEY39Y ,
+			
+			CASE WHEN NO16 = '1' THEN 'active' ELSE '' END SURVEY39N ,
+			CASE WHEN NO16 = '2' THEN 'active' ELSE '' END SURVEY40Y ,
+			CASE WHEN NO16 = '3' THEN 'active' ELSE '' END SURVEY40N ,
+			CASE WHEN NO16 = '4' THEN 'active' ELSE '' END SURVEY41Y ,
+			CASE WHEN NO16 = '5' THEN 'active' ELSE '' END SURVEY41N ,
+			
+			CASE WHEN NO17 = '1' THEN 'active' ELSE '' END SURVEY42Y ,
+			CASE WHEN NO17 = '2' THEN 'active' ELSE '' END SURVEY42N ,
+			CASE WHEN NO17 = '3' THEN 'active' ELSE '' END SURVEY43Y ,
+			CASE WHEN NO17 = '4' THEN 'active' ELSE '' END SURVEY43N ,
+			CASE WHEN NO17 = '5' THEN 'active' ELSE '' END SURVEY44Y ,
+			
+			CASE WHEN NO18 = '1' THEN 'active' ELSE '' END SURVEY44N ,
+			CASE WHEN NO18 = '2' THEN 'active' ELSE '' END SURVEY45Y ,
+			CASE WHEN NO18 = '3' THEN 'active' ELSE '' END SURVEY45N ,
+			CASE WHEN NO18 = '4' THEN 'active' ELSE '' END SURVEY46Y ,
+			CASE WHEN NO18 = '5' THEN 'active' ELSE '' END SURVEY46N ,
+		
+			NO19 AS SURVEY47Y ,
+			NO20 AS SURVEY47N ,
+			NO21 AS SURVEY48Y ,
+			NO22 AS SURVEY48N ,
+			NO23 AS SURVEY49Y ,
+			NO24 AS SURVEY49N 
+			
 		FROM 
 			gs_psy_cns_doc_dtl
 		WHERE 
@@ -1001,24 +1207,7 @@
 			CASE WHEN NO20 = '1' THEN 'active' ELSE '' END SURVEY40Y ,
 			CASE WHEN NO20 = '2' THEN 'active' ELSE '' END SURVEY40N ,
 			CASE WHEN NO20 = '3' THEN 'active' ELSE '' END SURVEY41Y ,
-			CASE WHEN NO20 = '4' THEN 'active' ELSE '' END SURVEY41N ,
-			CASE WHEN NO17 = '1' THEN 'active' ELSE '' END SURVEY42Y ,
-			CASE WHEN NO17 = '2' THEN 'active' ELSE '' END SURVEY42N ,
-			CASE WHEN NO17 = '3' THEN 'active' ELSE '' END SURVEY43Y ,
-			CASE WHEN NO17 = '4' THEN 'active' ELSE '' END SURVEY43N ,
-			CASE WHEN NO18 = '1' THEN 'active' ELSE '' END SURVEY44Y ,
-			CASE WHEN NO18 = '2' THEN 'active' ELSE '' END SURVEY44N ,
-			CASE WHEN NO18 = '3' THEN 'active' ELSE '' END SURVEY45Y ,
-			CASE WHEN NO18 = '4' THEN 'active' ELSE '' END SURVEY45N ,
-			CASE WHEN NO19 = '1' THEN 'active' ELSE '' END SURVEY46Y ,
-			CASE WHEN NO19 = '2' THEN 'active' ELSE '' END SURVEY46N ,
-		
-			CASE WHEN NO19 = '3' THEN 'active' ELSE '' END SURVEY47Y ,
-			CASE WHEN NO19 = '4' THEN 'active' ELSE '' END SURVEY47N ,
-			CASE WHEN NO20 = '1' THEN 'active' ELSE '' END SURVEY48Y ,
-			CASE WHEN NO20 = '2' THEN 'active' ELSE '' END SURVEY48N ,
-			CASE WHEN NO20 = '3' THEN 'active' ELSE '' END SURVEY49Y ,
-			CASE WHEN NO20 = '4' THEN 'active' ELSE '' END SURVEY49N 
+			CASE WHEN NO20 = '4' THEN 'active' ELSE '' END SURVEY41N 
 			
 		FROM 
 			gs_psy_cns_doc_dtl
@@ -1336,6 +1525,86 @@
 			NUM = #num#
 	</select>
 	
+	<!-- 심리검사13 - 스트레스 자각 척도(PSS) PDF -->
+	<select id="supportDao.PDFpsyCnsDoc13" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT 
+			cnsle_nm ,
+			case_no ,
+			tel_no AS survey1y ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
+			CASE WHEN NO1 = '1' THEN 'active' ELSE '' END SURVEY2Y ,
+			CASE WHEN NO1 = '2' THEN 'active' ELSE '' END SURVEY2N ,
+			CASE WHEN NO1 = '3' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = '4' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO1 = '5' THEN 'active' ELSE '' END SURVEY4Y ,
+			
+			CASE WHEN NO2 = '1' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO2 = '2' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO2 = '3' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO2 = '4' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO2 = '5' THEN 'active' ELSE '' END SURVEY6N ,
+			
+			CASE WHEN NO3 = '1' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO3 = '2' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO3 = '3' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO3 = '4' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO3 = '5' THEN 'active' ELSE '' END SURVEY9Y ,
+			
+			CASE WHEN NO4 = '1' THEN 'active' ELSE '' END SURVEY9N ,
+			CASE WHEN NO4 = '2' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO4 = '3' THEN 'active' ELSE '' END SURVEY10N ,
+			CASE WHEN NO4 = '4' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO4 = '5' THEN 'active' ELSE '' END SURVEY11N ,
+			
+			CASE WHEN NO5 = '1' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO5 = '2' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO5 = '3' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO5 = '4' THEN 'active' ELSE '' END SURVEY13N ,
+			CASE WHEN NO5 = '5' THEN 'active' ELSE '' END SURVEY14Y ,
+			
+			CASE WHEN NO6 = '1' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO6 = '2' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO6 = '3' THEN 'active' ELSE '' END SURVEY15N ,
+			CASE WHEN NO6 = '4' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO6 = '5' THEN 'active' ELSE '' END SURVEY16N ,
+			
+			CASE WHEN NO7 = '1' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO7 = '2' THEN 'active' ELSE '' END SURVEY17N ,
+			CASE WHEN NO7 = '3' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO7 = '4' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO7 = '5' THEN 'active' ELSE '' END SURVEY19Y ,
+			
+			CASE WHEN NO8 = '1' THEN 'active' ELSE '' END SURVEY19N ,
+			CASE WHEN NO8 = '2' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO8 = '3' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO8 = '4' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO8 = '5' THEN 'active' ELSE '' END SURVEY21N ,
+			
+			CASE WHEN NO9 = '1' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO9 = '2' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO9 = '3' THEN 'active' ELSE '' END SURVEY23Y ,
+			CASE WHEN NO9 = '4' THEN 'active' ELSE '' END SURVEY23N ,
+			CASE WHEN NO9 = '5' THEN 'active' ELSE '' END SURVEY24Y ,
+			
+			CASE WHEN NO10 = '1' THEN 'active' ELSE '' END SURVEY24N ,
+			CASE WHEN NO10 = '2' THEN 'active' ELSE '' END SURVEY25Y ,
+			CASE WHEN NO10 = '3' THEN 'active' ELSE '' END SURVEY25N ,
+			CASE WHEN NO10 = '4' THEN 'active' ELSE '' END SURVEY26Y ,
+			CASE WHEN NO10 = '5' THEN 'active' ELSE '' END SURVEY26N ,
+			
+			NO11 AS SURVEY27Y ,
+			NO12 AS SURVEY27N ,
+			NO13 AS SURVEY28Y ,
+			NO14 AS SURVEY28N ,
+			NO15 AS SURVEY29Y ,
+			NO16 AS SURVEY29N 
+		 
+		FROM 
+			gs_psy_cns_doc_dtl
+		WHERE 
+			NUM = #num#
+	</select>
+	
 	<!-- 심리검사14 - 부부의사소통 척도 PDF -->
 	<select id="supportDao.PDFpsyCnsDoc14" parameterClass="PdfVO" resultClass="egovMap">
 		SELECT 
@@ -1512,26 +1781,164 @@
 			case_no ,
 			tel_no AS survey1n ,
 			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt ,
-			NO1 AS survey1y ,
-			NO2 AS survey2y ,
-			NO3 AS survey3y ,
-			NO4 AS survey4y ,
-			NO5 AS survey5y ,
-			NO6 AS survey6y ,
-			NO7 AS survey7y ,
-			NO8 AS survey8y ,
-			NO9 AS survey9y ,
-			NO10 AS survey10y ,
-			NO11 AS survey11y ,
-			NO12 AS survey12y ,
-			NO13 AS survey13y ,
-			NO14 AS survey14y ,
-			NO15 AS survey15y ,
-			NO16 AS survey16y ,
-			NO17 AS survey17y ,
-			NO18 AS survey18y ,
-			NO19 AS survey19y ,
-			NO20 AS survey20y
+			CASE WHEN NO1 = '1' THEN 'active' ELSE '' END SURVEY2Y ,
+			CASE WHEN NO1 = '2' THEN 'active' ELSE '' END SURVEY2N ,
+			CASE WHEN NO1 = '3' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = '4' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO1 = '5' THEN 'active' ELSE '' END SURVEY4Y ,
+			
+			CASE WHEN NO2 = '1' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO2 = '2' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO2 = '3' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO2 = '4' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO2 = '5' THEN 'active' ELSE '' END SURVEY6N ,
+			
+			CASE WHEN NO3 = '1' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO3 = '2' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO3 = '3' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO3 = '4' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO3 = '5' THEN 'active' ELSE '' END SURVEY9Y ,
+			
+			CASE WHEN NO4 = '1' THEN 'active' ELSE '' END SURVEY9N ,
+			CASE WHEN NO4 = '2' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO4 = '3' THEN 'active' ELSE '' END SURVEY10N ,
+			CASE WHEN NO4 = '4' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO4 = '5' THEN 'active' ELSE '' END SURVEY11N ,
+			
+			CASE WHEN NO5 = '1' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO5 = '2' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO5 = '3' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO5 = '4' THEN 'active' ELSE '' END SURVEY13N ,
+			CASE WHEN NO5 = '5' THEN 'active' ELSE '' END SURVEY14Y ,
+			
+			CASE WHEN NO6 = '1' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO6 = '2' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO6 = '3' THEN 'active' ELSE '' END SURVEY15N ,
+			CASE WHEN NO6 = '4' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO6 = '5' THEN 'active' ELSE '' END SURVEY16N ,
+			
+			CASE WHEN NO7 = '1' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO7 = '2' THEN 'active' ELSE '' END SURVEY17N ,
+			CASE WHEN NO7 = '3' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO7 = '4' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO7 = '5' THEN 'active' ELSE '' END SURVEY19Y ,
+			
+			CASE WHEN NO8 = '1' THEN 'active' ELSE '' END SURVEY19N ,
+			CASE WHEN NO8 = '2' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO8 = '3' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO8 = '4' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO8 = '5' THEN 'active' ELSE '' END SURVEY21N ,
+			
+			CASE WHEN NO9 = '1' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO9 = '2' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO9 = '3' THEN 'active' ELSE '' END SURVEY23Y ,
+			CASE WHEN NO9 = '4' THEN 'active' ELSE '' END SURVEY23N ,
+			CASE WHEN NO9 = '5' THEN 'active' ELSE '' END SURVEY24Y ,
+			
+			CASE WHEN NO10 = '1' THEN 'active' ELSE '' END SURVEY24N ,
+			CASE WHEN NO10 = '2' THEN 'active' ELSE '' END SURVEY25Y ,
+			CASE WHEN NO10 = '3' THEN 'active' ELSE '' END SURVEY25N ,
+			CASE WHEN NO10 = '4' THEN 'active' ELSE '' END SURVEY26Y ,
+			CASE WHEN NO10 = '5' THEN 'active' ELSE '' END SURVEY26N ,
+			
+			CASE WHEN NO11 = '1' THEN 'active' ELSE '' END SURVEY27Y ,
+			CASE WHEN NO11 = '2' THEN 'active' ELSE '' END SURVEY27N ,
+			CASE WHEN NO11 = '3' THEN 'active' ELSE '' END SURVEY28Y ,
+			CASE WHEN NO11 = '4' THEN 'active' ELSE '' END SURVEY28N ,
+			CASE WHEN NO11 = '5' THEN 'active' ELSE '' END SURVEY29Y ,
+			
+			CASE WHEN NO12 = '1' THEN 'active' ELSE '' END SURVEY29N ,
+			CASE WHEN NO12 = '2' THEN 'active' ELSE '' END SURVEY30Y ,
+			CASE WHEN NO12 = '3' THEN 'active' ELSE '' END SURVEY30N ,
+			CASE WHEN NO12 = '4' THEN 'active' ELSE '' END SURVEY31Y ,
+			CASE WHEN NO12 = '5' THEN 'active' ELSE '' END SURVEY31N ,
+			
+			CASE WHEN NO13 = '1' THEN 'active' ELSE '' END SURVEY32Y ,
+			CASE WHEN NO13 = '2' THEN 'active' ELSE '' END SURVEY32N ,
+			CASE WHEN NO13 = '3' THEN 'active' ELSE '' END SURVEY33Y ,
+			CASE WHEN NO13 = '4' THEN 'active' ELSE '' END SURVEY33N ,
+			CASE WHEN NO13 = '5' THEN 'active' ELSE '' END SURVEY34Y ,
+			
+			CASE WHEN NO14 = '1' THEN 'active' ELSE '' END SURVEY34N ,
+			CASE WHEN NO14 = '2' THEN 'active' ELSE '' END SURVEY35Y ,
+			CASE WHEN NO14 = '3' THEN 'active' ELSE '' END SURVEY35N ,
+			CASE WHEN NO14 = '4' THEN 'active' ELSE '' END SURVEY36Y ,
+			CASE WHEN NO14 = '5' THEN 'active' ELSE '' END SURVEY36N ,
+			
+			CASE WHEN NO15 = '1' THEN 'active' ELSE '' END SURVEY37Y ,
+			CASE WHEN NO15 = '2' THEN 'active' ELSE '' END SURVEY37N ,
+			CASE WHEN NO15 = '3' THEN 'active' ELSE '' END SURVEY38Y ,
+			CASE WHEN NO15 = '4' THEN 'active' ELSE '' END SURVEY38N ,
+			CASE WHEN NO15 = '5' THEN 'active' ELSE '' END SURVEY39Y ,
+			
+			CASE WHEN NO16 = '1' THEN 'active' ELSE '' END SURVEY39N ,
+			CASE WHEN NO16 = '2' THEN 'active' ELSE '' END SURVEY40Y ,
+			CASE WHEN NO16 = '3' THEN 'active' ELSE '' END SURVEY40N ,
+			CASE WHEN NO16 = '4' THEN 'active' ELSE '' END SURVEY41Y ,
+			CASE WHEN NO16 = '5' THEN 'active' ELSE '' END SURVEY41N ,
+			
+			CASE WHEN NO17 = '1' THEN 'active' ELSE '' END SURVEY42Y ,
+			CASE WHEN NO17 = '2' THEN 'active' ELSE '' END SURVEY42N ,
+			CASE WHEN NO17 = '3' THEN 'active' ELSE '' END SURVEY43Y ,
+			CASE WHEN NO17 = '4' THEN 'active' ELSE '' END SURVEY43N ,
+			CASE WHEN NO17 = '5' THEN 'active' ELSE '' END SURVEY44Y ,
+			
+			CASE WHEN NO18 = '1' THEN 'active' ELSE '' END SURVEY44N ,
+			CASE WHEN NO18 = '2' THEN 'active' ELSE '' END SURVEY45Y ,
+			CASE WHEN NO18 = '3' THEN 'active' ELSE '' END SURVEY45N ,
+			CASE WHEN NO18 = '4' THEN 'active' ELSE '' END SURVEY46Y ,
+			CASE WHEN NO18 = '5' THEN 'active' ELSE '' END SURVEY46N ,
+		
+			CASE WHEN NO19 = '1' THEN 'active' ELSE '' END SURVEY47Y ,
+			CASE WHEN NO19 = '2' THEN 'active' ELSE '' END SURVEY47N ,
+			CASE WHEN NO19 = '3' THEN 'active' ELSE '' END SURVEY48Y ,
+			CASE WHEN NO19 = '4' THEN 'active' ELSE '' END SURVEY48N ,
+			CASE WHEN NO19 = '5' THEN 'active' ELSE '' END SURVEY49Y ,
+			
+			CASE WHEN NO20 = '1' THEN 'active' ELSE '' END SURVEY49N ,
+			CASE WHEN NO20 = '2' THEN 'active' ELSE '' END SURVEY50Y ,
+			CASE WHEN NO20 = '3' THEN 'active' ELSE '' END SURVEY50N ,
+			CASE WHEN NO20 = '4' THEN 'active' ELSE '' END SURVEY51Y ,
+			CASE WHEN NO20 = '5' THEN 'active' ELSE '' END SURVEY51N ,
+		
+			CASE WHEN NO21 = '1' THEN 'active' ELSE '' END SURVEY52Y ,
+			CASE WHEN NO21 = '2' THEN 'active' ELSE '' END SURVEY52N ,
+			CASE WHEN NO21 = '3' THEN 'active' ELSE '' END SURVEY53Y ,
+			CASE WHEN NO21 = '4' THEN 'active' ELSE '' END SURVEY53N ,
+			CASE WHEN NO21 = '5' THEN 'active' ELSE '' END SURVEY54Y ,
+			
+			CASE WHEN NO22 = '1' THEN 'active' ELSE '' END SURVEY54N ,
+			CASE WHEN NO22 = '2' THEN 'active' ELSE '' END SURVEY55Y ,
+			CASE WHEN NO22 = '3' THEN 'active' ELSE '' END SURVEY55N ,
+			CASE WHEN NO22 = '4' THEN 'active' ELSE '' END SURVEY56Y ,
+			CASE WHEN NO22 = '5' THEN 'active' ELSE '' END SURVEY56N ,
+			
+			CASE WHEN NO23 = '1' THEN 'active' ELSE '' END SURVEY57Y ,
+			CASE WHEN NO23 = '2' THEN 'active' ELSE '' END SURVEY57N ,
+			CASE WHEN NO23 = '3' THEN 'active' ELSE '' END SURVEY58Y ,
+			CASE WHEN NO23 = '4' THEN 'active' ELSE '' END SURVEY58N ,
+			CASE WHEN NO23 = '5' THEN 'active' ELSE '' END SURVEY59Y ,
+			
+			CASE WHEN NO24 = '1' THEN 'active' ELSE '' END SURVEY59N ,
+			CASE WHEN NO24 = '2' THEN 'active' ELSE '' END SURVEY60Y ,
+			CASE WHEN NO24 = '3' THEN 'active' ELSE '' END SURVEY60N ,
+			CASE WHEN NO24 = '4' THEN 'active' ELSE '' END SURVEY61Y ,
+			CASE WHEN NO24 = '5' THEN 'active' ELSE '' END SURVEY61N ,
+			
+			CASE WHEN NO25 = '1' THEN 'active' ELSE '' END SURVEY62Y ,
+			CASE WHEN NO25 = '2' THEN 'active' ELSE '' END SURVEY62N ,
+			CASE WHEN NO25 = '3' THEN 'active' ELSE '' END SURVEY63Y ,
+			CASE WHEN NO25 = '4' THEN 'active' ELSE '' END SURVEY63N ,
+			CASE WHEN NO25 = '5' THEN 'active' ELSE '' END SURVEY64Y ,
+			
+			CASE WHEN NO26 = '1' THEN 'active' ELSE '' END SURVEY64N ,
+			CASE WHEN NO26 = '2' THEN 'active' ELSE '' END SURVEY65Y ,
+			CASE WHEN NO26 = '3' THEN 'active' ELSE '' END SURVEY65N ,
+			CASE WHEN NO26 = '4' THEN 'active' ELSE '' END SURVEY66Y ,
+			CASE WHEN NO26 = '5' THEN 'active' ELSE '' END SURVEY66N ,
+			
+			NO27 AS SURVEY67Y
+			
 		FROM 
 			gs_psy_cns_doc_dtl
 		WHERE 
@@ -1614,6 +2021,182 @@
 			NUM = #num#
 	</select>
 	
+	<!-- 심리검사17 - 중장년상담 선별척도지 PDF -->
+	<select id="supportDao.PDFpsyCnsDoc17" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT 
+			CNSR_ID as SURVEY1y ,
+			num as SURVEY1N ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt ,
+			date_format(STR_TO_DATE(no26,'%Y%m%d'),'%Y년 %m월 %d일') AS birthDt  ,
+			cnsle_nm ,
+			case_no ,
+			case NO25 when 'M' then '남자' when 'F' then '여자' ELSE '알수없음' END AS SURVEY2Y ,
+			CONCAT(RIGHT(CONCAT('00',NO27),2),':',RIGHT(CONCAT('00',NO28),2)) STIME ,
+			CONCAT(RIGHT(CONCAT('00',NO29),2),':',RIGHT(CONCAT('00',NO30),2)) ETIME ,
+			NO31 AS SURVEY2N ,
+			CASE WHEN NO1 = 'Y' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = 'N' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO2 = 'Y' THEN 'active' ELSE '' END SURVEY4Y ,
+			CASE WHEN NO2 = 'N' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO3 = 'Y' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO3 = 'N' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO4 = 'Y' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO4 = 'N' THEN 'active' ELSE '' END SURVEY6N ,
+			CASE WHEN NO5 = 'Y' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO5 = 'N' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO6 = 'Y' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO6 = 'N' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO7 = 'Y' THEN 'active' ELSE '' END SURVEY9Y ,
+			CASE WHEN NO7 = 'N' THEN 'active' ELSE '' END SURVEY9N ,
+			CASE WHEN NO8 = 'Y' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO8 = 'N' THEN 'active' ELSE '' END SURVEY10N ,
+			
+			CASE WHEN NO9 = 'Y' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO9 = 'N' THEN 'active' ELSE '' END SURVEY11N ,
+			CASE WHEN NO10 = 'Y' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO10 = 'N' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO11 = 'Y' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO11 = 'N' THEN 'active' ELSE '' END SURVEY13N ,
+			CASE WHEN NO12 = 'Y' THEN 'active' ELSE '' END SURVEY14Y ,
+			CASE WHEN NO12 = 'N' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO13 = 'Y' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO13 = 'N' THEN 'active' ELSE '' END SURVEY15N ,
+			CASE WHEN NO14 = 'Y' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO14 = 'N' THEN 'active' ELSE '' END SURVEY16N ,
+			CASE WHEN NO15 = 'Y' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO15 = 'N' THEN 'active' ELSE '' END SURVEY17N ,
+			CASE WHEN NO16 = 'Y' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO16 = 'N' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO17 = 'Y' THEN 'active' ELSE '' END SURVEY19Y ,
+			CASE WHEN NO17 = 'N' THEN 'active' ELSE '' END SURVEY19N ,
+			           
+			CASE WHEN NO18 = 'Y' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO18 = 'N' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO19 = 'Y' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO19 = 'N' THEN 'active' ELSE '' END SURVEY21N ,
+			CASE WHEN NO20 = 'Y' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO20 = 'N' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO20 = 'N' THEN 'active' ELSE '' END SURVEY22N ,
+			NO21 AS TOTY ,
+			NO22 AS TOTN ,
+			NO23 AS COT ,
+			NO24 AS SURVEY23Y
+		FROM 
+			gs_psy_cns_doc_dtl
+		WHERE 
+			NUM = #num#
+	</select>
+	
+	<!-- 심리검사18 - 불안 척도(특성불안) PDF -->
+	<select id="supportDao.PDFpsyCnsDoc18" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT 
+			cnsle_nm ,
+			case_no ,
+			tel_no AS survey1y ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
+			CASE WHEN NO1 = '1' THEN 'active' ELSE '' END SURVEY2Y ,
+			CASE WHEN NO1 = '2' THEN 'active' ELSE '' END SURVEY2N ,
+			CASE WHEN NO1 = '3' THEN 'active' ELSE '' END SURVEY3Y ,
+			CASE WHEN NO1 = '4' THEN 'active' ELSE '' END SURVEY3N ,
+			CASE WHEN NO2 = '1' THEN 'active' ELSE '' END SURVEY4Y ,
+			CASE WHEN NO2 = '2' THEN 'active' ELSE '' END SURVEY4N ,
+			CASE WHEN NO2 = '3' THEN 'active' ELSE '' END SURVEY5Y ,
+			CASE WHEN NO2 = '4' THEN 'active' ELSE '' END SURVEY5N ,
+			CASE WHEN NO3 = '1' THEN 'active' ELSE '' END SURVEY6Y ,
+			CASE WHEN NO3 = '2' THEN 'active' ELSE '' END SURVEY6N ,
+			CASE WHEN NO3 = '3' THEN 'active' ELSE '' END SURVEY7Y ,
+			CASE WHEN NO3 = '4' THEN 'active' ELSE '' END SURVEY7N ,
+			CASE WHEN NO4 = '1' THEN 'active' ELSE '' END SURVEY8Y ,
+			CASE WHEN NO4 = '2' THEN 'active' ELSE '' END SURVEY8N ,
+			CASE WHEN NO4 = '3' THEN 'active' ELSE '' END SURVEY9Y ,
+			CASE WHEN NO4 = '4' THEN 'active' ELSE '' END SURVEY9N ,
+			
+			CASE WHEN NO5 = '1' THEN 'active' ELSE '' END SURVEY10Y ,
+			CASE WHEN NO5 = '2' THEN 'active' ELSE '' END SURVEY10N ,
+			CASE WHEN NO5 = '3' THEN 'active' ELSE '' END SURVEY11Y ,
+			CASE WHEN NO5 = '4' THEN 'active' ELSE '' END SURVEY11N ,
+			
+			CASE WHEN NO6 = '1' THEN 'active' ELSE '' END SURVEY12Y ,
+			CASE WHEN NO6 = '2' THEN 'active' ELSE '' END SURVEY12N ,
+			CASE WHEN NO6 = '3' THEN 'active' ELSE '' END SURVEY13Y ,
+			CASE WHEN NO6 = '4' THEN 'active' ELSE '' END SURVEY13N ,
+			
+			CASE WHEN NO7 = '1' THEN 'active' ELSE '' END SURVEY14Y ,
+			CASE WHEN NO7 = '2' THEN 'active' ELSE '' END SURVEY14N ,
+			CASE WHEN NO7 = '3' THEN 'active' ELSE '' END SURVEY15Y ,
+			CASE WHEN NO7 = '4' THEN 'active' ELSE '' END SURVEY15N ,
+			
+			CASE WHEN NO8 = '1' THEN 'active' ELSE '' END SURVEY16Y ,
+			CASE WHEN NO8 = '2' THEN 'active' ELSE '' END SURVEY16N ,
+			CASE WHEN NO8 = '3' THEN 'active' ELSE '' END SURVEY17Y ,
+			CASE WHEN NO8 = '4' THEN 'active' ELSE '' END SURVEY17N ,
+			
+			CASE WHEN NO9 = '1' THEN 'active' ELSE '' END SURVEY18Y ,
+			CASE WHEN NO9 = '2' THEN 'active' ELSE '' END SURVEY18N ,
+			CASE WHEN NO9 = '3' THEN 'active' ELSE '' END SURVEY19Y ,
+			CASE WHEN NO9 = '4' THEN 'active' ELSE '' END SURVEY19N ,
+			           
+			CASE WHEN NO10 = '1' THEN 'active' ELSE '' END SURVEY20Y ,
+			CASE WHEN NO10 = '2' THEN 'active' ELSE '' END SURVEY20N ,
+			CASE WHEN NO10 = '3' THEN 'active' ELSE '' END SURVEY21Y ,
+			CASE WHEN NO10 = '4' THEN 'active' ELSE '' END SURVEY21N ,
+			
+			CASE WHEN NO11 = '1' THEN 'active' ELSE '' END SURVEY22Y ,
+			CASE WHEN NO11 = '2' THEN 'active' ELSE '' END SURVEY22N ,
+			CASE WHEN NO11 = '3' THEN 'active' ELSE '' END SURVEY23Y ,
+			CASE WHEN NO11 = '4' THEN 'active' ELSE '' END SURVEY23N ,
+			
+			CASE WHEN NO12 = '1' THEN 'active' ELSE '' END SURVEY24Y ,
+			CASE WHEN NO12 = '2' THEN 'active' ELSE '' END SURVEY24N ,
+			CASE WHEN NO12 = '3' THEN 'active' ELSE '' END SURVEY25Y ,
+			CASE WHEN NO12 = '4' THEN 'active' ELSE '' END SURVEY25N ,
+			CASE WHEN NO13 = '1' THEN 'active' ELSE '' END SURVEY26Y ,
+			CASE WHEN NO13 = '2' THEN 'active' ELSE '' END SURVEY26N ,
+			CASE WHEN NO13 = '3' THEN 'active' ELSE '' END SURVEY27Y ,
+			CASE WHEN NO13 = '4' THEN 'active' ELSE '' END SURVEY27N ,
+			
+			CASE WHEN NO14 = '1' THEN 'active' ELSE '' END SURVEY28Y ,
+			CASE WHEN NO14 = '2' THEN 'active' ELSE '' END SURVEY28N ,
+			CASE WHEN NO14 = '3' THEN 'active' ELSE '' END SURVEY29Y ,
+			CASE WHEN NO14 = '4' THEN 'active' ELSE '' END SURVEY29N ,
+			
+			CASE WHEN NO15 = '1' THEN 'active' ELSE '' END SURVEY30Y ,
+			CASE WHEN NO15 = '2' THEN 'active' ELSE '' END SURVEY30N ,
+			CASE WHEN NO15 = '3' THEN 'active' ELSE '' END SURVEY31Y ,
+			CASE WHEN NO15 = '4' THEN 'active' ELSE '' END SURVEY31N ,
+			
+			CASE WHEN NO16 = '1' THEN 'active' ELSE '' END SURVEY32Y ,
+			CASE WHEN NO16 = '2' THEN 'active' ELSE '' END SURVEY32N ,
+			CASE WHEN NO16 = '3' THEN 'active' ELSE '' END SURVEY33Y ,
+			CASE WHEN NO16 = '4' THEN 'active' ELSE '' END SURVEY33N ,
+			
+			CASE WHEN NO17 = '1' THEN 'active' ELSE '' END SURVEY34Y ,
+			CASE WHEN NO17 = '2' THEN 'active' ELSE '' END SURVEY34N ,
+			CASE WHEN NO17 = '3' THEN 'active' ELSE '' END SURVEY35Y ,
+			CASE WHEN NO17 = '4' THEN 'active' ELSE '' END SURVEY35N ,
+			CASE WHEN NO18 = '1' THEN 'active' ELSE '' END SURVEY36Y ,
+			CASE WHEN NO18 = '2' THEN 'active' ELSE '' END SURVEY36N ,
+			CASE WHEN NO18 = '3' THEN 'active' ELSE '' END SURVEY37Y ,
+			CASE WHEN NO18 = '4' THEN 'active' ELSE '' END SURVEY37N ,
+			CASE WHEN NO19 = '1' THEN 'active' ELSE '' END SURVEY38Y ,
+			CASE WHEN NO19 = '2' THEN 'active' ELSE '' END SURVEY38N ,
+			CASE WHEN NO19 = '3' THEN 'active' ELSE '' END SURVEY39Y ,
+			CASE WHEN NO19 = '4' THEN 'active' ELSE '' END SURVEY39N ,
+			CASE WHEN NO20 = '1' THEN 'active' ELSE '' END SURVEY40Y ,
+			CASE WHEN NO20 = '2' THEN 'active' ELSE '' END SURVEY40N ,
+			CASE WHEN NO20 = '3' THEN 'active' ELSE '' END SURVEY41Y ,
+			CASE WHEN NO20 = '4' THEN 'active' ELSE '' END SURVEY41N ,
+			
+			NO21 AS SURVEY42Y ,
+			NO22 AS SURVEY42N ,
+			NO23 AS SURVEY43Y ,
+			NO24 AS SURVEY43N ,
+			NO25 AS SURVEY44Y 
+		FROM 
+			gs_psy_cns_doc_dtl
+		WHERE 
+			NUM = #num#
+	</select>
 	
 	<!-- FAQ 목록  -->
 	<select id="supportDao.getFaqList" parameterClass="faqVO" resultClass="egovMap">

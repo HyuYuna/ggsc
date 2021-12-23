@@ -193,7 +193,7 @@
 								<td>
 									<c:choose>
 										<c:when test="${result.agrePath != null }">
-											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(17, '${result.agrePath }')">다운로드</button>
+											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(30, '${result.agrePath }')">다운로드</button>
 										</c:when>
 										<c:when test="${result.fileNm != null }">
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm}', '${result.sysFileNm }', '${result.filePath }')">다운로드</button>
@@ -206,7 +206,7 @@
 								<td>
 									<c:choose>
 										<c:when test="${result.perInfoPath != null }">
-											<button type="button" class="btn-basic btn-primary" onclick="fn_pdfDownload(18,'${result.perInfoPath}')">다운로드</button>
+											<button type="button" class="btn-basic btn-primary" onclick="fn_pdfDownload(31,'${result.perInfoPath}')">다운로드</button>
 										</c:when>
 										<c:when test="${result.fileNm2 != null }">
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm2}', '${result.sysFileNm2 }', '${result.filePath2 }')">다운로드</button>
@@ -219,7 +219,7 @@
 								<td>
 									<c:choose>
 										<c:when test="${result.docCntnPath != null }">
-											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(19, '${result.docCntnPath }')">다운로드</button>
+											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(32, '${result.docCntnPath }')">다운로드</button>
 										</c:when>
 										<c:when test="${result.fileNm3 != null }">
 											<button type="button" class="btn-basic btn-primary" onclick="javascript:fn_down('${result.fileNm3}', '${result.sysFileNm3 }', '${result.filePath3 }')">다운로드</button>

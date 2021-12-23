@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>한국형 알코올 중독 선별 검사(AUDIT-K)</title>
+<style>
+body { font-family:'NanumGothic'; color:#777; padding:0; margin:0; box-sizing:border-box; }
+h1,h2 { color:#444; }
+
+h2 { font-size:14pt; }
+
+.title { font-size:16pt; color:#444; text-align:center; padding-bottom:20px;   } 
+.small { font-size:9pt; color:#777;}
+
+.sub-title { color:#666; padding:5px 0;font-size:11pt; }
+.sub-text  { letter-spacing:-1pt; font-size:10pt; color:#777; padding:10px 0;  }
+
+.agree-line { background-color:#eee; text-align:center; padding:5px 0; }
+.circle { display:inline-block; color:#fff; }
+.circle.active { color:#000; }
+
+.center { text-align:center; }
+.pt10 { font-size:10pt; }
+
+.sign { margin:10px 0; }
+.sign > div { display:inline-block;}
+.sign > .left { width:200px; text-align:left; }
+.sign > .right { width:200px; text-align:right; } 
+
+.last-right { padding:0; margin:0; text-align:right; margin-top:15px;  }
+.line { height:1px; background-color:#000; width:100%; margin-top:10px; }
+th { font-size:10pt; color:#666; text-align:center; background-color:#eee; padding:10px 0; border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0; }
+.th-first { border-left:1px solid #e0e0e0; }
+.tr-last th { border-bottom:1px solid #e0e0e0; }
+
+
+td { font-size:10pt; padding:10px 0; border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0; text-align:left; text-indent:10px;  }
+.td-first { border-left:1px solid #e0e0e0; }
+.tr-last td { border-bottom:1px solid #e0e0e0; }
+table { width:100%; }
+.bgwhite { background-color:#fff !important}
+
+.max-hidden { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+</style>
+</head>
+<body>
+    <div class="wrap">
+            <div class="headName noto500">
+                Case No. (##caseNo##)
+            </div>
+            <div class="title">한국형 알코올 중독 선별 검사(AUDIT-K)</div>
+
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 12%;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <td>##내담자명##</td>
+                        <th scope="col">연락처</th>
+                        <td>##설문1Y##</td>
+                        <th scope="col">검사일</th>
+                        <td>##날짜##</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 15px;">
+                ※ 다음 문항은 알코올중독선별검사를 위한 내용입니다. 다음의 각 문항을 읽고 귀하의 생각에 가장 적합하다고 생각되는 곳에 ‘√’표해 주시기 바랍니다.
+            </div>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">1. 얼마나 술을 자주 마십니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문2Y##'>●</span><label for="no11">전혀 안마심</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문2N##'>●</span><label for="no12">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문3Y##'>●</span><label for="no13">월2~4회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문3N##'>●</span><label for="no14">주2~3회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문4Y##'>●</span><label for="no15">주4회 이상</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">2. 술을 마시면 한 번에 몇 잔 정도 마십니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문4N##'>●</span><label for="no21">전혀 안마심</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문5Y##'>●</span><label for="no22">소주 반병 이하</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문5N##'>●</span><label for="no23">소부 반병 정도</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문6Y##'>●</span><label for="no124">소주 반병과 1병사이</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문6N##'>●</span><label for="no25">소주 한병 이상</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">
+                            3. 한번에 소주 한병 또는 맥주 4병이상 마시는 경우는 얼마나 자주 있습니까?
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문7Y##'>●</span><label for="no31">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문7N##'>●</span><label for="no32">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문8Y##'>●</span><label for="no33">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문8N##'>●</span><label for="no34">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문9Y##'>●</span><label for="no35">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">
+                            4. 지난 1년 간 한번 술을 마시기 시작하면 멈출 수 없었던 때가 얼마나 자주 있었습니까?
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문9N##'>●</span><label for="no41">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문10Y##'>●</span><label for="no42">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문10N##'>●</span><label for="no43">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문11Y##'>●</span><label for="no44">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문11N##'>●</span><label for="no45">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">5. 지난 1년 간 평소 같으면 할 수 있던 일을 음주 때문에 실패한 적이 얼마나 자주 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문12Y##'>●</span><label for="no51">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문12N##'>●</span><label for="no52">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문13Y##'>●</span><label for="no53">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문13N##'>●</span><label for="no54">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문14Y##'>●</span><label for="no55">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">6. 지난 1년 간 술을 마신 다음날 일어나기 위해 해장술이 필요했던 적이 얼마나 자주 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문14N##'>●</span><label for="no61">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문15Y##'>●</span><label for="no62">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문15N##'>●</span><label for="no63">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문16Y##'>●</span><label for="no64">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문16N##'>●</span><label for="no65">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">7. 지난 1년 간 음주 후에 죄책감 등이 든 적이 얼마나 자주 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문17Y##'>●</span><label for="no71">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문17N##'>●</span><label for="no72">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문18Y##'>●</span><label for="no73">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문18N##'>●</span><label for="no74">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문19Y##'>●</span><label for="no75">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">8. 지난 1년 간 음주 때문에 전날 밤에 있었던 일이 기억나지 않았던 적이 얼마나 자주 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문19N##'>●</span><label for="no81">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문20Y##'>●</span><label for="no82">월1회 미만</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문20N##'>●</span><label for="no83">월1회</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문21Y##'>●</span><label for="no84">주1회</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문21N##'>●</span><label for="no85">거의 매일</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">9. 음주로 인해 자신이나 다른 사람이 다친 적이 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문22Y##'>●</span><label for="no91">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문22N##'>●</span><label for="no92">-</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문23Y##'>●</span><label for="no93">있지만 지난 1년간은 없음</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문23N##'>●</span><label for="no94">-</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문24Y##'>●</span><label for="no95">지난 1년간 있었음</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-write">
+                
+                <colgroup>
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                    <col style="width: 10%;" />
+                    <col style="width: 50%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="txt-left txtIn20 bgG bRight-none">10. 친척이나 친구, 의사가 당신이 술 마시는 것을 걱정하거나 당신에게 술 끊기를 권유하는 적이 있었습니까?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문24N##'>●</span><label for="no101">없음</label></td>
+                        <td>2.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문25Y##'>●</span><label for="no102">-</label></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문25N##'>●</span><label for="no103">있지만 지난 1년간은 없음</label></td>
+                        <td>4.</td>
+                        <td class="txt-left txtIn40 bRight-none"><span class='icon circle ##설문26Y##'>●</span><label for="no104">-</label></td>
+                    </tr>
+                    <tr class="bBottom">
+                        <td>5.</td>
+                        <td class="txt-left txtIn40"><span class='icon circle ##설문26N##'>●</span><label for="no105">지난 1년간 있었음</label></td>
+                        <td></td>
+                        <td class="txt-left txtIn40 bRight-none"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 40%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" class="txtIn20 bgG">점수누계</th>
+                        <th scope="col" class="bgG">1번</th>
+                        <th scope="col" class="bgG">2번</th>
+                        <th scope="col" class="bgG">3번</th>
+                        <th scope="col" class="bgG">4번</th>
+                        <th scope="col" class="bgG">5번</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bBottom2">
+                        <td class="txt-left">점수누계 (1번. 0점 / 2번. 1점 / 3번. 2점 / 4번. 3점 / 5번. 4점)</td>
+                        <td>0</td>
+                        <td>##설문27N##</td>
+                        <td>##설문28Y##</td>
+                        <td>##설문28N##</td>
+                        <td>##설문29Y##</td>
+                    </tr>
+                    <tr class="bBottom2">
+                        <td class="txt-center">정상 음주군</td>
+                        <td colspan="5">남성 : 0~9 / 여성 : 0~5</td>
+                    </tr>
+                     <tr class="bBottom2">
+                        <td class="txt-center">위험 음주군</td>
+                        <td colspan="5">남성 : 10~19 / 여성 : 6~9</td>
+                    </tr>
+                     <tr class="bBottom2">
+                        <td class="txt-center">알코올 사용장애 추정군</td>
+                        <td colspan="5">남성 : 20~40 / 여성 : 10~40</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="height: 50px;">
+	            <div style="margin-top: 15px; float: right;">
+	                <div class="tot">
+	                   	 총 점 ##설문29N##
+	                </div>
+	            </div>
+	        </div>
+		    <div class="box-title noto700 txt-center mt15 mb15">
+		        <span class="fs24">출처: 세계보건기구에서 개발함(1987), 2007년 ‘한 잔’의 양을 NIAAA(미국 국가알코올중독연구소)에서   제시한 지침대로 반영하여 연세대학교 정신병원에서 번역, 사용</span>
+		    </div>
+    </div>
+
+</body>
+</html>

@@ -310,7 +310,7 @@
 									<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">${result.cnsStatNm }</td>
 									<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">${result.cnsrNm }</td>
 									<td>
-										<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(21, '${result.num }')">PDF 다운</button>
+										<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(34, '${result.num }')">PDF 다운</button>
 									</td>
 									<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}', '${result.cnsDtlGbCd}');">${result.dbInsTm }</td>
 								</tr>

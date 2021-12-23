@@ -712,7 +712,7 @@ public class DownloadController {
 			//List<String> keyList = excelList.get(0).keyList();
 			/** 컬럼 갯수 가져오기 */
 			//int columnTitleNum = keyList.size();
-			int columnTitleNum = 212;
+			int columnTitleNum = 216;
 			/** 첫행 선언 */
 			int rowNum = 0;
 			/** 엑셀리스트 제목 폰트 */
@@ -847,53 +847,53 @@ public class DownloadController {
 			cell.setCellStyle(headStyleArr[4]);
 			cell.setCellValue("3. 상담방법");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 69, 109));
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 69, 111));
 			cell = row.createCell(69);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("4-1. 상담내용");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 110, 129));
-			cell = row.createCell(110);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 112, 131));
+			cell = row.createCell(112);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("4-2. 정보 제공 및 연계");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 130, 136));
-			cell = row.createCell(130);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 132, 138));
+			cell = row.createCell(132);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("○ 4-3. 상담진행현황");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 137, 153));
-			cell = row.createCell(137);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 139, 157));
+			cell = row.createCell(139);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("○ 4-4. 심리검사");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 154, 160));
-			cell = row.createCell(154);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 158, 164));
+			cell = row.createCell(158);
 			cell.setCellStyle(headStyleArr[6]);
 			cell.setCellValue("5. 상담지원봉사자 활동");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 161, 167));
-			cell = row.createCell(161);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 165, 171));
+			cell = row.createCell(165);
 			cell.setCellStyle(headStyleArr[7]);
 			cell.setCellValue("6. 네트워크 활동");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 168, 179));
-			cell = row.createCell(168);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 172, 183));
+			cell = row.createCell(172);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("○ 7-1. 대상");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 180, 185));
-			cell = row.createCell(180);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 184, 189));
+			cell = row.createCell(184);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("○ 7-2. 진행형태");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 186, 201));
-			cell = row.createCell(186);
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 190, 205));
+			cell = row.createCell(190);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("○ 7-3. 내용");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 202, 212));
-			for(int i=202; i<213; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(0, 0, 206, 216));
+			for(int i=206; i<217; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[9]);
 				cell.setCellValue("8. 홍보");
@@ -997,134 +997,134 @@ public class DownloadController {
 			cell = row.createCell(69);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 70, 85));
-			for(int i=70; i<86; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 70, 87));
+			for(int i=70; i<88; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("개인상담(건)");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 86, 93));
-			for(int i=86; i<94; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 88, 95));
+			for(int i=88; i<96; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("집단상담(건)");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 94, 109));
-			for(int i=94; i<110; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 96, 111));
+			for(int i=96; i<112; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("정보제공상담(건)");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 110, 110));
-			cell = row.createCell(110);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 112, 112));
+			cell = row.createCell(112);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("합계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 111, 117));
-			for(int i=111; i<118; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 113, 119));
+			for(int i=113; i<120; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("내부 연계");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 118, 129));
-			for(int i=118; i<130; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 120, 131));
+			for(int i=120; i<132; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("외부 연계");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 130, 130));
-			cell = row.createCell(130);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 132, 132));
+			cell = row.createCell(132);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 131, 131));
-			cell = row.createCell(131);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 133, 133));
+			cell = row.createCell(133);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("정보제공상담");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 132, 136));
-			for(int i=132; i<137; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 134, 138));
+			for(int i=134; i<139; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("지속상담");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 137, 137));
-			cell = row.createCell(137);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 139, 139));
+			cell = row.createCell(139);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 138, 153));
-			for(int i=138; i<154; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 140, 157));
+			for(int i=140; i<158; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[5]);
 				cell.setCellValue("심리검사");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 154, 154));
-			cell = row.createCell(154);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 158, 158));
+			cell = row.createCell(158);
 			cell.setCellStyle(headStyleArr[6]);
 			cell.setCellValue("계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 155, 160));
-			for(int i=155; i<161; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 159, 164));
+			for(int i=159; i<165; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[6]);
 				cell.setCellValue("상담지원봉사자 활동");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 161, 161));
-			cell = row.createCell(161);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 165, 165));
+			cell = row.createCell(165);
 			cell.setCellStyle(headStyleArr[7]);
 			cell.setCellValue("계(건)");
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 162, 167));
-			for(int i=162; i<168; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 166, 171));
+			for(int i=166; i<172; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[7]);
 				cell.setCellValue("네트워크 활동");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 168, 169));
-			cell = row.createCell(168);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 172, 173));
+			cell = row.createCell(172);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("계(건)");
-			cell = row.createCell(169);
+			cell = row.createCell(173);
 			cell.setCellStyle(headStyleArr[8]);
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 170, 179));
-			for(int i=170; i<180; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 174, 183));
+			for(int i=174; i<184; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[8]);
 				cell.setCellValue("교육대상");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 180, 181));
-			cell = row.createCell(180);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 184, 185));
+			cell = row.createCell(184);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("계");
-			cell = row.createCell(181);
+			cell = row.createCell(185);
 			cell.setCellStyle(headStyleArr[8]);
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 182, 185));
-			for(int i=182; i<186; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 186, 189));
+			for(int i=186; i<190; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[8]);
 				cell.setCellValue("진행 형태");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 186, 187));
-			cell = row.createCell(186);
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 190, 191));
+			cell = row.createCell(190);
 			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("계");
-			cell = row.createCell(187);
+			cell = row.createCell(191);
 			cell.setCellStyle(headStyleArr[8]);
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 188, 201));
-			for(int i=188; i<202; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 192, 205));
+			for(int i=192; i<206; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[8]);
 				cell.setCellValue("교육 내용");
 			}
 			
-			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 202, 204));
-			for(int i=202; i<205; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 2, 206, 208));
+			for(int i=206; i<209; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[9]);
 				cell.setCellValue("계");
 			}
-			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 205, 212));
-			for(int i=205; i<213; i++) {
+			worksheet.addMergedRegion(new CellRangeAddress(1, 1, 209, 216));
+			for(int i=209; i<217; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[9]);
 				cell.setCellValue("홍보");
@@ -1328,7 +1328,7 @@ public class DownloadController {
 			cell.setCellValue("정신건강장애");
 			cell = row.createCell(76);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("자살");
+			cell.setCellValue("건강");
 			cell = row.createCell(77);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("경제");
@@ -1352,336 +1352,348 @@ public class DownloadController {
 			cell.setCellValue("노년생애준비");
 			cell = row.createCell(84);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("재난");
+			cell.setCellValue("자살");
 			cell = row.createCell(85);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("기타");
-			
+			cell.setCellValue("재난");
 			cell = row.createCell(86);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("소계");
+			cell.setCellValue("기타");
+			
 			cell = row.createCell(87);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("사별애도");
+			cell.setCellValue("소계");
 			cell = row.createCell(88);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("죽음준비");
+			cell.setCellValue("사별애도");
 			cell = row.createCell(89);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("관계개선의사소통");
+			cell.setCellValue("죽음준비");
 			cell = row.createCell(90);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("심리정서");
+			cell.setCellValue("관계개선의사소통");
 			cell = row.createCell(91);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("자아통합");
+			cell.setCellValue("심리정서");
 			cell = row.createCell(92);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("치매예방");
+			cell.setCellValue("자아통합");
 			cell = row.createCell(93);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("기타");
-			
+			cell.setCellValue("치매예방");
 			cell = row.createCell(94);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("소계");
+			cell.setCellValue("기타");
+			
 			cell = row.createCell(95);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("심리·정서");
+			cell.setCellValue("소계");
 			cell = row.createCell(96);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("대인관계");
+			cell.setCellValue("심리·정서");
 			cell = row.createCell(97);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("치매");
+			cell.setCellValue("대인관계");
 			cell = row.createCell(98);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("중독");
+			cell.setCellValue("치매");
 			cell = row.createCell(99);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("정신건강장애");
+			cell.setCellValue("중독");
 			cell = row.createCell(100);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("자살");
+			cell.setCellValue("정신건강장애");
 			cell = row.createCell(101);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("경제");
+			cell.setCellValue("건강");
 			cell = row.createCell(102);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("생활");
+			cell.setCellValue("경제");
 			cell = row.createCell(103);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("성");
+			cell.setCellValue("생활");
 			cell = row.createCell(104);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("부부");
+			cell.setCellValue("성");
 			cell = row.createCell(105);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("가족");
+			cell.setCellValue("부부");
 			cell = row.createCell(106);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("학대");
+			cell.setCellValue("가족");
 			cell = row.createCell(107);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("노년생애준비");
+			cell.setCellValue("학대");
 			cell = row.createCell(108);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("재난");
+			cell.setCellValue("노년생애준비");
 			cell = row.createCell(109);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("기타");
+			cell.setCellValue("자살");
 			cell = row.createCell(110);
 			cell.setCellStyle(headStyleArr[5]);
-			
+			cell.setCellValue("재난");
 			cell = row.createCell(111);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("내부연계 소계");
+			cell.setCellValue("기타");
 			cell = row.createCell(112);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("여가");
+			
 			cell = row.createCell(113);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("법률, 세무");
+			cell.setCellValue("내부연계 소계");
 			cell = row.createCell(114);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("경제후원");
+			cell.setCellValue("여가");
 			cell = row.createCell(115);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("취업, 일자리");
+			cell.setCellValue("법률, 세무");
 			cell = row.createCell(116);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("생활, 식생활, 주거");
+			cell.setCellValue("경제후원");
 			cell = row.createCell(117);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("기타");
-			
+			cell.setCellValue("취업, 일자리");
 			cell = row.createCell(118);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("외부연계 소계");
+			cell.setCellValue("생활, 식생활, 주거");
 			cell = row.createCell(119);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("정신보건 자살예방 센터");
+			cell.setCellValue("기타");
+			
 			cell = row.createCell(120);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("노인 보호전문 기관");
+			cell.setCellValue("외부연계 소계");
 			cell = row.createCell(121);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("보건소 방문간호");
+			cell.setCellValue("정신보건 자살예방 센터");
 			cell = row.createCell(122);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("일자리 관련기관");
+			cell.setCellValue("노인 보호전문 기관");
 			cell = row.createCell(123);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("재가노인관련기관");
+			cell.setCellValue("보건소 방문간호");
 			cell = row.createCell(124);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("법률기관");
+			cell.setCellValue("일자리 관련기관");
 			cell = row.createCell(125);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("성폭력, 가정폭력 상담소");
+			cell.setCellValue("재가노인관련기관");
 			cell = row.createCell(126);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("치매 관련기관");
+			cell.setCellValue("법률기관");
 			cell = row.createCell(127);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("건강가정 다문화 가정");
+			cell.setCellValue("성폭력, 가정폭력 상담소");
 			cell = row.createCell(128);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("행정기관 \n(무한돌봄)");
+			cell.setCellValue("치매 관련기관");
 			cell = row.createCell(129);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("기타");
+			cell.setCellValue("건강가정 다문화 가정");
 			cell = row.createCell(130);
-			cell.setCellStyle(headStyleArr[6]);
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("행정기관 \n(무한돌봄)");
 			cell = row.createCell(131);
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("기타");
+			cell = row.createCell(132);
+			cell.setCellStyle(headStyleArr[6]);
+			cell = row.createCell(133);
 			cell.setCellStyle(headStyleArr[6]);
 			
-			cell = row.createCell(132);
-			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("소계");
-			cell = row.createCell(133);
-			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("10회기 이내");
 			cell = row.createCell(134);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("20회기 이내");
+			cell.setCellValue("소계");
 			cell = row.createCell(135);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("20회기 이상 30회기 미만");
+			cell.setCellValue("10회기 이내");
 			cell = row.createCell(136);
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("20회기 이내");
+			cell = row.createCell(137);
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("20회기 이상 30회기 미만");
+			cell = row.createCell(138);
 			cell.setCellStyle(headStyleArr[5]);
 			cell.setCellValue("30회기이상");
 			
-			cell = row.createCell(138);
-			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("상담사전사후기록지");
-			cell = row.createCell(139);
-			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("DUKE-AD");
 			cell = row.createCell(140);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("죽음학대 질문지");
+			cell.setCellValue("상담사전사후기록지");
 			cell = row.createCell(141);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("노인우울척도");
+			cell.setCellValue("DUKE-AD");
 			cell = row.createCell(142);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("노인우울및자살사고 척도");
+			cell.setCellValue("죽음학대 질문지");
 			cell = row.createCell(143);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("노인절망감척도");
+			cell.setCellValue("노인우울척도");
 			cell = row.createCell(144);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("사회적지지척도");
+			cell.setCellValue("노인우울및자살사고 척도");
 			cell = row.createCell(145);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("대인관계변화척도");
+			cell.setCellValue("한국형 알코올 중독 선별 검사(AUDIT-K)");
 			cell = row.createCell(146);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("한국형 알코올 중독 선별 검사");
+			cell.setCellValue("심리적 안녕감척도");
 			cell = row.createCell(147);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("불안척도");
+			cell.setCellValue("대인관계변화척도");
 			cell = row.createCell(148);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("스트레스 척도");
+			cell.setCellValue("한국형 알코올 중독 선별 검사");
 			cell = row.createCell(149);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("사별 스트레스 척도");
+			cell.setCellValue("불안척도");
 			cell = row.createCell(150);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("부부친밀감 척도");
+			cell.setCellValue("스트레스 척도");
 			cell = row.createCell(151);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("부부 의사소통 척도");
+			cell.setCellValue("사별 스트레스 척도");
 			cell = row.createCell(152);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("문장완성검사");
+			cell.setCellValue("한국형 알코올 중독 선별 검사");
 			cell = row.createCell(153);
 			cell.setCellStyle(headStyleArr[5]);
-			cell.setCellValue("MMSE-K 치매선별");
-			
+			cell.setCellValue("부부 의사소통 척도");
+			cell = row.createCell(154);
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("한국판 자기자비 척도");
 			cell = row.createCell(155);
-			cell.setCellStyle(headStyleArr[6]);
-			cell.setCellValue("사후관리-안부확인(방문)");
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("치매선별용 한국어판 간이정신상태검사");
 			cell = row.createCell(156);
-			cell.setCellStyle(headStyleArr[6]);
-			cell.setCellValue("사후관리-안부확인(전화)");
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("중장년상담선별척도지");
 			cell = row.createCell(157);
-			cell.setCellStyle(headStyleArr[6]);
-			cell.setCellValue("심리검사");
-			cell = row.createCell(158);
-			cell.setCellStyle(headStyleArr[6]);
-			cell.setCellValue("연계상담 동행");
+			cell.setCellStyle(headStyleArr[5]);
+			cell.setCellValue("불안척도(특성불안)");
+			
 			cell = row.createCell(159);
 			cell.setCellStyle(headStyleArr[6]);
-			cell.setCellValue("홍보활동");
+			cell.setCellValue("사후관리-안부확인(방문)");
 			cell = row.createCell(160);
+			cell.setCellStyle(headStyleArr[6]);
+			cell.setCellValue("사후관리-안부확인(전화)");
+			cell = row.createCell(161);
+			cell.setCellStyle(headStyleArr[6]);
+			cell.setCellValue("심리검사");
+			cell = row.createCell(162);
+			cell.setCellStyle(headStyleArr[6]);
+			cell.setCellValue("연계상담 동행");
+			cell = row.createCell(163);
+			cell.setCellStyle(headStyleArr[6]);
+			cell.setCellValue("홍보활동");
+			cell = row.createCell(164);
 			cell.setCellStyle(headStyleArr[6]);
 			cell.setCellValue("기타");
 			
-			cell = row.createCell(162);
-			cell.setCellStyle(headStyleArr[7]);
-			cell.setCellValue("권역네트 워크회의");
-			cell = row.createCell(163);
-			cell.setCellStyle(headStyleArr[7]);
-			cell.setCellValue("네트워크 회의");
-			cell = row.createCell(164);
-			cell.setCellStyle(headStyleArr[7]);
-			cell.setCellValue("실무회의");
-			cell = row.createCell(165);
-			cell.setCellStyle(headStyleArr[7]);
-			cell.setCellValue("기관내부 사례회의");
 			cell = row.createCell(166);
 			cell.setCellStyle(headStyleArr[7]);
-			cell.setCellValue("지역사회 네트워킹 회의");
+			cell.setCellValue("권역네트 워크회의");
 			cell = row.createCell(167);
+			cell.setCellStyle(headStyleArr[7]);
+			cell.setCellValue("네트워크 회의");
+			cell = row.createCell(168);
+			cell.setCellStyle(headStyleArr[7]);
+			cell.setCellValue("실무회의");
+			cell = row.createCell(169);
+			cell.setCellStyle(headStyleArr[7]);
+			cell.setCellValue("기관내부 사례회의");
+			cell = row.createCell(170);
+			cell.setCellStyle(headStyleArr[7]);
+			cell.setCellValue("지역사회 네트워킹 회의");
+			cell = row.createCell(171);
 			cell.setCellStyle(headStyleArr[7]);
 			cell.setCellValue("기타");
 			
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 170, 171));
-			cell = row.createCell(170);
-			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("노인");
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 172, 173));
-			cell = row.createCell(172);
-			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("일반주민");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 174, 175));
 			cell = row.createCell(174);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("소속기관");
+			cell.setCellValue("노인");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 176, 177));
 			cell = row.createCell(176);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("유관기관");
+			cell.setCellValue("일반주민");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 178, 179));
 			cell = row.createCell(178);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("기타");
-			cell = row.createCell(179);
+			cell.setCellValue("소속기관");
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 180, 181));
+			cell = row.createCell(180);
 			cell.setCellStyle(headStyleArr[8]);
-			
+			cell.setCellValue("유관기관");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 182, 183));
 			cell = row.createCell(182);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("상담사");
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 184, 185));
-			cell = row.createCell(184);
-			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("강사");
-			cell = row.createCell(185);
+			cell.setCellValue("기타");
+			cell = row.createCell(183);
 			cell.setCellStyle(headStyleArr[8]);
 			
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 186, 187));
+			cell = row.createCell(186);
+			cell.setCellStyle(headStyleArr[8]);
+			cell.setCellValue("상담사");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 188, 189));
 			cell = row.createCell(188);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("심리정서");
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 190, 191));
-			cell = row.createCell(190);
+			cell.setCellValue("강사");
+			cell = row.createCell(189);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("관계개선");
+			
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 192, 193));
 			cell = row.createCell(192);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("사별애도");
+			cell.setCellValue("심리정서");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 194, 195));
 			cell = row.createCell(194);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("죽음준비");
+			cell.setCellValue("관계개선");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 196, 197));
 			cell = row.createCell(196);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("치매예방");
+			cell.setCellValue("사별애도");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 198, 199));
 			cell = row.createCell(198);
 			cell.setCellStyle(headStyleArr[8]);
-			cell.setCellValue("학대예방");
+			cell.setCellValue("죽음준비");
 			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 200, 201));
 			cell = row.createCell(200);
 			cell.setCellStyle(headStyleArr[8]);
+			cell.setCellValue("치매예방");
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 202, 203));
+			cell = row.createCell(202);
+			cell.setCellStyle(headStyleArr[8]);
+			cell.setCellValue("학대예방");
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 204, 205));
+			cell = row.createCell(204);
+			cell.setCellStyle(headStyleArr[8]);
 			cell.setCellValue("기타");
-			cell = row.createCell(201);
+			cell = row.createCell(205);
 			cell.setCellStyle(headStyleArr[8]);
 			
-			cell = row.createCell(205);
+			cell = row.createCell(209);
 			cell.setCellStyle(headStyleArr[9]);
 			cell.setCellValue("대중매체 홍보");
-			cell = row.createCell(206);
-			cell.setCellStyle(headStyleArr[9]);
-			cell.setCellValue("인터넷 홍보");
-			cell = row.createCell(207);
-			cell.setCellStyle(headStyleArr[9]);
-			cell.setCellValue("설치물 홍보");
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 208, 209));
-			cell = row.createCell(208);
-			cell.setCellStyle(headStyleArr[9]);
-			cell.setCellValue("직접 활동");
-			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 210, 211));
 			cell = row.createCell(210);
 			cell.setCellStyle(headStyleArr[9]);
-			cell.setCellValue("홍보물품");
+			cell.setCellValue("인터넷 홍보");
+			cell = row.createCell(211);
+			cell.setCellStyle(headStyleArr[9]);
+			cell.setCellValue("설치물 홍보");
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 212, 213));
 			cell = row.createCell(212);
+			cell.setCellStyle(headStyleArr[9]);
+			cell.setCellValue("직접 활동");
+			worksheet.addMergedRegion(new CellRangeAddress(2, 2, 214, 215));
+			cell = row.createCell(214);
+			cell.setCellStyle(headStyleArr[9]);
+			cell.setCellValue("홍보물품");
+			cell = row.createCell(216);
 			cell.setCellStyle(headStyleArr[9]);
 			cell.setCellValue("기타"); 
 			
@@ -1760,13 +1772,13 @@ public class DownloadController {
 				cell.setCellValue("명");
 			}
 			
-			for (int i=51; i<168; i++) {
+			for (int i=51; i<172; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[1]);
 				cell.setCellValue("건");
 			}
 			
-			for (int i=168; i<204; i++) {
+			for (int i=172; i<208; i++) {
 				cell = row.createCell(i);
 				cell.setCellStyle(headStyleArr[1]);
 				cell.setCellValue("회");
@@ -1775,31 +1787,31 @@ public class DownloadController {
 				cell.setCellStyle(headStyleArr[1]);
 				cell.setCellValue("명");
 			}
-			cell = row.createCell(204);
-			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("개(매)");
-			cell = row.createCell(205);
-			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("회(건)");
-			cell = row.createCell(206);
-			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("회(건)");
-			cell = row.createCell(207);
-			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("회");
 			cell = row.createCell(208);
 			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("회");
+			cell.setCellValue("개(매)");
 			cell = row.createCell(209);
 			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("명");
+			cell.setCellValue("회(건)");
 			cell = row.createCell(210);
 			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("회");
+			cell.setCellValue("회(건)");
 			cell = row.createCell(211);
 			cell.setCellStyle(headStyleArr[1]);
-			cell.setCellValue("개(매)");
+			cell.setCellValue("회");
 			cell = row.createCell(212);
+			cell.setCellStyle(headStyleArr[1]);
+			cell.setCellValue("회");
+			cell = row.createCell(213);
+			cell.setCellStyle(headStyleArr[1]);
+			cell.setCellValue("명");
+			cell = row.createCell(214);
+			cell.setCellStyle(headStyleArr[1]);
+			cell.setCellValue("회");
+			cell = row.createCell(215);
+			cell.setCellStyle(headStyleArr[1]);
+			cell.setCellValue("개(매)");
+			cell = row.createCell(216);
 			cell.setCellStyle(headStyleArr[1]);
 			cell.setCellValue("회(건)");
 			

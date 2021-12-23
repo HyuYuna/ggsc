@@ -494,7 +494,7 @@
 							</tr>
 						</tbody>
 					</table>
-				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px 10px 10px 450px;">
+				<div style="border-style: solid; border-width: thin; width:700px; height: auto; padding: 30px 20px 20px 20px; margin: 10px auto auto auto;">
 
 					<h1 style="text-align: center; font-size:x-large; padding-bottom: 20px;">노인상담선별척도지</h1><br>
 					<table border="1">

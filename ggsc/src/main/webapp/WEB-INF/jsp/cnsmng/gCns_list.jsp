@@ -309,7 +309,7 @@
 									</c:choose>									
 								</td>
 								<td>
-									<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(22, '${result.num }')">PDF 다운</button>
+									<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(35, '${result.num }')">PDF 다운</button>
 								</td>
 								<td onclick="javascript:fn_detail('${result.caseNo}', '${result.num}');">${result.dbInsTm2 }</td>
 							</tr>

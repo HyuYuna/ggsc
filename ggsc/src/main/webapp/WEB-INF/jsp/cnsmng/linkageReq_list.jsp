@@ -332,8 +332,8 @@
 								<td onclick="javascript:fn_detail('${result.num}','${result.linkReqGb}');">${result.reqDt }</td>
 								<td onclick="javascript:fn_detail('${result.num}','${result.linkReqGb}');">${result.helpDept }</td>
 								<td onclick="javascript:fn_detail('${result.num}','${result.linkReqGb}');">${result.relyTerm }</td>
-								<c:if test="${result.linkReqGb == '1'}"><td><button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(24, '${result.num }')">PDF 다운</button></td></c:if>
-								<c:if test="${result.linkReqGb == '2'}"><td><button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(25, '${result.num }')">PDF 다운</button></td></c:if>
+								<c:if test="${result.linkReqGb == '1'}"><td><button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(37, '${result.num }')">PDF 다운</button></td></c:if>
+								<c:if test="${result.linkReqGb == '2'}"><td><button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(38, '${result.num }')">PDF 다운</button></td></c:if>
 								<%-- <td>
 									<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(24, '${result.num }')">PDF 다운</button>
 								</td> --%>

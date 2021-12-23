@@ -5,7 +5,6 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
 <script src="/gnoincoundb/js/util/paging.js"></script>
 <script src="/gnoincoundb/js/html2canvas.min.js" ></script>
 <script src="/gnoincoundb/js/jspdf.min.js" ></script>
@@ -25,7 +24,6 @@
 			cursor: pointer;
 		}
 	</style>
-  </head>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var page = "${page}";

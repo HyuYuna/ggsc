@@ -209,7 +209,7 @@
 								</td>
 								<td>
 									<%-- <button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_down('초기상담신청서.pdf', '${result.sysFileNm }', 'pdf')">PDF 다운</button> --%>
-									<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(20, '${result.num }')">PDF 다운</button>
+									<button type="button" id="pdfBtn" class="btn-basic btn-primary" onclick="javascript:fn_pdfDownload(33, '${result.num }')">PDF 다운</button>
 								</td>
 								<td onclick="fn_detail('${result.caseNo}');">${result.cnsDt }</td>
 							</tr>
