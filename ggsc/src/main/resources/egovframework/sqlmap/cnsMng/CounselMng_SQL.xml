@@ -1086,23 +1086,6 @@
 			CASE_NO = #caseNo#
 	</update>
 	
-	<!-- 상담접수 신청 수정 -->
-	<update id="cnsMngDao.updateExiCnsAccept"
-		parameterClass="cnsAcptVO">
-		UPDATE 
-			GS_CNS_ACPT
-		SET
-			CNS_GB = #cnsGb#,
-			CENTER_GB = #centerGb#,
-			ZONE_GB = #zoneGb#,
-			MAJOR_APPL_CD = #majorApplCd#,
-			CNS_HIST_YN = #cnsHistYn#,
-			SIGUN_CD = #sigunCd#,
-			UPDATE_DT = NOW()
-		WHERE
-			CASE_NO = #caseNo#
-	</update>
-
 	<!-- 정보제공상담 신청 수정 -->
 	<update id="cnsMngDao.updateCnsInfo" parameterClass="cnsAcptVO">
 		UPDATE 
@@ -5143,16 +5126,221 @@
 	</update>
 	
 	
-	
-	<!-- <update id="cnsMngDao.updateExiCnsAccept" parameterClass="java.lang.String">
+	<!-- 기존상담접수신청 회원수정 -->
+	<update id="cnsMngDao.updateExiUser" parameterClass="cnsAcptVO">
 		UPDATE
+			GS_USER_M
+		SET 
+			USER_NM = #userNm#
+			, GENDER = #gender#
+			, BIRTH_DT = #birthDt#
+			, EMAIL = #email#
+			, TEL = #tel#
+			, MOBILE = #mobile#
+			, ADDR = #addr#
+			, SIGUN_CD = #sigunCd#
+		WHERE 
+			USER_ID = (SELECT USER_ID FROM GS_CNS_ACPT WHERE CASE_NO = #caseNo#)
+	</update>
+	
+	
+	<!-- 기존상담접수신청 상담접수수정 -->
+	<update id="cnsMngDao.updateExiCnsAccept" parameterClass="cnsAcptVO">
+		UPDATE 
 			GS_CNS_ACPT
 		SET
-			
-		
-		WHERE 
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			CNS_HIST_YN = #cnsHistYn#,
+			SIGUN_CD = #sigunCd#,
+			UPDATE_DT = NOW()
+		WHERE
 			CASE_NO = #caseNo#
-	</update> -->
+	</update>
 	
+	
+	<!-- 기존상담접수신청 사전검사수정 -->
+	<update id="cnsMngDao.updateExiPreExamM" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_PRE_EXAM_M
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			USER_NM = #userNm#,
+			DB_UPD_TM = NOW()
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 사전검사파일수정 -->
+	<update id="cnsMngDao.updateExiPreExamFile" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_PRE_EXAM_FILE
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 상담동의서수정 -->
+	<update id="cnsMngDao.updateExiCnsAgreDoc" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_CNS_AGRE_DOC
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			CNSLE_NM = #userNm#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 개인정보수집수정 -->
+	<update id="cnsMngDao.updateExiPerInfoAgre" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_PER_INFO_AGRE
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			CNSLE_NM = #userNm#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
 
+
+	<!-- 기존상담접수신청 노인상담선별척도지수정 -->
+	<update id="cnsMngDao.updateExiDocCntnComm" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_DOC_CNTN_COMM
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			INPUT_NM = #userNm#,
+			GENDER = #gender#,
+			BIRTH_DT = #birthDt#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 초기상담신청서수정 -->
+	<update id="cnsMngDao.updateExiEalyCnsDoc" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_EALY_CNS_DOC
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			CNSLE_NM = #userNm#,
+			GENDER = #gender#,
+			BIRTH_DT = #birthDt#,
+			MOBILE = #mobile#,
+			ADDR = #addr#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 초기상담신청서파일수정 -->
+	<update id="cnsMngDao.updateExiEalyCnsFile" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_EALY_CNS_FILE
+		SET
+			CNS_GB = #cnsGb#,
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			DB_UPD_TM = NOW()
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 개인상담수정 -->
+	<update id="cnsMngDao.updateExiPerCnsDtl" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_PER_CNS_DTL
+		SET
+			CNS_GB = #cnsGb#, 
+			CENTER_GB = #centerGb#,
+		 	ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
+			MAJOR_APPL_CD = #majorApplCd#,
+		    CNSLE_NM = #userNm#,
+			GENDER = #gender#,
+		 	BIRTH_DT = #birthDt#,
+			MOBILE = #mobile#,
+			ADDR = #addr#,
+			DB_UPD_TM = NOW()
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 심리검사수정 -->
+	<update id="cnsMngDao.updateExiPsyCnsDoc" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_PSY_CNS_DOC_DTL
+		SET
+			CNS_GB = #cnsGb#, 
+			CENTER_GB = #centerGb#,
+		 	ZONE_GB = #zoneGb#,
+		    CNSLE_NM = #userNm#,
+		    TEL_NO = #mobile#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 연계의뢰서 수정 -->
+	<update id="cnsMngDao.updateExiLinkReq" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_LINK_REQ_M
+		SET
+			CNS_GB = #cnsGb#, 
+			CENTER_GB = #centerGb#,
+		 	ZONE_GB = #zoneGb#,
+		    CNSLE_NM = #userNm#,
+		    GENDER = #gender#,
+		    BIRTH_DT = #birthDt#,
+		    TEL_NO = #mobile#,
+		    ADDR = #addr#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
+	<!-- 기존상담접수신청 종결서 수정 -->
+	<update id="cnsMngDao.updateExiCnsEnd" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_CNS_END
+		SET
+			CNS_GB = #cnsGb#, 
+			CENTER_GB = #centerGb#,
+		 	ZONE_GB = #zoneGb#,
+		    CNSLE_NM = #userNm#,
+		    BIRTH_DT = #birthDt#,
+		    TEL = #tel#,
+		 	MOBILE = #mobile#,
+		    ADDR = #addr#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	
 </sqlMap>

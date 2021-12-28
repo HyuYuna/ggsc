@@ -934,7 +934,19 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	// 기존접수관리부터 일괄 수정
 	@Override 
 	public void updateExiCnsAcpt(CnsAcptVO vo) {
+		cnsMngDao.updateExiUser(vo);
 		cnsMngDao.updateExiCnsAccept(vo);
+		cnsMngDao.updateExiPreExamM(vo);
+		cnsMngDao.updateExiPreExamFile(vo);
+		cnsMngDao.updateExiCnsAgreDoc(vo);
+		cnsMngDao.updateExiPerInfoAgre(vo);
+		cnsMngDao.updateExiDocCntnComm(vo);
+		cnsMngDao.updateExiEalyCnsDoc(vo);
+		cnsMngDao.updateExiEalyCnsFile(vo);
+		cnsMngDao.updateExiPerCnsDtl(vo);
+		cnsMngDao.updateExiPsyCnsDoc(vo);
+		cnsMngDao.updateExiLinkReq(vo);
+		cnsMngDao.updateExiCnsEnd(vo);
 	}
 	
 	// 정보제공상담(유저도) 삭제

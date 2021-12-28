@@ -709,10 +709,6 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.deleteCnsEnd", caseNo);
 	}
 	
-	public void updateExiCnsAccept(CnsAcptVO vo) {
-		update("cnsMngDao.updateExiCnsAccept", vo);
-	}
-	
 	public void deleteCnsInfo(String userId) {
 		update("cnsMngDao.deleteCnsInfo", userId);
 	}
@@ -728,4 +724,57 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	public void deleteGcnsPer(int num) {
 		update("cnsMngDao.deleteGcnsPer", num);
 	}
+	
+	public void updateExiUser(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiUser", vo);
+	}
+	
+	public void updateExiCnsAccept(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiCnsAccept", vo);
+	}
+	
+	public void updateExiPreExamM(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPreExamM", vo);
+	}
+	
+	public void updateExiPreExamFile(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPreExamFile", vo);
+	}
+	
+	public void updateExiCnsAgreDoc(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiCnsAgreDoc", vo);
+	}
+	
+	public void updateExiPerInfoAgre(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPerInfoAgre", vo);
+	}
+	
+	public void updateExiDocCntnComm(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiDocCntnComm", vo);
+	}
+	
+	public void updateExiEalyCnsDoc(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiEalyCnsDoc", vo);
+	}
+	
+	public void updateExiEalyCnsFile(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiEalyCnsFile", vo);
+	}
+	
+	public void updateExiPerCnsDtl(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPerCnsDtl", vo);
+	}
+	
+	public void updateExiPsyCnsDoc(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPsyCnsDoc", vo);
+	}
+	
+	public void updateExiLinkReq(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiLinkReq", vo);
+	}
+	
+	public void updateExiCnsEnd(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiCnsEnd", vo);
+	}
+	
 }
