@@ -558,8 +558,6 @@ public class CounselMngController {
 		
 		counselMngService.deleteExiCnsAcpt(caseNo);
 		
-		
-		// 
 		return "jsonView";
 	}
 	
@@ -585,11 +583,9 @@ public class CounselMngController {
 	}
 	
 	@RequestMapping(value = "/exiCnsAcptUpd_ajax.do", method = RequestMethod.POST)
-	public String exiCnsAcptUpdAjax(HttpServletRequest request, ModelMap model) {
+	public String exiCnsAcptUpdAjax(CnsAcptVO vo, HttpServletRequest request, ModelMap model) {
 
-		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
-		
-		counselMngService.updateExiCnsAcpt(caseNo);
+		counselMngService.updateExiCnsAcpt(vo);
 		
 		return "jsonView";
 	}

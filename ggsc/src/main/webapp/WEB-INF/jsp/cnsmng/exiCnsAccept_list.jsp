@@ -159,7 +159,7 @@
 				검색 총수 : <span id="totalPageCnt"></span> 건 
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
-				<button type="button" class="btn-basic" onClick="fn_excelDownload(10, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button>
+				<button type="button" class="btn-basic" onClick="fn_excelDownload(11, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button>
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 

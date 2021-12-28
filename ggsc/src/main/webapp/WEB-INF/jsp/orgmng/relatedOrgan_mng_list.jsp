@@ -168,7 +168,7 @@
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="javascript:fn_detail(0);"<%-- onClick="javascript:fn_detail('${mnuCd}');" --%> style="background-color:green;color:white;">등록</button>
-				<button type="button" class="btn-basic" onClick="fn_excelDownload(14, document.searchForm);" style="background-color:green;color:white;">Excel 다운로드</button>		
+				<button type="button" class="btn-basic" onClick="fn_excelDownload(15, document.searchForm);" style="background-color:green;color:white;">Excel 다운로드</button>		
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 

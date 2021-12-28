@@ -567,12 +567,13 @@ public class DownloadController {
 				list = reportService.getMindSharingListExcel(vo); break; // 성인식개선사업 // 수정 필요
 			case 8: list = reportService.getCnsEndListExcel(vo); break; // 상담사례종결서
 			case 9: list = reportService.getLinkOrgRptListExcel(vo); break; // 연계기관방문보고서 // 수정필요
-			case 10: list = counselMngService.getCnsAcptListExcel(vo); break; // 상담접수관리
-			case 11: list = adminManageService.getCnsrListExcel(vo); break; // 상담사 관리
-			case 12: list = adminManageService.getCenterListExcel(vo); break; // 센터 관리
-			case 13: list = adminManageService.getGroupingListExcel(vo); break; // 분류 관리
-			case 14: list = relatedOrganMngService.getRelatedOrganMngListExcel(vo); break; // 유관기관 관리
-			case 15: list = resultStatsService.getResultReportListExcel(vo); break; // 실적보고서통계
+			case 10: list = counselMngService.getCnsAcptListExcel(vo); break; // 신규 상담접수관리
+			case 11: list = counselMngService.getExiCnsAcptListExcel(vo); break; // 기존 상담접수관리
+			case 12: list = adminManageService.getCnsrListExcel(vo); break; // 상담사 관리
+			case 13: list = adminManageService.getCenterListExcel(vo); break; // 센터 관리
+			case 14: list = adminManageService.getGroupingListExcel(vo); break; // 분류 관리
+			case 15: list = relatedOrganMngService.getRelatedOrganMngListExcel(vo); break; // 유관기관 관리
+			case 16: list = resultStatsService.getResultReportListExcel(vo); break; // 실적보고서통계
 			
 			case 22: list = counselMngService.getPerCnsListExcel(vo); break; // 개인상담
 			case 23: list = counselMngService.getGcnsListExcel(vo); break; // 집단상담

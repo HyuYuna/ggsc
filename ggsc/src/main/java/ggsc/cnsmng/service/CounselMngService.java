@@ -66,8 +66,11 @@ public interface CounselMngService {
 	// 상담접수 caseNo 생성(모바일,홈페이지로 상담접수했을 경우)
 	void updateCnsAcceptCaseNo(CnsAcptVO vo);
 	
-	// 엑셀 다운 (상담접수)
+	// 엑셀 다운 (신규 상담접수)
 	List<EgovMap> getCnsAcptListExcel(ExcelVO vo);
+	
+	// 엑셀 다운 (기존 상담접수)
+	List<EgovMap> getExiCnsAcptListExcel(ExcelVO vo);
 	
 	// 엑셀 다운 (사전검사)
 	List<EgovMap> getPretestListExcel(ExcelVO vo);
@@ -313,7 +316,8 @@ public interface CounselMngService {
 	// 기존상담관리부터 일괄 삭제
 	void deleteExiCnsAcpt(String caseNo);
 	
-	void updateExiCnsAcpt(String caseNo);
+	// 기존상담관리부터 일괄 수정
+	void updateExiCnsAcpt(CnsAcptVO vo);
 
 	// 초기상담부터 일괄 삭제
 	void deleteExiEalyCnsDoc(String caseNo);

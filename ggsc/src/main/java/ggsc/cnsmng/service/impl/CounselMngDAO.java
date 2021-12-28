@@ -119,10 +119,16 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.updateConfirm", vo);
 	}
 	
-	//엑셀 다운
+	//신규 엑셀 다운
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getCnsAcptListExcel(ExcelVO vo){
 		return (List<EgovMap>)list("cnsMngDao.getCnsAcptListExcel", vo);
+	}
+	
+	//기존 엑셀 다운
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getExiCnsAcptListExcel(ExcelVO vo){
+		return (List<EgovMap>)list("cnsMngDao.getExiCnsAcptListExcel", vo);
 	}
 	
 	// 엑셀 다운 (사전검사)
@@ -703,8 +709,8 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.deleteCnsEnd", caseNo);
 	}
 	
-	public void updateExiCnsAccept(String caseNo) {
-		update("cnsMngDao.updateExiCnsAccept", caseNo);
+	public void updateExiCnsAccept(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiCnsAccept", vo);
 	}
 	
 	public void deleteCnsInfo(String userId) {

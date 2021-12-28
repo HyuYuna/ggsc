@@ -370,64 +370,39 @@ public class ExcelVO extends PageVO{
 						new String[] {"rnum", "sigunCdNm", "visitOrgGbNm", "visitOrgNm", "visitDt", "visitr", "visitManCnt", "dbInsTm", "visitCntn"});
 				break;
 			case 10 :
-				setInit("상담접수관리 목록",
+				setInit("신규 상담접수관리 목록",
 						new String[] { "순번", "caseNo", "상담구분", "권역구분", "지역구분", "센터구분", "신청자", "성별", "연락처", "연령", "주소", "상담이력", "접수확인", "신청일자"},
 						new String[] { "rnum", "caseNo", "cnsGbNm", "zoneGbNm", "localGbNm", "centerNm", "userNm", "gender", "mobile", "age", "addr", "cnsHistYnNm", "acptYnNm", "dbInsTmNm"});
 				break;
 			case 11 :
+				setInit("기존 상담접수관리 목록",
+						new String[] { "순번", "caseNo", "상담구분", "권역구분", "지역구분", "센터구분", "신청자", "성별", "연락처", "연령", "주소", "상담이력", "접수확인", "신청일자"},
+						new String[] { "rnum", "caseNo", "cnsGbNm", "zoneGbNm", "localGbNm", "centerNm", "userNm", "gender", "mobile", "age", "addr", "cnsHistYnNm", "acptYnNm", "dbInsTmNm"});
+				break;
+			case 12 :
 				setInit("상담사 목록",
 						new String[] { "순번", "상담구분", "센터구분", "상담사구분", "성명", "아이디", "승인여부" },
 						new String[] { "rnum", "cnsGbNm", "centerNm", "cnsrGbNm", "cnsrNm", "userId", "useYn"  });
 				break;
-			case 12 : 
+			case 13 : 
 				setInit("센터 목록",
 						new String[] { "순번", "권역구분", "시∙군", "센터명", "주소", "홈페이지", "전화번호", "사용여부" },
 						new String[] { "rnum", "zoneGb", "localNm", "centerNm", "addr", "homepage", "tel", "useYn" });
 				break;
-			case 13 :
+			case 14 :
 				setInit("분류 목록",
 						new String[] { "순번", ""},
 						new String[] {});
 				break;
-			case 14 : 
+			case 15 : 
 				setInit("유관기관 목록",
 						new String[] { "순번", "기관구분", "지역", "기관명", "홈페이지", "전화번호", "팩스번호"},
 						new String[] { "rnum", "orgGbNm", "localGbNm", "relOrgNm", "url", "tel", "fax"});
 				break;
-			case 15 : 
+			case 16 : 
 				setInit("실적보고서",
 						new String[] { "계", "1-1 성별", "계", "1-2내담자와 관계", "계", "1-3 나이", "계", "개인상담(건)", "집단상담(건)", "4-1 상담", "4-2 연계(내부)", "4-3 외부연계", "단회기 상담", "지속상담" ,"심리검사" ,"네트워크 활동(건)", "교육"},
 						new String[] { "cnsPersonal", "cntNumber", "cntPersonalMale", "cntPersonalFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale", "cntNumberFemale" });
-				break;
-			case 16 : 
-				setInit("상담사실적",
-						new String[] {},
-						new String[] {});
-				break;
-			case 17 : 
-				setInit("교육실적",
-						new String[] {},
-						new String[] {});
-				break;
-			case 18 : 
-				setInit("홍보실적",
-						new String[] {},
-						new String[] {});
-				break;
-			case 19 : 
-				setInit("학력별상담현황",
-						new String[] {},
-						new String[] {});
-				break;
-			case 20 : 
-				setInit("연령별상담현황",
-						new String[] {},
-						new String[] {});
-				break;
-			case 21 : 
-				setInit("주호소별현황",
-						new String[] {},
-						new String[] {});
 				break;
 			case 22 : 
 				setInit("개인상담현황",

@@ -54,31 +54,6 @@
 			return;
 		}
 	
-		if(type == "R") {
-			
-			if(userId.length < 6) {
-				alert("아이디를 6자 이상으로 입력해 주세요.");
-				$("#userId").focus();
-				return;
-			}
-			var num = pw.search(/[0-9]/g);
-			 var eng = pw.search(/[a-z]/ig);
-			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-	
-			 if(pw.length < 8 || pw.length > 20){
-				  alert("8자리 ~ 20자리 이내로 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }else if(pw.search(/\s/) != -1){
-				  alert("비밀번호는 공백 없이 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }else if(num < 0 || eng < 0 || spe < 0){
-				  alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
-				  $("#pw").focus();
-				  return false;
-			 }
-		}
 		
 		if($("#userNm").val()==""){
 			alert("이름를 입력해주세요.");
@@ -144,7 +119,7 @@
 			if(confirm("해당 내담자의 아이디와 모든 내용이 삭제됩니다. 삭제하시겠습니까? ")){
 				url = "/gnoincoundb/exiCnsAcptDel_ajax.do";
 			}
-		}else if(type == "R"){
+		}else if(type == "U"){
 			url = "/gnoincoundb/exiCnsAcptUpd_ajax.do";
 		}
 		var param = $("#frm").serialize();
@@ -165,7 +140,7 @@
 				}else{
 					if(type == "D") {
 						alert("상담접수가 삭제완료 되었습니다.");
-					} else if(type == "R") {
+					} else if(type == "U") {
 						alert("상담접수가 수정 되었습니다.");
 					}
 					
@@ -296,16 +271,6 @@
 						</c:forEach>
 					</td>
 				</tr>
-				<c:if test="${type == 'R' }">	
-					<tr>
-						<th>아이디 <span style="color: red;">*</span></th>
-						<td><input type="text" class="wd200" id="userId" name="userId" oninput="this.value = this.value.replace(/[^a-z0-9]/, '');" maxlength=20/><button type="button" class="btn-basic" onclick="javascript:fn_idCheck();">중복확인</button></td>
-					</tr>
-					<tr>
-						<th>비밀번호 <span style="color: red;">*</span></th>
-						<td><input type="password" id="pw" name="pw" oninput="this.value = this.value.replace(/[^a-z0-9~!@@#$%^&*]/, '');" maxlength=20/></td>
-					</tr>
-				</c:if>
 				<tr>
 					<th>이름 <span style="color: red;">*</span></th>
 					<td><input type="text" id="userNm" name="userNm" value="${result.userNm }" oninput="this.value = this.value.replace(/[^a-zㄱ-힣]/, '');" maxlength=8/></td>
@@ -367,7 +332,7 @@
 		<c:if test="${authCd <= 1 }">
 			<button type="button" id="dBtn" class="btn-basic" onclick="javascript:fn_save('D');">삭제</button>
 		</c:if>
-		<!-- <button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('R');">수정</button> -->
+		<button type="button" id="uBtn" class="btn-basic" onclick="javascript:fn_save('U');">수정</button>
 		<button type="button" class="btn-basic" onclick="window.close();">닫기</button>
 	</div>
 </body>

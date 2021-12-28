@@ -353,7 +353,7 @@
 	</select>
 
 
-	<!-- 엑셀 다운 (상담접수)-->
+	<!-- 엑셀 다운 (신규상담접수)-->
 	<select id="cnsMngDao.getCnsAcptListExcel" resultClass="egovMap" parameterClass="ExcelVO">
 		SELECT gca.*
 		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM
@@ -377,7 +377,7 @@
 		GS_CNS_ACPT gca, GS_USER_M gum
 		WHERE
 		gca.USER_ID = gum.USER_ID
-		<!-- AND gca.ACPT_YN != 'Y' -->
+		AND gca.ACPT_YN != 'Y'
 		<isNotEmpty property="schCnsGb" prepend="AND">
 			gca.CNS_GB = #schCnsGb#
 		</isNotEmpty>
@@ -409,6 +409,62 @@
 		ORDER BY RNUM ASC
 	</select>
 
+	<!-- 엑셀 다운 (기존상담접수)-->
+	<select id="cnsMngDao.getExiCnsAcptListExcel" resultClass="egovMap" parameterClass="ExcelVO">
+		SELECT gca.*
+		, ROW_NUMBER() OVER(ORDER BY gca.NUM DESC) AS RNUM
+		, CASE gum.GENDER WHEN 'M' THEN '남' WHEN 'F' THEN '여' ELSE gum.GENDER END AS GENDER
+		, gum.MOBILE AS MOBILE
+		, gum.ADDR AS ADDR
+		, gum.BIRTH_DT AS BIRTH_DT
+		, (SELECT FLOOR((TO_DAYS(NOW()) - (TO_DAYS(gum.BIRTH_DT)))/365)) AS AGE
+		, gum.EMAIL AS EMAIL
+		, gum.TEL AS TEL
+		, gum.USER_NM AS USER_NM
+		, (SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gca.CNS_GB) AS cnsGbNm
+		, (SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G71' AND ODR = gca.ZONE_GB) AS zoneGbNm
+		, (SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G72' AND ODR = gca.LOCAL_GB) AS localGbNm
+		, ( SELECT CENTER_NM FROM gs_center_m WHERE NUM = gca.CENTER_GB ) CENTER_NM
+		, CASE gca.ACPT_YN WHEN 'Y' THEN '접수완료' WHEN 'N' THEN '대기중' END AS acptYnNm
+		, CASE gca.CNS_HIST_YN WHEN 'Y' THEN '있음' WHEN 'N' THEN '없음' END AS cnsHistYnNm
+		, gca.CASE_NO
+		, DATE_FORMAT(gca.DB_INS_TM,'%Y.%m.%m') AS dbInsTmNm
+		FROM
+		GS_CNS_ACPT gca, GS_USER_M gum
+		WHERE
+		gca.USER_ID = gum.USER_ID
+		AND gca.ACPT_YN = 'Y'
+		<isNotEmpty property="schCnsGb" prepend="AND">
+			gca.CNS_GB = #schCnsGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gca.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schAcptNm" prepend="AND">
+			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gca.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gca.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gca.REG_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gca.REG_ID = #regId#
+		</isEqual>
+		<isNotEmpty property="schStartDate" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+		</isNotEmpty>
+		<isNotEmpty property="schEndDate" prepend="AND">
+			DATE_FORMAT(gca.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+		</isNotEmpty>
+		ORDER BY RNUM ASC
+	</select>
+	
     <!-- 엑셀 다운(사전검사) -->
 	<select id="cnsMngDao.getPretestListExcel" resultClass="egovMap" parameterClass="ExcelVO">
 		
@@ -1020,6 +1076,23 @@
 		SET
 			CNS_GB = #cnsGb#,
 			<!-- LOCAL_GB = #localGb#, -->
+			CENTER_GB = #centerGb#,
+			ZONE_GB = #zoneGb#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			CNS_HIST_YN = #cnsHistYn#,
+			SIGUN_CD = #sigunCd#,
+			UPDATE_DT = NOW()
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
+	<!-- 상담접수 신청 수정 -->
+	<update id="cnsMngDao.updateExiCnsAccept"
+		parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_CNS_ACPT
+		SET
+			CNS_GB = #cnsGb#,
 			CENTER_GB = #centerGb#,
 			ZONE_GB = #zoneGb#,
 			MAJOR_APPL_CD = #majorApplCd#,

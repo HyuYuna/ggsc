@@ -188,11 +188,18 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.updateCnsAcceptCaseNo(vo);
 	}
 	
-	// 엑셀 다운 (상담접수)
+	// 신규 엑셀 다운 (상담접수)
 	@Override
 	public List<EgovMap> getCnsAcptListExcel(ExcelVO vo) {
 		return cnsMngDao.getCnsAcptListExcel(vo);
 	}
+	
+	// 기존 엑셀 다운 (상담접수)
+	@Override
+	public List<EgovMap> getExiCnsAcptListExcel(ExcelVO vo) {
+		return cnsMngDao.getExiCnsAcptListExcel(vo);
+	}
+		
 	
 	// 엑셀 다운 (사전검사)
 	@Override
@@ -924,9 +931,10 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteCnsEnd(caseNo);
 	}
 	
+	// 기존접수관리부터 일괄 수정
 	@Override 
-	public void updateExiCnsAcpt(String caseNo) {
-		cnsMngDao.updateExiCnsAccept(caseNo);
+	public void updateExiCnsAcpt(CnsAcptVO vo) {
+		cnsMngDao.updateExiCnsAccept(vo);
 	}
 	
 	// 정보제공상담(유저도) 삭제
