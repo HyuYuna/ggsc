@@ -238,6 +238,9 @@ public interface CounselMngService {
 	// 연계의뢰서 등록
 	void insertLinkageReq(LinkReqVO vo);
 	
+	// 연계의뢰서 삭제
+	void deleteLinkageReq(LinkReqVO vo);
+	
 	// 슈퍼비전 목록
 	List<EgovMap> getSuperVisionList(SupperVisionVO svo);
 	

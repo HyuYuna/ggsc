@@ -4395,6 +4395,15 @@
 		CNSR_ID = #cnsrId# ,
 		OFFI_NOTE_YN = #offiNoteYn#
 	</insert>
+	
+	<!-- 연계의뢰서 삭제 -->
+	<delete id="cnsMngDao.deleteLinkageReq" parameterClass="linkReqVO">
+		DELETE 
+			FROM gs_link_req_m
+		WHERE 
+			NUM = #num#
+	</delete>
+	
 
 	<!-- 슈퍼비전 목록 -->
 	<select id="cnsMngDao.getSuperVisionList" parameterClass="supperVisionVO" resultClass="EgovMap">
@@ -4926,10 +4935,9 @@
 		#docSignPath#,
 		now()
 		)
-
-
-
 	</insert>
+	
+	
 	<!-- 심리 검사 UPDATE -->
 	<update id="cnsMngDao.updatePsyCnsDoc"
 		parameterClass="psyCnsDocVO">
@@ -5065,7 +5073,7 @@
 		DELETE 
 			FROM gs_per_cns_dtl
 		WHERE 
-			CASE_NO = #caseNo#
+			NUM = #num#
 	</update>
 	
 	<update id="cnsMngDao.deletePsyCnsDocDtl" parameterClass="java.lang.String">

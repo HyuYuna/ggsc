@@ -374,9 +374,9 @@
 						<button type="button" class="btn-basic" onClick="javascript:fn_update('${mnuCd }');" style="background-color: green;color:white;">수정</button>
 					</c:otherwise>
 				</c:choose>
-				<!--<c:if test="${map.authCd <= 1}">
+				<c:if test="${map.authCd <= 1}">
 					<button type="button" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
-				</c:if> -->
+				</c:if>
 			</div>	
 			<form id="frm" name="frm" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

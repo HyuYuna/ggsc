@@ -717,6 +717,12 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.insertLinkageReq(vo);
 	}
 	
+	// 연계의뢰서 삭제
+	@Override
+	public void deleteLinkageReq(LinkReqVO vo) {
+		cnsMngDao.deleteLinkageReq(vo);
+	}
+	
 	// 슈퍼비전 목록
 	@Override
 	public List<EgovMap> getSuperVisionList(SupperVisionVO svo) {
@@ -924,11 +930,17 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	// 개인상담부터 일괄 삭제
 	@Override
 	public void deleteExiPerCnsDoc(Map<String, Object> map) {
+		
 		String caseNo = map.get("caseNo").toString();
 		String num = map.get("num").toString();
-		cnsMngDao.deletePerCnsDtl(caseNo);
+		int cnsStat = Integer.parseInt(map.get("cnsStat").toString());
+		
+		cnsMngDao.deletePerCnsDtl(num);
 		cnsMngDao.deleteExiPsyCnsDocDtl(map);
-		cnsMngDao.deleteCnsEnd(caseNo);
+		
+		if(cnsStat ==  2) {
+			cnsMngDao.deleteCnsEnd(caseNo);
+		}
 	}
 	
 	// 기존접수관리부터 일괄 수정

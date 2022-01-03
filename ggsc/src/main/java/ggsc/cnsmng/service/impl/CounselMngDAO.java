@@ -517,6 +517,11 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		insert("cnsMngDao.insertLinkageReq", vo);
 	}
 	
+	// 연계의뢰서 삭제
+	public void deleteLinkageReq(LinkReqVO vo) {
+		delete("cnsMngDao.deleteLinkageReq", vo);
+	}
+	
 	// 슈퍼비전 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getSuperVisionList(SupperVisionVO svo) {

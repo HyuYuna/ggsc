@@ -193,7 +193,7 @@
 			}
 		} else {
 			if(confirm("수정 하시겠습니까?")){
-				// var strNum = "$detail.num";
+				// var strNum = "${detail.num}";
 		  		// var param = parseInt(strNum);
 		  		var psycRstMmseds = $("#psycRstMmseds").val();
 				if(psycRstMmseds == "") {
@@ -205,6 +205,17 @@
 		}
 		
 	}  	
+	
+	function fn_delete() {
+		if(confirm("삭제 하시겠습니까?")){
+			var psycRstMmseds = $("#psycRstMmseds").val();
+			if(psycRstMmseds == "") {
+				$("#psycRstMmseds").val(0);
+			}
+		document.frm.action = "/gnoincoundb/linkageReqDel.do?mnuCd=${mnuCd}";
+       	document.frm.submit();
+		}
+	}
 	
 	
 	
@@ -578,6 +589,9 @@
 					<!-- <button type="button" class="btn-basic" onClick="javascript:fn_clear();"><i class="fa fa-repeat"></i>초기화</button> -->
 					<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('${detail.num}');">수정</button>
 					<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg('S');">저장</button>
+					<c:if test="${map.authCd <= 1}">
+						<button type="button" class="btn-basic"  onClick="javascript:fn_delete();">삭제</button>
+					</c:if>
 					<!-- <button type="button" class="btn-default" onClick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">저장</button> -->
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color:#fc692f;color:white;">목록</button>
 				</div>		

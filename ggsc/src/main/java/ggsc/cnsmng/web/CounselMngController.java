@@ -1427,7 +1427,7 @@ public class CounselMngController {
 		return "redirect:/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
 	}
 	
-	/*@RequestMapping(value = "/perCnsDel.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/perCnsDel.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String perCnsDel(PerCnsVO vo, HttpServletRequest request, ModelMap model) {
 		
 		Map <String,Object> map = new HashMap<String,Object>();
@@ -1438,14 +1438,16 @@ public class CounselMngController {
 		
 		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+		String cnsStat = request.getParameter("cnsStat") == null ? "" : request.getParameter("cnsStat");
 		
 		map.put("caseNo" , caseNo);
 		map.put("num" , num);
+		map.put("cnsStat" , cnsStat);
 		
 		counselMngService.deleteExiPerCnsDoc(map);
 
 		return "redirect:/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
-	}*/
+	}
 
 	@RequestMapping(value = "/gCnsList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String gCnsList(GcnsVO vo, HttpServletRequest request, ModelMap model) {
@@ -1971,6 +1973,18 @@ public class CounselMngController {
 
 		return "redirect:/gnoincoundb/linkageReqList.do?mnuCd=" + mnuCd;
 	}
+	
+	@RequestMapping(value = "/linkageReqDel.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String linkageReqDel(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		counselMngService.deleteLinkageReq(vo);
+
+		return "redirect:/gnoincoundb/perCnsList.do?mnuCd=" + mnuCd;
+	}
+	
 
 	@RequestMapping(value = "/linkageReq_popup.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String linkageReqPopup(LinkReqVO vo, HttpServletRequest request, ModelMap model) {
