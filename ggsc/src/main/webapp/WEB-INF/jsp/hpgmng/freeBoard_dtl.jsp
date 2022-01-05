@@ -92,11 +92,11 @@
 			$("#rcontent").focus();
 			return;
 		}
-		if(rcontent.length > 3000){
-			alert("내용을 3000자 이내로 입력해 주세요.");
+		/* if(rcontent.length > 10000){
+			alert("내용을 10000자 이내로 입력해 주세요.");
 			$("#rcontent").focus();
 			return;
-		}
+		} */
 		if(param == "S") {
 			if(confirm("등록 하시겠습니까?")){
 				$("#num").val(0);
@@ -163,8 +163,8 @@
 </style>
 <section id="content">
 	<h2 class="h2-title"><i class="fa fa-check-square"></i>
-		<c:if test="${empty detail.num }">게시판관리 등록</c:if>
-		<c:if test="${!empty detail.num }">게시판관리 상세 및 수정</c:if>
+		<c:if test="${empty detail.num }">자유게시판 등록</c:if>
+		<c:if test="${!empty detail.num }">자유게시판 상세 및 수정</c:if>
 	</h2>
 	<form name="downForm" id="downForm" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

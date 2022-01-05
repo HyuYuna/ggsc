@@ -57,7 +57,7 @@
 		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
 		<input type="hidden" id="filePath" name="filePath" value="" />
 	</form>
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>게시판관리</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>자유게시판</h2>
 		<div class="box-style1 x-scroll-auto" >
 				<!-- 검색영역 -->
 		<form name="searchForm" id="searchForm" method="get" onsubmit="return false">

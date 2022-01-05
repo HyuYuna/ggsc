@@ -702,9 +702,6 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.deletePsyCnsDocDtl", caseNo);
 	}
 	
-	public void deleteExiPsyCnsDocDtl(Map<String, Object> map) {
-		update("cnsMngDao.deleteExiPsyCnsDocDtl", map);
-	}
 	
 	public void deleteLinkReq(String caseNo) {
 		update("cnsMngDao.deleteLinkReq", caseNo);
@@ -728,6 +725,14 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	
 	public void deleteGcnsPer(int num) {
 		update("cnsMngDao.deleteGcnsPer", num);
+	}
+	
+	public void deleteExiPsyCnsDocDtl(Map<String, Object> map) {
+		update("cnsMngDao.deleteExiPsyCnsDocDtl", map);
+	}
+	
+	public void deleteExiCnsEnd(Map<String,Object> map) {
+		update("cnsMngDao.deleteExiCnsEnd", map);
 	}
 	
 	public void updateExiUser(CnsAcptVO vo) {

@@ -836,11 +836,11 @@
 			                    <tr>
 			                        <td>건강상태<br>(복용약포함)</td>
 			                        <td>
-			                            <textarea class="h50" id="cnsleHelth" name="cnsleHelth" maxlength="350"><c:out value="${detail.cnsleHelth }"/></textarea>
+			                            <textarea class="h50" id="cnsleHelth" name="cnsleHelth" maxlength="500"><c:out value="${detail.cnsleHelth }"/></textarea>
 			                        </td>
 			                        <td>공적부조</td>
 			                        <td><!-- 의료보호 1종 /<br>의료보호 2종<br>(※해당자만 체크) -->
-			                        	<textarea class="h50" id="cnsleGongGb" name="cnsleGongGb" maxlength="350"><c:out value="${detail.cnsleGongGb }"/></textarea>
+			                        	<textarea class="h50" id="cnsleGongGb" name="cnsleGongGb" maxlength="500"><c:out value="${detail.cnsleGongGb }"/></textarea>
 			                        </td>
 			                    </tr>
 			                    <tr>
@@ -848,25 +848,25 @@
 			                        <td colspan="4" class="txt-left">
 			                            <!-- <span class="ml30">· GDS-KR(우울검사) : </span><span class="ml42"><input type="text" class="inp txt-right w130" id="" name="" style="width:200px;">점(30점만점기준)</span><br> -->
 			                            <span class="ml30">· MMSE-DS(인지기능검사) : <input type="text" class="inp txt-left w130" id="psycRstMmseds" name="psycRstMmseds" style="width:40px;" oninput="this.value = this.value.replace(/[^0-9]/g, '');" value="${detail.psycRstMmseds }" maxlength="3">점(30점만점기준)</span><br>
-			                            <span class="ml30">· 기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 : <input type="text" class="inp txt-left w130" id="psycRstEtc" name="psycRstEtc" style="width:200px;" value="${detail.psycRstEtc }" maxlength="20"></span>
+			                            <span class="ml30">· 기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 : <input type="text" class="inp txt-left w130" id="psycRstEtc" name="psycRstEtc" style="width:200px;" value="${detail.psycRstEtc }" maxlength="300"></span>
 			                        </td>
 			                    </tr>
 			                    <tr>
 			                        <th scope="col">내담자<br>특이<br>사항</th>
 			                        <td colspan="4">
-			                            <textarea class="h100" id="cnslePsycRst" name="cnslePsycRst" maxlength="500"><c:out value="${detail.cnslePsycRst }"/></textarea>
+			                            <textarea class="h100" id="cnslePsycRst" name="cnslePsycRst" maxlength="2000"><c:out value="${detail.cnslePsycRst }"/></textarea>
 			                        </td>
 			                    </tr>
 			                    <tr>
 			                        <th scope="col">상담사<br>의견</th>
 			                        <td colspan="4">
-			                            <textarea class="h100" id="cnsrOp" name="cnsrOp" maxlength="500"><c:out value="${detail.cnsrOp }"/></textarea>
+			                            <textarea class="h100" id="cnsrOp" name="cnsrOp" maxlength="2000"><c:out value="${detail.cnsrOp }"/></textarea>
 			                        </td>
 			                    </tr>
 			                    <tr>
 			                        <th class="txtGr" scope="col">연계요청<br>사항</th>
 			                        <td colspan="4">
-			                            <textarea class="h100" id="linkReqDesc" name="linkReqDesc" maxlength="500"><c:out value="${detail.linkReqDesc }"/></textarea>
+			                            <textarea class="h100" id="linkReqDesc" name="linkReqDesc" maxlength="2000"><c:out value="${detail.linkReqDesc }"/></textarea>
 			                        </td>
 			                    </tr>
 			                    <tr>
@@ -893,7 +893,7 @@
 			                    <tr>
 			                        <td>요청사항에<br>대한<br>처리결과</td>
 			                        <td colspan="3">
-			                            <textarea class="h100" id="linkReqRecvRst" name="linkReqRecvRst" maxlength="500"><c:out value="${detail.linkReqRecvRst }"/></textarea>
+			                            <textarea class="h100" id="linkReqRecvRst" name="linkReqRecvRst" maxlength="1500"><c:out value="${detail.linkReqRecvRst }"/></textarea>
 			                        </td>
 			                    </tr>
 			                </tbody>

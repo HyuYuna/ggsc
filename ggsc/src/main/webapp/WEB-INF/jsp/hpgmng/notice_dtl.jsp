@@ -87,11 +87,11 @@
 			$("#rcontent").focus();
 			return;
 		}
-		if(rcontent.length > 3000){
-			alert("내용을 3000자 이내로 입력해 주세요.");
+		/* if(rcontent.length > 20000){
+			alert("내용을 20000자 이내로 입력해 주세요.");
 			$("#rcontent").focus();
 			return;
-		}
+		} */
 		if(param == "S") {
 			if(confirm("등록 하시겠습니까?")){
 				$("#num").val(0);

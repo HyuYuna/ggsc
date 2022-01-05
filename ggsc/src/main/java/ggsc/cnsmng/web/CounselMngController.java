@@ -1142,12 +1142,41 @@ public class CounselMngController {
 	}
 
 	@RequestMapping(value = "/ealyCnsDocDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String ealyCnsDocDtl(HttpServletRequest request, ModelMap model) {
+	public String ealyCnsDocDtl(EalyCnsDocVO vo, HttpServletRequest request, ModelMap model) {
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		model.addAttribute("mnuCd", mnuCd);
 
-		EgovMap map = (EgovMap) request.getSession().getAttribute("LoginVO");
-		model.addAttribute("map", map);
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		// 권한 관리 끝
+		
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd("1"); break; 
+			case 2: vo.setAuthCd("2"); break; 
+			case 3: vo.setAuthCd("3"); break; 
+				default: vo.setAuthCd("4"); break; 
+		}
+		model.addAttribute("map", loginVo);
+		model.addAttribute("authCd", userAuth);
+		
 		EgovMap result = null;
 		String caseNoStr = request.getParameter("caseNo");
 		if (caseNoStr != null) {
@@ -1439,10 +1468,12 @@ public class CounselMngController {
 		String caseNo = request.getParameter("caseNo") == null ? "" : request.getParameter("caseNo");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		String cnsStat = request.getParameter("cnsStat") == null ? "" : request.getParameter("cnsStat");
+		int cnsCnt = Integer.parseInt(request.getParameter("cnsCnt") == null ? "" : request.getParameter("cnsCnt"));
 		
 		map.put("caseNo" , caseNo);
 		map.put("num" , num);
 		map.put("cnsStat" , cnsStat);
+		map.put("cnsCnt" , cnsCnt);
 		
 		counselMngService.deleteExiPerCnsDoc(map);
 

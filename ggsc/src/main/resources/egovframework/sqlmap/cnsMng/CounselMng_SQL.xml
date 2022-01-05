@@ -717,8 +717,7 @@
 		FROM
 			gs_per_cns_dtl AS gpcd
 		where
-			gpcd.CNS_STAT = '1'
-			AND gpcd.USE_YN = 'Y'
+			gpcd.USE_YN = 'Y'
 			<isNotEmpty property="schCnsGb" prepend="AND">
 				gpcd.CNS_GB = #schCnsGb#
 			</isNotEmpty>
@@ -5083,14 +5082,6 @@
 			CASE_NO = #caseNo#
 	</update>
 	
-	<update id="cnsMngDao.deleteExiPsyCnsDocDtl" parameterClass="HashMap">
-		DELETE 
-			FROM gs_psy_cns_doc_dtl
-		WHERE 
-			CASE_NO = #caseNo#
-			AND CNS_DTL_NUM = #num#
-	</update>
-	
 	<update id="cnsMngDao.deleteLinkReq" parameterClass="java.lang.String">
 		DELETE 
 			FROM gs_link_req_m
@@ -5132,6 +5123,22 @@
 		WHERE 
 			GCNS_NUM = #num#
 	</update>
+
+	<update id="cnsMngDao.deleteExiPsyCnsDocDtl" parameterClass="HashMap">
+		DELETE 
+			FROM gs_psy_cns_doc_dtl
+		WHERE 
+			CASE_NO = #caseNo#
+			AND CNS_DTL_NUM = #num#
+	</update>
+	
+	<update id="cnsMngDao.deleteExiCnsEnd" parameterClass="HashMap">
+		DELETE 
+			FROM gs_cns_end
+		WHERE 
+			CASE_NO = #caseNo#
+			AND CNS_CNT = #cnsCnt#
+	</update>
 	
 	
 	<!-- 기존상담접수신청 회원수정 -->
@@ -5160,9 +5167,9 @@
 			CNS_GB = #cnsGb#,
 			CENTER_GB = #centerGb#,
 			ZONE_GB = #zoneGb#,
+			SIGUN_CD = #sigunCd#,
 			MAJOR_APPL_CD = #majorApplCd#,
 			CNS_HIST_YN = #cnsHistYn#,
-			SIGUN_CD = #sigunCd#,
 			UPDATE_DT = NOW()
 		WHERE
 			CASE_NO = #caseNo#

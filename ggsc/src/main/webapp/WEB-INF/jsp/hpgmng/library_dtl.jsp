@@ -90,11 +90,11 @@
 			$("#rcontent").focus();
 			return;
 		}
-		if (rcontent.length > 3000) {
-			alert("내용을 3000자 이내로 입력해 주세요.");
+		/* if (rcontent.length > 20000) {
+			alert("내용을 20000자 이내로 입력해 주세요.");
 			$("#rcontent").focus();
 			return;
-		}
+		} */
 		if (param == "S") {
 			if (confirm("등록 하시겠습니까?")) {
 				$("#num").val(0);
@@ -214,7 +214,7 @@
 	        <button type="button" class="btn-basic" id="updateBtn" onClick="javascript:fn_reg('U');" style="background-color:#fc692f;color:white;">수정</button>  
         </c:if>
 		<button type="button" class="btn-basic" id="saveBtn" onClick="javascript:fn_reg('S');" style="background-color:#fc692f;color:white;">등록</button>
-		<c:if test="${ detail != null && (authCd <= 1 || ( vo.authCd > 1 && userId == detail.regId )) }">
+		<c:if test="${ detail != null && (vo.authCd <= 1 || ( vo.authCd > 1 && userId == detail.regId )) }">
 			<button type="button" class="btn-basic" id="deleteBtn" onClick="javascript:fn_reg('D');" style="background-color:green;color:white;">삭제</button>
 		</c:if>
 		<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd}');" style="background-color:#fc692f;color:white;">목록</button>

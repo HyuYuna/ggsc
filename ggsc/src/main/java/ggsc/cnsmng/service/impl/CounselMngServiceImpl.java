@@ -931,7 +931,6 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	@Override
 	public void deleteExiPerCnsDoc(Map<String, Object> map) {
 		
-		String caseNo = map.get("caseNo").toString();
 		String num = map.get("num").toString();
 		int cnsStat = Integer.parseInt(map.get("cnsStat").toString());
 		
@@ -939,7 +938,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteExiPsyCnsDocDtl(map);
 		
 		if(cnsStat ==  2) {
-			cnsMngDao.deleteCnsEnd(caseNo);
+			cnsMngDao.deleteExiCnsEnd(map);
 		}
 	}
 	

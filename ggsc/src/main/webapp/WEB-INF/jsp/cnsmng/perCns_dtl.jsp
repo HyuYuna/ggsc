@@ -318,8 +318,10 @@
 	}
 	
 	function fn_delete() {
-		document.frm.action = "/gnoincoundb/perCnsDel.do?mnuCd=${mnuCd}";
-       	document.frm.submit();
+		if(confirm("개인상담과 연결된 심리검사와 종결서(상담회기 기준)까지 삭제됩니다. 삭제 하시겠습니까?")) {
+			document.frm.action = "/gnoincoundb/perCnsDel.do?mnuCd=${mnuCd}";
+	       	document.frm.submit();
+		}
 	}
 	
 	function fn_list(mnuCd){
