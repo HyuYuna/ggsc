@@ -1550,4 +1550,13 @@
 		WHERE 
 			PR_ATVY_NO = #prAtvyNo#
 	</update>
+	
+	<!-- 상담사례종결서 삭제  -->
+	<update id="reportDao.deleteCnsEndDtl" parameterClass="Integer">
+		DELETE FROM
+			GS_CNS_END
+		WHERE 
+			NUM = #num#
+	</update>
+	
 </sqlMap>

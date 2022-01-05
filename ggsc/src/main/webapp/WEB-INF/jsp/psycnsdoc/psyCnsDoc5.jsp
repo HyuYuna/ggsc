@@ -9,7 +9,15 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
 	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="/gnoincoundb/css/psyDocument/common.css" rel="stylesheet">
-    <script src="/gnoincoundb/js/jquery/jquery-1.11.2.min.js"></script>
+   	<link rel="stylesheet" href="/gnoincoundb/css/jquery-accordion-menu.css">
+	<link rel="stylesheet" href="/gnoincoundb/css/jquery-ui.css">
+	
+	<script src="/gnoincoundb/js/jquery/jquery-1.11.2.min.js"></script>
+	<script src="/gnoincoundb/js/jquery/jquery.form.js"></script>
+	<script src="/gnoincoundb/js/jquery/jquery-migrate-1.4.1.js"></script>
+	<script src="/gnoincoundb/js/jquery/jquery-accordion-menu.js" type="text/javascript"></script>
+	<script src="/gnoincoundb/js/jquery/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="/gnoincoundb/js/common.js"></script>
 </head>
 <script>
 	if('${param.gIdx}' == ''){
@@ -75,9 +83,17 @@
 		}
 		
 		var cnsleNm = $("#cnsleNm").val();
+		var writeDt = $('input[name=writeDt]').val();
+		
 		if(cnsleNm.length == 0) {
 			alert("내담자를 선택해주세요.");
 			$("#cnsleNm").focus();
+			return false;
+		}
+		
+		if(writeDt.length == 0) {
+			alert("검사일을 입력해주세요.");
+			$("input[name=writeDt]").focus();
 			return false;
 		}
 	
@@ -200,27 +216,31 @@
                     <col style="width: 10%;" />
                     <col style="width: 8%;" />
                     <col style="width: 10%;" />
-                    <col style="width: 8%;" />
-                    <col style="width: 10%;" />
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="col">이름</th>
+                        <th scope="col">이&nbsp;&nbsp;름</th>
                         <td>
-                            <input type="text" class="inp txt-center" id="cnsleNm" name="cnsleNm" style="width: 65%;"><button type="button" class="btn-basic" style="padding: 2px 6px;background: skyblue;" onclick="javascript:findUserPopup();">찾기</button>
+                            <input type="text" class="inp" id="cnsleNm" name="cnsleNm" style="width: 70%;" readonly><button type="button" class="btn-basic" style="padding: 2px 6px;background: skyblue;" onclick="javascript:findUserPopup();">찾기</button>
                         </td>
                         <th scope="col">성별</th>
                         <td>
-                            <label for="genderM" style="margin-right: 5px;">남</label><input type="radio" id="genderM" name="no20" value="M" /> /
-                            <label for="genderF" style="margin-right: 5px;">여</label><input type="radio" id="genderF" name="no20" value="F" />
+                            <label for="genderM" style="margin-right: 5px;">남</label><input type="radio" id="genderM" name="no9" value="M" /> /
+                            <label for="genderF" style="margin-right: 5px;">여</label><input type="radio" id="genderF" name="no9" value="F" />
                         </td>
-                        <th scope="col">나이</th>
+                        <th scope="col">검사일</th>
                         <td>
-                            <input type="text" class="inp txt-center" id="age" name="no21" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            <input type="text" class="inp" id="datepicker1" name="writeDt" style="width: 80%;" readonly>
                         </td>
-                        <th scope="col">연락처</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">나&nbsp;&nbsp;이</th>
                         <td>
-                            <input type="text" class="inp txt-center" id="mobile" name="telNo" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            <input type="text" class="inp" id="age" name="no10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
+                        </td>
+                        <th scope="col">연 락 처</th>
+                        <td colspan="3">
+                            <input type="text" class="inp" id="mobile" name="telNo" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="20">
                         </td>
                     </tr>
                 </tbody>

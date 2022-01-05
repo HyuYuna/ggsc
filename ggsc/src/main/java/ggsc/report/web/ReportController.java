@@ -144,6 +144,19 @@ public class ReportController {
 
 		return "redirect:/gnoincoundb/cnsEndList.do?mnuCd=" + mnuCd;
 	}
+	
+	// 상담사례종결서 삭제
+	@RequestMapping(value = "/cnsEndDel.do", method = RequestMethod.POST)
+	public String cnsEndDel(CnsEndVO vo, HttpServletRequest request, ModelMap model) {
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+		
+		int num = vo.getNum();
+
+		reportService.deleteCnsEndDtl(num);
+
+		return "redirect:/gnoincoundb/cnsEndList.do?mnuCd=" + mnuCd;
+	}
 
 	// 상담대상자관리대장 목록
 	@RequestMapping(value = "/cnsBookList.do", method = { RequestMethod.GET, RequestMethod.POST })

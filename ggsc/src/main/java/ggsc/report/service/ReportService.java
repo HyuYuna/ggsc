@@ -136,4 +136,7 @@ public interface ReportService {
 	
 	// 홍보활동보고서 삭제
 	void deletePrAtvyRpt(PrAtvyRptVO vo);
+	
+	// 상담사례 종결서 삭제
+	void deleteCnsEndDtl(int num);
 }

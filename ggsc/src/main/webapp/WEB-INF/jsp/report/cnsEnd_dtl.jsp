@@ -33,6 +33,13 @@
 		}
 	}
 	
+	function fn_delete(){
+		if(confirm("삭제 하시겠습니까?")) {
+			document.frm.action = "/gnoincoundb/cnsEndDel.do";
+		   	document.frm.submit();
+		}
+	}
+	
 	function fn_list(mnuCd){
 		document.location.href = "/gnoincoundb/cnsEndList.do?mnuCd=" + mnuCd;
 	}
@@ -64,6 +71,9 @@
 			<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd}');" style="background-color: green;color:white;">목록</button>
 			<c:if test="${ result != null && (map.authCd <= 3 || ( map.authCd > 3 && map.userId == result.cnsrId )) }">
 				<button type="button" class="btn-basic" onClick="javascript:fn_save();" style="background-color: green;color:white;">수정</button>
+			</c:if>
+			<c:if test="${map.authCd <= 1}">
+				<button type="button" class="btn-basic" onClick="javascript:fn_delete();" style="background-color: green;color:white;">삭제</button>
 			</c:if>
 			<!-- <button type="button" class="btn-basic" onClick="javascript:fn_save();" style="background-color: green;color:white;">수정</button> -->
 			<!-- <button type="button" class="btn-basic" onClick="javascript:fn_pdf();" style="background-color: green;color:white;">PDF</button> -->

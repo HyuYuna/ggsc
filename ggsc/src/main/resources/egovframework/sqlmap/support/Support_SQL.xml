@@ -683,6 +683,7 @@
 		SELECT 
 			cnsle_nm ,
 			case_no ,
+			date_format(STR_TO_DATE(write_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
 			NO21 AS survey1n ,
 			tel_no AS survey24y ,
 			NO22 AS survey23n ,

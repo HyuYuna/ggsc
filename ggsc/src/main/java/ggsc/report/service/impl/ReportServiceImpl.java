@@ -540,5 +540,11 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 	public void deletePrAtvyRpt(PrAtvyRptVO vo) {
 		reportDao.deletePrAtvyRpt(vo);
 	}
+	
+	// 상담사례종결서 삭제
+	@Override
+	public void deleteCnsEndDtl(int num) {
+		reportDao.deleteCnsEndDtl(num);
+	}
 
 }

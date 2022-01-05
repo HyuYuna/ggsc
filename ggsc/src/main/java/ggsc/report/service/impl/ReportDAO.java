@@ -263,8 +263,13 @@ public class ReportDAO extends EgovAbstractDAO {
 		update("reportDao.updatePrAtvyRpt", vo);
 	}
 	
-	// 홍보활동보고서 수정
+	// 홍보활동보고서 삭제
 	public void deletePrAtvyRpt(PrAtvyRptVO vo){
 		update("reportDao.deletePrAtvyRpt", vo);
+	}
+	
+	// 상담사례종결서 삭제
+	public void deleteCnsEndDtl(int num){
+		update("reportDao.deleteCnsEndDtl", num);
 	}
 }
