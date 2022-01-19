@@ -32,6 +32,9 @@
 	 			AND CNTN LIKE  CONCAT('%', #{searchKeyword}, '%')
 	 		</if>
 	 	</if> 
+	 	
+	 	GROUP BY
+			a.NUM
 			
 		ORDER BY NUM DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -104,37 +107,47 @@
 	<!-- 공지사항 상세 -->
 	<select id="getNoticeDtl" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			CAST(A.CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
-			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
-			F.FILE_NM ,
-			F.SYS_FILE_NM ,
-			F.FILE_PATH
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
 		FROM
-			GS_NOTICE_A AS A
-		LEFT JOIN GS_NOTICE_A_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			GS_NOTICE_A
 		WHERE
 			1=1
 		<if test="prevYn != null">
 	 		<if test="prevYn == 'Y'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM < #{num} ORDER BY A.NUM DESC LIMIT 1
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
 	 			]]>
 	 		</if>
 	 		<if test="prevYn == 'N'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM > #{num} ORDER BY A.NUM ASC LIMIT 1
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
 	 			]]>
 	 		</if>
 	 	</if> 
  		<if test="prevYn == null">
- 			AND A.NUM = #{num}
+ 			AND NUM = #{num}
  		</if>
 			
 	</select>
+	
+	
+	<!-- 공지사항 파일 상세 -->
+	<select id="getNoticeFileDtl" parameterType="cmSpaceVO" resultType="egovMap">
+		SELECT
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_NOTICE_A_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
+	</select>
+	
 	
 	<!-- 공지사항 조회수 증가 -->
 	<update id="updateNoticeViewCount" parameterType="Integer">

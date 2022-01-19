@@ -7,6 +7,7 @@ import ams.cmm.PageVO;
 public class NoticeVO extends PageVO {
 	
 	private int num;
+	private int fileNum;
 	private int authCd;
 	private String title;
 	private String writer;
@@ -27,6 +28,13 @@ public class NoticeVO extends PageVO {
 	private String schType;
 	private String schText;
 	
+	
+	public int getFileNum() {
+		return fileNum;
+	}
+	public void setFileNum(int fileNum) {
+		this.fileNum = fileNum;
+	}
 	public int getAuthCd() {
 		return authCd;
 	}

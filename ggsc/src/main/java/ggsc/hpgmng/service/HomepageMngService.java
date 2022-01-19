@@ -1,9 +1,13 @@
 package ggsc.hpgmng.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
-import ggsc.hpgmng.service.NoticeVO;
 
 public interface HomepageMngService {
 	
@@ -14,16 +18,19 @@ public interface HomepageMngService {
 	int getNoticeListTotCnt(NoticeVO vo);
 	
 	// 공지사항 등록
-	void insertNotice(NoticeVO vo);
+	void insertNotice(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 공지사항 수정
-	void updateNotice(NoticeVO vo);
+	void updateNotice(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 공지사항 삭제
 	void deleteNotice(int noticeNum);
 	
 	// 공지사항 상세
 	EgovMap getNoticeDtl(int num);
+	
+	// 공지사항 상세 파일 목록
+	List<EgovMap> getNoticeFileDtl(int num);
 	
 	// 게시판관리 목록
 	List<EgovMap> getFreeBoardList(FreeBrdVO vo);

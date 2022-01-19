@@ -1,6 +1,7 @@
 package ggsc.hpgmng.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -17,9 +21,9 @@ import ggsc.hpgmng.service.FreeBrdVO;
 import ggsc.hpgmng.service.HomepageMngService;
 import ggsc.hpgmng.service.LibraryVO;
 import ggsc.hpgmng.service.NewsVO;
+import ggsc.hpgmng.service.NoticeVO;
 import ggsc.hpgmng.service.OnlineAskVO;
 import ggsc.hpgmng.service.PopupVO;
-import ggsc.hpgmng.service.NoticeVO;
 
 
 @Controller
@@ -51,6 +55,50 @@ public class HomepageMngController {
 		model.addAttribute("vo", vo);
 		
 		return "hpgmng/notice_list.main";
+	}
+	
+	@RequestMapping(value = "/noticeForm.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String noticeForm(NoticeVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
+		
+		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		
+		return "hpgmng/notice_reg.main";
 	}
 	
 	@RequestMapping(value = "/noticeDtl.do", method = { RequestMethod.GET, RequestMethod.POST } )
@@ -90,38 +138,42 @@ public class HomepageMngController {
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap noticeDtl = null;
+		EgovMap notice = null;
+		List<EgovMap> file = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			noticeDtl = hpgmngService.getNoticeDtl(intNum);
+			notice = hpgmngService.getNoticeDtl(intNum);
+			file = hpgmngService.getNoticeFileDtl(intNum);
 		}
+		
 		
 		model.addAttribute("userId", loginVO.get("userId").toString());
 		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
 		model.addAttribute("authCd", userAuth);
-		model.addAttribute("detail", noticeDtl);
+		model.addAttribute("notice", notice);
+		model.addAttribute("file", file);
 		
 		return "hpgmng/notice_dtl.main";
 	}
 	
 	@RequestMapping(value = "/noticeReg.do", method = RequestMethod.POST)
-	public String noticeReg(HttpServletRequest request, ModelMap model, NoticeVO vo){
+	public String noticeReg(@RequestParam Map<String,Object> map, MultipartHttpServletRequest  request, ModelMap model) throws Exception{
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
+		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)login.get("userId");
+		String writer = (String)login.get("userNm");
+		map.put("regId", regId);
+		map.put("writer", writer);
 		
-		int noticeNum = vo.getNum();
-		
+		int noticeNum = Integer.parseInt((String) map.get("num"));
 		
 		if(save.equals("S")) {
-			hpgmngService.insertNotice(vo);	
+			hpgmngService.insertNotice(map,request);	
 		} else if(save.equals("U")) {
-			hpgmngService.updateNotice(vo);
+			map.put("fileNum",noticeNum);
+			hpgmngService.updateNotice(map,request);
 		} else if(save.equals("D")) {
 			hpgmngService.deleteNotice(noticeNum);
 		}

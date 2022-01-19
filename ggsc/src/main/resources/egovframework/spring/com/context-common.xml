@@ -71,8 +71,8 @@
     <!-- MULTIPART RESOLVERS -->
     <!-- regular spring resolver -->
     <bean id="spring.RegularCommonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="100000000" />
-        <property name="maxInMemorySize" value="100000000" />
+        <property name="maxUploadSize" value="1000000000" />
+        <property name="maxInMemorySize" value="1000000000" />
         
     </bean>
     

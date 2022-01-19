@@ -67,6 +67,13 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 		return homepageCmSpaceMapper.getNoticeDtl(vo);
 	}
 	
+	// 공지사항 상세 파일 목록
+	@Override
+	public List<EgovMap> getNoticeFileDtl(CmSpaceVO vo) {
+		return homepageCmSpaceMapper.getNoticeFileDtl(vo);
+	}
+		
+	
 	// 센터소식 목록
 	public List<EgovMap> getCenterNewsList(CmSpaceVO vo) {
 		return homepageCmSpaceMapper.getCenterNewsList(vo);

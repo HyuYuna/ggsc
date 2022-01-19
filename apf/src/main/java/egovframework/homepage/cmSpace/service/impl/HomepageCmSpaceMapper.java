@@ -25,6 +25,9 @@ public interface HomepageCmSpaceMapper {
 	// 공지사항 상세
 	EgovMap getNoticeDtl(CmSpaceVO vo);
 	
+	// 공지사항 파일 상세
+	List<EgovMap> getNoticeFileDtl(CmSpaceVO vo);
+	
 	// 공지사항 조회수 증가
 	void updateNoticeViewCount(int num);
 	

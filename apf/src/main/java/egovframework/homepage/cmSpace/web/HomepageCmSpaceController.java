@@ -106,11 +106,16 @@ public class HomepageCmSpaceController {
 		//model.addAttribute("cnsrNm",cnsrNm);
 		
 		// 공지사항 상세
-		EgovMap noticeDtl = null;
+		EgovMap notice = null;
+		List<EgovMap> file = null;
+		
 		if(num !=""){
 			// 공지사항 상세
-			noticeDtl = homepageCmSpaceService.getNoticeDtl(vo);
-			model.addAttribute("detail",noticeDtl);
+			notice = homepageCmSpaceService.getNoticeDtl(vo);
+			file = homepageCmSpaceService.getNoticeFileDtl(vo);
+			
+			model.addAttribute("notice",notice);
+			model.addAttribute("file",file);
 		}
 		
 		return "/comuSpace/noticeDtl.page";

@@ -11,7 +11,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.crypto.BadPaddingException;
@@ -19,15 +23,18 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.nhncorp.lucy.security.xss.CommonUtils;
 
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
@@ -526,8 +533,9 @@ public class AMSComm {
 				utility.func.Logging("AES256Crypto", "ENCODE ERROR - 7");
 			}
 			
+			map.put("delGb", "Y");
 			map.put("fileNm", originalFileName);
-			//map.put("sysFileNm", savedFileName);
+			map.put("sysFileNm", savedFileName);
 			map.put("filePath", subPath);
 			map.put("fileSize", file.getSize());
 
@@ -582,6 +590,38 @@ public class AMSComm {
 			map.put("fileSize", 0);
 		}
 		return map;
+	}
+	
+	public static List<EgovMap> parseInsertFileInfo(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception{
+		
+		Iterator<String> iterator = request.getFileNames();
+		List<EgovMap> list = new ArrayList<EgovMap>();
+		String requestName = null;
+		String num = null;
+		
+		while(iterator.hasNext()){  // haxNext=>true , false값 반환
+		    String fileName = iterator.next();
+			MultipartFile multipartFile = request.getFile(fileName); // next() => 매개변수값 반환
+			if(multipartFile.isEmpty() == false){
+				EgovMap fMap = AMSComm.fileUpload(multipartFile, "report");
+				System.out.println("맵값 존재 여부"+fMap);
+				list.add(fMap);
+			} else {
+				requestName = multipartFile.getName();
+				try {
+					num = "num"+requestName.substring(requestName.indexOf("_"));
+				} catch(Exception e) {
+					continue;
+				}
+				if(map.containsKey(num) == true && map.get(num) != null) {
+					EgovMap egovMap = new EgovMap();
+					egovMap.put("delGb" , "N");
+					egovMap.put("num", map.get(num));
+					list.add(egovMap);
+				}
+			}
+		}
+		return list;
 	}
 
 	// 배열 문자열로 나열

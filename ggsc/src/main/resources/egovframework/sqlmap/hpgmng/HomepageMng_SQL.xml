@@ -248,6 +248,9 @@
 					gna.CNTN LIKE CONCAT('%', #schText#, '%')
 				</isEqual>
 			</isNotEmpty>
+			
+			GROUP BY
+				gna.NUM
 				
 			) A
 		<![CDATA[
@@ -290,7 +293,7 @@
 	</select>
 	
 	<!-- 공지사항 등록-->
-	<insert id="hpgmngDao.insertNotice" parameterClass="noticeVO">
+	<insert id="hpgmngDao.insertNotice" parameterClass="Map">
 		INSERT INTO GS_NOTICE_A(
 			<!-- NUM , -->
 			WRITER,
@@ -314,7 +317,7 @@
 	</insert>
 	
 	<!-- 공지사항 파일업로드 등록  -->
-	<insert id="hpgmngDao.insertNoticeUpload" parameterClass="noticeVO">
+	<insert id="hpgmngDao.insertNoticeUpload" parameterClass="egovMap">
 		INSERT INTO GS_NOTICE_A_FILE
 			(
 				FILE_NUM ,
@@ -325,7 +328,7 @@
 				FILE_PATH ,
 				DB_INS_TM
 			) VALUES (
-				#num# ,
+				#fileNum# ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
@@ -336,7 +339,7 @@
 	</insert>
 	
 	<!-- 공지사항 수정  -->
-	<update id="hpgmngDao.updateNotice" parameterClass="noticeVO">
+	<update id="hpgmngDao.updateNotice" parameterClass="Map">
 		UPDATE GS_NOTICE_A
 			SET
 				TITLE = #title# ,
@@ -362,6 +365,26 @@
 			FILE_NUM = #noticeNum#
 	</update>
 	
+	<!-- 공지사항 파일 삭제구분 처리  -->
+	<update id="hpgmngDao.deleteNoticeUploadGbY" parameterClass="Map">
+		UPDATE  
+			GS_NOTICE_A_FILE
+		SET
+	 		DEL_GB = 'Y'
+		WHERE 
+			FILE_NUM = #fileNum#
+	</update>
+	
+	<!-- 공지사항 파일 삭제구분 취소  -->
+	<update id="hpgmngDao.deleteNoticeUploadGbN" parameterClass="egovMap">
+		UPDATE  
+			GS_NOTICE_A_FILE
+		SET
+	 		DEL_GB = 'N'
+		WHERE 
+			NUM = #num#
+	</update>
+	
 	<!-- 공지사항 파일업로드 수정  -->
 	<update id="hpgmngDao.updateNoticeUpload" parameterClass="noticeVO">
 		UPDATE GS_NOTICE_A_FILE
@@ -377,20 +400,30 @@
 	<!-- 공지사항 상세-->	
 	<select id="hpgmngDao.getNoticeDtl" parameterClass="Integer" resultClass="egovMap">		
 		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			A.REG_ID ,
-			CAST(A.CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
-			B.FILE_NM ,
-			B.FILE_PATH ,
-			B.SYS_FILE_NM
+			NUM ,
+			TITLE ,
+			WRITER ,
+			REG_ID ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN 
 		FROM
-			GS_NOTICE_A AS A
-		LEFT JOIN GS_NOTICE_A_FILE AS B
-			ON A.NUM = B.FILE_NUM
+			GS_NOTICE_A 
 		WHERE
-			A.NUM = #num#
+			NUM = #num#
+	</select>
+		
+	<!-- 공지사항 상세 파일목록-->	
+	<select id="hpgmngDao.getNoticeFileDtl" parameterClass="Integer" resultClass="egovMap">		
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_NOTICE_A_FILE 
+		WHERE
+			FILE_NUM = #num#
+			AND DEL_GB = 'N'
 	</select>
 	
 	<!-- 게시판관리 목록 -->

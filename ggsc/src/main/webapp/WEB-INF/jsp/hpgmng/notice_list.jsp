@@ -11,7 +11,7 @@
 	});
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/noticeDtl.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/noticeForm.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_detail(num){

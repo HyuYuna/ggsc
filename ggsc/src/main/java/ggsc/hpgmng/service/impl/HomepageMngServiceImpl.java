@@ -4,15 +4,19 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ams.cmm.AES256Crypto;
 import ams.cmm.AMSComm;
@@ -47,11 +51,18 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	
 	// 공지사항 등록
 	@Override
-	public void insertNotice(NoticeVO vo) {
+	public void insertNotice(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception {
 		
 		int noticeNum = 0;
-		noticeNum = hpgmngDao.insertNotice(vo);
-		vo.setNum(noticeNum);
+		noticeNum = hpgmngDao.insertNotice(map);
+		
+		List<EgovMap> list = AMSComm.parseInsertFileInfo(map,request);
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).put("fileNum",noticeNum);
+			list.get(i).put("regId",map.get("regId"));
+			list.get(i).put("writer",map.get("writer"));
+			hpgmngDao.insertNoticeUpload(list.get(i));
+		}
 		
 		/*if(vo.getFile().getSize() != 0) {
 			MultipartFile file = vo.getFile();
@@ -62,55 +73,64 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 			// 첨부파일이 있으면 업로드
 			supportDao.insertNoticeUpload(vo);			
 		} else {
+	
 			vo.setFileNm("");
 			vo.setSysFileNm("");
 			vo.setFilePath("");
 			// 첨부파일이 없을때
 			supportDao.insertNoticeUpload(vo);	
 		}*/
+		/*Iterator<String> iterator = request.getFileNames();
+		String requestName = null;
+		String num = null;
 		
-		if(vo.getFile()!=null) {
-			if(vo.getFile().getSize() != 0) {
-				System.out.println("File Upload Start");
-				MultipartFile file = vo.getFile();
-				System.out.println("Upload File Name : " + vo.getFile().getName());
-				
-				EgovMap fMap = AMSComm.fileUpload(file, "report");
-				
-				System.out.println("File Upload End");
-				
+		while(iterator.hasNext()){  // haxNext=>true , false값 반환
+		    String fileName = iterator.next();
+			MultipartFile multipartFile = request.getFile(fileName); // next() => 매개변수값 반환
+			if(multipartFile.isEmpty() == false){
+				EgovMap fMap = AMSComm.fileUpload(multipartFile, "report");
+
 				fMap.put("regId", vo.getRegId());
-				//fMap.put("writer", vo.getUserNum());
-				
 				vo.setFileNm(fMap.get("fileNm").toString());
 				vo.setSysFileNm(fMap.get("sysFileNm").toString());
 				vo.setFilePath(fMap.get("filePath").toString());
-				/*try {
-					vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
-				}catch(Exception err) {
-					vo.setFileSize(0);
-				}*/
 				hpgmngDao.insertNoticeUpload(vo);
 			} else {
+				requestName = multipartFile.getName();
+				try {
+					num = "num"+requestName.substring(requestName.indexOf("_"));
+				} catch(Exception e) {
+					continue;
+				}
 				vo.setFileNm(null);
 				vo.setSysFileNm(null);
 				vo.setFilePath(null);
 				hpgmngDao.insertNoticeUpload(vo);
 			}
-		} else {
-			vo.setFileNm(null);
-			vo.setSysFileNm(null);
-			vo.setFilePath(null);
-			hpgmngDao.insertNoticeUpload(vo);
-			// vo.setFileSize(0);
-		}
+		}*/
 	}
 	
 	// 공지사항 수정
 	@Override
-	public void updateNotice(NoticeVO vo) {
-		hpgmngDao.updateNotice(vo);
+	public void updateNotice(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception {
+		hpgmngDao.updateNotice(map);
 		
+		hpgmngDao.deleteNoticeUploadGbY(map);
+		List<EgovMap> list = AMSComm.parseInsertFileInfo(map,request);
+		EgovMap fileMap = null;
+		for(int i=0; i<list.size(); i++) {
+			fileMap = list.get(i);
+			fileMap.put("fileNum",map.get("fileNum"));
+			fileMap.put("regId",map.get("regId"));
+			fileMap.put("writer",map.get("writer"));
+			if (fileMap.get("delGb").equals("Y")) {
+				hpgmngDao.insertNoticeUpload(fileMap);
+			} else {
+				hpgmngDao.deleteNoticeUploadGbN(fileMap);
+			}
+		}
+		
+		/*
 		if(vo.getFile().getSize() != 0) {
 			MultipartFile file = vo.getFile();
 			EgovMap fMap = AMSComm.fileUpload(file, "notice");
@@ -119,7 +139,7 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 			vo.setFilePath((String)fMap.get("filePath"));
 			// 첨부파일이 있으면 업로드
 			hpgmngDao.updateNoticeUpload(vo);			
-		} 
+		} */
 	}
 	
 	// 공지사항 삭제
@@ -133,6 +153,12 @@ public class HomepageMngServiceImpl extends EgovAbstractServiceImpl implements H
 	@Override
 	public EgovMap getNoticeDtl(int num) {
 		return hpgmngDao.getNoticeDtl(num);
+	}
+	
+	// 공지사항 상세 파일 목록
+	@Override
+	public List<EgovMap> getNoticeFileDtl(int num) {
+		return hpgmngDao.getNoticeFileDtl(num);
 	}
 	
 	// 게시판관리 목록

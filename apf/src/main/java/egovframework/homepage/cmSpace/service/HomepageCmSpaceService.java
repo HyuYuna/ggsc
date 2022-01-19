@@ -19,6 +19,9 @@ public interface HomepageCmSpaceService {
 	// 공지사항 상세
 	EgovMap getNoticeDtl(CmSpaceVO vo);
 	
+	// 공지사항 파일 상세
+	List<EgovMap> getNoticeFileDtl(CmSpaceVO vo);
+	
 	// 센터소식 목록
 	List<EgovMap> getCenterNewsList(CmSpaceVO vo);
 	

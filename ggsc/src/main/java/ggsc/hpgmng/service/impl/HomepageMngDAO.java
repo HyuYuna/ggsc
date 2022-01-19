@@ -1,6 +1,7 @@
 package ggsc.hpgmng.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -29,20 +30,19 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 공지사항 등록
-	public int insertNotice(NoticeVO vo){
-		return (Integer) insert("hpgmngDao.insertNotice", vo);
+	public int insertNotice(Map<String,Object> map){
+		return (Integer) insert("hpgmngDao.insertNotice", map);
 	}
 	
 	// 공지사항 파일업로드 등록
-	public void insertNoticeUpload(NoticeVO vo) {
-		insert("hpgmngDao.insertNoticeUpload", vo);
+	public void insertNoticeUpload(EgovMap map) {
+		insert("hpgmngDao.insertNoticeUpload", map);
 	}
 	
 	// 공지사항 수정
-	public void updateNotice(NoticeVO vo) {
-		update("hpgmngDao.updateNotice", vo);
+	public void updateNotice(Map<String,Object> map) {
+		update("hpgmngDao.updateNotice", map);
 	}
-	
 	
 	// 공지사항 파일업로드 수정
 	public void updateNoticeUpload(NoticeVO vo) {
@@ -52,16 +52,32 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	// 공지사항 삭제
 	public void deleteNotice(int noticeNum) {
 		update("hpgmngDao.deleteNotice", noticeNum);
-	}
 	
+	}
 	// 공지사항 파일업로드 삭제
 	public void deleteNoticeUpload(int noticeNum) {
 		update("hpgmngDao.deleteNoticeUpload", noticeNum);
 	}
 	
+	// 공지사항 파일 삭제구분 처리
+	public void deleteNoticeUploadGbY(Map<String,Object> map) {
+		update("hpgmngDao.deleteNoticeUploadGbY", map);
+	}
+	
+	// 공지사항 파일 삭제구분 취소
+	public void deleteNoticeUploadGbN(EgovMap map) {
+		update("hpgmngDao.deleteNoticeUploadGbN", map);
+	}
+	
 	// 공지사항 상세
 	public EgovMap getNoticeDtl(int num){
 		return (EgovMap)select("hpgmngDao.getNoticeDtl", num);
+	}
+	
+	// 공지사항 상세 파일목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getNoticeFileDtl(int num){
+		return (List<EgovMap>)list("hpgmngDao.getNoticeFileDtl", num);
 	}
 	
 	// 게시판관리 목록
