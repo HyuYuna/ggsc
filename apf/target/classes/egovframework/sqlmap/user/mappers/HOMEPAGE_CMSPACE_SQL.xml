@@ -138,6 +138,8 @@
 	<!-- 공지사항 파일 상세 -->
 	<select id="getNoticeFileDtl" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
+			NUM ,
+			FILE_NUM ,
 			FILE_NM ,
 			FILE_PATH ,
 			SYS_FILE_NM
