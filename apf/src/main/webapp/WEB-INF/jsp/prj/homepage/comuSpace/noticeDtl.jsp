@@ -76,7 +76,7 @@
             </div>
             <div class="file-area">
             <c:forEach var="row" items="${file}" varStatus="var">
-            	<p><a href="javascript:fn_fileDown('<c:out value="${row.sysFileNm}"/>','<c:out value="${row.filePath}"/>','<c:out value="${row.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a></p>
+            	<p>${row.fileNm} &nbsp; <a href="javascript:fn_fileDown('<c:out value="${row.sysFileNm}"/>','<c:out value="${row.filePath}"/>','<c:out value="${row.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a></p>
             </c:forEach>
               <!-- <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일2 다운로드</a>
               <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일3 다운로드</a> -->
