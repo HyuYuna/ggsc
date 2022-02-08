@@ -9,7 +9,6 @@
 				USER_ID ,
 				USER_NM ,
 				AUTH_CD ,
-				ZONE_GB ,
 				CENTER_GB ,
 				SIGUN_CD ,
 				PW ,
@@ -30,7 +29,6 @@
 				#{userId} ,
 				#{userNm} ,
 				'6' ,
-				#{zoneGb} ,
 				#{centerGb} ,
 				#{sigunCd} ,
 				<!-- #{pw} , -->

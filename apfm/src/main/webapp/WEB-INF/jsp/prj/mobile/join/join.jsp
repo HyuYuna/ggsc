@@ -190,8 +190,8 @@
                 <li><a href="/mgnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/comfCnsInsert.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/mypageView.do">마이 페이지<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/freeBbsList.do">알려드려요 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/careLibraryList.do">마음돌봄 자료실<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/noticeList.do">센터소식 &amp; 공지사항<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/freeBbsList.do">문서자료실 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/cnsAskList.do">상담문의하기<i class="fa fa-caret-right"></i></a></li>                
               </ul>
             </div>
@@ -263,14 +263,6 @@
           		<select class="form-control" name="centerGb" id="centerGb" >
 					<c:forEach items="${cnsCenterList }" var="result">
 						<option value="${result.num }">${result.centerGb }</option>
-					</c:forEach>
-				</select>
-		  </div>
-		  <div class="form-group">
-          		<label for="pwChk">권역구분<i class="cr">*</i></label>
-          		<select class="form-control" name="zoneGb" id="zoneGb" >
-					<c:forEach items="${zoneList }" var="result">
-						<option value="${result.odr }">${result.mclassNm }</option>
 					</c:forEach>
 				</select>
 		  </div>

@@ -32,7 +32,8 @@
 		if(page == ""){
 			page = 1;
 		}
-		
+		var schCenterGb = "${vo.schCenterGb}";
+		$("select[name=schCenterGb]").val(schCenterGb);
 	});
 
 	function fn_down(fileNm, sysFileNm, filePath){

@@ -27,7 +27,7 @@
   </head>
   <script>
 	function fn_detail(num,save){
-		document.location.href = "/mgnoincoun/freeBbsView.do?num="+num+"&save="+save;
+		document.location.href = "/mgnoincoun/noticeView.do?num="+num+"&save="+save;
 	}
   </script>
   <body>
@@ -50,8 +50,8 @@
                 <li><a href="/mgnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/comfCnsInsert.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/mypageView.do">마이 페이지<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/freeBbsList.do">알려드려요 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/careLibraryList.do">마음돌봄 자료실<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/noticeList.do">센터소식 &amp; 공지사항<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/freeBbsList.do">문서자료실 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/cnsAskList.do">상담문의하기<i class="fa fa-caret-right"></i></a></li>
               </ul>
             </div>
@@ -153,22 +153,22 @@
             </a>
           </div>
           <div class="col-xs-4 col-sm-2">
-            <a class="icon-box-vertical" href="/mgnoincoun/freeBbsList.do">
+            <a class="icon-box-vertical" href="/mgnoincoun/noticeList.do">
               <i class="fa fa-newspaper-o"></i>
-              <h5 class="icon-box-header">알려드려요<br />&amp; 자유게시판</h5>
+              <h5 class="icon-box-header">센터소식<br />&amp; 공지사항</h5>
             </a>
           </div>
           <div class="col-xs-4 col-sm-2">
-            <a class="icon-box-vertical" href="/mgnoincoun/careLibraryList.do">
+            <a class="icon-box-vertical" href="/mgnoincoun/freeBbsList.do">
               <i class="fa fa-heart-o"></i>
-              <h5 class="icon-box-header">마음돌봄<br />자료실</h5>
+              <h5 class="icon-box-header">문서자료실<br />&amp; 자유게시판</h5>
             </a>
           </div>
         </div>
        </div><!-- .container-fluid /-->
       <div class="container">
         <div class="panel panel-board">
-         <h2 class="title">공지사항</h2>
+         <h2 class="title">센터소식</h2>
 <!--         <div class="article-list-area">
           <ul class="list_area">
             loop
@@ -199,7 +199,7 @@
 		<div class="article-list-area">
             <ul class="list_area">
               <!-- loop -->
-              <c:forEach var="result" items="${freeBbsListA}" varStatus="status">
+              <c:forEach var="result" items="${CenterNewsListA}" varStatus="status">
 	              <li class="board_box" >
 	                <a href="#" onclick="javascript:fn_detail('<c:out value="${result.num}"/>','A');" class="txt_area">   
 	                  <!-- 새글알림 -->
@@ -208,7 +208,7 @@
 	                  </span>
 	                  <!-- 새글알림 //-->
 	                  <!-- 제목 -->
-	                  <strong class="tit"><c:out value="${result.title}"/></strong>
+	                  <strong class="tit"><c:out value="${result.title}" escapeXml="false" /></strong>
 	                  <!-- 제목 //-->
 	                  <!-- 글등록정보 -->
 	                  <div class="user_area">

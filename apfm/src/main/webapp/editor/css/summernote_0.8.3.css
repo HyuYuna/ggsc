@@ -303,7 +303,8 @@
 	width: 100%;
 	height: 8px;
 	padding-top: 1px;
-	cursor: ns-resize
+	cursor: ns-resize;
+	display: none;
 }
 
 .note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar {
@@ -334,6 +335,7 @@
 }
 
 .note-popover .popover-content,.panel-heading.note-toolbar {
+	display: none;
 	padding: 0 0 5px 5px;
 	margin: 0
 }

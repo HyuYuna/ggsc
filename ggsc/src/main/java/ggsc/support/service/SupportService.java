@@ -1,6 +1,9 @@
 package ggsc.support.service;
  
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.daou.ppurio.mmsVO;
 
@@ -23,20 +26,28 @@ public interface SupportService {
 	// FAQ 수정
 	void updateFaq(FaqVO vo);
 	
+	
 	// 자료실 목록
 	List<EgovMap> getRescRoomList(RescRoomVO vo);
-	
+		
 	// 자료실 갯수
 	int getRescRoomListTotCnt(RescRoomVO vo);
 	
 	// 자료실 등록
-	void insertRescRoom(RescRoomVO vo);
-	
-	// 자료실 상세
-	EgovMap getRescRoomDetail(int num);
+	void insertRescRoom(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 자료실 수정
-	void updateRescRoom(RescRoomVO vo);
+	void updateRescRoom(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
+	
+	// 자료실 삭제
+	void deleteRescRoom(int rescRoomNum);
+	
+	// 자료실 상세
+	EgovMap getRescRoomDtl(int num);
+	
+	// 자료실 상세 파일 목록
+	List<EgovMap> getRescRoomFileDtl(int num);
+	
 	
 	// 사용자메뉴얼 목록
 	List<EgovMap> getUserManualList(UserManualVO vo);

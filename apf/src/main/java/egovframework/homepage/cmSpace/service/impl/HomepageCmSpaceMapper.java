@@ -52,6 +52,9 @@ public interface HomepageCmSpaceMapper {
 	// 센터소식 상세
 	EgovMap getCenterNewsDtl(CmSpaceVO vo);
 	
+	// 센터소식 파일 상세
+	List<EgovMap> getCenterNewsFileDtl(CmSpaceVO vo);
+	
 	// 문서자료실 목록
 	List<EgovMap> getDocLibraryList(CmSpaceVO vo);
 	
@@ -72,6 +75,9 @@ public interface HomepageCmSpaceMapper {
 	
 	// 문서자료실 상세
 	EgovMap getDocLibraryDtl(CmSpaceVO vo);
+	
+	// 문서자료실 파일 상세
+	List<EgovMap> getDocLibraryFileDtl(CmSpaceVO vo);
 	
 	// 자유게시판 목록
 	List<EgovMap> getFreeBoardList(CmSpaceVO vo);
@@ -96,6 +102,9 @@ public interface HomepageCmSpaceMapper {
 	
 	// 자유게시판 상세
 	EgovMap getFreeBoardDtl(CmSpaceVO vo);
+	
+	// 자유게시판 파일 상세
+	List<EgovMap> getFreeBoardFileDtl(CmSpaceVO vo);
 	
 	// 온라인상담 목록
 	List<EgovMap> getOnlineCnsList(CmSpaceVO vo);

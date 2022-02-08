@@ -19,8 +19,7 @@
 		<typeAlias alias="fileVO" type="egovframework.cmm.service.FileVO"/>
 		<typeAlias alias="boardVO" type="egovframework.cmm.service.BoardVO"/>
 		<typeAlias alias="tmpFileVO" type="egovframework.cmm.util.EditorTmpFileVO"/>
-		<typeAlias alias="bbsVO" type="egovframework.mobile.freeBbs.service.BbsVO"/>
-		<typeAlias alias="crLibraryVO" type="egovframework.mobile.crLibrary.service.CrLibraryVO"/>
+		<typeAlias alias="bbsVO" type="egovframework.mobile.cmSpace.service.BbsVO"/>
 		<typeAlias alias="comCodeVO" type="egovframework.mobile.com.util.service.ComCodeVO"/>
 		<typeAlias alias="comfCnsVO" type="egovframework.mobile.comfCns.service.ComfCnsVO"/>
 		<typeAlias alias="addComfCnsVO" type="egovframework.mobile.comfCns.service.AddComfCnsVO"/>

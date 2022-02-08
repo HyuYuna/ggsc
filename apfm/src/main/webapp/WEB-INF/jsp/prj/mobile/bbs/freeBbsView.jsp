@@ -13,6 +13,8 @@
     <link rel="icon" href="file:///C|/Users/asdf/Documents/favicon.ico">
     <title>알려드려요&amp;자유게시판</title>
     <!-- Bootstrap core CSS -->
+    <script src="/mgnoincoun/js/jquery-1.11.2.min.js"></script>
+    <script src="/mgnoincoun/assets/js/jquery.min.js"></script>
     <link href="/mgnoincoun/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/mgnoincoun/assets/css/font-awesome.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -24,14 +26,30 @@
     <![endif]-->
     <!-- Custom styles for this template -->
     <link href="/mgnoincoun/assets/css/theme.css" rel="stylesheet">
+    <script src="/mgnoincoun/editor/js/summernote_0.8.3.js"></script>
+	<script src="/mgnoincoun/editor/js/summernote_0.8.3.min.js"></script>
+	<script src="/mgnoincoun/editor/lang/summernote-ko-KR.js"></script>
+	<script src="/mgnoincoun/editor/js/bootstrap_3.3.5.js"></script>
+	<link rel="stylesheet" href="/mgnoincoun/editor/css/summernote_0.8.3.css">
   </head>
   <script>
-  	function fn_fileDown() {
-  		var sysFileNm = "${detail.sysFileNm}";
-  		var filePath = "${detail.filePath}";
-  		var fileNm = "${detail.fileNm}";
-        document.location.href = "/mgnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;
-  	}
+  	$(document).ready(function() {
+	   $('#rcontent').summernote({
+	        minHeight: 400,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR',
+	   });
+	});
+  	
+  	function fn_fileDown(sysFileNm, filePath, fileNm){
+		$("#fileNm").val(fileNm);
+		$("#sysFileNm").val(sysFileNm);
+		$("#filePath").val(filePath);
+		document.downForm.action = "/gnoincoundb/fileDown2.do";
+       	document.downForm.submit();
+	}
+  	
   	function fn_movePage(num,prevYn) {
   		var save = "${save}";
   		document.location.href = "/mgnoincoun/freeBbsView.do?num="+num+"&prevYn="+prevYn+"&save="+save;
@@ -60,8 +78,8 @@
                 <li><a href="/mgnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/comfCnsInsert.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/mypageView.do">마이 페이지<i class="fa fa-caret-right"></i></a></li>
-                <li class="active"><a href="/mgnoincoun/freeBbsList.do">알려드려요 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/careLibraryList.do">마음돌봄 자료실<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/noticeList.do">센터소식 &amp; 공지사항<i class="fa fa-caret-right"></i></a></li>
+                <li class="active"><a href="/mgnoincoun/freeBbsList.do">문서자료실 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/cnsAskList.do">상담문의하기<i class="fa fa-caret-right"></i></a></li>                
               </ul>
             </div>
@@ -83,14 +101,22 @@
           </ul>
         </div>
     </header><!-- header.navbar-wrapper /-->
+    
+    <form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
+	
     <!-- 컨텐츠  ================================================== -->
     <div class="container content-wrapper">
       <div class="page-header">
-        <h1 class="title"><i class="fa fa-comments-o"></i>알려드려요&amp;자유게시판</h1>
+        <h1 class="title"><i class="fa fa-comments-o"></i>문서자료실&amp;자유게시판</h1>
         <ol class="breadcrumb">
           <li><a href="/mgnoincoun/mobileMainList.do">Home</a></li>
           <!--<li><a href="#">센터소개</a></li>-->
-          <li class="active">마음돌봄 자료실</li>
+          <li class="active">문서자료실&amp;자유게시판</li>
         </ol>
       </div>
       <div class="content-area">
@@ -98,7 +124,7 @@
           <div class="board_box article-header" >
             <div class="txt_area">   
               <!-- 제목 -->
-              <strong class="tit"><c:out value="${detail.title }"/></strong>
+              <strong class="tit"><c:out value="${detail.title }" escapeXml="false"/></strong>
               <!-- 제목 //-->
               <!-- 글등록정보 -->
               <div class="user_area">
@@ -111,18 +137,19 @@
               <!-- 글등록정보 //-->
             </div>
             <div class="file-area">
-              <c:if test="${detail.fileNm != null }">
-				  <a href="javascript:fn_fileDown()" class="btn btn-default btn-sm mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a>
-			  </c:if>
+              <c:forEach var="row" items="${file}" varStatus="var">
+              	  <p>${row.fileNm} &nbsp; <a href="javascript:fn_fileDown('<c:out value="${row.sysFileNm}"/>','<c:out value="${row.filePath}"/>','<c:out value="${row.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a></p>
+              </c:forEach>
               <!-- <a href="" class="btn btn-default btn-sm mb3"><i class="fa fa-download mr5"></i>첨부파일2 다운로드</a>
               <a href="" class="btn btn-default btn-sm mb3"><i class="fa fa-download mr5"></i>첨부파일3 다운로드</a> -->
             </div>
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-              <c:out value="${detail.cntn }" escapeXml="false"/>
+            	<textarea id="rcontent" name="cntn" readonly="readonly">
+	              <c:out value="${detail.cntn }" escapeXml="false"/>
+                </textarea>
             </div>
-            
           </div><!-- .article-body /-->
             
         </div><!-- .article-list-area /-->
@@ -149,7 +176,6 @@
       </div>
     </footer>
 
-    <script src="/mgnoincoun/assets/js/jquery.min.js"></script>
     <script src="/mgnoincoun/assets/js/bootstrap.min.js"></script>
     <!--<script src="assets/js/docs.min.js"></script>-->
     <script src="/mgnoincoun/assets/js/ie10-viewport-bug-workaround.js"></script>

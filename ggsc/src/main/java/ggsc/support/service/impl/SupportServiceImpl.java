@@ -2,6 +2,7 @@ package ggsc.support.service.impl;
  
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.daou.ppurio.mmsVO;
 
@@ -90,42 +92,58 @@ public class SupportServiceImpl extends EgovAbstractServiceImpl implements Suppo
 	
 	// 자료실 등록
 	@Override
-	public void insertRescRoom(RescRoomVO vo) {
-		supportDao.insertRescRoom(vo);
+	public void insertRescRoom(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception {
 		
-		if(vo.getFile().getSize() != 0) {
-			MultipartFile file = vo.getFile();
-			EgovMap fMap = AMSComm.fileUpload(file, "bbs");
-			vo.setFileNm((String)fMap.get("fileNm"));
-			vo.setSysFileNm((String)fMap.get("sysFileNm"));
-			vo.setFilePath((String)fMap.get("filePath"));
-			// 첨부파팔이 있으면 업로드
-			supportDao.insertRescRoomUpload(vo);			
+		int rescRoomNum = 0;
+		rescRoomNum = supportDao.insertRescRoom(map);
+		
+		List<EgovMap> list = AMSComm.parseInsertFileInfo(map,request);
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).put("fileNum",rescRoomNum);
+			list.get(i).put("regId",map.get("regId"));
+			list.get(i).put("writer",map.get("writer"));
+			supportDao.insertRescRoomUpload(list.get(i));
 		}
-		
-	}
-	
-	// 자료실 상세
-	@Override
-	public EgovMap getRescRoomDetail(int num) {
-		return supportDao.getRescRoomDetail(num);
 	}
 	
 	// 자료실 수정
 	@Override
-	public void updateRescRoom(RescRoomVO vo) {
-		supportDao.updateRescRoom(vo);
+	public void updateRescRoom(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception {
+		supportDao.updateRescRoom(map);
 		
-		if(vo.getFile().getSize() != 0) {
-			MultipartFile file = vo.getFile();
-			EgovMap fMap = AMSComm.fileUpload(file, "bbs");
-			vo.setFileNm((String)fMap.get("fileNm"));
-			vo.setSysFileNm((String)fMap.get("sysFileNm"));
-			vo.setFilePath((String)fMap.get("filePath"));
-			// 첨부파팔이 있으면 업로드
-			supportDao.updateRescRoomUpload(vo);			
+		supportDao.deleteRescRoomUploadGbY(map);
+		List<EgovMap> list = AMSComm.parseInsertFileInfo(map,request);
+		EgovMap fileMap = null;
+		for(int i=0; i<list.size(); i++) {
+			fileMap = list.get(i);
+			fileMap.put("fileNum",map.get("fileNum"));
+			fileMap.put("regId",map.get("regId"));
+			fileMap.put("writer",map.get("writer"));
+			if (fileMap.get("delGb").equals("Y")) {
+				supportDao.insertRescRoomUpload(fileMap);
+			} else {
+				supportDao.deleteRescRoomUploadGbN(fileMap);
+			}
 		}
-		
+	}
+	
+	// 자료실 삭제
+	@Override
+	public void deleteRescRoom(int rescRoomNum) {
+		supportDao.deleteRescRoom(rescRoomNum);
+		supportDao.deleteRescRoomUpload(rescRoomNum);
+	}
+	
+	// 자료실 상세
+	@Override
+	public EgovMap getRescRoomDtl(int num) {
+		return supportDao.getRescRoomDtl(num);
+	}
+	
+	// 자료실 상세 파일 목록
+	@Override
+	public List<EgovMap> getRescRoomFileDtl(int num) {
+		return supportDao.getRescRoomFileDtl(num);
 	}
 	
 	// 사용자메뉴얼 목록

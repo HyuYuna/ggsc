@@ -16,7 +16,7 @@
 		FROM
 			GS_NOTICE_A AS A
 		LEFT JOIN GS_NOTICE_A_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			ON A.NUM = F.FILE_NUM AND F.DEL_GB ='N'
 		where
 			1=1 
 			
@@ -175,7 +175,7 @@
 		FROM
 			GS_CENTER_NEWS AS A
 		LEFT JOIN GS_CENTER_NEWS_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			ON A.NUM = F.FILE_NUM AND F.DEL_GB ='N'
 		WHERE
 			1=1 
 			
@@ -191,6 +191,9 @@
 	 			AND CNTN LIKE  CONCAT('%', #{searchKeyword}, '%')
 	 		</if>
 	 	</if> 
+	 	
+	 	GROUP BY
+			a.NUM
 			
 		ORDER BY NUM DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -239,36 +242,46 @@
 	<!-- 센터소식 상세 -->
 	<select id="getCenterNewsDtl" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			A.CNTN ,
-			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
-			F.FILE_NM ,
-			F.SYS_FILE_NM ,
-			F.FILE_PATH
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
 		FROM
-			GS_CENTER_NEWS AS A
-		LEFT JOIN GS_CENTER_NEWS_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			GS_CENTER_NEWS
 		WHERE
 			1=1
 		<if test="prevYn != null">
 	 		<if test="prevYn == 'Y'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM < #{num} ORDER BY A.NUM DESC LIMIT 1
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
 	 			]]>
 	 		</if>
 	 		<if test="prevYn == 'N'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM > #{num} ORDER BY A.NUM ASC LIMIT 1
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
 	 			]]>
 	 		</if>
 	 	</if> 
  		<if test="prevYn == null">
- 			AND A.NUM = #{num}
+ 			AND NUM = #{num}
  		</if>
 			
+	</select>
+	
+	<!-- 센터소식 파일 상세 -->
+	<select id="getCenterNewsFileDtl" parameterType="cmSpaceVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_CENTER_NEWS_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
 	</select>
 	
 	<!-- 센터소식 조회수 증가 -->
@@ -295,7 +308,7 @@
 		FROM
 			GS_LIBRARY AS A
 		LEFT JOIN GS_LIBRARY_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			ON A.NUM = F.FILE_NUM AND F.DEL_GB ='N'
 		WHERE
 			1=1
 		<if test="searchKeyword != null">
@@ -310,6 +323,9 @@
 	 			AND CNTN LIKE  CONCAT('%', #{searchKeyword}, '%')
 	 		</if>
 	 	</if> 
+	 	
+	 	GROUP BY
+			a.NUM
 			
 		ORDER BY NUM DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -351,36 +367,46 @@
 	<!-- 문서자료실 상세 -->
 	<select id="getDocLibraryDtl" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			A.CNTN ,
-			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
-			F.FILE_NM ,
-			F.SYS_FILE_NM ,
-			F.FILE_PATH
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
 		FROM
-			GS_LIBRARY AS A
-		LEFT JOIN GS_LIBRARY_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			GS_LIBRARY
 		WHERE
 			1=1
 		<if test="prevYn != null">
 	 		<if test="prevYn == 'Y'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM < #{num} ORDER BY A.NUM DESC LIMIT 1
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
 	 			]]>
 	 		</if>
 	 		<if test="prevYn == 'N'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM > #{num} ORDER BY A.NUM ASC LIMIT 1
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
 	 			]]>
 	 		</if>
 	 	</if> 
  		<if test="prevYn == null">
- 			AND A.NUM = #{num}
+ 			AND NUM = #{num}
  		</if>
 			
+	</select>
+	
+	<!-- 문서자료실 파일 상세 -->
+	<select id="getDocLibraryFileDtl" parameterType="cmSpaceVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			gs_library_file
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
 	</select>
 	
 	<!-- 문서자료실 조회수 증가 -->
@@ -407,7 +433,7 @@
 		FROM
 			GS_FREE_BOARD AS A
 		LEFT JOIN GS_FREE_BOARD_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			ON A.NUM = F.FILE_NUM AND F.DEL_GB ='N'
 		WHERE
 			1=1
 		<if test="searchKeyword != null">
@@ -421,7 +447,10 @@
 	 		<if test="searchCondition == '3'.toString()">
 	 			AND CNTN LIKE  CONCAT('%', #{searchKeyword}, '%')
 	 		</if>
-	 	</if> 
+	 	</if>
+	 	
+	 	GROUP BY
+			a.NUM 
 			
 		ORDER BY NUM DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -484,14 +513,12 @@
 	<insert id="insertFreeBoardReg" parameterType="cmSpaceVO">
 		INSERT INTO GS_FREE_BOARD
 			(
-				NUM ,
 				TITLE ,
 				WRITER ,
 				CNTN ,
 				REG_ID ,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_FREE_BOARD AS A) ,
 				#{title} ,
 				#{writer} ,
 				#{cntn} ,
@@ -504,7 +531,7 @@
 	<insert id="insertFreeBoardFileUpload" parameterType="cmSpaceVO">
 		INSERT INTO GS_FREE_BOARD_FILE
 			(
-				FILE_NUM ,
+				<!-- FILE_NUM , -->
 				REG_ID ,
 				REG_NM ,
 				FILE_NM ,
@@ -513,7 +540,7 @@
 				FILE_SIZE ,
 				DB_INS_TM 
 			) VALUES (
-				(SELECT MAX(A.NUM) FROM GS_FREE_BOARD AS A WHERE A.REG_ID = #{regId}) ,
+				<!-- (SELECT MAX(A.NUM) FROM GS_FREE_BOARD AS A WHERE A.REG_ID = #{regId}) , -->
 				#{regId} ,
 				#{writer} ,
 				#{fileNm} ,
@@ -527,36 +554,46 @@
 	<!-- 자유게시판 상세 -->
 	<select id="getFreeBoardDtl" parameterType="cmSpaceVO" resultType="egovMap">
 		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			A.CNTN ,
-			DATE_FORMAT(A.DB_INS_TM , '%Y-%m-%d') AS dbInsTm ,
-			F.FILE_NM ,
-			F.SYS_FILE_NM ,
-			F.FILE_PATH
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
 		FROM
-			GS_FREE_BOARD AS A
-		LEFT JOIN GS_FREE_BOARD_FILE AS F
-			ON A.NUM = F.FILE_NUM
+			GS_FREE_BOARD
 		WHERE
 			1=1
 		<if test="prevYn != null">
 	 		<if test="prevYn == 'Y'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM < #{num} ORDER BY A.NUM DESC LIMIT 1
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
 	 			]]>
 	 		</if>
 	 		<if test="prevYn == 'N'.toString()">
 	 			<![CDATA[
-	 			AND A.NUM > #{num} ORDER BY A.NUM ASC LIMIT 1
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
 	 			]]>
 	 		</if>
 	 	</if> 
  		<if test="prevYn == null">
- 			AND A.NUM = #{num}
+ 			AND NUM = #{num}
  		</if>
 			
+	</select>
+	
+	<!-- 자유게시판 파일 상세 -->
+	<select id="getFreeBoardFileDtl" parameterType="cmSpaceVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_FREE_BOARD_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
 	</select>
 	
 	<!-- 자유게시판 조회수 증가 -->

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.mobile.cmSpace.service.impl.MobileCmSpaceMapper">
+	
+	<!-- 게시판 목록(알려드려요)  -->
+	<select id="getCenterNewsList" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+		FROM
+			GS_CENTER_NEWS
+		ORDER BY NUM DESC
+	</select>
+	
+	<!-- 게시판 목록 최신 5개(알려드려요) -->
+	<select id="getCenterNewsListALimit" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+		FROM
+			GS_CENTER_NEWS
+		WHERE
+			1=1
+		ORDER BY NUM DESC
+			LIMIT 5		
+	</select>
+	
+	<!-- 공지사항 목록 -->
+	<select id="getNoticeList" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+		FROM
+			GS_NOTICE_A
+		ORDER BY NUM DESC
+	</select>
+
+	<!-- 센터소식 상세  -->
+	<select id="getCenterNewsDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
+		FROM
+			GS_CENTER_NEWS
+		WHERE
+			1=1
+		<if test="prevYn != null">
+	 		<if test="prevYn == 'Y'.toString()">
+	 			<![CDATA[
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
+	 			]]>
+	 		</if>
+	 		<if test="prevYn == 'N'.toString()">
+	 			<![CDATA[
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
+	 			]]>
+	 		</if>
+	 	</if> 
+ 		<if test="prevYn == null">
+ 			AND NUM = #{num}
+ 		</if>
+	</select>
+	
+	<!-- 센터소식 파일 상세 -->
+	<select id="getCenterNewsFileDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_CENTER_NEWS_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
+	</select>
+	
+	<!-- 공지사항 상세 -->
+	<select id="getNoticeDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
+		FROM
+			GS_NOTICE_A
+		WHERE
+			1=1
+		<if test="prevYn != null">
+	 		<if test="prevYn == 'Y'.toString()">
+	 			<![CDATA[
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
+	 			]]>
+	 		</if>
+	 		<if test="prevYn == 'N'.toString()">
+	 			<![CDATA[
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
+	 			]]>
+	 		</if>
+	 	</if> 
+ 		<if test="prevYn == null">
+ 			AND NUM = #{num}
+ 		</if>
+	</select>
+	
+	<!-- 공지사항 파일 상세 -->
+	<select id="getNoticeFileDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_NOTICE_A_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
+	</select>
+	
+	<!-- 마음돌봄 자료실  목록 -->
+	<select id="getCrLibraryList" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+		FROM
+			GS_LIBRARY
+		ORDER BY NUM DESC
+	</select>
+	
+	<!-- 마음돌봄 자료실 상세보기 -->
+	<select id="getCareLibraryDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
+		FROM
+			GS_LIBRARY
+		WHERE
+			1=1
+		<if test="prevYn != null">
+	 		<if test="prevYn == 'Y'.toString()">
+	 			<![CDATA[
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
+	 			]]>
+	 		</if>
+	 		<if test="prevYn == 'N'.toString()">
+	 			<![CDATA[
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
+	 			]]>
+	 		</if>
+	 	</if> 
+ 		<if test="prevYn == null">
+ 			AND NUM = #{num}
+ 		</if>
+	</select>
+	
+	<!-- 문서자료실 파일 상세 -->
+	<select id="getCareLibraryFileDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			gs_library_file
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
+	</select>
+	
+	<!-- 자유게시판 목록 -->
+	<select id="getFreeBbsList" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm
+		FROM
+			GS_FREE_BOARD
+		ORDER BY NUM DESC
+	</select>
+	
+	<!-- 게시판 상세보기(자유게시판) -->
+	<select id="getFreeBbsDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			CAST(CNTN AS CHAR CHARACTER SET UTF8) AS CNTN ,
+			DATE_FORMAT(DB_INS_TM , '%Y-%m-%d') AS dbInsTm 
+		FROM
+			GS_FREE_BOARD
+		WHERE
+			1=1
+		<if test="prevYn != null">
+	 		<if test="prevYn == 'Y'.toString()">
+	 			<![CDATA[
+	 			AND NUM < #{num} ORDER BY NUM DESC LIMIT 1
+	 			]]>
+	 		</if>
+	 		<if test="prevYn == 'N'.toString()">
+	 			<![CDATA[
+	 			AND NUM > #{num} ORDER BY NUM ASC LIMIT 1
+	 			]]>
+	 		</if>
+	 	</if> 
+ 		<if test="prevYn == null">
+ 			AND NUM = #{num}
+ 		</if>
+	</select>
+	
+	<!-- 자유게시판 파일 상세 -->
+	<select id="getFreeBbsFileDtl" parameterType="bbsVO" resultType="egovMap">
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_FREE_BOARD_FILE 
+		WHERE
+			FILE_NUM = #{num}
+			AND DEL_GB = 'N'
+	</select>
+	
+	<!-- 게시판 등록(자유게시판) -->
+	<insert id="insertFreeBbsBReg" parameterType="bbsVO">
+		INSERT INTO GS_FREE_BOARD
+			(
+				<!-- NUM , -->
+				TITLE ,
+				WRITER ,
+				CNTN ,
+				REG_ID ,
+				DB_INS_TM 
+			) VALUES (
+				<!-- (SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_FREE_BOARD AS A) , -->
+				#{title} ,
+				#{writer} ,
+				#{cntn} ,
+				#{regId} ,
+				NOW()
+			)
+	</insert>
+	
+	<!-- 게시판 파일업로드(자유게시판) -->
+	<insert id="insertFreeBbsBFileUpload" parameterType="bbsVO">
+		INSERT INTO GS_FREE_BOARD_FILE
+			(
+				FILE_NUM ,
+				REG_ID ,
+				REG_NM ,
+				FILE_NM ,
+				SYS_FILE_NM ,
+				FILE_PATH ,
+				FILE_SIZE ,
+				DB_INS_TM 
+			) VALUES (
+				(SELECT MAX(A.NUM) FROM GS_FREE_BOARD AS A WHERE A.REG_ID = #{regId}) ,
+				#{regId} ,
+				#{writer} ,
+				#{fileNm} ,
+				#{sysFileNm} ,
+				#{filePath} ,
+				#{fileSize} ,
+				NOW()
+			)
+	</insert>
+
+</mapper>

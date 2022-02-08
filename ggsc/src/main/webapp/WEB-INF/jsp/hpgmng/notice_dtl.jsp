@@ -29,11 +29,6 @@
 	   //$("#downBtn").css("display", "none");
 	   
 	   var writer = "${notice.writer}";
-	   if(writer != "") {
-		   $("#saveBtn").css("display", "none");
-	   } else {
-		   $("#updateBtn").css("display", "none");
-	   }
 	  
 	});
 	
@@ -174,6 +169,10 @@
 				<col width="*" />		
 			</colgroup>
 			<tr>
+				<th>작성자</th>
+				<td>${notice.writer }</td>
+			</tr>
+			<tr>
 				<th>공지제목</th>
 				<td><input type="text" id="title" name="title" maxlength="50" value="${notice.title }" /></td>
 			</tr>
@@ -183,19 +182,19 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-					<td>
-						<div class="filebox"> 
-							<c:forEach var="row" items="${file}" varStatus="var">
-								<p>
-									${row.fileNm} 
-									<input type="hidden" id="num" name="num_${var.index}" value="${row.num}"> 
-									<input type="file" id="file_${var.index}" name="file_${var.index}" style="width:auto;">
-									<button type="button" id="downBtn" class="btn-basic" style="background-color: green; color: white; height: 29px;" onclick="javascript:fn_down('${row.fileNm}', '${row.sysFileNm }', '${row.filePath }')">다운로드</button>
-									<button type="button" id="delete" class="btn-basic" name="delete_${var.index}" style="background-color:#7f7f7f;">삭제</button>
-								</p>
-							</c:forEach>
-						</div>
-					</td>
+				<td>
+					<div class="filebox"> 
+						<c:forEach var="row" items="${file}" varStatus="var">
+							<p>
+								${row.fileNm} 
+								<input type="hidden" id="num" name="num_${var.index}" value="${row.num}"> 
+								<input type="file" id="file_${var.index}" name="file_${var.index}" style="width:auto;">
+								<button type="button" id="downBtn" class="btn-basic" style="background-color: green; color: white; height: 29px;" onclick="javascript:fn_down('${row.fileNm}', '${row.sysFileNm }', '${row.filePath }')">다운로드</button>
+								<button type="button" id="delete" class="btn-basic" name="delete_${var.index}" style="background-color:#7f7f7f;">삭제</button>
+							</p>
+						</c:forEach>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</form>

@@ -2309,6 +2309,7 @@
 				gm.TITLE ,
 				gm.CONTENT ,
 				gm.WRITER ,
+				gm.REG_ID ,
 				DATE_FORMAT(gm.DB_INS_TM , '%Y-%m-%d') AS DB_INS_TM ,
 				gmf.FILE_NM ,
 				gmf.SYS_FILE_NM ,
@@ -2316,7 +2317,7 @@
 			FROM
 				GS_MORGUE AS gm
 			LEFT JOIN GS_MORGUE_FILE AS gmf
-				ON gm.NUM = gmf.NUM
+				ON gm.NUM = gmf.FILE_NUM AND gmf.DEL_GB ='N'
 
 			WHERE 1=1
 			
@@ -2346,6 +2347,9 @@
 					gm.WRITER LIKE CONCAT('%', #schText#, '%')
 				</isEqual>
 			</isNotEmpty>
+			
+			GROUP BY
+				gm.NUM
 			
 			) A
 		<![CDATA[
@@ -2391,68 +2395,54 @@
 	</select>
 	
 	<!-- 자료실 등록  -->
-	<insert id="supportDao.insertRescRoom" parameterClass="rescRoomVO">
+	<insert id="supportDao.insertRescRoom" parameterClass="Map">
 		INSERT INTO GS_MORGUE
 			(
-				NUM ,
 				TITLE ,
 				WRITER ,
 				REG_ID ,
 				CONTENT ,
 				DB_INS_TM
 			) VALUES (
-				(SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_MORGUE AS A) ,
 				#title# ,
 				#writer# ,
 				#regId# ,
 				#content# ,
 				now()
 			)
+			
+			<selectKey resultClass="int" keyProperty="num">
+		    	SELECT  LAST_INSERT_ID()
+			</selectKey>
 	</insert>
 	
 	<!-- 자료실 파일업로드 등록 -->
-	<insert id="supportDao.insertRescRoomUpload" parameterClass="rescRoomVO">
+	<insert id="supportDao.insertRescRoomUpload" parameterClass="egovMap">
 		INSERT INTO GS_MORGUE_FILE
 			(
-				NUM ,
+				FILE_NUM ,
 				REG_ID ,
 				REG_NM ,
 				FILE_NM ,
 				SYS_FILE_NM ,
 				FILE_PATH ,
-				DB_INS_TM
+				FILE_SIZE,
+				DB_INS_TM 
 			) VALUES (
-				(SELECT IFNULL(MAX(A.NUM),0) FROM GS_MORGUE AS A) ,
+				#fileNum# ,
 				#regId# ,
 				#writer# ,
 				#fileNm# ,
 				#sysFileNm# ,
 				#filePath# ,
-				now()
+				#fileSize# ,
+				now() 
 			)
 	</insert>
-	
-	<!-- 자료실 상세  -->
-	<select id="supportDao.getRescRoomDetail" parameterClass="Integer" resultClass="egovMap">
-		SELECT
-			A.NUM ,
-			A.TITLE ,
-			A.WRITER ,
-			A.CONTENT ,
-			A.REG_ID ,
-			B.FILE_NM ,
-			B.FILE_PATH ,
-			B.SYS_FILE_NM
-		FROM
-			GS_MORGUE AS A
-		LEFT JOIN GS_MORGUE_FILE AS B
-			ON A.NUM = B.NUM
-		WHERE
-			A.NUM = #num#
-	</select>
+
 	
 	<!-- 자료실 수정  -->
-	<update id="supportDao.updateRescRoom" parameterClass="rescRoomVO">
+	<update id="supportDao.updateRescRoom" parameterClass="Map">
 		UPDATE GS_MORGUE
 			SET
 				TITLE = #title# ,
@@ -2471,8 +2461,74 @@
 				FILE_PATH = #filePath# ,
 				DB_UPD_TM = now()
 			WHERE
-				NUM = #num#
+				FILE_NUM = #num#
 	</update>
+	
+	<!-- 자료실 삭제  -->
+	<update id="supportDao.deleteRescRoom" parameterClass="Integer">
+		DELETE FROM
+			GS_MORGUE
+		WHERE 
+			NUM = #rescRoomNum#
+	</update>
+	
+	<!-- 자료실 파일업로드 삭제  -->
+	<update id="supportDao.deleteRescRoomUpload" parameterClass="Integer">
+		DELETE FROM
+			GS_MORGUE_FILE
+		WHERE 
+			FILE_NUM = #rescRoomNum#
+	</update>
+	
+	<!-- 자료실 파일 삭제구분 처리  -->
+	<update id="supportDao.deleteRescRoomUploadGbY" parameterClass="Map">
+		UPDATE  
+			GS_MORGUE_FILE
+		SET
+	 		DEL_GB = 'Y'
+		WHERE 
+			FILE_NUM = #fileNum#
+	</update>
+	
+	<!-- 자료실 파일 삭제구분 취소  -->
+	<update id="supportDao.deleteRescRoomUploadGbN" parameterClass="egovMap">
+		UPDATE  
+			GS_MORGUE_FILE
+		SET
+	 		DEL_GB = 'N'
+		WHERE 
+			NUM = #num#
+	</update>
+	
+	<!-- 자료실 상세-->	
+	<select id="supportDao.getRescRoomDtl" parameterClass="Integer" resultClass="egovMap">		
+		SELECT
+			NUM ,
+			TITLE ,
+			WRITER ,
+			REG_ID ,
+			CAST(CONTENT AS CHAR CHARACTER SET UTF8) AS CONTENT
+		FROM
+			GS_MORGUE
+		WHERE
+			NUM = #num#
+	</select>
+	
+	<!-- 자료실 상세 파일목록-->	
+	<select id="supportDao.getRescRoomFileDtl" parameterClass="Integer" resultClass="egovMap">		
+		SELECT
+			NUM ,
+			FILE_NUM ,
+			FILE_NM ,
+			FILE_PATH ,
+			SYS_FILE_NM
+		FROM
+			GS_MORGUE_FILE
+		WHERE
+			FILE_NUM = #num#
+			AND DEL_GB = 'N'
+	</select>
+	
 	
 	<!-- 사용자메뉴얼 목록  -->
 	<select id="supportDao.getUserManualList" parameterClass="userManualVO" resultClass="egovMap">

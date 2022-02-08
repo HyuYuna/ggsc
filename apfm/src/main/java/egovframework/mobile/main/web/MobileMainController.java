@@ -1,6 +1,7 @@
 package egovframework.mobile.main.web;
 
 import java.security.Key;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
-import egovframework.mobile.freeBbs.service.BbsVO;
-import egovframework.mobile.freeBbs.service.MobileFreeBbsService;
+import egovframework.mobile.cmSpace.service.BbsVO;
+import egovframework.mobile.cmSpace.service.MobileCmSpaceService;
 import egovframework.mobile.main.service.LoginVO;
 import egovframework.mobile.main.service.MobileMainService;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -32,8 +33,8 @@ public class MobileMainController {
 	private MobileMainService mobileMainService;
 
 	/** MobileFreeBbsService */
-	@Resource(name = "mobileFreeBbsService")
-	private MobileFreeBbsService mobileFreeBbsService;
+	@Resource(name = "mobileCmSpaceService")
+	private MobileCmSpaceService mobileCmSpaceService;
 	
 	/** EgovSampleService */
 	/*@Resource(name = "mainService")
@@ -70,9 +71,9 @@ public class MobileMainController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		// 게시판 목록(알려드려요)
-		List<EgovMap> freeBbsListA = mobileFreeBbsService.getFreeBbsListALimit(vo);
-		model.addAttribute("freeBbsListA", freeBbsListA);
+		// 센터뉴스 목록
+		List<EgovMap> CenterNewsListA = mobileCmSpaceService.getCenterNewsListALimit(vo);
+		model.addAttribute("CenterNewsListA", CenterNewsListA);
 
 		return "mobile/main/main";
 	}

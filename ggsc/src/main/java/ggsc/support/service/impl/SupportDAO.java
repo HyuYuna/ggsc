@@ -1,6 +1,7 @@
 package ggsc.support.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -52,38 +53,64 @@ public class SupportDAO extends EgovAbstractDAO {
 	
 	// 자료실 목록
 	@SuppressWarnings("unchecked")
-	public List<EgovMap> getRescRoomList(RescRoomVO vo) {
+	public List<EgovMap> getRescRoomList(RescRoomVO vo){
 		return (List<EgovMap>)list("supportDao.getRescRoomList", vo);
 	}
 	
 	// 자료실 갯수
-	public int getRescRoomListTotCnt(RescRoomVO vo) {
+	public int getRescRoomListTotCnt(RescRoomVO vo){
 		return (Integer)select("supportDao.getRescRoomListTotCnt", vo);
 	}
 	
 	// 자료실 등록
-	public void insertRescRoom(RescRoomVO vo) {
-		insert("supportDao.insertRescRoom", vo);
+	public int insertRescRoom(Map<String,Object> map){
+		return (Integer) insert("supportDao.insertRescRoom", map);
 	}
 	
 	// 자료실 파일업로드 등록
-	public void insertRescRoomUpload(RescRoomVO vo) {
-		insert("supportDao.insertRescRoomUpload", vo);
-	}
-	
-	// 자료실 상세
-	public EgovMap getRescRoomDetail(int num) {
-		return (EgovMap)select("supportDao.getRescRoomDetail", num);
+	public void insertRescRoomUpload(EgovMap map) {
+		insert("supportDao.insertRescRoomUpload", map);
 	}
 	
 	// 자료실 수정
-	public void updateRescRoom(RescRoomVO vo) {
-		update("supportDao.updateRescRoom", vo);
+	public void updateRescRoom(Map<String,Object> map) {
+		update("supportDao.updateRescRoom", map);
 	}
 	
 	// 자료실 파일업로드 수정
 	public void updateRescRoomUpload(RescRoomVO vo) {
 		update("supportDao.updateRescRoomUpload", vo);
+	}
+	
+	// 자료실 삭제
+	public void deleteRescRoom(int rescRoomNum) {
+		update("supportDao.deleteRescRoom", rescRoomNum);
+	
+	}
+	// 자료실 파일업로드 삭제
+	public void deleteRescRoomUpload(int rescRoomNum) {
+		update("supportDao.deleteRescRoomUpload", rescRoomNum);
+	}
+	
+	// 자료실 파일 삭제구분 처리
+	public void deleteRescRoomUploadGbY(Map<String,Object> map) {
+		update("supportDao.deleteRescRoomUploadGbY", map);
+	}
+	
+	// 자료실 파일 삭제구분 취소
+	public void deleteRescRoomUploadGbN(EgovMap map) {
+		update("supportDao.deleteRescRoomUploadGbN", map);
+	}
+	
+	// 자료실 상세
+	public EgovMap getRescRoomDtl(int num){
+		return (EgovMap)select("supportDao.getRescRoomDtl", num);
+	}
+	
+	// 자료실 상세 파일목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getRescRoomFileDtl(int num){
+		return (List<EgovMap>)list("supportDao.getRescRoomFileDtl", num);
 	}
 	
 	// 사용자메뉴얼 목록

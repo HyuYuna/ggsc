@@ -3,7 +3,6 @@ package egovframework.homepage.cmSpace.service.impl;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.homepage.cmSpace.service.CmSpaceVO;
 import egovframework.homepage.cmSpace.service.HomepageCmSpaceService;
-import egovframework.homepage.freeBbs.service.BbsVO;
 import egovframework.homepage.main.service.PopupVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -96,6 +94,12 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 		return homepageCmSpaceMapper.getCenterNewsDtl(vo);
 	}
 	
+	// 센터소식 상세 파일 목록
+	@Override
+	public List<EgovMap> getCenterNewsFileDtl(CmSpaceVO vo) {
+		return homepageCmSpaceMapper.getCenterNewsFileDtl(vo);
+	}
+	
 	// 문서자료실 목록
 	public List<EgovMap> getDocLibraryList(CmSpaceVO vo) {
 		return homepageCmSpaceMapper.getDocLibraryList(vo);
@@ -116,6 +120,11 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 		// 조회수 증가
 		homepageCmSpaceMapper.updateDocLibraryViewCount(vo.getNum());
 		return homepageCmSpaceMapper.getDocLibraryDtl(vo);
+	}
+	
+	// 문서자료실 파일 상세
+	public List<EgovMap> getDocLibraryFileDtl(CmSpaceVO vo) {
+		return homepageCmSpaceMapper.getDocLibraryFileDtl(vo);
 	}
 	
 	// 자유게시판 목록
@@ -141,12 +150,12 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 	// 자유게시판 등록
 	public void insertFreeBoardReg(CmSpaceVO vo) throws Exception {
 		homepageCmSpaceMapper.insertFreeBoardReg(vo);
-		if(vo.getFile().getSize() != 0){
+		/*if(vo.getFile().getSize() != 0){
 			MultipartFile file = vo.getFile();
 			EgovMap fMap = fileUpload(file, vo);
 			// 자유게시판 파일업로드
 			homepageCmSpaceMapper.insertFreeBoardFileUpload(vo);
-		}
+		}*/
 		
 	}
 	
@@ -155,6 +164,11 @@ public class HomepageCmSpaceServiceImpl extends EgovAbstractServiceImpl implemen
 		// 조회수 증가
 		homepageCmSpaceMapper.updateFreeBoardViewCount(vo.getNum());
 		return homepageCmSpaceMapper.getFreeBoardDtl(vo);
+	}
+	
+	// 자유게시판 파일 상세
+	public List<EgovMap> getFreeBoardFileDtl(CmSpaceVO vo) {
+		return homepageCmSpaceMapper.getFreeBoardFileDtl(vo);
 	}
 	
 	// 온라인상담 목록

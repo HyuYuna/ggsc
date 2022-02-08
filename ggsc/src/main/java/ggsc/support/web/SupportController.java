@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.daou.ppurio.SendMmsMessage;
 import com.daou.ppurio.mmsVO;
@@ -29,6 +31,7 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import ggsc.cnsr.service.AdminManageService;
 import ggsc.cnsr.service.GroupVO;
+import ggsc.hpgmng.service.FreeBrdVO;
 import ggsc.support.service.FaqVO;
 import ggsc.support.service.MailVO;
 import ggsc.support.service.RescRoomVO;
@@ -252,6 +255,50 @@ public class SupportController {
 		return "support/rescRoom_list.main";
 	}
 	
+	@RequestMapping(value = "/rescRoomForm.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String freeBoardForm(RescRoomVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
+		
+		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		
+		return "support/rescRoom_reg.main";
+	}
+	
 	@RequestMapping(value = "/rescRoomDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String rescRoomDtl(RescRoomVO vo, HttpServletRequest request, ModelMap model){	
 
@@ -279,41 +326,55 @@ public class SupportController {
 			case 3: vo.setAuthCd(3); break; 
 				default: vo.setAuthCd(4); break; 
 		}
-		// 권한 관리 끝
-		
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap rescDtl = null;
+		EgovMap rescRoom = null;
+		List<EgovMap> file = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			rescDtl = supportService.getRescRoomDetail(intNum);
+			rescRoom = supportService.getRescRoomDtl(intNum);
+			file = supportService.getRescRoomFileDtl(intNum);
 		}
 		
-		model.addAttribute("detail", rescDtl);
-		model.addAttribute("vo", vo);
 		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("rescRoom", rescRoom);
+		model.addAttribute("file", file);
 		
 		return "support/rescRoom_dtl.main";
 	}
 	
 	@RequestMapping(value = "/rescRoomReg.do", method = RequestMethod.POST)
-	public String rescRoomReg(HttpServletRequest request, ModelMap model, RescRoomVO vo){
+	public String freeBoardReg(@RequestParam Map<String,Object> map, MultipartHttpServletRequest request,  ModelMap model) throws Exception{
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
+		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)login.get("userId");
+		String writer = (String)login.get("userNm");
+		map.put("regId", regId);
+		map.put("writer", writer);
+		
+		int rescRoomNum = Integer.parseInt((String) map.get("num"));
 		
 		if(save.equals("S")) {
-			supportService.insertRescRoom(vo);		
+			supportService.insertRescRoom(map,request);	
 		} else if(save.equals("U")) {
-			supportService.updateRescRoom(vo);
+			map.put("fileNum",rescRoomNum);
+			supportService.updateRescRoom(map,request);
+		} else if(save.equals("D")) {
+			supportService.deleteRescRoom(rescRoomNum);
 		}
+		
 		return "redirect:/gnoincoundb/rescRoomList.do?mnuCd=" + mnuCd;
 	}
 	

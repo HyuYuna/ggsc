@@ -91,7 +91,7 @@
 							<col class="hidden-xs" style="width: 80px" />
 							<col />
 							<col style="width: 120px" />
-							<%-- <col class="hidden-xs" style="width: 100px" /> --%>
+							<col class="hidden-xs" style="width: 100px" />
 							<col class="hidden-xs" style="width: 80px" />
 						</colgroup>
 						<thead class="hidden-xs">
@@ -99,28 +99,24 @@
 								<th scope="col" class="num hidden-xs">번호</th>
 								<th scope="col" class="subject">제목</th>
 								<th scope="col" class="time">등록일</th>
-								<!-- <th scope="col" class="file hidden-xs">첨부파일</th> -->
+								<th scope="col" class="file hidden-xs">첨부파일</th>
 								<th scope="col" class="no hidden-xs">조회수</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="result" items="${freeBoardList}"
 								varStatus="status">
-								<tr
-									onclick="javascript:fn_detail('<c:out value="${result.num}"/>');">
-									<td class="num hidden-xs"><c:out
-											value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}" />
+								<tr onclick="javascript:fn_detail('<c:out value="${result.num}"/>');">
+									<td class="num hidden-xs"><c:out value="${paginationInfo.totalRecordCount+1 - ((vo.pageIndex-1) * vo.pageSize + status.count)}" />
 										<%-- <c:out value="${result.num}"/> --%></td>
-									<td class="subject"><c:out value="${result.title}"
-											escapeXml="false" /></td>
+									<td class="subject"><c:out value="${result.title}" escapeXml="false" /></td>
 									<td class="time"><c:out value="${result.dbInsTm}" /></td>
-									<%-- <td class="file hidden-xs">
-            	            <c:if test="${result.fileNm != null }">
-				              	<a href="javascript:fn_fileDown('<c:out value="${result.sysFileNm}"/>','<c:out value="${result.filePath}"/>','<c:out value="${result.fileNm}"/>')" class="btn btn-default btn-sm"><i class="fa fa-download mr5"></i><span>다운로드</span></a>
-            	            </c:if>
-			              </td> --%>
-									<td class="no hidden-xs"><c:out
-											value="${result.viewCount }" /></td>
+									<td class="file hidden-xs">
+			            	            <c:if test="${result.fileNm != null }">
+							              	<a href="javascript:fn_fileDown('<c:out value="${result.sysFileNm}"/>','<c:out value="${result.filePath}"/>','<c:out value="${result.fileNm}"/>')" class="btn btn-default btn-sm"><i class="fa fa-download mr5"></i><span>다운로드</span></a>
+			            	            </c:if>
+					               </td>
+									<td class="no hidden-xs"><c:out value="${result.viewCount }" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>

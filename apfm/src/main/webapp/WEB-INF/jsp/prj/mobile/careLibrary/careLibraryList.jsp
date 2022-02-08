@@ -33,14 +33,31 @@
   		if(fileNm == "") {
   			alert("등록하신 첨부파일이 없습니다.");
   		} else {
-	        document.location.href = "/mgnoincoun/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;  			
+	        document.location.href = "/gnoincoundb/fileDown.do?sysFileNm="+sysFileNm+"&filePath="+filePath+"&fileNm="+fileNm;  			
   		}
+  	}
+  	
+  	function fn_fileDown(fileNm,filePath,sysFileNm) {
+  		if(fileNm == "") {
+  			alert("등록하신 첨부파일이 없습니다");
+  		}
+  		$("#fileNm").val(fileNm);
+		$("#sysFileNm").val(sysFileNm);
+		$("#filePath").val(filePath);
+		document.downForm.action = "/gnoincoundb/fileDown2.do";
+       	document.downForm.submit();
   	}
   	
   </script>
   <body>
     <!-- 헤더 ================================================== -->
     <header class="navbar-wrapper">
+    <form name="downForm" id="downForm" method="get" enctype="multipart/form-data">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="hidden" id="fileNm" name="fileNm" value="" />
+		<input type="hidden" id="sysFileNm" name="sysFileNm" value="" />
+		<input type="hidden" id="filePath" name="filePath" value="" />
+	</form>
       <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">

@@ -34,12 +34,12 @@
 				CNS_HIST_YN ,
 				CNS_CNTN ,
 				PSY_EXAM ,
-				ACPT_GB ,
-				SIGUN_CD
+				SIGUN_CD ,
+				ACPT_GB
 				
 			) VALUES (
 				CAST(CONCAT(#{cnsGb}, #{zoneGb}, '9', #{centerGb}, (SELECT IFNULL(MAX(GCA.NUM), 0)+1 FROM GS_CNS_ACPT GCA)) AS UNSIGNED) ,
-				<!-- '0' , -->
+				<!-- CAST(CONCAT(#{cnsGb}, #{zoneGb}, #{centerGb}, (SELECT IFNULL(MAX(GCA.NUM), 0)+1 FROM GS_CNS_ACPT GCA)) AS UNSIGNED) , -->
 				#{userId} ,
 				#{cnsReqGb} ,
 				#{cnsGb} ,
@@ -67,9 +67,10 @@
 				#{cnsHistYn} ,
 				#{cnsCntn} ,
 				#{psyExam} ,
-				'2' ,
-				#{sigunCd}
+				#{sigunCd} ,
+				'2'
 			)
+
 	</insert>
 	
 	<!-- 상담신청 파일업로드 -->

@@ -84,7 +84,7 @@
 				검색 총수 : <span id="totalPageCnt"><c:out value="${totalPageCnt }"/></span> 건 
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
-				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd}');" style="background-color:green; color:white;">등록</button>
+				<button type="button" class="btn-basic" onClick="javascript:fn_reg('${mnuCd}');" style="background-color:#FF8224;color:white;">등록</button>
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 

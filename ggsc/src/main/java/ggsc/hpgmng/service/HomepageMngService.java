@@ -32,23 +32,29 @@ public interface HomepageMngService {
 	// 공지사항 상세 파일 목록
 	List<EgovMap> getNoticeFileDtl(int num);
 	
-	// 게시판관리 목록
-	List<EgovMap> getFreeBoardList(FreeBrdVO vo);
 	
-	// 게시판관리 갯수
+	// 자유게시판 목록
+	List<EgovMap> getFreeBoardList(FreeBrdVO vo);
+		
+	// 자유게시판 갯수
 	int getFreeBoardListTotCnt(FreeBrdVO vo);
 	
-	// 게시판관리 등록
-	void insertFreeBoard(FreeBrdVO vo);
+	// 자유게시판 등록
+	void insertFreeBoard(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
-	// 게시판관리 수정
-	void updateFreeBoard(FreeBrdVO vo);
+	// 자유게시판 수정
+	void updateFreeBoard(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
-	// 게시판관리 삭제
+	// 자유게시판 삭제
 	void deleteFreeBoard(int freeBrdNum);
 	
-	// 게시판관리 상세
+	// 자유게시판 상세
 	EgovMap getFreeBoardDtl(int num);
+	
+	// 자유게시판 상세 파일 목록
+	List<EgovMap> getFreeBoardFileDtl(int num);
+	
+	
 	
 	// 문서자료실 목록
 	List<EgovMap> getLibraryList(LibraryVO vo);
@@ -57,16 +63,21 @@ public interface HomepageMngService {
 	int getLibraryListTotCnt(LibraryVO vo);
 	
 	// 문서자료실 등록
-	void insertLibrary(LibraryVO vo);
+	void insertLibrary(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 문서자료실 수정
-	void updateLibrary(LibraryVO vo);
+	void updateLibrary(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 문서자료실 삭제
-	void deleteLibrary(int libraryNum);
+	void deleteLibrary(int noticeNum);
 	
 	// 문서자료실 상세
 	EgovMap getLibraryDtl(int num);
+	
+	// 문서자료실 상세 파일 목록
+	List<EgovMap> getLibraryFileDtl(int num);
+	
+	
 	
 	// 센터소식 목록
 	List<EgovMap> getCenterNewsList(NewsVO vo);
@@ -75,16 +86,20 @@ public interface HomepageMngService {
 	int getCenterNewsListTotCnt(NewsVO vo);
 	
 	// 센터소식 등록
-	void insertCenterNews(NewsVO vo);
+	void insertCenterNews(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
 	// 센터소식 수정
-	void updateCenterNews(NewsVO vo);
+	void updateCenterNews(Map<String,Object> map, MultipartHttpServletRequest request) throws Exception ;
 	
-	// 문서자료실 삭제
-	void deleteCenterNews(int newsNum);
+	// 센터소식 삭제
+	void deleteCenterNews(int noticeNum);
 	
 	// 센터소식 상세
 	EgovMap getCenterNewsDtl(int num);
+	
+	// 센터소식 상세 파일 목록
+	List<EgovMap> getCenterNewsFileDtl(int num);
+	
 	
 	// 온라인상담 목록
 	List<EgovMap> getOnlineAskList(OnlineAskVO vo);

@@ -60,38 +60,37 @@
           <div class="board_box article-header" >
             <div class="txt_area">   
               <!-- 제목 -->
-              <strong class="tit"><c:out value="${detail.title }" escapeXml="false" /> </strong>
+              <strong class="tit"><c:out value="${library.title }" escapeXml="false" /> </strong>
               <!-- 제목 //-->
               <!-- 글등록정보 -->
               <div class="user_area">
                 <span class="nick">
-                  <span class="ellip"><span class="ellip"><c:out value="${detail.writer }" /></span></span>
-                  <span class="time"><c:out value="${detail.dbInsTm }" /></span>
-                  <span class="no"><c:out value="${detail.num }" /></span>
+                  <span class="ellip"><span class="ellip"><c:out value="${library.writer }" /></span></span>
+                  <span class="time"><c:out value="${library.dbInsTm }" /></span>
+                  <span class="no"><c:out value="${library.num }" /></span>
                 </span>
               </div>
               <!-- 글등록정보 //-->
             </div>
             <div class="file-area">
-              <c:if test="${detail.fileNm != null }">
-	              <a href="javascript:fn_fileDown('<c:out value="${detail.sysFileNm}"/>','<c:out value="${detail.filePath}"/>','<c:out value="${detail.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a>
-	              
-              </c:if>            
+	            <c:forEach var="row" items="${file}" varStatus="var">
+	           		<p>${row.fileNm} &nbsp; <a href="javascript:fn_fileDown('<c:out value="${row.sysFileNm}"/>','<c:out value="${row.filePath}"/>','<c:out value="${row.fileNm}"/>')"  class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일 다운로드</a></p>
+	           	</c:forEach>       
               <!-- <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일2 다운로드</a>
               <a href="" class="btn btn-default mb3"><i class="fa fa-download mr5"></i>첨부파일3 다운로드</a> -->
             </div>
           </div><!-- board_box //-->
           <div class="article-body">
             <div class="article">
-             	<textarea id="rcontent" name="content" readonly="readonly" ><c:out value="${detail.cntn }" escapeXml="false" /></textarea>
+             	<textarea id="rcontent" name="content" readonly="readonly" ><c:out value="${library.cntn }" escapeXml="false" /></textarea>
             </div>
           </div><!-- .article-body /-->
             
         </div><!-- .article-list-area /-->
         <div class="btn-wrap line bt bb pt10 pb10 mt20 text-center">
-          <button type="button" class="btn btn-default btn-lg fl" onclick="javascript:fn_movePage('<c:out value="${detail.num}"/>','Y');"><i class="fa fa-caret-left mr5"></i>이전글</button>
+          <button type="button" class="btn btn-default btn-lg fl" onclick="javascript:fn_movePage('<c:out value="${library.num}"/>','Y');"><i class="fa fa-caret-left mr5"></i>이전글</button>
           <button type="button" class="btn btn-normal btn-lg" onclick="location.href='/gnoincoun/docLibraryList.do'"><i class="fa fa-align-justify mr5"></i>목록</button>
-          <button type="button" class="btn btn-default btn-lg fr" onclick="javascript:fn_movePage('<c:out value="${detail.num}"/>','N');">다음글<i class="fa fa-caret-right ml5"></i></button>
+          <button type="button" class="btn btn-default btn-lg fr" onclick="javascript:fn_movePage('<c:out value="${library.num}"/>','N');">다음글<i class="fa fa-caret-right ml5"></i></button>
         </div>
       </div><!-- .content-area /-->
     </div><!-- .container.content-wrapper /-->

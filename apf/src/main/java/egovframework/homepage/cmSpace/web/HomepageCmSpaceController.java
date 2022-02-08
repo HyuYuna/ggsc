@@ -203,11 +203,16 @@ public class HomepageCmSpaceController {
 		}
 		
 		// 센터소식 상세
-		EgovMap centerDtl = null;
+		EgovMap centerNews = null;
+		List<EgovMap> file = null;
+		
 		if(num !=""){
 			// 센터소식 상세
-			centerDtl = homepageCmSpaceService.getCenterNewsDtl(vo);
-			model.addAttribute("detail", centerDtl);
+			centerNews = homepageCmSpaceService.getCenterNewsDtl(vo);
+			file = homepageCmSpaceService.getCenterNewsFileDtl(vo);
+			
+			model.addAttribute("centerNews",centerNews);
+			model.addAttribute("file",file);
 		}
 		
 		return "/comuSpace/centerNewsDtl.page";
@@ -276,11 +281,16 @@ public class HomepageCmSpaceController {
 		}
 		
 		// 문서자료실 상세
-		EgovMap docLibraryDtl = null;
+		EgovMap library = null;
+		List<EgovMap> file = null;
+		
 		if(num !=""){
 			// 센터소식 상세
-			docLibraryDtl = homepageCmSpaceService.getDocLibraryDtl(vo);
-			model.addAttribute("detail", docLibraryDtl);
+			library = homepageCmSpaceService.getDocLibraryDtl(vo);
+			file = homepageCmSpaceService.getDocLibraryFileDtl(vo);
+			
+			model.addAttribute("library", library);
+			model.addAttribute("file", file);
 		}
 		
 		return "/comuSpace/docLibraryDtl.page";
@@ -349,11 +359,16 @@ public class HomepageCmSpaceController {
 		}
 		
 		// 자유게시판 상세
-		EgovMap FreeBoardDtl = null;
+		EgovMap freeBoard = null;
+		List<EgovMap> file = null;
+		
 		if(num !=""){
 			// 자유게시판 상세
-			FreeBoardDtl = homepageCmSpaceService.getFreeBoardDtl(vo);
-			model.addAttribute("detail", FreeBoardDtl);
+			freeBoard = homepageCmSpaceService.getFreeBoardDtl(vo);
+			file = homepageCmSpaceService.getFreeBoardFileDtl(vo);
+			
+			model.addAttribute("freeBoard", freeBoard);
+			model.addAttribute("file",file);
 		}
 		
 		return "/comuSpace/freeBoardDtl.page";

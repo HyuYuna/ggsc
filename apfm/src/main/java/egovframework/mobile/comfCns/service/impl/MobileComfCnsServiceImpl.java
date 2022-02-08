@@ -35,7 +35,12 @@ public class MobileComfCnsServiceImpl extends EgovAbstractServiceImpl implements
 	
 	// 상담신청 등록
 	public void insertComfCnsReg(ComfCnsVO vo) throws Exception {
-		mobileComfCnsMapper.insertComfCnsReg(vo);
+		try {
+			mobileComfCnsMapper.insertComfCnsReg(vo);
+		} catch (Exception e) {
+			utility.func.Logging(this.getClass().getName(), e);
+
+		}
 		/*MultipartFile file = vo.getFile();
 		EgovMap fMap = fileUpload(file, vo);
 		// 상담신청 파일업로드

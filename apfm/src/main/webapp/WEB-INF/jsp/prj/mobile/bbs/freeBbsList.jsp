@@ -61,8 +61,8 @@
                 <li><a href="/mgnoincoun/psyCnsList.do">간편한 심리검사<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/comfCnsInsert.do">맘편한 상담<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/mypageView.do">마이 페이지<i class="fa fa-caret-right"></i></a></li>
-                <li class="active"><a href="/mgnoincoun/freeBbsList.do">알려드려요 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
-                <li><a href="/mgnoincoun/careLibraryList.do">마음돌봄 자료실<i class="fa fa-caret-right"></i></a></li>
+                <li><a href="/mgnoincoun/noticeList.do">센터소식 &amp; 공지사항<i class="fa fa-caret-right"></i></a></li>
+                <li class="active"><a href="/mgnoincoun/freeBbsList.do">문서자료실 &amp; 자유게시판<i class="fa fa-caret-right"></i></a></li>
                 <li><a href="/mgnoincoun/cnsAskList.do">상담문의하기<i class="fa fa-caret-right"></i></a></li>                
               </ul>
             </div>
@@ -87,16 +87,16 @@
     <!-- 컨텐츠  ================================================== -->
     <div class="container content-wrapper">
       <div class="page-header">
-        <h1 class="title"><i class="fa fa-comments-o"></i>알려드려요&amp;자유게시판</h1>
+        <h1 class="title"><i class="fa fa-comments-o"></i>문서자료실&amp;자유게시판</h1>
         <ol class="breadcrumb">
           <li><a href="/mgnoincoun/mobileMainList.do">Home</a></li>
           <!--<li><a href="#">센터소개</a></li>-->
-          <li class="active">알려드려요&amp;자유게시판</li>
+          <li class="active">문서자료실&amp;자유게시판</li>
         </ol>
       </div>
       <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
         <li class="nav-item active">
-          <a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="true">알려드려요</a>
+          <a class="nav-link" id="notice-tab" data-toggle="tab" href="#notice" role="tab" aria-controls="notice" aria-selected="true">문서자료실</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="data-tab" data-toggle="tab" href="#free" role="tab" aria-controls="data" aria-selected="false">자유게시판</a>
@@ -107,7 +107,7 @@
          <!-- <h2 class="title">알려드려요</h2>-->
           <div class="article-list-area">
             <ul class="list_area">
-              <c:if test="${freeBbsListA.size() == 0 }">
+              <c:if test="${crLibraryList.size() == 0 }">
 		        <table  class="table table-condensed">
 		          <col width="100px" />
 		          <col />
@@ -118,9 +118,9 @@
 		          </tbody>
 		        </table>
 			  </c:if>
-			  <c:if test="${freeBbsListA.size() > 0 }">
+			  <c:if test="${crLibraryList.size() > 0 }">
               	  <!-- loop -->
-	              <c:forEach var="result" items="${freeBbsListA}" varStatus="status">
+	              <c:forEach var="result" items="${crLibraryList}" varStatus="status">
 		              <li class="board_box" >
 		                <a href="#" onclick="javascript:fn_detail('<c:out value="${result.num}"/>','A');" class="txt_area">   
 		                  <!-- 새글알림 -->
@@ -129,7 +129,7 @@
 		                  </span>
 		                  <!-- 새글알림 //-->
 		                  <!-- 제목 -->
-		                  <strong class="tit"><c:out value="${result.title}"/></strong>
+		                  <strong class="tit"><c:out value="${result.title}" escapeXml="false"/></strong>
 		                  <!-- 제목 //-->
 		                  <!-- 글등록정보 -->
 		                  <div class="user_area">
@@ -152,7 +152,7 @@
           <!--자유게시판-->
           <div class="article-list-area">
             <ul class="list_area">
-              <c:if test="${freeBbsListB.size() == 0 }">
+              <c:if test="${freeBbsList.size() == 0 }">
 		        <table class="table table-condensed" style="margin-top: 15px;">
 		          <col width="100px" />
 		          <col />
@@ -163,9 +163,9 @@
 		          </tbody>
 		        </table>
 			  </c:if>
-			  <c:if test="${freeBbsListB.size() > 0 }">
+			  <c:if test="${freeBbsList.size() > 0 }">
               <!-- loop -->
-	              <c:forEach var="result" items="${freeBbsListB}" varStatus="status">
+	              <c:forEach var="result" items="${freeBbsList}" varStatus="status">
 		              <li class="board_box" >
 		                <a href="#" onclick="javascript:fn_detail('<c:out value="${result.num}"/>','B');" class="txt_area">   
 		                  <!-- 새글알림 -->
@@ -174,7 +174,7 @@
 		                  </span>
 		                  <!-- 새글알림 //-->
 		                  <!-- 제목 -->
-		                  <strong class="tit"><c:out value="${result.title}"/></strong>
+		                  <strong class="tit"><c:out value="${result.title}" escapeXml="false"/></strong>
 		                  <!-- 제목 //-->
 		                  <!-- 글등록정보 -->
 		                  <div class="user_area">

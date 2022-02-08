@@ -22,7 +22,7 @@
 	}
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/libraryDtl.do?mnuCd=${mnuCd}";
+		document.location.href = "/gnoincoundb/libraryForm.do?mnuCd=${mnuCd}";
 	}
 	
 	function fn_detail(num){

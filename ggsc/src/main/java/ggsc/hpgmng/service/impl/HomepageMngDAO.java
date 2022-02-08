@@ -80,52 +80,68 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 		return (List<EgovMap>)list("hpgmngDao.getNoticeFileDtl", num);
 	}
 	
-	// 게시판관리 목록
+	// 자유게시판 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getFreeBoardList(FreeBrdVO vo){
 		return (List<EgovMap>)list("hpgmngDao.getFreeBoardList", vo);
 	}
 	
-	// 게시판관리 갯수
+	// 자유게시판 갯수
 	public int getFreeBoardListTotCnt(FreeBrdVO vo){
 		return (Integer)select("hpgmngDao.getFreeBoardListTotCnt", vo);
 	}
 	
-	// 게시판관리 등록
-	public int insertFreeBoard(FreeBrdVO vo){
-		return (Integer) insert("hpgmngDao.insertFreeBoard", vo);
+	// 자유게시판 등록
+	public int insertFreeBoard(Map<String,Object> map){
+		return (Integer) insert("hpgmngDao.insertFreeBoard", map);
 	}
 	
-	// 게시판관리 파일업로드 등록
-	public void insertFreeBoardUpload(FreeBrdVO vo) {
-		insert("hpgmngDao.insertFreeBoardUpload", vo);
+	// 자유게시판 파일업로드 등록
+	public void insertFreeBoardUpload(EgovMap map) {
+		insert("hpgmngDao.insertFreeBoardUpload", map);
 	}
 	
-	// 게시판관리 수정
-	public void updateFreeBoard(FreeBrdVO vo) {
-		update("hpgmngDao.updateFreeBoard", vo);
+	// 자유게시판 수정
+	public void updateFreeBoard(Map<String,Object> map) {
+		update("hpgmngDao.updateFreeBoard", map);
 	}
 	
-	// 게시판관리 삭제
+	// 자유게시판 파일업로드 수정
+	public void updateFreeBoardUpload(FreeBrdVO vo) {
+		update("hpgmngDao.updateFreeBoardUpload", vo);
+	}
+	
+	// 자유게시판 삭제
 	public void deleteFreeBoard(int freeBrdNum) {
 		update("hpgmngDao.deleteFreeBoard", freeBrdNum);
-	}
 	
-	// 게시판관리 업로드 삭제
+	}
+	// 자유게시판 파일업로드 삭제
 	public void deleteFreeBoardUpload(int freeBrdNum) {
 		update("hpgmngDao.deleteFreeBoardUpload", freeBrdNum);
 	}
 	
+	// 자유게시판 파일 삭제구분 처리
+	public void deleteFreeBoardUploadGbY(Map<String,Object> map) {
+		update("hpgmngDao.deleteFreeBoardUploadGbY", map);
+	}
 	
-//	// 게시판관리 파일업로드 수정
-//	public void updateFreeBoardUpload(FreeBrdVO vo) {
-//		update("hpgmngDao.updateFreeBoardUpload", vo);
-//	}
+	// 자유게시판 파일 삭제구분 취소
+	public void deleteFreeBoardUploadGbN(EgovMap map) {
+		update("hpgmngDao.deleteFreeBoardUploadGbN", map);
+	}
 	
-	// 게시판관리 상세
+	// 자유게시판 상세
 	public EgovMap getFreeBoardDtl(int num){
 		return (EgovMap)select("hpgmngDao.getFreeBoardDtl", num);
 	}
+	
+	// 자유게시판 상세 파일목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getFreeBoardFileDtl(int num){
+		return (List<EgovMap>)list("hpgmngDao.getFreeBoardFileDtl", num);
+	}
+
 	
 	// 문서자료실 목록
 	@SuppressWarnings("unchecked")
@@ -139,18 +155,18 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 문서자료실 등록
-	public int insertLibrary(LibraryVO vo){
-		return (Integer)insert("hpgmngDao.insertLibrary", vo);
+	public int insertLibrary(Map<String,Object> map){
+		return (Integer) insert("hpgmngDao.insertLibrary", map);
 	}
 	
 	// 문서자료실 파일업로드 등록
-	public void insertLibraryUpload(LibraryVO vo) {
-		insert("hpgmngDao.insertLibraryUpload", vo);
+	public void insertLibraryUpload(EgovMap map) {
+		insert("hpgmngDao.insertLibraryUpload", map);
 	}
 	
 	// 문서자료실 수정
-	public void updateLibrary(LibraryVO vo) {
-		update("hpgmngDao.updateLibrary", vo);
+	public void updateLibrary(Map<String,Object> map) {
+		update("hpgmngDao.updateLibrary", map);
 	}
 	
 	// 문서자료실 파일업로드 수정
@@ -159,18 +175,34 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 문서자료실 삭제
-	public void deleteLibrary(int libraryNum) {
-		update("hpgmngDao.deleteLibrary", libraryNum);
+	public void deleteLibrary(int noticeNum) {
+		update("hpgmngDao.deleteLibrary", noticeNum);
+	
+	}
+	// 문서자료실 파일업로드 삭제
+	public void deleteLibraryUpload(int noticeNum) {
+		update("hpgmngDao.deleteLibraryUpload", noticeNum);
 	}
 	
-	// 문서자료실 업로드 삭제
-	public void deleteLibraryUpload(int libraryNum) {
-		update("hpgmngDao.deleteLibraryUpload", libraryNum);
+	// 문서자료실 파일 삭제구분 처리
+	public void deleteLibraryUploadGbY(Map<String,Object> map) {
+		update("hpgmngDao.deleteLibraryUploadGbY", map);
+	}
+	
+	// 문서자료실 파일 삭제구분 취소
+	public void deleteLibraryUploadGbN(EgovMap map) {
+		update("hpgmngDao.deleteLibraryUploadGbN", map);
 	}
 	
 	// 문서자료실 상세
 	public EgovMap getLibraryDtl(int num){
 		return (EgovMap)select("hpgmngDao.getLibraryDtl", num);
+	}
+	
+	// 문서자료실 상세 파일목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getLibraryFileDtl(int num){
+		return (List<EgovMap>)list("hpgmngDao.getLibraryFileDtl", num);
 	}
 	
 	// 센터소식 목록
@@ -185,39 +217,54 @@ public class HomepageMngDAO extends EgovAbstractDAO {
 	}
 	
 	// 센터소식 등록
-	public int insertCenterNews(NewsVO vo){
-		return (Integer)insert("hpgmngDao.insertCenterNews", vo);
+	public int insertCenterNews(Map<String,Object> map){
+		return (Integer) insert("hpgmngDao.insertCenterNews", map);
 	}
 	
 	// 센터소식 파일업로드 등록
-	public void insertCenterNewsUpload(NewsVO vo) {
-		insert("hpgmngDao.insertCenterNewsUpload", vo);
+	public void insertCenterNewsUpload(EgovMap map) {
+		insert("hpgmngDao.insertCenterNewsUpload", map);
 	}
 	
 	// 센터소식 수정
-	public void updateCenterNews(NewsVO vo) {
-		update("hpgmngDao.updateCenterNews", vo);
+	public void updateCenterNews(Map<String,Object> map) {
+		update("hpgmngDao.updateCenterNews", map);
 	}
-	
 	
 	// 센터소식 파일업로드 수정
 	public void updateCenterNewsUpload(NewsVO vo) {
 		update("hpgmngDao.updateCenterNewsUpload", vo);
 	}
 	
-	// 문서자료실 삭제
-	public void deleteCenterNews(int newsNum) {
-		update("hpgmngDao.deleteCenterNews", newsNum);
+	// 센터소식 삭제
+	public void deleteCenterNews(int noticeNum) {
+		update("hpgmngDao.deleteCenterNews", noticeNum);
+	
+	}
+	// 센터소식 파일업로드 삭제
+	public void deleteCenterNewsUpload(int noticeNum) {
+		update("hpgmngDao.deleteCenterNewsUpload", noticeNum);
 	}
 	
-	// 문서자료실 업로드 삭제
-	public void deleteCenterNewsUpload(int newsNum) {
-		update("hpgmngDao.deleteCenterNewsUpload", newsNum);
+	// 센터소식 파일 삭제구분 처리
+	public void deleteCenterNewsUploadGbY(Map<String,Object> map) {
+		update("hpgmngDao.deleteCenterNewsUploadGbY", map);
+	}
+	
+	// 센터소식 파일 삭제구분 취소
+	public void deleteCenterNewsUploadGbN(EgovMap map) {
+		update("hpgmngDao.deleteCenterNewsUploadGbN", map);
 	}
 	
 	// 센터소식 상세
 	public EgovMap getCenterNewsDtl(int num){
 		return (EgovMap)select("hpgmngDao.getCenterNewsDtl", num);
+	}
+	
+	// 센터소식 상세 파일목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCenterNewsFileDtl(int num){
+		return (List<EgovMap>)list("hpgmngDao.getCenterNewsFileDtl", num);
 	}
 	
 	// 온라인상담 목록

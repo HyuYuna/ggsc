@@ -22,7 +22,7 @@
 	}
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/freeBoardDtl.do?mnuCd=${mnuCd}";
+		document.location.href = "/gnoincoundb/freeBoardForm.do?mnuCd=${mnuCd}";
 	}
 	
 	function fn_detail(num){
@@ -102,7 +102,7 @@
 				<thead>
 					<tr>
 						<th scope="col">번호</th>
-						<th scope="col">공지제목</th> 						
+						<th scope="col">제목</th> 						
 						<th scope="col">첨부파일</th>
 						<th scope="col">등록자</th>
 						<th scope="col">등록일</th>

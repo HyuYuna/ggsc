@@ -206,8 +206,9 @@ public class HomepageMngController {
 		return "hpgmng/freeBoard_list.main";
 	}
 	
-	@RequestMapping(value = "/freeBoardDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String freeBoardDtl(FreeBrdVO vo, HttpServletRequest request, ModelMap model){
+	@RequestMapping(value = "/freeBoardForm.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String freeBoardForm(FreeBrdVO vo, HttpServletRequest request, ModelMap model){
+		
 		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
 		
 		// 권한 관리 시작
@@ -232,44 +233,95 @@ public class HomepageMngController {
 			case 3: vo.setAuthCd(3); break; 
 				default: vo.setAuthCd(4); break; 
 		}
-		// 권한 관리 끝
-				
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
+		
+		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		
+		return "hpgmng/freeBoard_reg.main";
+	}
+	
+	@RequestMapping(value = "/freeBoardDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String freeBoardDtl(FreeBrdVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap freeBrdDtl = null;
+		EgovMap freeBoard = null;
+		List<EgovMap> file = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			freeBrdDtl = hpgmngService.getFreeBoardDtl(intNum);
+			freeBoard = hpgmngService.getFreeBoardDtl(intNum);
+			file = hpgmngService.getFreeBoardFileDtl(intNum);
 		}
 		
-		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", freeBrdDtl);
-		model.addAttribute("vo", vo);
-		model.addAttribute("authCd", userAuth);
 		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("freeBoard", freeBoard);
+		model.addAttribute("file", file);
 		
 		return "hpgmng/freeBoard_dtl.main";
 	}
 	
 	@RequestMapping(value = "/freeBoardReg.do", method = RequestMethod.POST)
-	public String freeBoardReg(HttpServletRequest request, ModelMap model, FreeBrdVO vo){
+	public String freeBoardReg(@RequestParam Map<String,Object> map, MultipartHttpServletRequest request,  ModelMap model) throws Exception{
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
+		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)login.get("userId");
+		String writer = (String)login.get("userNm");
+		map.put("regId", regId);
+		map.put("writer", writer);
 		
-		int freeBrdNum = vo.getNum();
+		int freeBrdNum = Integer.parseInt((String) map.get("num"));
 		
 		if(save.equals("S")) {
-			hpgmngService.insertFreeBoard(vo);	
+			hpgmngService.insertFreeBoard(map,request);	
 		} else if(save.equals("U")) {
-			hpgmngService.updateFreeBoard(vo);
+			map.put("fileNum",freeBrdNum);
+			hpgmngService.updateFreeBoard(map,request);
 		} else if(save.equals("D")) {
 			hpgmngService.deleteFreeBoard(freeBrdNum);
 		}
@@ -301,6 +353,50 @@ public class HomepageMngController {
 		return "hpgmng/library_list.main";
 	}
 	
+	@RequestMapping(value = "/libraryForm.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String libraryForm(LibraryVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
+		
+		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		
+		return "hpgmng/library_reg.main";
+	}
+	
 	@RequestMapping(value = "/libraryDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String libraryDtl(LibraryVO vo, HttpServletRequest request, ModelMap model){
 		
@@ -328,43 +424,52 @@ public class HomepageMngController {
 			case 3: vo.setAuthCd(3); break; 
 				default: vo.setAuthCd(4); break; 
 		}
-		// 권한 관리 끝
-		
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
 		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap libraryDtl = null;
+		EgovMap library = null;
+		List<EgovMap> file = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			libraryDtl = hpgmngService.getLibraryDtl(intNum);
+			library = hpgmngService.getLibraryDtl(intNum);
+			file = hpgmngService.getLibraryFileDtl(intNum);
 		}
 		
-		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", libraryDtl);
+		
 		model.addAttribute("userId", loginVO.get("userId").toString());
-		model.addAttribute("vo", vo);
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("library", library);
+		model.addAttribute("file", file);
 		
 		return "hpgmng/library_dtl.main";
 	}
 	
 	@RequestMapping(value = "/libraryReg.do", method = RequestMethod.POST)
-	public String libraryReg(HttpServletRequest request, ModelMap model, LibraryVO vo){
+	public String libraryReg(@RequestParam Map<String,Object> map, MultipartHttpServletRequest request,  ModelMap model) throws Exception{
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
+		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)login.get("userId");
+		String writer = (String)login.get("userNm");
+		map.put("regId", regId);
+		map.put("writer", writer);
 		
-		int libraryNum = vo.getNum();
+		int libraryNum = Integer.parseInt((String) map.get("num"));
 		
 		if(save.equals("S")) {
-			hpgmngService.insertLibrary(vo);	
+			hpgmngService.insertLibrary(map,request);	
 		} else if(save.equals("U")) {
-			hpgmngService.updateLibrary(vo);
+			map.put("fileNum",libraryNum);
+			hpgmngService.updateLibrary(map,request);
 		} else if(save.equals("D")) {
 			hpgmngService.deleteLibrary(libraryNum);
 		}
@@ -412,6 +517,50 @@ public class HomepageMngController {
 		model.addAttribute("vo", vo);
 		
 		return "hpgmng/centerNews_list.main";
+	}
+	
+	@RequestMapping(value = "/centerNewsForm.do", method = { RequestMethod.GET, RequestMethod.POST } )
+	public String centerNewsForm(NewsVO vo, HttpServletRequest request, ModelMap model){
+		
+		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
+		
+		// 권한 관리 시작
+		int userAuth;
+		try {
+			userAuth = Integer.parseInt(loginVO.get("authCd").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+		}
+	
+		/*if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}*/
+		
+		switch (userAuth) {
+			case 1: vo.setAuthCd(1); break; 
+			case 2: vo.setAuthCd(2); break; 
+			case 3: vo.setAuthCd(3); break; 
+				default: vo.setAuthCd(4); break; 
+		}
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		
+		
+		model.addAttribute("mnuCd", mnuCd);
+		model.addAttribute("userId", loginVO.get("userId").toString());
+		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
+		model.addAttribute("authCd", userAuth);
+		
+		return "hpgmng/centerNews_reg.main";
 	}
 	
 	/*@RequestMapping(value = "/centerNewsDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -480,10 +629,6 @@ public class HomepageMngController {
 		
 		EgovMap loginVO = (EgovMap)request.getSession().getAttribute("LoginVO");
 		
-		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
-		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
-		model.addAttribute("mnuCd", mnuCd);
-		
 		// 권한 관리 시작
 		int userAuth;
 		try {
@@ -506,40 +651,52 @@ public class HomepageMngController {
 			case 3: vo.setAuthCd(3); break; 
 				default: vo.setAuthCd(4); break; 
 		}
-		// 권한 관리 끝
+				// 권한 관리 끝
+		/*
+		if(request.getParameter("page") != null){
+			model.addAttribute("page", request.getParameter("page"));
+		}
+		*/
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String num = request.getParameter("num") == null ? "" : request.getParameter("num");
+		model.addAttribute("mnuCd", mnuCd);
 		
-		EgovMap newsDtl = null;
+		EgovMap centerNews = null;
+		List<EgovMap> file = null;
 		if(num !=""){
 			int intNum = Integer.parseInt(num);
-			newsDtl = hpgmngService.getCenterNewsDtl(intNum);
-		} 
+			centerNews = hpgmngService.getCenterNewsDtl(intNum);
+			file = hpgmngService.getCenterNewsFileDtl(intNum);
+		}
 		
+		
+		model.addAttribute("userId", loginVO.get("userId").toString());
 		model.addAttribute("currentPageNo", vo.getCurrentPageNo());
-		model.addAttribute("detail", newsDtl);
 		model.addAttribute("authCd", userAuth);
-		model.addAttribute("userId",loginVO.get("userId").toString());
-		model.addAttribute("vo", vo);
+		model.addAttribute("centerNews", centerNews);
+		model.addAttribute("file", file);
 		
 		return "hpgmng/centerNews_dtl.main";
 	}
 	
 	@RequestMapping(value = "/centerNewsReg.do", method = RequestMethod.POST)
-	public String centerNewsReg(HttpServletRequest request, ModelMap model, NewsVO vo){
+	public String centerNewsReg(@RequestParam Map<String,Object> map, MultipartHttpServletRequest request,  ModelMap model) throws Exception{
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		
-		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
-		String regId = (String)map.get("userId");
-		String writer = (String)map.get("userNm");
-		vo.setWriter(writer);
-		vo.setRegId(regId);
+		EgovMap login = (EgovMap)request.getSession().getAttribute("LoginVO");
+		String regId = (String)login.get("userId");
+		String writer = (String)login.get("userNm");
+		map.put("regId", regId);
+		map.put("writer", writer);
 		
-		int newsNum = vo.getNum();
+		int newsNum = Integer.parseInt((String) map.get("num"));
 		
 		if(save.equals("S")) {
-			hpgmngService.insertCenterNews(vo);	
+			hpgmngService.insertCenterNews(map,request);	
 		} else if(save.equals("U")) {
-			hpgmngService.updateCenterNews(vo);
+			map.put("fileNum",newsNum);
+			hpgmngService.updateCenterNews(map,request);
 		} else if(save.equals("D")) {
 			hpgmngService.deleteCenterNews(newsNum);
 		}

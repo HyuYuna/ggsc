@@ -22,7 +22,7 @@
 	}
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/centerNewsDtl.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/centerNewsForm.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_detail(num){
@@ -113,19 +113,19 @@
 			&nbsp;&nbsp;
 			<table class="table-style1" style= "margin-bottom: 5px;">
 				<colgroup> 
-					<col width="7%"></col>
-					<col width="*"></col> 
-					<col width="10%"></col>
-					<col width="10%"></col>
-					<col width="10%"></col>
+					<col width="3%"></col>
+					<col width="5%"></col> 
+					<col width="20%"></col>
+					<col width="5%"></col>
+					<col width="5%"></col>
 				</colgroup>
 				<thead>
 					<tr>
 						<th scope="col">번호</th>
+						<th scope="col">등록일</th>
 						<th scope="col">제목</th> 
 						<th scope="col">첨부파일</th>
 						<th scope="col">등록자</th>
-						<th scope="col">등록일</th>
 					</tr>
 				</thead>
 				<tbody id="tby1">
@@ -138,6 +138,7 @@
 						<c:forEach items="${newsList }" var="result">
 							<tr>
 								<td onclick="javascript:fn_detail('${result.num}')">${result.rnum }</td>
+								<td onclick="javascript:fn_detail('${result.num}')">${result.dbInsTm}</td>
 								<td style='text-align:left;text-indent:10px' onclick="javascript:fn_detail('${result.num}')">
 									<c:choose>
 										<c:when test="${fn:length(result.title) > 60 }">
@@ -154,7 +155,6 @@
 									</c:if>
 								</td>
 								<td onclick="javascript:fn_detail('${result.num}')">${result.writer }</td>
-								<td onclick="javascript:fn_detail('${result.num}')">${result.dbInsTm}</td>
 							</tr> 
 						</c:forEach>
 					</c:if>

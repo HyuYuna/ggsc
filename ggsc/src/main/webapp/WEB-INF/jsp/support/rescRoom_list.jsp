@@ -15,7 +15,7 @@
 	});
 
 	function fn_reg(mnuCd){
-		document.location.href = "/gnoincoundb/rescRoomDtl.do?mnuCd=" + mnuCd;
+		document.location.href = "/gnoincoundb/rescRoomForm.do?mnuCd=" + mnuCd;
 	}
 	
 	function fn_detail(num){
