@@ -196,7 +196,7 @@ public class MobileCmSpaceController {
 		String save = request.getParameter("save") == null ? "" : request.getParameter("save");
 		if(save.equals("B")) {
 			// 게시판 등록(자유게시판)
-			//mobileCmSpaceService.insertCmSpaceBReg(vo);	
+			mobileCmSpaceService.insertFreeBbsBReg(vo);	
 		}
 		
 		return "redirect:/mgnoincoun/freeBbsList.do";

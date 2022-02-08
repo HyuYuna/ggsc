@@ -27,9 +27,6 @@ public interface MobileCmSpaceService {
 	// 공지사항 파일 상세
 	List<EgovMap> getNoticeFileDtl(BbsVO vo);
 	
-	// 게시판 상세보기(자유게시판)
-	//EgovMap getFreeBbsBDtl(BbsVO vo);
-	
 	
 	// 문서자료실 목록
 	List<EgovMap> getCrLibraryList(BbsVO vo);

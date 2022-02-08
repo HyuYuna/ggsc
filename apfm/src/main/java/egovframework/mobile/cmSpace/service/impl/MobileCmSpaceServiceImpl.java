@@ -122,7 +122,7 @@ public class MobileCmSpaceServiceImpl extends EgovAbstractServiceImpl implements
 		mobileCmSpaceMapper.insertFreeBbsBReg(vo);
 		// MultipartFile file = vo.getFile();
 		// EgovMap fMap = fileUpload(file, vo);
-		if(vo.getFile().getSize() != 0){
+		/*if(vo.getFile().getSize() != 0){
 			// mobileFreeBbsMapper.insertFreeBbsBFileUpload(vo);
 			
 			
@@ -141,11 +141,11 @@ public class MobileCmSpaceServiceImpl extends EgovAbstractServiceImpl implements
 				vo.setFileNm(fMap.get("fileNm").toString());
 				vo.setSysFileNm(fMap.get("sysFileNm").toString());
 				vo.setFilePath(fMap.get("filePath").toString());
-				/*try {
+				try {
 					vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
 				}catch(Exception err) {
 					vo.setFileSize(0);
-				}*/
+				}
 				mobileCmSpaceMapper.insertFreeBbsBFileUpload(vo);
 			}
 		}else {
@@ -154,7 +154,7 @@ public class MobileCmSpaceServiceImpl extends EgovAbstractServiceImpl implements
 			vo.setFilePath(null);
 			mobileCmSpaceMapper.insertFreeBbsBFileUpload(vo);
 			// vo.setFileSize(0);
-		}
+		}*/
 			
 	}
 	

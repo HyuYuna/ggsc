@@ -245,14 +245,12 @@
 	<insert id="insertFreeBbsBReg" parameterType="bbsVO">
 		INSERT INTO GS_FREE_BOARD
 			(
-				<!-- NUM , -->
 				TITLE ,
 				WRITER ,
 				CNTN ,
 				REG_ID ,
 				DB_INS_TM 
 			) VALUES (
-				<!-- (SELECT IFNULL(MAX(A.NUM),0)+1 FROM GS_FREE_BOARD AS A) , -->
 				#{title} ,
 				#{writer} ,
 				#{cntn} ,
