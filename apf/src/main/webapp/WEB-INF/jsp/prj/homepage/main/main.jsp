@@ -313,6 +313,15 @@
 		case 60:
 			window.open("http://www.hs-seobu.or.kr/main");
 			break;
+		case 61:
+			window.open("http://www.haansenior.or.kr/");
+			break;
+		case 62:
+			window.open("http://www.8879.or.kr/");
+			break;
+		case 63:
+			window.open("http://www.pdsenior.or.kr/");
+			break;
 		}
 	}
 
@@ -338,6 +347,12 @@
 					+ '<td class="address">경기도 가평군 가평읍 읍내리 625-8</td>'
 					+ '<td class="tel">031-581-6063</td>'
 					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(1)"></td>'
+					+ '</tr>' 
+					+ '<tr style="cursor:pointer;">'
+					+ '<td class="title" >청평노인복지관</td>'
+					+ '<td class="address">경기도 가평군 청평면 은고개로 39</td>'
+					+ '<td class="tel">031-582-8879</td>'
+					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(62)"></td>'
 					+ '</tr>' + '</table>'
 			break;
 		case 2: // 고양
@@ -408,6 +423,12 @@
 					+ '<td class="address">경기도 광명시 소하로25</td>'
 					+ '<td class="tel">02-2625-9300</td>'
 					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(6)"></td>'
+					+ '</tr>' 
+					+ '<tr style="cursor:pointer;">'
+					+ '<td class="title" >하안노인종합복지관</td>'
+					+ '<td class="address">경기도 광명시 철망산로 48</td>'
+					+ '<td class="tel">02-898-8830</td>'
+					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(61)"></td>'
 					+ '</tr>' + '</table>'
 			break;
 
@@ -684,6 +705,12 @@
 					+ '<td class="address">경기도 수원시 장안구 장안로 174</td>'
 					+ '<td class="tel">031-257-6811</td>'
 					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(31)"></td>'
+					+ '</tr>'
+					+ '<tr style="cursor:pointer;">'
+					+ '<td class="title" >팔달노인복지관</td>'
+					+ '<td class="address">경기도 수원시 팔달구 수원천로 343</td>'
+					+ '<td class="tel">031-248-3800</td>'
+					+ ' <td><image src="/gnoincoun/images/browserIcon.png" onclick="goLink(63)"></td>'
 					+ '</tr>' + '</table>'
 			break;
 

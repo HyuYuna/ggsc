@@ -2269,6 +2269,7 @@ public class CounselMngController {
 					sb.append(c);
 				}
 			}
+			dispositionPrefix = "attachment;filename=" + "\"";
 			encodedFilename = sb.toString();
 		}
 		return dispositionPrefix + encodedFilename;

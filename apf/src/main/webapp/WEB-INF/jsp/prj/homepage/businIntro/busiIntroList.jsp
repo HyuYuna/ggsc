@@ -172,7 +172,7 @@
 			<div class="menu">
 				<img src='/gnoincoun/images/busi9.png' alt="온라인상담" style="width: 920px;" usemap ="#onMaum"/>
 				<map name="onMaum">
-    				<area target="_blank" alt="" title="" href="https://docs.google.com/forms/d/e/1FAIpQLSeOWHP4sSmpQJ055KTYCK3vUk8fMCjAf2KiGlthYIvCx0xkvg/viewform" coords="25,674,190,697" shape="rect">
+    				<area target="_blank" alt="온마음편지" href="https://docs.google.com/forms/d/e/1FAIpQLSeOWHP4sSmpQJ055KTYCK3vUk8fMCjAf2KiGlthYIvCx0xkvg/viewform" coords="339,668,504,698" shape="rect">
 				</map>
 			</div>
 		</div>

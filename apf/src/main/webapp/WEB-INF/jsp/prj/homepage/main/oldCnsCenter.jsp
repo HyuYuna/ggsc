@@ -77,16 +77,16 @@
                     <area shape="poly" coords="52,174,47,181,34,176,26,184,30,199,44,191,54,193,43,201,38,211,54,223,69,233,95,231,108,224,131,235,142,230,150,232,155,221,173,212,171,202,153,188,146,186,144,178,131,177,134,163,111,159,99,181,81,181,70,171" href="#" alt="남부권역">
                   </map>
                   <ul>
-                    <li onmouseover="javascript:selectGigan('1');">동부권역<em>10</em></li>
-                    <li onmouseover="javascript:selectGigan('2');">서부권역<em>10</em></li>
+                    <li onmouseover="javascript:selectGigan('1');">동부권역<em>11</em></li>
+                    <li onmouseover="javascript:selectGigan('2');">서부권역<em>11</em></li>
                     <li onmouseover="javascript:selectGigan('3');">남부권역<em>12</em></li>
                     <li onmouseover="javascript:selectGigan('4');">북부권역<em>14</em></li>
-                    <li onmouseover="javascript:selectGigan('5');">중부권역<em>14</em></li>
+                    <li onmouseover="javascript:selectGigan('5');">중부권역<em>15</em></li>
                   </ul>
                 </div>
                 <div class="implication">
                   <div id="details1" class="details table-responsive" style="display: none;">
-                    <h4>동부권역<em>10개 기관</em></h4>
+                    <h4>동부권역<em>11개 기관</em></h4>
                     <table class="table table-condensed">
                       <tbody>
                         <tr>
@@ -155,10 +155,16 @@
                           <td> 031-593-3000</td>
                           <td><a href="http://www.js1004.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
+                      <tr>
+                          <td> 청평노인복지관 </td>
+                          <td class="l"> 경기도 가평군 청평면 은고개로 39</td>
+                          <td>031-582-8879</td>
+                          <td><a href="http://www.8879.or.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
+                      </tr>
                   </tbody></table>
                   </div>
                   <div id="details2" class="details table-responsive" style="display: block;">
-                    <h4>서부권역<em>10개 기관</em> </h4>
+                    <h4>서부권역<em>11개 기관</em> </h4>
                     <table class="table table-condensed">
                       <tbody>
                         <tr>
@@ -226,6 +232,12 @@
                           <td class="l"> 경기도 안양시 동안구 경수대로 665번길 74-30 </td>
                           <td> 031-427-6799 </td>
                           <td><a href="http://happytown.or.kr" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
+                      </tr>
+                      <tr>
+                          <td> 하안노인종합복지관 </td>
+                          <td class="l"> 경기도 광명시 철망산로 48 </td>
+                          <td> 02-898-8830 </td>
+                          <td><a href="http://www.haansenior.or.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
                   </tbody></table>
                   </div>
@@ -411,7 +423,7 @@
                   </tbody></table>
                   </div>
                   <div id="details5" class="details table-responsive" style="display: none;">
-                    <h4>중부권역<em>14개 기관</em> </h4>
+                    <h4>중부권역<em>15개 기관</em> </h4>
                     <table class="table table-condensed">
                       <tbody>
                         <tr>
@@ -504,7 +516,14 @@
                           <td> 031-602-1360 </td>
                           <td><a href="http://ypinetree.or.kr" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
                       </tr>
-                  </tbody></table>
+                       <tr>
+                          <td> 팔달노인복지관 </td>
+                          <td class="l"> 경기도 수원시 팔달구 수원천로 343 </td>
+                          <td> 031-248-3800 </td>
+                          <td><a href="http://www.pdsenior.or.kr/" target="_blank"><img src="/gnoincoun/assets/img/blit_internet.png"></a></td>
+                      </tr>
+                   </tbody>
+                  </table>
                   </div>
                 </div>
               </div>
