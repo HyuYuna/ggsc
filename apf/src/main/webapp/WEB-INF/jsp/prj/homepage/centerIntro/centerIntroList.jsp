@@ -1294,7 +1294,7 @@
 	<div class="container">
 		<dl>
 			<dt>센터소개</dt>
-			<dd class="explanation">마음으로 만나는 어르신의 행복한 노후</dd>
+			<dd class="explanation">마음으로 만나는 어르신과 중장년의 행복한 노후</dd>
 			<dd class="explanEng">GNOIN Hall Introdution</dd>
 		</dl>
 	</div>
@@ -1391,7 +1391,7 @@
 								<td>• 대외 협력업무</td>
 							</tr>
 							<tr>
-								<td rowspan="10">노인상담지원팀<br/>(031-222-1360)</td>
+								<td rowspan="11">노인상담지원팀<br/>(031-222-1360)</td>
 								<td rowspan="2">팀장</td>
 								<td rowspan="2">오명심</td>
 								<td rowspan="2">070-4832-6361</td>
@@ -1432,6 +1432,12 @@
 							</tr>
 							<tr>	
 								<td>• 외부지원사업</td>
+							</tr>
+							<tr>
+								<td>대리</td>
+								<td>강진주</td>
+								<td>031-222-1360</td>
+								<td>• 출산휴가 및 육아휴직</td>
 							</tr>
 							
 							<tr>
