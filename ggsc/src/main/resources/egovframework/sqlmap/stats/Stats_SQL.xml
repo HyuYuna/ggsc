@@ -1178,7 +1178,7 @@
 				select
 					(select COUNT(DISTINCT case_no) FROM gs_per_cns_dtl as gpcd
 					<![CDATA[  
-		        		where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) < 55 ]]>
+		        		where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) < 56 ]]>
 		        	<isNotEmpty property="schCnsGb" prepend="AND"> 
 						CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -1194,7 +1194,7 @@
 					+
 					(select count(*) from GS_CNS_INFO as gci
 					<![CDATA[  
-		        	where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) < 55 ]]>
+		        	where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) < 56 ]]>
 		        	<isNotEmpty property="schCnsGb" prepend="AND"> 
 					CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -11259,7 +11259,7 @@
 				select
 					(select COUNT(DISTINCT case_no) FROM gs_per_cns_dtl as gpcd
 					<![CDATA[  
-		        		where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) < 55 ]]>
+		        		where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH_DT, '%Y%m%d'))/365) < 56 ]]>
 		        	<isNotEmpty property="schCnsGb" prepend="AND"> 
 						CNS_GB = #schCnsGb#
 					</isNotEmpty>
@@ -11275,7 +11275,7 @@
 					+
 					(select count(*) from GS_CNS_INFO as gci
 					<![CDATA[  
-		        	where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) < 55 ]]>
+		        	where FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) >= 50 and FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(BIRTH, '%Y%m%d'))/365) < 56 ]]>
 		        	<isNotEmpty property="schCnsGb" prepend="AND"> 
 					CNS_GB = #schCnsGb#
 					</isNotEmpty>
