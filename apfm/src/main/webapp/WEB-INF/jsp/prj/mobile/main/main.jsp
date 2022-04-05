@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
     <meta name="description" content="">
+    <META NAME="ROBOTS" CONTENT="INDEX"/>
     <meta name="author" content="">
     <link rel="icon" href="file:///C|/Users/asdf/Documents/favicon.ico">
     <title>경기도노인종합상담센터</title>

@@ -147,7 +147,7 @@
 		<div class="container">
 			<dl>
 				<dt>사업소개</dt>
-				<dd class="explanation">마음으로 만나는 어르신의 행복한 노후</dd>
+				<dd class="explanation">마음으로 만나는 어르신과 중장년의 행복한 노후</dd>
 				<dd class="explanEng">Enterprise Guidance</dd>
 			</dl>
 		</div>

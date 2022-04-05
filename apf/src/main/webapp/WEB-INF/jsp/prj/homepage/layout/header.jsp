@@ -4,6 +4,7 @@
 <title>경기도노인종합상담센터</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<META NAME="ROBOTS" CONTENT="INDEX"/>
 <!-- <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
