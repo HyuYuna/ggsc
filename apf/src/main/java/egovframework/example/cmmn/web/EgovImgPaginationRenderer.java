@@ -67,7 +67,7 @@ public class EgovImgPaginationRenderer extends AbstractPaginationRenderer implem
 					  + "/images/egovframework/cmmn/btn_page_next10.gif' border=0/></a>&#160;";*/
 		
 		firstPageLabel = "<a href=\"#\" onclick=\"{0}({1}); return false;\">"
-					   + "<image src='/gnoinoun/images/egovframework/cmmn/btn_page_pre10.gif' border=0/></a>&#160;";
+					   + "<image src='/gnoincoun/images/egovframework/cmmn/btn_page_pre10.gif' border=0/></a>&#160;";
 		previousPageLabel = "<a href=\"#\" onclick=\"{0}({1}); return false;\">"
 						  + "<image src='/gnoincoun/images/egovframework/cmmn/btn_page_pre1.gif' border=0/></a>&#160;";
 		currentPageLabel = "<strong>{0}</strong>&#160;";
