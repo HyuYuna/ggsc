@@ -6,8 +6,10 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.support.service.ExcelVO;
 
 public interface ReportService {
-	// 마음나눔봉사단 / 성인식개선사업 엑셀다운
+	// 마음나눔봉사단 엑셀다운
 	List<EgovMap> getMindSharingListExcel(ExcelVO vo);
+	// 성인식개선사업 엑셀다운
+	List<EgovMap> getGenderAwarenessListExcel(ExcelVO vo);
 	// 상담사례종결서 엑셀다운
 	List<EgovMap> getCnsEndListExcel(ExcelVO vo);
 	// 상담대상자 관리대장 엑셀다운
@@ -23,23 +25,41 @@ public interface ReportService {
 	// 홍보활동보고서 엑셀다운
 	List<EgovMap> getPrAtvyRptListExcel(ExcelVO vo);
 		
-	// 마음나눔봉사단 / 성인식개선사업 목록
+	// 마음나눔봉사단 목록
 	List<EgovMap> getMindSharingList(mindSharingVO vo);
 	
-	// 음나눔봉사단 / 성인식개선사업 갯수
+	// 마음나눔봉사단 갯수
 	int getMindSharingCnt(mindSharingVO vo);
-		
-	// 마음나눔봉사단 / 성인식개선사업 등록
+	
+	// 마음나눔봉사단 등록
 	void insertMindSharing(mindSharingVO vo);
-		
-	// 마음나눔봉사단 / 성인식개선사업 수정
+	
+	// 마음나눔봉사단 수정
 	void updateMindSharing(mindSharingVO vo);
 	
-	// 마음나눔봉사단 / 성인식개선사업 삭제
+	// 마음나눔봉사단 삭제
 	void deleteMindSharing(mindSharingVO vo);
 	
-	// 마음나눔봉사단 / 성인식개선사업 상세
-	EgovMap getgetMindSharingDtl(mindSharingVO vo);
+	// 마음나눔봉사단 상세
+	EgovMap getMindSharingDtl(mindSharingVO vo);
+	
+	// 성인식개선사업 목록
+	List<EgovMap> getGenderAwarenessList(genderAwarenessVO vo);
+	
+	// 성인식개선사업  갯수
+	int getGenderAwarenessCnt(genderAwarenessVO vo);
+	
+	// 성인식개선사업 등록
+	void insertGenderAwareness(genderAwarenessVO vo);
+	
+	// 성인식개선사업 수정
+	void updateGenderAwareness(genderAwarenessVO vo);
+	
+	// 성인식개선사업 삭제
+	void deleteGenderAwareness(genderAwarenessVO vo);
+	
+	// 성인식개선사업 상세
+	EgovMap getGenderAwarenessDtl(genderAwarenessVO vo);
 	
 	// 상담사례종결서 목록
 	List<EgovMap> getCnsEndList(CnsEndVO vo);

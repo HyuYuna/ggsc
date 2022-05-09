@@ -22,7 +22,6 @@ $(document).ready(function(){
 	} else {
 		$("#centerGb").val("${detail.centerGb}").prop("selected", true);
 	}
-	$("input[name=gender][value=${detail.gender}]").prop("checked", true);
 });
 
 function fn_save(save){
@@ -32,12 +31,6 @@ function fn_save(save){
 	
 	if(frm.centerGb.value.length == 0){
 		alert('[센터구분]을 선택해주세요.');
-		return false;
-	}else if(frm.cnsGb.value.length == 0){
-		alert('[구분]을 선택해주세요.');
-		return false;
-	}else if(frm.voluntGb.value.length == 0) {
-		alert('[활동내용]를 선택해주세요.');
 		return false;
 	}else if(frm.bDate.value.length < 8){
 		alert('[일자]를 입력해주세요.');
@@ -57,7 +50,7 @@ function fn_save(save){
 	
 	$("#save").val(save);
 	if(confirm(msg)){
-		document.frm.action = "/gnoincoundb/mindSharing_proc.do";
+		document.frm.action = "/gnoincoundb/genderAwareness_proc.do";
 		document.frm.submit();
 	}
 }
@@ -117,14 +110,14 @@ function fn_fileDelete(idx){
 }
 
 function fn_list(mnuCd) {
-	document.location.href = "/gnoincoundb/mindSharingListdo?mnuCd=" + mnuCd;
+	document.location.href = "/gnoincoundb/genderAwarenessList.do?mnuCd=" + mnuCd;
 }
 
 </script>
 
 <section id="content">
 	<h2 class="h2-title"><i class="fa fa-check-square"></i>
-		마음나눔봉사단 등록/수정
+		성인지교육사업 등록/수정
 	</h2>
 		
 		<div class="box-style1 x-scroll-auto" >
@@ -142,6 +135,7 @@ function fn_list(mnuCd) {
 				<input type='hidden' name='fDel' value='N' />
 				<input type='hidden' name='delYn' value='N' />
 				<input type='hidden' name='mnuCd' value='${mnuCd}' />		
+				<input type="hidden" name="cnsGb" value="1" />
 				<table class="table-write">
 					<colgroup>
 						<col width="25%"></col>
@@ -179,37 +173,44 @@ function fn_list(mnuCd) {
 						</td>
 					</tr>
 					<tr>
-						<th>상담구분</th>
+						<th>신청기관</th>
 						<td>
-							<select name='cnsGb' style='width:275px'>
-								<option value=''>선택하세요</option>
-								<c:forEach items="${cnsGbList }" var="result">
-									<option value="${result.odr }" <c:if test="${ result.odr eq detail.cnsGb }">selected</c:if>>${result.mclassNm}</option>
-								</c:forEach>
-							</select>
+							<input type="text" id="appAgency" name="appAgency" value="${detail.appAgency}" />
 						</td>
 					</tr>
 					<tr>
-						<th>활동내용</th>
+						<th>지역</th>
 						<td>
-							<select name='voluntGb' style='width:275px'>
-								<option value=''>선택하세요</option>
-								<c:forEach items="${cnsVolunList }" var="result">
-									<option value="${result.odr }" <c:if test="${ result.odr eq detail.voluntGb }">selected</c:if>>${result.mclassNm}</option>
-								</c:forEach>
-							</select>
+							<input type="text" id="region" name="region" value="${detail.region}" />
 						</td>
 					</tr>
 					<tr>
-						<th>상담지원봉사자명</th>
-						<td>
-							<input type="text" class="wd200" id="voluntNm" name="voluntNm" value="${detail.voluntNm }"/>
-						</td>
-					</tr>
-					<tr>
-						<th>일자</th>
+						<th>교육일시</th>
 						<td>
 							<span class="form"><input type="text" class="wd200" id="datepicker2" name="bDate" value="${detail.bDate}" readonly /></span>
+						</td>
+					</tr>
+					<tr>
+						<th>교육인원</th>
+						<td>
+							<input type="text" class="wd200" id="eduPerson" name="eduPerson" value="${detail.eduPerson}" onlyNumber />
+						</td>
+					</tr>
+					<tr>
+						<th>성인지 교육주제</th>
+						<td>
+							<select name="genderEduTitle" style='width:275px;'>
+								<option value=''>선택하세요</option>
+								<c:forEach items="${genderEduTitleList }" var="result">
+									<option value="${result.odr }" <c:if test="${ result.odr eq detail.genderEduTitle }">selected</c:if>>${result.mclassNm}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>강사</th>
+						<td>
+							<input type="text" class="wd200" id="instructor" name="instructor" value="${detail.instructor }"/>
 						</td>
 					</tr>
 					<tr>

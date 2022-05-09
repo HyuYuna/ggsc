@@ -3945,109 +3945,109 @@
 				</isNotEmpty>
 			) AS 'C156' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y'
 		    	<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C157' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '1'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C158' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '2'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C159' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '3'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C160' ,
 			
 		    (
-		    	SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4'
+		    	SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '4'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 		    ) AS 'C161' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '5'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C162' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '6'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '6'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C163' ,
 			(
@@ -5250,13 +5250,13 @@
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '109' AND center_gb = #centerGb#) +
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '115' AND center_gb = #centerGb#) 
 		    ) AS 'C108' ,
-		    (SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' AND center_gb = #centerGb#) AS 'C109' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1' AND center_gb = #centerGb#) AS 'C110' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2' AND center_gb = #centerGb#) AS 'C111' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3' AND center_gb = #centerGb#) AS 'C112' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4' AND center_gb = #centerGb#) AS 'C113' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5' AND center_gb = #centerGb#) AS 'C114' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb > '5' AND center_gb = #centerGb#) AS 'C115' ,
+		    (SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' AND center_gb = #centerGb#) AS 'C109' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '1' AND center_gb = #centerGb#) AS 'C110' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '2' AND center_gb = #centerGb#) AS 'C111' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '3' AND center_gb = #centerGb#) AS 'C112' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '4' AND center_gb = #centerGb#) AS 'C113' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '5' AND center_gb = #centerGb#) AS 'C114' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb > '5' AND center_gb = #centerGb#) AS 'C115' ,
 		    (SELECT COUNT(*) FROM gs_ntwk_meet_rpt WHERE center_gb = #centerGb#) AS 'C116' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '1' AND center_gb = #centerGb#) AS 'C117' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '2' AND center_gb = #centerGb#) AS 'C118' ,
@@ -6213,13 +6213,13 @@
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '109') +
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '115') 
 		    ) AS 'C108' ,
-		    (SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y') AS 'C109' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1') AS 'C110' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2') AS 'C111' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3') AS 'C112' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4') AS 'C113' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5') AS 'C114' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb > '5') AS 'C115' ,
+		    (SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y') AS 'C109' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '1') AS 'C110' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '2') AS 'C111' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '3') AS 'C112' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '4') AS 'C113' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '5') AS 'C114' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb > '5') AS 'C115' ,
 		    (SELECT COUNT(*) FROM GS_NTWK_MEET_RPT) AS 'C116' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '1') AS 'C117' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '2') AS 'C118' ,
@@ -7126,13 +7126,13 @@
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '109' and CENTER_GB = #centerGb#) +
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '115' and CENTER_GB = #centerGb#) 
 		    ) AS 'C109' ,
-		    (SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and centerGb = #centerGb#) AS 'C110' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1' and centerGb = #centerGb#) AS 'C111' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2' and centerGb = #centerGb#) AS 'C112' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3' and centerGb = #centerGb#) AS 'C113' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4' and centerGb = #centerGb#) AS 'C114' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5' and centerGb = #centerGb#) AS 'C115' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb > 5 and centerGb = #centerGb#) AS 'C116' ,
+		    (SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and centerGb = #centerGb#) AS 'C110' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '1' and centerGb = #centerGb#) AS 'C111' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '2' and centerGb = #centerGb#) AS 'C112' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '3' and centerGb = #centerGb#) AS 'C113' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '4' and centerGb = #centerGb#) AS 'C114' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '5' and centerGb = #centerGb#) AS 'C115' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb > 5 and centerGb = #centerGb#) AS 'C116' ,
 		    (SELECT COUNT(*) FROM gs_ntwk_meet_rpt WHERE CENTER_GB = #centerGb#) AS 'C117' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '1' and CENTER_GB = #centerGb#) AS 'C118' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '2' and CENTER_GB = #centerGb#) AS 'C119' ,
@@ -9719,108 +9719,108 @@
 					</isNotEmpty>) 
 		    ) AS 'C108' ,
 		    (
-		    	SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y'
+		    	SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE AND DEL_YN != 'Y'
 		    	<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 		    ) AS 'C109' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '1'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C110' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '2'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C111' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '3'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C112' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '4'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C113' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '5'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C114' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb > '5'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb > '5'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C115' ,
 		    (
@@ -14026,109 +14026,109 @@
 				</isNotEmpty>
 			) AS 'C156' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y'
 		    	<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C157' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '1'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C158' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '2'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C159' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '3'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C160' ,
 			
 		    (
-		    	SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4'
+		    	SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '4'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 		    ) AS 'C161' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '5'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C162' ,
 			(
-				SELECT COUNT(*) FROM gs_report_board as grb WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '6'
+				SELECT COUNT(*) FROM gs_mind_sharing as gms WHERE DEL_YN != 'Y' and volunt_gb = '6'
 				<isNotEmpty property="schCnsGb" prepend="AND"> 
-					CNSGB = #schCnsGb#
+					CNS_GB = #schCnsGb#
 				</isNotEmpty>
 				<isNotEmpty property="schCenterGb" prepend="AND"> 
 					CENTER_GB = #schCenterGb#
 				</isNotEmpty>
 				<isNotEmpty property="schStartDate" prepend="AND">
-			      	DATE(grb.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+			      	DATE(gms.B_DATE) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 				</isNotEmpty>
 				<isNotEmpty property="schEndDate" prepend="AND">
-					DATE(grb.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+					DATE(gms.B_DATE) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 				</isNotEmpty>
 			) AS 'C163' ,
 			(
@@ -15324,13 +15324,13 @@
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '109') +
 	    		(SELECT COUNT(*) from GS_PSY_CNS_DOC_DTL where EXAM_DOC_CD = '115') 
 		    ) AS 'C108' ,
-		    (SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y') AS 'C109' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '1') AS 'C110' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '2') AS 'C111' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '3') AS 'C112' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '4') AS 'C113' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb = '5') AS 'C114' ,
-			(SELECT COUNT(*) FROM gs_report_board WHERE b_gubun = 0 AND DEL_YN != 'Y' and volunt_gb > '5') AS 'C115' ,
+		    (SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y') AS 'C109' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '1') AS 'C110' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '2') AS 'C111' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '3') AS 'C112' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '4') AS 'C113' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb = '5') AS 'C114' ,
+			(SELECT COUNT(*) FROM gs_mind_sharing WHERE DEL_YN != 'Y' and volunt_gb > '5') AS 'C115' ,
 		    (SELECT COUNT(*) FROM GS_NTWK_MEET_RPT) AS 'C116' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '1') AS 'C117' ,
 			(SELECT COUNT(*) FROM GS_NTWK_MEET_RPT where JOIN_ORG_CD = '2') AS 'C118' ,

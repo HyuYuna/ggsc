@@ -8,7 +8,6 @@ public class mindSharingVO extends PageVO {
 	
 	private int num;
 	private String cnsGb, centerGb, cnsrId;
-	private int bGubun;
 	private String bDate, bContent;
 	private String fileName, sysFileName, filePath;
 	private String userNum, voluntGb, voluntNm;
@@ -112,12 +111,6 @@ public class mindSharingVO extends PageVO {
 	public void setCenterGb(String centerGb) {
 		this.centerGb = centerGb;
 	}
-	public int getbGubun() {
-		return bGubun;
-	}
-	public void setbGubun(int bGubun) {
-		this.bGubun = bGubun;
-	}
 	public String getbDate() {
 		return bDate;
 	}
@@ -172,9 +165,9 @@ public class mindSharingVO extends PageVO {
 	@Override
 	public String toString() {
 		return "mindSharingVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
-				+ ", bGubun=" + bGubun + ", bDate=" + bDate + ", bContent=" + bContent + ", fileName=" + fileName
-				+ ", sysFileName=" + sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", voluntGb="
-				+ voluntGb + ", voluntNm=" + voluntNm + ", fileSize=" + fileSize + ", fDel=" + fDel + ", delYn=" + delYn
+				+ ", bDate=" + bDate + ", bContent=" + bContent + ", fileName=" + fileName + ", sysFileName="
+				+ sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", voluntGb=" + voluntGb
+				+ ", voluntNm=" + voluntNm + ", fileSize=" + fileSize + ", fDel=" + fDel + ", delYn=" + delYn
 				+ ", file=" + file + ", schCenterGb=" + schCenterGb + ", schCnsGb=" + schCnsGb + ", schDateGb="
 				+ schDateGb + ", schText=" + schText + ", schStartDate=" + schStartDate + ", schEndDate=" + schEndDate
 				+ "]";

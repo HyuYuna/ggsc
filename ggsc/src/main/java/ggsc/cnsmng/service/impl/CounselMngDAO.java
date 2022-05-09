@@ -161,6 +161,12 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		return (List<EgovMap>)list("cnsMngDao.getLinkageReqListExcel", vo);
 	}
 	
+	// 엑셀 다운(정보제공상담)
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsInfoListExcel(ExcelVO vo) {
+		return (List<EgovMap>)list("cnsMngDao.getCnsInfoListExcel", vo);
+	}
+	
 	// 회원찾기
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> findUserPopup(UserInfoVO vo){

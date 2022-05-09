@@ -11,13 +11,14 @@
 	<typeAlias  alias="eduAtvyRptVO" type="ggsc.report.service.EduAtvyRptVO"/>	
 	<typeAlias  alias="prAtvyRptVO" type="ggsc.report.service.PrAtvyRptVO"/>
 	<typeAlias  alias="mindSharingVO" type="ggsc.report.service.mindSharingVO"/>
+	<typeAlias  alias="genderAwarenessVO" type="ggsc.report.service.genderAwarenessVO"/>
 	<typeAlias  alias="ExcelVO" type="ggsc.support.service.ExcelVO"/>
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 수정 -->
+	<!-- 마음나눔봉사단 수정 -->
 	<update id="reportDao.updateMindSharing" parameterClass="mindSharingVO">
-		UPDATE gs_report_board
+		UPDATE gs_mind_sharing
 		SET 
-			CnsGb = #cnsGb#,
+			CNS_Gb = #cnsGb#,
 			CENTER_GB  = #centerGb#,
 			B_DATE = #bDate#,
 			B_CONTENT = #bContent#,
@@ -43,26 +44,25 @@
 			DB_INS_NAME = now()
 			<!-- USER_NUM = #userNum# -->
 		WHERE 
-			NUM = #num# AND B_GUBUN = #bGubun#
+			NUM = #num#
 	</update>
 	
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 삭제 -->
+	<!-- 마음나눔봉사단 삭제 -->
 	<update id="reportDao.deleteMindSharing" parameterClass="mindSharingVO">
 		DELETE FROM
-			gs_report_board
+			gs_mind_sharing
 		WHERE 
-			NUM = #num# AND B_GUBUN = #bGubun#
+			NUM = #num#
 	</update>
 	
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 등록 -->
+	<!-- 마음나눔봉사단 등록 -->
 	<insert id="reportDao.insertMindSharing" parameterClass="mindSharingVO">
-		INSERT INTO gs_report_board 
+		INSERT INTO gs_mind_sharing
 			(
-			   CnsGb
+			   CNS_Gb
 			   ,CENTER_GB
-			   ,B_GUBUN
 			   ,B_DATE
 			   ,B_CONTENT
 			   ,FILE_NM
@@ -81,7 +81,6 @@
 			(
 			 #cnsGb#,
 			 #centerGb#,
-			 #bGubun#,
 			 #bDate#,
 			 #bContent#,
 			 #fileName#,
@@ -98,7 +97,7 @@
 		)
 	</insert>
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 목록 -->
+	<!-- 마음나눔봉사단 목록 -->
 	<select id="reportDao.getMindSharingList" parameterClass="mindSharingVO" resultClass="egovMap">
 		SELECT * FROM
 		(
@@ -107,12 +106,12 @@
 				,A.*
 				,B.CENTER_NM CENTER_NM
 				,C.MCLASS_NM AS CNS_NM
-			FROM gs_report_board AS A
+			FROM gs_mind_sharing AS A
 			INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
-			INNER JOIN gs_m_class AS C ON A.cnsGb = C.ODR AND C.HCLASS_CD = 'G15'
-			WHERE B_GUBUN = #bGubun# AND A.DEL_YN != 'Y' 
+			INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+			WHERE A.DEL_YN != 'Y' 
 			<isNotEmpty property="schCnsGb" prepend="AND"> 
-				A.cnsGb = #schCnsGb#
+				A.CNS_Gb = #schCnsGb#
 			</isNotEmpty>
 			<isNotEmpty property="schCenterGb" prepend="AND"> 
 				A.center_gb = #schCenterGb#
@@ -138,24 +137,24 @@
  		]]>
 	</select>
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 디테일 -->
-	<select id="reportDao.getgetMindSharingDtl" parameterClass="mindSharingVO" resultClass="egovMap">
-		SELECT * FROM gs_report_board WHERE NUM = #num#
+	<!-- 마음나눔봉사단 디테일 -->
+	<select id="reportDao.getMindSharingDtl" parameterClass="mindSharingVO" resultClass="egovMap">
+		SELECT * FROM gs_mind_sharing WHERE NUM = #num#
 	</select>
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 엑셀 -->
+	<!-- 마음나눔봉사단 엑셀 -->
 	<select id="reportDao.getMindSharingListExcel" parameterClass="ExcelVO" resultClass="egovMap">
 		SELECT 
 				ROW_NUMBER() OVER(ORDER BY A.NUM DESC) AS RNUM
 				,A.*
 				,B.CENTER_NM CENTER_NM
 				,C.MCLASS_NM AS CNS_NM
-			FROM gs_report_board AS A
+			FROM gs_mind_sharing AS A
 			INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
-			INNER JOIN gs_m_class AS C ON A.cnsGb = C.ODR AND C.HCLASS_CD = 'G15'
-			WHERE B_GUBUN = #schGubun# AND A.DEL_YN != 'Y' 
+			INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+			WHERE A.DEL_YN != 'Y' 
 			<isNotEmpty property="schCnsGb" prepend="AND"> 
-				A.cnsGb = #schCnsGb#
+				A.CNS_Gb = #schCnsGb#
 			</isNotEmpty>
 			<isNotEmpty property="schCenterGb" prepend="AND"> 
 				A.center_gb = #schCenterGb#
@@ -177,15 +176,15 @@
 	</select>
 	
 	
-	<!-- 마음나눔봉사단 / 성인식개선사업 갯수-->
+	<!-- 마음나눔봉사단 갯수-->
 	<select id="reportDao.getMindSharingCnt" parameterClass="mindSharingVO" resultClass="Integer">
 		SELECT COUNT(*)
-		FROM gs_report_board AS A
+		FROM gs_mind_sharing AS A
 		INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
-		INNER JOIN gs_m_class AS C ON A.cnsGb = C.ODR AND C.HCLASS_CD = 'G15'
-		WHERE B_GUBUN = #bGubun# AND A.DEL_YN != 'Y' 
+		INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+		WHERE A.DEL_YN != 'Y' 
 		<isNotEmpty property="schCnsGb" prepend="AND"> 
-			A.cnsGb = #schCnsGb#
+			A.CNS_Gb = #schCnsGb#
 		</isNotEmpty>
 		<isNotEmpty property="schCenterGb" prepend="AND"> 
 			A.center_gb = #schCenterGb#
@@ -206,6 +205,228 @@
 	</select>
 	
 	
+	<!-- 성인식개선사업 수정 -->
+	<update id="reportDao.updateGenderAwareness" parameterClass="genderAwarenessVO">
+		UPDATE gs_gender_awareness
+		SET 
+			CNS_GB = #cnsGb#,
+			CENTER_GB  = #centerGb#,
+			B_DATE = #bDate#,
+			B_CONTENT = #bContent#,
+			APP_AGENCY = #appAgency#,
+			REGION = #region#,
+			EDU_PERSON = #eduPerson#,
+			GENDER_EDU_TITLE = #genderEduTitle# ,
+			INSTRUCTOR = #instructor# ,
+			<isNotEmpty property="fileName" > 
+				FILE_NM = #fileName#,
+				SYS_FILE_NAME = #sysFileName#,
+				FILE_PATH = #filePath#,
+				FILE_SIZE = #fileSize#,
+			</isNotEmpty>
+			<isEqual property="fDel" compareValue="Y">
+				FILE_NM = null,
+				SYS_FILE_NAME = null,
+				FILE_PATH = null,
+				FILE_SIZE = 0,
+			</isEqual>
+			
+			<isEqual property="delYn" compareValue="Y">
+				DEL_YN = 'Y', 
+			</isEqual>
+			
+			DB_INS_NAME = now()
+			<!-- USER_NUM = #userNum# -->
+		WHERE 
+			NUM = #num#
+	</update>
+	
+	
+	<!-- 성인식개선사업 삭제 -->
+	<update id="reportDao.deleteGenderAwareness" parameterClass="genderAwarenessVO">
+		DELETE FROM
+			gs_gender_awareness
+		WHERE 
+			NUM = #num#
+	</update>
+	
+	
+	<!-- 성인식개선사업 등록 -->
+	<insert id="reportDao.insertGenderAwareness" parameterClass="genderAwarenessVO">
+		INSERT INTO gs_gender_awareness 
+			(
+			   CNS_Gb
+			   ,CENTER_GB
+			   ,B_DATE
+			   ,B_CONTENT
+			   ,FILE_NM
+			   ,SYS_FILE_NAME
+			   ,FILE_PATH
+			   ,FILE_SIZE
+			   ,DB_INS_NAME
+			   ,USER_NUM
+			   ,DEL_YN
+			   ,APP_AGENCY
+			   ,REGION
+			   ,EDU_PERSON
+			   ,GENDER_EDU_TITLE
+			   ,INSTRUCTOR
+	      	   ,DB_INS_TM
+			   ,CNSR_ID
+			)
+		VALUES
+			(
+			 #cnsGb#,
+			 #centerGb#,
+			 #bDate#,
+			 #bContent#,
+			 #fileName#,
+			 #sysFileName#,
+			 #filePath#,
+			 #fileSize#,
+			 now(),
+			 #userNum#,
+			 'N',
+			 #appAgency#,
+			 #region#,
+			 #eduPerson#,
+			 #genderEduTitle# ,
+			 #instructor# ,
+			 now(),
+			 #cnsrId#
+		)
+	</insert>
+	
+	<!-- 성인식개선사업 목록 -->
+	<select id="reportDao.getGenderAwarenessList" parameterClass="genderAwarenessVO" resultClass="egovMap">
+		SELECT * FROM
+		(
+			SELECT 
+				ROW_NUMBER() OVER(ORDER BY A.NUM DESC) AS RNUM
+				,A.*
+				,B.CENTER_NM CENTER_NM
+				,C.MCLASS_NM AS CNS_NM
+			FROM gs_gender_awareness AS A
+			INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
+			INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+			WHERE A.DEL_YN != 'Y' 
+			<isNotEmpty property="schGenderEduGb" prepend="AND"> 
+				A.GENDER_EDU_TITLE = #schGenderEduGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCenterGb" prepend="AND"> 
+				A.center_gb = #schCenterGb#
+			</isNotEmpty>
+			<isNotEmpty property="schDateGb" prepend="AND"> 
+				REPLACE(REPLACE(A.B_DATE,'-',''),'.','') = REPLACE(REPLACE(#schDateGb#,'-',''),'.','')
+			</isNotEmpty>
+			<isNotEmpty property="schText"> 
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					A.INSTRUCTOR LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					A.APP_AGENCY LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					A.REGION LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+			</isNotEmpty>
+			<!-- 기간별 검색 -->
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
+			
+		) AS X
+		<![CDATA[
+ 		   	WHERE RNUM > #firstIndex# AND RNUM <= #lastIndex#
+ 			ORDER BY RNUM
+ 		]]>
+	</select>
+	
+	<!-- 성인식개선사업 디테일 -->
+	<select id="reportDao.getGenderAwarenessDtl" parameterClass="genderAwarenessVO" resultClass="egovMap">
+		SELECT * FROM gs_gender_awareness WHERE NUM = #num#
+	</select>
+	
+	<!-- 성인식개선사업 엑셀 -->
+	<select id="reportDao.getGenderAwarenessListExcel" parameterClass="ExcelVO" resultClass="egovMap">
+		SELECT 
+				ROW_NUMBER() OVER(ORDER BY A.NUM DESC) AS RNUM
+				,A.*
+				,B.CENTER_NM CENTER_NM
+				,C.MCLASS_NM AS CNS_NM
+			FROM gs_gender_awareness AS A
+			INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
+			INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+			WHERE A.DEL_YN != 'Y' 
+			<isNotEmpty property="schGenderEduGb" prepend="AND"> 
+				A.GENDER_EDU_TITLE = #schGenderEduGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCenterGb" prepend="AND"> 
+				A.center_gb = #schCenterGb#
+			</isNotEmpty>
+			<isNotEmpty property="schDateGb" prepend="AND"> 
+				REPLACE(REPLACE(A.B_DATE,'-',''),'.','') = REPLACE(REPLACE(#schDateGb#,'-',''),'.','')
+			</isNotEmpty>
+			<isNotEmpty property="schText"> 
+				<isEqual prepend="AND" property="schType" compareValue="1">
+					A.INSTRUCTOR LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="2">
+					A.APP_AGENCY LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="schType" compareValue="3">
+					A.REGION LIKE CONCAT('%', #schText#, '%')
+				</isEqual>
+			</isNotEmpty>
+			<!-- 기간별 검색 -->
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
+			ORDER BY RNUM ASC
+	</select>
+	
+	
+	<!-- 성인식개선사업 갯수-->
+	<select id="reportDao.getGenderAwarenessCnt" parameterClass="genderAwarenessVO" resultClass="Integer">
+		SELECT COUNT(*)
+		FROM gs_gender_awareness AS A
+		INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
+		INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+		WHERE A.DEL_YN != 'Y' 
+		<isNotEmpty property="schGenderEduGb" prepend="AND"> 
+			A.GENDER_EDU_TITLE = #schGenderEduGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND"> 
+			A.center_gb = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schDateGb" prepend="AND"> 
+			REPLACE(REPLACE(A.B_DATE,'-',''),'.','') = REPLACE(REPLACE(#schDateGb#,'-',''),'.','')
+		</isNotEmpty>
+		<isNotEmpty property="schText"> 
+			<isEqual prepend="AND" property="schType" compareValue="1">
+				A.INSTRUCTOR LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="2">
+				A.APP_AGENCY LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+			<isEqual prepend="AND" property="schType" compareValue="3">
+				A.REGION LIKE CONCAT('%', #schText#, '%')
+			</isEqual>
+		</isNotEmpty>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+			DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+		</isNotEmpty>
+		<isNotEmpty property="schEndDate" prepend="AND">
+			DATE_FORMAT(A.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+		</isNotEmpty>
+	</select>
 	
 	
 	<!-- 상담사례종결서 목록 -->

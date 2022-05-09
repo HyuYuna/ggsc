@@ -185,9 +185,6 @@
 		<isNotEmpty property="schAcptNm" prepend="AND">
 			gum.USER_NM LIKE CONCAT('%', #schAcptNm#, '%')
 		</isNotEmpty>
-		<isNotEmpty property="schDt" prepend="AND">
-			DATE_FORMAT(gci.DB_INS_TM, '%y.%m.%d') = #schDt#
-		</isNotEmpty>
 		<!-- 권한별 검색 조건 -->
 		<isEqual property="authCd" compareValue="2">
 			AND gci.CENTER_GB = #schCenterGb#
@@ -203,10 +200,10 @@
 		</isEqual>
 		<!-- 기간별 검색 -->
 		<isNotEmpty property="schStartDate" prepend="AND">
-	       	DATE(gci.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	       	DATE(gci.CNS_DT) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 	    <isNotEmpty property="schEndDate" prepend="AND">
-	    	DATE(gci.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    	DATE(gci.CNS_DT) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 		) A
 		<![CDATA[
@@ -325,9 +322,6 @@
 		<isNotEmpty property="schAcptNm" prepend="AND">
 			gum.USER_NM = #schAcptNm#
 		</isNotEmpty>
-		<isNotEmpty property="schDt" prepend="AND">
-			DATE_FORMAT(gci.DB_INS_TM, '%y.%m.%d') = #schDt#
-		</isNotEmpty>
 		
 		<!-- 권한별 검색 조건 -->
 		<isEqual property="authCd" compareValue="2">
@@ -345,10 +339,10 @@
 		
 		<!-- 기간별 검색 -->
 		<isNotEmpty property="schStartDate" prepend="AND">
-	       	DATE(gci.DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	       	DATE(gci.CNS_DT) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 	    <isNotEmpty property="schEndDate" prepend="AND">
-	    	DATE(gci.DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    	DATE(gci.CNS_DT) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
 	    </isNotEmpty>
 	</select>
 
@@ -490,7 +484,8 @@
 			CASE gpem.agre_path WHEN IFNULL(gpem.agre_path,'작성') THEN '작성' ELSE '미작성' END AS agrePathNm ,
 			CASE gpem.per_info_path WHEN IFNULL(gpem.per_info_path,'작성') THEN '작성' ELSE '미작성' END AS perInfoPathNm ,
 			CASE gpem.doc_cntn_path WHEN IFNULL(gpem.doc_cntn_path,'작성') THEN '작성' ELSE '미작성' END AS docCntnPathNm ,
-			CASE gpem.CNS_TARGET_GB WHEN 'Y' then '대상자' ELSE '' END AS cnsTargetGbNm
+			CASE gpem.CNS_TARGET_GB WHEN 'Y' then '대상자' ELSE '' END AS cnsTargetGbNm ,
+			(SELECT CNSR_OPTN_TOT FROM gs_doc_cntn_comm as gdcc WHERE gdcc.case_no = gpem.case_no) AS cnsrOptnTot
 		FROM
 			gs_pre_exam_m gpem, GS_USER_M gum
 		WHERE
@@ -694,7 +689,7 @@
 			gpcd.emgcy_tel ,
 			gpcd.cns_dt ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G14' AND ODR = gpcd.cns_methd) AS cnsMethd ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G44' AND ODR = gpcd.cnsle_rel) AS cnsleRel ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G12' AND ODR = gpcd.cnsle_rel) AS cnsleRel ,
 			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gpcd.major_appl_cd) AS majorApplCd ,
 			left(gpcd.cns_cntn, 25) as cns_cntn,
 			gpcd.CASE_NO ,
@@ -742,10 +737,10 @@
 			</isEqual>
 			<!-- 기간별 검색 -->
 			<isNotEmpty property="schStartDate" prepend="AND">
-				DATE_FORMAT(gpcd.DB_INS_TM, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+				DATE_FORMAT(gpcd.CNS_DT, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
 			</isNotEmpty>
 			<isNotEmpty property="schEndDate" prepend="AND">
-				DATE_FORMAT(gpcd.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+				DATE_FORMAT(gpcd.CNS_DT, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
 			</isNotEmpty>
 		ORDER BY RNUM DESC
 	</select>
@@ -815,6 +810,76 @@
 		<isNotEmpty property="schEndDate" prepend="AND">
 			DATE_FORMAT(glrm.DB_INS_TM, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
 		</isNotEmpty>
+		ORDER BY RNUM DESC
+	</select>
+	
+	<!-- 엑셀 다운(정보제공상담) -->
+	<select id="cnsMngDao.getCnsInfoListExcel" resultClass="egovMap" parameterClass="ExcelVO">
+		SELECT
+			row_number() over(ORDER BY gci.num DESC) rnum ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gci.CNS_GB) AS cnsGb ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G089' AND ODR = gci.SIGUN_CD) AS sigunCd ,
+			(SELECT CENTER_NM FROM gs_center_m WHERE NUM = gci.CENTER_GB ) AS centerGb ,
+			(SELECT mclass_nm FROM gs_m_class WHERE hclass_cd = 'G19' AND odr = gci.CNSR_GB) AS cnsrGb ,
+			(select user_nm from gs_user_m where USER_ID = gci.USER_ID ) AS user_nm ,
+			gci.birth ,
+			case gci.GENDER when 'M' then '남자' when 'F' then '여자' ELSE '알수없음' END AS gender ,
+			gci.addr ,
+			gci.mobile ,
+			gci.cns_dt ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G14' AND ODR = gci.cns_methd) AS cnsMethd ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G21' AND ODR = gci.cns_dtl) AS cnsDtl ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G12' AND ODR = gci.cnsle_rel) AS cnsleRel ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gci.major_appl_cd) AS majorApplCd ,
+			date_format(gci.db_ins_tm,'%Y.%m.%d') AS dbInsTm ,
+			CASE 
+				WHEN 
+					gci.cns_gb = '3' 
+						then
+							CASE
+								WHEN
+									RIGHT(CONCAT('00',gci.CNS_DT_STD_HOUR),2) IN ('18','19','20','21','22','23','00','01','02','03','04','05','06','07','08')
+								THEN 
+									'야간' 
+								ELSE
+									'주간' 
+							end
+				ELSE 
+					NULL 
+			END AS shift
+		FROM
+			gs_cns_info AS gci
+		where
+			1=1
+			<isNotEmpty property="schCnsGb" prepend="AND">
+				gci.CNS_GB = #schCnsGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCenterGb" prepend="AND">
+				gci.CENTER_GB = #schCenterGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCnsleNm" prepend="AND">
+				gci.CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+			</isNotEmpty>
+			<!-- 권한별 검색 조건 -->
+			<isEqual property="authCd" compareValue="2">
+				AND gci.CENTER_GB = #schCenterGb#
+			</isEqual>
+			<isEqual property="authCd" compareValue="3">
+				AND gci.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND gci.CNSR_ID = #regId#
+				</isEqual>
+			</isEqual>
+			<isEqual property="authCd" compareValue="4">
+				AND gci.CNSR_ID = #regId#
+			</isEqual>
+			<!-- 기간별 검색 -->
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(gci.CNS_DT, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(gci.CNS_DT, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
 		ORDER BY RNUM DESC
 	</select>
 
@@ -2476,12 +2541,13 @@
 				</isEqual>
 				
 				<!-- 기간별 검색 -->
-				<isNotEmpty property="schStartDate" prepend="AND">
-			       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
-			    </isNotEmpty>
-			    <isNotEmpty property="schEndDate" prepend="AND">
-			    	DATE(DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
-			    </isNotEmpty>
+			    <isNotEmpty property="schStartDate" prepend="AND">
+					DATE_FORMAT(CNS_DT, '%Y.%m.%d') <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+				</isNotEmpty>
+				<isNotEmpty property="schEndDate" prepend="AND">
+					DATE_FORMAT(CNS_DT, '%Y.%m.%d') <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+				</isNotEmpty>
+			    
 				
 			) A
 		
@@ -2499,7 +2565,7 @@
 		SELECT				
 			count(*)
 		FROM
-			GS_PER_CNS_DTL
+			GS_PER_CNS_DTL 
 		WHERE
 			1=1
 		AND CNS_STAT = '1'
@@ -2526,12 +2592,12 @@
 			AND CNSR_ID = #regId#
 		</isEqual>
 		<!-- 기간별 검색 -->
-		<isNotEmpty property="schStartDate" prepend="AND">
-	       	DATE(DB_INS_TM) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
-	    </isNotEmpty>
-	    <isNotEmpty property="schEndDate" prepend="AND">
-	    	DATE(DB_INS_TM) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
-	    </isNotEmpty>
+	     <isNotEmpty property="schStartDate" prepend="AND">
+			DATE_FORMAT(CNS_DT, '%Y.%m.%d') <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+		</isNotEmpty>
+		<isNotEmpty property="schEndDate" prepend="AND">
+			DATE_FORMAT(CNS_DT, '%Y.%m.%d') <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+		</isNotEmpty>
 		
 	</select>
 

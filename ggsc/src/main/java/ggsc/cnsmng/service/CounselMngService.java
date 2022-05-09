@@ -87,6 +87,9 @@ public interface CounselMngService {
 	// 엑셀 다운(연계의뢰서)
 	List<EgovMap> getLinkageReqListExcel(ExcelVO vo);
 	
+	// 엑셀 다운(정보제공상담)
+	List<EgovMap> getCnsInfoListExcel(ExcelVO vo);
+	
 	// 회원 찾기
 	List<EgovMap> findUserPopup(UserInfoVO vo);
 	

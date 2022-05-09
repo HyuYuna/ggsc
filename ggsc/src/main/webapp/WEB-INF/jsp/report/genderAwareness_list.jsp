@@ -8,10 +8,9 @@
 
 <script src="/gnoincoundb/js/util/paging.js"></script>
 
-</head>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("select[name=schCnsGb]").val("${vo.schCnsGb}");
+		$("select[name=schGenderEduGb]").val("${vo.schGenderEduGb}");
 		$("select[name=schCenterGb]").val("${vo.schCenterGb}");
 		
 	});
@@ -19,7 +18,7 @@
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
 		document.searchForm.method = "get";
-		document.searchForm.action = "/gnoincoundb/mindSharing.do";
+		document.searchForm.action = "/gnoincoundb/genderAwarenessList.do";
        	document.searchForm.submit();
 	}
 	
@@ -31,7 +30,7 @@
 	
 	function fn_view(idx){
 		document.searchForm.num.value = idx;
-		document.searchForm.action = "/gnoincoundb/mindSharing_dtl.do";
+		document.searchForm.action = "/gnoincoundb/genderAwarenessDtl.do";
        	document.searchForm.submit();
 	}
 
@@ -42,23 +41,22 @@
 	.label2 {display:inline-block;width:275px;color:#333;padding-right:5px;margin-bottom:2px;letter-spacing:-0.5px;text-align:right;}
 </style>
 <section id="content">
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>마음나눔봉사단</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>성인지교육사업</h2>
 		<div class="box-style1 x-scroll-auto" >
-				<!-- 검색영역 -->
+		<!-- 검색영역 -->
 		<form name="searchForm" id="searchForm" method="get" onsubmit="return false">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type='hidden' name='num' value='0' />
-			<input type='hidden' name='bGubun' value='0' />
 			<input type="hidden" id="currentPageNo" name="currentPageNo" value="1" />
 			<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
 			<div class="search-box">
 				<div class="search-group" style="margin-left:70px;">
-					<span class="label"><label>상담구분</label></span>
+					<span class="label"><label>교육구분</label></span>
 					<span class="label2">
-						 <select name="schCnsGb" style="width:275px;">
+						 <select name="schGenderEduGb" style="width:275px;">
 						 	<option value="">전체</option>
-						 	<c:forEach items="${cnsGbList }" var="result">
-								<option value="${result.odr }" <c:if test="${ result.odr eq vo.schCnsGb }">selected</c:if> >${result.mclassNm }</option>
+						 	<c:forEach items="${genderEduTitleList }" var="result">
+								<option value="${result.odr }" <c:if test="${ result.odr eq vo.schGenderEduGb }">selected</c:if> >${result.mclassNm }</option>
 							</c:forEach>
 						</select>
 					</span>
@@ -95,14 +93,18 @@
 					<%-- <input type="text" name="schStartDate" id="datepicker1" value="${vo.schStartDate }" style="width: 100px;" readOnly/> &nbsp;&nbsp;&nbsp; ~ &nbsp;<input type="text" name="schEndDate" id="datepicker2" value="${vo.schEndDate}" style="width: 100px;" readOnly/> --%>
 					<input type="text" name="schStartDate" id="datepicker1" style="width: 100px;" value="${vo.schStartDate }" readOnly/> &nbsp;&nbsp;&nbsp; ~ &nbsp;<input type="text" name="schEndDate" id="datepicker2" style="width: 100px;" value="${vo.schEndDate }" readOnly/>
 				</div>
-				<div class="search-group" style="margin-left:62px;">
-					<span class="label"><label>활동내용</label></span>
-					<span class="label2">
-						<input type="text" name="schText" style="width:275px;" value="${vo.schText}" enterSearch data-button='#searchBtn'/>
+				<div class="search-group" style="margin-left:40px;">
+					<span class="label2" style="width:130px;">
+						<select id="schType" name="schType" style="margin-left: 25px; font-size: 12px; width:80px;">
+							<option value="1" <c:if test="${vo.schType==1}">selected</c:if>>강사</option>
+							<option value="2" <c:if test="${vo.schType==2}">selected</c:if>>신청기관</option>
+							<option value="3" <c:if test="${vo.schType==3}">selected</c:if>>지역</option>
+						</select>
 					</span>
+					<span class="form" style="margin-left:15px; width:275px;"><input type="text" name="schText" id="schText" value="${vo.schText }" enterSearch data-button='#searchBtn' /></span>
 				</div>
 				<div class="btn" style="padding-bottom:15px; padding-right:120px;">
-					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);" >
+					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);">
 						<i class="fa fa-search"></i>검색
 					</button>
 				</div>
@@ -114,11 +116,11 @@
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="fn_view(0)" style="background-color:green;color:white;">등록</button>
-				<button type="button" class="btn-basic" onClick="fn_excelDownload(6, document.searchForm);"  style="background-color:green;color:white;">Excel 다운로드</button>		
+				<button type="button" class="btn-basic" onClick="fn_excelDownload(7, document.searchForm);" style="background-color:green;color:white;">Excel 다운로드</button>		
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
-					<col width="8%"></col>
+					<col width="5%"></col>
 					<col width="20%"></col> 
 					<col width="12%"></col>
 					<col width="*"></col>
@@ -134,17 +136,17 @@
 					</tr>
 				</thead>
 				<tbody id="tby1">
-					<c:if test="${mindSharingList.size() == 0 }">
+					<c:if test="${genderAwarenessList.size() == 0 }">
 						<tr>
 							<td colspan="5">정보가 없습니다.</td>
 						</tr>
 					</c:if>
-					<c:if test="${mindSharingList.size() > 0 }">
-						<c:forEach items="${mindSharingList }" var="result">
+					<c:if test="${genderAwarenessList.size() > 0 }">
+						<c:forEach items="${genderAwarenessList }" var="result">
 							<tr onClick='fn_view(${result.num})'>
 								<td>${result.rnum }</td>
 								<td>${result.centerNm } </td>
-								<td>${result.voluntNm }</td>
+								<td>${result.instructor }</td>
 								<td style='text-align:left; text-indent:10px; '>${result.bContent }</td>
 								<td>${result.bDate }</td>
 							</tr> 

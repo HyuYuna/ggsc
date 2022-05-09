@@ -31,6 +31,7 @@ import ggsc.report.service.LinkOrgRptVO;
 import ggsc.report.service.NtwkMeetRptVO;
 import ggsc.report.service.PrAtvyRptVO;
 import ggsc.report.service.ReportService;
+import ggsc.report.service.genderAwarenessVO;
 import ggsc.report.service.mindSharingVO;
 import ggsc.rorgmng.service.RelatedOrganMngService;
 
@@ -959,8 +960,8 @@ public class ReportController {
 		return "jsonView";
 	}
 
-	// 마음 나눔 봉사단
-	@RequestMapping(value = "/mindSharing.do", method = { RequestMethod.GET, RequestMethod.POST })
+	// 마음 나눔 봉사단 목록
+	@RequestMapping(value = "/mindSharingList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mindSharingList(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
 
 		// 권한 관리 시작
@@ -1003,8 +1004,6 @@ public class ReportController {
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
 
-		vo.setbGubun(0);
-
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
 		paginationInfo.setRecordCountPerPage(10); // 한 페이지에 게시되는 게시물 건수
@@ -1022,11 +1021,11 @@ public class ReportController {
 
 		model.addAttribute("mindSharingList", mindSharingList);
 		model.addAttribute("vo", vo);
-		return "report/mindSharing.main";
+		return "report/mindSharing_list.main";
 	}
 
 	// 마음 나눔 봉사단 상세
-	@RequestMapping(value = "/mindSharing_dtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/mindSharingDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mindSharingDetails(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
@@ -1073,7 +1072,7 @@ public class ReportController {
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
 
-		EgovMap mindSharingDetail = reportService.getgetMindSharingDtl(vo);
+		EgovMap mindSharingDetail = reportService.getMindSharingDtl(vo);
 
 		if (vo.getFileName() != null) {
 			try {
@@ -1120,12 +1119,6 @@ public class ReportController {
 		if (!vo.getDelYn().equals("Y"))
 			vo.setDelYn("N");
 		
-		String url = null;
-		
-		if(vo.getbGubun() == 1) {
-			url = "gender";
-		}
-
 		vo.setUserNum(login.get("userNm").toString());
 		vo.setCnsrId(login.get("userId").toString());
 		if (save.equals("I")) {
@@ -1136,11 +1129,7 @@ public class ReportController {
 			reportService.deleteMindSharing(vo);
 		}
 		
-		if (url == "gender") {
-			return "redirect:/gnoincoundb/genderAwareness.do?mnuCd=" + mnuCd;
-		} else {
-			return "redirect:/gnoincoundb/mindSharing.do?mnuCd=" + mnuCd;
-		}
+		return "redirect:/gnoincoundb/mindSharingList.do?mnuCd=" + mnuCd;
 	}
 	
 	// 마음나눔봉사단 파일 삭제
@@ -1157,9 +1146,9 @@ public class ReportController {
 		return "jsonView";
 	}
 
-	// 성인식개선사업
-	@RequestMapping(value = "/genderAwareness.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String genderAwareness(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
+	// 성인식개선사업 목록
+	@RequestMapping(value = "/genderAwarenessList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String genderAwareness(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
 
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
@@ -1191,16 +1180,14 @@ public class ReportController {
 
 		// 상담구분 코드
 		GroupVO param = new GroupVO();
-		param.setHclassCd("G15");
-		List<EgovMap> cnsGbList = adminManageService.getGroupMngDtlMList(param);
-		model.addAttribute("cnsGbList", cnsGbList);
+		param.setHclassCd("G93");
+		List<EgovMap> genderEduTitleList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("genderEduTitleList", genderEduTitleList);
 
 		// 센터구분
 		CenterVO centerVO = new CenterVO();
 		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
 		model.addAttribute("cnsCenterList", cnsCenterList);
-
-		vo.setbGubun(1);
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getCurrentPageNo()); // 현재 페이지 번호
@@ -1210,16 +1197,134 @@ public class ReportController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
-		List<EgovMap> mindSharingList = reportService.getMindSharingList(vo);
-		int totalPageCnt = reportService.getMindSharingCnt(vo);
+		List<EgovMap> genderAwarenessList = reportService.getGenderAwarenessList(vo);
+		int totalPageCnt = reportService.getGenderAwarenessCnt(vo);
 
 		model.addAttribute("totalPageCnt", totalPageCnt);
 		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("vo", vo);
-		model.addAttribute("mindSharingList", mindSharingList);
-		return "report/genderAwareness.main";
+		model.addAttribute("genderAwarenessList", genderAwarenessList);
+		return "report/genderAwareness_list.main";
 
+	}
+	
+	// 성인식개선사업 상세
+	@RequestMapping(value = "/genderAwarenessDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String genderAwarenessDetails(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
+		// 권한 관리 시작
+		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		int userAuth, userCenterGb;
+		try {
+			userAuth = Integer.parseInt(loginVo.get("authCd").toString());
+			userCenterGb = Integer.parseInt(loginVo.get("centerGb").toString());
+			if (userAuth == 0)
+				userAuth = 10;
+		} catch (NumberFormatException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		} catch (NullPointerException err) {
+			userAuth = 10;
+			userCenterGb = 0;
+		}
+		if (userAuth > 1) { // 센터 검색 권한이 없으면
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		} else {
+			vo.setSchCenterGb(Integer.toString(userCenterGb));
+		}
+		model.addAttribute("authCd", userAuth);
+		model.addAttribute("userId", loginVo.get("userId").toString());
+		model.addAttribute("userNm", loginVo.get("userNm").toString());
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		model.addAttribute("mnuCd", mnuCd);
+
+		// EgovMap resultVO = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		// 센터구분
+		GroupVO param = new GroupVO();
+		param.setHclassCd("G93");
+		List<EgovMap> genderEduTitleList = adminManageService.getGroupMngDtlMList(param);
+		model.addAttribute("genderEduTitleList", genderEduTitleList);
+		
+		CenterVO centerVO = new CenterVO();
+		List<EgovMap> cnsCenterList = adminManageService.getCenterManageList(centerVO);
+		model.addAttribute("cnsCenterList", cnsCenterList);
+
+		EgovMap genderAwarenessDetail = reportService.getGenderAwarenessDtl(vo);
+
+		if (vo.getFileName() != null) {
+			try {
+				vo.setSysFileName(AES256Crypto.getInstance().AESEncode(vo.getSysFileName()));
+				System.out.println("AES ENCODE  : " + vo.getSysFileName());
+			} catch (IOException err) {
+				System.out.println("AES ENCODE ERROR.IO");
+				utility.func.Logging(this.getClass().getName(), err);
+			} catch (InvalidKeyException e) {
+				System.out.println("AES ENCODE ERROR.KEY");
+				utility.func.Logging(this.getClass().getName(), e);
+			} catch (NoSuchAlgorithmException e) {
+				System.out.println("AES ENCODE ERROR.ALG");
+				utility.func.Logging(this.getClass().getName(), e);
+			} catch (NoSuchPaddingException e) {
+				System.out.println("AES ENCODE ERROR.PAD");
+				utility.func.Logging(this.getClass().getName(), e);
+			} catch (InvalidAlgorithmParameterException e) {
+				System.out.println("AES ENCODE ERROR.PAR");
+				utility.func.Logging(this.getClass().getName(), e);
+			} catch (IllegalBlockSizeException e) {
+				System.out.println("AES ENCODE ERROR.BLO");
+				utility.func.Logging(this.getClass().getName(), e);
+			} catch (BadPaddingException e) {
+				System.out.println("AES ENCODE ERROR.BAD");
+				utility.func.Logging(this.getClass().getName(), e);
+			}
+		}
+		model.addAttribute("vo", vo);
+		model.addAttribute("detail", genderAwarenessDetail);
+		// return "jsonView";
+		return "report/genderAwareness_dtl.main";
+	}
+
+	// 성인식개선사업 등록/수정
+	@RequestMapping(value = "/genderAwareness_proc.do", method = RequestMethod.POST)
+	public String genderAwareness_proc(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String save = request.getParameter("save");
+		model.addAttribute("mnuCd", mnuCd);
+
+		if (!vo.getDelYn().equals("Y"))
+			vo.setDelYn("N");
+
+		vo.setUserNum(login.get("userNm").toString());
+		vo.setCnsrId(login.get("userId").toString());
+		if (save.equals("I")) {
+			reportService.insertGenderAwareness(vo);
+		} else if (save.equals("U")) {
+			reportService.updateGenderAwareness(vo);
+		} else if (save.equals("D")) {
+			reportService.deleteGenderAwareness(vo);
+		}
+		
+		return "redirect:/gnoincoundb/genderAwarenessList.do?mnuCd=" + mnuCd;
+		
+	}
+	
+	// 성인식개선사업 파일 삭제
+	@RequestMapping(value = "/genderAwarenessFileDel.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String genderAwarenessFileDel(HttpServletRequest request, ModelMap model, genderAwarenessVO vo) {
+
+		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
+		vo.setUserNum(login.get("userNm").toString());
+		
+		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
+		String save = request.getParameter("save");
+		model.addAttribute("mnuCd", mnuCd);
+		reportService.updateGenderAwareness(vo);
+		return "jsonView";
 	}
 
 }

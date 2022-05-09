@@ -145,7 +145,7 @@
 					</span>
 				</div>
 				<div class="search-group" style="margin-left:70px;">
-					<span class="label">등록일</span> <input type="text" name="schStartDate" id="datepicker1" value="${vo.schStartDate }" style="width: 100px;" readOnly/> &nbsp;&nbsp;&nbsp; ~ &nbsp;<input type="text" name="schEndDate" id="datepicker2" value="${vo.schEndDate}" style="width: 100px;" readOnly/>
+					<span class="label">상담일</span> <input type="text" name="schStartDate" id="datepicker1" value="${vo.schStartDate }" style="width: 100px;" readOnly/> &nbsp;&nbsp;&nbsp; ~ &nbsp;<input type="text" name="schEndDate" id="datepicker2" value="${vo.schEndDate}" style="width: 100px;" readOnly/>
 				</div>
 				<div class="btn" style="padding-bottom:15px; padding-right:150px;">
 					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);">
@@ -167,7 +167,7 @@
 			<div class="btn" style="float: right; margin: 0;">
 				<!-- <button type="button" class="btn-basic" onClick="javascript:fn_popup('R', 0);" style="background-color: green;color:white;">등록</button> -->
 				<button type="button" class="btn-basic" onClick="javascript:fn_reg();" style="background-color: green;color:white;">등록</button> 
-				<!-- <button type="button" class="btn-basic" onClick="fn_excelDownload(10, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button> -->
+				<button type="button" class="btn-basic" onClick="fn_excelDownload(31, document.searchForm);" style="background-color: green;color:white;">Excel 다운로드</button>
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 

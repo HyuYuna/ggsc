@@ -12,6 +12,7 @@ import ggsc.report.service.EduAtvyRptVO;
 import ggsc.report.service.LinkOrgRptVO;
 import ggsc.report.service.NtwkMeetRptVO;
 import ggsc.report.service.PrAtvyRptVO;
+import ggsc.report.service.genderAwarenessVO;
 import ggsc.report.service.mindSharingVO;
 import ggsc.support.service.ExcelVO;
 
@@ -19,40 +20,76 @@ import ggsc.support.service.ExcelVO;
 public class ReportDAO extends EgovAbstractDAO {
 		
 	
-	// 마음나눔봉사단 / 성인식개선사업 목록
+	// 마음나눔봉사단 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getMindSharingList(mindSharingVO vo){
 		return (List<EgovMap>)list("reportDao.getMindSharingList", vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 갯수
+	// 마음나눔봉사단 갯수
 	public int getMindSharingCnt(mindSharingVO vo){
 		return (Integer)select("reportDao.getMindSharingCnt", vo);
 	}
 		
-	// 마음나눔봉사단 / 성인식개선사업 엑셀다운
+	// 마음나눔봉사단 엑셀다운
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getMindSharingListExcel(ExcelVO vo){
 		return (List<EgovMap>)list("reportDao.getMindSharingListExcel",vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 상세
-	public EgovMap getgetMindSharingDtl(mindSharingVO vo){
-		return (EgovMap)select("reportDao.getgetMindSharingDtl", vo);
+	// 마음나눔봉사단 상세
+	public EgovMap getMindSharingDtl(mindSharingVO vo){
+		return (EgovMap)select("reportDao.getMindSharingDtl", vo);
 	}
-	// 마음나눔봉사단 / 성인식개선사업 등록
+	// 마음나눔봉사단 등록
 	public void insertMindSharing(mindSharingVO vo){
 		insert("reportDao.insertMindSharing", vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 수정
+	// 마음나눔봉사단 수정
 	public void updateMindSharing(mindSharingVO vo){
 		update("reportDao.updateMindSharing", vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 삭제
+	// 마음나눔봉사단 삭제
 	public void deleteMindSharing(mindSharingVO vo){
 		update("reportDao.deleteMindSharing", vo);
+	}
+	
+	// 성인식개선사업 목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getGenderAwarenessList(genderAwarenessVO vo){
+		return (List<EgovMap>)list("reportDao.getGenderAwarenessList", vo);
+	}
+	
+	// 성인식개선사업 갯수
+	public int getGenderAwarenessCnt(genderAwarenessVO vo){
+		return (Integer)select("reportDao.getGenderAwarenessCnt", vo);
+	}
+		
+	// 성인식개선사업 엑셀다운
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getGenderAwarenessListExcel(ExcelVO vo){
+		return (List<EgovMap>)list("reportDao.getGenderAwarenessListExcel",vo);
+	}
+	
+	// 성인식개선사업 상세
+	public EgovMap getGenderAwarenessDtl(genderAwarenessVO vo){
+		return (EgovMap)select("reportDao.getGenderAwarenessDtl", vo);
+	}
+	// 성인식개선사업 등록
+	public void insertGenderAwareness(genderAwarenessVO vo){
+		insert("reportDao.insertGenderAwareness", vo);
+	}
+	
+	// 성인식개선사업 수정
+	public void updateGenderAwareness(genderAwarenessVO vo){
+		update("reportDao.updateGenderAwareness", vo);
+	}
+	
+	// 성인식개선사업 삭제
+	public void deleteGenderAwareness(genderAwarenessVO vo){
+		update("reportDao.deleteGenderAwareness", vo);
 	}
 	
 	// 상담사례종결서 목록

@@ -559,12 +559,8 @@ public class DownloadController {
 			case 3: list = reportService.getNtwkMeetRptListExcel(vo); break; // 네트워크구축화의보고서
 			case 4: list = reportService.getEduAtvyRptListExcel(vo); break; // 교육활동보고서
 			case 5: list = reportService.getPrAtvyRptListExcel(vo); break; // 홍보활동보고서 // 수정 필요
-			case 6:
-				vo.setSchGubun("0");
-				list = reportService.getMindSharingListExcel(vo); break; // 마음나눔봉사단 // 수정 필요
-			case 7:
-				vo.setSchGubun("1");
-				list = reportService.getMindSharingListExcel(vo); break; // 성인식개선사업 // 수정 필요
+			case 6: list = reportService.getMindSharingListExcel(vo); break; // 마음나눔봉사단 // 수정 필요
+			case 7: list = reportService.getGenderAwarenessListExcel(vo); break; // 성인식개선사업 // 수정 필요
 			case 8: list = reportService.getCnsEndListExcel(vo); break; // 상담사례종결서
 			case 9: list = reportService.getLinkOrgRptListExcel(vo); break; // 연계기관방문보고서 // 수정필요
 			case 10: list = counselMngService.getCnsAcptListExcel(vo); break; // 신규 상담접수관리
@@ -581,6 +577,7 @@ public class DownloadController {
 			case 28: list = counselMngService.getPretestListExcel(vo); break; // 사전검사
 			case 29: list = counselMngService.getEalyCnsDocListExcel(vo); break; // 초기상담신청서
 			case 30: list = counselMngService.getLinkageReqListExcel(vo); break; // 연계의뢰서
+			case 31: list = counselMngService.getCnsInfoListExcel(vo); break; // 연계의뢰서
 		}
 
 		OutputStream out = null;

@@ -357,7 +357,7 @@ public class ExcelVO extends PageVO{
 			case 7 :
 				setInit("성인식개선사업 목록", 
 						new String[] { "순번", "상담구분", "센터구분", "성명", "일자" },
-						new String[] { "rnum", "cnsNm", "centerNm", "bSubject", "bDate"});
+						new String[] { "rnum", "cnsNm", "centerNm", "voluntNm", "bDate"});
 				break;
 			case 8 : 
 				setInit("상담사례종결서 목록",
@@ -406,8 +406,8 @@ public class ExcelVO extends PageVO{
 				break;
 			case 22 : 
 				setInit("개인상담현황",
-						new String[] {"순번", "caseNo", "상담상태", "상담구분", "상담회기", "상담자구분", "시군구분", "센터구분", "상담자명", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "긴급연락처", "상담일시", "내담자와의관계", "상담방법", "주호소문제", "상담내용", "등록일시","주/야간"},
-						new String[] {"rnum", "caseNo", "cnsStat", "cnsGb", "cnsCnt", "cnsrGb", "sigunCd", "centerGb", "cnsrNm", "cnsleNm", "birthDt", "gender", "addr", "mobile", "emgcyTel", "cnsDt", "cnsMethd", "cnsleRel", "majorApplCd", "cnsCntn", "dbInsTm","shift"});
+						new String[] {"순번", "caseNo", "상담상태", "상담구분", "상담회기", "상담자구분", "시군구분", "센터구분", "상담자명", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "긴급연락처", "상담일시", "내담자와의관계", "상담방법", "주호소문제", "상담내용", "등록일시", "주/야간"},
+						new String[] {"rnum", "caseNo", "cnsStat", "cnsGb", "cnsCnt", "cnsrGb", "sigunCd", "centerGb", "cnsrNm", "cnsleNm", "birthDt", "gender", "addr", "mobile", "emgcyTel", "cnsDt", "cnsleRel", "cnsMethd", "majorApplCd", "cnsCntn", "dbInsTm", "shift"});
 				break;
 			case 23 : 
 				setInit("집단상담현황",
@@ -432,8 +432,8 @@ public class ExcelVO extends PageVO{
 				
 			case 28 : 
 				setInit("사전검사",
-						new String[] {"순번", "caseNo", "상담구분", "시군구분", "센터구분", "내담자명", "상담동의서", "개인정보동의서", "노인상담선별척도지", "상담대상자", "등록일자"},
-						new String[] {"rnum", "caseNo", "cnsGbNm", "sigunCd", "centerGbNm", "userNm", "agrePathNm", "perInfoPathNm", "docCntnPathNm", "cnsTargetGbNm", "dbInsTmNm"});
+						new String[] {"순번", "caseNo", "상담구분", "시군구분", "센터구분", "내담자명", "상담동의서", "개인정보동의서", "노인상담선별척도지", "상담대상자", "등록일자", "노인상담척별지 점수"},
+						new String[] {"rnum", "caseNo", "cnsGbNm", "sigunCd", "centerGbNm", "userNm", "agrePathNm", "perInfoPathNm", "docCntnPathNm", "cnsTargetGbNm", "dbInsTmNm", "cnsrOptnTot"});
 				break;
 				
 				
@@ -447,6 +447,12 @@ public class ExcelVO extends PageVO{
 				setInit("연계의뢰서",
 						new String[] {"순번","caseNo","연계구분","내부연계구분","외부연계구분","내담자ID","내담자명","상담구분","권역구분","지역구분","센터구분","의뢰부서","담당","의뢰일","협조부서","담당","회신기한","성명","성별","생년월일","주소","연락처","대상자 특이사항","의뢰사유 및 요청사항","처리결과","비고 ","등록일"},
 						new String[] {"rnum","caseNo","linkReqGb","internalGb","outernalGb","cnsleId","cnsleNm","cnsGb","zoneGb","localGb","centerGb","reqDept","reqDeptPer","reqDt","helpDept","helpDeptPer","relyTerm","cnsleNm","gender","birthDt","addr","telNo","rcptSgct","reqResnCntn","pgrsRslt","etc", "dbInsTm"});
+				break;
+				
+			case 31 : 
+				setInit("정보제공상담",
+						new String[] {"순번",  "상담구분", "상담자구분", "시군구분", "센터구분", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "상담일시", "내담자와의관계", "상담방법", "상담경위", "주호소문제", "등록일시", "주/야간"},
+						new String[] {"rnum", "cnsGb", "cnsrGb", "sigunCd", "centerGb", "userNm", "birth", "gender", "addr", "mobile", "cnsDt", "cnsleRel", "cnsMethd", "cnsDtl", "majorApplCd", "dbInsTm", "shift"});
 				break;
 				
 			/*case 27 :

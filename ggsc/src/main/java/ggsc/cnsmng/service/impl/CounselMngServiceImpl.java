@@ -227,6 +227,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		return cnsMngDao.getLinkageReqListExcel(vo);
 	}
 	
+	// 엑셀 다운(정보제공상담)
+	public List<EgovMap> getCnsInfoListExcel(ExcelVO vo) {
+		return cnsMngDao.getCnsInfoListExcel(vo);
+	}
+	
 	// 회원찾기
 	@Override
 	public List<EgovMap> findUserPopup(UserInfoVO vo) {

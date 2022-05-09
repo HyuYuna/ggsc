@@ -1,40 +1,15 @@
 package ggsc.report.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-import java.nio.charset.Charset;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorker;
-import com.itextpdf.tool.xml.XMLWorkerFontProvider;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
-import com.itextpdf.tool.xml.css.CssFile;
-import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
-import com.itextpdf.tool.xml.html.CssAppliers;
-import com.itextpdf.tool.xml.html.CssAppliersImpl;
-import com.itextpdf.tool.xml.html.Tags;
-import com.itextpdf.tool.xml.parser.XMLParser;
-import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
-import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
-import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
-
 import ams.cmm.AMSComm;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
-import ggsc.cnsr.service.GroupVO;
 import ggsc.report.service.CnsBookVO;
 import ggsc.report.service.CnsEndVO;
 import ggsc.report.service.EduAtvyRptVO;
@@ -42,6 +17,7 @@ import ggsc.report.service.LinkOrgRptVO;
 import ggsc.report.service.NtwkMeetRptVO;
 import ggsc.report.service.PrAtvyRptVO;
 import ggsc.report.service.ReportService;
+import ggsc.report.service.genderAwarenessVO;
 import ggsc.report.service.mindSharingVO;
 import ggsc.support.service.ExcelVO;
 
@@ -51,30 +27,30 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 	@Resource(name="ReportDAO")
     private ReportDAO reportDao;
 	
-	// 마음나눔봉사단 / 성인식개선사업 목록
+	// 마음나눔봉사단  목록
 	@Override
 	public List<EgovMap> getMindSharingList(mindSharingVO vo) {
 		return reportDao.getMindSharingList(vo);
 	}
 	
-	// 음나눔봉사단 / 성인식개선사업 갯수
+	// 마음나눔봉사단  갯수
 	@Override
 	public int getMindSharingCnt(mindSharingVO vo) {
 		return reportDao.getMindSharingCnt(vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 엑셀다운
+	// 마음나눔봉사단 엑셀다운
 	@Override
 	public List<EgovMap> getMindSharingListExcel(ExcelVO vo) {
 		return reportDao.getMindSharingListExcel(vo);
 	}
 	
-	// 마음나눔봉사단 / 성인식개선사업 상세
+	// 마음나눔봉사단 상세
 	@Override
-	public EgovMap getgetMindSharingDtl(mindSharingVO vo) {
-		return reportDao.getgetMindSharingDtl(vo);
+	public EgovMap getMindSharingDtl(mindSharingVO vo) {
+		return reportDao.getMindSharingDtl(vo);
 	}
-	// 마음나눔봉사단 / 성인식개선사업 등록
+	// 마음나눔봉사단 등록
 	@Override
 	public void insertMindSharing(mindSharingVO vo) {
 		if(vo.getFile().getSize() != 0) {
@@ -94,10 +70,10 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		}
 		
 		
-		
 		reportDao.insertMindSharing(vo);
 	}
-	// 마음나눔봉사단 / 성인식개선사업 수정
+	
+	// 마음나눔봉사단  수정
 	@Override
 	public void updateMindSharing(mindSharingVO vo) {
 		if(vo.getFile()!=null) {
@@ -133,12 +109,99 @@ public class ReportServiceImpl extends EgovAbstractServiceImpl implements Report
 		reportDao.updateMindSharing(vo);
 	}	
 	
-	// 마음나눔봉사단 / 성인식개선사업 삭제
+	// 마음나눔봉사단 삭제
 	@Override
 	public void deleteMindSharing(mindSharingVO vo) {
 		reportDao.deleteMindSharing(vo);
 	}	
 	
+	// 성인식개선사업  목록
+	@Override
+	public List<EgovMap> getGenderAwarenessList(genderAwarenessVO vo) {
+		return reportDao.getGenderAwarenessList(vo);
+	}
+	
+	// 성인식개선사업  갯수
+	@Override
+	public int getGenderAwarenessCnt(genderAwarenessVO vo) {
+		return reportDao.getGenderAwarenessCnt(vo);
+	}
+	
+	// 성인식개선사업 엑셀다운
+	@Override
+	public List<EgovMap> getGenderAwarenessListExcel(ExcelVO vo) {
+		return reportDao.getGenderAwarenessListExcel(vo);
+	}
+	
+	// 성인식개선사업 상세
+	@Override
+	public EgovMap getGenderAwarenessDtl(genderAwarenessVO vo) {
+		return reportDao.getGenderAwarenessDtl(vo);
+	}
+	// 성인식개선사업 등록
+	@Override
+	public void insertGenderAwareness(genderAwarenessVO vo) {
+		if(vo.getFile().getSize() != 0) {
+			MultipartFile file = vo.getFile();
+			EgovMap fMap = AMSComm.fileUpload(file, "report");
+			fMap.put("regId", vo.getRegId());
+			fMap.put("writer", vo.getUserNum());
+			
+			vo.setFileName(fMap.get("fileNm").toString());
+			vo.setSysFileName(fMap.get("sysFileNm").toString());
+			vo.setFilePath(fMap.get("filePath").toString());
+			try {
+				vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
+			}catch(Exception err) {
+				vo.setFileSize(0);
+			}
+		}
+		
+		reportDao.insertGenderAwareness(vo);
+	}
+	
+	// 성인식개선사업  수정
+	@Override
+	public void updateGenderAwareness(genderAwarenessVO vo) {
+		if(vo.getFile()!=null) {
+			if(vo.getFile().getSize() != 0) {
+				System.out.println("File Upload Start");
+				MultipartFile file = vo.getFile();
+				System.out.println("Upload File Name : " + vo.getFile().getName());
+				
+				EgovMap fMap = AMSComm.fileUpload(file, "report");
+				
+				System.out.println("File Upload End");
+				
+				fMap.put("regId", vo.getRegId());
+				fMap.put("writer", vo.getUserNum());
+				
+				vo.setFileName(fMap.get("fileNm").toString());
+				vo.setSysFileName(fMap.get("sysFileNm").toString());
+				vo.setFilePath(fMap.get("filePath").toString());
+				try {
+					vo.setFileSize(Integer.parseInt(fMap.get("fileSize").toString()));
+				}catch(Exception err) {
+					vo.setFileSize(0);
+				}
+			}
+		}else {
+			vo.setFileName(null);
+			vo.setSysFileName(null);
+			vo.setFilePath(null);
+			vo.setFileSize(0);
+		}
+		
+		
+		reportDao.updateGenderAwareness(vo);
+	}	
+	
+	// 성인식개선사업 삭제
+	@Override
+	public void deleteGenderAwareness(genderAwarenessVO vo) {
+		reportDao.deleteGenderAwareness(vo);
+	}	
+
 		
 	// 상담사례종결서 목록
 	@Override

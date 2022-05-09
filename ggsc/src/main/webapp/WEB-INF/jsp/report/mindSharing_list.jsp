@@ -8,6 +8,7 @@
 
 <script src="/gnoincoundb/js/util/paging.js"></script>
 
+</head>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("select[name=schCnsGb]").val("${vo.schCnsGb}");
@@ -18,7 +19,7 @@
 	function list(curPage) {
 		$("#currentPageNo").val(curPage);
 		document.searchForm.method = "get";
-		document.searchForm.action = "/gnoincoundb/genderAwareness.do";
+		document.searchForm.action = "/gnoincoundb/mindSharingList.do";
        	document.searchForm.submit();
 	}
 	
@@ -30,7 +31,7 @@
 	
 	function fn_view(idx){
 		document.searchForm.num.value = idx;
-		document.searchForm.action = "/gnoincoundb/mindSharing_dtl.do";
+		document.searchForm.action = "/gnoincoundb/mindSharingDtl.do";
        	document.searchForm.submit();
 	}
 
@@ -41,13 +42,12 @@
 	.label2 {display:inline-block;width:275px;color:#333;padding-right:5px;margin-bottom:2px;letter-spacing:-0.5px;text-align:right;}
 </style>
 <section id="content">
-	<h2 class="h2-title"><i class="fa fa-check-square"></i>성인지교육사업</h2>
+	<h2 class="h2-title"><i class="fa fa-check-square"></i>마음나눔봉사단</h2>
 		<div class="box-style1 x-scroll-auto" >
 				<!-- 검색영역 -->
 		<form name="searchForm" id="searchForm" method="get" onsubmit="return false">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type='hidden' name='num' value='0' />
-			<input type='hidden' name='bGubun' value='1' />
 			<input type="hidden" id="currentPageNo" name="currentPageNo" value="1" />
 			<input type="hidden" id="mnuCd" name="mnuCd" value="${mnuCd }" />
 			<div class="search-box">
@@ -97,11 +97,11 @@
 				<div class="search-group" style="margin-left:62px;">
 					<span class="label"><label>활동내용</label></span>
 					<span class="label2">
-						<input type="text" name="schText" style="width:275px;" value="${vo.schText}" enterSearch data-button='#searchBtn' />
+						<input type="text" name="schText" style="width:275px;" value="${vo.schText}" enterSearch data-button='#searchBtn'/>
 					</span>
 				</div>
 				<div class="btn" style="padding-bottom:15px; padding-right:120px;">
-					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);">
+					<button type="button" class="btn-search" id="searchBtn" onclick="javascript:list(1);" >
 						<i class="fa fa-search"></i>검색
 					</button>
 				</div>
@@ -113,11 +113,11 @@
 			</span>
 			<div class="btn" style="float: right; margin: 0;">
 				<button type="button" class="btn-basic" onClick="fn_view(0)" style="background-color:green;color:white;">등록</button>
-				<button type="button" class="btn-basic" onClick="fn_excelDownload(7, document.searchForm);" style="background-color:green;color:white;">Excel 다운로드</button>		
+				<button type="button" class="btn-basic" onClick="fn_excelDownload(6, document.searchForm);"  style="background-color:green;color:white;">Excel 다운로드</button>		
 			</div>	
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
-					<col width="5%"></col>
+					<col width="8%"></col>
 					<col width="20%"></col> 
 					<col width="12%"></col>
 					<col width="*"></col>
