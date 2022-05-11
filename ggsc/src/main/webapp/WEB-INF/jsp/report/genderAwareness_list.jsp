@@ -121,34 +121,40 @@
 			<table class="table-style1" style="margin-bottom: 5px;">
 				<colgroup> 
 					<col width="5%"></col>
-					<col width="20%"></col> 
-					<col width="12%"></col>
-					<col width="*"></col>
+					<col width="10%"></col> 
+					<col width="15%"></col>
+					<col width="10%"></col>
+					<col width="10%"></col>
+					<col width="5%"></col>
 					<col width="10%"></col>
 				</colgroup>
 				<thead>
 					<tr>
 						<th scope="col">순번</th>
-						<th scope="col">센터구분</th>
-						<th scope="col">성명</th> 
-						<th scope="col">활동내용</th>
-						<th scope="col">일시</th>
+						<th scope="col">작성자</th>
+						<th scope="col">신청기관</th>
+						<th scope="col">지역</th>
+						<th scope="col">강사</th> 
+						<th scope="col">교육인원</th>
+						<th scope="col">교육주제</th>
 					</tr>
 				</thead>
 				<tbody id="tby1">
 					<c:if test="${genderAwarenessList.size() == 0 }">
 						<tr>
-							<td colspan="5">정보가 없습니다.</td>
+							<td colspan="7">정보가 없습니다.</td>
 						</tr>
 					</c:if>
 					<c:if test="${genderAwarenessList.size() > 0 }">
 						<c:forEach items="${genderAwarenessList }" var="result">
 							<tr onClick='fn_view(${result.num})'>
 								<td>${result.rnum }</td>
-								<td>${result.centerNm } </td>
+								<td>${result.userNm } </td>
+								<td>${result.appAgency } </td>
+								<td>${result.region } </td>
 								<td>${result.instructor }</td>
-								<td style='text-align:left; text-indent:10px; '>${result.bContent }</td>
-								<td>${result.bDate }</td>
+								<td>${result.eduPerson }</td>
+								<td>${result.genderEduTitleNm }</td>
 							</tr> 
 						</c:forEach>
 					</c:if>

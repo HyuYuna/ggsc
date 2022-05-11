@@ -1,4 +1,3 @@
-
 <%@ page import="egovframework.rte.psl.dataaccess.util.EgovMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -32,8 +31,23 @@ function fn_save(save){
 	if(frm.centerGb.value.length == 0){
 		alert('[센터구분]을 선택해주세요.');
 		return false;
-	}else if(frm.bDate.value.length < 8){
+	}else if(frm.appAgency.value.length  == 0){
+		alert('[신청기관]를 입력해주세요.');
+		return false;
+	}else if(frm.region.value.length  == 0){
+		alert('[지역]를 입력해주세요.');
+		return false;
+	}else if(frm.bDate.value.length  == 0){
 		alert('[일자]를 입력해주세요.');
+		return false;
+	}else if(frm.eduPerson.value.length == 0){
+		alert('[교육인원]를 입력해주세요.');
+		return false;
+	}else if(frm.genderEduTitle.value.length == 0){
+		alert('[성인지 교육주제]를 입력해주세요.');
+		return false;
+	}else if(frm.instructor.value.length == 0){
+		alert('[강사]를 입력해주세요.');
 		return false;
 	}else if(frm.bContent.value.length < 2){
 		alert('[내용]을 입력해주세요.');

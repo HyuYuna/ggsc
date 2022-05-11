@@ -74,6 +74,7 @@
 	<input type='hidden' name='schCnsleNm' />
 	<input type='hidden' name='schDateGb' />
 	<input type='hidden' name='schText' />
+	<input type='hidden' name='schType' />
 	<input type='hidden' name='schCnsrGb' />
 	<input type='hidden' name='schCnsrNm' />
 	<input type='hidden' name='schUserId' />
@@ -96,6 +97,7 @@
 	<input type='hidden' name='schEduManGb' />
 	<input type='hidden' name='schPromotionGb' />
 	<input type='hidden' name='schVisitOrgGb' />
+	<input type='hidden' name='schGenderEduGb' />
 	
 </form>
 

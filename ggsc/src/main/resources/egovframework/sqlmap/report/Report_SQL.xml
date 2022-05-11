@@ -305,10 +305,12 @@
 				ROW_NUMBER() OVER(ORDER BY A.NUM DESC) AS RNUM
 				,A.*
 				,B.CENTER_NM CENTER_NM
-				,C.MCLASS_NM AS CNS_NM
+				,C.MCLASS_NM AS GENDER_EDU_TITLE_NM
+				,D.USER_NM 
 			FROM gs_gender_awareness AS A
 			INNER JOIN gs_center_m AS B ON A.center_gb = B.NUM
-			INNER JOIN gs_m_class AS C ON A.CNS_Gb = C.ODR AND C.HCLASS_CD = 'G15'
+			INNER JOIN gs_m_class AS C ON A.gender_edu_title = C.ODR AND C.HCLASS_CD = 'G93'
+			INNER JOIN GS_USER_M AS D ON a.cnsr_id = D.user_id 
 			WHERE A.DEL_YN != 'Y' 
 			<isNotEmpty property="schGenderEduGb" prepend="AND"> 
 				A.GENDER_EDU_TITLE = #schGenderEduGb#

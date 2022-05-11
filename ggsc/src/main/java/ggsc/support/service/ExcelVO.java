@@ -24,6 +24,7 @@ public class ExcelVO extends PageVO{
 	private String schCnsleNm;
 	private String schDateGb;
 	private String schText;
+	private String schType;
 	private String schGubun;
 	private String schAcptNm;
 	private String schDt;
@@ -43,6 +44,7 @@ public class ExcelVO extends PageVO{
 	private String schPgrmNm;
 	private String schJoinOrgCd;
 	private String schEduManGb;
+	private String schGenderEduGb;
 	private String schPromotionGb;
 	private String schVisitOrgGb;
 	
@@ -276,7 +278,22 @@ public class ExcelVO extends PageVO{
 		this.number = number;
 	}
 	
-	
+	public String getSchGenderEduGb() {
+		return schGenderEduGb;
+	}
+
+	public void setSchGenderEduGb(String schGenderEduGb) {
+		this.schGenderEduGb = schGenderEduGb;
+	}
+
+	public String getSchType() {
+		return schType;
+	}
+
+	public void setSchType(String schType) {
+		this.schType = schType;
+	}
+
 	@Override
 	public String toString() {
 		return "ExcelVO [list=" + list + ", number=" + number + ", header=" + Arrays.toString(header) + ", mapKey="
@@ -356,8 +373,8 @@ public class ExcelVO extends PageVO{
 				break;
 			case 7 :
 				setInit("성인식개선사업 목록", 
-						new String[] { "순번", "상담구분", "센터구분", "성명", "일자" },
-						new String[] { "rnum", "cnsNm", "centerNm", "voluntNm", "bDate"});
+						new String[] { "순번", "상담구분", "센터구분", "강사", "일자" },
+						new String[] { "rnum", "cnsNm", "centerNm", "instructor", "bDate"});
 				break;
 			case 8 : 
 				setInit("상담사례종결서 목록",
