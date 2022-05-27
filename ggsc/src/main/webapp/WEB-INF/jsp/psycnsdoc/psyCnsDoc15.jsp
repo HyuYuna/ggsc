@@ -407,7 +407,7 @@
                         <td class="bRight-none">*13.</td>
                         <td class="txt-left">나는 기분이 쳐져 있을 때, 대부분의 다른 사람들은 나보다 더 행복할 거라고 느끼는 경향이 있다.</td>
                         <td><input type="radio" class="ascBtn" id="no131" name="no13" value="1" /></td>
-                        <td><input type="radio" class="acsBtn2" id="no132" name="no13" value="2" /></td>
+                        <td><input type="radio" class="ascBtn2" id="no132" name="no13" value="2" /></td>
                         <td><input type="radio" class="ascBtn3" id="no133" name="no13" value="3" /></td>
                         <td><input type="radio" class="ascBtn4" id="no134" name="no13" value="4" /></td>
                         <td class="bRight-none"><input type="radio" class="ascBtn5" id="no135" name="no13" value="5" /></td>

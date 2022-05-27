@@ -1562,7 +1562,7 @@
 	<select id="reportDao.getPrAtvyRptList" parameterClass="prAtvyRptVO" resultClass="egovMap">
 		SELECT *
 		FROM(SELECT 
-					ROW_NUMBER() OVER(ORDER BY gpar.PR_ATVY_NO) AS RNUM
+					ROW_NUMBER() OVER(ORDER BY gpar.PR_ATVY_NO DESC) AS RNUM
 					<!-- , (SELECT GROUP_CONCAT(MCLASS_NM SEPARATOR ',') FROM GS_M_CLASS WHERE HCLASS_CD = 'G79') AS PR_LIST -->
 					, gpar.pr_atvy_no
 					, gpar.pr_atvy_dt

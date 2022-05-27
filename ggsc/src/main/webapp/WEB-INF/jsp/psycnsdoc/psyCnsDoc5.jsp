@@ -266,10 +266,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
+                        <td class="bgG">1</td>
                         <td class="txt-left">현재의 생활에 대체적으로 만족하십니까?</td>
-                        <td><input type="radio" class="radBtn" id="no11" name="no1" value="Y" /></td>
-                        <td class="bRight-none"><input type="radio" class="radBtn2" id="no12" name="no1" value="N" /></td>
+                        <td><input type="radio" class="radBtn2" id="no11" name="no1" value="Y" /></td>
+                        <td class="bRight-none"><input type="radio" class="radBtn" id="no12" name="no1" value="N" /></td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -278,7 +278,7 @@
                         <td class="bRight-none"><input type="radio" class="radBtn2" id="no22" name="no2" value="N" /></td>
                     </tr>
                     <tr>
-                        <td class="bgG">3</td>
+                        <td>3</td>
                         <td class="txt-left">자신이 헛되이 살고 있다고 느끼십니까?</td>
                         <td><input type="radio" class="radBtn" id="no31" name="no3" value="Y" /></td>
                         <td class="bRight-none"><input type="radio" class="radBtn2" id="no32" name="no3" value="N" /></td>
@@ -290,22 +290,22 @@
                         <td class="bRight-none"><input type="radio" class="radBtn2" id="no42" name="no4" value="N" /></td>
                     </tr>
                     <tr>
-                        <td>5</td>
+                        <td class="bgG">5</td>
                         <td class="txt-left">평소에 기분은 상쾌한 편이십니까?</td>
-                        <td><input type="radio" class="radBtn" id="no51" name="no5" value="Y" /></td>
-                        <td class="bRight-none"><input type="radio" class="radBtn2" id="no52" name="no5" value="N" /></td>
+                        <td><input type="radio" class="radBtn2" id="no51" name="no5" value="Y" /></td>
+                        <td class="bRight-none"><input type="radio" class="radBtn" id="no52" name="no5" value="N" /></td>
                     </tr>
                     <tr>
-                        <td class="bgG">6</td>
+                        <td>6</td>
                         <td class="txt-left">자신에게 불길한 일이 닥칠 것 같아 불안하십니까?</td>
                         <td><input type="radio" class="radBtn" id="no61" name="no6" value="Y" /></td>
                         <td class="bRight-none"><input type="radio" class="radBtn2" id="no62" name="no6" value="N" /></td>
                     </tr>
                     <tr>
-                        <td>7</td>
+                        <td class="bgG">7</td>
                         <td class="txt-left">대체로 마음이 즐거운 편이십니까?</td>
-                        <td><input type="radio" class="radBtn" id="no71" name="no7" value="Y" /></td>
-                        <td class="bRight-none"><input type="radio" class="radBtn2" id="no72" name="no7" value="N" /></td>
+                        <td><input type="radio" class="radBtn2" id="no71" name="no7" value="Y" /></td>
+                        <td class="bRight-none"><input type="radio" class="radBtn" id="no72" name="no7" value="N" /></td>
                     </tr>
                     <tr>
                         <td>8</td>
@@ -328,23 +328,23 @@
                     <tr>
                         <td class="bgG">11</td>
                         <td class="txt-left">현재 살아 있다는 것이 즐겁게 생각되십니까?</td>
-                        <td><input type="radio" class="radBtn" id="no111" name="no11" value="Y" /></td>
-                        <td class="bRight-none"><input type="radio" class="radBtn2" id="no112" name="no11" value="N" /></td>
+                        <td><input type="radio" class="radBtn2" id="no111" name="no11" value="Y" /></td>
+                        <td class="bRight-none"><input type="radio" class="radBtn" id="no112" name="no11" value="N" /></td>
                     </tr>
                     <tr>
-                        <td class="bgG">12</td>
+                        <td>12</td>
                         <td class="txt-left">지금의 내 자신이 아무 쓸모없는 사람이라고 느끼십니까?</td>
                         <td><input type="radio" class="radBtn" id="no121" name="no12" value="Y" /></td>
                         <td class="bRight-none"><input type="radio" class="radBtn2" id="no122" name="no12" value="N" /></td>
                     </tr>
                     <tr>
-                        <td>13</td>
+                        <td class="bgG">13</td>
                         <td class="txt-left">기력이 좋은 편이십니까?</td>
-                        <td><input type="radio" class="radBtn" id="no131" name="no13" value="Y" /></td>
-                        <td class="bRight-none"><input type="radio" class="radBtn2" id="no132" name="no13" value="N" /></td>
+                        <td><input type="radio" class="radBtn2" id="no131" name="no13" value="Y" /></td>
+                        <td class="bRight-none"><input type="radio" class="radBtn" id="no132" name="no13" value="N" /></td>
                     </tr>
                     <tr>
-                        <td class="bgG">14</td>
+                        <td>14</td>
                         <td class="txt-left">지금 자신의 처지가 아무런 희망도 없다고 느끼십니까?</td>
                         <td><input type="radio" class="radBtn" id="no141" name="no14" value="Y" /></td>
                         <td class="bRight-none"><input type="radio" class="radBtn2" class="radBtn2" id="no142" name="no14" value="N" /></td>
