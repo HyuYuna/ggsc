@@ -1,6 +1,7 @@
 package ggsc.report.web;
 
 import java.io.IOException;
+
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -31,8 +32,8 @@ import ggsc.report.service.LinkOrgRptVO;
 import ggsc.report.service.NtwkMeetRptVO;
 import ggsc.report.service.PrAtvyRptVO;
 import ggsc.report.service.ReportService;
-import ggsc.report.service.genderAwarenessVO;
-import ggsc.report.service.mindSharingVO;
+import ggsc.report.service.GenderAwarenessVO;
+import ggsc.report.service.MindSharingVO;
 import ggsc.rorgmng.service.RelatedOrganMngService;
 
 
@@ -962,7 +963,7 @@ public class ReportController {
 
 	// 마음 나눔 봉사단 목록
 	@RequestMapping(value = "/mindSharingList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mindSharingList(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
+	public String mindSharingList(MindSharingVO vo, HttpServletRequest request, ModelMap model) {
 
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
@@ -1026,7 +1027,7 @@ public class ReportController {
 
 	// 마음 나눔 봉사단 상세
 	@RequestMapping(value = "/mindSharingDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mindSharingDetails(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
+	public String mindSharingDetails(MindSharingVO vo, HttpServletRequest request, ModelMap model) {
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
@@ -1109,7 +1110,7 @@ public class ReportController {
 
 	// 마음 나눔 봉사단 등록/수정
 	@RequestMapping(value = "/mindSharing_proc.do", method = RequestMethod.POST)
-	public String mindSharing_proc(mindSharingVO vo, HttpServletRequest request, ModelMap model) {
+	public String mindSharing_proc(MindSharingVO vo, HttpServletRequest request, ModelMap model) {
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
@@ -1134,7 +1135,7 @@ public class ReportController {
 	
 	// 마음나눔봉사단 파일 삭제
 	@RequestMapping(value = "/mindSharingFileDel.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mindSharingFileDel(HttpServletRequest request, ModelMap model, mindSharingVO vo) {
+	public String mindSharingFileDel(HttpServletRequest request, ModelMap model, MindSharingVO vo) {
 
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 		vo.setUserNum(login.get("userNm").toString());
@@ -1148,7 +1149,7 @@ public class ReportController {
 
 	// 성인식개선사업 목록
 	@RequestMapping(value = "/genderAwarenessList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String genderAwareness(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
+	public String genderAwareness(GenderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
 
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
@@ -1211,7 +1212,7 @@ public class ReportController {
 	
 	// 성인식개선사업 상세
 	@RequestMapping(value = "/genderAwarenessDtl.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String genderAwarenessDetails(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
+	public String genderAwarenessDetails(GenderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
 		// 권한 관리 시작
 		EgovMap loginVo = (EgovMap) request.getSession().getAttribute("LoginVO");
 
@@ -1289,7 +1290,7 @@ public class ReportController {
 
 	// 성인식개선사업 등록/수정
 	@RequestMapping(value = "/genderAwareness_proc.do", method = RequestMethod.POST)
-	public String genderAwareness_proc(genderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
+	public String genderAwareness_proc(GenderAwarenessVO vo, HttpServletRequest request, ModelMap model) {
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 
 		String mnuCd = request.getParameter("mnuCd") == null ? "" : request.getParameter("mnuCd");
@@ -1315,7 +1316,7 @@ public class ReportController {
 	
 	// 성인식개선사업 파일 삭제
 	@RequestMapping(value = "/genderAwarenessFileDel.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String genderAwarenessFileDel(HttpServletRequest request, ModelMap model, genderAwarenessVO vo) {
+	public String genderAwarenessFileDel(HttpServletRequest request, ModelMap model, GenderAwarenessVO vo) {
 
 		EgovMap login = (EgovMap) request.getSession().getAttribute("LoginVO");
 		vo.setUserNum(login.get("userNm").toString());

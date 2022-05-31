@@ -9,11 +9,11 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import ggsc.report.service.CnsBookVO;
 import ggsc.report.service.CnsEndVO;
 import ggsc.report.service.EduAtvyRptVO;
+import ggsc.report.service.GenderAwarenessVO;
 import ggsc.report.service.LinkOrgRptVO;
+import ggsc.report.service.MindSharingVO;
 import ggsc.report.service.NtwkMeetRptVO;
 import ggsc.report.service.PrAtvyRptVO;
-import ggsc.report.service.genderAwarenessVO;
-import ggsc.report.service.mindSharingVO;
 import ggsc.support.service.ExcelVO;
 
 @Repository("ReportDAO")
@@ -22,12 +22,12 @@ public class ReportDAO extends EgovAbstractDAO {
 	
 	// 마음나눔봉사단 목록
 	@SuppressWarnings("unchecked")
-	public List<EgovMap> getMindSharingList(mindSharingVO vo){
+	public List<EgovMap> getMindSharingList(MindSharingVO vo){
 		return (List<EgovMap>)list("reportDao.getMindSharingList", vo);
 	}
 	
 	// 마음나눔봉사단 갯수
-	public int getMindSharingCnt(mindSharingVO vo){
+	public int getMindSharingCnt(MindSharingVO vo){
 		return (Integer)select("reportDao.getMindSharingCnt", vo);
 	}
 		
@@ -38,32 +38,32 @@ public class ReportDAO extends EgovAbstractDAO {
 	}
 	
 	// 마음나눔봉사단 상세
-	public EgovMap getMindSharingDtl(mindSharingVO vo){
+	public EgovMap getMindSharingDtl(MindSharingVO vo){
 		return (EgovMap)select("reportDao.getMindSharingDtl", vo);
 	}
 	// 마음나눔봉사단 등록
-	public void insertMindSharing(mindSharingVO vo){
+	public void insertMindSharing(MindSharingVO vo){
 		insert("reportDao.insertMindSharing", vo);
 	}
 	
 	// 마음나눔봉사단 수정
-	public void updateMindSharing(mindSharingVO vo){
+	public void updateMindSharing(MindSharingVO vo){
 		update("reportDao.updateMindSharing", vo);
 	}
 	
 	// 마음나눔봉사단 삭제
-	public void deleteMindSharing(mindSharingVO vo){
+	public void deleteMindSharing(MindSharingVO vo){
 		update("reportDao.deleteMindSharing", vo);
 	}
 	
 	// 성인식개선사업 목록
 	@SuppressWarnings("unchecked")
-	public List<EgovMap> getGenderAwarenessList(genderAwarenessVO vo){
+	public List<EgovMap> getGenderAwarenessList(GenderAwarenessVO vo){
 		return (List<EgovMap>)list("reportDao.getGenderAwarenessList", vo);
 	}
 	
 	// 성인식개선사업 갯수
-	public int getGenderAwarenessCnt(genderAwarenessVO vo){
+	public int getGenderAwarenessCnt(GenderAwarenessVO vo){
 		return (Integer)select("reportDao.getGenderAwarenessCnt", vo);
 	}
 		
@@ -74,21 +74,21 @@ public class ReportDAO extends EgovAbstractDAO {
 	}
 	
 	// 성인식개선사업 상세
-	public EgovMap getGenderAwarenessDtl(genderAwarenessVO vo){
+	public EgovMap getGenderAwarenessDtl(GenderAwarenessVO vo){
 		return (EgovMap)select("reportDao.getGenderAwarenessDtl", vo);
 	}
 	// 성인식개선사업 등록
-	public void insertGenderAwareness(genderAwarenessVO vo){
+	public void insertGenderAwareness(GenderAwarenessVO vo){
 		insert("reportDao.insertGenderAwareness", vo);
 	}
 	
 	// 성인식개선사업 수정
-	public void updateGenderAwareness(genderAwarenessVO vo){
+	public void updateGenderAwareness(GenderAwarenessVO vo){
 		update("reportDao.updateGenderAwareness", vo);
 	}
 	
 	// 성인식개선사업 삭제
-	public void deleteGenderAwareness(genderAwarenessVO vo){
+	public void deleteGenderAwareness(GenderAwarenessVO vo){
 		update("reportDao.deleteGenderAwareness", vo);
 	}
 	

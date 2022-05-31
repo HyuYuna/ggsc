@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ams.cmm.PageVO;
 
-public class mindSharingVO extends PageVO {
+public class MindSharingVO extends PageVO {
 	
 	private int num;
 	private String cnsGb, centerGb, cnsrId;
@@ -164,7 +164,7 @@ public class mindSharingVO extends PageVO {
 	
 	@Override
 	public String toString() {
-		return "mindSharingVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
+		return "MindSharingVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
 				+ ", bDate=" + bDate + ", bContent=" + bContent + ", fileName=" + fileName + ", sysFileName="
 				+ sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", voluntGb=" + voluntGb
 				+ ", voluntNm=" + voluntNm + ", fileSize=" + fileSize + ", fDel=" + fDel + ", delYn=" + delYn

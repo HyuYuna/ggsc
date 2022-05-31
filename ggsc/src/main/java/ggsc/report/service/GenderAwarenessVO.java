@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ams.cmm.PageVO;
 
-public class genderAwarenessVO extends PageVO {
+public class GenderAwarenessVO extends PageVO {
 	
 	private int num;
 	private String cnsGb, centerGb, cnsrId;
@@ -190,7 +190,7 @@ public class genderAwarenessVO extends PageVO {
 	
 	@Override
 	public String toString() {
-		return "genderAwarenessVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
+		return "GenderAwarenessVO [num=" + num + ", cnsGb=" + cnsGb + ", centerGb=" + centerGb + ", cnsrId=" + cnsrId
 				+ ", bDate=" + bDate + ", bContent=" + bContent + ", fileName=" + fileName + ", sysFileName="
 				+ sysFileName + ", filePath=" + filePath + ", userNum=" + userNum + ", voluntGb=" + voluntGb
 				+ ", instructor=" + instructor + ", appAgency=" + appAgency + ", region=" + region + ", genderEduTitle="
@@ -199,6 +199,7 @@ public class genderAwarenessVO extends PageVO {
 				+ ", schDateGb=" + schDateGb + ", schType=" + schType + ", schText=" + schText + ", schStartDate="
 				+ schStartDate + ", schEndDate=" + schEndDate + "]";
 	}
+	
 	
 	
 }

@@ -26,40 +26,40 @@ public interface ReportService {
 	List<EgovMap> getPrAtvyRptListExcel(ExcelVO vo);
 		
 	// 마음나눔봉사단 목록
-	List<EgovMap> getMindSharingList(mindSharingVO vo);
+	List<EgovMap> getMindSharingList(MindSharingVO vo);
 	
 	// 마음나눔봉사단 갯수
-	int getMindSharingCnt(mindSharingVO vo);
+	int getMindSharingCnt(MindSharingVO vo);
 	
 	// 마음나눔봉사단 등록
-	void insertMindSharing(mindSharingVO vo);
+	void insertMindSharing(MindSharingVO vo);
 	
 	// 마음나눔봉사단 수정
-	void updateMindSharing(mindSharingVO vo);
+	void updateMindSharing(MindSharingVO vo);
 	
 	// 마음나눔봉사단 삭제
-	void deleteMindSharing(mindSharingVO vo);
+	void deleteMindSharing(MindSharingVO vo);
 	
 	// 마음나눔봉사단 상세
-	EgovMap getMindSharingDtl(mindSharingVO vo);
+	EgovMap getMindSharingDtl(MindSharingVO vo);
 	
 	// 성인식개선사업 목록
-	List<EgovMap> getGenderAwarenessList(genderAwarenessVO vo);
+	List<EgovMap> getGenderAwarenessList(GenderAwarenessVO vo);
 	
 	// 성인식개선사업  갯수
-	int getGenderAwarenessCnt(genderAwarenessVO vo);
+	int getGenderAwarenessCnt(GenderAwarenessVO vo);
 	
 	// 성인식개선사업 등록
-	void insertGenderAwareness(genderAwarenessVO vo);
+	void insertGenderAwareness(GenderAwarenessVO vo);
 	
 	// 성인식개선사업 수정
-	void updateGenderAwareness(genderAwarenessVO vo);
+	void updateGenderAwareness(GenderAwarenessVO vo);
 	
 	// 성인식개선사업 삭제
-	void deleteGenderAwareness(genderAwarenessVO vo);
+	void deleteGenderAwareness(GenderAwarenessVO vo);
 	
 	// 성인식개선사업 상세
-	EgovMap getGenderAwarenessDtl(genderAwarenessVO vo);
+	EgovMap getGenderAwarenessDtl(GenderAwarenessVO vo);
 	
 	// 상담사례종결서 목록
 	List<EgovMap> getCnsEndList(CnsEndVO vo);

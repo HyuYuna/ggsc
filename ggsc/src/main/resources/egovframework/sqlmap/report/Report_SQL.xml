@@ -10,8 +10,8 @@
 	<typeAlias  alias="ntwkMeetRptVO" type="ggsc.report.service.NtwkMeetRptVO"/>	
 	<typeAlias  alias="eduAtvyRptVO" type="ggsc.report.service.EduAtvyRptVO"/>	
 	<typeAlias  alias="prAtvyRptVO" type="ggsc.report.service.PrAtvyRptVO"/>
-	<typeAlias  alias="mindSharingVO" type="ggsc.report.service.mindSharingVO"/>
-	<typeAlias  alias="genderAwarenessVO" type="ggsc.report.service.genderAwarenessVO"/>
+	<typeAlias  alias="mindSharingVO" type="ggsc.report.service.MindSharingVO"/>
+	<typeAlias  alias="genderAwarenessVO" type="ggsc.report.service.GenderAwarenessVO"/>
 	<typeAlias  alias="ExcelVO" type="ggsc.support.service.ExcelVO"/>
 	
 	<!-- 마음나눔봉사단 수정 -->
