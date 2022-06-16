@@ -98,6 +98,7 @@
 	<input type='hidden' name='schPromotionGb' />
 	<input type='hidden' name='schVisitOrgGb' />
 	<input type='hidden' name='schGenderEduGb' />
+	<input type='hidden' name='schPrevPostGb' />
 	
 </form>
 

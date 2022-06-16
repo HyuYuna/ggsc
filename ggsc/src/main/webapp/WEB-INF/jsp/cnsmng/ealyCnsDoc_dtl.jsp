@@ -267,6 +267,9 @@
 		}else if(frm.mobile.value.length < 10){
 			alert('[연락처]를 입력해주세요.');
 			return false;
+		}else if(frm.olderRel.value.length< 1) {
+			alert('[내담자와의 관계]를 입력해주세요');
+			return false;
 		}else if(frm.gender.value.length == 0){
 			alert('[성별]을 선택해주세요.');
 			return false;

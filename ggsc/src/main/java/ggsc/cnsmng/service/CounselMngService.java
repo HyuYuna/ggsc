@@ -90,6 +90,9 @@ public interface CounselMngService {
 	// 엑셀 다운(정보제공상담)
 	List<EgovMap> getCnsInfoListExcel(ExcelVO vo);
 	
+	// 엑셀 다운(사전사후검사)
+	List<EgovMap> getCnsPrevPostListExcel(ExcelVO vo);
+	
 	// 회원 찾기
 	List<EgovMap> findUserPopup(UserInfoVO vo);
 	
@@ -243,6 +246,24 @@ public interface CounselMngService {
 	
 	// 연계의뢰서 삭제
 	void deleteLinkageReq(LinkReqVO vo);
+	
+	// 상담 사전 사후 검사 목록
+	List<EgovMap> getCnsPrevPostList(PrevPostVO vo);
+	
+	// 상담 사전 사후 검사 갯수
+	int getCnsPrevPostListTotCnt(PrevPostVO vo);
+	
+	// 상담 사전 사후 검사 등록
+	void insertCnsPrevPost(PrevPostVO vo);
+	
+	// 상담 사전 사후 검사 수정
+	void updateCnsPrevPost(PrevPostVO vo);
+	
+	// 상담 사전 사후 검사 삭제
+	void deleteCnsPrevPost(PrevPostVO vo);
+	
+	// 상담 사전 사후 검사 갯수
+	EgovMap getCnsPrevPostDetail(int num);
 	
 	// 슈퍼비전 목록
 	List<EgovMap> getSuperVisionList(SupperVisionVO svo);

@@ -89,6 +89,7 @@ function fn_excelDownload(number, schForm){
 		document.tmpForm.schPromotionGb.value = schForm.schPromotionGb ?  schForm.schPromotionGb.value : ''; // 교육활동보고서 홍보구분
 		document.tmpForm.schVisitOrgGb.value = schForm.schVisitOrgGb ?  schForm.schVisitOrgGb.value : ''; // 연계기관방문보고서 기관구분
 		document.tmpForm.schGenderEduGb.value = schForm.schGenderEduGb ?  schForm.schGenderEduGb.value : ''; // 성인지 교육구분
+		document.tmpForm.schPrevPostGb.value = schForm.schPrevPostGb ?  schForm.schPrevPostGb.value : ''; // 사전사후검사구분
 		document.tmpForm.schType.value = schForm.schType ?  schForm.schType.value : ''; // 검색구분
 		
 	}

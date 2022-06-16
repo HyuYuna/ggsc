@@ -1,39 +1,13 @@
 package ggsc.cnsmng.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorker;
-import com.itextpdf.tool.xml.XMLWorkerFontProvider;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
-import com.itextpdf.tool.xml.css.CssFile;
-import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
-import com.itextpdf.tool.xml.html.CssAppliers;
-import com.itextpdf.tool.xml.html.CssAppliersImpl;
-import com.itextpdf.tool.xml.html.Tags;
-import com.itextpdf.tool.xml.parser.XMLParser;
-import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
-import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
-import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
-import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 
 import ams.cmm.AMSComm;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -45,6 +19,7 @@ import ggsc.cnsmng.service.GcnsVO;
 import ggsc.cnsmng.service.LinkReqVO;
 import ggsc.cnsmng.service.PerCnsVO;
 import ggsc.cnsmng.service.PreExamVO;
+import ggsc.cnsmng.service.PrevPostVO;
 import ggsc.cnsmng.service.PsyCnsDoc1VO;
 import ggsc.cnsmng.service.PsyCnsDoc2VO;
 import ggsc.cnsmng.service.PsyCnsDocVO;
@@ -230,6 +205,11 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 	// 엑셀 다운(정보제공상담)
 	public List<EgovMap> getCnsInfoListExcel(ExcelVO vo) {
 		return cnsMngDao.getCnsInfoListExcel(vo);
+	}
+	
+	// 엑셀 다운(사전사후검사)
+	public List<EgovMap> getCnsPrevPostListExcel(ExcelVO vo) {
+		return cnsMngDao.getCnsPrevPostListExcel(vo);
 	}
 	
 	// 회원찾기
@@ -728,6 +708,82 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deleteLinkageReq(vo);
 	}
 	
+	// 상담 사전 사후 검사 목록
+	@Override
+	public List<EgovMap> getCnsPrevPostList(PrevPostVO vo) {
+		return cnsMngDao.getCnsPrevPostList(vo);
+	}
+	
+	// 상담 사전 사후 검사 목록 갯수
+	@Override
+	public int getCnsPrevPostListTotCnt(PrevPostVO vo) {
+		return cnsMngDao.getCnsPrevPostListTotCnt(vo);
+	}
+	
+	// 상담 사전 사후 검사 상세보기
+	@Override
+	public EgovMap getCnsPrevPostDetail(int num) {
+		return cnsMngDao.getCnsPrevPostDetail(num);
+	}
+	
+	// 상담 사전 사후 검사 등록
+	@Override
+	public void insertCnsPrevPost(PrevPostVO vo) {
+		
+		String prevPostGb = vo.getPrevPostGb();
+		
+		if (prevPostGb.equals("1")) {
+			
+			vo.setInspectCnt(vo.getPrevCnt());
+			vo.setMajorApplCd(vo.getPrevMajorApplCd());
+			vo.setSuggestion(vo.getPrevSuggestion());
+			
+			// 상담 사전 검사 등록
+			cnsMngDao.insertCnsPrev(vo);
+
+		} else if(prevPostGb.equals("2")) {
+			
+			vo.setInspectCnt(vo.getPostCnt());
+			vo.setMajorApplCd(vo.getPostMajorApplCd());
+			vo.setSuggestion(vo.getPostSuggestion());
+			
+			// 상담 사후 검사 등록
+			cnsMngDao.insertCnsPost(vo);
+		}
+	}
+	
+	// 상담 사전 사후 검사 수정
+	@Override
+	public void updateCnsPrevPost(PrevPostVO vo) {
+		
+		String prevPostGb = vo.getPrevPostGb();
+		
+		if (prevPostGb.equals("1")) {
+			
+			vo.setInspectCnt(vo.getPrevCnt());
+			vo.setMajorApplCd(vo.getPrevMajorApplCd());
+			vo.setSuggestion(vo.getPrevSuggestion());
+			
+			// 상담 사전 검사 수정
+			cnsMngDao.updateCnsPrev(vo);
+
+		} else if(prevPostGb.equals("2")) {
+			
+			vo.setInspectCnt(vo.getPostCnt());
+			vo.setMajorApplCd(vo.getPostMajorApplCd());
+			vo.setSuggestion(vo.getPostSuggestion());
+			
+			// 상담 사후 검사 수정
+			cnsMngDao.updateCnsPost(vo);
+		}
+	}
+	
+	// 상담 사전 사후 검사 삭제
+	@Override
+	public void deleteCnsPrevPost(PrevPostVO vo) {
+		cnsMngDao.deleteCnsPrevPost(vo);
+	}
+	
 	// 슈퍼비전 목록
 	@Override
 	public List<EgovMap> getSuperVisionList(SupperVisionVO svo) {
@@ -920,6 +976,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deletePsyCnsDocDtl(caseNo);
 		cnsMngDao.deleteLinkReq(caseNo);
 		cnsMngDao.deleteCnsEnd(caseNo);
+		cnsMngDao.deleteExiPrevPost(caseNo);
 	}
 	
 	// 초기상담부터 일괄 삭제
@@ -930,6 +987,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.deletePsyCnsDocDtl(caseNo);
 		cnsMngDao.deleteLinkReq(caseNo);
 		cnsMngDao.deleteCnsEnd(caseNo);
+		cnsMngDao.deleteExiPrevPost(caseNo);
 	}
 	
 	// 개인상담부터 일괄 삭제
@@ -963,6 +1021,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		cnsMngDao.updateExiPsyCnsDoc(vo);
 		cnsMngDao.updateExiLinkReq(vo);
 		cnsMngDao.updateExiCnsEnd(vo);
+		cnsMngDao.updateExiPrevPost(vo);
 	}
 	
 	// 정보제공상담(유저도) 삭제

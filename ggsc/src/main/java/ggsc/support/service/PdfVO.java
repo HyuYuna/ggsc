@@ -69,6 +69,7 @@ public class PdfVO extends PageVO {
 			case 39: setInit("네트워크구축회의 보고서", "ntwkMeetRptDtl", "PDFntwkMeetRptDtl"); break;
 			case 40: setInit("교육활동보고서", "eduAtvyRptDtl", "PDFeduAtvyRptDtl"); break;
 			case 41: setInit("홍보활동보고서", "prAtvyRptDtl", "PDFprAtvyRptDtl"); break;
+			case 42: setInit("상담사전사후기록지", "cnsPrevPostDtl", "PDFcnsPrevPostDtl"); break;
 			
 			case 1: setInit("상담사전사후기록지", "psyCnsDoc1", "PDFpsyCnsDoc1"); break;
 			case 2: setInit("DUKE-AD", "psyCnsDoc2", "PDFpsyCnsDoc2"); break;

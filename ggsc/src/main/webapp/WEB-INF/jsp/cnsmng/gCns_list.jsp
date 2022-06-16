@@ -81,7 +81,7 @@
 		}else if(no == 4){
 			url = "/gnoincoundb/linkageReqList.do?mnuCd=${mnuCd}";
 		}else{
-			url = "/gnoincoundb/perCnsList.do?mnuCd=${mnuCd}";
+			url = "/gnoincoundb/cnsPrevPostList.do?mnuCd=${mnuCd}";
 		}
 		document.location.href = url;
 	}
@@ -172,7 +172,7 @@
 					<li style="border-style: solid; border-bottom-style:none; border-width: thin; background-color: gray;">집단상담</li>
 					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(3);">심리검사</li>
 					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(4);">연계의뢰서</li>
-					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(5);">수퍼비전</li>
+					<li style="border-style: solid; border-bottom-style:none; border-width: thin;" onclick="fn_goLink(5);">사전·사후 검사</li>
 				</ul>
 			</div>
 			

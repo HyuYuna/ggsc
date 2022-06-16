@@ -32,6 +32,8 @@
 		type="ggsc.support.service.ExcelVO" />
 	<typeAlias alias="userInfoVO"
 		type="ggsc.cnsmng.service.UserInfoVO" />
+	<typeAlias alias="prevPostVO"
+		type="ggsc.cnsmng.service.PrevPostVO" />
 
 
 	<!-- 상담접수관리 목록 -->
@@ -882,6 +884,78 @@
 			</isNotEmpty>
 		ORDER BY RNUM DESC
 	</select>
+	
+	<!-- 엑셀 다운(사전사후검사) -->
+	<select id="cnsMngDao.getCnsPrevPostListExcel" resultClass="egovMap" parameterClass="ExcelVO">
+		SELECT
+			row_number() over(ORDER BY gcpp.num DESC) rnum ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G15' AND ODR = gcpp.CNS_GB) AS cnsGb ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G089' AND ODR = gcpp.SIGUN_CD) AS sigunCd ,
+			(SELECT CENTER_NM FROM gs_center_m WHERE NUM = gcpp.CENTER_GB ) AS centerGb ,
+			(SELECT mclass_nm FROM gs_m_class WHERE hclass_cd = 'G19' AND odr = gcpp.CNSR_GB) AS cnsrGb ,
+			gum.user_nm AS user_nm ,
+			gum.birth_dt AS birth ,
+			
+			case 
+				gcpp.prev_post_gb 
+				when '1' then '사전검사' 
+				when '2' then '사후검사'
+				ELSE '알수없음'
+			END as prevPostGb ,
+			
+			case 
+				gum.gender
+				when 'M' then '남자' 
+				when 'F' then '여자' 
+				ELSE '알수없음' 
+			END AS gender ,
+			
+			gum.addr AS addr ,
+			gum.mobile AS mobile ,
+			gcpp.inspect_dt ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.major_appl_cd) AS majorApplCd ,
+			date_format(gcpp.db_ins_tm,'%Y.%m.%d') AS dbInsTm ,
+			gcpp.PREV_STATE ,
+			gcpp.POST_STATE
+			
+		FROM
+			gs_cns_prev_post AS gcpp
+		LEFT JOIN
+			gs_user_m AS gum ON gcpp.cnsle_id = gum.user_id
+		where
+			1=1
+			<isNotEmpty property="schPrevPostGb" prepend="AND">
+				gcpp.PREV_POST_GB = #schPrevPostGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCenterGb" prepend="AND">
+				gcpp.CENTER_GB = #schCenterGb#
+			</isNotEmpty>
+			<isNotEmpty property="schCnsleNm" prepend="AND">
+				gcpp.CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+			</isNotEmpty>
+			<!-- 권한별 검색 조건 -->
+			<isEqual property="authCd" compareValue="2">
+				AND gcpp.CENTER_GB = #schCenterGb#
+			</isEqual>
+			<isEqual property="authCd" compareValue="3">
+				AND gcpp.CENTER_GB = #schCenterGb#
+				<isEqual property="schCenterGb" compareValue="1">
+					AND gcpp.CNSR_ID = #regId#
+				</isEqual>
+			</isEqual>
+			<isEqual property="authCd" compareValue="4">
+				AND gcpp.CNSR_ID = #regId#
+			</isEqual>
+			<!-- 기간별 검색 -->
+			<isNotEmpty property="schStartDate" prepend="AND">
+				DATE_FORMAT(gcpp.INSPECT_DT, '%Y.%m.%d') <![CDATA[ >= ]]> #schStartDate#
+			</isNotEmpty>
+			<isNotEmpty property="schEndDate" prepend="AND">
+				DATE_FORMAT(gcpp.INSPECT_DT, '%Y.%m.%d') <![CDATA[ <= ]]> #schEndDate#
+			</isNotEmpty>
+		ORDER BY RNUM DESC
+	</select>
+	
 
 	<!-- 상담접수신청 ID중복체크 -->
 	<select id="cnsMngDao.idCheck" parameterClass="String"
@@ -4469,30 +4543,266 @@
 			NUM = #num#
 	</delete>
 	
+	<!-- 상담 사전 사후 검사 목록 -->
+	<select id="cnsMngDao.getCnsPrevPostList" parameterClass="prevPostVO" resultClass="EgovMap">
+		
+		SELECT
+			A.*
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY gcpp.NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY gcpp.NUM DESC) AS RNUM2 ,
+				gcpp.NUM ,
+				gcpp.CASE_NO ,
+				gcpp.PREV_POST_GB ,
+				gcpp.CNSLE_NM ,
+				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.MAJOR_APPL_CD) AS majorApplCdNm ,
+				DATE_FORMAT(gcpp.INSPECT_DT, '%Y-%m-%d') AS inspectDt ,
+				gcpp.INSPECT_CNT 
+			FROM
+				GS_CNS_PREV_POST AS gcpp
+		WHERE
+			1=1
+		<isNotEmpty property="schPrevPostGb" prepend="AND">
+			gcpp.PREV_POST_GB = #schPrevPostGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			gcpp.CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			gcpp.CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND gcpp.CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND gcpp.CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND gcpp.CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND gcpp.CNSR_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(gcpp.INSPECT_DT) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(gcpp.INSPECT_DT) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+		
+		) A
+		<![CDATA[
+			WHERE RNUM2 > #firstIndex# AND RNUM2 <= #lastIndex#
+			ORDER BY RNUM DESC
+		]]>
+		
+	</select>
+
+	<!-- 상담 사전 사후 검사 목록 갯수 -->
+	<select id="cnsMngDao.getCnsPrevPostListTotCnt"
+		parameterClass="prevPostVO" resultClass="Integer">
+		SELECT
+			COUNT(NUM)
+		FROM
+			GS_CNS_PREV_POST
+		where
+			1=1
+		<isNotEmpty property="schPrevPostGb" prepend="AND">
+			PREV_POST_GB = #schPrevPostGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCenterGb" prepend="AND">
+			CENTER_GB = #schCenterGb#
+		</isNotEmpty>
+		<isNotEmpty property="schCnsleNm" prepend="AND">
+			CNSLE_NM LIKE CONCAT('%', #schCnsleNm#, '%')
+		</isNotEmpty>
+		<!-- 권한별 검색 조건 -->
+		<isEqual property="authCd" compareValue="2">
+			AND CENTER_GB = #schCenterGb#
+		</isEqual>
+		<isEqual property="authCd" compareValue="3">
+			AND CENTER_GB = #schCenterGb#
+			<isEqual property="schCenterGb" compareValue="1">
+				AND CNSR_ID = #regId#
+			</isEqual>
+		</isEqual>
+		<isEqual property="authCd" compareValue="4">
+			AND CNSR_ID = #regId#
+		</isEqual>
+		<!-- 기간별 검색 -->
+		<isNotEmpty property="schStartDate" prepend="AND">
+	       	DATE(INSPECT_DT) <![CDATA[ >= ]]> DATE_FORMAT(#schStartDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	    <isNotEmpty property="schEndDate" prepend="AND">
+	    	DATE(INSPECT_DT) <![CDATA[ <= ]]> DATE_FORMAT(#schEndDate#,'%Y.%m.%d')
+	    </isNotEmpty>
+	</select>
+	
+	<!-- 상담 사전 사후 검사 상세보기 -->
+	<select id="cnsMngDao.getCnsPrevPostDetail"
+		parameterClass="Integer" resultClass="EgovMap">
+			SELECT
+				*
+			FROM
+				GS_CNS_PREV_POST
+			WHERE
+				NUM = #num#
+	</select>
+	
+	<!-- 상담 사전 검사 등록 -->
+	<insert id="cnsMngDao.insertCnsPrev" parameterClass="prevPostVO">
+		INSERT INTO GS_CNS_PREV_POST
+		(
+			CASE_NO ,
+			PREV_POST_GB ,
+			CNS_GB ,
+			ZONE_GB ,
+			LOCAL_GB ,
+			CENTER_GB ,
+			CNSLE_ID ,
+			CNSLE_NM ,
+			CNSR_ID ,
+			INSPECT_DT ,
+			INSPECT_CNT , 
+			PREV_STATE ,
+			PREV_SCORE ,
+			MAJOR_APPL_CD ,
+			SUGGESTION ,
+			DB_INS_TM
+
+		) VALUES (
+			#caseNo# ,
+			#prevPostGb# ,
+			#cnsGb# ,
+			#zoneGb# ,
+			#localGb# ,
+			#centerGb# ,
+			#cnsleId# ,
+			#cnsleNm# ,
+			#cnsrId# ,
+			#inspectDt# ,
+			#inspectCnt# ,
+			#prevState# ,
+			#prevScore# ,
+			#majorApplCd# ,
+			#suggestion# ,
+			NOW()
+		) 
+		
+	</insert>
+	
+	<!-- 상담 사후 검사 등록 -->
+	<insert id="cnsMngDao.insertCnsPost" parameterClass="prevPostVO">
+		INSERT INTO GS_CNS_PREV_POST
+		(
+			CASE_NO ,
+			PREV_POST_GB ,
+			CNS_GB ,
+			ZONE_GB ,
+			LOCAL_GB ,
+			CENTER_GB ,
+			CNSLE_ID ,
+			CNSLE_NM ,
+			CNSR_ID ,
+			INSPECT_DT ,
+			INSPECT_CNT ,
+			POST_STATE ,
+			POST_SCORE ,
+			MAJOR_APPL_CD ,
+			CNS_BEFORE ,
+			CNS_AFTER ,
+			SUGGESTION ,
+			DB_INS_TM
+
+		) VALUES (
+			#caseNo# ,
+			#prevPostGb# ,
+			#cnsGb# ,
+			#zoneGb# ,
+			#localGb# ,
+			#centerGb# ,
+			#cnsleId# ,
+			#cnsleNm# ,
+			#cnsrId# ,
+			#inspectDt# ,
+			#inspectCnt# ,
+			#postState# ,
+			#postScore# ,
+			#majorApplCd# ,
+			#cnsBefore# ,
+			#cnsAfter# ,
+			#suggestion# ,
+			NOW()
+		) 
+		
+	</insert>
+	
+	<!-- 상담 사전 검사 수정 -->
+	<update id="cnsMngDao.updateCnsPrev" parameterClass="prevPostVO">
+		UPDATE 
+			GS_CNS_PREV_POST
+		SET
+			INSPECT_DT  = #inspectDt#,
+			INSPECT_CNT = #inspectCnt#,
+			PREV_STATE = #prevState#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			PREV_SCORE = #prevScore#,
+			SUGGESTION = #suggestion#
+		WHERE
+			NUM = #num#
+	</update>
+	
+	<!-- 상담 사후 검사 수정 -->
+	<update id="cnsMngDao.updateCnsPost" parameterClass="prevPostVO">
+		UPDATE 
+			GS_CNS_PREV_POST
+		SET
+			INSPECT_DT  = #inspectDt#,
+			INSPECT_CNT = #inspectCnt#,
+			POST_STATE = #postState#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			POST_SCORE = #postScore#,
+			CNS_BEFORE = #cnsBefore#,
+			CNS_AFTER  = #cnsAfter#,
+			SUGGESTION = #suggestion#
+		WHERE
+			NUM = #num#
+	</update>
+	
+	<!-- 상담 사전 사후 검사 삭제 -->
+	<delete id="cnsMngDao.deleteCnsPrevPost" parameterClass="prevPostVO">
+		DELETE 
+			FROM GS_CNS_PREV_POST
+		WHERE 
+			NUM = #num#
+	</delete>
 
 	<!-- 슈퍼비전 목록 -->
 	<select id="cnsMngDao.getSuperVisionList" parameterClass="supperVisionVO" resultClass="EgovMap">
 		SELECT
-		A.*
+			A.*
 		FROM (
-		SELECT
-		ROW_NUMBER() OVER(ORDER BY M.NUM) AS RNUM ,
-		ROW_NUMBER() OVER(ORDER BY M.NUM DESC) AS RNUM2 ,
-		M.NUM ,
-		M.CNS_GB ,
-		M.REL_ORG_NM ,
-		M.CNSR_GB ,
-		M.REQ_DT ,
-		M.REQ_CNSR ,
-		M.ANSWER_YN ,
-		D.RPLY_CNSR
-		FROM
-		GS_SVSN_M AS M
-		LEFT JOIN
-		GS_SVSN_D AS D
-		ON M.NUM = D.NUM
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY M.NUM) AS RNUM ,
+				ROW_NUMBER() OVER(ORDER BY M.NUM DESC) AS RNUM2 ,
+				M.NUM ,
+				M.CNS_GB ,
+				M.REL_ORG_NM ,
+				M.CNSR_GB ,
+				M.REQ_DT ,
+				M.REQ_CNSR ,
+				M.ANSWER_YN ,
+				D.RPLY_CNSR
+			FROM
+				GS_SVSN_M AS M
+			LEFT JOIN
+				GS_SVSN_D AS D
+			ON M.NUM = D.NUM
 		WHERE
-		1=1
+			1=1
 		<isNotEmpty property="schCnsGb" prepend="AND">
 			M.CNS_GB = #schCnsGb#
 		</isNotEmpty>
@@ -5162,6 +5472,13 @@
 			CASE_NO = #caseNo#
 	</update>
 	
+	<update id="cnsMngDao.deleteExiPrevPost" parameterClass="java.lang.String">
+		DELETE 
+			FROM gs_cns_prev_post
+		WHERE 
+			CASE_NO = #caseNo#
+	</update>
+	
 	<update id="cnsMngDao.deleteCnsInfo" parameterClass="java.lang.String">
 		DELETE 
 			FROM gs_cns_Info
@@ -5422,6 +5739,20 @@
 		WHERE
 			CASE_NO = #caseNo#
 	</update>
+	
+	<!-- 기존 상담 사전·사후 기록지 수정 -->
+	<update id="cnsMngDao.updateExiPrevPost" parameterClass="cnsAcptVO">
+		UPDATE 
+			GS_CNS_PREV_POST
+		SET
+			CNS_GB = #cnsGb#, 
+			CENTER_GB = #centerGb#,
+		 	ZONE_GB = #zoneGb#,
+		    CNSLE_NM = #userNm#
+		WHERE
+			CASE_NO = #caseNo#
+	</update>
+	
 	
 	
 </sqlMap>

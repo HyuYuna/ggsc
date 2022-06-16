@@ -1,6 +1,5 @@
 package ggsc.cnsmng.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +13,7 @@ import ggsc.cnsmng.service.GcnsVO;
 import ggsc.cnsmng.service.LinkReqVO;
 import ggsc.cnsmng.service.PerCnsVO;
 import ggsc.cnsmng.service.PreExamVO;
+import ggsc.cnsmng.service.PrevPostVO;
 import ggsc.cnsmng.service.PsyCnsDoc1VO;
 import ggsc.cnsmng.service.PsyCnsDoc2VO;
 import ggsc.cnsmng.service.PsyCnsDocVO;
@@ -165,6 +165,12 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getCnsInfoListExcel(ExcelVO vo) {
 		return (List<EgovMap>)list("cnsMngDao.getCnsInfoListExcel", vo);
+	}
+	
+	// 엑셀 다운(사전사후검사)
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsPrevPostListExcel(ExcelVO vo) {
+		return (List<EgovMap>)list("cnsMngDao.getCnsPrevPostListExcel", vo);
 	}
 	
 	// 회원찾기
@@ -528,6 +534,47 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		delete("cnsMngDao.deleteLinkageReq", vo);
 	}
 	
+	// 상담 사전 사후 검사 목록
+	@SuppressWarnings("unchecked")
+	public List<EgovMap> getCnsPrevPostList(PrevPostVO vo) {
+		return (List<EgovMap>)list("cnsMngDao.getCnsPrevPostList", vo);
+	}
+	
+	// 상담 사전 사후 검사 목록 갯수
+	public int getCnsPrevPostListTotCnt(PrevPostVO vo) {
+		return (Integer)select("cnsMngDao.getCnsPrevPostListTotCnt", vo);
+	}
+	
+	// 상담 사전 사후 검사 목록 상세
+	public EgovMap getCnsPrevPostDetail(int num){
+		return (EgovMap)select("cnsMngDao.getCnsPrevPostDetail", num);
+	}
+	
+	// 상담 사전 검사 등록
+	public void insertCnsPrev(PrevPostVO vo) {
+		insert("cnsMngDao.insertCnsPrev", vo);
+	}
+	
+	// 상담 사후 검사 등록
+	public void insertCnsPost(PrevPostVO vo) {
+		insert("cnsMngDao.insertCnsPost", vo);
+	}
+	
+	// 상담 사전 검사 수정
+	public void updateCnsPrev(PrevPostVO vo) {
+		update("cnsMngDao.updateCnsPrev", vo);
+	}
+	
+	// 상담 사후 검사 수정
+	public void updateCnsPost(PrevPostVO vo) {
+		update("cnsMngDao.updateCnsPost", vo);
+	}
+	
+	// 상담 사전 사후 검사 삭제
+	public void deleteCnsPrevPost(PrevPostVO vo) {
+		delete("cnsMngDao.deleteCnsPrevPost", vo);
+	}
+	
 	// 슈퍼비전 목록
 	@SuppressWarnings("unchecked")
 	public List<EgovMap> getSuperVisionList(SupperVisionVO svo) {
@@ -717,6 +764,10 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.deleteCnsEnd", caseNo);
 	}
 	
+	public void deleteExiPrevPost(String caseNo) {
+		update("cnsMngDao.deleteExiPrevPost", caseNo);
+	}
+	
 	public void deleteCnsInfo(String userId) {
 		update("cnsMngDao.deleteCnsInfo", userId);
 	}
@@ -791,6 +842,10 @@ public class CounselMngDAO extends EgovAbstractDAO {
 	
 	public void updateExiCnsEnd(CnsAcptVO vo) {
 		update("cnsMngDao.updateExiCnsEnd", vo);
+	}
+	
+	public void updateExiPrevPost(CnsAcptVO vo) {
+		update("cnsMngDao.updateExiPrevPost", vo);
 	}
 	
 }

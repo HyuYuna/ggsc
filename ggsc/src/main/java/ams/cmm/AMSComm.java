@@ -540,7 +540,7 @@ public class AMSComm {
 			map.put("fileSize", file.getSize());
 
 			String[] exts = new String[] { "hwp", "pdf" , "jpg", "jpeg", "bmp", "png", "psd", "doc", "docx", "xls", "xlsx", "ppt",
-					"pptx", "zip", "txt" };
+					"pptx", "zip", "txt", "mp4" };
 
 			boolean uploadOK = false;
 			for (String a : exts) {

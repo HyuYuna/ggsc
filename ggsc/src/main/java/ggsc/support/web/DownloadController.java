@@ -578,6 +578,7 @@ public class DownloadController {
 			case 29: list = counselMngService.getEalyCnsDocListExcel(vo); break; // 초기상담신청서
 			case 30: list = counselMngService.getLinkageReqListExcel(vo); break; // 연계의뢰서
 			case 31: list = counselMngService.getCnsInfoListExcel(vo); break; // 정보제공상담
+			case 32: list = counselMngService.getCnsPrevPostListExcel(vo); break; // 정보제공상담
 		}
 
 		OutputStream out = null;

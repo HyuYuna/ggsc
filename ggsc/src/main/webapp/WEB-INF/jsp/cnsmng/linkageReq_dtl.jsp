@@ -45,6 +45,7 @@
 	  		$('#reqDept').val('${map.centerNm}');
 	  		$('#reqDeptPer').val('${map.userNm}');
 	  		$("#uBtn").css("display", "none");
+	  		$("#dBtn").css("display", "none");
 		  	$("#pdfDown").css("display", "none");
 		  	$("#linkReqName").val("${map.userNm}");
 		  	$("#linkReqNmTel").val("${map.mobile}");
@@ -278,7 +279,8 @@
 		var url = "/gnoincoundb/findUserPopup.do?userNm=" + userNm+"&cnsTargetGb=Y&cnsPerTargetGb=Y";
 		var name = "회원 찾기";
 		var option = "width = 530, height = 750, top = 50, left = 250, location = yes";
-		window.open(url, name, option);encodeURI(encodeURIComponent(jindan_name));
+		window.open(url, name, option);
+		encodeURI(encodeURIComponent(jindan_name));
 	}
 	
 	function fn_pdfDown() {
@@ -590,7 +592,7 @@
 					<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('${detail.num}');">수정</button>
 					<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg('S');">저장</button>
 					<c:if test="${map.authCd <= 1}">
-						<button type="button" class="btn-basic"  onClick="javascript:fn_delete();">삭제</button>
+						<button type="button" class="btn-basic" id="dBtn" onClick="javascript:fn_delete();">삭제</button>
 					</c:if>
 					<!-- <button type="button" class="btn-default" onClick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">저장</button> -->
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color:#fc692f;color:white;">목록</button>

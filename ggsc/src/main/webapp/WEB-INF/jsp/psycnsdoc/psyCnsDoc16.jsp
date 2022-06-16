@@ -34,6 +34,10 @@
 	  	getValues();
 	});
 	
+	$(document).on('click', '#state3', function(){
+		$("#etc").css('display', 'initial');
+	})
+	
 	
 	function getValues(){
 		var token = $("meta[name='_csrf']").attr("th:content");
@@ -114,6 +118,11 @@
 	}
 </script>
 <style>
+	input[type="radio"] + label {
+		margin-left  : 5px;
+		margin-right : 15px;
+	}
+
     .box-title {
         font-size: 35px;
     }
@@ -294,18 +303,38 @@
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="col">이&nbsp;&nbsp;&nbsp;&nbsp;름</th>
+                        <th scope="col">이&nbsp;&nbsp;름</th>
                         <td>
                             <input type="text" class="inp" id="cnsleNm" name="cnsleNm" style="width: 70%;" readonly><button type="button" class="btn-basic" style="padding: 2px 6px;background: skyblue;" onclick="javascript:findUserPopup();">찾기</button>
                         </td>
-                        <th scope="col">연락처</th>
+                        <th scope="col">성별</th>
                         <td>
-                            <input type="text" class="inp" id="mobile" name="telNo" oninput="this.value = this.value.replace(/[^0-9]/, '');" maxlength="20">
+                            <label for="genderM" style="margin-right: 5px;">남</label><input type="radio" id="genderM" name="no25" value="M" /> /
+                            <label for="genderF" style="margin-right: 5px;">여</label><input type="radio" id="genderF" name="no25" value="F" />
                         </td>
                         <th scope="col">검사일</th>
                         <td>
-                            <input type="text" id="datepicker1" class="inp" id="writeDt" name="writeDt" style="width: 80%;" readonly>
+                            <input type="text" class="inp" id="datepicker1" name="writeDt" style="width: 80%;" readonly>
                         </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">생년월일</th> 
+                        <td colspan="3">
+                        	<input type="text" id="birthDt" name="no26" onlyNumber maxlength=6 readonly/>
+                        </td>	
+                    	<th scope="col">학력(교육년수)</th>
+						<td>
+							<input type="text" style="width: 30px;" name="no27"  onlyNumber maxlength=2 />년
+						</td>
+                    </tr>
+                    <tr>
+                    	 <th scope="col">검사장소</th> 
+                    	 <td colspan="5">
+                    	 	<input type="radio" id="state1" name="state" value="1" /><label for="state1">치매안심센터</label>
+                    	 	<input type="radio" id="state2" name="state" value="2" /><label for="state2">대상자 집</label>
+                    	 	<input type="radio" id="state3" name="state" value="3" /><label for="state3">기타 :</label>
+                    	 	<input type="text" id="etc" name="etc" style="width: 200px; display:none;" />
+                    	 </td>
                     </tr>
                 </tbody>
             </table>

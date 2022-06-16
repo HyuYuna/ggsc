@@ -47,6 +47,7 @@ public class ExcelVO extends PageVO{
 	private String schGenderEduGb;
 	private String schPromotionGb;
 	private String schVisitOrgGb;
+	private String schPrevPostGb;
 	
 	
 	
@@ -294,15 +295,27 @@ public class ExcelVO extends PageVO{
 		this.schType = schType;
 	}
 
+	public String getSchPrevPostGb() {
+		return schPrevPostGb;
+	}
+
+	public void setSchPrevPostGb(String schPrevPostGb) {
+		this.schPrevPostGb = schPrevPostGb;
+	}
+	
 	@Override
 	public String toString() {
 		return "ExcelVO [list=" + list + ", number=" + number + ", header=" + Arrays.toString(header) + ", mapKey="
-				+ Arrays.toString(mapKey) + ", FileName=" + FileName + ", centerGb=" + centerGb + ", schCnsGb="
-				+ schCnsGb + ", schCenterGb=" + schCenterGb + ", schCnsleNm=" + schCnsleNm + ", schDateGb=" + schDateGb
-				+ ", schText=" + schText + ", schGubun=" + schGubun + ", schAcptNm=" + schAcptNm + ", schDt=" + schDt
-				+ ", schUserId=" + schUserId + ", schCnsrNm=" + schCnsrNm + ", schSigunNm=" + schSigunNm
-				+ ", schCnsrGb=" + schCnsrGb + ", schZoneGb=" + schZoneGb + ", schStartDate=" + schStartDate
-				+ ", schEndDate=" + schEndDate + ", schLocalGb=" + schLocalGb + ", schorganGb=" + schorganGb + "]";
+				+ Arrays.toString(mapKey) + ", FileName=" + FileName + ", centerGb=" + centerGb + ", authCd=" + authCd
+				+ ", schLinkReqGb=" + schLinkReqGb + ", schCnsGb=" + schCnsGb + ", schCenterGb=" + schCenterGb
+				+ ", schCnsleNm=" + schCnsleNm + ", schDateGb=" + schDateGb + ", schText=" + schText + ", schType="
+				+ schType + ", schGubun=" + schGubun + ", schAcptNm=" + schAcptNm + ", schDt=" + schDt + ", schUserId="
+				+ schUserId + ", schCnsrNm=" + schCnsrNm + ", schSigunNm=" + schSigunNm + ", schCnsrGb=" + schCnsrGb
+				+ ", schZoneGb=" + schZoneGb + ", schStartDate=" + schStartDate + ", schEndDate=" + schEndDate
+				+ ", schWriteYn=" + schWriteYn + ", schLocalGb=" + schLocalGb + ", schorganGb=" + schorganGb
+				+ ", schLeaderNm=" + schLeaderNm + ", schPgrmNm=" + schPgrmNm + ", schJoinOrgCd=" + schJoinOrgCd
+				+ ", schEduManGb=" + schEduManGb + ", schGenderEduGb=" + schGenderEduGb + ", schPromotionGb="
+				+ schPromotionGb + ", schVisitOrgGb=" + schVisitOrgGb + ", schPrevPostGb=" + schPrevPostGb + "]";
 	}
 
 	public String[] getHeader() {
@@ -471,17 +484,11 @@ public class ExcelVO extends PageVO{
 						new String[] {"순번",  "상담구분", "상담자구분", "시군구분", "센터구분", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "상담일시", "내담자와의관계", "상담방법", "상담경위", "주호소문제", "등록일시", "주/야간"},
 						new String[] {"rnum", "cnsGb", "cnsrGb", "sigunCd", "centerGb", "userNm", "birth", "gender", "addr", "mobile", "cnsDt", "cnsleRel", "cnsMethd", "cnsDtl", "majorApplCd", "dbInsTm", "shift"});
 				break;
-				
-			/*case 27 :
-	            setInit("테스트", 
-	                  new String[] { "구분||1||4", "상담센터||1||4", "1-1. 성별||8||1", "1-2. 내담자와의 관계||8||1", "[ROW]",
-	                              "계||2||2", "성별||6||1", "", "[ROW]",
-	                              "소계||2||1", "남||2||1", "여||2||1", "[ROW]",
-	                              "명","건","명","건","명","건","명","건"
-	                              }
-	            , new String[] {});
-	            
-	            break;*/
+			case 32 : 
+				setInit("사전사후검사",
+						new String[] {"순번",  "상담구분", "상담자구분", "센터구분", "검사구분", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "검사일자", "주호소문제", "사전검사점수", "사후검사점수"},
+						new String[] {"rnum", "cnsGb", "cnsrGb", "centerGb", "prevPostGb", "userNm", "birth", "gender", "addr", "mobile", "inspectDt", "majorApplCd", "prevState", "postState"});
+				break;
 		}
 	}
 	

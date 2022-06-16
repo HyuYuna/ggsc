@@ -505,6 +505,26 @@
 			PR_ATVY_NO = #num#
 	</select>
 	
+	<!-- 상담사전사후기록지  PDF -->
+	<select id="supportDao.PDFcnsPrevPostDtl" parameterClass="PdfVO" resultClass="egovMap">
+		SELECT
+			cnsle_nm ,
+			case_no ,
+			date_format(STR_TO_DATE(inspect_dt,'%Y.%m.%d'),'%Y년 %m월 %d일') AS writeDt  ,
+			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.MAJOR_APPL_CD) AS survey1y ,
+			prev_state AS survey3y ,
+			post_state AS survey3n ,
+			prev_score AS survey4y ,
+			post_score AS survey4n ,
+			cns_before AS survey7y ,
+			cns_after AS survey7n ,
+			suggestion AS survey8y
+		FROM
+			gs_cns_prev_post as gcpp
+		WHERE 
+			num = #num#
+	</select>
+	
 	<!-- 심리검사1 - 상담사전사후기록지 PDF -->
 	<select id="supportDao.PDFpsyCnsDoc1" parameterClass="PdfVO" resultClass="egovMap">
 		SELECT 
