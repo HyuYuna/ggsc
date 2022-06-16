@@ -1300,32 +1300,18 @@ public class CounselMngController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
-		// 초기상담신청서 목록
-		List<EgovMap> ealyList = counselMngService.getEalyCnsDocList(vo);
-		int totalPageCnt = counselMngService.getEalyCnsDocListTotCnt(vo);
-
-		model.addAttribute("ealyList", ealyList);
 		model.addAttribute("vo", vo);
 
 		// 상담일지 이력정보
 		List<EgovMap> cnsList = counselMngService.getCnsDiaHysList(vo);
-		int totalPageCnt2 = counselMngService.getCnsDiaHysListTotCnt(vo);
-		model.addAttribute("totalPageCnt2", totalPageCnt2);
-		paginationInfo.setTotalRecordCount(totalPageCnt2); // 전체 게시물 건 수
+		int totalPageCnt = counselMngService.getCnsDiaHysListTotCnt(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("cnsList", cnsList);
-		// 개인상담 재신청
-		//List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(vo);
-		// int totalPageCnt3 = counselMngService.getCnsCntReListTotCnt(vo);
-		//model.addAttribute("cnsCntReList", cnsCntReList);
-		
-		// 개인상담 종결
-		List<EgovMap> cnsCntEndList = counselMngService.getCnsCntEndList(vo);
-		//int totalPageCnt4 = counselMngService.getCnsCntEndListTotCnt(vo);
-		model.addAttribute("cnsCntEndList", cnsCntEndList);
-		
 		model.addAttribute("authCd", userAuth);
+		
 		return "cnsmng/perCns_list.main";
 	}
 
@@ -1550,41 +1536,16 @@ public class CounselMngController {
 		vo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
 		vo.setLastIndex((vo.getCurrentPageNo()) * 10);
 
-		EalyCnsDocVO eVo = new EalyCnsDocVO();
-		eVo.setLocalGb(localGb);
-		eVo.setCenterGb(centerGb);
-		eVo.setZoneGb(zoneGb);
-		eVo.setSchCenterGb(schCenterGb);
-		eVo.setSchCnsGb(schCnsGb);
-		eVo.setFirstIndex((vo.getCurrentPageNo() - 1) * 10);
-		eVo.setLastIndex((vo.getCurrentPageNo()) * 10);
-		eVo.setSchStartDate(vo.getSchStartDate());
-		eVo.setSchEndDate(vo.getSchEndDate());
-		
-		// 초기상담신청서 목록
-		List<EgovMap> ealyList = counselMngService.getEalyCnsDocList(eVo);
-		int totalPageCnt = counselMngService.getEalyCnsDocListTotCnt(eVo);
-
-		model.addAttribute("ealyList", ealyList);
 		model.addAttribute("vo", vo);
 
 		// 집단상담일지 이력정보
 		List<EgovMap> gCnsList = counselMngService.getGcnsList(vo);
-		int totalPageCnt2 = counselMngService.getGcnsListTotCnt(vo);
-		model.addAttribute("totalPageCnt2", totalPageCnt2);
-		paginationInfo.setTotalRecordCount(totalPageCnt2); // 전체 게시물 건 수
+		int totalPageCnt = counselMngService.getGcnsListTotCnt(vo);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		paginationInfo.setTotalRecordCount(totalPageCnt); // 전체 게시물 건 수
 
 		model.addAttribute("paginationInfo", paginationInfo);
 		model.addAttribute("gCnsList", gCnsList);
-		// 집단상담 재신청
-		List<EgovMap> cnsCntReList = counselMngService.getCnsCntReList(eVo);
-		// int totalPageCnt3 = counselMngService.getCnsCntReListTotCnt(vo);
-		model.addAttribute("cnsCntReList", cnsCntReList);
-		// 집단상담 종결
-		List<EgovMap> cnsCntEndList = counselMngService.getCnsCntEndList(eVo);
-		// int totalPageCnt4 = counselMngService.getCnsCntEndListTotCnt(vo);
-		model.addAttribute("cnsCntEndList", cnsCntEndList);
-
 		model.addAttribute("authCd", userAuth);
 		
 		return "cnsmng/gCns_list.main";

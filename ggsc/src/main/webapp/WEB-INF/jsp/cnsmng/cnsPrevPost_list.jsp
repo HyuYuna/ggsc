@@ -200,7 +200,7 @@
 						<th scope="col">주호소 문제</th>
 						<th scope="col">검사일자</th>
 						<th scope="col">회기</th>
-						<th scope="col">pdf</th>
+						<th scope="col">PDF</th>
 					</tr>
 				</thead>
 				<tbody id="tby2">
