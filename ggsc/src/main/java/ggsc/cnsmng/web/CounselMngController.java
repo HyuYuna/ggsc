@@ -2575,13 +2575,6 @@ public class CounselMngController {
 		vo.setCnsrId((String)login.get("userId"));
 		String msg = "";
 
-		switch (vo.getpsyIdx()) {
-		case 101:
-			vo.setwriteDt(String.format("20%s.%s.%s", vo.getno1(), vo.getno2(), vo.getno3()));
-			vo.setendDt(String.format("20%s.%s.%s", vo.getno4(), vo.getno5(), vo.getno6()));
-			break;
-		}
-
 		if (vo.getdtlIdx() == 0) {
 			counselMngService.insertPsyCnsDoc(vo);
 			msg = "등록이 완료 됐습니다.";

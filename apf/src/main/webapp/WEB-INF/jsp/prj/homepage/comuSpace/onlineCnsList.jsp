@@ -15,7 +15,18 @@
 		});
 		
 	  	function fn_detail(num){
-			document.location.href = "/gnoincoun/onlineCnsDtl.do?num="+num;
+	  		var f = document.createElement("form");
+	  		var obj;
+	  		obj = document.createElement('input');
+	  		obj.setAttribute('type', 'hidden');
+	  		obj.setAttribute('name', 'num');
+	  		obj.setAttribute('value', num);
+	  		
+	  		f.appendChild(obj);
+	  		f.setAttribute("method", "post");
+	  		f.setAttribute("action", "/gnoincoun/onlineCnsDtl.do");
+			document.body.appendChild(f);
+			f.submit();
 		}
 	  	
         /* pagination 페이지 링크 function */

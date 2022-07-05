@@ -726,7 +726,7 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 		return cnsMngDao.getCnsPrevPostDetail(num);
 	}
 	
-	// 상담 사전 사후 검사 등록
+	/*// 상담 사전 사후 검사 등록
 	@Override
 	public void insertCnsPrevPost(PrevPostVO vo) {
 		
@@ -776,6 +776,18 @@ public class CounselMngServiceImpl extends EgovAbstractServiceImpl implements Co
 			// 상담 사후 검사 수정
 			cnsMngDao.updateCnsPost(vo);
 		}
+	}*/
+	
+	// 상담 사전 사후 검사 등록
+	@Override
+	public void insertCnsPrevPost(PrevPostVO vo) {
+		cnsMngDao.insertCnsPrevPost(vo);
+	}
+	
+	// 상담 사전 사후 검사 수정
+	@Override
+	public void updateCnsPrevPost(PrevPostVO vo) {
+		cnsMngDao.updateCnsPrevPost(vo);
 	}
 	
 	// 상담 사전 사후 검사 삭제

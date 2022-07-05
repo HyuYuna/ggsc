@@ -486,8 +486,8 @@ public class ExcelVO extends PageVO{
 				break;
 			case 32 : 
 				setInit("사전사후검사",
-						new String[] {"순번",  "상담구분", "상담자구분", "센터구분", "검사구분", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "검사일자", "주호소문제", "사전검사점수", "사후검사점수"},
-						new String[] {"rnum", "cnsGb", "cnsrGb", "centerGb", "prevPostGb", "userNm", "birth", "gender", "addr", "mobile", "inspectDt", "majorApplCd", "prevState", "postState"});
+						new String[] {"순번",  "상담구분", "상담자구분", "센터구분", "검사구분", "내담자명", "생년월일", "성별", "주소", "내담자연락처", "검사일자", "주호소문제", "사전검사점수", "사후검사점수", "회기", "주호소 사전점수", "주호소 사후점수"},
+						new String[] {"rnum", "cnsGb", "cnsrGb", "centerGb", "prevPostGb", "userNm", "birth", "gender", "addr", "mobile", "inspectDt", "majorApplCd", "prevState", "postState", "inspectCnt", "prevScore", "postScore"});
 				break;
 		}
 	}

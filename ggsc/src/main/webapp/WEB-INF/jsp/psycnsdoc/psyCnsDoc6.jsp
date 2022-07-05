@@ -74,8 +74,8 @@
 			alert('서버 오류가 발생하였습니다.');
 		});
 		
-		
 	}
+	
 	function fn_reg(){
 		var cnsGb = $("#cnsGb").val();
 		if(cnsGb == "노인상담") {

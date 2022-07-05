@@ -41,7 +41,12 @@ table { width:100%; }
 
 .max-hidden { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
+.bRight-none { border-right: none !important; }
+.bLeft-none { border-left: none !important; }
+
 .q-box{ width: 100%;}      
+
+.txt-center { text-align:center; }
 </style>
 </head>
 <body>
@@ -67,253 +72,344 @@ table { width:100%; }
                     <tr>
                         <th scope="col">이름</th>
                         <td>##내담자명##</td>
-                        <th scope="col">연락처</th>
-                        <td>##설문1Y##</td>
+                        <th scope="col">성별</th>
+					    <td>##성별##</td>
                         <th scope="col">검사일</th>
                         <td>##날짜##</td>
                     </tr>
+                    <tr>
+                        <th scope="col">생년월일</th>
+                        <td colspan="3">##생년월일##</td>
+                        <th scope="col">학력(교육년수)</th>
+					    <td>##설문1Y##</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">검사장소</th>
+                        <td colspan="3">
+                            ##설문1N## ##설문2Y##
+                        </td>
+                        <th scope="col">검사자</th>
+                        <td>##설문2N##</td>
+                    </tr>
                 </tbody>
             </table>
+            
             <table class="tbl2 mt15">
                 <colgroup>
                     <col style="width: 8%;" />
+                    <col style="width: 10%;" />
                     <col style="width: 5%;" />
-                    <col style="width: 55%;" />
-                    <col style="width: 7%;" />
-                    <col style="width: 7%;" />
+                    <col style="width: 15%;" />
+                    <col style="width: 35%;" />
+                    <col style="width: 12%;" />
                 </colgroup>
                 <thead>
                     <tr class="bTop bLeft bRight bBottom">
-                        <th scope="col" colspan="3" class="bRight2 bgGt">질문항목</th>
-                        <th scope="col" class="bgGf">오답</th>
-                        <th scope="col" class="bgGt">정답</th>
+                        <th scope="col" colspan="5" class="bRight2 bgGt">질문항목</th>
+                        <th scope="col" class="bgGt">점수</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5"><br/>시<br/>간<br/>지<br/>남<br/>력</td>
+                        <td class="bRight2" rowspan="6"><br/>지<br/>남<br/>력<br/></td>
+                        <td class="bRight2" rowspan="5">시간</td>
                         <td class="bRight-none noto400">1.</td>
-                        <td class="txt-left bRight2 noto400">올해는 몇 년도 입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문2N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문2Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">오늘 날짜를 말씀해주세요.</td>
+                        <td class="bRight2 bgGf"></td>
+                    </tr>
+                    <tr>
+                        <td class="bRight-none noto400">(1)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">올해는 몇 년도 입니까?</td>
+                        <td class="bRight2 bgGf"> ##설문3Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">지금은 몇 월입니까?</td>
+                        <td class="bRight2 bgGf"> ##설문3N##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(3)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">오늘은 며칠입니까?</td>
+                        <td class="bRight2 bgGf"> ##설문4Y##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(4)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">오늘은 무슨 요일입니까?</td>
+                        <td class="bRight2 bgGf"> ##설문4N##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2">장소</td>
                         <td class="bRight-none noto400">2.</td>
-                        <td class="txt-left bRight2 noto400">지금은 무슨 계절입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문3N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문3Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">지금 ##내담자명## 님이 계신 여기는 어디인가요? 이 장소가 어디인지 말씀해 주세요.</td>
+                        <td class="bRight2 bgGf"> ##설문5Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="5"><br/>기<br/>억<br/>력<br/></td>
+                        <td class="bRight2" rowspan="5">기억등록</td>
                         <td class="bRight-none noto400">3.</td>
-                        <td class="txt-left bRight2 noto400">오늘은 며칠입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문4N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문4Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">지금부터 외우셔야 하는 문장 하나를 불러드리겠습니다.<br/>끝까지 잘 듣고 따라 해 보세요.</td>
+                        <td class="bRight2 bgGf" rowspan="5">점수없음</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1차)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            민수는  ##설문5N## / 자전거를 타고  ##설문6Y## / 공원에 가서 ##설문6N## / 11시부터 ##설문7Y## / 야구를 했다 ##설문7N##
+                        </td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400"></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            잘 하셨습니다. 제가 다시 한번 불러드리겠습니다.
+                            이번에도 다시 여쭈어 볼테니 잘 듣고 따라해보세요.
+                        </td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1차)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            민수는  ##설문8Y## / 자전거를 타고  ##설문8N## / 공원에 가서 ##설문9Y## / 11시부터 ##설문9N## / 야구를 했다 ##설문10Y##
+                        </td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400"></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">제가 이 문장을 나중에 여쭤보겠습니다. 잘 기억하세요.</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="5"><br/>주<br/>의<br/>력<br/></td>
+                        <td class="bRight2" rowspan="3">숫자 바로 따라 말하기</td>
                         <td class="bRight-none noto400">4.</td>
-                        <td class="txt-left bRight2 noto400">오늘은 무슨 요일입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문5N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문5Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">제가 불러드리는 숫자를 그대로 따라 해 주세요. (대상자가 잘 이해하지못하는 경우) 제가 1-2-3 하고 부르면, 똑같이 1-2-3 이렇게 말씀해 주세요.</td>
+                        <td class="bRight2 bgGf"></td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">6 – 9 – 7 – 3</td>
+                        <td class="bRight2 bgGf"> ##설문10N##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2)</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">5 – 7 – 2 – 8 – 4</td>
+                        <td class="bRight2 bgGf"> ##설문11Y##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="2">거꾸로 말하기</td>
                         <td class="bRight-none noto400">5.</td>
-                        <td class="txt-left bRight2 noto400">지금은 몇 월입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문6N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문6Y##'>●</span></td>
+                        <td class="bRight2 noto700" colspan="2">
+                            제가 불러드리는 말을 끝에서부터 거꾸로 따라 해 주세요. 
+                            (대상자가 잘 이해하지 못하는 경우) OOO님 (대상자 이름) 이름을 거꾸로 하면 OOO 이렇게 되지요? 
+                            마찬가지로 제가 부르는 말을 거꾸로 말씀해 주세요.
+                        </td>
+                        <td class="bRight2 bgGf"></td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5"><br/>장<br/>소<br/>지<br/>남<br/>력</td>
+                        <td class="bRight-none noto400"></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">금수강산</td>
+                        <td class="bRight2 bgGf"> ##설문11N##</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2"><br/>시<br/>공<br/>간<br/>기<br/>능<br/></td>
+                        <td class="bRight2">도형모사 (그림1)</td>
                         <td class="bRight-none noto400">6.</td>
-                        <td class="txt-left bRight2 noto400">우리가 있는 이곳은 무슨 도/특별시/광역시입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문7N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문7Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            (그림을 가리키며) 여기 점을 연결하여 그린 그림이 있습니다.
+                            이 그림과 똑같이 되도록 (아래 반응 공간을 가리키며) 같은 위치에 그려보세요.
+                            점을 연결해서 그리시면 됩니다.
+                        </td>
+                        <td class="bRight2 bgGf">##설문12Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="3"><br/>집<br/>행<br/>기<br/>능<br/></td>
+                        <td class="bRight2">시각추론1 (그림2)</td>
                         <td class="bRight-none noto400">7.</td>
-                        <td class="txt-left bRight2 noto400">여기는 무슨 시/군입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문8N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문8Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            여기 모양들이 정해진 순서로 나옵니다. 모양들을 보면서 어떤 순서로 나오는지 생각해 보세요. 
+                            자(도형을 왼쪽부터 하나씩 가리키며), 네모, 동그라미, 세모, 네모, 빈칸, 세모, 그렇다면 여기 빈칸에는 무엇이 들어가야 할까요?
+                        </td>
+                        <td class="bRight2 bgGf">##설문12N##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2">시각추론2 (그림3)</td>
                         <td class="bRight-none noto400">8.</td>
-                        <td class="txt-left bRight2 noto400">여기는 무슨 구/동/읍/면입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문9N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문9Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            (맨 앞 그림을 가리키며) 여기 네 칸 중의 한 칸에 별이 하나 있습니다. 두 번째 그림을 가리키며) 별이 이렇게 다른 위치로 이동합니다. 
+                            어떤 식으로 이동하는지 잘 생각해 보십시오. (마지막 반응 칸을 가리키며) 여기서는 네 칸 중에 별이 어디에 위치하게 될까요?
+                        </td>
+                        <td class="bRight2 bgGf">##설문13Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2">언어추론 (그림4)</td>
                         <td class="bRight-none noto400">9.</td>
-                        <td class="txt-left bRight2 noto400">우리는 지금 이 건물의 몇 층에 있습니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문10N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문10Y##'>●</span></td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            카드에 숫자와 계절이 하나씩 적혀 있습니다. ‘1-봄-2-여름~’ 이렇게 연결되어 나갑니다. 
+                            (화살 표시된 빈칸을 가리키며) 여기는 무엇이 들어갈 차례일까요?
+                        </td>
+                        <td class="bRight2 bgGf">##설문13N##</td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="12"><br/>기<br/>억<br/>력<br/></td>
+                        <td class="bRight2" rowspan="12">기억회상/재인1</td>
                         <td class="bRight-none noto400">10.</td>
-                        <td class="txt-left bRight2 noto400">이 장소의 이름이 무엇입니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문11N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문11Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5"><br/>기<br/>억<br/>력<br/>&#8214;<br/>기<br/>억<br/>등<br/>록</td>
-                        <td class="bRight-none noto400 bBot-none">11.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 세 가지 물건의 이름을 말씀드리겠습니다. 끝가지 다 들으신 다음에 세 가지 물건의 이름을 모두 말씀해 보십시오. 그리고 몇 분 후에는 그 세 가지 물건의 이름들을 다시 물어볼 것이니 들으신 물건의 이름을 잘 기억하고 계십시오. 나무 – 자동차 – 모자</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            제가 조금 전에 외우라고 불러드렸던 문장을 다시 한번 말씀해 주세요.
+                            [조금 전에 외우시라고 불러드렸던 문장(한 문장의 이야기)을 말씀해 보세요.
+                        </td>
                         <td class="bRight2 bgGf" rowspan="2"></td>
-                        <td class="bgGt" rowspan="2"></td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">이제 OOO님께서 방금 들으신 3가지 물건 이름을 모두 말씀해 보세요.</td>
+                        <td class="noto400 txt-center" colspan="2">기억회상(각 2점)</td>
+                        <td class="noto400 txt-center">재인(기억회상 과제에서 회상하지 못한 항목만 시행. 각 1점)</td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">나무</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문12N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문12Y##'>●</span></td>
+                        <td class="noto400 txt-center" colspan="2" rowspan="2">민수 ##설문14Y##</td>
+                        <td class="noto400 txt-center">제가 아까 어떤 사람의 이름을 말했는데 누구일까요?</td>
+                        <td class="bRight2 bgGf" rowspan="2">##설문14N##</td>
+                    </tr>
+                    <tr>
+                        <td class="noto400 txt-center">
+			                            영수<span class='icon circle ##설문15Y##'>●</span>
+			                            민수<span class='icon circle ##설문15N##'>●</span>
+			                            진수<span class='icon circle ##설문16Y##'>●</span>
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">자동차</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문13N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문13Y##'>●</span></td>
+                        <td class="noto400 txt-center" colspan="2" rowspan="2">자전거 ##설문16N##</td>
+                        <td class="noto400 txt-center">무엇을 타고 갔습니까?</td>
+                        <td class="bRight2 bgGf" rowspan="2">##설문17Y##</td>
+                    </tr>
+                    <tr>
+                        <td class="noto400 txt-center">
+                                        버스<span class='icon circle ##설문17N##'>●</span>
+			                            오토바이<span class='icon circle ##설문18Y##'>●</span>
+			                            자전거<span class='icon circle ##설문18N##'>●</span>
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">모자</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문14N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문14Y##'>●</span></td>
+                        <td class="noto400 txt-center" colspan="2" rowspan="2">공원 ##설문19Y##</td>
+                        <td class="noto400 txt-center">어디에 갔습니까?</td>
+                        <td class="bRight2 bgGf" rowspan="2">##설문19N##</td>
+                    </tr>
+                    <tr>
+                        <td class="noto400 txt-center">
+                                      공원<span class='icon circle ##설문20Y##'>●</span>
+			                            놀이터<span class='icon circle ##설문20N##'>●</span>
+			                            운동장<span class='icon circle ##설문21Y##'>●</span>
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5"><br/>주<br/>의<br/>집<br/>중<br/>력</td>
-                        <td class="bRight-none noto400 bBot-none">12.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">100에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문15N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문15Y##'>●</span></td>
+                        <td class="noto400 txt-center" colspan="2" rowspan="2">11시 ##설문21N##</td>
+                        <td class="noto400 txt-center">몇 시부터 했습니까?</td>
+                        <td class="bRight2 bgGf" rowspan="2">##설문22Y##</td>
+                    </tr>
+                    <tr>
+                        <td class="noto400 txt-center">
+                                        10시<span class='icon circle ##설문22N##'>●</span>
+			                            11시<span class='icon circle ##설문23Y##'>●</span>
+			                            12시<span class='icon circle ##설문23N##'>●</span>
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문16N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문16Y##'>●</span></td>
+                        <td class="noto400 txt-center" colspan="2" rowspan="2">야구 ##설문24Y##</td>
+                        <td class="noto400 txt-center">무엇을 했습니까?</td>
+                        <td class="bRight2 bgGf" rowspan="2">##설문24N##</td>
+                    </tr>
+                    <tr>
+                        <td class="noto400 txt-center">
+                                        농구<span class='icon circle ##설문25Y##'>●</span>
+			                            축구<span class='icon circle ##설문25N##'>●</span>
+			                            야구<span class='icon circle ##설문26Y##'>●</span>
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 bBot-none noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문17N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문17Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 bBot-none noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문18N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문18Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="txt-left bRight2 noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문19N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문19Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="8"><br/>기<br/>억<br/>력<br/>&#8214;<br/>기<br/>억<br/>회<br/>상</td>
-                        <td class="bRight-none noto400 bBot-none">13.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">조금 전에 제가 기억하려고 말씀드렸던 세 가지 물건의 이름이 무엇인지 말씀하여 주십시오.</td>
+                        <td class="bRight2" rowspan="5"><br/>언<br/>어<br/>기<br/>능<br/></td>
+                        <td class="bRight2" rowspan="4">이름대기 (그림5)</td>
+                        <td class="bRight-none noto400">11.</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            여기 있는 이 그림의 이름을 말씀해 주세요. 이것은 무엇입니까?
+                        </td>
                         <td class="bRight2 bgGf"></td>
-                        <td class="bgGt"></td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">나무</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문20N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문20Y##'>●</span></td>
+                        <td class="bRight-none noto400">(1)</td>
+                        <td class="txt-cente bRight2 noto400">칫솔</td>
+                        <td class="txt-left bRight2 noto400">대상자 반응 ##설문26N##</td>
+                        <td class="bRight2 bgGf">##설문27Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">자동차</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문21N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문21Y##'>●</span></td>
+                        <td class="bRight-none noto400">(2)</td>
+                        <td class="txt-cente bRight2 noto400">그네</td>
+                        <td class="txt-left bRight2 noto400">대상자 반응 ##설문27N##</td>
+                        <td class="bRight2 bgGf">##설문28Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">모자</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문22N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문22Y##'>●</span></td>
+                        <td class="bRight-none noto400">(3)</td>
+                        <td class="txt-cente bRight2 noto400">주사위</td>
+                        <td class="txt-left bRight2 noto400">대상자 반응 ##설문28N##</td>
+                        <td class="bRight2 bgGf">##설문29Y##</td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none">14.</td>
-                        <td class="bRight2 noto400 bBot-none">(실제 시계를 보여주며) 이것을 무엇이라고 합니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문23N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문23Y##'>●</span></td>
+                        <td class="bRight2">이해력</td>
+                        <td class="bRight-none noto400">12.</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            제가 말씀드리는 대로 행동으로 그대로 보여주십시오.
+                            박수를 두 번 치고, 주먹을 쥐세요.
+                        </td>
+                        <td class="bRight2 bgGf">##설문29N##</td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="bRight2 noto400">(실제 연필을 보여주며) 이것을 무엇이라고 합니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문24N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문24Y##'>●</span></td>
+                        <td class="bRight2" rowspan="2"><br/>집<br/>행<br/>기<br/>능<br/></td>
+                        <td class="bRight2" rowspan="2">유창성</td>
+                        <td class="bRight-none noto400">13.</td>
+                        <td class="txt-left bRight2 noto400" colspan="2">
+                            지금부터 제가 그만이라고 말할 때까지 과일이나 채소를 최대한 많이 이야기해 주세요. 준비되셨지요? 자, 과일이나 채소 이름을 말씀해 주세요. 시작!
+                        </td>
+                        <td class="bRight2 bgGf">##설문30Y## 개</td>
                     </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none">15.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 하는 말을 끝가지 듣고 따라해 보십시오. 한번만 말씀드릴 것이니 잘 듣고 따라 하십시오.</td>
-                        <td class="bRight2 bgGf" rowspan="2"><span class='icon circle ##설문25N##'>●</span></td>
-                        <td class="bgGt" rowspan="2"><span class='icon circle ##설문25Y##'>●</span></td>
+                   <tr class="bLeft bRight">
+                        <td class=" txt-left bRight2 noto400 bBottom" colspan="3">
+                            [반응기록/제한 시간 1분] 0-8개: 0점 / 9-14개: 1점 / 15개 이상: 2점 <br/>
+                            ##설문30N##
+                        </td>
+                        <td class="bRight2 bgGf bBottom">##설문31Y##</td>
                     </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="bRight2">간장공장공장장</td>
+                </tbody>
+            </table>
+            
+            <table class="table-write">
+                <colgroup>
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" class="txtIn20 bgG">인지영역</th>
+                        <th scope="col" class="bgG">지남력</th>
+                        <th scope="col" class="bgG">주의력</th>
+                        <th scope="col" class="bgG">시공간지능</th>
+                        <th scope="col" class="bgG">집행기능</th>
+                        <th scope="col" class="bgG">기억력</th>
+                        <th scope="col" class="bgG">언어기능</th>
+                        <th scope="col" class="bgG">총점</th>
                     </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5"><br/>실<br/>행<br/>능<br/>력</td>
-                        <td class="bRight-none noto400 bBot-none">16.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">지금부터 제가 말씀드리는 대로 해 보십시오. 한 번만 말씀드릴 것이니 잘 들으시고 그대로 해 보십시오.(지시를 끝낸 후에 종이를 건네준다. 지시를 반복하거나 옆에서 도와주면 안 된다.)</td>
-                        <td class="bRight2 bgGf bBot-none"></td>
-                        <td class="bgGt bBot-none"></td>
+                </thead>
+                <tbody>
+                    <tr class="bBottom2">
+                        <td class="txt-center">점수</td>
+                        <td class="txt-center">##설문31N##</td>
+                        <td class="txt-center">##설문32Y##</td>
+                        <td class="txt-center">##설문32N##</td>
+                        <td class="txt-center">##설문33Y##</td>
+                        <td class="txt-center">##설문33N##</td>
+                        <td class="txt-center">##설문34Y##</td>
+                        <td class="txt-center">##설문34N##</td>
                     </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 종이를 한 장 드릴 것입니다. 그러면 그 종이를 오른손으로 받아, 반으로 접은 다음, 무릎 위에 올려놓으십시오.</td>
-                        <td class="bRight2 bgGf"></td>
-                        <td class="bgGt"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">오른손으로 받는다.</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문26N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문26Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">반으로 접는다.</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문27N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문27Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">무릎 위에 놓는다.</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문28N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문28Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="2"><br/>시<br/>공<br/>간<br/>구<br/>성<br/>능<br/>력</td>
-                        <td class="bRight-none noto400 bBot-none">17.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">(겹친 오각형 그림을 가리키며) 여기에 오각형이 겹쳐져 있는 그림이 있습니다.
-                            이 그림을 아래 빈 곳에 그대로 그려보십시오.</td>
-                        <td class="bRight2 bgGf" rowspan="2"><span class='icon circle ##설문29N##'>●</span></td>
-                        <td class="bgGt" rowspan="2"><span class='icon circle ##설문29Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700"><!-- <img src="/gnoincoundb/img/img.png"> --></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2 bBottom" rowspan="2"><br/>판<br/>단<br/>및<br/>추<br/>상<br/>적<br/>사<br/>고<br/>력</td>
-                        <td class="bRight-none noto400">18.</td>
-                        <td class="txt-left bRight2 noto400">옷은 왜 빨아서 입습니까?</td>
-                        <td class="bRight2 bgGf"><span class='icon circle ##설문30N##'>●</span></td>
-                        <td class="bgGt"><span class='icon circle ##설문30Y##'>●</span></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBottom">19.</td>
-                        <td class=" txt-left bRight2 noto400 bBottom">티끌 모아 태산은 무슨 뜻입니까?</td>
-                        <td class="bRight2 bgGf bBottom"><span class='icon circle ##설문31N##'>●</span></td>
-                        <td class="bgGt bBottom"><span class='icon circle ##설문31Y##'>●</span></td>
+                    <tr class="bBottom2">
+                        <td class="txt-center">판정</td>
+                        <td class="txt-center" colspan="7">##설문35Y##</td>
                     </tr>
                 </tbody>
             </table>

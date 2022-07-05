@@ -224,7 +224,7 @@
 									</c:choose>
 								</td>
 								<td onclick="javascript:fn_detail('${result.num}','${result.prevPostGb}');">${result.cnsleNm }</td>
-								<td onclick="javascript:fn_detail('${result.num}','${result.prevPostGb}');">${result.majorApplCdNm }</td>
+								<td onclick="javascript:fn_detail('${result.num}','${result.prevPostGb}');">${result.majorApplCd }</td>
 								<td onclick="javascript:fn_detail('${result.num}','${result.prevPostGb}');">${result.inspectDt }</td>
 								<td onclick="javascript:fn_detail('${result.num}','${result.prevPostGb}');">${result.inspectCnt }</td>
 								<td>

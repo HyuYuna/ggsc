@@ -21,12 +21,15 @@ public class PsyCnsDocVO extends PageVO{
 	private String pgrmCd;
 	private String pgrmNm;
 	private String writeDt;
+	private String birthDt;
 	private String endDt;
 	private String telNo;
 	private String no1, no2, no3, no4, no5, no6, no7, no8, no9, no10;
 	private String no11, no12, no13, no14, no15, no16, no17, no18, no19, no20;
 	private String no21, no22, no23, no24, no25, no26, no27, no28, no29, no30;
 	private String no31, no32, no33, no34, no35, no36, no37, no38, no39, no40;
+	private String no41, no42, no43, no44, no45, no46, no47, no48, no49, no50;
+	private String no51, no52, no53, no54, no55, no56, no57, no58, no59, no60;
 	private String docSignPath;
 	
 	public int getgIdx() {
@@ -85,9 +88,12 @@ public class PsyCnsDocVO extends PageVO{
 		this.writeDt = writeDt;
 	}
 	
-	
-	
-	
+	public String getBirthDt() {
+		return birthDt;
+	}
+	public void setBirthDt(String birthDt) {
+		this.birthDt = birthDt;
+	}
 	public String getno1() {
 		return no1;
 	}
@@ -404,19 +410,126 @@ public class PsyCnsDocVO extends PageVO{
 		this.no40 = no40;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getNo41() {
+		return no41;
+	}
+	public void setNo41(String no41) {
+		this.no41 = no41;
+	}
+	public String getNo42() {
+		return no42;
+	}
+	public void setNo42(String no42) {
+		this.no42 = no42;
+	}
+	public String getNo43() {
+		return no43;
+	}
+	public void setNo43(String no43) {
+		this.no43 = no43;
+	}
+	public String getNo44() {
+		return no44;
+	}
+	public void setNo44(String no44) {
+		this.no44 = no44;
+	}
+	public String getNo45() {
+		return no45;
+	}
+	public void setNo45(String no45) {
+		this.no45 = no45;
+	}
+	public String getNo46() {
+		return no46;
+	}
+	public void setNo46(String no46) {
+		this.no46 = no46;
+	}
+	public String getNo47() {
+		return no47;
+	}
+	public void setNo47(String no47) {
+		this.no47 = no47;
+	}
+	public String getNo48() {
+		return no48;
+	}
+	public void setNo48(String no48) {
+		this.no48 = no48;
+	}
+	public String getNo49() {
+		return no49;
+	}
+	public void setNo49(String no49) {
+		this.no49 = no49;
+	}
+	public String getNo50() {
+		return no50;
+	}
+	public void setNo50(String no50) {
+		this.no50 = no50;
+	}
+	public String getNo51() {
+		return no51;
+	}
+	public void setNo51(String no51) {
+		this.no51 = no51;
+	}
+	public String getNo52() {
+		return no52;
+	}
+	public void setNo52(String no52) {
+		this.no52 = no52;
+	}
+	public String getNo53() {
+		return no53;
+	}
+	public void setNo53(String no53) {
+		this.no53 = no53;
+	}
+	public String getNo54() {
+		return no54;
+	}
+	public void setNo54(String no54) {
+		this.no54 = no54;
+	}
+	public String getNo55() {
+		return no55;
+	}
+	public void setNo55(String no55) {
+		this.no55 = no55;
+	}
+	public String getNo56() {
+		return no56;
+	}
+	public void setNo56(String no56) {
+		this.no56 = no56;
+	}
+	public String getNo57() {
+		return no57;
+	}
+	public void setNo57(String no57) {
+		this.no57 = no57;
+	}
+	public String getNo58() {
+		return no58;
+	}
+	public void setNo58(String no58) {
+		this.no58 = no58;
+	}
+	public String getNo59() {
+		return no59;
+	}
+	public void setNo59(String no59) {
+		this.no59 = no59;
+	}
+	public String getNo60() {
+		return no60;
+	}
+	public void setNo60(String no60) {
+		this.no60 = no60;
+	}
 	public String getExamDocNm() {
 		return examDocNm;
 	}
@@ -481,7 +594,6 @@ public class PsyCnsDocVO extends PageVO{
 	public void setExamDocCd(String examDocCd) {
 		this.examDocCd = examDocCd;
 	}
-	
 	public String getCnsrId() {
 		return cnsrId;
 	}
@@ -494,7 +606,6 @@ public class PsyCnsDocVO extends PageVO{
 	public void setCnsrNm(String cnsrNm) {
 		this.cnsrNm = cnsrNm;
 	}
-	
 	public int getCnsCnt() {
 		return cnsCnt;
 	}
@@ -520,18 +631,21 @@ public class PsyCnsDocVO extends PageVO{
 				+ ", cnsGb=" + cnsGb + ", cnsDtlGbCd=" + cnsDtlGbCd + ", zoneGb=" + zoneGb + ", localGb=" + localGb
 				+ ", centerGb=" + centerGb + ", cnsleId=" + cnsleId + ", cnsleNm=" + cnsleNm + ", examDocCd="
 				+ examDocCd + ", examDocNm=" + examDocNm + ", cnsrId=" + cnsrId + ", cnsrNm=" + cnsrNm + ", cnsCnt="
-				+ cnsCnt + ", pgrmCd=" + pgrmCd + ", pgrmNm=" + pgrmNm + ", writeDT=" + writeDt + ", endDt=" + endDt
-				+ ", telNo=" + telNo + ", no1=" + no1 + ", no2=" + no2 + ", no3=" + no3 + ", no4=" + no4 + ", no5="
-				+ no5 + ", no6=" + no6 + ", no7=" + no7 + ", no8=" + no8 + ", no9=" + no9 + ", no10=" + no10 + ", no11="
-				+ no11 + ", no12=" + no12 + ", no13=" + no13 + ", no14=" + no14 + ", no15=" + no15 + ", no16=" + no16
-				+ ", no17=" + no17 + ", no18=" + no18 + ", no19=" + no19 + ", no20=" + no20 + ", no21=" + no21
-				+ ", no22=" + no22 + ", no23=" + no23 + ", no24=" + no24 + ", no25=" + no25 + ", no26=" + no26
-				+ ", no27=" + no27 + ", no28=" + no28 + ", no29=" + no29 + ", no30=" + no30 + ", no31=" + no31
-				+ ", no32=" + no32 + ", no33=" + no33 + ", no34=" + no34 + ", no35=" + no35 + ", no36=" + no36
-				+ ", no37=" + no37 + ", no38=" + no38 + ", no39=" + no39 + ", no40=" + no40 + ", docSignPath="
-				+ docSignPath + "]";
+				+ cnsCnt + ", pgrmCd=" + pgrmCd + ", pgrmNm=" + pgrmNm + ", writeDt=" + writeDt + ", birthDt=" + birthDt
+				+ ", endDt=" + endDt + ", telNo=" + telNo + ", no1=" + no1 + ", no2=" + no2 + ", no3=" + no3 + ", no4="
+				+ no4 + ", no5=" + no5 + ", no6=" + no6 + ", no7=" + no7 + ", no8=" + no8 + ", no9=" + no9 + ", no10="
+				+ no10 + ", no11=" + no11 + ", no12=" + no12 + ", no13=" + no13 + ", no14=" + no14 + ", no15=" + no15
+				+ ", no16=" + no16 + ", no17=" + no17 + ", no18=" + no18 + ", no19=" + no19 + ", no20=" + no20
+				+ ", no21=" + no21 + ", no22=" + no22 + ", no23=" + no23 + ", no24=" + no24 + ", no25=" + no25
+				+ ", no26=" + no26 + ", no27=" + no27 + ", no28=" + no28 + ", no29=" + no29 + ", no30=" + no30
+				+ ", no31=" + no31 + ", no32=" + no32 + ", no33=" + no33 + ", no34=" + no34 + ", no35=" + no35
+				+ ", no36=" + no36 + ", no37=" + no37 + ", no38=" + no38 + ", no39=" + no39 + ", no40=" + no40
+				+ ", no41=" + no41 + ", no42=" + no42 + ", no43=" + no43 + ", no44=" + no44 + ", no45=" + no45
+				+ ", no46=" + no46 + ", no47=" + no47 + ", no48=" + no48 + ", no49=" + no49 + ", no50=" + no50
+				+ ", no51=" + no51 + ", no52=" + no52 + ", no53=" + no53 + ", no54=" + no54 + ", no55=" + no55
+				+ ", no56=" + no56 + ", no57=" + no57 + ", no58=" + no58 + ", no59=" + no59 + ", no60=" + no60
+				+ ", docSignPath=" + docSignPath + "]";
 	}
-	
 	
 
 }

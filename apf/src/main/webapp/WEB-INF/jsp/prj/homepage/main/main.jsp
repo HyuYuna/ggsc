@@ -1240,31 +1240,31 @@ th, td {
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">센터소개<i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu" role="menu">
 									<li class="dropdown-item">
-						                <a href="/gnoincoun/centerIntroList.do">인사말
+						                <a href="/gnoincoun/salutation.do">인사말
 						                <i class="fa fa-caret-right"></i></a>
 					                </li>
 									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=operating">운영법인
+										<a href="/gnoincoun/operatCorp.do">운영법인
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=vision">미션과 비젼 
+										<a href="/gnoincoun/missionVis.do">미션과 비젼 
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=pathway">걸어온길
+										<a href="/gnoincoun/centerFoot.do">걸어온길
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=together">함께하는
-											사람들<i class="fa fa-caret-right"></i></a>
-									</li>
-									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=centerInfo">시군센터
+										<a href="/gnoincoun/peopleTg.do">함께하는 사람들
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 									<li class="dropdown-item">
-										<a href="/gnoincoun/centerIntroList.do?gubun=directions">오시는길
+										<a href="/gnoincoun/directions.do">시군센터
+										<i class="fa fa-caret-right"></i></a>
+									</li>
+									<li class="dropdown-item">
+										<a href="/gnoincoun/directions.do">오시는길
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 								</ul></li>
@@ -1283,10 +1283,6 @@ th, td {
 									</li>
 									<li class="dropdown-item">
 										<a href="/gnoincoun/busiIntroList.do?gubun=mid">중장년마음돌봄 전화상담
-										<i class="fa fa-caret-right"></i></a>
-									</li>
-									<li class="dropdown-item">
-										<a href="/gnoincoun/busiIntroList.do?gubun=weak">취약노인 지원사업
 										<i class="fa fa-caret-right"></i></a>
 									</li>
 									<li class="dropdown-item">
@@ -1333,7 +1329,7 @@ th, td {
 
 		<div class="main-content" style="width: 1300px; margin: 0 auto;">
 			<div class='banner-box-01'>
-				<li><a href="/gnoincoun/centerIntroList.do"><img
+				<li><a href="/gnoincoun/salutation.do"><img
 						src="/gnoincoun/images/banner_01.png" alt="이렇게 이용하세요" /></a></li>
 				<li><a href="/gnoincoun/psyInfo.do"><img
 						src="/gnoincoun/images/banner_02.png" alt="간편한 심리검사" /></a></li>
@@ -1355,8 +1351,6 @@ th, td {
 						src="/gnoincoun/images/banner_08.png" alt="성인지교육사업" /></a></li>
 				<li><a href="/gnoincoun/busiIntroList.do?gubun=mid"><img
 						src="/gnoincoun/images/banner_09.png" alt="중장년상담" /></a></li>
-				<li><a href="/gnoincoun/busiIntroList.do?gubun=weak"><img
-						src="/gnoincoun/images/banner_10.png" alt="취약노인지원사업" /></a></li>
 			</div>
 		</div>
 
@@ -1793,7 +1787,7 @@ th, td {
 					<span><a href="/gnoincoun/noticeDtl.do?num=57">개인정보취급방침</a></span>
 					<span><a href="/gnoincoun/noticeDtl.do?num=60">이메일추출방지정책</a></span>
 					<span><a href="/gnoincoun/noticeDtl.do?num=61">장애인차별금지법</a></span>
-					<span><a href="/gnoincoun/centerIntroList.do?gubun=directions">찾아오시는 길</a></span>
+					<span><a href="/gnoincoun/directions.do">찾아오시는 길</a></span>
 					<span class='copyright'>Copyright (c) 2021 GNOIN. All rights reserved.</span>
 				</div>
 			</div>

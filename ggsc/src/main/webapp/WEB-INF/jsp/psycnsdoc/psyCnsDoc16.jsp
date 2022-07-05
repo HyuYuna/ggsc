@@ -34,10 +34,15 @@
 	  	getValues();
 	});
 	
-	$(document).on('click', '#state3', function(){
-		$("#etc").css('display', 'initial');
-	})
-	
+	$(document).on('click', 'input[type="radio"][name="no3"]', function(){
+		var no3 = $(this).val();
+		if (no3 == "3") {
+			$("#etc").css('display', 'initial');
+		} else {
+			$("#etc").css('display', 'none');
+		}
+	});
+		
 	
 	function getValues(){
 		var token = $("meta[name='_csrf']").attr("th:content");
@@ -61,10 +66,9 @@
 					 if(t == 'radio'){
 						 $("[name='" + c[0] + "'][value='" + c[1] + "']").prop('checked',true);
 					 }else if(t == 'checkbox'){
-					 	if(c[1]=='Y'){
+					 	if(c[1]=='V'){
 					 		$("[name='" + c[0] + "']").prop('checked',true);
 					 	}
-					 	
 					 }else{
 						$("[name='" + c[0] + "']").val(c[1]);
 					 }
@@ -102,6 +106,14 @@
 			return false;
 		}
 		
+		var cnt7 = parseInt($("#cnt7").val());
+		var isNan = isNaN(cnt7);
+		
+		if(isNan) {
+			alert("검사지를 전부 입력해주세요");
+			return false;
+		}
+		
 		if(confirm("등록(수정) 하시겠습니까?")){				
 			document.frm.action = "/gnoincoundb/psyCnsDocReg.do";
 	       	document.frm.submit();
@@ -122,6 +134,15 @@
 		margin-left  : 5px;
 		margin-right : 15px;
 	}
+	
+	textarea {
+        width: 100%;
+        height: 130px;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #333333;
+        font-size: 18px;
+        font-weight: 500;
+    }
 
     .box-title {
         font-size: 35px;
@@ -249,7 +270,7 @@
     .txt-left {
         text-align: left !important;
     }
-
+    
     .num {
         width: 106px;
         height: 28px;
@@ -309,8 +330,8 @@
                         </td>
                         <th scope="col">성별</th>
                         <td>
-                            <label for="genderM" style="margin-right: 5px;">남</label><input type="radio" id="genderM" name="no25" value="M" /> /
-                            <label for="genderF" style="margin-right: 5px;">여</label><input type="radio" id="genderF" name="no25" value="F" />
+                            <label for="genderM" style="margin-right: 5px;">남</label><input type="radio" id="genderM" name="no1" value="M" /> /
+                            <label for="genderF" style="margin-right: 5px;">여</label><input type="radio" id="genderF" name="no1" value="F" />
                         </td>
                         <th scope="col">검사일</th>
                         <td>
@@ -320,268 +341,435 @@
                     <tr>
                         <th scope="col">생년월일</th> 
                         <td colspan="3">
-                        	<input type="text" id="birthDt" name="no26" onlyNumber maxlength=6 readonly/>
+                        	<input type="text" id="birthDt" name="birthDt" onlyNumber maxlength=6 readonly/>
                         </td>	
                     	<th scope="col">학력(교육년수)</th>
 						<td>
-							<input type="text" style="width: 30px;" name="no27"  onlyNumber maxlength=2 />년
+							<input type="text" style="width: 30px;" name="no2"  onlyNumber maxlength=2 />년
 						</td>
                     </tr>
                     <tr>
                     	 <th scope="col">검사장소</th> 
-                    	 <td colspan="5">
-                    	 	<input type="radio" id="state1" name="state" value="1" /><label for="state1">치매안심센터</label>
-                    	 	<input type="radio" id="state2" name="state" value="2" /><label for="state2">대상자 집</label>
-                    	 	<input type="radio" id="state3" name="state" value="3" /><label for="state3">기타 :</label>
-                    	 	<input type="text" id="etc" name="etc" style="width: 200px; display:none;" />
+                    	 <td colspan="3">
+                    	 	<input type="radio" id="no31" name="no3" value="1" /><label for="no31">치매안심센터</label>
+                    	 	<input type="radio" id="no32" name="no3" value="2" /><label for="no32">대상자 집</label>
+                    	 	<input type="radio" id="no33" name="no3" value="3" /><label for="no33">기타 :</label>
+                    	 	<input type="text" id="etc" name="no4" style="width: 200px; display:none;" />
                     	 </td>
+                    	 <th scope="col">검사자</th>
+						<td>
+							<input type="text" style="width: 80px;" name="no5"  />
+						</td>
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="txt mt15">
+            	“안녕하세요.  지금부터 <input type="text" id="cnsleNm2" style="width:80px;" readonly />님의 기억력과 사고능력을 살펴보기 위한 질문들을 드리겠습니다.<br/>
+					생각나는 대로 최선을 다해 답변해 주시면 됩니다.”
+			</div>
+			
             <table class="tbl2 mt15">
                 <caption>치매선별용한국어판간이정신상태검사</caption>
                 <colgroup>
                     <col style="width: 8%;" />
+                    <col style="width: 7%;" />
                     <col style="width: 5%;" />
-                    <col style="width: 55%;" />
-                    <col style="width: 7%;" />
-                    <col style="width: 7%;" />
+                    <col style="width: 14%;" />
+                    <col style="width: 41%;" />
+                    <col style="width: 2%;" />
+                    <col style="width: 2%;" />
+                    <col style="width: 2%;" />
+                    <col style="width: 2%;" />
+                    <col style="width: 2%;" />
+                    <col style="width: 2%;" />
                 </colgroup>
                 <thead>
                     <tr class="bTop bLeft bRight bBottom">
-                        <th scope="col" colspan="3" class="bRight2 bgGt">질문항목</th>
-                        <th scope="col" class="bgGf">오답</th>
-                        <th scope="col" class="bgGt">정답</th>
+                        <th scope="col" colspan="5" class="bRight2 bgGt">질문항목</th>
+                        <th scope="col" colspan="6" class="bgGf">점수</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5">시<br>간<br>지<br>남<br>력</td>
+                        <td class="bRight2" rowspan="6">지남력</td>
+                        <td class="bRight2" rowspan="5">시간</td>
                         <td class="bRight-none noto400">1.</td>
-                        <td class="txt-left bRight2 noto400">올해는 몇 년도 입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no11" name="no1" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no12" name="no1" value="Y" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">오늘 날짜를 말씀해주세요.</td>
+                        <td colspan="6" class="bRight2 bgGf"></td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">올해는 몇 년도입니까?</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no61" name="no6" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb1" id="no62" name="no6" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">지금은 몇 월입니까?</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no71" name="no7" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb1" id="no72" name="no7" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(3)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">오늘은 며칠입니까?</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no81" name="no8" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb1" id="no82" name="no8" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(4)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">오늘은 무슨 요일입니까?</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no91" name="no9" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb1" id="no92" name="no9" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                    	<td class="bRight2">장소</td>
                         <td class="bRight-none noto400">2.</td>
-                        <td class="txt-left bRight2 noto400">지금은 무슨 계절입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no21" name="no2" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no22" name="no2" value="Y" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">지금  <input type="text" id="cnsleNm3" style="width:80px;" readonly /> 님이 계신 여기는 어디인가요? 이 장소가 어디인지 말씀해 주세요.</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no101" name="no10" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb1" id="no102" name="no10" value="1" /></td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="5">기억력</td>
+                        <td class="bRight2" rowspan="5">기억등록</td>
                         <td class="bRight-none noto400">3.</td>
-                        <td class="txt-left bRight2 noto400">오늘은 며칠입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no31" name="no3" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no32" name="no3" value="Y" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	지금부터 외우셔야 하는 문장 하나를 불러드리겠습니다.<br/> 
+                        	끝까지 잘 듣고 따라 해 보세요.
+                        </td>
+						<td colspan="6" rowspan="5" class="bRight2 bgGf">
+							점수 없음<br/>(단, 순서 상관없이 대상자가 말한 단어에 ○표)
+						</td>
+					</tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1차)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	민수는  <input type="checkbox" name="no11" value="V" /> 
+                        	/ 자전거를 타고  <input type="checkbox" name="no12" value="V" /> 
+                        	/ 공원에 가서 <input type="checkbox" name="no13" value="V" /> 
+                        	/ 11시부터  <input type="checkbox" name="no14" value="V" /> 
+                        	/ 야구를 했다 <input type="checkbox" name="no15" value="V" /> 
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400"></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	잘 하셨습니다. 제가 다시 한번 불러드리겠습니다. <br/>
+							이번에도 다시 여쭈어 볼테니 잘 듣고 따라해보세요.
+						</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2차)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	민수는  <input type="checkbox" name="no16" value="V" /> 
+                        	/ 자전거를 타고  <input type="checkbox" name="no17" value="V" /> 
+                        	/ 공원에 가서 <input type="checkbox" name="no18" value="V" /> 
+                        	/ 11시부터  <input type="checkbox" name="no19" value="V" /> 
+                        	/ 야구를 했다 <input type="checkbox" name="no20" value="V" /> 
+                        </td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400"></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">제가 이 문장을 나중에 여쭤보겠습니다.  잘 기억하세요.</td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="5">주의력</td>
+                        <td class="bRight2" rowspan="3">숫자 바로 따라 말하기</td>
                         <td class="bRight-none noto400">4.</td>
-                        <td class="txt-left bRight2 noto400">오늘은 무슨 요일입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no41" name="no4" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no42" name="no4" value="Y" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	제가 불러드리는 숫자를 그대로 따라 해 주세요.  (대상자가 잘 이해하지못하는 경우)  
+                        	제가 1-2-3  하고 부르면,  똑같이 1-2-3  이렇게 말씀해 주세요.
+                        </td>
+                        <td colspan="6" class="bRight2 bgGf"></td>
                     </tr>
                     <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">6 – 9 – 7 – 3</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no211" name="no21" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb2" id="no212" name="no21" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2)</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">5 – 7 – 2 – 8 – 4</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no221" name="no22" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb2" id="no222" name="no22" value="1" /></td>
+                    </tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2" rowspan="2">거꾸로 말하기</td>
                         <td class="bRight-none noto400">5.</td>
-                        <td class="txt-left bRight2 noto400">지금은 몇 월입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no51" name="no5" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no52" name="no5" value="Y" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	제가 불러드리는 말을 끝에서부터 거꾸로 따라 해 주세요.  
+                        	(대상자가 잘 이해하지 못하는 경우)  OOO님 (대상자 이름)  이름을 거꾸로 하면 OOO 
+							이렇게 되지요?  마찬가지로 제가 부르는 말을 거꾸로 말씀해 주세요.
+						</td>
+						<td colspan="6" class="bRight2 bgGf"></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight-none noto400"></td>
+                        <td colspan="2" class="bRight2 noto400">금수강산</td>
+                        <td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no231" name="no23" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb2" id="no232" name="no23" value="1" /></td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5">장<br>소<br>지<br>남<br>력</td>
+                        <td class="bRight2">시공간<br/>기능</td>
+                        <td class="bRight2">도형모사 (그림1)</td>
                         <td class="bRight-none noto400">6.</td>
-                        <td class="txt-left bRight2 noto400">우리가 있는 이곳은 무슨 도/특별시/광역시입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no61" name="no6" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no62" name="no6" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	(그림을 가리키며)  여기 점을 연결하여 그린 그림이 있습니다.<br/>
+                        	이 그림과 똑같이 되도록 (아래 반응 공간을 가리키며)  같은 위치에 그려보세요.<br/>
+							점을 연결해서 그리시면 됩니다.
+                        </td>
+						<td colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb3" id="no241" name="no24" value="0" /></td>
+                        <td colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb3" id="no242" name="no24" value="1" /></td>
+                        <td colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb3" id="no243" name="no24" value="2" /></td>
+					</tr>
+					
+					<tr class="bLeft bRight">
+                        <td rowspan="3" class="bRight2">집행기능</td>
+                        <td class="bRight2">시각추론1<br/>(그림2)</td>
                         <td class="bRight-none noto400">7.</td>
-                        <td class="txt-left bRight2 noto400">여기는 무슨 시/군입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no71" name="no7" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no72" name="no7" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	여기 모양들이 정해진 순서로 나옵니다. 
+                        	모양들을 보면서 어떤 순서로 나오는지 생각해 보세요. 
+                        	자(도형을 왼쪽부터 하나씩 가리키며), 네모, 동그라미, 세모, 네모, 빈칸, 세모, 
+                        	그렇다면 여기 빈칸에는 무엇이 들어가야 할까요?
+                        </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no251" name="no25" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb4" id="no252" name="no25" value="1" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight2">시각추론2<br/>(그림3)</td>
                         <td class="bRight-none noto400">8.</td>
-                        <td class="txt-left bRight2 noto400">여기는 무슨 구/동/읍/면입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no81" name="no8" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no82" name="no8" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	(맨 앞 그림을 가리키며)  여기 네 칸 중의 한 칸에 별이 하나 있습니다. 
+							두 번째 그림을 가리키며)  별이 이렇게 다른 위치로 이동합니다. 
+							어떤 식으로 이동하는지 잘 생각해 보십시오. (마지막 반응 칸을 가리키며) 여기서는
+							네 칸 중에 별이 어디에 위치하게 될까요?
+                        </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no261" name="no26" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb4" id="no262" name="no26" value="1" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight2">언어추론<br/>(그림4)</td>
                         <td class="bRight-none noto400">9.</td>
-                        <td class="txt-left bRight2 noto400">우리는 지금 이 건물의 몇 층에 있습니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no91" name="no9" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no92" name="no9" value="Y" /></td>
-                    </tr>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	카드에 숫자와 계절이 하나씩 적혀 있습니다.  ‘1-봄-2-여름~’  
+                        	이렇게 연결되어 나갑니다.  
+                        	(화살 표시된 빈칸을 가리키며)  여기는 무엇이 들어갈 차례일까요? 
+                        </td>
+						<td colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb42" id="no271" name="no27" value="0" /></td>
+                        <td colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb42" id="no272" name="no27" value="1" /></td>
+                        <td colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb42" id="no273" name="no27" value="2" /></td>
+					</tr>
                     <tr class="bLeft bRight">
+                        <td rowspan="12" class="bRight2">기억력</td>
+                        <td rowspan="12" class="bRight2">기억회상<br/>/재인1</td>
                         <td class="bRight-none noto400">10.</td>
-                        <td class="txt-left bRight2 noto400">이 장소의 이름이 무엇입니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no101" name="no10" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no102" name="no10" value="1" /></td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	제가 조금 전에 외우라고 불러드렸던 문장을 다시 한번 말씀해 주세요.<br/>
+							[조금 전에 외우시라고 불러드렸던 문장(한 문장의 이야기)을 말씀해 보세요.
+                        </td>
+						<td colspan="6" rowspan="2" class="bRight2 bgGf"></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td colspan="2" class="bRight2 noto400 bgGf">기억회상(각  2점)</td>
+                        <td class="bRight2 noto400 bgGf">재인(기억회상 과제에서 회상하지 못한 항목만 시행.  각  1점)</td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td colspan="2" rowspan="2" class="bRight2 noto400">
+                        	민수 <input type="checkbox" name="no28" value="V" />
+						</td>
+                        <td class="bRight2 noto400">제가 아까 어떤 사람의 이름을 말했는데 누구일까요?</td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb5" id="no291" name="no29" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb5" id="no292" name="no29" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb5" id="no293" name="no29" value="2" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight2 noto400">
+							영수&nbsp;<input type="radio" id="no301" name="no30" value="1" /> &emsp;
+							민수&nbsp;<input type="radio" id="no302" name="no30" value="2" /> &emsp;
+							진수&nbsp;<input type="radio" id="no303" name="no30" value="3" />
+	                    </td>
+					</tr>
+	                <tr class="bLeft bRight">
+                        <td colspan="2" rowspan="2" class="bRight2 noto400">
+                        	자전거 <input type="checkbox" name="no31" value="V" />
+						</td>
+                        <td class="bRight2 noto400">무엇을 타고 갔습니까?</td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb5" id="no321" name="no32" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb5" id="no322" name="no32" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb5" id="no323" name="no32" value="2" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight2 noto400">
+							버스 &nbsp;<input type="radio" id="no331" name="no33" value="1" /> &emsp;
+							오토바이&nbsp;<input type="radio" id="no332" name="no33" value="2" /> &emsp;
+							자전거&nbsp;<input type="radio" id="no333" name="no33" value="3" />
+	                    </td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td colspan="2" rowspan="2" class="bRight2 noto400">
+                        	공원 <input type="checkbox" name="no34" value="V" />
+						</td>
+                        <td class="bRight2 noto400">어디에 갔습니까?</td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb5" id="no351" name="no35" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb5" id="no352" name="no35" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb5" id="no353" name="no35" value="2" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight2 noto400">
+							공원 &nbsp;<input type="radio" id="no361" name="no36" value="1" /> &emsp;
+							놀이터 &nbsp;<input type="radio" id="no362" name="no36" value="2" /> &emsp;
+							운동장 &nbsp;<input type="radio" id="no363" name="no36" value="3" />
+	                    </td>
+					</tr>
+                    <tr class="bLeft bRight">
+                        <td colspan="2" rowspan="2" class="bRight2 noto400">
+                        	11시 <input type="checkbox" name="no37" value="V" />
+						</td>
+                        <td class="bRight2 noto400">몇 시부터 했습니까?</td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb5" id="no381" name="no38" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb5" id="no382" name="no38" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb5" id="no383" name="no38" value="2" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight2 noto400">
+							10시 &nbsp;<input type="radio" id="no391" name="no39" value="1" /> &emsp;
+							11시 &nbsp;<input type="radio" id="no392" name="no39" value="2" /> &emsp;
+							12시 &nbsp;<input type="radio" id="no393" name="no39" value="3" />
+	                    </td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td colspan="2" rowspan="2" class="bRight2 noto400">
+                        	야구 <input type="checkbox" name="no40" value="V" />
+						</td>
+                        <td class="bRight2 noto400">무엇을 했습니까?</td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb5" id="no411" name="no41" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt">1&nbsp;<input type="radio" class="recoGb5" id="no412" name="no41" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf">2&nbsp;<input type="radio" class="recoGb5" id="no413" name="no41" value="2" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+						<td class="bRight2 noto400">
+							농구 &nbsp;<input type="radio" id="no421" name="no42" value="1" /> &emsp;
+							축구 &nbsp;<input type="radio" id="no422" name="no42" value="2" /> &emsp;
+							야구 &nbsp;<input type="radio" id="no423" name="no42" value="3" />
+	                    </td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td rowspan="5" class="bRight2">언어기능</td>
+                        <td rowspan="4" class="bRight2">이름대기<br/>(그림5)</td>
+                        <td class="bRight-none noto400">11.</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	여기 있는 이 그림의 이름을 말씀해 주세요.  이것은 무엇입니까?
+                        </td>
+						<td colspan="6" class="bRight2 bgGf"></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(1)</td>
+                        <td class="txt-left bRight2 noto400">칫솔</td>
+                        <td class="bRight2 noto400">
+							대상자 반응 &nbsp;<input type="text" id="no43" name="no43" /> &emsp;
+	                    </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no441" name="no44" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb6" id="no442" name="no44" value="1" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(2)</td>
+                        <td class="txt-left bRight2 noto400">그네</td>
+                        <td class="bRight2 noto400">
+							대상자 반응 &nbsp;<input type="text" id="no45" name="no45" /> &emsp;
+	                    </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no461" name="no46" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb6" id="no462" name="no46" value="1" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight-none noto400">(3)</td>
+                        <td class="txt-left bRight2 noto400">주사위</td>
+                        <td class="bRight2 noto400">
+							대상자 반응 &nbsp;<input type="text" id="no47" name="no47" /> &emsp;
+	                    </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no481" name="no48" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb6" id="no482" name="no48" value="1" /></td>
+					</tr>
+					<tr class="bLeft bRight">
+                        <td class="bRight2">이해력</td>
+                        <td class="bRight-none noto400">12.</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">
+                        	제가 말씀드리는 대로 행동으로 그대로 보여주십시오.
+                        	<br/>
+                        	박수를 두 번 치고, 주먹을 쥐세요. 
+                        </td>
+						<td colspan="3" class="bRight2 bgGf">0&nbsp;<input type="radio" class="recoGb" id="no491" name="no49" value="0" /></td>
+                        <td colspan="3" class="bgGt">1&nbsp;<input type="radio" class="recoGb6" id="no492" name="no49" value="1" /></td>
+					</tr>
+                    <tr class="bLeft bRight">
+                        <td class="bRight2 bBottom" rowspan="2">집행기능</td>
+                        <td class="bRight2 bBottom" rowspan="2">유창성</td>
+                        <td class="bRight-none noto400">13.</td>
+                        <td colspan="2" class="txt-left bRight2 noto400">지금부터 제가 그만이라고 말할 때까지 과일이나 채소를 최대한 많이 이야기해 주세요.  준비되셨지요? 자, 과일이나 채소 이름을 말씀해 주세요.  시작!</td>
+                        <td colspan="6" class="bgGf">
+                        	<input type="text" id="no50" name="no50" style="width:25%;" /> 개
+                        </td>
                     </tr>
                     <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5">기<br>억<br>력<br>&#8214;<br>기<br>억<br>등<br>록</td>
-                        <td class="bRight-none noto400 bBot-none">11.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 세 가지 물건의 이름을 말씀드리겠습니다. 끝가지 다 들으신 다음에 세 가지 물건의 이름을 모두 말씀해 보십시오. 그리고 몇 분 후에는 그 세 가지 물건의 이름들을 다시 물어볼 것이니 들으신 물건의 이름을 잘 기억하고 계십시오. 나무 – 자동차 – 모자</td>
-                        <td class="bRight2 bgGf" rowspan="2"></td>
-                        <td class="bgGt" rowspan="2"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">이제 OOO님께서 방금 들으신 3가지 물건 이름을 모두 말씀해 보세요.</td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">나무</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no111" name="no11" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no112" name="no11" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">자동차</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no121" name="no12" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no122" name="no12" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">모자</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no131" name="no13" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no132" name="no13" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5">주<br>의<br>집<br>중<br>력</td>
-                        <td class="bRight-none noto400 bBot-none">12.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">100에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no141" name="no14" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no142" name="no14" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no151" name="no15" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no152" name="no15" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 bBot-none noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no161" name="no16" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no162" name="no16" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="txt-left bRight2 bBot-none noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no171" name="no17" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no172" name="no17" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="txt-left bRight2 noto400">거기에서 7을 빼면 얼마가 됩니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no181" name="no18" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no182" name="no18" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="8">기<br>억<br>력<br>&#8214;<br>기<br>억<br>회<br>상</td>
-                        <td class="bRight-none noto400 bBot-none">13.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">조금 전에 제가 기억하려고 말씀드렸던 세 가지 물건의 이름이 무엇인지 말씀하여 주십시오.</td>
-                        <td class="bRight2 bgGf"></td>
-                        <td class="bgGt"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">나무</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no191" name="no19" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no192" name="no19" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">자동차</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no201" name="no20" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no202" name="no20" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">모자</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no211" name="no21" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no212" name="no21" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none">14.</td>
-                        <td class="bRight2 noto400 bBot-none">(실제 시계를 보여주며) 이것을 무엇이라고 합니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no221" name="no22" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no222" name="no22" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="bRight2 noto400">(실제 연필을 보여주며) 이것을 무엇이라고 합니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no231" name="no23" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no232" name="no23" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none">15.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 하는 말을 끝가지 듣고 따라해 보십시오. 한번만 말씀드릴 것이니 잘 듣고 따라 하십시오.</td>
-                        <td class="bRight2 bgGf" rowspan="2"><input type="radio" id="no241" name="no24" value="N" /></td>
-                        <td class="bgGt" rowspan="2"><input type="radio" id="no242" name="no24" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none"></td>
-                        <td class="bRight2">간장공장공장장</td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="5">실<br>행<br>능<br>력</td>
-                        <td class="bRight-none noto400 bBot-none">16.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">지금부터 제가 말씀드리는 대로 해 보십시오. 한 번만 말씀드릴 것이니 잘 들으시고 그대로 해 보십시오.(지시를 끝낸 후에 종이를 건네준다. 지시를 반복하거나 옆에서 도와주면 안 된다.)</td>
-                        <td class="bRight2 bgGf bBot-none"></td>
-                        <td class="bgGt bBot-none"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBot-none"></td>
-                        <td class="txt-left bRight2 noto400 bBot-none">제가 종이를 한 장 드릴 것입니다. 그러면 그 종이를 오른손으로 받아, 반으로 접은 다음, 무릎 위에 올려놓으십시오.</td>
-                        <td class="bRight2 bgGf"></td>
-                        <td class="bgGt"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">오른손으로 받는다.</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no251" name="no25" value="N" /></td>
-                        <td class="bgGt bBot"><input type="radio" id="no252" name="no25" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400 bBot-none"></td>
-                        <td class="bRight2 noto700 bBot-none">반으로 접는다.</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no261" name="no26" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no262" name="no26" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700">무릎 위에 놓는다.</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no271" name="no27" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no272" name="no27" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2" rowspan="2">시<br>공<br>간<br>구<br>성<br>능<br>력</td>
-                        <td class="bRight-none noto400 bBot-none">17.</td>
-                        <td class="txt-left bRight2 noto400 bBot-none">(겹친 오각형 그림을 가리키며) 여기에 오각형이 겹쳐져 있는 그림이 있습니다.
-                            이 그림을 아래 빈 곳에 그대로 그려보십시오.</td>
-                        <td class="bRight2 bgGf" rowspan="2"><input type="radio" id="no281" name="no28" value="N" /></td>
-                        <td class="bgGt" rowspan="2"><input type="radio" id="no282" name="no28" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none noto400"></td>
-                        <td class="bRight2 noto700"><img src="/gnoincoundb/img/img.png"></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight2 bBottom" rowspan="2">판<br>단<br>및<br>추<br>상<br>적<br>사<br>고<br>력</td>
-                        <td class="bRight-none noto400">18.</td>
-                        <td class="txt-left bRight2 noto400">옷은 왜 빨아서 입습니까?</td>
-                        <td class="bRight2 bgGf"><input type="radio" id="no291" name="no29" value="N" /></td>
-                        <td class="bgGt"><input type="radio" id="no292" name="no29" value="Y" /></td>
-                    </tr>
-                    <tr class="bLeft bRight">
-                        <td class="bRight-none bBottom">19.</td>
-                        <td class=" txt-left bRight2 noto400 bBottom">티끌 모아 태산은 무슨 뜻입니까?</td>
-                        <td class="bRight2 bgGf bBottom"><input type="radio" id="no301" name="no30" value="N" /></td>
-                        <td class="bgGt bBottom"><input type="radio" id="no302" name="no30" value="Y" /></td>
+                        <td colspan="3" class="bRight2 noto400 bBottom">
+                        	[반응기록/제한 시간 1분]  0-8개:  0점 /  9-14개:  1점 /  15개 이상:  2점 <br/>
+                        	<textarea id="cnsBefore" name="no51" ></textarea>
+                        </td>
+                        <td rowspan="2" colspan="2" class="bRight2 bgGf bBottom">0&nbsp;<input type="radio" class="recoGb43" id="no521" name="no52" value="0" /></td>
+                        <td rowspan="2" colspan="2" class="bgGt bBottom">1&nbsp;<input type="radio" class="recoGb43" id="no522" name="no52" value="1" /></td>
+                        <td rowspan="2" colspan="2" class="bgGf bBottom">2&nbsp;<input type="radio" class="recoGb43" id="no523" name="no52" value="2" /></td>
+                        
                     </tr>
                 </tbody>
             </table>
+		 	<div class="tbl-title mt30">
+		 		 ◉ 결과요약표
+            </div>            
+            
+            <table class="tbl2 mt15">
+                <caption>점수 누계</caption>
+                <colgroup>
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                    <col style="width: 8%;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" class="bgG">인지영역</th>
+                        <th scope="col" class="bgG">지남력</th>
+                        <th scope="col" class="bgG">주의력</th>
+                        <th scope="col" class="bgG">시공간지능</th>
+                        <th scope="col" class="bgG">집행기능</th>
+                        <th scope="col" class="bgG">기억력</th>
+                        <th scope="col" class="bgG">언어기능</th>
+                        <th scope="col" class="bgG">총점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bBottom2">
+                    	<td>점수</td>
+                        <td><input type="text" class="inp num1" id="cnt1" name="no53" readonly></td>
+                        <td><input type="text" class="inp num2" id="cnt2" name="no54" readonly></td>
+                        <td><input type="text" class="inp num3" id="cnt3" name="no55" readonly></td>
+                        <td><input type="text" class="inp num4" id="cnt4" name="no56" readonly></td>
+                        <td><input type="text" class="inp num5" id="cnt5" name="no57" readonly></td>
+                        <td><input type="text" class="inp num6" id="cnt6" name="no58" readonly></td>
+                        <td><input type="text" class="inp num7" id="cnt7" name="no59" readonly></td>
+                    </tr>
+                    <tr class="bBottom2">
+                        <td class="txt-center">판정</td>
+                        <td colspan="4">정상 <input type="radio" id="no601" name="no60" value="1" /></td>
+                        <td colspan="3">인지저하 의심  <input type="radio" id="no602" name="no60" value="2" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            
             </form>
             <div class="btn" style="text-align: right; display: block; margin-top: 15px;">
             	<button type="button" class="btn-basic" onclick="window.close();" style="background-color:#fc692f;color:white;">닫기</button>
@@ -592,6 +780,40 @@
 			</div>
         </div>
     </div>
-
 </body>
+<script>
+	$(".recoGb, .recoGb1, .recoGb2, .recoGb3, .recoGb4, .recoGb42, .recoGb43, .recoGb5, .recoGb6").change(function(e) {
+		var a = $('input:radio[class="recoGb1"]:checked').length;
+		var b = $('input:radio[class="recoGb2"]:checked').length;
+		var c = $('input:radio[class="recoGb3"]:checked').val();
+		var d = $('input:radio[class="recoGb4"]:checked').length;
+		var e = $('input:radio[class="recoGb42"]:checked').val();
+		var f = $('input:radio[class="recoGb43"]:checked').val();
+		
+		const recoGb5 = ["29","32","35","38","41"];
+		var g = 0;
+		for(i=0; i<recoGb5.length; i++) {
+			var h = $('input[name="no'+recoGb5[i]+'"]:checked').val();
+			g = g+parseInt(h);
+		}
+		
+		var j = $('input:radio[class="recoGb6"]:checked').length;
+		
+		var execute = parseInt(d) + parseInt(e) + parseInt(f);
+		var total = parseInt(a) + parseInt(b) + parseInt(c)
+				+ parseInt(d) + parseInt(e) + parseInt(f) 
+				+ parseInt(g) + parseInt(j);
+		
+		$("#cnt1").val(a);
+		$("#cnt2").val(b);
+		$("#cnt3").val(c);
+		$("#cnt4").val(execute);
+		$("#cnt5").val(g);
+		$("#cnt6").val(j);
+		$("#cnt7").val(total);
+		
+	});
+</script>
+
+
 </html>

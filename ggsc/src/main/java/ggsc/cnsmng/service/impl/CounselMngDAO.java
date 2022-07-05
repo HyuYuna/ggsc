@@ -570,6 +570,16 @@ public class CounselMngDAO extends EgovAbstractDAO {
 		update("cnsMngDao.updateCnsPost", vo);
 	}
 	
+	// 상담 사전 사후 검사 등록
+	public void insertCnsPrevPost(PrevPostVO vo) {
+		insert("cnsMngDao.insertCnsPrevPost", vo);
+	}
+	
+	// 상담 사전 사후 검사 수정
+	public void updateCnsPrevPost(PrevPostVO vo) {
+		update("cnsMngDao.updateCnsPrevPost", vo);
+	}
+
 	// 상담 사전 사후 검사 삭제
 	public void deleteCnsPrevPost(PrevPostVO vo) {
 		delete("cnsMngDao.deleteCnsPrevPost", vo);

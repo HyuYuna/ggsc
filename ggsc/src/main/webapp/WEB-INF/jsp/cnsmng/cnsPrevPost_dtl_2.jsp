@@ -28,18 +28,34 @@
 		$("#cnsPrev").css("display", "inline-block");
 		$("#cnsPost").css("display", "none");
 	  	if(caseNo.length > 0) {
+	  		if(prevPostGb == '1') {
+	  			$("#cnsPrev").css("display", "inline-block");
+	  			$("#cnsPost").css("display", "none");
+	  		} else if(prevPostGb == '2') {
+	  			$("#cnsPrev").css("display", "none");
+	  			$("#cnsPost").css("display", "inline-block");
+	  		}
 	  		$("#findBtn").css("display", "none");
-	  		$("#sBtn").css("display", "none");	  
-	  		$("#newBtn").css("display", "none");	  
+	  		$("#sBtn").css("display", "none");	  			
 		  	$("#prevPostGb").val('${detail.prevPostGb}').attr('selected','selected');
+		  	$("#prevPostGb option").not(":selected").attr("disabled", "disabled");
 		  	
 	  	} else {
-	  		$("#detailBtn").css("display", "none");	  
 	  		$("#uBtn").css("display", "none");
 	  		$("#dBtn").css("display", "none");
 	  	}
 	  	
 	  	
+	  	$("#prevPostGb").change(function(){
+	  		var prevPostGb = $("#prevPostGb").val();
+	  		if(prevPostGb == "1") {
+	  			$("#cnsPrev").css("display", "inline-block");
+	  			$("#cnsPost").css("display", "none");
+	  		} else if(prevPostGb == "2"){
+	  			$("#cnsPrev").css("display", "none");
+	  			$("#cnsPost").css("display", "inline-block");
+	  		};
+		});
 	});
 	
 	function fn_reg(param){
@@ -48,10 +64,11 @@
 		var datapicker = $("#datepicker1").val();
 		var prevPostGb = $("#prevPostGb").val();
 		var prevCnt = $("#prevCnt").val();
-		var majorApplCd = $("#majorApplCd").val();
+		var prevMajorApplCd = $("#prevMajorApplCd").val();
 		var prevScore = $("#prevScore").val();
 	
-		var inspectCnt = $("#inspectCnt").val();
+		var postCnt = $("#postCnt").val();
+		var postMajorApplCd = $("#postMajorApplCd").val();
 		var postScore = $("#postScore").val();
 		var cnsBefore = $("#cnsBefore").val();
 		var cnsAfter = $("#cnsAfter").val();
@@ -66,16 +83,52 @@
 			return false;
 		}
 		
-		if(inspectCnt.length == 0) {
-			alert("회기를 입력해주세요.");
-			return;
+		if(prevPostGb == "1") {
+			if(prevCnt.length == 0) {
+				alert("회기를 입력해주세요.");
+				return;
+			}
+			if($('input:radio[name="prevState"]').is(':checked')==false){
+				alert("현재의 어려움 및 불편함상태를 선택해주세요.");
+				return;
+			}
+			if(prevMajorApplCd.length == 0) {
+				alert("주호소를 입력해주세요.");
+				return;
+			}
+			if(prevScore.length == 0) {
+				alert("점수를 입력해주세요.");
+				return;
+			}
 		}
 		
-		if(majorApplCd.length == 0) {
-			alert("주호소를 입력해주세요.");
-			return;
+		if(prevPostGb == "2") {
+			if(postCnt.length == 0) {
+				alert("회기를 입력해주세요.");
+				return;
+			}
+			if($('input:radio[name="postState"]').is(':checked')==false){
+				alert("상담 후 문제의 대응정도 및 불편감을 선택해주세요.");
+				return;
+			}
+			if(postMajorApplCd.length == 0) {
+				alert("주호소를 입력해주세요.");
+				return;
+			}
+			if(postScore.length == 0) {
+				alert("점수를 입력해주세요.");
+				return;
+			}
+			if(cnsBefore.length == 0) {
+				alert("상담 전 변화된 점을 입력해주세요.");
+				return;
+			}
+			if(cnsAfter.length == 0) {
+				alert("상담 후 변화된 점을 입력해주세요.");
+				return;
+			}
 		}
-	
+		
 		if(param == "S") {
 			if(confirm("등록 하시겠습니까?")){
 				$("#num").val(0);
@@ -399,8 +452,6 @@
 		        </div>
 		        <div class="btn" style="text-align: right; display: block;">
 					<!-- <button type="button" class="btn-basic" onClick="javascript:fn_clear();"><i class="fa fa-repeat"></i>초기화</button> -->
-					<button type="reset" class="btn-basic" id="newBtn">초기화</button>
-					<button type="reset" class="btn-basic" id="detailBtn">1,2번 및 수정 초기화</button>
 					<button type="button" class="btn-basic" id="uBtn" onclick="javascript:fn_reg('${detail.num}');">수정</button>
 					<button type="button" class="btn-basic" id="sBtn" onclick="javascript:fn_reg('S');">저장</button>
 					<c:if test="${map.authCd <= 1}">
@@ -409,9 +460,9 @@
 					<!-- <button type="button" class="btn-default" onClick="javascript:fn_reg();" style="background-color:#fc692f;color:white;">저장</button> -->
 					<button type="button" class="btn-basic" onClick="javascript:fn_list('${mnuCd }');" style="background-color:#fc692f;color:white;">목록</button>
 				</div>	
-		        <div class="doc-box mt20">
+		        <div class="doc-box mt20" id="cnsPrev">
 		            <table class="tbl">
-		                <caption>상담 사전 사후 기록지</caption>
+		                <caption>상담 사전기록지</caption>
 		                <colgroup>
 		                    <col style="width: 10%;" />
 		                    <col style="width: 20%;" />
@@ -419,9 +470,9 @@
 		                    <col style="width: 20%;" />
 		                </colgroup>
 		                <tr>
-		                    <th>회기</th>
+		                    <th>사전 회기</th>
 		                    <td colspan="3" style="border-bottom: 1px solid #bbb;"	>
-		                    	<input type="text" class="txt-center" id="inspectCnt" name="inspectCnt" value="${detail.inspectCnt}" oninput="this.value = this.value.replace(/[^0-9]/, '');" style="width:100px;" maxlength="3">
+		                    	<input type="text" class="txt-center" id="prevCnt" name="prevCnt" value="${detail.inspectCnt}" oninput="this.value = this.value.replace(/[^0-9]/, '');" style="width:100px;" maxlength="3">
 		                    </td>
 		                </tr>
 		            </table>
@@ -445,6 +496,40 @@
 		                        <li><label for="prevState9" style="margin-right: 5px;">9</label><input type="radio" id="prevState9" name="prevState" value="9" /></li>
 		                        <li><label for="prevState10" style="margin-right: 5px;">10</label><input type="radio" id="prevState10" name="prevState" value="10" /></li>
 		                    </ul>
+		                    <div class="noto500 mt40">3. 주호소 문제 검사 : 
+		                    	<input type="text" class="inp14 txt-right" id="prevMajorApplCd" name="prevMajorApplCd" value="${detail.majorApplCd}">&emsp;&emsp;&emsp;&emsp;
+		                    	<input type="text" class="inp14 txt-right" id="prevScore" name="prevScore" value="${detail.prevScore}" style="width:9%" oninput="this.value = this.value.replace(/[^0-9]/, '');" maxlength="3">&nbsp;&nbsp;점
+		                    </div>
+		                    <div class="noto500 mt40" style="margin-bottom:5px;">5. 상담에 대한 기타 건의 사항</div>
+		                    <textarea id="prevSuggestion" name="prevSuggestion">${detail.suggestion }</textarea>
+		                    <div class="noto500 mt40 border">
+		                      	 주 호소내용<br/>
+		                        <span class="fs16 txt-justify">① 심리정서&nbsp;&nbsp;② 대인관계&nbsp;&nbsp;③ 치매&nbsp;&nbsp;④ 중독&nbsp;&nbsp;⑤ 정신건강·장애&nbsp;&nbsp;⑥ 자살&nbsp;&nbsp;⑦ 건강&nbsp;&nbsp;⑧ 경제&nbsp;&nbsp;⑨ 생활&nbsp;&nbsp;⑩ 성&nbsp;&nbsp;⑪ 부부&nbsp;&nbsp;⑫ 가족&nbsp;&nbsp; ⑬ 학대&nbsp;&nbsp;⑭ 노년생애준비&nbsp;&nbsp;⑮ 재난&nbsp;&nbsp;⑯ 기타&nbsp;&nbsp;</span>
+		                    </div>
+		                </div>
+		            </div>
+		            
+		            <div class="doc-box mt20" id="cnsPost">
+		            <table class="tbl">
+		                <caption>상담 사후기록지</caption>
+		                <colgroup>
+		                    <col style="width: 10%;" />
+		                    <col style="width: 20%;" />
+		                    <col style="width: 10%;" />
+		                    <col style="width: 20%;" />
+		                </colgroup>
+		                <tr>
+		                    <th>사후 회기</th>
+		                    <td colspan="3" style="border-bottom: 1px solid #bbb;"	>
+		                    	<input type="text" class="txt-center" id="postCnt" name="postCnt" value="${detail.inspectCnt}" oninput="this.value = this.value.replace(/[^0-9]/, '');" style="width:100px;" maxlength="3">
+		                    </td>
+		                </tr>
+		            </table>
+		            <div class="con-info">
+		                <div class="mt5 noto500">
+		                    ✿ 상담 전과 상담 후의 변화된 점을 적어주세요.
+		                </div>
+		                <div class="mt40">
 		                    <div class="noto500 mt40">2. 상담 후 문제의 대응정도 및 불편감은 어느 정도입니까? ○표해 주세요.<br>
 		                        &nbsp;&nbsp;&nbsp;&nbsp;(0 가장 만족상태, 10 가장 어려운 상태)</div>
 		                    <!-- <div class="mt10">|----------------------------------------------------------------------------------------------------------------------------------------|</div> -->
@@ -463,8 +548,7 @@
 		                        <li><label for="postState10" style="margin-right: 5px;">10</label><input type="radio" id="postState10" name="postState" value="10" /></li>
 		                    </ul>
 		                    <div class="noto500 mt40">3. 주호소 문제 검사 : 
-		                    	<input type="text" class="inp14 txt-right" id="majorApplCd" name="majorApplCd" value="${detail.majorApplCd}">&emsp;&emsp;&emsp;&emsp;
-		                    	<input type="text" class="inp14 txt-right" id="prevScore" name="prevScore" value="${detail.prevScore}" style="width:9%" oninput="this.value = this.value.replace(/[^0-9]/, '');" maxlength="3">&nbsp;&nbsp;점 ->
+		                    	<input type="text" class="inp14 w21 txt-right" id="postMajorApplCd" name="postMajorApplCd" value="${detail.majorApplCd}">&emsp;&emsp;&emsp;&emsp;
 		                    	<input type="text" class="inp14 txt-right" id="postScore" name="postScore" value="${detail.postScore}" style="width:9%" oninput="this.value = this.value.replace(/[^0-9]/, '');" maxlength="3">&nbsp;&nbsp;점
 		                    </div>
 		                    <div class="noto500 mt40">4. 상담 후 변화된 점은 무엇입니까?</div>
@@ -490,12 +574,13 @@
 		                        </tbody>
 		                    </table>
 		                    <div class="noto500 mt40" style="margin-bottom:5px;">5. 상담에 대한 기타 건의 사항</div>
-		                    <textarea id="suggestion" name="suggestion">${detail.suggestion }</textarea>
+		                    <textarea id="postSuggestion" name="postSuggestion">${detail.suggestion }	</textarea>
 		                    <div class="noto500 mt40 border">
 		                      	 주 호소내용<br/>
-		                        <span class="fs16 txt-justify">① 심리정서&nbsp;&nbsp;② 대인관계&nbsp;&nbsp;③ 치매&nbsp;&nbsp;④ 중독&nbsp;&nbsp;⑤ 정신건강·장애&nbsp;&nbsp;⑥ 자살&nbsp;&nbsp;⑦ 건강&nbsp;&nbsp;⑧ 경제&nbsp;&nbsp;⑨ 생활&nbsp;&nbsp;⑩ 성&nbsp;&nbsp;⑪ 부부&nbsp;&nbsp;⑫ 가족&nbsp;&nbsp; ⑬ 학대&nbsp;&nbsp;⑭ 노년생애준비&nbsp;&nbsp;⑮ 재난&nbsp;&nbsp;⑯ 기타&nbsp;&nbsp;</span>
+		                        <span class="fs16 txt-justify">① 심리정서&nbsp;&nbsp;② 대인관계&nbsp;&nbsp;③ 치매&nbsp;&nbsp;④ 중독&nbsp;&nbsp;⑤ 정신건강·장애&nbsp;&nbsp;⑥ 건강&nbsp;&nbsp;⑦ 경제&nbsp;&nbsp;⑧ 생활&nbsp;&nbsp;⑨ 성&nbsp;&nbsp;⑩ 부부&nbsp;&nbsp;⑪ 가족&nbsp;&nbsp;⑫ 학대&nbsp;&nbsp; ⑬ 노년생애준비&nbsp;&nbsp;⑭ 자살&nbsp;&nbsp;⑮ 재난&nbsp;&nbsp;⑯ 기타&nbsp;&nbsp;</span>
 		                    </div>
 		                </div>
+		            </div>
 		            </div>
 		        </div>
 	    	</div>

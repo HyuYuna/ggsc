@@ -22,7 +22,7 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/salutation";
+		return "/centerIntro/centerIntroList.page";
 	}
 	
 	// 운영법인
@@ -36,7 +36,7 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/operatCorp";
+		return "/centerIntro/operatCorp.page";
 	}
 	
 	// 미션관 비전
@@ -50,7 +50,7 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/missionVis";
+		return "/centerIntro/missionVis.page";
 	}
 	
 	// 센터의 발자취
@@ -64,7 +64,7 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/centerFoot";
+		return "/centerIntro/centerFoot.page";
 	}
 	
 	// 함께하는 사람들
@@ -78,7 +78,21 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/peopleTg";
+		return "/centerIntro/peopleTg.page";
+	}
+	
+	// 센터 지도
+	@RequestMapping(value = "/centerMap.do")
+	public String centerMap(HttpServletRequest request, Model model) {
+		
+		EgovMap map = (EgovMap)request.getSession().getAttribute("LoginVO");
+		if(map == null) {
+			model.addAttribute("loginYn", "N");
+		} else {
+			model.addAttribute("loginYn", "Y");
+		}
+		
+		return "/centerIntro/centerMap.page";
 	}
 	
 	// 오시는길
@@ -92,7 +106,7 @@ public class HomepageCtIntroController {
 			model.addAttribute("loginYn", "Y");
 		}
 		
-		return "homepage/centerIntro/directions";
+		return "/centerIntro/directions.page";
 	}
 	
 	// 이렇게 이용하세요

@@ -913,10 +913,14 @@
 			gum.addr AS addr ,
 			gum.mobile AS mobile ,
 			gcpp.inspect_dt ,
-			(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.major_appl_cd) AS majorApplCd ,
+			<!-- (SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.major_appl_cd) AS majorApplCd , -->
+			gcpp.major_appl_cd ,
 			date_format(gcpp.db_ins_tm,'%Y.%m.%d') AS dbInsTm ,
 			gcpp.PREV_STATE ,
-			gcpp.POST_STATE
+			gcpp.POST_STATE ,
+			gcpp.INSPECT_CNT ,
+			gcpp.PREV_SCORE ,
+			gcpp.POST_SCORE
 			
 		FROM
 			gs_cns_prev_post AS gcpp
@@ -4556,7 +4560,7 @@
 				gcpp.CASE_NO ,
 				gcpp.PREV_POST_GB ,
 				gcpp.CNSLE_NM ,
-				(SELECT MCLASS_NM FROM GS_M_CLASS WHERE HCLASS_CD = 'G58' AND ODR = gcpp.MAJOR_APPL_CD) AS majorApplCdNm ,
+				gcpp.MAJOR_APPL_CD ,
 				DATE_FORMAT(gcpp.INSPECT_DT, '%Y-%m-%d') AS inspectDt ,
 				gcpp.INSPECT_CNT 
 			FROM
@@ -4740,6 +4744,56 @@
 		
 	</insert>
 	
+	<!-- 상담 사전 사후 검사 등록 -->
+	<insert id="cnsMngDao.insertCnsPrevPost" parameterClass="prevPostVO">
+		INSERT INTO GS_CNS_PREV_POST
+		(
+			CASE_NO ,
+			PREV_POST_GB ,
+			CNS_GB ,
+			ZONE_GB ,
+			LOCAL_GB ,
+			CENTER_GB ,
+			CNSLE_ID ,
+			CNSLE_NM ,
+			CNSR_ID ,
+			INSPECT_DT ,
+			INSPECT_CNT ,
+			PREV_STATE ,
+			PREV_SCORE ,
+			POST_STATE ,
+			POST_SCORE ,
+			MAJOR_APPL_CD ,
+			CNS_BEFORE ,
+			CNS_AFTER ,
+			SUGGESTION ,
+			DB_INS_TM
+
+		) VALUES (
+			#caseNo# ,
+			#prevPostGb# ,
+			#cnsGb# ,
+			#zoneGb# ,
+			#localGb# ,
+			#centerGb# ,
+			#cnsleId# ,
+			#cnsleNm# ,
+			#cnsrId# ,
+			#inspectDt# ,
+			#inspectCnt# ,
+			#prevState# ,
+			#prevScore# ,
+			#postState# ,
+			#postScore# ,
+			#majorApplCd# ,
+			#cnsBefore# ,
+			#cnsAfter# ,
+			#suggestion# ,
+			NOW()
+		) 
+		
+	</insert>
+	
 	<!-- 상담 사전 검사 수정 -->
 	<update id="cnsMngDao.updateCnsPrev" parameterClass="prevPostVO">
 		UPDATE 
@@ -4764,6 +4818,26 @@
 			INSPECT_CNT = #inspectCnt#,
 			POST_STATE = #postState#,
 			MAJOR_APPL_CD = #majorApplCd#,
+			POST_SCORE = #postScore#,
+			CNS_BEFORE = #cnsBefore#,
+			CNS_AFTER  = #cnsAfter#,
+			SUGGESTION = #suggestion#
+		WHERE
+			NUM = #num#
+	</update>
+	
+	<!-- 상담 사전 사후 검사 수정 -->
+	<update id="cnsMngDao.updateCnsPrevPost" parameterClass="prevPostVO">
+		UPDATE 
+			GS_CNS_PREV_POST
+		SET
+			PREV_POST_GB = #prevPostGb#,
+			INSPECT_DT  = #inspectDt#,
+			INSPECT_CNT = #inspectCnt#,
+			PREV_STATE = #prevState#,
+			POST_STATE = #postState#,
+			MAJOR_APPL_CD = #majorApplCd#,
+			PREV_SCORE = #prevScore#,
 			POST_SCORE = #postScore#,
 			CNS_BEFORE = #cnsBefore#,
 			CNS_AFTER  = #cnsAfter#,
@@ -5012,13 +5086,14 @@
 	<!-- 슈퍼비전 답변 수정 -->
 	<update id="cnsMngDao.updateSuperVisionReplyReg"
 		parameterClass="supperVisionVO">
-		UPDATE GS_SVSN_D
-		SEt
-		TITLE = #title# ,
-		RPLY_CNSR = #rplyCnsr# ,
-		REL_ORG_NM = #relOrgNm# ,
-		RPLY_DT = #rplyDt# ,
-		RPLY_CNTN = #rplyCntn#
+		UPDATE 
+			GS_SVSN_D
+		SET
+			TITLE = #title# ,
+			RPLY_CNSR = #rplyCnsr# ,
+			REL_ORG_NM = #relOrgNm# ,
+			RPLY_DT = #rplyDt# ,
+			RPLY_CNTN = #rplyCntn#
 		<!-- <isNotEmpty property="sysFileNm"> , FILE_NM = #fileNm# , SYS_FILE_NM 
 			= #sysFileNm# , FILE_PATH = #filePath# </isNotEmpty> -->
 		WHERE
@@ -5097,7 +5172,7 @@
 	<update id="cnsMngDao.updateEndPerCnsDtl" parameterClass="cnsEndVO">
 		UPDATE
 			GS_PER_CNS_DTL
-				SET
+		SET
 			CNS_STAT = '2' ,
 			CNS_END_CD = #cnsEndCd# ,
 			CNS_END_DT = #cnsEndDt#
@@ -5157,6 +5232,7 @@
 		,PGRM_CD
 		,PGRM_NM
 		,WRITE_DT
+		,BIRTH_DT
 		,END_DT
 		,TEL_NO
 		,NO1
@@ -5199,6 +5275,26 @@
 		,NO38
 		,NO39
 		,NO40
+		,NO41
+		,NO42
+		,NO43
+		,NO44
+		,NO45
+		,NO46
+		,NO47
+		,NO48
+		,NO49
+		,NO50
+		,NO51
+		,NO52
+		,NO53
+		,NO54
+		,NO55
+		,NO56
+		,NO57
+		,NO58
+		,NO59
+		,NO60
 		FROM gs_psy_cns_doc_dtl
 
 		WHERE
@@ -5231,6 +5327,7 @@
 		,PGRM_CD
 		,PGRM_NM
 		,WRITE_DT
+		,BIRTH_DT
 		,END_DT
 		,TEL_NO
 		,NO1
@@ -5273,6 +5370,26 @@
 		,NO38
 		,NO39
 		,NO40
+		,NO41
+		,NO42
+		,NO43
+		,NO44
+		,NO45
+		,NO46
+		,NO47
+		,NO48
+		,NO49
+		,NO50
+		,NO51
+		,NO52
+		,NO53
+		,NO54
+		,NO55
+		,NO56
+		,NO57
+		,NO58
+		,NO59
+		,NO60
 		,DOC_SIGN_PATH
 		,DB_INS_TM
 		)
@@ -5294,6 +5411,7 @@
 		#pgrmCd#,
 		#pgrmNm#,
 		#writeDt#,
+		#birthDt#,
 		#endDt#,
 		#telNo#,
 		#no1#, #no2#, #no3#,
@@ -5307,6 +5425,8 @@
 		#no31#, #no32#, #no33#, #no34#, #no35#, #no36#, #no37#, #no38#,
 		#no39#,
 		#no40#,
+		#no41#, #no42#, #no43#, #no44#, #no45#, #no46#, #no47#, #no48#, #no49#, #no50#,
+		#no51#, #no52#, #no53#, #no54#, #no55#, #no56#, #no57#, #no58#, #no59#, #no60#,
 		#docSignPath#,
 		now()
 		)
@@ -5314,76 +5434,91 @@
 	
 	
 	<!-- 심리 검사 UPDATE -->
-	<update id="cnsMngDao.updatePsyCnsDoc"
-		parameterClass="psyCnsDocVO">
-		UPDATE gs_psy_cns_doc_dtl
+	<update id="cnsMngDao.updatePsyCnsDoc" parameterClass="psyCnsDocVO">
+		UPDATE 
+			gs_psy_cns_doc_dtl
 		SET
-		CASE_NO = #caseNo#,
-		CNS_GB =
-		#cnsGb#,
-		CNS_DTL_GB_CD = #cnsDtlGbCd#,
-		ZONE_GB = #zoneGb#,
-		LOCAL_GB =
-		#localGb#,
-		CENTER_GB = #centerGb#,
-		CNSLE_ID = #cnsleId#,
-		CNSLE_NM =
-		#cnsleNm#,
-		CNSR_ID = #cnsrId#,
-		CNSR_NM = #cnsrNm#,
-		CNS_CNT = #cnsCnt#,
-		PGRM_CD = #pgrmCd#,
-		PGRM_NM = #pgrmNm#,
-		WRITE_DT = #writeDt#,
-		END_DT =
-		#endDt#,
-		TEL_NO = #telNo#,
-		NO1 = #no1#,
-		NO2 = #no2#,
-		NO3 = #no3#,
-		NO4 =
-		#no4#,
-		NO5 = #no5#,
-		NO6 = #no6#,
-		NO7 = #no7#,
-		NO8 = #no8#,
-		NO9 = #no9#,
-		NO10= #no10#,
-		NO11= #no11#,
-		NO12 = #no12#,
-		NO13 = #no13#,
-		NO14 = #no14#,
-		NO15 = #no15#,
-		NO16 = #no16#,
-		NO17 = #no17#,
-		NO18 = #no18#,
-		NO19 = #no19#,
-		NO20 = #no20#,
-		NO21 = #no21#,
-		NO22 = #no22#,
-		NO23 = #no23#,
-		NO24 = #no24#,
-		NO25 = #no25#,
-		NO26 = #no26#,
-		NO27 = #no27#,
-		NO28 = #no28#,
-		NO29 = #no29#,
-		NO30 = #no30#,
-		NO31 = #no31#,
-		NO32 = #no32#,
-		NO33 = #no33#,
-		NO34 = #no34#,
-		NO35 = #no35#,
-		NO36 = #no36#,
-		NO37 = #no37#,
-		NO38 = #no38#,
-		NO39 = #no39#,
-		NO40 = #no40#,
-		DOC_SIGN_PATH = #docSignPath#,
-		DB_INS_TM = now()
+			CASE_NO = #caseNo#,
+			CNS_GB = #cnsGb#,
+			CNS_DTL_GB_CD = #cnsDtlGbCd#,
+			ZONE_GB = #zoneGb#,
+			LOCAL_GB = #localGb#,
+			CENTER_GB = #centerGb#,
+			CNSLE_ID = #cnsleId#,
+			CNSLE_NM = #cnsleNm#,
+			CNSR_ID = #cnsrId#,
+			CNSR_NM = #cnsrNm#,
+			CNS_CNT = #cnsCnt#,
+			PGRM_CD = #pgrmCd#,
+			PGRM_NM = #pgrmNm#,
+			WRITE_DT = #writeDt#,
+			BIRTH_DT = #birthDt#,
+			END_DT = #endDt#,
+			TEL_NO = #telNo#,
+			NO1 = #no1#,
+			NO2 = #no2#,
+			NO3 = #no3#,
+			NO4 = #no4#,
+			NO5 = #no5#,
+			NO6 = #no6#,
+			NO7 = #no7#,
+			NO8 = #no8#,
+			NO9 = #no9#,
+			NO10= #no10#,
+			NO11= #no11#,
+			NO12 = #no12#,
+			NO13 = #no13#,
+			NO14 = #no14#,
+			NO15 = #no15#,
+			NO16 = #no16#,
+			NO17 = #no17#,
+			NO18 = #no18#,
+			NO19 = #no19#,
+			NO20 = #no20#,
+			NO21 = #no21#,
+			NO22 = #no22#,
+			NO23 = #no23#,
+			NO24 = #no24#,
+			NO25 = #no25#,
+			NO26 = #no26#,
+			NO27 = #no27#,
+			NO28 = #no28#,
+			NO29 = #no29#,
+			NO30 = #no30#,
+			NO31 = #no31#,
+			NO32 = #no32#,
+			NO33 = #no33#,
+			NO34 = #no34#,
+			NO35 = #no35#,
+			NO36 = #no36#,
+			NO37 = #no37#,
+			NO38 = #no38#,
+			NO39 = #no39#,
+			NO40 = #no40#,
+			NO41 = #no41#,
+			NO42 = #no42#,
+			NO43 = #no43#,
+			NO44 = #no44#,
+			NO45 = #no45#,
+			NO46 = #no46#,
+			NO47 = #no47#,
+			NO48 = #no48#,
+			NO49 = #no49#,
+			NO50 = #no50#,
+			NO51 = #no51#,
+			NO52 = #no52#,
+			NO53 = #no53#,
+			NO54 = #no54#,
+			NO55 = #no55#,
+			NO56 = #no56#,
+			NO57 = #no57#,
+			NO58 = #no58#,
+			NO59 = #no59#,
+			NO60 = #no60#,
+			DOC_SIGN_PATH = #docSignPath#,
+			DB_INS_TM = now()
 		WHERE
-		NUM
-		= #dtlIdx#
+			NUM = #dtlIdx#
 		AND CNS_DTL_NUM = #gIdx#
 		AND EXAM_DOC_CD = #examDocCd#
 	</update>

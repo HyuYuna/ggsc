@@ -63,31 +63,31 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">센터소개<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu"  role="menu">
                 <li class="dropdown-item">
-	                <a href="/gnoincoun/centerIntroList.do">인사말
+	                <a href="/gnoincoun/salutation.do">인사말
 	                <i class="fa fa-caret-right"></i></a>
                 </li>
 				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=operating">운영법인
+					<a href="/gnoincoun/operatCorp.do">운영법인
 					<i class="fa fa-caret-right"></i></a>
 				</li>
 				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=vision">미션과 비젼 
+					<a href="/gnoincoun/missionVis.do">미션과 비젼 
 					<i class="fa fa-caret-right"></i></a>
 				</li>
 				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=pathway">걸어온길
+					<a href="/gnoincoun/centerFoot.do">걸어온길
 					<i class="fa fa-caret-right"></i></a>
 				</li>
 				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=together">함께하는
-						사람들<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=centerInfo">시군센터
+					<a href="/gnoincoun/peopleTg.do">함께하는 사람들
 					<i class="fa fa-caret-right"></i></a>
 				</li>
 				<li class="dropdown-item">
-					<a href="/gnoincoun/centerIntroList.do?gubun=directions">오시는길
+					<a href="/gnoincoun/centerMap.do">시군센터
+					<i class="fa fa-caret-right"></i></a>
+				</li>
+				<li class="dropdown-item">
+					<a href="/gnoincoun/directions.do">오시는길
 					<i class="fa fa-caret-right"></i></a>
 				</li>
               </ul>
@@ -108,10 +108,6 @@
 				</li>
 				<li class="dropdown-item">
 					<a href="/gnoincoun/busiIntroList.do?gubun=mid">중장년마음돌봄 전화상담
-					<i class="fa fa-caret-right"></i></a>
-				</li>
-				<li class="dropdown-item">
-					<a href="/gnoincoun/busiIntroList.do?gubun=weak">취약노인 지원사업
 					<i class="fa fa-caret-right"></i></a>
 				</li>
 				<li class="dropdown-item">
